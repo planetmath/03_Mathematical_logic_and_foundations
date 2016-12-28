@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{RingOfSets}
+\pmcreated{2013-03-22 15:47:46}
+\pmmodified{2013-03-22 15:47:46}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{ring of sets}
+\pmrecord{18}{37757}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmclassification{msc}{28A05}
+\pmsynonym{lattice of sets}{RingOfSets}
+\pmsynonym{algebra of sets}{RingOfSets}
+\pmrelated{SigmaAlgebra}
+\pmrelated{AbsorbingElement}
+\pmrelated{RepresentingADistributiveLatticeByRingOfSets}
+\pmrelated{RepresentingABooleanLatticeByFieldOfSets}
+\pmdefines{field of sets}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% define commands here
+\begin{document}
+\subsection*{Ring of Sets}
+Let $S$ be a set and $2^S$ be the power set of $S$.  A subset $\mathcal{R}$ of $2^S$ is said to be a \emph{ring of sets} of $S$ if it is a lattice under the intersection and union operations.  In other words, $\mathcal{R}$ is a ring of sets if 
+\begin{itemize}
+\item for any $A,B\in \mathcal{R}$, then $A\cap B\in \mathcal{R}$,
+\item for any $A,B\in \mathcal{R}$, then $A\cup B\in \mathcal{R}$.
+\end{itemize}
+
+A ring of sets is a distributive lattice.  The word ``ring'' in the name has nothing to do with the ordinary ring found in algebra.  Rather, it is an abelian semigroup with respect to each of the binary set operations.  If $S\in\mathcal{R}$, then $(\mathcal{R},\cap,S)$ becomes an abelian monoid.  Similarly, if $\varnothing\in\mathcal{R}$, then $(\mathcal{R},\cup,\varnothing)$ is an abelian monoid.  If both $S,\varnothing\in\mathcal{R}$, then $(\mathcal{R},\cup,\cap)$ is a commutative semiring, since $\varnothing\cap A=A\cap\varnothing=\varnothing$, and $\cap$ distributes over $\cup$.  Dualizing, we see that $(\mathcal{R},\cap,\cup)$ is also a commutative semiring.  It is perhaps with this connection that the name ``ring of sets'' is so chosen.
+
+Since $S$ is not required to be in $\mathcal{R}$, a ring of sets can in theory be the empty set.  Even if $\mathcal{R}$ may be non-empty, it may be a singleton.  Both cases are not very interesting to study.  To avoid such examples, some authors, particularly measure theorists, define a ring of sets to be a non-empty set with the first condition above replaced by
+\begin{itemize}
+\item for any $A,B\in \mathcal{R}$, then $A-B\in \mathcal{R}$.
+\end{itemize}
+This is indeed a stronger condition, as $A\cap B=A-(A-B)\in \mathcal{R}$.  However, we shall stick with the more general definition here.
+
+\subsection*{Field of Sets}
+An even stronger condition is to insist that not only is $\mathcal{R}$ non-empty, but that $S\in\mathcal{R}$.  Such a ring of sets is called a field, or algebra of sets.  Formally, given a set $S$, a \emph{field of sets} $\mathcal{F}$ of $S$ satisfies the following criteria
+\begin{itemize}
+\item $\mathcal{F}$ is a ring of sets of $S$,
+\item $S\in\mathcal{F}$, and
+\item if $A\in\mathcal{F}$, then the complement $\overline{A}\in\mathcal{F}$.
+\end{itemize}
+The three conditions above are equivalent to the following three conditions:
+\begin{itemize}
+\item $\varnothing\in\mathcal{F}$,
+\item if $A,B\in \mathcal{F}$, then $A\cup B\in \mathcal{F}$, and
+\item if $A\in\mathcal{F}$, then $\overline{A}\in\mathcal{F}$.
+\end{itemize}
+
+A field of sets is also known as an \emph{algebra of sets}.
+
+It is easy to see that $\mathcal{F}$ is a distributive complemented lattice, and hence a Boolean lattice.  From the discussion earlier, we also see that $\mathcal{F}$ (of $S$) is a commutative semiring, with $S$ acting as the multiplicative identity and $\varnothing$ both the additive identity and the multiplicative absorbing element.
+
+\textbf{Remark}.  Two remarkable theorems relating to \PMlinkescapetext{representations} of certain lattices as rings or fields of sets are the following: 
+\begin{enumerate}
+\item a lattice is distributive iff it is \PMlinkname{lattice isomorphic}{LatticeIsomorphism} to a ring of sets (G. Birkhoff and M. Stone); 
+\item a lattice is \PMlinkname{Boolean}{BooleanLattice} iff it is lattice \PMlinkescapetext{isomorphic} to a field of sets (M. Stone).
+\end{enumerate}
+
+\begin{thebibliography}{7}
+\bibitem{prh} P. R. Halmos: {\em Lectures on Boolean Algebras}, Springer-Verlag (1970).
+\bibitem{prh1} P. R. Halmos: {\em Measure Theory}, Springer-Verlag (1974).
+\bibitem{gg} G. Gr\"atzer: {\em General Lattice Theory}, Birkh\"auser, (1998).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

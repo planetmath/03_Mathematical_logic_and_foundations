@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A11TypeUniverses}
+\pmcreated{2013-11-09 4:43:13}
+\pmmodified{2013-11-09 4:43:13}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.1.1 Type universes}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\ctx}{\ensuremath{\mathsf{ctx}}}
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\begin{document}
+We postulate a hierarchy of \define{universes} denoted by primitive constants
+\index{type!universe}
+%
+\begin{equation*}
+  \UU_0, \quad \UU_1, \quad  \UU_2, \quad \ldots
+\end{equation*}
+%
+The first two rules for universes say that they form a cumulative hierarchy of types:
+%
+\begin{itemize}
+\item $\UU_m : \UU_n$ for $m < n$,
+\item if $A:\UU_m$ and $m \le n$, then $A:\UU_n$,
+\end{itemize}
+%
+and the third expresses the idea that an object of a universe can serve as a type and stand to the
+right of a colon in judgments:
+%
+\begin{itemize}
+\item if $\Gamma \vdash A : \UU_n$, and $x$ is a new variable,%
+\footnote{By ``new'' we mean that it does not appear in $\Gamma$ or $A$.}
+then $\vdash (\Gamma, x:A)\; \ctx$.
+\end{itemize}
+%
+In the body of the book, an equality judgment $A \jdeq B : \UU_n$ between types
+$A$ and $B$ is usually abbreviated to $A \jdeq B$. This is an instance of
+typical ambiguity\index{typical ambiguity}, as we can always switch to a larger universe, which however does not affect the validity of the judgment.
+
+The following conversion rule allows us to replace a type by one equal to it in a typing judgment:
+%
+\begin{itemize}
+\item if $a:A$ and $A \jdeq B$ then $a:B$.
+\end{itemize}
+
+
+\end{document}

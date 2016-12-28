@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CompactnessTheoremForClassicalPropositionalLogic}
+\pmcreated{2013-03-22 19:35:21}
+\pmmodified{2013-03-22 19:35:21}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{compactness theorem for classical propositional logic}
+\pmrecord{14}{42578}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmdefines{sound}
+\pmdefines{uniquely sound}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+Call a set $\Delta$ of wff's of (classical) propositional logic \emph{sound} if there is an interpretation (or valuation) $v$ such that $v(A)=1$ for every $A\in \Delta$.
+
+\begin{thm} (Compactness Theorem)  $\Delta$ is sound iff every finite subset of it is sound. \end{thm}
+One direction is trivial.  The converse is trivial too if $\Delta$ is finite.  We now prove that if every finite subset of an infinite set $\Delta$ is sound, so is $\Delta$.  There are two well-known proofs of this, one assumes that the set $V$ of propositional variables is countable, and the other does not.  The one that does uses Konig's lemma, and the other one uses Tychonoff's theorem (hence the name compactness theorem).
+
+\textit{Proof using Konig's lemma}. 
+Let $A_1,\ldots$ be an enumeration of all the wff's in $\Delta$ (this assumes that the set $V$ of all propositional variables is countable).  Let $i_1 \le \ldots$ be positive integers such that $p_1, \ldots, p_{i_n}$ are the propositional variables that occur in wff's $A_1,\ldots, A_n$.  Since $\lbrace A_1,\ldots, A_n\rbrace$ is sound, the set $S_n:=\lbrace v\in 2^V \mid v(A_j)=1, j=1,\ldots,n \rbrace \ne \varnothing$ for each $n$.  Furthermore, $S_{n+1} \subseteq S_n$.  Let $U_n:=\lbrace v(p_1)\cdots v(p_n)\mid v\in S_n \rbrace$.  In other words, each $U_n$ is a set of words over $\lbrace 0,1\rbrace$ of length $n$.  Then $U_n$ is finite and non-empty (because $S_n \ne \varnothing$) for each $n$.  Since $\varnothing \ne S_{n+1}\subseteq S_n$, there is a word in $U_n$ that is a prefix of a word in $U_{n+1}$ for each $n$.
+
+Let $T$ be the tree with root $r$ (some arbitrary symbol) such that
+\begin{enumerate}
+\item its vertices other than $r$ are elements of $U_1,\ldots, U_n, \ldots$.
+\item the children of $r$ are elements of $U_1$,
+\item if $\ell \in U_n$ is a vertex, then its children are elements of $U_{n+1}$ with prefix $\ell$
+\end{enumerate} 
+It's easy to see that $T$ is finitely branching, since each $U_n$ is finite.  Furthermore, by induction, if $\ell \in U_{n+1}$, then its prefix of length $n$, an element of $U_n$, is a vertex $\ell'$ of $T$.  So $\ell$, as a child of $\ell'$, is a vertex $T$.  Since each $U_n \ne \varnothing$ for each $n$, the $T$ has infinitely many vertices.  As a result, we apply Konig's lemma, so that $T$ has an infinite branch $T'$.  It is easy to see that $T'$ corresponds to an infinite word $\alpha$ over $\lbrace 0,1\rbrace$, which in turn corresponds to an interpretation $v$ such that $v(p_i)$ is the $i$'th letter in $\alpha$.  It is now clear that $v(A_i)=1$ for each $A_i\in \Delta$, hence $\Delta$ is sound.
+\hfill $\square$
+
+\textit{Proof using Tychonoff's theorem}.
+For any set $\Delta$ of wff's, define $S(\Delta):=\lbrace v\in 2^V \mid v(A)=1, \mbox{ for all } A \in \Delta \rbrace$.  It is easy to see that 
+\begin{equation}
+S(\bigcup \lbrace \Delta_i \mid i\in I\rbrace) = \bigcap \lbrace S(\Delta_i) \mid i\in I\rbrace
+\end{equation}
+for $v$ is in the former set iff $v(A)=1$ for all $A\in \bigcup \lbrace \Delta_i \mid i\in I\rbrace$ iff $v(A_i)=1$ for all $A_i\in \Delta_i$, $i\in I$, iff $v$ in the later set.
+
+Next, equip $2:=\lbrace 0,1\rbrace$ with the discrete topology, and $2^V$ the product topology.  Since $2$ is compact, so is $2^V$ by the Tychonoff's theorem, and therefore the finite intersection property applies.  In addition, for any wff $A$, $S(\lbrace A\rbrace)$ is closed in $2^V$, since there are only a finite number of propositional variables occurring in $A$.  As a result, by equation $(1)$, $S(\Delta)$ is closed for any set $\Delta$ of wff's.
+
+Now, suppose every finite subset of $\Delta$ is sound.  In particular, every singleton subset of $\Delta$ is sound.  This means that for each $A\in \Delta$, $S(\lbrace A\rbrace)\ne \varnothing$.  Let $\mathfrak{D}:=\lbrace S(\lbrace A\rbrace) \mid A \in \Delta)$.  Then every member of $\mathfrak{D}$ is closed, and, by assumption and equation $(1)$, the intersection of any finite family of members of $\mathfrak{D}$ is non-empty, which means that $\bigcap \mathfrak{D} \ne \varnothing$.  But $\bigcap \mathfrak{D} = S(\Delta)$ by equation $(1)$, the result follows.
+\hfill $\square$
+
+\textbf{Remark}.  It can be shown that the general version of the compactness theorem is equivalent to the prime ideal theorem in Boolean algebra.
+
+By the compactness theorem, one can show that soundness and consistency are the semantical and syntactical sides of the same idea.
+
+\begin{lem} Soundness and consistency are the same on finite sets. \end{lem}
+\begin{proof} If $A_1,\ldots,A_n\vdash \perp$, then $\vdash B$, where $B$ is $A_1 \to (A_2 \to (\cdots \to (A_n \to \perp) \cdots )$, or $v(B)=1$ for all $v$, or $v(A_1)=0$ or $v(A_2 \to (\cdots \to (A_n \to \perp ) \cdots)) = 1$, or $v(A_1)=0$ or $v(A_2)=0$ or $\cdots$ or $v(A_n)=0$ for all $v$, by induction, or $v(A_i)=0$ for some $i$, where $i=1,\ldots, n$, which means $\lbrace A_1, \ldots, A_n \rbrace$ is not sound.
+
+Conversely, if $\lbrace A_1, \ldots, A_n \rbrace$ is not sound, then $v(A_i)=0$ for some $i$, where $i=1,\ldots, n$ for all $v$.  Renumber if necessary, so that the indices $1$ and $i$ are switched, and $v(A_1)=0$ for all $v$.  Let $B$ be the formula $A_2 \to (\cdots \to (A_n \to \perp)\cdots)$  Then $v(A_1\to B)=1$ for all $v$.  By the completeness theorem, $\vdash A_1 \to B$, and therefore $A_1,\ldots, A_n\vdash \perp$ by the deduction theorem $n$ times.
+\end{proof}
+
+\begin{prop} Soundness and consistency are the same on all sets. \end{prop}
+\begin{proof} For one direction, see \PMlinkname{here}{PropertiesOfConsistency}.  Now, suppose $\Delta$ is consistent. Then every finite subset of it is consistent, and therefore sound by the last proposition, hence $\Delta$ itself is sound by the compactness theorem.  \end{proof}
+
+A set $\Delta$ of wff's is \emph{uniquely sound} if there is a unique interpretation $v$ such that $v(A)=1$ for every $A \in \Delta$.
+
+\begin{cor} A set is maximally consistent iff it is a uniquely sound theory. \end{cor}
+\begin{proof}  If $\Delta$ is maximally consistent, then it is a theory (see \PMlinkname{here}{MaximallyConsistent}), and sound by the last corollary.  Suppose $v_1(A)=v_2(A)=1$ for all $A\in\Delta$.  If $v_1\ne v_2$, then there is some wff $B\notin \Delta$ such that $v_1(B)\ne v_2(B)$.  So one of them is $1$, say $v_1(B)=1$.  Then $\Delta\cup \lbrace B\rbrace$ is sound, and therefore consistent by the last corollary, contradicting the maximality of $\Delta$.
+
+We actually proved more: any maximally consistent $\Delta$ is $\lbrace A \mid v(A)=1 \rbrace$, where $v$ is the unique interpretation such that $v(A)=1$ for all $A\in \Delta$.  One direction is obvious.  The other direction comes from the fact that $\lbrace A \mid v(A)=1 \rbrace$ is consistent and $\Delta$ is maximal.
+
+Conversely, suppose a theory $\Delta$ is uniquely sound.  Then $\Delta=\mbox{Ded}(\Delta)=\bigcap \lbrace \Gamma \in W_L \mid \Delta\subseteq \Gamma\rbrace$, where $W_L$ is the set of all maximally consistent sets of the logic $L$.  Suppose $\lbrace \Gamma \in W_L \mid \Delta\subseteq \Gamma\rbrace$ has at least two elements, say, $\Gamma_1,\Gamma_2$.  Then by the last paragraph, they are both uniquely sound.  Let $v_1,v_2$ be the two respective unique interpretations such that $v_i(A)=1$ for every $A\in \Gamma_i$, $i=1,2$.  Since $\Gamma_1\ne \Gamma_2$, there is a wff $B\in \Gamma_1 -\Gamma_2$ such that $v_1(B)=1$ and $v_2(B)=0$.  In addition, $v_1(A)=v_2(A)=1$ for all $A\in \Delta$, which forces $v_1=v_2$ because $\Delta$ is uniquely sound.  But this contradicts the inequality $v_2(B)\ne v_2(B)$.  Therefore, $\lbrace \Gamma \in W_L \mid \Delta\subseteq \Gamma\rbrace$ has exactly one element, which is $\Delta$.
+\end{proof}
+
+\textbf{Remark}.  It is easy to see that $\Delta_v:=\lbrace A\mid v(A)=1\rbrace$ is maximally consistent for any interpretation $v$: it is sound, and therefore consistent; it is maximal, for given any wff $B$, either $v(B)=1$ or $v(B)=0$, so that either $B\in \Delta_v$ or $\neg B\in \Delta_v$.  Coupled with the corollary above, there is a one-to-one correspondence $v\mapsto \Delta_v$ between interpretations and maximally consistent sets of a logic.
+
+%%%%%
+%%%%%
+\end{document}

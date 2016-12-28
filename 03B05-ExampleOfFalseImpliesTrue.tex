@@ -1,0 +1,227 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExampleOfFalseImpliesTrue}
+\pmcreated{2013-03-22 18:49:52}
+\pmmodified{2013-03-22 18:49:52}
+\pmowner{Algeboy}{12884}
+\pmmodifier{Algeboy}{12884}
+\pmtitle{example of false implies true}
+\pmrecord{9}{41635}
+\pmprivacy{1}
+\pmauthor{Algeboy}{12884}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+%%\usepackage{xypic}
+
+%-----------------------------------------------------
+
+%       Standard theoremlike environments.
+
+%       Stolen directly from AMSLaTeX sample
+
+%-----------------------------------------------------
+
+%% \theoremstyle{plain} %% This is the default
+
+\newtheorem{thm}{Theorem}
+
+\newtheorem{coro}[thm]{Corollary}
+
+\newtheorem{lem}[thm]{Lemma}
+
+\newtheorem{lemma}[thm]{Lemma}
+
+\newtheorem{prop}[thm]{Proposition}
+
+\newtheorem{conjecture}[thm]{Conjecture}
+
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{claim}{Claim}
+
+\newtheorem{defn}[thm]{Definition}
+
+\newtheorem{remark}[thm]{Remark}
+
+\newtheorem{ex}[thm]{Example}
+
+
+
+%\countstyle[equation]{thm}
+
+
+
+%--------------------------------------------------
+
+%       Item references.
+
+%--------------------------------------------------
+
+
+\newcommand{\exref}[1]{Example-\ref{#1}}
+
+\newcommand{\thmref}[1]{Theorem-\ref{#1}}
+
+\newcommand{\defref}[1]{Definition-\ref{#1}}
+
+\newcommand{\eqnref}[1]{(\ref{#1})}
+
+\newcommand{\secref}[1]{Section-\ref{#1}}
+
+\newcommand{\lemref}[1]{Lemma-\ref{#1}}
+
+\newcommand{\propref}[1]{Prop\-o\-si\-tion-\ref{#1}}
+
+\newcommand{\corref}[1]{Cor\-ol\-lary-\ref{#1}}
+
+\newcommand{\figref}[1]{Fig\-ure-\ref{#1}}
+
+\newcommand{\conjref}[1]{Conjecture-\ref{#1}}
+
+
+% Normal subgroup or equal.
+
+\providecommand{\normaleq}{\unlhd}
+
+% Normal subgroup.
+
+\providecommand{\normal}{\lhd}
+
+\providecommand{\rnormal}{\rhd}
+% Divides, does not divide.
+
+\providecommand{\divides}{\mid}
+
+\providecommand{\ndivides}{\nmid}
+
+
+\providecommand{\union}{\cup}
+
+\providecommand{\bigunion}{\bigcup}
+
+\providecommand{\intersect}{\cap}
+
+\providecommand{\bigintersect}{\bigcap}
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+A common mistake in writing proofs is to overlook that false can imply true.
+Consider the following example:
+
+\begin{claim}
+$2=5$.
+\end{claim}
+\begin{proof}[False proof.]
+$2=5 \Rightarrow 0\cdot 2=0\cdot 5 \Rightarrow 0=0$.  Clearly $0=0$ so $2=5$.
+\end{proof}
+
+Of course this is wrong and $2\neq 5$.  The mistake is that we start from a false premise,
+that of $2=5$, and then use completely correct methods (multiply an equation on both sides by
+the same number) to arrive a true statement, that $0=0$.
+That process is logical: false can imply true.  However, the mistake in the ``proof'' is to 
+think that only true can imply true, as then we are lead to believe that $0=0$ makes $2=5$.
+
+This line of argument is absurd in the example just given, but it is often hard to spot and
+many times a good looking proof is hiding such a mistake.  For example:
+
+\begin{claim}
+$\displaystyle \sum_{k=1}^n k = \frac{n(n+1)}{2}$ for all integers $n\geq 1$.
+\end{claim}
+\begin{proof}[Incorrect proof.]
+We proceed by induction.  In the base case $n=1$:
+\begin{align*}
+   \sum_{k=1}^1 k & =\frac{1(1+1)}{2}\\
+   1 & = 1.
+\end{align*}
+Therefore the base case is true.
+
+Induction hypothesis: suppose that for some $n\geq 1$,
+$\displaystyle \sum_{k=1}^n k =\frac{n(n+1)}{2}$.
+Now consider the case $n+1$.
+\begin{align*}
+  \sum_{k=1}^{n+1} k & = \frac{(n+1)((n+1)+1)}{2}\\
+  (n+1) + \sum_{k=1}^n k & = \frac{(n+1)(n+2)}{2}\\
+  (n+1) + \frac{n(n+1)}{2} & = \frac{n^2+3n+2}{2}\\
+  \frac{2n+2}{2} +\frac{n^2+n}{2} & = \frac{n^2+3n+2}{2}\\
+  \frac{n^2+3n+2}{2} & = \frac{n^2+3n +2}{2}.
+\end{align*}
+So by induction the theorem is true for all $n\geq 1$.
+\end{proof}
+
+Notice both the base case and the inductive step assume what is to be proved and then
+using only logical implications arrive at a place where something is obviously true,
+such as $1=1$ or $\frac{n^2+3n+2}{2}=\frac{n^2+3n+2}{2}$.  What makes these both incorrect
+is that:
+\begin{quote}
+  \textbf{We may arrive at truth by starting with either truth or fiction!}
+\end{quote}
+That is the way we define implication (at least in logic).
+
+Some common signs of this mistake include:
+\begin{enumerate}
+\item The proof begins by assuming what is to be proved.  
+
+The exception to this is a 
+proof by contradiction.  Then the proof will end with something false.  
+Implications do not allow this: true must imply only true.  Hence it is accurate
+to then conclude that the assumption at the start was false.  
+
+Because of the possible confusion, it is almost always necessary to start a proof by contradiction
+with a phrase of the form "Suppose not" or "We proceed by contradiction".
+
+\item The proof ends with something that is always true, such as $1=1$ or $0=0$ or $x=x$.
+
+\item The proof cannot be read aloud.
+
+This is an often overlooked tool in writing good proofs.  Try to insert words like ``implies''
+or `` from this it follows that '' for symbols like $\rightarrow$  or $\Rightarrow$ or (even just new lines).
+If it sounds silly when read aloud in this way the chances are high that something is wrong.
+For example, the base case in the inductive proof above could be read as:
+\begin{quote}
+The sum from $k=1$ to $1$ of $k$ equals $\frac{1(1+1)}{2}$ implies that $1=1$.
+\end{quote}
+Think: isn't $1=1$ obvious?  Why would that need to be implied by some ugly formula?  Ah, it 
+would \emph{not} need to be.  Perhaps the implication is not meaningful.
+\end{enumerate}
+
+\noindent\textbf{Correcting the mistake}
+
+For many problems the mistaken proof is nevertheless a good way to begin thinking about a correct proof.
+This is because by assuming what is to be proved one has something to begin with.  By simplifying the
+problem down to something recognizably true, for example $1=1$, it then seems certain that the equation
+is correct.  To prove the result it is often a matter of only reversing the scratch work.  To see this
+we use the ingredients of the incorrect proof of $\sum_{k=1}^n k = \frac{n(n+1)}{2}$ in the following correct
+proof.  Notice also that we have included many more words and punctuation to the proof which makes it
+both readable and also helps us to understand the logic of the proof more easily.
+
+\begin{proof}
+We proceed by induction.  In the base case $n=1$ and so on the left hand side of our equation we find that
+$\sum_{k=1}^n k=1$.  On the right hand side we have $\frac{1(1+1)}{2}=1$.  As the left hand side equals
+the right hand side, the base case is settled.
+
+Now suppose for induction that $\sum_{k=1}^n k = \frac{n(n+1)}{2}$ for some integer $n\geq 1$.
+We then consider the case of the equation for $n+1$.  On the left hand side we have:
+$\sum_{k=1}^{n+1} k= (n+1)+\sum_{k=1}^n k=n+1+\frac{n(n+1)}{2}$ with that last step applying
+the induction hypothesis.  From here we use basic algebra to see that 
+$n+1+\frac{n(n+1)}{2}=\frac{(n+1)(n+2)}{2}=\frac{(n+1)((n+1)+1)}{2}$.  Hence, by induction the
+equation holds for all $n\geq 1$.
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

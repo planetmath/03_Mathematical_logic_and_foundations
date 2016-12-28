@@ -1,0 +1,187 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FirstOrderLanguage}
+\pmcreated{2013-03-22 12:42:46}
+\pmmodified{2013-03-22 12:42:46}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{first order language}
+\pmrecord{28}{32999}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+\pmclassification{msc}{03B10}
+\pmsynonym{auxiliary symbol}{FirstOrderLanguage}
+\pmsynonym{first-order language}{FirstOrderLanguage}
+\pmrelated{Type2}
+\pmrelated{Language}
+\pmrelated{AtomicFormula}
+\pmdefines{first order language}
+\pmdefines{term}
+\pmdefines{formula}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+\usepackage[arrow,curve,poly,arc,2cell,frame,web]{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newcommand{\br}{[\![}
+\newcommand{\rb}{]\!]}
+\newcommand{\oq}{\text{``}}
+\newcommand{\cq}{\text{''}}
+
+
+\newcommand{\im}{\mathbf{Im}}
+\newcommand{\dom}{\mathbf{Dom}}
+
+
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\proves}{\vdash}
+\renewcommand{\And}{\wedge}
+\newcommand{\Sup}{\bigwedge}
+\newcommand{\Inf}{\bigvee}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\N}{\mathfrak{N}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\K}{\mathfrak{K}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Def}{\overset{\operatorname{def}}{:=}}
+
+
+
+\newcommand{\spec}{\text{{\bf Spec}}}
+\newcommand{\stab}{\text{{\bf Stab}}}
+\newcommand{\ann}{\text{{\bf Ann}}}
+\newcommand{\irr}{\text{{\bf Irr}}}
+\newcommand{\qt}{\text{{\bf Qt}}}
+\newcommand{\st}{\mathcal{Qt}}
+\newcommand{\ro}{\mathbf{r.o.}}
+
+
+\newcommand{\Endo}{\text{{\bf End}}}
+\newcommand{\mat}{\text{{\bf Mat}}}
+\newcommand{\der}{\text{{\bf Der}}}
+\newcommand{\rad}{\text{{\bf Rad}}}
+\newcommand{\trd}{\text{{\bf tr.d.}}}
+\newcommand{\cl}{\text{{\bf acl}}}
+\newcommand{\Int}{\text{{\bf int}}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\D}{\mathbf{D}}
+
+\newcommand{\del}{\partial}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\aut}{\mathbf{Aut}}
+\newcommand{\height}{\text{\bf Height}}
+\newcommand{\coheight}{\text{\bf Co-height}}
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\inner}[2]{\langle #1|#2\rangle}
+\renewcommand{\r}{{r}}
+\renewcommand{\t}{{t}}
+
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\Matrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 
+\end{array}\right)}
+\begin{document}
+Let $\Sigma$ be a signature.  The \emph{first order language} $\operatorname{FO}(\Sigma)$ on $\Sigma$ contains the following:
+\begin{enumerate}
+\item the set $S(\Sigma)$ of \emph{symbols} of $\operatorname{FO}(\Sigma)$, which is the disjoint union of the following sets:
+\begin{enumerate}
+\item $\Sigma$ (the \emph{non-logical symbols}), 
+\item a countably infinite set $V$ of variables, 
+\item the set of logical symbols $\lbrace \And, \Or, \neg, \Implies, \Iff, \forall, \exists \rbrace$, 
+\item the singleton consisting of the equality symbol $\lbrace =\rbrace$, and 
+\item the set of parentheses (left and right) $\lbrace (, )\rbrace$;
+\end{enumerate}
+\item the set $T(\Sigma)$ of \emph{terms} of $\operatorname{FO}(\Sigma)$, which is built inductively from $S(\Sigma)$, as follows: 
+\begin{enumerate}
+\item Any variable $v\in V$ is a term;
+\item Any constant symbol in $\Sigma$ is a term;
+\item If $f$ is an $n$-ary function symbol in $\Sigma$, and $t_1,...,t_n$ are
+terms, then $f(t_1,...,t_n)$ is a term.
+\end{enumerate}
+\item the set $F(\Sigma)$ of \emph{formulas} of $\operatorname{FO}(\Sigma)$, which is built inductively from $T(\Sigma)$, as follows:
+\begin{enumerate}
+\item If $t_1$ and $t_2$ are terms, then $(t_1=t_2)$ is a formula;
+\item If $R$ is an $n$-ary relation symbol and $t_1,...,t_n$ are
+terms, then $(R(t_1,...,t_n))$ is a formula;
+\item If $\varphi$ is a formula, then so is $(\neg\varphi)$;
+\item If $\varphi$ and $\psi$ are formulas, then so is $(\varphi\Or\psi)$;
+\item If $\varphi$ is a formula, and $x$ is a variable, then $(\exists x(\varphi))$ is a formula.
+\end{enumerate}
+\end{enumerate}
+In other words, $T(\Sigma)$ and $F(\Sigma)$ are the smallest sets, among all sets satisfying the conditions given for terms and formulas, respectively.
+
+Formulas in 3(a) and 3(b), which do not contain any logical connectives, are called the \emph{atomic formulas}.
+
+For example, in the first order language of partially ordered rings, expressions such as 
+$$0,\quad x^2,\quad\mbox{ and } \quad y+zx$$ are terms, while 
+$$(x=xy),\quad (x+y \le yz),\quad \mbox{ and }\quad (\exists x ((x\le 0) \Or (0\le x)))$$ are formulas, and the first two of which are atomic.
+
+\textbf{Remarks}.
+\begin{enumerate}
+\item
+Generally, one omits parentheses in formulas, when there is no ambiguity.  For example, a formula $(\varphi)$ can be simply written $\varphi$.  As such, the parentheses are also called the \emph{auxiliary symbols}.
+\item
+The other logical symbols are obtained in the following way :
+\begin{alignat*}
+\varphi\varphi\And\psi&\Def\neg(\neg\varphi\Or\neg\psi)&\qquad
+\varphi\Implies\psi&\Def\neg\varphi\Or\psi\\
+\varphi\Iff\psi&\Def(\varphi\Implies\psi)\And(\psi\Implies\varphi)&\qquad
+\forall x(\varphi)&\Def\neg(\exists x(\neg\varphi))
+\end{alignat*}
+where $\varphi$ and $\psi$ are formulas.  All logical symbols are used when building formulas.
+\item
+In the literature, it is a common practice to write $\Sigma_{\omega \omega}$ for $\operatorname{FO}(\Sigma)$.  The first subscript means that every formula in $\operatorname{FO}(\Sigma)$ contains a finite number of $\vee$'s (less than $\omega$), while the second subscript signifies that every formula has a finite number of $\exists$'s.  In general, $\Sigma_{\alpha\beta}$ denotes a language built from $\Sigma$ such that, in any given formula, the number of occurrences of $\vee$ is less than $\alpha$ and the number of occurrences of $\exists$ is less than $\beta$.  When the number of occurrences of $\vee$ (or $\exists$) in a formula is not limited, we use the symbol $\infty$ in place of $\alpha$ (or $\beta$).  Clearly, if $\alpha$ and $\beta$ are not $\omega$, we get a language that is not first-order.
+\end{enumerate}
+
+\subsubsection*{First Order Languages as Formal Languages}
+
+If the signature $\Sigma$ and the set $V$ of variables are countable, then $S(\Sigma), T(\Sigma)$, and $F(\Sigma)$ can be viewed as formal languages over a certain (finite) alphabet $\Gamma$.  The set $\Gamma$ should include all of the logical connectives, the equality symbol, and the parentheses, as well as the following symbols $$R,F,V,I,\#,$$ where they are used to form words for relation, formula, and variable symbols.  More precisely, 
+\begin{itemize}
+\item $VI^n\#$ stands for the variable $v_n$,
+\item $RI^n\#I^m\#$ stands for the $m$-th relation symbol of arity $n$, and
+\item $FI^n\#I^m\#$ stands for the $m$-th function symbol of arity $n$,
+\end{itemize}
+where $m,n\ge 0$ are integers.  The symbol $\#$ is used as a delimiter or separator.  Note that the constant symbols are then words of the form $F\#I^m\#$.  It can shown that $S(\Sigma), T(\Sigma)$ and $F(\Sigma)$ are context-free over $\Gamma$, and in fact unambiguous.
+
+\begin{thebibliography}{99}
+\bibitem{H}
+W.~Hodges, {\it A Shorter Model Theory}, Cambridge University Press, (1997).
+\bibitem{M}
+D.~Marker, {\it Model Theory, An Introduction}, Springer, (2002).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

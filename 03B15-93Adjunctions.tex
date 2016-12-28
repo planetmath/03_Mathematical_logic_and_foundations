@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{93Adjunctions}
+\pmcreated{2013-11-06 16:32:45}
+\pmmodified{2013-11-06 16:32:45}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{9.3 Adjunctions}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{9.3.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{9.3.\arabic{mathcount}}
+\let\autoref\cref
+
+\begin{document}
+
+The definition of adjoint functors is straightforward; the main interesting aspect arises from proof-relevance.
+
+\begin{defn}
+  A functor $F:A\to B$ is a \define{left adjoint}
+  \indexdef{left!adjoint}%
+  \indexdef{adjoint!functor}%
+  \indexdef{right!adjoint}%
+  \indexdef{adjoint!functor}%
+  \index{functor!adjoint}%
+  if there exists
+  \begin{itemize}
+  \item A functor $G:B\to A$.
+  \item A natural transformation $\eta:1_A \to GF$ (the \define{unit}\indexdef{unit!of an adjunction}).
+  \item A natural transformation $\epsilon:FG\to 1_B$ (the \define{counit}\indexdef{counit of an adjunction}).
+  \item $\id{(\epsilon F)(F\eta)}{1_F}$.
+  \item $\id{(G\epsilon)(\eta G)}{1_G}$.
+  \end{itemize}
+\end{defn}
+
+The last two equations are called the \define{triangle identities}\indexdef{triangle!identity} or \define{zigzag identities}\indexdef{zigzag identity}.
+\indexdef{identity!triangle}\indexdef{identity!zigzag}
+We leave it to the reader to define right adjoints analogously.
+
+\begin{lem}\label{ct:adjprop}
+  If $A$ is a category (but $B$ may be only a precategory), then the type ``$F$ is a left adjoint'' is a mere proposition.
+\end{lem}
+\begin{proof}
+  Suppose we are given $(G,\eta,\epsilon)$ with the triangle identities and also $(G',\eta',\epsilon')$.
+  Define $\gamma:G\to G'$ to be $(G'\epsilon)(\eta' G)$, and $\delta:G'\to G$ to be $(G\epsilon')(\eta G')$.
+  Then
+  \begin{align*}
+    \delta\gamma &=
+    (G\epsilon')(\eta G')(G'\epsilon)(\eta'G)\\
+    &= (G\epsilon')(G F G'\epsilon)(\eta G' F G)(\eta'G)\\
+    &= (G\epsilon)(G\epsilon'FG)(G F \eta' G)(\eta G)\\
+    &= (G\epsilon)(\eta G)\\
+    &= 1_G
+  \end{align*}
+  using \autoref{ct:interchange} and the triangle identities.
+  Similarly, we show $\id{\gamma\delta}{1_{G'}}$, so $\gamma$ is a natural isomorphism $G\cong G'$.
+  By \autoref{ct:functor-cat}, we have an identity $\id G {G'}$.
+
+  Now we need to know that when $\eta$ and $\epsilon$ are transported along this identity, they become equal to $\eta'$ and $\epsilon'$.
+  By \autoref{ct:idtoiso-trans}, this transport is given by composing with $\gamma$ or $\delta$ as appropriate.
+  For $\eta$, this yields
+  \begin{equation*}
+    (G'\epsilon F)(\eta'GF)\eta
+    = (G'\epsilon F)(G'F\eta)\eta'
+    = \eta'
+  \end{equation*}
+  using \autoref{ct:interchange} and the triangle identity.
+  The case of $\epsilon$ is similar.
+  Finally, the triangle identities transport correctly automatically, since hom-sets are sets.
+\end{proof}
+
+In \autoref{sec:yoneda} we will give another proof of \autoref{ct:adjprop}.
+
+
+
+\end{document}

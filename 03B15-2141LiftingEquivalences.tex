@@ -1,0 +1,146 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{2141LiftingEquivalences}
+\pmcreated{2013-11-17 5:03:52}
+\pmmodified{2013-11-17 5:03:52}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2.14.1 Lifting equivalences}
+\pmrecord{8}{87621}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\narrowbreak}{}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairpath}{\ensuremath{\mathsf{pair}^{\mathord{=}}}\xspace}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\newcommand{\semigroupstr}[1]{\ensuremath{\mathsf{SemigroupStr}}(#1)}
+\newcommand{\semigroupstrsym}{\ensuremath{\mathsf{SemigroupStr}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\transfibf}[1]{\ensuremath{\mathsf{transport}^{#1}\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ua}{\ensuremath{\mathsf{ua}}\xspace} 
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{2}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{2.14.\arabic{mathcount}}
+\newenvironment{narrowmultline}{\csname equation\endcsname}{\csname endequation\endcsname}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\makeatother
+
+\begin{document}
+%2
+\index{lifting!equivalences}%
+When working loosely, one might say that a bijection between sets $A$
+and $B$ ``obviously'' induces an isomorphism between semigroup
+structures on $A$ and semigroup structures on $B$.  With univalence,
+this is indeed obvious, because given an equivalence between types $A$
+and $B$, we can automatically derive a semigroup structure on $B$ from
+one on $A$, and moreover show that this derivation is an equivalence of
+semigroup structures.  The reason is that \semigroupstrsym\ is a family
+of types, and therefore has an action on paths between types given by
+$\mathsf{transport}$:
+\[
+\transfibf{\semigroupstrsym}{(\ua(e))} : \semigroupstr{A} \to \semigroupstr{B}.
+\]
+Moreover, this map is an equivalence, because 
+$\transfibf{C}(\alpha)$ is always an equivalence with inverse 
+$\transfibf{C}{(\opp \alpha)}$, see \PMlinkname{Lemma 2.3.9}{23typefamiliesarefibrations#Thmprelem6},\PMlinkname{Lemma 2.1.4}{21typesarehighergroupoids#Thmprelem3}.
+
+While the univalence axiom\index{univalence axiom} ensures that this map exists, we need to use
+facts about $\mathsf{transport}$ proven in the preceding sections to
+calculate what it actually does. Let $(m,a)$ be a semigroup structure on
+$A$, and we investigate the induced semigroup structure on $B$ given by
+\[
+\transfib{\semigroupstrsym}{\ua(e)}{(m,a)}.
+\]
+First, because
+\semigroupstr{X} is defined to be a $\Sigma$-type, by
+\PMlinkname{Theorem 2.7.4}{27sigmatypes#Thmprethm2},
+\begin{myeqn}\label{eq:transport-semigroup-step1}
+  \transfib{\semigroupstrsym}{\ua(e)}{(m,a)} = \narrowbreak
+  \begin{aligned}[t]
+    \big(&\transfib{X \mapsto (X \to X \to X)}{\ua(e)}{m}, \\
+     &\transfib{(X,m) \mapsto \mathsf{Assoc}(X,m)}{(\pairpath(\ua(e),\refl{}))}{a}\big)
+  \end{aligned}
+\end{myeqn}
+where $\mathsf{Assoc}(X,m)$ is the type $\prd{x,y,z:X} m(x,m(y,z)) = m(m(x,y),z)$.  
+That is, the induced semigroup structure consists of an induced
+multiplication operation on $B$
+\begin{flalign*}
+& m' : B \to B \to B \\
+& m'(b_1,b_2) \defeq \transfib{X \mapsto (X \to X \to X)}{\ua(e)}{m}(b_1,b_2)
+\end{flalign*}
+together with an induced proof that $m'$ is associative.  By function
+extensionality, it suffices to investigate the behavior of $m'$ when
+applied to arguments $b_1,b_2 : B$. By applying
+\eqref{eq:transport-arrow} twice, we have that $m'(b_1,b_2)$ is equal to
+%
+\begin{narrowmultline*}
+  \transfibf{X \mapsto X}\big(
+      \ua(e), \narrowbreak
+      m(\transfib{X \mapsto X}{\opp{\ua(e)}}{b_1},
+        \transfib{X \mapsto X}{\opp{\ua(e)}}{b_2}
+       )
+   \big).
+\end{narrowmultline*}
+%
+Then, because $\ua$ is quasi-inverse to $\transfibf{X\mapsto X}$, this is equal to
+\[
+e(m(\opp{e}(b_1), \opp{e}(b_2))).
+\]
+Thus, given two elements of $B$, the induced multiplication $m'$ 
+sends them to $A$ using the equivalence $e$, multiplies them in $A$, and
+then brings the result back to $B$ by $e$, just as one would expect.
+
+Moreover, though we do not show the proof, one can calculate that the
+induced proof that $m'$ is associative (the second component of the pair
+in \eqref{eq:transport-semigroup-step1}) is equal to a function sending
+$b_1,b_2,b_3 : B$ to a path given by the following steps:
+\begin{myeqn}
+  \label{eq:transport-semigroup-assoc}
+  \begin{aligned}
+    m'(m'(b_1,b_2),b_3)
+    &= e(m(\opp{e}(m'(b_1,b_2)),\opp{e}(b_3))) \\
+    &= e(m(\opp{e}(e(m(\opp{e}(b_1),\opp{e}(b_2)))),\opp{e}(b_3))) \\
+    &= e(m(m(\opp{e}(b_1),\opp{e}(b_2)),\opp{e}(b_3))) \\
+    &= e(m(\opp{e}(b_1),m(\opp{e}(b_2),\opp{e}(b_3)))) \\
+    &= e(m(\opp{e}(b_1),\opp{e}(e(m(\opp{e}(b_2),\opp{e}(b_3)))))) \\
+    &= e(m(\opp{e}(b_1),\opp{e}(m'(b_2,b_3)))) \\
+    &= m'(b_1,m'(b_2,b_3)).
+\end{aligned}
+\end{myeqn}
+These steps use the proof $a$ that $m$ is associative and the inverse
+laws for $e$.  From an algebra perspective, it may seem strange to
+investigate the identity of a proof that an operation is associative,
+but this makes sense if we think of $A$ and $B$ as general spaces, with
+non-trivial homotopies between paths.  In \PMlinkexternal{Chapter 3}{http://planetmath.org/node/87576}, we will
+introduce the notion of a \emph{set}, which is a type with only trivial
+homotopies, and if we consider semigroup structures on sets, then any
+two such associativity proofs are automatically equal.
+
+
+\end{document}

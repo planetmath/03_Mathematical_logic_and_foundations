@@ -1,0 +1,322 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1012Images}
+\pmcreated{2013-11-06 17:06:09}
+\pmmodified{2013-11-06 17:06:09}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{10.1.2 Images}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\bproj}[1]{\tproj{}{#1}}
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqvsym}{\simeq}    
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\happly}{\mathsf{happly}}
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\htpy}{\sim}
+\newcommand{\im}{\ensuremath{\mathsf{im}}} 
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\newcommand{\Pairr}[1]{{\mathopen{}\left(#1\right)\mathclose{}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\newcommand{\power}[1]{\mathcal{P}(#1)} 
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\projpath}[1]{\ensuremath{\apfunc{\proj{#1}}}\xspace}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\uset}{\ensuremath{\mathcal{S}et}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{10.1.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{10.1.\arabic{mathcount}}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\hfiber\hfib
+\let\setof\Set    
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+%We will show that $\uset$ is a $\Pi$W-pretopos. 
+Next, we show that $\uset$ is a \define{regular category}, i.e.:
+\indexdef{category!regular}%
+\indexdef{regular!category}%
+%
+\begin{enumerate}
+\item $\uset$ is finitely complete.\label{item:reg1}
+\item The kernel pair $\proj1,\proj2: (\sm{x,y:A} f(x)= f(y)) \to A$ of any
+  function $f : A \to B$ has a coequalizer.\label{item:reg2}
+  \indexdef{kernel!pair}
+\item Pullbacks of regular epimorphisms are again regular epimorphisms.\label{item:reg3}
+\end{enumerate}
+%
+Recall that a \define{regular epimorphism}
+\indexdef{epimorphism!regular}%
+\indexdef{regular!epimorphism}%
+is a morphism that is the coequalizer of \emph{some} pair of maps.
+Thus in~\ref{item:reg3} the pullback of a coequalizer is required to again be a coequalizer, but not necessarily of the pulled-back pair.
+
+\index{set-coequalizer}%
+\index{image}
+The obvious candidate for the coequalizer of the kernel pair of $f:A\to B$ is the \emph{image} of $f$, as defined in \autoref{sec:image-factorization}.
+Recall that we defined $\im(f)\defeq \sm{b:B} \brck{\hfib f b}$, with functions 
+$\tilde{f}:A\to\im(f)$ and $i_f:\im(f)\to B$ defined by
+\begin{align*}
+  \tilde{f} & \defeq \lam{a} \Pairr{f(a),\,\bproj{\pairr{a,\refl{f(a)}}}}\\
+i_f & \defeq \proj1
+\end{align*}
+fitting into a diagram:
+\begin{equation*}
+  \xymatrix{
+    **[l]{\sm{x,y:A} f(x)= f(y)}
+    \ar@<0.25em>[r]^{\proj1}
+    \ar@<-0.25em>[r]_{\proj2}
+    &
+    {A}
+    \ar[r]^(0.4){\tilde{f}}
+    \ar[rd]_{f}
+    &
+    {\im(f)}
+    \ar@{..>}[d]^{i_f}
+    \\ & &
+    B
+  }
+\end{equation*}
+
+Recall that a function $f:A\to B$ is called \emph{surjective} if
+\index{function!surjective}%
+\narrowequation{\fall{b:B}\brck{\hfib f b},}
+or equivalently $\fall{b:B} \exis{a:A} f(a)=b$.
+We have also said that a function $f:A\to B$ between sets is called \emph{injective} if
+\index{function!injective}%
+$\fall{a,a':A} (f(a) = f(a')) \Rightarrow (a=a')$, or equivalently if each of its fibers is a mere proposition.
+Since these are the $(-1)$-connected and $(-1)$-truncated maps in the sense of \autoref{cha:hlevels}, the general theory there implies that $\tilde f$ above is surjective and $i_f$ is injective, and that this factorization is stable under pullback.
+
+We now identify surjectivity and injectivity with the appropriate cat\-e\-go\-ry-theoretic notions.
+First we observe that categorical monomorphisms and epimorphisms have a slightly stronger equivalent formulation.
+
+\begin{lem}\label{thm:mono}
+  For a morphism $f:\hom_A(a,b)$ in a category $A$, the following are equivalent.
+  \begin{enumerate}
+  \item $f$ is a \define{monomorphism}:
+    \indexdef{monomorphism}%
+    for all $x:A$ and ${g,h:\hom_A(x,a)}$, if $f\circ g = f\circ h$ then $g=h$.\label{item:mono1}
+  \item (If $A$ has pullbacks) the diagonal map $a\to a\times_b a$ is an isomorphism.\label{item:mono4}
+  \item For all $x:A$ and $k:\hom_A(x,b)$, the type $\sm{h:\hom_A(x,a)} (k = f\circ h)$ is a mere proposition.\label{item:mono2}
+  \item For all $x:A$ and ${g:\hom_A(x,a)}$, the type $\sm{h:\hom_A(x,a)} (f\circ g = f\circ h)$ is contractible.\label{item:mono3}
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  The equivalence of conditions~\ref{item:mono1} and~\ref{item:mono4} is standard category theory.
+  Now consider the function $(f\circ \blank ):\hom_A(x,a) \to \hom_A(x,b)$ between sets.
+  Condition~\ref{item:mono1} says that it is injective, while~\ref{item:mono2} says that its fibers are mere propositions; hence they are equivalent.
+  And~\ref{item:mono2} implies~\ref{item:mono3} by taking $k\defeq f\circ g$ and recalling that an inhabited mere proposition is contractible.
+  Finally,~\ref{item:mono3} implies~\ref{item:mono1} since if $p:f\circ g= f\circ h$, then $(g,\refl{})$ and $(h,p)$ both inhabit the type in~\ref{item:mono3}, hence are equal and so $g=h$.
+\end{proof}
+
+\begin{lem}
+  A function $f:A\to B$ between sets is injective if and only if it is a monomorphism\index{monomorphism} in \uset.
+\end{lem}
+\begin{proof}
+  Left to the reader.
+\end{proof}
+
+Of course, an \define{epimorphism}
+\indexdef{epimorphism}
+\indexsee{epi}{epimorphism}
+is a monomorphism in the opposite category.
+We now show that in \uset, the epimorphisms are precisely the surjections, and also precisely the coequalizers (regular epimorphisms).
+
+The coequalizer of a pair of maps $f,g:A\to B$ in $\uset$ is defined as the 0-truncation of a general (homotopy) coequalizer.
+For clarity, we may call this the \define{set-coequalizer}.
+\indexdef{set-coequalizer}%
+\indexsee{coequalizer!of sets}{set-coequalizer}%
+It is convenient to express its universal property as follows.
+
+\begin{lem}
+\index{universal!property!of set-coequalizer}%
+Let $f,g:A\to B$ be functions between sets $A$ and $B$. The 
+{set-co}equalizer $c_{f,g}:B\to Q$ has the property that, for any set $C$ and any $h:B\to C$ with $h\circ f = h\circ g$, the type
+\begin{equation*}
+\sm{k:Q\to C} (k\circ c_{f,g} = h)
+\end{equation*}
+is contractible.
+\end{lem}
+
+\begin{lem}\label{epis-surj}
+For any function $f:A\to B$ between sets, the following are equivalent:
+\begin{enumerate}
+\item $f$ is an epimorphism.
+\item Consider the pushout diagram
+\begin{equation*}
+  \xymatrix{
+    {A}
+    \ar[r]^{f}
+    \ar[d]
+    &
+    {B}
+    \ar[d]^{\iota}
+    \\
+    {\unit}
+    \ar[r]_{t}
+    &
+    {C_f}
+  }
+\end{equation*}
+in $\uset$ defining the mapping cone\index{cone!of a function}. Then the type $C_f$ is contractible.
+\item $f$ is surjective.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Let $f:A\to B$ be a function between sets, and suppose it to be an epimorphism; we show $C_f$ is contractible.
+The constructor $\unit\to C_f$ of $C_f$ gives us an element $t:C_f$.
+We have to show that
+\begin{equation*}
+\prd{x:C_f} x= t.
+\end{equation*}
+Note that $x= t$ is a mere proposition, hence we can use induction on $C_f$.
+Of course when $x$ is $t$ we have $\refl{t}:t=t$, so it suffices to find
+\begin{align*}
+I_0 & : \prd{b:B} \iota(b)= t\\
+I_1 & : \prd{a:A} \opp{\alpha_1(a)} \ct I_0(f(a))=\refl{t}.
+\end{align*}
+where $\iota:B\to C_f$ and $\alpha_1:\prd{a:A} \iota(f(a))= t$ are the other constructors
+of $C_f$. Note that $\alpha_1$ is a homotopy from $\iota\circ f$ to
+$\mathsf{const}_t\circ f$, so we find the elements
+\begin{equation*}
+\pairr{\iota,\refl{\iota\circ f}},\pairr{\mathsf{const}_t,\alpha_1}:
+\sm{h:B\to C_f} \iota\circ f \htpy h\circ f.
+\end{equation*}
+By the dual of \autoref{thm:mono}\ref{item:mono3} (and function extensionality), there is a path
+\begin{equation*}
+\gamma:\pairr{\iota,\refl{\iota\circ f}}=\pairr{\mathsf{const}_t,\alpha_1}.
+\end{equation*}
+Hence, we may define $I_0(b)\defeq \happly(\projpath1(\gamma),b):\iota(b)=t$.
+We also have
+\[\projpath2(\gamma) : \trans{\projpath1(\gamma)}{\refl{\iota\circ f}} = \alpha_1. \]
+This transport involves precomposition with $f$, which commutes with $\happly$.
+Thus, from transport in path types we obtain $I_0(f(a)) = \alpha_1(a)$ for any $a:A$, which gives us $I_1$.
+
+Now suppose $C_f$ is contractible; we show $f$ is surjective.
+We first construct a type family $P:C_f\to\prop$ by recursion on $C_f$, which is valid since \prop is a set.
+On the point constructors, we define
+\begin{align*}
+P(t) & \defeq \unit\\
+P(\iota(b)) & \defeq \brck{\hfiber{f}b}.
+\end{align*}
+To complete the construction of $P$, it remains to give a path
+\narrowequation{\brck{\hfiber{f}{f(a)}} =_\prop \unit}
+for all $a:A$.
+However, $\brck{\hfiber{f}{f(a)}}$ is inhabited by $(f(a),\refl{f(a)})$.
+Since it is a mere proposition, this means it is contractible --- and thus equivalent, hence equal, to \unit.
+This completes the definition of $P$.
+Now, since $C_f$ is assumed to be contractible, it follows that $P(x)$ is equivalent to $P(t)$ for any $x:C_f$.
+In particular, $P(\iota(b))\jdeq \brck{\hfiber{f}b}$ is equivalent to $P(t)\jdeq \unit$ for each $b:B$, and hence contractible.
+Thus, $f$ is surjective.
+
+Finally, suppose $f:A\to B$ to be surjective, and consider a set $C$ and two functions
+$g,h:B\to C$ with the property that $g\circ f = h\circ f$. Since $f$ 
+is assumed to be surjective, for all $b:B$ the type $\brck{\hfib f b}$ is contractible.
+Thus we have the following equivalences:
+\begin{align*}
+\prd{b:B} (g(b)= h(b))
+& \eqvsym \prd{b:B} \Parens{\brck{\hfib f b} \to (g(b)= h(b))}\\
+& \eqvsym \prd{b:B} \Parens{\hfib f b \to (g(b)= h(b))}\\
+& \eqvsym \prd{b:B}{a:A}{p:f(a)= b} g(b)= h(b)\\
+& \eqvsym \prd{a:A} g(f(a))= h(f(a))
+\end{align*}
+using on the second line the fact that $g(b)=h(b)$ is a mere proposition, since $C$ is a set.
+But by assumption, there is an element of the latter type.
+\end{proof}
+
+% \begin{rem}
+% The above theorem is not true when we replace $\set$ by $\type$
+% (replacing it also in the definition of $\mathsf{epi}$ and $\mathsf{epi}'$). 
+% However, we do
+% get the implications $\textit{ii.}\Rightarrow\textit{iii.}\Rightarrow
+% \textit{iv.}$
+% \end{rem}
+
+\begin{thm}\label{thm:set_regular}\label{lem:images_are_coequalizers}
+The category $\uset$ is regular. Moreover, surjective functions between sets are regular epimorphisms.
+\end{thm}
+
+\begin{proof}
+It is a standard lemma in category theory that a category is regular as soon as it admits finite limits and a pullback-stable orthogonal 
+factorization system\index{orthogonal factorization system} $(\mathcal{E},\mathcal{M})$ with $\mathcal{M}$ the monomorphisms, in which case $\mathcal{E}$ consists automatically of 
+the regular epimorphisms.
+(See e.g.~\cite[A1.3.4]{elephant}.)
+The existence of the factorization system was proved in \autoref{thm:orth-fact}.
+\end{proof}
+
+\begin{lem}\label{lem:pb_of_coeq_is_coeq}
+Pullbacks of regular epis in \uset are regular epis.
+\end{lem}
+\begin{proof}
+  We showed in \autoref{thm:stable-images} that pullbacks of $n$-connected functions are $n$-connected.
+  By \autoref{lem:images_are_coequalizers}, it suffices to apply this when $n=-1$.
+\end{proof}
+
+\indexdef{image!of a subset}
+One of the consequences of \uset being a regular category is that we have an ``image'' operation on subsets.
+That is, given $f:A\to B$, any subset $P:\power A$ (i.e.\ a predicate $P:A\to \prop$) has an \define{image} which is a subset of $B$.
+This can be defined directly as $\setof{ y:B | \exis{x:A} f(x)=y \land P(x)}$, or indirectly as the image (in the previous sense) of the composite function
+\[ \setof{ x:A | P(x) } \to A \xrightarrow{f} B.\]
+\symlabel{subset-image}
+We will also sometimes use the common notation $\setof{f(x) | P(x)}$ for the image of $P$.
+
+
+
+\end{document}

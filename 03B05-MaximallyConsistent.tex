@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MaximallyConsistent}
+\pmcreated{2013-03-22 19:35:13}
+\pmmodified{2013-03-22 19:35:13}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{maximally consistent}
+\pmrecord{10}{42576}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03B99}
+\pmclassification{msc}{03B45}
+\pmrelated{FirstOrderTheories}
+\pmdefines{complete}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+A set $\Delta$ of well-formed formulas (wff) is maximally consistent if $\Delta$ is consistent and any consistent superset of it is itself: $\Delta \subseteq \Gamma$ with $\Gamma$ consistent implies $\Gamma=\Delta$.
+
+Below are some basic properties of a maximally consistent set $\Delta$:
+\begin{enumerate}
+\item $\Delta$ is deductively closed ($\Delta$ is a theory): $\Delta\vdash A$ iff $A\in \Delta$.
+\item $\Delta$ is \emph{complete}: $\Delta \vdash A$ or $\Delta\vdash \neg A$ for any wff $A$.
+\item for any wff $A$, either $A\in \Delta$ or $\neg A\in \Delta$.
+\item If $A\notin \Delta$, then $\Delta\cup\lbrace A\rbrace$ is not consistent.
+\item $\Delta$ is a logic: $\Delta$ contains all theorems and is closed under modus ponens.
+\item $\perp \notin \Delta$.
+\item $A\to B \in \Delta$ iff $A\in \Delta$ implies $B\in \Delta$.
+\item $A\land B \in \Delta$ iff $A\in \Delta$ and $B\in \Delta$.
+\item $A\lor B \in \Delta$ iff $A \in \Delta$ or $B\in \Delta$.
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}
+\item If $A\in \Delta$, then clearly $\Delta \vdash A$.  Conversely, suppose $\Delta\vdash A$.  Let $\mathcal{E}$ be a deduction of $A$ from $\Delta$, and $\Gamma:=\Delta\cup \lbrace A\rbrace$.  Suppose $\Gamma \vdash B$.  Let $\mathcal{E}_1$ be a deduction of $B$ from $\Gamma$, then $\mathcal{E},\mathcal{E}_1$ is a deduction of $B$ from $\Delta$, so $\Delta\vdash B$.  Since $\Delta\not\vdash \perp$, $\Gamma\not\vdash \perp$, so $\Gamma$ is consistent.  Since $\Delta$ is maximal, $\Gamma=\Delta$, or $A\in \Delta$.
+\item Suppose $\Delta\not \vdash A$, then $A\notin \Delta$ by 1.  Then $\Delta\cup\lbrace A\rbrace$ is not consistent (since $\Delta$ is maximal), which means $\Delta,A\vdash \perp$, or $\Delta\vdash A\to \perp$, or $\Delta\vdash \neg A$.
+\item If $A\notin \Delta$, then $\Delta\not\vdash A$ by 1, so $\Delta\vdash \neg A$ by 2, and therefore $\neg A\in \Delta$ by 1 again.
+\item If $A\notin \Delta$, then $\neg A\in \Delta$ by 3., so that $\neg A, A, \perp$ is a deduction of $\perp$ from $\Delta \cup \lbrace A\rbrace$, showing that $\Delta \cup \lbrace A\rbrace$ is not consistent.
+\item If $A$ is a theorem, then $\Delta \vdash A$, so that $A\in \Delta$ by 1.  If $A \in \Delta$ and $A\to B \in \Delta$, then $A,A\to B, B$ is a deduction of $B$ from $\Delta$, so $B\in \Delta$ by 1.
+\item This is true for any consistent set.
+\item Suppose $A\to B\in \Delta$.  If $A\in \Delta$, then $B \in \Delta$ since $\Delta$ is closed under modus ponens.  Conversely, suppose $A\in \Delta$ implies $B\in \Delta$.  This means that $\Delta, A\vdash B$.  Then $\Delta \vdash A\to B$ by the deduction theorem, and therefore $A\to B\in \Delta$ by 1.
+\item Suppose $A\land B\in \Delta$, then by modus ponens on theorems $A\land B\to A$ and $A\land B\to B$, we get $A,B\in \Delta$, since $\Delta$ is a logic by 5.  Conversely, suppose $A,B\in \Delta$, then by modus ponens twice on theorem $A\to (B\to A\land B)$, we get $A\land B\in \Delta$ by 5.
+\item Suppose $A\lor B\in \Delta$.  Then $\neg (\neg A \land \neg B) \in \Delta$ by the definition of $\lor$, so $\neg A \land \neg B \notin \Delta$ by 3., which means $\neg A\notin \Delta$ or $\neg B\notin \Delta$ by the contrapositive of 8, or $A\in \Delta$ or $B\in \Delta$ by 3.  Conversely, suppose $A\in \Delta$ or $B\in \Delta$.  Then by modus ponens on theorems $A\to A\lor B$ or $B\to A\lor B$ respectively, we get $A\lor B\in \Delta$ by 5.
+\end{enumerate}
+\end{proof}
+
+The converses of 2 and 3 above are true too, and they provide alternative definitions of maximal consistency.
+\begin{enumerate}
+\item any complete consistent theory is maximally consistent.
+\item any consistent set satisfying the condition in 3 above is maximally consistent.
+\end{enumerate}
+\begin{proof}
+Suppose $\Delta$ is complete consistent.  Let $\Gamma$ be a consistent superset of $\Delta$.  $\Gamma$ is also complete.  If $A\in \Gamma-\Delta$, then $\Gamma\vdash A$, so $\Gamma\not\vdash \neg A$ since $\Gamma$ is consistent.  But then $\Delta\not\vdash \neg A$ since $\Gamma$ is a superset of $\Delta$, which means $\Delta\vdash A$ since $\Delta$ is complete.  But then $A\in \Delta$ since $\Delta$ is deductively closed, which is a contradiction.  Hence $\Delta$ is maximal. 
+
+Next, suppose $\Delta$ is consistent satisfying the condition: either $A\in \Delta$ or $\neg A\in \Delta$ for any wff $A$.  Suppose $\Gamma$ is a consistent superset of $\Delta$.  If $A\in \Gamma-\Delta$, then $\neg A\in \Delta$ by assumption, which means $\neg A\in \Gamma$ since $\Gamma$ is a superset of $\Delta$.  But then both $A$ and $\neg A$ are deducible from $\Gamma$, contradicting the assumption that $\Gamma$ is consistent.  Therefore, $\Gamma$ is not a proper superset of $\Delta$, or $\Gamma=\Delta$.
+\end{proof}
+
+\textbf{Remarks}.  
+\begin{itemize}
+\item
+In the converse of 2, we require that $\Delta$ be a theory, for there are complete consistent sets that are not deductively closed.  One such an example is the set $V$ of all propositional variables: it can be shown that for every wff $A$, exactly one of $V\vdash A$ or $V\vdash \neg A$ holds.
+\item
+So far, none of the above actually tell us that a maximally consistent set exists.  However, by Zorn's lemma, it is not hard to see that such a set does exist.  For more detail, see \PMlinkname{here}{LindenbaumsLemma}.
+\item
+There is also a semantic characterization of a maximally consistent set: a set is maximally consistent iff there is a unique valuation $v$ such that $v(A)=1$ for every wff $A$ in the set (see \PMlinkname{here}{CompactnessTheoremForClassicalPropositionalLogic}).
+\end{itemize}
+
+%%%%%
+%%%%%
+\end{document}

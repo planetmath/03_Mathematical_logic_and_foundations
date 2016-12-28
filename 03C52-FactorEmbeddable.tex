@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FactorEmbeddable}
+\pmcreated{2013-03-22 19:36:55}
+\pmmodified{2013-03-22 19:36:55}
+\pmowner{Naturman}{26369}
+\pmmodifier{Naturman}{26369}
+\pmtitle{factor embeddable}
+\pmrecord{19}{42609}
+\pmprivacy{1}
+\pmauthor{Naturman}{26369}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C52}
+\pmrelated{JointEmbeddingProperty}
+\pmdefines{factor embeddable class}
+\pmdefines{factor embedding}
+\pmdefines{strong factor embedding}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+Let $K$ be a class of models (structures) of a given signature. Consider a (non-empty) family of structures $ \{ A_{i}:i \in I \} $ in $K$. If $j \in I$ and $f : A_{j} \rightarrow \prod_{i \in I}A_{i}$ is an embedding, we say that $f$ is a \emph{factor embedding}. \cite{VC, UM} If additionally $f$ satisfies the condition that $\pi_{j}\circ f$ is the identity on $A_{i}$, where $\pi_{j} : \prod_{i \in I}A_{i} \rightarrow A_{j}$ is the $j$th projection, then $f$ is said to be a \emph{strong factor embedding}. \cite{UM} $K$ is said to be a \emph{factor embeddable} class iff for every (non-empty) family of structures $ \{ A_{i}:i \in I \} $ in $K$ and every $j \in I$ there is a factor embedding $f : A_{j} \rightarrow \prod_{i \in I}A_{i}$. \cite{VC, UM}
+
+The definition above does not require the product $\prod_{i \in I}A_{i}$ to be a member of $K$, however many interesting examples of factor embeddable classes are in fact closed under products. Factor embeddable classes that are closed under finite products (or equivalently under binary products) have the joint embedding property. Factor embeddable classes closed under arbitrary products have the strong joint embedding property.
+
+\subsubsection{Characterization}
+Factor embeddable classes have an easy to prove but somewhat unintuitive characterization which does not mention the concepts of product or embedding:
+
+The following are equivalent for a class $K$ of models \cite{UM}: 
+
+\begin{enumerate}
+\item $K$ is factor embeddable.
+\item For every pair of models $A,B \in K$ there exists a homomorphism $f : A \rightarrow B$.
+\end{enumerate}
+
+To see the above, suppose $K$ is factor embeddable and consider models $A,B \in K$. Then there exists a factor embedding from $A$ into the product $A \times B$. Composing this embedding with the projection onto $B$ gives a homomorphism $f : A \rightarrow B$. Conversely suppose such a homomorphism $f : A \rightarrow B$ exists for all $A,B \in K$ and consider a family $ \{ A_{i}:i \in I \} $ in $K$ and $j \in I$. We can define a strong factor embedding 
+$f : A_{j} \rightarrow \prod_{i \in I}A_{i}$ by choosing homomorphisms $f_{i} : A_{j} \rightarrow A_{i}$ for all $i \in I$ with $f_{j}$ the identity map on $A_{j}$, and then for all $a \in A$ setting $f(a)_{i} = f_{i}(a)$ for each $i \in I$. \cite{UM}
+
+The above proof shows that the factor embeddings guaranteed to exist for a factor embeddable class can always be chosen to be strong factor emebeddings. \cite{UM}
+
+A corollory of the above is that if there exists a model which is a retract of every member of a class $K$ then, $K$ is factor embeddable - in particular if the members of $K$ have one element submodels, then $K$ is factor embeddable. \cite{UM} (A retract of a model is a submodel which is also a quotient model such that the quotient map composed with the submodel embedding is the identity map.)
+
+\subsubsection{Examples}
+The following are examples of factor embeddable classes:
+
+\begin{itemize}
+\item The variety of all groups (the trivial group is a one element subalgebra of every group)
+\item The variety of all lattices (every lattice has one element sublattices)
+\item The class of all non-trivial Boolean algebras (the two element Boolean algebra is a retract of all non-trivial Boolean algebras)
+\end{itemize}
+
+The class of all Boolean algebras is an example of a class which is not factor embeddable - there is no way to embed the trivial Boolean algebra into a product of itself with any non-trivial Boolean algebras. (The trivial Boolean algebra satisfies the identity $0=1$ which is not satisfied by any Boolean algebra having more than one element.)
+ 
+\begin{thebibliography}{1}
+\bibitem{VC} Peter Bruyns, Henry Rose: \emph{Varieties with cofinal sets: examples and amalgamation}, Proc. Amer. Math. Soc. 111 (1991), 833-840
+\bibitem{UM} Colin Naturman, Henry Rose: \emph{Ultra-universal models}, Quaestiones Mathematicae, 15(2), 1992, 189-195
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,141 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{17CoproductTypes}
+\pmcreated{2013-11-13 18:04:28}
+\pmmodified{2013-11-13 18:04:28}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.7 Coproduct types}
+\pmrecord{7}{87543}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\dprd#1{\@dprd{#1}\@ifnextchar\bgroup{\dprd}{}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\inr}{\ensuremath\inrsym\xspace}
+\newcommand{\inrsym}{{\mathsf{inr}}}
+\newcommand{\narrowbreak}{}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\makeatother
+
+\begin{document}
+
+Given $A,B:\UU$, we introduce their \define{coproduct} type $A+B:\UU$.
+\indexsee{coproduct}{type, coproduct}%
+\index{type!coproduct|(defstyle}%
+\indexsee{disjoint!sum}{type, coproduct}%
+\indexsee{disjoint!union}{type, coproduct}%
+\indexsee{sum!disjoint}{type, coproduct}%
+\indexsee{union!disjoint}{type, coproduct}%
+This corresponds to the \emph{disjoint union} in set theory, and we may also use that name for it.
+In type theory, as was the case with functions and products, the coproduct must be a fundamental construction, since there is no previously given notion of ``union of types''.
+We also introduce a
+nullary version: the \define{empty type $\emptyt:\UU$}.
+\indexsee{nullary!coproduct}{type, empty}%
+\indexsee{empty type}{type, empty}%
+\index{type!empty|(defstyle}%
+
+There are two ways to construct elements of $A+B$, either as $\inl(a) : A+B$ for $a:A$, or as
+$\inr(b):A+B$ for $b:B$. There are no ways to construct elements of the empty type. 
+
+\index{recursion principle!for coproduct}
+To construct a non-dependent function $f : A+B \to C$, we need 
+functions $g_0 : A \to C$ and $g_1 : B \to C$. Then $f$ is defined
+via the defining equations
+\begin{align*}
+  f(\inl(a)) &\defeq g_0(a), \\
+  f(\inr(b)) &\defeq g_1(b).
+\end{align*}
+That is, the function $f$ is defined by \define{case analysis}.
+\indexdef{case analysis}%
+As before, we can derive the recursor:
+\symlabel{defn:recursor-plus}%
+\[ \rec{A+B} : \dprd{C:\UU}(A \to C) \to (B\to C) \to A+B \to C\]
+with the defining equations
+\begin{align*}
+\rec{A+B}(C,g_0,g_1,\inl(a)) &\defeq g_0(a), \\
+\rec{A+B}(C,g_0,g_1,\inr(b)) &\defeq g_1(b).
+\end{align*}
+
+\index{recursion principle!for empty type}
+We can always construct a function $f : \emptyt \to C$ without
+having to give any defining equations, because there are no elements of \emptyt on which to define $f$.
+Thus, the recursor for $\emptyt$ is
+\symlabel{defn:recursor-emptyt}%
+\[\rec{\emptyt} : \tprd{C:\UU} \emptyt \to C,\]
+which constructs the canonical function from the empty type to any other type.
+Logically, it corresponds to the principle \textit{ex falso quodlibet}.
+\index{ex falso quodlibet@\textit{ex falso quodlibet}}
+
+\index{induction principle!for coproduct}
+To construct a dependent function $f:\prd{x:A+B}C(x)$ out of a coproduct, we assume as given the family 
+$C: (A + B) \to \UU$, and 
+require 
+\begin{align*}
+  g_0 &: \prd{a:A} C(\inl(a)), \\
+  g_1 &: \prd{b:B} C(\inr(b)).
+\end{align*}
+This yields $f$ with the defining equations:\index{computation rule!for coproduct type}
+\begin{align*}
+  f(\inl(a)) &\defeq g_0(a), \\
+  f(\inr(b)) &\defeq g_1(b).
+\end{align*}
+We package this scheme into the induction principle for coproducts:
+\symlabel{defn:induction-plus}%
+\begin{narrowmultline*}
+  \ind{A+B} :
+  \dprd{C: (A + B) \to \UU}
+  \Parens{\tprd{a:A} C(\inl(a))} \to \narrowbreak
+  \Parens{\tprd{b:B} C(\inr(b))} \to \tprd{x:A+B}C(x). 
+\end{narrowmultline*}
+As before, the recursor arises in the case that the family $C$ is
+constant. 
+
+\index{induction principle!for empty type}
+The induction principle for the empty type
+\symlabel{defn:induction-emptyt}%
+\[ \ind{\emptyt} : \prd{C:\emptyt \to \UU}{z:\emptyt} C(z) \]
+gives us a way to define a trivial dependent function out of the
+empty type. % In the presence of $\eta$-equality it is derivable
+% from the recursor.
+% ex
+
+\index{type!coproduct|)}%
+\index{type!empty|)}%
+
+\end{document}

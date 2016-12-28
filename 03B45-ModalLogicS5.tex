@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ModalLogicS5}
+\pmcreated{2013-03-22 19:34:04}
+\pmmodified{2013-03-22 19:34:04}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{modal logic S5}
+\pmrecord{11}{42554}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmclassification{msc}{03B42}
+\pmdefines{S5}
+\pmdefines{5}
+\pmdefines{Euclidean}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The modal logic \textbf{S5} is the smallest normal modal logic containing the following schemas:
+\begin{itemize}
+\item (T) $\square A \to A$, and
+\item (5) $\diamond A \to \square \diamond A$.
+\end{itemize}
+\textbf{S5} is also denoted by \textbf{KT5}, where $\textbf{T}$ and $\textbf{5}$ correspond to the schemas T and 5 respectively.
+
+In \PMlinkname{this entry}{ModalLogicT}, we show that T is valid in a frame iff the frame is reflexive.
+
+A binary relation $R$ on a set $W$ is said to be \emph{Euclidean} iff for any $u,v,w$, $u R v$ and $u R w$ imply $v R w$.  $R$ being Euclidean is first-order definable: $$\forall u \forall v \forall w ((u R v \land u R w) \to v R w).$$
+
+\begin{prop} 5 is valid in a frame $\mathcal{F}$ iff $\mathcal{F}$ is Euclidean. \end{prop}
+\begin{proof}  First, let $\mathcal{F}$ be a frame validating 5.  Suppose $w R x$ and $w R y$.  Let $M$ be a model based on $\mathcal{F}$, with $V(p)=\lbrace x \rbrace$.  Since $\models_x p$, we have $\models_w \diamond p$, and so $\models_w \square \diamond p$, or $\models_u \diamond p$ for all $u$ such that $w R u$.  In particular, $\models_y \diamond p$.  So there is a $z$ such that $y R z$ and $\models_z p$.  But this means $z=x$, whence $y R x$, meaning $R$ is Euclidean.
+
+Conversely, suppose $\mathcal{F}$ is a Euclidean frame, and $M$ a model based on $\mathcal{F}$.  Suppose $\models_w \diamond A$.  Then there is a $v$ such that $w R v$ and $\models_v A$.  Now, for any $u$ with $w R u$, we have $u R v$ since $R$ is Euclidean.  So $\models_u \diamond A$.  Since $u$ is arbitrary, $\models_w \square \diamond A$, and therefore $\models_w \diamond A \to \square \diamond A$.
+\end{proof}
+
+Now, a relation is both reflexive and Euclidean iff it is an equivalence relation:
+\begin{proof}
+Suppose $R$ is both reflexive and Euclidean.  If $a R b$, since $a R a$, $b R a$ so $R$ is symmetric.  If $a R b$ and $b R c$, then $b R a$ since $R$ has just been proven symmetric, and therefore $a R c$, or $R$ is transitive.  Conversely, suppose $R$ is an equivalence relation.  If $a R b$ and $a R c$, then $b R a$ since $R$ is symmetric, so that $b R c$ since $R$ is transitive.  Hence $R$ is Euclidean.  
+\end{proof}
+This also shows that 
+\begin{center}
+\textbf{S5} $=$ \textbf{KTB4},
+\end{center} 
+where B is the schema $A\to \square \diamond A$, valid in any symmetric frame (see \PMlinkname{here}{ModalLogicB}), and 4 is the schema $\square A \to \square \square A$, valid in any transitive frame (see \PMlinkname{here}{ModalLogicS4}).  It is also not hard to show that 
+\begin{center}
+\textbf{S5} $=$ \textbf{KDB4} $=$ \textbf{KDB5}, 
+\end{center} 
+where $D$ is the schema $\square A \to \diamond A$, valid in any serial frame (see \PMlinkname{here}{ModalLogicD}).
+
+As a result,
+\begin{prop} \textbf{S5} is sound in the class of equivalence frames. \end{prop}
+\begin{proof}  Since any theorem $A$ in \textbf{S5} is deducible from a finite sequence consisting of tautologies, which are valid in any frame, instances of T, which are valid in reflexive frames, instances of 5, which are valid in Euclidean frames by the proposition above, and applications of modus ponens and necessitation, both of which preserve validity in any frame, $A$ is valid in any frame which is both reflexive and Euclidean, and hence an equivalence frame.
+\end{proof}
+
+In addition, using the canonical model of \textbf{S5}, which is based on an equivalence frame, we have
+\begin{prop} \textbf{S5} is complete in the class of equivalence frames. \end{prop}
+\begin{proof}  By the discussion above, it is enough to show that the canonical frame of \textbf{S5} is reflexive, symmetric, and transitive.  Since $\textbf{S5}$ contains T, B, and 4, $\mathcal{F}_{\textbf{S5}}$ is reflexive, symmetric, and transitive respectively, the proofs of which can be found in the corresponding entries on \textbf{T}, \textbf{B}, and \textbf{S4}.
+\end{proof}
+
+\textbf{Remark}.  Alternatively, one can also show that the canonical frame of the consistent normal logic containing 5 must be Euclidean.
+\begin{proof}  Let $\Lambda$ be such a logic.  Suppose $u R_{\Lambda} v$ and $u R_{\Lambda} w$.  We want to show that $v R_{\Lambda} w$, or $\Delta_v:=\lbrace B\mid \square B\in v\rbrace \subseteq w$.  Let $A$ be any wff.  If $A\notin w$, $A\notin \Delta_u$ since $u R_{\Lambda} v$, so $\square A \notin u$ by the definition of $\Delta_u$, or $\neg \square A\in u$ since $u$ is maximal, or $\diamond \neg A \in u$ by substitution theorem on $\neg \square A \leftrightarrow \diamond \neg A$, or $\square \diamond \neg A \in u$ by modus ponens on 5 and the fact that $u$ is closed under modus ponens.  This means that $\diamond \neg A \in \Delta_u$ by the definition of $\Delta_u$, or $\diamond \neg A \in v$ since $u R_{\Lambda} v$, so that $\neg \square A \in v$ by the substitution theorem on $\diamond \neg A\leftrightarrow \neg \square A$, which means $\square A\notin v$ since $v$ is maximal, or $A\notin \Delta_v$ by the definition of $\Delta_v$.
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SyntacticPropertiesOfANormalModalLogic}
+\pmcreated{2013-03-22 19:34:18}
+\pmmodified{2013-03-22 19:34:18}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{syntactic properties of a normal modal logic}
+\pmrecord{24}{42558}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Recall that a normal modal logic is a logic containing all tautologies, the schema K
+$$\square (A\to B) \to (\square A \to \square B),$$
+and closed under modus ponens and necessitation rules.  Also, the modal operator diamond $\diamond$ is defined as $$\diamond A:=\neg \square \neg A.$$
+Let $\Lambda$ be any normal modal logic.  We write $\vdash A$ to mean $\Lambda \vdash A$, or wff $A\in \Lambda$, or $A$ is a theorem of $\Lambda$.  In addition, for any set $\Delta$, $\Delta \vdash A$ means there is a finite sequence of wff's such that each wff is either a theorem, a member of $\Delta$, or obtained either by modus ponens or necessitation from earlier wff's in the sequence, and $A$ is the last wff in the sequence.  The sequence is called a deduction (of $A$) from $\Delta$.
+
+Below are some useful meta-theorems of $\Lambda$:
+\begin{enumerate}
+\item (RM) $\vdash A\to B$ implies $\vdash \square A \to \square B$
+\begin{proof} By assumption and by necessitation, $\vdash \square (A\to B)$, by schema K and by modus ponens, we have the result.
+\end{proof}
+\item As a result, $\vdash A\leftrightarrow B$ implies $\vdash \square A \leftrightarrow \square B$.
+\item (substitution theorem). If $\vdash B_i\leftrightarrow C_i$ for $i=1,\ldots,m$, then $$\vdash A[\overline{B}/\overline{p}]\leftrightarrow A[\overline{C}/\overline{p}],$$ where $\overline{p}:=(p_1,\ldots,p_m)$ is the tuple of all the propositional variables in $A$ listed in order.
+\begin{proof} For most of the proof, consult \PMlinkname{this entry}{SubstitutionTheoremForPropositionalLogic} for more detail.  What remains is the case when $A$ has the form $\square D$.  We do induction on the number $n$ of $\square$'s in $A$.  The case when $n=0$ means that $A$ is a wff of PL$_c$, and has already been proved.  Now suppose $A$ has $n+1$ $\square$'s.  Then $D$ has $n$ $\square$'s, and so by induction, $\vdash D[B/p] \leftrightarrow D[C/p]$, and therefore $\vdash \square D[B/p] \leftrightarrow \square D[C/p]$ by 2.  This means that $\vdash A[B/p]\leftrightarrow A[C/p]$.
+\end{proof}
+\item $\vdash A\to B$ implies $\vdash \diamond A \to \diamond B$
+\begin{proof} By assumption, tautology $\vdash (A\to B)\to (\neg B\to \neg A)$, and modus ponens, we get $\vdash \neg B\to \neg A$.  By 1, $\vdash \square \neg B \to \square \neg A$.  By another instance of the above tautology and modus ponens, and the definition of $\diamond$, we get the result.
+\end{proof}
+\item $\vdash A \lor B$ implies $\vdash \diamond A \lor \square B$ 
+\begin{proof} Since $\vdash A\lor B\leftrightarrow (\neg A\to B)$, we have $\vdash \neg A \to B$, so $\vdash \square \neg A \to \square B$.  By the tautology $C\leftrightarrow \neg \neg C$, we have $\vdash \neg \neg \square \neg A \to \square B$, or $\vdash \neg \diamond A \to \square B$, and therefore $\vdash \diamond A \lor \square B$.
+\end{proof}
+\item (RR) $\vdash A\land B \to C$ implies $\vdash \square A \land \square B \to \square C$
+\begin{proof}
+By assumption and 1, $\vdash \square (A\land B) \to \square C$.  Since $\square A \land \square B \to \square (A\land B)$ is a theorem (see \PMlinkname{here}{SomeTheoremSchemasOfNormalModalLogic}), we get $\vdash \square A \land \square B \to \square C$ by the law of syllogism.
+\end{proof}
+\item (RK) More generally, $\vdash A_1\land \cdots \land A_n \to A$ implies $\vdash \square A_1 \land \cdots \square A_n \to \square A$, where the case $n=0$ is the necessitation rule.
+\begin{proof}
+Cases $n=1,2$ are meta-theorems 1 and 6.  If $\vdash A_1 \land \cdots \land A_n \land A_{n+1} \to A$, or $\vdash (A_1\land \cdots \land A_n) \land A_{n+1} \to A$, then $\vdash \square (A_1\land \cdots \land A_n) \land \square A_{n+1} \to \square A$ by 6.  But $\vdash \square (A_1 \land \cdots \land A_n) \leftrightarrow \square A_1 \land \cdots \land \square A_n$, the result follows.
+\end{proof}
+\item Define a function $s$ on $\lbrace \neg, \lambda \rbrace$, where  $\lambda$ is the empty word, such that $s(\neg)=\lambda$, the empty word, and $s(\lambda)=\neg$.  Then for any wff $A$, and $\epsilon_1,\epsilon_2\in \lbrace \neg, \lambda \rbrace$: $$\vdash \epsilon_1 \square^n \epsilon_2 A \leftrightarrow s(\epsilon_1) \diamond^n s(\epsilon_2) A.$$
+Technically speaking, this is really an infinite collection of theorem schemas.
+\begin{proof}  We will check the case when $\epsilon_1 =\neg$ and $\epsilon_2=\lambda$ and leave the rest to the reader.  We do induction on $n$.  If $n=0$, then we have the tautology $\neg A \leftrightarrow \neg A$.  Suppose $\vdash \neg \square^n A \leftrightarrow \diamond^n \neg A$.  Then $\vdash \neg \square^{n+1} A \leftrightarrow \diamond^n \neg \square A$, by applying the induction case on wff $\square A$.  Since $A\leftrightarrow \neg\neg A$ is a tautology, $\vdash \neg \square^{n+1} A \leftrightarrow \diamond^n \neg \square \neg \neg A$ by the substitution theorem.  By the definition of $\diamond$, we have $\vdash \neg \square^{n+1} A \leftrightarrow \diamond^{n+1} \neg A$.
+\end{proof}
+\item Let $\square \Delta:=\lbrace \square A \mid A\in \Delta\rbrace$.  Then $\Delta \vdash A$ implies $\square \Delta \vdash \square A$.
+\begin{proof}  Induct on the length $n$ of deduction of $A$ from $\Delta$.  If $n=0$, then either $\vdash A$, in which case $\vdash \square A$ by necessitation, or $A\in \Delta$, in which case $\square A \in \square \Delta$.  In either case, $\square \Delta \vdash \square A$.  Next suppose the property holds for all deductions of length $n$, and there is a deduction $\mathcal{E}$ of $A$ of length $n+1$.  If $A$ is obtained from $\Delta$ by necessitation, say $A$ is $\square B$, where $B$ is in $\mathcal{E}$, then a subsequence of $\mathcal{E}$ is a deduction of $B$ of length $\le n$, from $\Delta$.  So by induction, $\square \Delta \vdash \square B$, or $\square \Delta \vdash A$.  By necessitation, $\square \Delta \vdash \square A$.  Finally, if $A$ is obtained by modus ponens, then there is a wff $B$ such that $B,B\to A$ are both in $\mathcal{E}$.  By induction, $\square \Delta\vdash \square B$ and $\square \Delta \vdash \square (B\to A)$, which, by K and modus ponens, $\square \Delta \vdash \square B\to \square A$, and as a result, $\square \Delta \vdash \square A$ by modus ponens.
+\end{proof}
+\end{enumerate}
+
+Noticeably absent is the deduction theorem, for the necessitation rule says $A\vdash \square A$, but this does not imply $\vdash A\to \square A$.  In fact, the wff $A\to \square A$ is not a theorem in general, unless of course the logic includes the entire schema.  All we can say is the following:
+\begin{enumerate}
+\setcounter{enumi}{9}
+\item (deduction theorem) If $\Delta, A\vdash B$ and $B$ is not of the form $\square C$, then $\Delta \vdash A \to B$.
+\end{enumerate}
+\textbf{Remark}.  It can be shown that conversely, if a modal logic obeys meta-theorem 7 above as an inference rule, then it is normal.  For more detail, see \PMlinkname{here}{EquivalentFormulationsOfNormality}.
+
+%%%%%
+%%%%%
+\end{document}

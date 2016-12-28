@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{OrdinalArithmetic}
+\pmcreated{2013-03-22 13:28:52}
+\pmmodified{2013-03-22 13:28:52}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{ordinal arithmetic}
+\pmrecord{7}{34052}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmrelated{AdditivelyIndecomposable}
+\pmrelated{CardinalArithmetic}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Ordinal arithmetic is the extension of normal arithmetic to the transfinite ordinal numbers.  The successor operation $Sx$ (sometimes written $x+1$, although this notation risks confusion with the general definition of addition) is part of the definition of the ordinals, and addition is naturally defined by recursion over this:
+
+\begin{itemize}
+\item $x+0=x$
+\item $x+Sy=S(x+y)$
+\item $x+\alpha=\operatorname{sup}_{\gamma<\alpha} (x+\gamma)$ for limit ordinal $\alpha$
+\end{itemize}
+
+If $x$ and $y$ are finite then $x+y$ under this definition is just the usual sum, however when $x$ and $y$ become infinite, there are differences.  In particular, ordinal addition is not commutative.  For example, 
+$$\omega+1=\omega+S0=S(\omega+0)=S\omega$$
+but
+$$1+\omega=\operatorname{sup}_{n<\omega} 1+n=\omega$$
+
+Multiplication in turn is defined by iterated addition:
+
+\begin{itemize}
+\item $x\cdot 0=0$
+\item $x\cdot Sy=x\cdot y+x$
+\item $x\cdot \alpha=\operatorname{sup}_{\gamma<\alpha} (x\cdot \gamma)$ for limit ordinal $\alpha$
+\end{itemize}
+
+Once again this definition is equivalent to normal multiplication when $x$ and $y$ are finite, but is not commutative:
+$$\omega\cdot 2=\omega\cdot 1+\omega=\omega+\omega$$
+but
+$$2\cdot\omega=\operatorname{sup}_{n<\omega} 2\cdot n=\omega$$
+
+Both these functions are strongly increasing in the second argument and weakly increasing in the first argument.  That is, if $\alpha<\beta$ then 
+\begin{itemize}
+\item $\gamma+\alpha<\gamma+\beta$
+\item $\gamma\cdot\alpha<\gamma\cdot\beta$
+\item $\alpha+\gamma\leq\beta+\gamma$
+\item $\alpha\cdot\gamma\leq\beta\cdot\gamma$
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

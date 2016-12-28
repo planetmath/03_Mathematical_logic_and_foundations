@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ConstantFunctionsAndContinuity}
+\pmcreated{2013-03-22 15:17:31}
+\pmmodified{2013-03-22 15:17:31}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{constant functions and continuity}
+\pmrecord{12}{37088}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newcommand{\sR}[0]{\mathbb{R}}
+\newcommand{\sC}[0]{\mathbb{C}}
+\newcommand{\sN}[0]{\mathbb{N}}
+\newcommand{\sZ}[0]{\mathbb{Z}}
+
+ \usepackage{bbm}
+ \newcommand{\Z}{\mathbbmss{Z}}
+ \newcommand{\C}{\mathbbmss{C}}
+ \newcommand{\F}{\mathbbmss{F}}
+ \newcommand{\R}{\mathbbmss{R}}
+ \newcommand{\Q}{\mathbbmss{Q}}
+
+
+
+\newcommand*{\norm}[1]{\lVert #1 \rVert}
+\newcommand*{\abs}[1]{| #1 |}
+
+
+
+\newtheorem*{thm*}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{cor}{Corollary}
+\begin{document}
+It is easy to see that every constant function between topological 
+spaces is continuous. A converse result is as follows.
+
+\begin{thm*}
+Suppose $X$ is path connected and $D$ is a countable 
+discrete topological space. If $f\colon X\to D$ is continuous,
+then $f$ is a constant function.
+\end{thm*}
+
+\begin{proof} 
+By \PMlinkname{this result}{FiniteAndCountableDiscreteSpaces}
+we can assume that $D$ is either $\{1,\ldots, n\}$, $n\ge 2$
+or $\Z$, and these are equipped with the subspace topology of $\R$. 
+Suppose $f(X)$ has at least two distinct elements, say
+$\alpha,\beta\in \Z$ so that 
+$$
+   f(x)=\alpha, \quad f(y)=\beta
+$$
+for some $x,y\in X$. Since $X$ is path connected there is a continuous path
+$\gamma\colon[0,1]\to X$ such that $\gamma(0)=x$ and $\gamma(1)=y$. 
+Then $f\circ\gamma\colon [0,1]\to D$ is continuous. 
+Since $D$ has the subspace topology of $\R$, 
+  \PMlinkname{this result}{ContinuityIsPreservedWhenCodomainIsExtended}
+ implies that 
+also $f\circ\gamma\colon [0,1]\to \R$ is continuous. 
+ Since $f\circ \gamma$ 
+  achieves two different values, it achieves uncountably many values,
+  by the intermediate value theorem. 
+ This is a contradiction since $f\circ \gamma([0,1])$
+ is countable.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

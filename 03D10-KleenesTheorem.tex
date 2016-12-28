@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{KleenesTheorem}
+\pmcreated{2013-03-22 19:01:37}
+\pmmodified{2013-03-22 19:01:37}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Kleene's theorem}
+\pmrecord{7}{41899}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D10}
+\pmclassification{msc}{68Q05}
+\pmclassification{msc}{68Q42}
+\pmrelated{RegularLanguage}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\begin{thm}[Kleene] A language over an alphabet is regular iff it can be accepted by a finite automaton. \end{thm}
+
+The best way to prove this theorem is to visualize a finite automaton as a directed graph (its state diagram).  We prove sufficiency and necessity separately.
+
+\begin{lem}  Every regular language can be accepted by a finite automaton. \end{lem}
+\begin{proof}
+This is done inductively.  We begin with atomic languages, and work our way up.  First, note that $\varnothing$, $\lbrace \lambda\rbrace$, $\lbrace a \rbrace$ where $a\in \Sigma$ are accepted by the following finite automata respectively:
+
+\begin{figure}[!h]
+\centering
+\scalebox{0.7}{\includegraphics{atomic_automata.eps}}
+\end{figure}
+
+Next, suppose that $L_1$ and $L_2$ are regular languages, accepted by $A_1$ and $A_2$ respectively.  Then
+\begin{itemize}
+\item $L_1L_2$ is accepted by the finite automaton $A_1A_2$, the juxtaposition of automata $A_1$ and $A_2$;
+\item $L_1^*$ is accepted by the finite automaton $A_1^*$, the \PMlinkname{Kleene star of automaton}{KleeneStarOfAnAutomaton} $A_1$; and
+\item $L_1\cup L_2$ is accepted by $A_1\cup A_2$, the \PMlinkname{union}{UnionOfAutomata} of $A_1$ and $A_2$.
+\end{itemize}
+
+Since a regular language can only be built up this way, the proof is complete.
+\end{proof}
+
+\begin{lem}  Every language accepted by a finite automaton is regular. \end{lem}
+
+Note that, using a state diagram of a finite automaton $A$, a word accepted by $A$ is the label of a path that begins from one of the starting nodes and ends in one of the final nodes.  In the proof, we build a sequence of languages $$L_1 \subseteq L_2 \subseteq \cdots \subseteq L_n$$
+such that $L_1$ is regular, and each $L_{i+1}$ is constructed from $L_i$ by one of the regular operations (union, concatenation, and Kleene star), so that in the end, $L_n$ is also regular.  Finally, we show that $L(A)$ is a finite union of such $L(n)$'s, and therefore $L(A)$ is regular too.
+
+\begin{proof}
+Index the states of a finite automaton $A$ by positive integers: $q_1, \ldots, q_m$.  Suppose $1\le i,j,k\le m$.  Define the language $L(i,j,k)$ as follows: a word is in $L(i,j,k)$ iff it is the label of a path from $q_i$ to $q_j$ such that each of the intermediate nodes on the path has an index at most $k$.
+Now, fix $i,j$, and do induction on $k$.
+\begin{enumerate}
+\item $L(i,j,0)$ is regular for any $i,j$.  This is so because a word in $L(i,j,0)$ (if it is non-empty) has length at most 1, so that it is either in $\Sigma$ or $\lambda$.  In any case, $L(i,j,0)$ is regular.
+\item If $L(i,j,k)$ is regular, so is $L(i,j,k+1)$.  Let $p$ be a path that begins at $q_i$ and ends at $q_j$ such that all of its intermediate nodes have indices no more than $k+1$.  Then either none of the nodes have indices more than $k$, or $q_{k+1}$ is an intermediate node.  In the later case, $p$ begins at $q_i$, reaches $q_{k+1}$ for the first time, leaves $q_{k+1}$, may or may not return to $q_{k+1}$, until its last return (if it does return), and ends at $q_j$.  What we have just described can be put into an identity:
+$$L(i,j,k+1)=L(i,j,k)\cup L(i,k+1,k)L(k+1,k+1,k)^*L(k+1,j,k).$$
+Since each of the languages on the right hand side is regular (as the last component is $k$ in each case), the language on the left hand side is reqular (as it is obtained by performing regular operations on regular languages).
+\end{enumerate}
+In particular, $L(i,j,m)$ is regular.  Since $L(A) = \bigcup \lbrace L(i,j,m)\mid q_i\in I, q_j\in F\rbrace$, a finite union of regular languages, $L(A)$ is regular as well.
+\end{proof}
+
+\textbf{Remark}.  Kleene's theorem can be generalized in at least two ways.  By realizing that an automaton is just a directed graph whose edges are labeled by elements of $\Sigma^*$, a finitely generated free monoid, one may define a finite automaton over an arbitrary monoid.  For more details, see \PMlinkname{this entry}{AutomatonOverAMonoid}.  The other is to generalize the notion of a word from finite to infinite, and modify the notion of acceptance so infinite words may be accepted.
+%%%%%
+%%%%%
+\end{document}

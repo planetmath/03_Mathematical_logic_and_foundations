@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DeductionTheoremHoldsForIntuitionisticPropositionalLogic}
+\pmcreated{2013-03-22 19:31:32}
+\pmmodified{2013-03-22 19:31:32}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{deduction theorem holds for intuitionistic propositional logic}
+\pmrecord{21}{42502}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F55}
+\pmclassification{msc}{03B20}
+\pmrelated{AxiomSystemForIntuitionisticLogic}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+In this entry, we show that the deduction theorem below holds for intuitionistic propositional logic.  We use the axiom system provided in \PMlinkname{this entry}{AxiomSystemForIntuitionisticLogic}.
+
+\begin{thm} If $\Delta, A \vdash_i B$, where $\Delta$ is a set of wff's of the intuitionistic propositional logic, then $\Delta \vdash_i A\to B$. \end{thm}
+
+The proof is very similar to that of the classical propositional logic, given \PMlinkname{here}{DeductionTheoremHoldsForClassicalPropositionalLogic}, in that it uses induction on the length of the deduction of $B$.  In fact, the proof is simpler as only two axiom schemas are used: $A\to (B\to A)$ and $(A\to B) \to ((A\to (B\to C)) \to (A\to C))$. 
+
+\begin{proof}  There are two main cases to consider:
+\begin{itemize}
+\item
+If $B$ is an axiom or in $\Delta\cup \lbrace A\rbrace$, then $$B, B\to (A\to B), A\to B$$ is a deduction of $A\to B$ from $\Delta$, where $A\to B$ is obtained by modus ponens applied to $B$ and the axiom $B\to (A\to B)$.  So $\Delta \vdash_i A\to B$.
+\item
+Now, suppose that $$A_1,\ldots, A_n$$ is a deduction of $B$ from $\Delta\cup \lbrace A \rbrace$, with $B$ obtained from earlier formulas by modus ponens.
+
+We use induction on the length $n$ of deduction of $B$.  Note that $n\ge 3$.  If $n=3$, then $C$ and $C\to B$ are either axioms or in $\Delta\cup \lbrace A\rbrace$.  
+\begin{itemize}
+\item If $C$ is $A$, then $C\to B$ is either an axiom or in $\Delta$.  So $\Delta \vdash_i A\to B$.
+\item If $C\to B$ is $A$, then $C$ is either an axiom or in $\Delta$.  Then 
+\begin{eqnarray*}
+&&\mathcal{E}_0, C\to (A\to C), C, A\to C, (A\to C)\to ((A\to (C\to B))\to (A\to B)), \\
+&&(A\to (C\to B))\to (A\to B), A\to B
+\end{eqnarray*}
+is a deduction of $A\to B$ from $\Delta$, where $\mathcal{E}_0$ is a deduction of the theorem $A\to A$, followed by an axiom instance, then $C$, then the result of modus ponens, then an axiom instance, and finally two applications of modus ponens.  Note the second to the last formula is just $(A\to A)\to (A\to B)$.
+\item If $C$ and $C\to B$ are axioms or in $\Delta$, then $\Delta \vdash_i A\to B$ based on the deduction $C, C\to B, B, B\to (A\to B), A\to B$.
+\end{itemize}
+
+Next, assume there is a deduction $\mathcal{E}$ of $B$ of length $n>3$.  So one of the earlier formulas is $A_k \to B$, and a subsequence of $\mathcal{E}$ is a deduction of $A_k \to B$, which has length less than $n$, and therefore by induction, $\Delta \vdash_i A \to (A_k \to B)$.  Likewise, a subsequence of $\mathcal{E}$ is a deduction of $A_k$, so by induction, $\Delta \vdash_i A \to A_k$.  With the axiom instance $(A\to A_k)\to ((A\to (A_k\to B))\to (A\to B))$, and two applications of modus ponens, we get $\Delta\vdash_i A\to B$ as required.
+\end{itemize}
+In both cases, $\Delta \vdash_i A\to B$, and the proof is complete.
+\end{proof}
+
+\textbf{Remark}  The deduction theorem can be used to prove the deduction theorem for the first and second order intuitionistic predicate logic.
+
+\begin{thebibliography}{7}
+\bibitem{JR} J. W. Robbin, {\it Mathematical Logic, A First Course}, Dover Publication (2006)
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

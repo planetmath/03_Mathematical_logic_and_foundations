@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ReducedAutomaton}
+\pmcreated{2013-03-22 19:01:56}
+\pmmodified{2013-03-22 19:01:56}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{reduced automaton}
+\pmrecord{14}{41905}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D10}
+\pmclassification{msc}{68Q42}
+\pmclassification{msc}{68Q05}
+\pmsynonym{minimal automaton}{ReducedAutomaton}
+\pmrelated{SimplifiedAutomaton}
+\pmdefines{indistinguishable}
+\pmdefines{reduced}
+\pmdefines{minimal}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Besides eliminating useless states that do not contribute to word acceptance, what else can we do to ``clean up'' an automaton?  In other words, we would like to reduce the number of states in an automaton to as small as possible without affecting its power of accepting words.  
+
+The next thing we can do is to look to find states that do the same thing and combine them into one state.  Two states do the same thing if, acting as starting states, when an arbitrary word is fed into the automaton, they lead to the same conclusion: either both accept the word, or both reject it.  Arbitrary automata are too general to ensure definite conclusions, so we restrict our attention to deterministic finite automata.
+
+\textbf{Definition}.  Let $A=(S,\Sigma,\delta,q_0,F)$ be an automaton with a single start state $q_0$.  For any state $s\in S$, define $A_s$ to be the automaton obtained from $A$ by replacing $q_0$ by $s$.  In other words, $A_s:=(S,\Sigma,\delta,s,F)$.  Two states $s,t\in S$ are said to be \emph{indistinguishable} if $L(A_s)=L(A_t)$.
+
+Let us write $s\approx t$ to mean that $s$ and $t$ are indistinguishable.  Then $\approx$ is an equivalence relation on $S$.  For each $s\in S$, write $[s]$ the equivalence class containing $s$.  Let $S/\approx$ be the set of equivalence classes.
+
+If $A$ is a DFA, $s \approx t$ is the same as saying that, for all words $u$ over $\Sigma$, $\delta(s,u)\in F$ iff $\delta(t,u)\in F$.  For the following discussion, we shall assume that $A$ is a DFA, unless otherwise specified.
+
+Here are two basic observations: 
+\begin{enumerate}
+\item if $[s]=[t]$, then $[\delta(s,a)]=[\delta(t,a)]$:  Let $p=\delta(s,a)$ and $q=\delta(t,a)$.  Given any $u$ over $\Sigma$, we have that $\delta(p,u)=\delta(\delta(s,a),u)=\delta(s,au)$, which is in $F$ iff $\delta(t,au)=\delta(\delta(t,a),u)=\delta(q,u)$ is in $F$.  Hence $p\approx q$.
+\item if $[s]=[t]$ and $t\in F$, then $s\in F$: as $\delta(t,\lambda)=t\in F$ shows that $s=\delta(s,\lambda)\in F$.  As a result of this, $p\in F$ iff $[p]\in F'$.
+\end{enumerate}
+
+Define $A'=(S',\Sigma,\delta', q_0',F')$ as follows: $S':=S/\approx$, $q_0':= [q_0]$, $F':=\lbrace [t]\mid t\in F\rbrace$, and $\delta'([s],a):= [\delta(s,a)]$, for any $a\in \Sigma$.
+
+Now, $\delta'$ is a well-defined function from the first observation above, so that $A'$ is a well-defined automaton.  It has the following property: for any word $u$ over $\Sigma$:
+$$\delta'([s],u)=[\delta(s,u)].$$
+This can be proved by induction on the length of $u$:
+\begin{itemize}
+\item $\delta'([s],\lambda)=[s]=[\delta(s,\lambda)]$
+\item suppose $\delta'([s],u)=[\delta(s,u)]$, then for any $a\in \Sigma$, $$\delta'([s],ua)=\delta'(\delta'([s],u),a) = \delta'([\delta(s,u)],a)= [\delta(\delta(s,u),a)] = [\delta(s,ua)].$$
+\end{itemize}
+
+It also has the property that for if two states are indistinguishable, they are in fact the same state: suppose $[s]\approx [t]$, then for every $u$ over $\Sigma$, $\delta'([s],u)\in F'$ iff $\delta'([t],u)\in F'$, or $[\delta(s,u)]\in F'$ iff $[\delta(t,u)]\in F'$, which is the same as saying $\delta(s,u)\in F$ iff $\delta(t,u)\in F$, or $s \approx t$, or $[s]=[t]$.
+
+\textbf{Definition}.  An finite automaton with a single start state is said to be \emph{reduced} or \emph{minimal} if $s\approx t$ implies $s=t$, where $\approx$ is the indistinguishable relation on its state set.
+
+Thus $A'$ constructed above is reduced.
+
+Below are state diagrams of an automaton $A$ (not deterministic) and its reduction $A'$:
+
+\begin{figure}[!h]
+\centering
+\scalebox{1.0}{\includegraphics{automaton3.eps}}
+\end{figure}
+
+Note that $p\approx q$, as $L(A_p)=L(A_q)=\lbrace aa, ab, ba, bb\rbrace$, and are combined into one state $x$.  Similarly, $r\approx s$, as $L(A_r)=L(A_s)=\lbrace a,b\rbrace$, and are combined into $y$.  Finally, note that $L(A)=L(A')=\lbrace u\mid |u|=3\rbrace$.
+
+With respect to DFA's, the following is true:
+
+\begin{prop} Every DFA $A$ is equivalent to a reduced DFA $A'$. Furthermore, if $A$ is accessible (or simplified), so is $A'$.  Finally, two equivalent reduced accessible automata are isomorphic.  \end{prop}
+\begin{proof}  We have already shown that given a DFA $A$, the automaton $A'$ constructed above is reduced.  Next, we see that $u \in L(A)$ iff $\delta(q_0,u)\in F$ iff $[\delta(q_0,u)]\in F'$ iff $\delta'([q_0],u)\in F'$ iff $u\in L(A')$.  Therefore, $L(A)=L(A')$.
+
+Next, suppose $A$ is accessible, we want to show that $[p]$ is accessible for any $p\in S$.  Since $p$ is accessible, $p=\delta(q_0,u)$ for some word $u$ over $\Sigma$.  So $\delta([q_0],u)=[\delta(q_0,u)]=[p]$ is accessible as well.  This proves that $A'$ is accessible.
+
+Suppose now that $A$ is simplified.  Pick any $s\in S$, we want to show that $[s]$ is useful.  Since $s$ is useful, there are words $u,v$ over $\Sigma$ such that $\delta(q_0,u)=s$ and $\delta(s,v)\in F$, or equivalently $\delta'([q_0],u)=[\delta(q_0,u)]=[s]$ and $\delta'([s],v)=[\delta(s,v)]\in F'$, so that $[s]\in S'$ is useful. This shows that $A'$ is simplified.
+
+Finally, if $A$ and $B$ are both accessible and reduced such that $L(A)=L(B)=R$.  Then the Myhill-Nerode relations induced by $A$ and $B$ are both equal to the Nerode equivalence $\mathcal{N}_R$ of $R$.  As a result, $A$ and $B$ are both isomorphic to the automaton generated by $\mathcal{N}_R$.
+\end{proof}
+
+\textbf{Remark}.  The proposition above is not true in general for non-deterministic finite automata: two equivalent simplified reduced NDFA may not be isomorphic.  However, there exist reduction techniques for NDFA such that the reduced automata produced using these techniques are unique up to isomorphism.
+%%%%%
+%%%%%
+\end{document}

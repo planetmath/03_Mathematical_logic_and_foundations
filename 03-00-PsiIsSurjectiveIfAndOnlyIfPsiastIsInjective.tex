@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PsiIsSurjectiveIfAndOnlyIfPsiastIsInjective}
+\pmcreated{2013-03-22 14:36:03}
+\pmmodified{2013-03-22 14:36:03}
+\pmowner{matte}{1858}
+\pmmodifier{matte}{1858}
+\pmtitle{$\Psi$ is surjective if and only if $\Psi^\ast$ is injective}
+\pmrecord{6}{36170}
+\pmprivacy{1}
+\pmauthor{matte}{1858}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-00}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newcommand{\sR}[0]{\mathbb{R}}
+\newcommand{\sC}[0]{\mathbb{C}}
+\newcommand{\sN}[0]{\mathbb{N}}
+\newcommand{\sZ}[0]{\mathbb{Z}}
+
+ \usepackage{bbm}
+ \newcommand{\Z}{\mathbbmss{Z}}
+ \newcommand{\C}{\mathbbmss{C}}
+ \newcommand{\R}{\mathbbmss{R}}
+ \newcommand{\Q}{\mathbbmss{Q}}
+
+
+
+\newcommand*{\norm}[1]{\lVert #1 \rVert}
+\newcommand*{\abs}[1]{| #1 |}
+
+
+
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{cor}{Corollary}
+\begin{document}
+Suppose $X$ is a set and
+   $V$ is a vector space over a field $F$.
+Let us denote by $M(X,V)$ the set of mappings from $X$ to $V$.
+Now $M(X,V)$ is again a vector space if we equip it with 
+pointwise multiplication and addition. In detail, 
+if $f,g\in M(X,V)$ and $\mu,\lambda\in F$, we set
+\begin{eqnarray*}
+\mu f+\lambda g\colon x&\mapsto& \mu f(x) + \lambda g(x).
+\end{eqnarray*}
+
+Next, let $Y$ be another set, let $\Psi\colon X\to Y$ is a mapping,
+and let $\Psi^\ast\colon M(Y,V)\to M(X,V)$ be the pullback of 
+$\Psi$ as defined in \PMlinkname{this}{Pullback2} entry. 
+
+\begin{prop} $\ $
+\begin{enumerate}
+\item $\Psi^\ast$ is linear. 
+\item If $V$ is not the zero vector space, then 
+$\Psi$ is surjective if and only if $\Psi^\ast$ is injective.
+\end{enumerate}
+\end{prop}
+
+\begin{proof} First, suppose $f,g\in M(Y,V)$, $\mu,\lambda \in F$, and
+$x\in X$. Then
+\begin{eqnarray*}
+\Psi^\ast(\mu f+\lambda g)(x) &=&(\mu f+\lambda g)(\Psi(x)) \\
+   &=&\mu f\circ \Psi(x)+\lambda g\circ\Psi(x) \\
+   &=&\left(\mu \Psi^\ast(f)+\lambda \Psi^\ast(g)\right)(x),
+\end{eqnarray*}
+so $\Psi^\ast(\mu f+\lambda g) = \mu \Psi^\ast(f)+\lambda \Psi^\ast(g)$,
+and $\Psi^\ast$ is linear. 
+For the second claim, suppose $\Psi$ is surjective,
+    $f\in M(Y,V)$, 
+   and $\Psi^\ast(f)=0$. If $y\in Y$, then for some $x\in X$, we have
+$\Psi(x)=y$, and $f(y)=f\circ\Psi(x)=\Psi^\ast(f)(x)=0$, so $f=0$. 
+Hence, the kernel of $\Psi^\ast$ is zero, and $\Psi^\ast$ is an 
+injection. 
+On the other hand, suppose $\Psi^\ast$ is a injection, and 
+    $\Psi$ is not a surjection. Then for some $y'\in Y$, we have 
+$y'\notin \Psi(X)$. Also, as $V$ is not the zero vector space, we can 
+find a non-zero vector $v\in V$, and define $f\in M(Y,V)$ as
+$$
+  f(y)= \begin{cases} v, & \mbox{if}\ y=y', \\
+                      0, & \mbox{if}\ y\neq y', y\in Y. \end{cases}
+$$
+Now $f\circ\Psi(x)=0$ for all $x\in X$, so $\Psi^\ast f=0$,
+but $f\neq 0$. \end{proof}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SomeTheoremSchemasOfPropositionalLogic}
+\pmcreated{2013-03-22 19:33:04}
+\pmmodified{2013-03-22 19:33:04}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{some theorem schemas of propositional logic}
+\pmrecord{40}{42533}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmdefines{law of double negation}
+\pmdefines{law of the excluded middle}
+\pmdefines{ex falso quodlibet}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Based on the axiom system in \PMlinkname{this entry}{AxiomSystemForPropositionalLogic}, we will exhibit some theorem schemas, as well as prove some meta-theorems of propositional logic.  All of these are based on the important deduction theorem, which is proved \PMlinkname{here}{DeductionTheoremHoldsForClassicalPropositionalLogic}.
+
+First, some theorem schemas:
+\begin{enumerate}
+\item $A\to \neg \neg A$
+\item $\neg \neg A \to A$
+\item (law of the excluded middle) $A\lor \neg A$
+\item (ex falso quodlibet) $\perp \to A$
+\item $A\leftrightarrow A$
+\item (law of double negation) $A\leftrightarrow \neg \neg A$
+\item $A\land B \to A$ and $A\land B \to B$
+\item (absorption law for $\land$) $A \leftrightarrow A\land A$
+\item (commutative law for $\land$) $A \land B \leftrightarrow B\land A$
+\item (associative law for $\land$) $(A\land B)\land C \leftrightarrow A \land (B\land C)$
+\item (law of syllogism) $(A\to B)\to ((B\to C)\to (A\to C))$
+\item (law of importation) $(A\to (B\to C))\to (A\land B \to C)$
+\item $(A\to B)\to ((B\to (C\to D))\to (A\land C \to D))$
+\item $(A\to B)\leftrightarrow (A\to (A\to B))$
+\end{enumerate}
+
+\begin{proof}  Many of these can be easily proved using the deduction theorem:
+\begin{enumerate}
+\item we need to show $A \vdash \neg \neg A$, which means we need to show $A,\neg A \vdash \perp$.  Since $\neg A$ is $A\to \perp$, by modus ponens, $A,\neg A \vdash \perp$.
+\item we observe first that $\neg A \to \neg \neg \neg A$ is an instance of the above theorem schema, since $(\neg A \to \neg \neg \neg A) \to (\neg \neg A \to A)$ is an instance of one of the axiom schemas, we have $\vdash \neg \neg A \to A$ as a result.
+\item since $A\lor \neg A$ is $\neg A \to \neg A$, to show $\vdash A \lor \neg A$, we need to show $\neg A \vdash \neg A$, but this is obvious.
+\item we need to show $\perp \vdash A$.  Since $\perp, \perp \to (A\to \perp), A\to \perp$ is a deduction of $A\to \perp$ from $\perp$, and the result follows.
+\item this is because $\vdash A\to A$, so $\vdash (A\to A)\land (A\to A)$.
+\item this is the result of the first two theorem schemas above.
+\end{enumerate}
+For the next four schemas, we need the the following meta-theorems (see \PMlinkname{here}{SomeMetatheoremsOfPropositionalLogic} for proofs):
+\begin{multicols}{2}{
+\begin{enumerate}[M1.]
+\item $\Delta\vdash A$ and $\Delta\vdash B$ iff $\Delta\vdash A\land B$
+\item $\Delta\vdash A$ implies $\Delta\vdash B$ iff $\Delta\vdash A\to B$
+\end{enumerate}}
+\end{multicols}
+\begin{enumerate}
+\setcounter{enumi}{6}
+\item 
+If $\vdash A\land B$, then $\vdash A$ by M1, so $\vdash A \land B \to A$ by M2.  Similarly, $\vdash A\land B \to B$.
+\item 
+$\vdash A\land A \to A$ comes from 7, and since $\vdash A$ implies $\vdash A\land A$ by M1, $\vdash A \to A\land A$ by M2.  Therefore, $\vdash A \leftrightarrow A\land A$ by M1.
+\item 
+If $\vdash A\land B$, then $\vdash A$ and $\vdash B$ by M1, so $\vdash B\land A$ by M1 again, and therefore $\vdash A\land B\to B\land A$ by M2.  Similarly, $\vdash B\land A\to A\land B$.  Combining the two and apply M1, we have the result.
+\item 
+If $\vdash (A\land B)\land C$, then $\vdash A\land B$ and $\vdash C$, so $\vdash A$, $\vdash B$, and $\vdash C$ by M1.  By M1 again, we have $\vdash A$ and $\vdash B\land C$, and another application of M1, $\vdash A \land (B\land C)$.  Therefore, by M2, $\vdash (A\land B)\land C \to A\land (B\land C)$, Similarly, $\vdash A\land (B\land C)\to (A\land B)\land C$.  Combining the two and applying M1, we have the result.
+\item
+$A\to B, B\to C, A \vdash C$ by modus ponens 3 times.
+\item
+$A\to (B\to C), A\land B, A\land B\to A, A, B\to C, A\land B\to B, B, C$ is a deduction of $C$ from $A\to (B\to C)$ and $A\land B$.
+\item
+$A\to B, B\to (C\to D), A\land C, A\land C\to A, A, B, C\to D, A\land C\to C, C, D$ is a deduction of $D$ from $A\to B, B\to (C\to D)$, and $A\land C$.
+\item
+$(A\to B)\to (A\to (A\to B))$ is just an axiom, while $\vdash (A\to (A\to B))\to (A\to B)$ comes from two applications of the deduction theorem to $A\to (A\to B), A \vdash B$, which is the result of the deduction $A\to (A\to B), A, A\to B, B$ of $B$ from $A\to (A\to B)$ and $A$.
+\end{enumerate}
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

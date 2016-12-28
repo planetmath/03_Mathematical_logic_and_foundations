@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Automaton}
+\pmcreated{2013-03-22 12:26:34}
+\pmmodified{2013-03-22 12:26:34}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{automaton}
+\pmrecord{42}{32550}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmsynonym{next-state function}{Automaton}
+\pmsynonym{terminating state}{Automaton}
+\pmsynonym{FSA}{Automaton}
+\pmsynonym{start state}{Automaton}
+\pmsynonym{recognizer}{Automaton}
+\pmrelated{DeterministicFiniteAutomaton}
+\pmrelated{NonDeterministicFiniteAutomaton}
+\pmrelated{PushdownAutomaton}
+\pmrelated{Semiautomaton}
+\pmdefines{finite-state automaton}
+\pmdefines{transition function}
+\pmdefines{starting state}
+\pmdefines{final state}
+\pmdefines{configuration}
+\pmdefines{acceptor}
+\pmdefines{automata}
+\pmdefines{deterministic automaton}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tabls}
+\usepackage{graphicx}
+\usepackage{multicol}
+\begin{document}
+An \emph{automaton} is a semiautomaton with two types of special states: starting states, and final states.  Specifically, an automaton $A$ is is a five-tuple $(S,\Sigma,\delta,I,F)$, where
+\begin{enumerate}
+\item 
+$(S,\Sigma,\delta)$ is a semiautomaton, 
+\item
+a non-empty set $I\subseteq S$ of \emph{starting states}, and
+\item
+a set $F\subseteq S$ of \emph{final states} or \emph{terminating states}.
+\end{enumerate}
+
+A triple $(s,a,t)$ is called a \emph{transition} if $t\in \delta(s,a)$, and is written $s\stackrel{a}{\longrightarrow} t$.  The set $\delta(s,a)$ may contain more than one element (or none at all), which is why an automaton is also said to be \emph{non-deterministic}.  If on the other hand $\delta(s,a)$ is a singleton for every $(s,a)$, and $I$ is a singleton, then $A$ is said to be \emph{deterministic}.  In a deterministic automaton, $\delta$ can be viewed as a function from $S\times \Sigma$ to $S$.
+
+If $S$ and $\Sigma$ are both finite, then $A$ is called a \emph{finite-state automaton}, or \emph{FSA} for short.
+
+The state diagram $G_A$ of a finite-state automaton $A$ is constructed as if $A$ is being treated as a semiautomaton.  In addition, a vertex corresponding to a starting state has an incoming arrow without a source, and a vertex corresponding to a final state has an outgoing arrow without a destination (alternatively, it may be represented by a double circle).  This is illustrated in the following example: 
+
+Let $A$ be given by $S=\lbrace \sigma, s, t\rbrace$, where $\sigma$ is the starting state, and $t$ the final state, $\Sigma=\lbrace a,b\rbrace$, with the transition function given by the following table
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+& $a$ & $b$  \\
+\hline\hline
+$\sigma$ & $s$ & $t$ \\
+\hline
+$s$ & $\varnothing$ & $t,s$ \\
+\hline
+$t$ & $\sigma$ & $s$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Then the state diagram $G_A$ is given by
+\begin{figure}[!h]
+\centering
+\scalebox{0.7}{\includegraphics{automaton.eps}}
+\end{figure}
+
+An automaton works in exactly the same way as a semiautomaton in terms of reading an input word.  Briefly: 
+\begin{quote}
+when a word $u=a_1a_2 \cdots a_n$ is fed into $A$ with starting state $q$, $A$ reads $u$ one symbol at a time from left to right, starting from $a_1$.  It reaches one of the of next states in $\delta(q,a_1)$, say, $s$.  $A$ reads the next symbol $a_2$, and reaches one of the next states $\delta(s,a_2)$, and so on..., until the last symbol $a_n$ has been read.  $u$ is accepted if, it is possible, upon reading the last symbol $a_n$, a final state is reached.
+\end{quote}
+Basically, this means that a word $u$ is \emph{accepted} by $A$ iff $\delta(q,u)$ contains a final state.  The language accepted by $A$ is the set of all words accepted by $A$, and is denoted by $L(A)$.
+
+Clearly, if $F=\varnothing$, then $L(A)=\varnothing$.
+
+%A state transition usually has some rules associated with it that govern when the transition may occur, and are able to remove symbols from the input string.  An automaton may even have some sort of data structure associated with it, besides the input string, with which it may interact.
+
+\textbf{Remark}.  The word ``automaton'' may be used in a context wider than the definition given above.  Any computing device capable of accepting strings of symbols is termed an automaton in this wider context.  The set of all accepted strings is called the language accepted by the automaton.  The automata defined in this entry accept what are known as regular languages.  A famous example is the \PMlinkname{Turing machine}{TuringMachine2}, invented by Alan Turing in 1935.  Languages accepted by Turing machines are exactly the recursively enumerable languages.  Other common examples of automata are: \PMlinkname{pushdown automata}{PushdownAutomaton}, which accept context-free languages; and \PMlinkname{linear bounded automata}{LinearBoundedAutomaton}, which accept context-sensitive languages.
+
+%It consists of a (usually infinitely long) tape, capable of holding symbols from some alphabet, and a pointer to the current location in the tape.  There is also a finite set of states, and transitions between these states, that govern how the tape pointer is moved and how the tape is modified.  Each state transition is labelled by a symbol in the tape's alphabet, and also has associated with it a replacement symbol and a direction to move the tape pointer (either left or right).
+
+%At each iteration, the machine reads the current symbol from the tape.  If a transition can be found leading from the current state that is labelled by the current symbol, it is ``executed.''  Execution of the transition consists of writing the transition's replacement symbol to the tape, moving the tape pointer in the direction specified, and making the state pointed to by the transition the new current state.
+
+%There are many variations of this model that are all called Turing machines, but fundamentally they all model the same set of possible computations.  This abstract construct is very useful in computability theory.
+%%%%%
+%%%%%
+\end{document}

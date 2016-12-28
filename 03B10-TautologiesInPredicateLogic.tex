@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TautologiesInPredicateLogic}
+\pmcreated{2013-03-22 19:32:25}
+\pmmodified{2013-03-22 19:32:25}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{tautologies in predicate logic}
+\pmrecord{15}{42519}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Let FO$(\Sigma)$ be a first order language over signature $\Sigma$.  Recall that the axioms for FO$(\Sigma)$ are (universal) generalizations of wff's belonging to one of the following six schemas:
+\begin{enumerate}
+\item $A\to (B\to A)$
+\item $(A\to (B\to C)) \to ((A\to B)\to (A\to C))$
+\item $\neg \neg A \to A$
+\item $\forall x (A\to B) \to (\forall x A \to \forall x B)$, where $x\in V$
+\item $A\to \forall x A$, where $x\in V$ is not free in $A$
+\item $\forall x A \to A[a/x]$, where $x\in V$, $a\in V(\Sigma)$, and $a$ is free for $x$ in $A$
+\end{enumerate}
+where $V$ is the set of variables and $V(\Sigma)$ is the set of variables and constants, with modus ponens as its rule of inference: from $A$ and $A\to B$ we may infer $B$.
+
+The first three axiom schemas and the modus ponens tell us that predicate logic is an extension of the propositional logic.  On the other hand, we can also view predicate logic as a part of propositional logic if we treat all quantified formulas as atoms.  This can be done precisely as follows: 
+
+Call a wff of FO$(\Sigma)$ \emph{quasi-atom} if it is either atomic, or of the form $\forall x A$, where $A$ is a wff of  FO$(\Sigma)$.  Let $\Gamma$ be the set of all quasi-atoms of FO$(\Sigma)$.
+
+\begin{prop} Every wff of FO$(\Sigma)$ can be uniquely built up from $\Gamma$ using only logical connectives $\to$ and $\neg$. \end{prop}
+\begin{proof}  Induction on the complexity of wff.  For any wff $A$ of FO$(\Sigma)$, it has one of the following forms: $B\to C$, $\neg B$, or $\forall x B$, where $B,C$ are wff's.  If $A$ were $B\to C$ or $\neg B$, by induction, since $B$ and $C$ were in $\Gamma$, $A$ is in $\Gamma$ as a result.  If $A$ were $\forall x B$, then $A$ is quasi-atomic, and therefore in $\Gamma$ by the definition of $\Gamma$.  Unique readability follows from the unique readability of wff's of propositional logic.
+\end{proof}
+
+Since no quantifiers are involved in the built-up process, the language based on $\Gamma$ as the set of atoms can be considered as the language of propositional logic.  Call this logic PL$(\Gamma)$.  So the atoms of PL$(\Gamma)$ are precisely the quasi-atoms of FO$(\Sigma)$.
+
+\textbf{Definition}.  We call a wff of FO$(\Sigma)$ a \emph{tautology} if it is a tautology of PL$(\Gamma)$ (via truth tables).
+
+\begin{prop} In FO$(\Sigma)$, every tautology is a theorem, but not conversely. \end{prop}
+\begin{proof}  Suppose wff $A$ is a tautology in FO$(\Sigma)$.  Then it is a tautology in PL$(\Gamma)$ by definition, and therefore a theorem in PL$(\Gamma)$ since propositional logic is complete with respect to truth-value semantics.  If $A_1,\ldot,A_n$ is a deduction of $A$ (with $A_n=A$), then each $A_i$ is either an axiom, or is obtained by an application of modus ponens.  If $A_i$ is an axiom (of PL$(\Gamma)$), it is an instance of one of the first three axiom schemas of FO$(\Sigma)$ above, which means that $A_i$ is an axiom of FO$(\Sigma)$.  Furthermore, since modus ponens is a rule of inference for FO$(\Sigma)$, $A_1,\ldots, A_n$ is a deduction of $A$ in FO$(\Sigma)$, which means that $A$ is a theorem of FO$(\Sigma)$.
+
+On the other hand, any wff that is an instance of one of the last two axiom schemas of FO$(\Sigma)$ is a theorem that is not a tautology.  For example, $\forall x (x=y) \to (z=y)$ is an instance of the fourth axiom schema, which takes the form $C\to D$, where $C$ is a quasi-atom, and $D$ an atom, both of which are atoms of PL$(\Gamma)$.  Any truth-valuation that takes $C$ to $1$ and $D$ to $0$, takes $C\to D$ to $0$.  Therefore, $\forall x (x=y) \to (z=y)$ is not a tautology.
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

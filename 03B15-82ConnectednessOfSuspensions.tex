@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{82ConnectednessOfSuspensions}
+\pmcreated{2013-11-06 4:03:04}
+\pmmodified{2013-11-06 4:03:04}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.2 Connectedness of suspensions}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\cocone}[2]{\mathsf{cocone}_{#1}(#2)}
+\newcommand{\Ddiag}{\mathscr{D}}
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\function}[4]{\left\{\begin{array}{rcl}#1 &      \longrightarrow & #2 \\ #3 & \longmapsto & #4 \end{array}\right.}
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\newcommand{\typelep}[1]{\ensuremath{{(#1)}\text-\mathsf{Type}}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{8.2.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{8.2.\arabic{mathcount}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+
+Recall from \autoref{sec:connectivity} that a type $A$ is called \define{$n$-connected} if $\trunc nA$ is contractible.
+The aim of this section is to prove that the operation of suspension from \autoref{sec:suspension} increases connectedness.
+
+\begin{thm} \label{thm:suspension-increases-connectedness}
+  If $A$ is $n$-connected then the suspension of $A$ is $(n+1)$-connected.
+\end{thm}
+
+\begin{proof}
+  We remarked in \autoref{sec:colimits} that the suspension of $A$ is the pushout $\unit\sqcup^A\unit$, so we need to
+  prove that the following type is contractible:
+  %
+  \[\trunc{n+1}{\unit\sqcup^A\unit}.\]
+  %
+  By \autoref{reflectcommutespushout} we know that
+  $\trunc{n+1}{\unit\sqcup^A\unit}$ is a pushout in $\typelep{n+1}$ of the diagram
+  \[\xymatrix{\trunc{n+1}A \ar[d] \ar[r] & \trunc{n+1}{\unit} \\
+    \trunc{n+1}{\unit} & }.\]
+  %
+  Given that $\trunc{n+1}{\unit}=\unit$, the type
+  $\trunc{n+1}{\unit\sqcup^A\unit}$ is also a pushout of the following diagram in
+  $\typelep{n+1}$ (because both diagrams are equal)
+  %
+  \[\Ddiag=\vcenter{\xymatrix{\trunc{n+1}A \ar[d] \ar[r] & \unit \\
+    \unit & }}.\]
+  %
+  We will now prove that $\unit$ is also a pushout of $\Ddiag$ in
+  $\typelep{n+1}$.
+  %
+  Let $E$ be an $(n+1)$-truncated type; we need to prove that the following map
+  is an equivalence
+  %
+  \[\function{(\unit \to E)}{\cocone{\Ddiag}{E}}{y}
+  {(y,y,\lamu{u:{\trunc{n+1}A}} \refl{y(\ttt)})}.\]
+  %
+  where we recall that $\cocone{\Ddiag}{E}$ is the type
+  \[\sm{f:\unit \to E}{g:\unit \to E}(\trunc{n+1}A\to
+  (f(\ttt)=_E{}g(\ttt))).\]
+  %
+  The map $\function{(\unit\to E)}{E}{f}{f(\ttt)}$ is an equivalence, hence
+  we also have
+  \[\cocone{\Ddiag}{E}=\sm{x:E}{y:E}(\trunc{n+1}A\to(x=_Ey)).\]
+  %
+  Now $A$ is $n$-connected hence so is $\trunc{n+1}A$ because
+  $\trunc n{\trunc{n+1}A}=\trunc nA=\unit$, and $(x=_Ey)$ is $n$-truncated because
+  $E$ is $(n+1)$-connected. Hence by \autoref{connectedtotruncated} the
+  following map is an equivalence
+  %
+  \[\function{(x=_Ey)}{(\trunc{n+1}A\to(x=_Ey))}{p}{\lam{z} p}\]
+  %
+  Hence we have
+  %
+  \[\cocone{\Ddiag}{E}=\sm{x:E}{y:E}(x=_Ey).\]
+  %
+  But the following map is an equivalence
+  %
+  \[\function{E}{\sm{x:E}{y:E}(x=_Ey)}{x}{(x,x,\refl{x})}.\]
+  %
+  Hence
+  %
+  \[\cocone{\Ddiag}{E}=E.\]
+  %
+  Finally we get an equivalence
+  %
+  \[(\unit \to E)\eqvsym\cocone{\Ddiag}{E}\]
+  %
+  We can now unfold the definitions in order to get the explicit expression of
+  this map, and we see easily that this is exactly the map we had at the
+  beginning.
+
+  Hence we proved that $\unit$ is a pushout of $\Ddiag$ in $\typelep{n+1}$. Using
+  uniqueness of pushouts we get that $\trunc{n+1}{\unit\sqcup^A\unit}=\unit$
+  which proves that the suspension of $A$ is $(n+1)$-connected.
+\end{proof}
+
+\begin{cor} \label{cor:sn-connected}
+  For all $n:\N$, the sphere $\Sn^n$ is $(n-1)$-connected.
+\end{cor}
+
+\begin{proof}
+  We prove this by induction on $n$.
+  %
+  For $n=0$ we have to prove that $\Sn^0$ is merely inhabited, which is clear.
+  %
+  Let $n:\N$ be such that $\Sn^n$ is $(n-1)$-connected. By definition $\Sn^{n+1}$
+  is the suspension of $\Sn^n$, hence by the previous lemma $\Sn^{n+1}$ is
+  $n$-connected.
+\end{proof}
+
+
+\end{document}

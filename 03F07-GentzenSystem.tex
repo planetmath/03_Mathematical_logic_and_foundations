@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{GentzenSystem}
+\pmcreated{2013-03-22 19:13:20}
+\pmmodified{2013-03-22 19:13:20}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Gentzen system}
+\pmrecord{17}{42143}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F07}
+\pmclassification{msc}{03F03}
+\pmclassification{msc}{03B99}
+\pmclassification{msc}{03F05}
+\pmsynonym{sequent system}{GentzenSystem}
+\pmrelated{Sequent}
+\pmrelated{HilbertSystem}
+\pmrelated{NaturalDeduction}
+\pmdefines{antecedent}
+\pmdefines{succedent}
+\pmdefines{structural rule}
+\pmdefines{logical rule}
+\pmdefines{weakening rule}
+\pmdefines{contraction rule}
+\pmdefines{cut rule}
+\pmdefines{exchange rule}
+\pmdefines{cut formula}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+\subsubsection*{Introduction}
+
+A \emph{Gentzen system}, attributed to the German logician Gerhard Gentzen, is a variant form of a deductive system.  Like a deductive system, a Gentzen system has axioms and inference rules.  But, unlike a deductive system, the basic building blocks in a Gentzen system are expressions called sequents, not formulas.
+
+More precisely, given a language $L$ of well-formed formulas, a deductive system consists of a set of formulas called axioms, and a set of inference rules, which are pairs of sets of formulas.  In a Gentzen system, the formulas are replaced by sequents, which are defined as expressions of the form $$\Delta \Rightarrow \Gamma,$$ where $\Delta$ and $\Gamma$ are finite sequences of formulas in $L$.  The empty sequence is allowed, and is usually denoted by $\varnothing$, $\lambda$, or blank space.  In the sequent above, $\Delta$ is called the \emph{antecedent}, and $\Gamma$ the \emph{succedent}.  A \emph{formula} in a sequent is a formula that occurs either in the antecedent or the succedent of the sequent, and a \emph{subformula} in a sequent is a subformula of some formula in the sequent.
+
+Notation: for any sequence $\Delta$ of formulas, we write $$\Delta:=\Delta_1, A, \Delta_2$$ to mean that $A$ is a formula in $\Delta$.  $\Delta_1$ and $\Delta_2$ are subsequences of $\Delta$, one before $A$, and the other after $A$, both of which may be empty.
+
+\subsubsection*{Axioms}
+
+As discussed above, axioms of a Gentzen system are sequents.  Typically, they are of the following form:
+$$\Delta_1,A,\Delta_2\Rightarrow A$$
+In the case of classical propositional or predicate logic where $\perp$ is the nullary logical connective denoting \emph{falsity}, $$\perp\Rightarrow $$ is also an axiom.  In addition, when converting a Hilbert system into a Gentzen system, axioms take the form $$\Rightarrow B,$$ where $B$ is an axiom in the Hilbert system.
+
+\subsubsection*{Rules of Inference}
+
+Rules of inferences have the form
+$${X_1 \quad X_2 \quad \cdots \quad X_n \over Y}$$
+where $X_1,\ldots,X_n$ and $Y$ are sequents of the rule.  The $X$'s are called the premises, and $Y$ the conclusion.  The inference rules of a Gentzen system can be grouped into two main kinds:
+\begin{itemize}
+\item \emph{structural rule}: a rule is structural if either, 
+\begin{enumerate}
+\item given any premise, every formula in it is also a formula in the conclusion, or 
+\item every formula in the conclusion is also a formula in some premise.  
+\end{enumerate}
+In the former case, if there is a formula $B$ in the conclusion not in any of the premises, then $B$ is said to be \emph{introduced} by the rule.  In the later case, if there is a formula $A$ in one of the premises not in the conclusion, then $A$ is said to be \emph{eliminated}.  Some examples of this kind of rules are:
+\begin{itemize}
+\item weakening rules $${\Delta_1, \Delta_2 \Rightarrow \Gamma \over \Delta_1, A, \Delta_2 \Rightarrow \Gamma} \qquad \mbox{or} \qquad {\Delta \Rightarrow \Gamma_1,\Gamma_2 \over \Delta \Rightarrow \Gamma_1,B,\Gamma_2}$$
+\item contraction rules $${\Delta_1, A,A,\Delta_2 \Rightarrow \Gamma \over \Delta_1, A, \Delta_2 \Rightarrow \Gamma} \qquad \mbox{or} \qquad {\Delta \Rightarrow \Gamma_1,B,B,\Gamma_2 \over \Delta \Rightarrow \Gamma_1,B,\Gamma_2}$$
+\item exchange rules $${\Delta_1, A,B,\Delta_2 \Rightarrow \Gamma \over \Delta_1, B,A, \Delta_2 \Rightarrow \Gamma} \qquad \mbox{or} \qquad {\Delta \Rightarrow \Gamma_1,A,B,\Gamma_2 \over \Delta \Rightarrow \Gamma_1,B,A,\Gamma_2}$$
+\item cut rule $${\Delta_1 \Rightarrow \Gamma_1, A, \Gamma_2 \qquad \Delta_2, A,\Delta_3 \Rightarrow \Gamma_3 \over \Delta_1, \Delta_2, \Delta_3 \Rightarrow \Gamma_1,\Gamma_2,\Gamma_3}$$
+where $A$ is called a \emph{cut formula}.
+\end{itemize}
+\item \emph{logical rule}: if it is not a structural rule.  In other words, for every premise $X_i$, there is at least one formula, say $A_i$, in it not in the conclusion $Y$, and a formula $B$ in $Y$ not in any of $X_i$'s.  Typically, $Y$ is obtained from the $X_i$'s via a logical connective.  An example of a logical rule is the following:
+$${A,\Delta \Rightarrow \Gamma, B \over \Delta \Rightarrow \Gamma, A\to B}$$
+\end{itemize}
+
+\subsubsection*{Deductions}
+
+Deductions in a Gentzen system $G$ are finite trees, whose nodes are labeled by sequents.  In any deduction, the label of any of its leaves is an axiom.  In addition, given any node with label $Y$, its immediate predecessors are nodes with labels $X_1,\ldots, X_n$, such that 
+$${X_1 \quad X_2 \quad \cdots \quad X_n \over Y}$$
+is a rule of inference in $G$.  A sequent $X$ is said to be \emph{deducible} if there is a deduction whose root has label $X$.  A formula $A$ is called a \emph{theorem} if the sequent $\Rightarrow A$ is deducible.
+
+\textbf{Remarks}.
+\begin{itemize}
+\item Initially, Gentzen invented the sequent system to analyze the other deductive system he introduced: natural deduction.  In fact, sequents can be thought of as abbreviated forms of natural deductions, where the left hand side stands for assumptions (leaves), and right hand side the conclusion (root), and the body of the deduction tree is ignored.  Furthermore, if we interpret sequents as formulas themselves, a Gentzen system is really just a deductive system for natural deductions.
+\item In some logical systems, where the exchange rules are automatically assumed, the antecedent and succedent that make up s sequent can be thought of as multisets instead of finite sequences, of formulas, since multisets are just finite sequences modulo order.  Furthermore, if the weakening and contraction rules are automatically assumed, then the multisets can be reduced to sets (where multiplicities of elements are forgotten).  In classical propositional logic, for example, the sequent $\Delta\Rightarrow \Gamma$ can be thought of as the formula $\bigwedge \Delta \to \bigvee \Gamma$, where $\bigwedge \Delta$ is the conjunction of formulas in $\Delta$, and $\bigvee \Gamma$ is the disjunction of formulas in $\Gamma$.
+\item A given logical system may have several distinct but deductively equivalent Gentzen systems.  For example, any Gentzen system for classical propositional logic with structural rules can be converted into one without any structural rules.
+\end{itemize}
+
+\begin{thebibliography}{7}
+\bibitem{TS} A. S. Troelstra, H. Schwichtenberg, {\it Basic Proof Theory}, 2nd Edition, Cambridge University Press (2000)
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

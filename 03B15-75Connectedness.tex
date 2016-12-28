@@ -1,0 +1,389 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{75Connectedness}
+\pmcreated{2013-11-21 15:40:15}
+\pmmodified{2013-11-21 15:40:15}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{7.5 Connectedness}
+\pmrecord{3}{87702}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bfalse}{{0_{\bool}}}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\iscontr}{\ensuremath{\mathsf{isContr}}}
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\total}[1]{\ensuremath{\mathsf{total}(#1)}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\tprojf}[2][]{|\blank|_{#2}^{#1}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\Trunc}[2]{\Bigl\Vert #2\Bigr\Vert_{#1}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\typele}[1]{\ensuremath{{#1}\text-\mathsf{Type}}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{7.5.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{7.5.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{7.5.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{7.5.\arabic{mathcount}}
+\let\ap\map
+\let\autoref\cref
+\let\hfiber\hfib
+\let\ntype\typele
+\let\type\UU
+\makeatother
+
+\begin{document}
+An $n$-type is one that has no interesting information above dimension $n$.
+By contrast, an \emph{$n$-connected type} is one that has no interesting information \emph{below} dimension $n$.
+It turns out to be natural to study a more general notion for functions as well.
+
+\begin{defn}
+A function $f:A\to B$ is said to be \define{$n$-connected}
+\indexdef{function!n-connected@$n$-connected}%
+\indexsee{n-connected@$n$-connected!function}{function, $n$-connected}%
+if for all $b:B$, the type $\trunc n{\hfiber f b}$ is contractible:
+\begin{equation*}
+  \mathsf{conn}_n(f)\defeq \prd{b:B}\iscontr(\trunc n{\hfiber{f}b}). 
+\end{equation*}
+A type $A$ is said to be \define{$n$-connected}
+\indexsee{n-connected@$n$-connected!type}{type, $n$-connected}%
+\indexdef{type!n-connected@$n$-connected}%
+ if the unique function $A\to\unit$ is $n$-connected, i.e.\ if $\trunc nA$ is contractible.
+\end{defn}
+\indexsee{connected!function}{function, $n$-connected}
+
+Thus, a function $f:A\to B$ is $n$-connected if and only if $\hfib{f}b$ is $n$-connected for every $b:B$.
+Of course, every function is $(-2)$-connected.
+At the next level, we have:
+
+\begin{lem}\label{thm:minusoneconn-surjective}
+  \index{function!surjective}%
+  A function $f$ is $(-1)$-connected if and only if it is surjective in the sense of \PMlinkname{\S 4.6}{46surjectionsandembeddings}.
+\end{lem}
+\begin{proof}
+  We defined $f$ to be surjective if $\trunc{-1}{\hfiber f b}$ is inhabited for all $b$.
+  But since it is a mere proposition, inhabitation is equivalent to contractibility.
+\end{proof}
+
+Thus, $n$-connectedness of a function for $n\ge 0$ can be thought of as a strong form of surjectivity.
+Category-theoretically, $(-1)$-connectedness corresponds to essential surjectivity on objects, while $n$-connectedness corresponds to essential surjectivity on $k$-morphisms for $k\le n+1$.
+
+\PMlinkname{Lemma 7.5.2}{75connectedness#Thmprelem1} also implies that a type $A$ is $(-1)$-connected if and only if it is merely inhabited.
+When a type is $0$-connected we may simply say that it is \define{connected},
+\indexdef{connected!type}%
+\indexdef{type!connected}%
+and when it is $1$-connected we say it is \define{simply connected}.
+\indexdef{simply connected type}%
+\indexdef{type!simply connected}%
+
+\begin{rmk}\label{rmk:connectedness-indexing}
+  While our notion of $n$-connectedness for types agrees with the standard notion in homotopy theory, our notion of $n$-connectedness for \emph{functions} is off by one from a common indexing in classical homotopy theory.
+  Whereas we say a function $f$ is $n$-connected if all its fibers are $n$-connected, some classical homotopy theorists would call such a function $(n+1)$-connected.
+  (This is due to a historical focus on \emph{cofibers} rather than fibers.)
+\end{rmk}
+
+We now observe a few closure properties of connected maps.
+\index{function!n-connected@$n$-connected}
+
+\begin{lem}
+\index{retract!of a function}%
+Suppose that $g$ is a retract of a $n$-connected function $f$.  Then $g$ is
+$n$-connected.
+\end{lem}
+\begin{proof}
+This is a direct consequence of \PMlinkname{Lemma 4.7.3}{47closurepropertiesofequivalences#Thmprelem1}.
+\end{proof}
+
+\begin{cor}
+If $g$ is homotopic to a $n$-connected function $f$, then $g$ is $n$-connected.
+\end{cor}
+
+\begin{lem}\label{lem:nconnected_postcomp}
+Suppose that $f:A\to B$ is $n$-connected. Then $g:B\to C$ is $n$-connected if and only if $g\circ f$ is
+$n$-connected.
+\end{lem}
+
+\begin{proof}
+For any $c:C$, we have
+\begin{align*}
+  \trunc n{\hfib{g\circ f}c}
+  & \eqvsym \Trunc n{ \sm{w:\hfib{g}c}\hfib{f}{\proj1 w}}
+  \tag{by \PMlinkexternal{Exercise 4.4}{http://planetmath.org/node/87774}}\\
+  & \eqvsym \Trunc n{\sm{w:\hfib{g}c} \trunc n{\hfib{f}{\proj1 w}}}
+  \tag{by \PMlinkname{Theorem 7.3.9}{73truncations#Thmprethm3}}\\
+  & \eqvsym \trunc n{\hfib{g}c}.
+  \tag{since $\trunc n{\hfib{f}{\proj1 w}}$ is contractible}
+\end{align*}
+It follows that $\trunc n{\hfib{g}c}$ is contractible if and only if $\trunc n{\hfib{g\circ f}c}$ is
+contractible.
+\end{proof}
+
+Importantly, $n$-connected functions can be equivalently characterized as those which satisfy an ``induction principle'' with respect to $n$-types.\index{induction principle!for connected maps} 
+This idea will lead directly into our proof of the Freudenthal suspension theorem in \PMlinkname{\S 8.6}{86thefreudenthalsuspensiontheorem}.
+
+\begin{lem}\label{prop:nconnected_tested_by_lv_n_dependent types}
+For $f:A\to B$ and $P:B\to\type$, consider the following function:
+\begin{equation*}
+\lam{s} s\circ f :\Parens{\prd{b:B} P(b)}\to\Parens{\prd{a:A}P(f(a))}.
+\end{equation*}
+For a fixed $f$ and $n\ge -2$, the following are equivalent.
+\begin{enumerate}
+\item $f$ is $n$-connected.\label{item:conntest1}
+\item For every $P:B\to\ntype{n}$, the map $\lam{s} s\circ f$ is an equivalence.\label{item:conntest2}
+\item For every $P:B\to\ntype{n}$, the map $\lam{s} s\circ f$ has a section.\label{item:conntest3}
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Suppose that $f$ is $n$-connected and let $P:B\to\ntype{n}$. Then we have the equivalences
+\begin{align}
+  \prd{b:B} P(b) & \eqvsym \prd{b:B} \Parens{\trunc n{\hfib{f}b} \to P(b)}
+  \tag{since $\trunc n{\hfib{f}b}$ is contractible}\\
+  & \eqvsym \prd{b:B} \Parens{\hfib{f}b\to P(b)}
+  \tag{since $P(b)$ is an $n$-type}\\
+  & \eqvsym \prd{b:B}{a:A}{p:f(a)= b} P(b)
+  \tag{by the left universal property of $\Sigma$-types}\\
+  & \eqvsym \prd{a:A} P(f(a)).
+  \tag{by the left universal property of path types}
+\end{align}
+We omit the proof that this equivalence is indeed given by $\lam{s} s\circ f$.
+Thus,~\ref{item:conntest1}$\Rightarrow$\ref{item:conntest2}, and clearly~\ref{item:conntest2}$\Rightarrow$\ref{item:conntest3}.
+To show~\ref{item:conntest3}$\Rightarrow$\ref{item:conntest1}, consider the type family
+\begin{equation*}
+P(b)\defeq \trunc n{\hfib{f}b}.
+\end{equation*}
+Then~\ref{item:conntest3} yields a map $c:\prd{b:B} \trunc n{\hfib{f}b}$ with
+$c(f(a))=\tproj n{\pairr{a,\refl{f(a)}}}$. To show that each $\trunc n{\hfib{f}b}$ is contractible,
+we will find a function of type
+\begin{equation*}
+\prd{b:B}{w:\trunc n{\hfib{f}b}} w= c(b).
+\end{equation*}
+By \PMlinkname{Theorem 7.3.2}{73truncations#Thmprethm1}, for this it suffices to find a function of type
+\begin{equation*}
+\prd{b:B}{a:A}{p:f(a)= b} \tproj n{\pairr{a,p}}= c(b).
+\end{equation*}
+But by rearranging variables and path induction, this is equivalent to the type
+\begin{equation*}
+\prd{a:A} \tproj n{\pairr{a,\refl{f(a)}}}= c(f(a)).
+\end{equation*}
+This property holds by our choice of $c(f(a))$. 
+\end{proof}
+
+\begin{cor}\label{cor:totrunc-is-connected}
+For any $A$, the canonical function $\tprojf n:A\to\trunc n A$ is $n$-connected.
+\end{cor}
+\begin{proof}
+By \PMlinkname{Theorem 7.3.2}{73truncations#Thmprethm1} and the associated uniqueness principle, the condition of \PMlinkname{Lemma 7.5.7}{75connectedness#Thmprelem4} holds.
+\end{proof}
+
+For instance, when $n=-1$, \PMlinkname{Corollary 7.5.8}{75connectedness#Thmprecor2} says that the map $A\to \brck A$ from a type to its propositional truncation is surjective.
+
+\begin{cor}\label{thm:nconn-to-ntype-const}\label{connectedtotruncated}
+A type $A$ is $n$-connected if and only if the map
+\begin{equation*}
+  \lam{b}{a} b: B \to (A\to B)
+\end{equation*}
+is an equivalence for every $n$-type $B$.
+In other words, ``every map from $A$ to an $n$-type is constant''.
+\end{cor}
+\begin{proof}
+  By \PMlinkname{Lemma 7.5.7}{75connectedness#Thmprelem4} applied to a function with codomain $\unit$.
+\end{proof}
+
+\begin{lem}\label{lem:nconnected_to_leveln_to_equiv}
+Let $B$ be an $n$-type and let $f:A\to B$ be a function. Then the induced function $g:\trunc n A\to B$ is an
+equivalence if and only if $f$ is $n$-connected.
+\end{lem}
+
+\begin{proof}
+By \PMlinkname{Corollary 7.5.8}{75connectedness#Thmprecor2}, $\tprojf n$ is $n$-connected.
+Thus, since $f = g\circ \tprojf n$, by
+\PMlinkname{Lemma 7.5.6}{75connectedness#Thmprelem3} $f$ is $n$-connected if and only if $g$ is $n$-connected.
+But since $g$ is a function between $n$-types, its fibers are also $n$-types.
+Thus, $g$ is $n$-connected if and only if it is an equivalence.
+\end{proof}
+
+We can also characterize connected pointed types in terms of connectivity of the inclusion of their basepoint.
+
+\begin{lem}\label{thm:connected-pointed}
+  \index{basepoint}%
+  Let $A$ be a type and $a_0:\unit\to A$ a basepoint, with $n\ge -1$.
+  Then $A$ is $n$-connected if and only if the map $a_0$ is $(n-1)$-connected.
+\end{lem}
+\begin{proof}
+  First suppose $a_0:\unit\to A$ is $(n-1)$-connected and let $B$ be an $n$-type; we will use \PMlinkname{Corollary 7.5.9}{75connectedness#Thmprecor3}.
+  The map $\lam{b}{a} b: B \to (A\to B)$ has a retraction given by $f\mapsto f(a_0)$, so it suffices to show it also has a section, i.e.\ that for any $f:A\to B$ there is $b:B$ such that $f = \lam{a}b$.
+  We choose $b\defeq f(a_0)$.
+  Define $P:A\to\type$ by $P(a) \defeq (f(a)=f(a_0))$.
+  Then $P$ is a family of $(n-1)$-types and we have $P(a_0)$; hence we have $\prd{a:A} P(a)$ since $a_0:\unit\to A$ is $(n-1)$-connected.
+  Thus, $f = \lam{a} f(a_0)$ as desired.
+
+  Now suppose $A$ is $n$-connected, and let $P:A\to\ntype{(n-1)}$ and $u:P(a_0)$ be given.
+  By \PMlinkname{Lemma 7.5.7}{75connectedness#Thmprelem4}, it will suffice to construct $f:\prd{a:A} P(a)$ such that $f(a_0)=u$.
+  Now $\ntype{(n-1)}$ is an $n$-type and $A$ is $n$-connected, so by \PMlinkname{Corollary 7.5.9}{75connectedness#Thmprecor3}, there is an $n$-type $B$ such that $P = \lam{a} B$.
+  Hence, we have a family of equivalences $g:\prd{a:A} (\eqv{P(a)}{B})$.
+  Define $f(a) \defeq \opp{g_a}(g_{a_0}(u))$; then $f:\prd{a:A} P(a)$ and $f(a_0) = u$ as desired.
+\end{proof}
+
+In particular, a pointed type $(A,a_0)$ is 0-connected if and only if $a_0:\unit\to A$ is surjective, which is to say $\prd{x:A} \brck{x=a_0}$.
+
+A useful variation on \PMlinkname{Lemma 7.5.6}{75connectedness#Thmprelem3} is:
+
+\begin{lem}\label{lem:nconnected_postcomp_variation}
+Let $f:A\to B$ be a function and $P:A\to\type$ and $Q:B\to\type$ be type families. Suppose that $g:\prd{a:A} P(a)\to Q(f(a))$
+is a fiberwise $n$-connected%
+\index{fiberwise!n-connected family of functions@$n$-connected family of functions}
+family of functions, i.e.\ each function $g_a : P(a) \to Q(f(a))$ is $n$-connected. Then the function
+\begin{align*}
+\varphi &:\Parens{\sm{a:A} P(a)}\to\Parens{\sm{b:B} Q(b)}\\
+\varphi(a,u) &\defeq \pairr{f(a),g_a(u)}
+\end{align*}
+is $n$-connected if and only if $f$ is $n$-connected.
+\end{lem}
+
+\begin{proof}
+For $b:B$ and $v:Q(b)$ we have
+{\allowdisplaybreaks
+\begin{align*}
+\trunc n{\hfib{\varphi}{\pairr{b,v}}} & \eqvsym \Trunc n{\sm{a:A}{u:P(a)}{p:f(a)= b} \trans{\ap f p }{g_a(u)}= v}\\
+& \eqvsym \Trunc n{\sm{w:\hfib{f}b}{u:P(\proj1(w))} g_{\proj 1 w}(u)= \trans{\opp{\ap f {\proj2 w}}}{v}}\\
+& \eqvsym \Trunc n{\sm{w:\hfib{f}b} \hfib{g(\proj1 w)}{\trans{\opp{\ap f {\proj 2 w}}}{v}}}\\
+& \eqvsym \Trunc n{\sm{w:\hfib{f}b} \trunc n{\hfib{g(\proj1 w)}{\trans{\opp{\ap f {\proj 2 w}}}{v}}}}\\
+& \eqvsym \trunc n{\hfib{f}b}
+\end{align*}}
+where the transportations along $f(p)$ and $f(p)^{-1}$ are with respect to $Q$.
+Therefore, if either is contractible, so is the other.
+\end{proof}
+
+In the other direction, we have
+
+\begin{lem}\label{prop:nconn_fiber_to_total}
+Let $P,Q:A\to\type$ be type families and consider a fiberwise transformation\index{fiberwise!transformation}
+\begin{equation*}
+f:\prd{a:A} \Parens{P(a)\to Q(a)}
+\end{equation*}
+from $P$ to $Q$. Then the induced map $\total f: \sm{a:A}P(a) \to \sm{a:A} Q(a)$ is $n$-connected if and only if each $f(a)$ is $n$-connected. 
+\end{lem}
+
+\begin{proof}
+By \PMlinkname{Theorem 4.7.6}{47closurepropertiesofequivalences#Thmprethm3}, we have
+$\hfib{\total f}{\pairr{x,v}}\eqvsym\hfib{f(x)}v$
+for each $x:A$ and $v:Q(x)$. Hence $\trunc n{\hfib{\total f}{\pairr{x,v}}}$ is contractible if and only if
+$\trunc n{\hfib{f(x)}v}$ is contractible.
+\end{proof}
+
+Another useful fact about connected maps is that they induce an
+equivalence on $n$-truncations:
+
+\begin{lem} \label{lem:connected-map-equiv-truncation}
+If $f : A \to B$ is $n$-connected, then it induces an equivalence
+$\eqv{\trunc{n}{A}}{\trunc{n}{B}}$.
+\end{lem}
+\begin{proof}
+Let $c$ be the proof that $f$ is $n$-connected.  From left to right, we
+use the map $\trunc{n}{f} : \trunc{n}{A} \to \trunc{n}{B}$.
+To define the map from right to left, by the universal property of
+truncations, it suffices to give a map $\mathsf{back} : B \to {\trunc{n}{A}}$.  We can
+define this map as follows:
+\[
+\mathsf{back}(y) \defeq \trunc{n}{\proj{1}}{(\proj{1}{(c(y))})}
+\]
+By definition, $c(y)$ has type $\iscontr(\trunc n {\hfiber{f}y})$, so its
+first component has type $\trunc n{\hfiber{f}y}$, and we can obtain an
+element of $\trunc n A$ from this by projection.
+
+Next, we show that the composites are the identity.  In both directions,
+because the goal is a path in an $n$-truncated type, it suffices to
+cover the case of the constructor $\tprojf{n}$.
+
+In one direction, we must show that for all $x:A$, 
+\[
+\trunc{n}{\proj{1}}{(\proj{1}{(c(f(x)))})} = \tproj{n}{x}
+\]
+But $\tproj{n}{(x, \refl{})} : \trunc n{\hfiber{f}y}$, and
+$c(y)$ says that this type is contractible, so 
+\[
+\proj{1}{(c(f(x)))} = \tproj{n}{(x, \refl{})}
+\]
+Applying $\trunc{n}{\proj{1}}$ to both sides of this equation gives the
+result.  
+
+In the other direction, we must show that for all $y:B$, 
+\[
+\trunc{n}{f}(\trunc{n}{\proj{1}} (\proj{1}{(c(y))})) = \tproj{n}{y}
+\]
+$\proj{1}{(c(y))}$ has type $\trunc n {\hfiber{f}y}$, and the path we
+want is essentially the second component of the $\hfiber{f}y$, but we
+need to make sure the truncations work out.  
+
+In general, suppose we are given $p:\trunc{n}{\sm{x:A} B(x)}$ and wish to prove
+$P(\trunc{n}{\proj{1}{}}(p))$. By truncation induction, it suffices to
+prove $P(\tproj{n}{a})$ for all $a:A$ and $b:B(a)$.  Applying this
+principle in this case, it suffices to prove
+\[
+\trunc{n}{f}(\tproj{n}{a}) = \tproj{n}{y}
+\]
+given $a:A$ and $b:f (a) = y$.  But the left-hand side equals $\tproj{n}{f (a)}$,
+so applying $\tprojf{n}$ to both sides of $b$ gives the result.
+\end{proof}
+
+One might guess that this fact characterizes the $n$-connected maps, but in fact being $n$-connected is a bit stronger than this.
+For instance, the inclusion $\bfalse:\unit \to\bool$ induces an equivalence on $(-1)$-truncations, but is not surjective (i.e.\ $(-1)$-connected).
+In \PMlinkname{\S 8.4}{84fibersequencesandthelongexactsequence} we will see that the difference in general is an analogous extra bit of surjectivity.
+
+
+
+\end{document}

@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{JuxtapositionOfAutomata}
+\pmcreated{2013-03-22 18:03:51}
+\pmmodified{2013-03-22 18:03:51}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{juxtaposition of automata}
+\pmrecord{14}{40596}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $A=(S_1,\Sigma_1,\delta_1,I_1,F_1)$ and $B=(S_2,\Sigma_2,\delta_2,I_2,F_2)$ be two automata.  We define the juxtaposition of $A$ and $B$, written $AB$, as the sextuple $(S,\Sigma,\delta,I,F,\epsilon)$, as follows:
+\begin{enumerate}
+\item $S:=S_1\stackrel{\cdot}{\cup} S_1$, where $\stackrel{\cdot}{\cup}$ denotes disjoint union,
+\item $\Sigma: = (\Sigma_1\cup \Sigma_2)\stackrel{\cdot}{\cup} \lbrace \epsilon \rbrace$,
+\item $\delta:S\times \Sigma\to P(S)$ given by 
+\begin{itemize}
+\item $\delta(s,\epsilon):=I_2$ if $s\in F_1$, and $\delta(s,\epsilon):=\lbrace s\rbrace$ otherwise,
+\item $\delta|(S_1\times \Sigma_1):=\delta_1$, 
+\item $\delta|(S_2\times \Sigma_2):=\delta_2$, and  
+\item $\delta(s,\alpha):=\varnothing$ otherwise (where $\alpha\ne \epsilon$).
+\end{itemize}
+\item $I:=I_1$,
+\item $F:=F_2$.
+\end{enumerate}
+Because $S_1$ and $S_2$ are considered as disjoint subsets of $S$, $I\cap F=\varnothing$.  Also, from the definition above, we see that $AB$ is an \PMlinkname{automaton with $\epsilon$-transitions}{AutomatonWithEpsilonTransitions}.
+
+The way $AB$ works is as follows: a word $c=ab$, where $a\in \Sigma_1^*$ and $b\in \Sigma_2^*$, is fed into $AB$.  $AB$ first reads $a$ as if it were read by $A$, via transition function $\delta_1$.  If $a$ is accepted by $A$, then one of its accepting states will be used as the initial state for $B$ when it reads $b$.  The word $c$ is accepted by $AB$ when $b$ is accepted by $B$.
+
+Visually, the state diagram $G_{A_1A_2}$ of $A_1A_2$ combines the state diagram $G_{A_1}$ of $A_1$ with the state diagram $G_{A_2}$ of $A_2$ by adding an edge from each final node of $A_1$ to each of the start nodes of $A_2$ with label $\epsilon$ (the $\epsilon$-transition).
+
+\begin{prop} $L(AB)=L(A)L(B)$ \end{prop}
+\begin{proof}  Suppose $c=ab$ is a words such that $a\in \Sigma_1^*$ and $b\in \Sigma_2^*$.  If $c\in L(AB)$, then $\delta(q,a\epsilon b)\cap F\neq \varnothing$ for some $q\in I=I_1$.  Since $\delta(q,a\epsilon b)\cap F_2  = \delta(q,a\epsilon b)\cap F\neq \varnothing$ and $b\in \Sigma_2^*$, we have, by the definition of $\delta$, that $\delta(q,a\epsilon b)=\delta(\delta(q,a\epsilon),b)=\delta_2(\delta(q,a\epsilon),b)$, which shows that $b\in L(B)$ and $\delta(q,a\epsilon)\cap I_2 \ne \varnothing$.  But $\delta(q,a\epsilon)=\delta(\delta(q,a),\epsilon)$, by the definition of $\delta$ again, we also have $\delta(q,a)\cap F_1\ne \varnothing$, which implies that $\delta(q,a)=\delta_1(q,a)$.  As a result, $a\in L(A)$.  
+
+Conversely, if $a\in L(A)$ and $b\in L(B)$, then for any $q\in I=I_1$, $\delta(q,a)=\delta_1(q,a)$, which has non-empty intersection with $F_1$.  This means that $\delta(q,a\epsilon)= \delta(\delta(q,a),\epsilon)=I_2$, and finally $\delta(q,a\epsilon b)=\delta(\delta(q,a\epsilon),b)=\delta(I_2,b)$, which has non-empty intersection with $F_2=F$ by assumption.  This shows that $a\epsilon b\in L((AB)_{\epsilon})$, or $ab\in L(AB)$.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

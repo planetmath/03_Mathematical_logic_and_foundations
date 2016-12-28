@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DeductionTheoremHoldsForClassicalPropositionalLogic}
+\pmcreated{2013-03-22 19:13:42}
+\pmmodified{2013-03-22 19:13:42}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{deduction theorem holds for classical propositional logic}
+\pmrecord{23}{42151}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F03}
+\pmclassification{msc}{03B99}
+\pmclassification{msc}{03B22}
+\pmrelated{AxiomSystemForPropositionalLogic}
+\pmdefines{proof by contradiction}
+\pmdefines{proof by contrapositive}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+In this entry, we prove that the deduction theorem holds for classical propositional logic.  For the logic, we use the axiom system found in \PMlinkname{this entry}{AxiomSystemForPropositionalLogic}.  To prove the theorem, we use the theorem schema $A\to A$ (whose deduction can be found \PMlinkname{here}{AxiomSystemForPropositionalLogic}).
+
+\begin{proof}  Suppose $A_1, \ldots, A_n$ is a deduction of $B$ from $\Delta \cup \lbrace A \rbrace$.  We want to find a deduction of $A\to B$ from $\Delta$.  There are two main cases to consider:
+\begin{itemize}
+\item
+If $B$ is an axiom or in $\Delta\cup \lbrace A\rbrace$, then $$B, B\to (A\to B), A\to B$$ is a deduction of $A\to B$ from $\Delta$, where $A\to B$ is obtained by modus ponens applied to $B$ and the axiom $B\to (A\to B)$.  So $\Delta \vdash A\to B$.
+\item
+If $B$ is obtained from $A_i$ and $A_j$ by modus ponens.  Then $A_j$, say, is $A_i \to B$.  We use induction on the length $n$ of the deduction of $B$.  Note that $n\ge 3$.  If $n=3$, then the first two formulas are $C$ and $C\to B$.
+\begin{itemize}
+\item 
+If $C$ is $A$, then $C\to B$ is either an axiom or in $\Delta$.  So $A\to B$, which is just $C\to B$, is a deduction of $A\to B$ from $\Delta$.
+\item 
+If $C\to B$ is $A$, then $C$ is either an axiom or in $\Delta$, and
+$$\mathcal{E}_0,(A\to A)\to ((A\to C) \to (A\to B)),C\to(A\to C),C,A\to C, A\to B$$
+is a deduction of $A\to B$ from $\Delta$, where $\mathcal{E}_0$ is a deduction of $A\to A$, followed by two axiom instances, followed by $C$, followed by results of two applications of modus ponens.
+\item 
+If both $C$ and $C\to B$ are either axioms are in $\Delta$, then
+$$C, C\to B, B, B\to (A\to B), A\to B$$
+is a deduction of $A\to B$ from $\Delta$.
+\end{itemize}
+Next, assume the deduction $\mathcal{E}$ of $B$ has length $n>3$.
+A subsequence of $\mathcal{E}$ is a deduction of $A_i \to B$ from $\Delta \cup \lbrace A\rbrace$.  This deduction has length less than $n$, so by induction, $$\Delta \vdash A \to (A_i\to B),$$ and therefore by $(A \to (A_i\to B)) \to ((A\to A_i)\to (A\to B))$, an axiom instance, and modus ponens, $$\Delta \vdash (A\to A_i)\to (A\to B).$$
+Likewise, a subsequence of $\mathcal{E}$ is a deduction of $A_i$, so by induction, $\Delta \vdash A \to A_i$.  Therefore, an application of modus ponens gives us $\Delta \vdash A\to B$.
+\end{itemize}
+In both cases, $\Delta \vdash A\to B$ and we are done.
+\end{proof}
+
+We record two corollaries:
+\begin{cor} (Proof by Contradiction).  If $\Delta, A \vdash \perp$, then $\Delta \vdash \neg A$. \end{cor}
+\begin{proof} From $\Delta, A \vdash \perp$, we have $\Delta \vdash A\to \perp$ by the deduction theorem.  Since $\neg A \leftrightarrow \perp$, the result follows.  \end{proof}
+
+\begin{cor} (Proof by Contrapositive).  If $\Delta, A \vdash \neg B$, then $\Delta, B \vdash \neg A$. \end{cor}
+\begin{proof} If $\Delta, A \vdash \neg B$, then $\Delta, A,B \vdash \perp$ by the deduction thereom, and therefore $\Delta, B \vdash \neg A$ by the deduction theorem again.  \end{proof}
+
+\textbf{Remark}  The deduction theorem for the classical propositional logic can be used to prove the deduction theorem for the classical first and second order predicate logic.
+
+\begin{thebibliography}{7}
+\bibitem{JR} J. W. Robbin, {\it Mathematical Logic, A First Course}, Dover Publication (2006)
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

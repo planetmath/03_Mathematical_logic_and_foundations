@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{96StrictCategories}
+\pmcreated{2013-11-06 16:39:10}
+\pmmodified{2013-11-06 16:39:10}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{9.6 Strict categories}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\idtoiso}{\ensuremath{\mathsf{idtoiso}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{9.6.\arabic{mathcount}}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{9.6.\arabic{mathcount}}
+\let\autoref\cref
+
+\begin{document}
+
+\index{bargaining|(}%
+
+\begin{defn}
+  A \define{strict category}
+  \indexdef{category!strict}%
+  \indexdef{strict!category}%
+  is a precategory whose type of objects is a set.
+\end{defn}
+
+In accordance with the mathematical red herring principle,\index{red herring principle} a strict category is not necessarily a category.
+In fact, a category is a strict category precisely when it is gaunt (\autoref{ct:gaunt}).
+\index{gaunt category}%
+\index{category!gaunt}%
+Most of the time, category theory is about categories, not strict ones, but sometimes one wants to consider strict categories.
+The main advantage of this is that strict categories have a stricter notion of ``sameness'' than equivalence, namely isomorphism (or equivalently, by \autoref{ct:cat-eq-iso}, equality).
+
+Here is one origin of strict categories.
+
+\begin{eg}
+  Let $A$ be a precategory and $x:A$ an object.
+  Then there is a precategory $\mathsf{mono}(A,x)$ as follows:
+  \index{monomorphism}
+  \indexsee{mono}{monomorphism}
+  \indexsee{monic}{monomorphism}
+  \begin{itemize}
+  \item Its objects consist of an object $y:A$ and a monomorphism $m:\hom_A(y,x)$.
+    (As usual, $m:\hom_A(y,x)$ is a \define{monomorphism} (or is \define{monic}) if $(m\circ f = m\circ g) \Rightarrow (f=g)$.)
+  \item Its morphisms from $(y,m)$ to $(z,n)$ are arbitrary morphisms from $y$ to $z$ in $A$ (not necessarily respecting $m$ and $n$).
+  \end{itemize}
+  An equality $(y,m)=(z,n)$ of objects in $\mathsf{mono}(A,x)$ consists of an equality $p:y=z$ and an equality $\trans{p}{m}=n$, which by \autoref{ct:idtoiso-trans} is equivalently an equality $m=n\circ \idtoiso(p)$.
+  Since hom-sets are sets, the type of such equalities is a mere proposition.
+  But since $m$ and $n$ are monomorphisms, the type of morphisms $f$ such that $m = n\circ f$ is also a mere proposition.
+  Thus, if $A$ is a category, then $(y,m)=(z,n)$ is a mere proposition, and hence $\mathsf{mono}(A,x)$ is a strict category.
+\end{eg}
+
+This example can be dualized, and generalized in various ways.
+Here is an interesting application of strict categories.
+
+\begin{eg}\label{ct:galois}
+  Let $E/F$ be a finite Galois extension
+  \index{Galois!extension}%
+  of fields, and $G$ its Galois group.
+  \index{Galois!group}%
+  Then there is a strict category whose objects are intermediate fields $F\subseteq K\subseteq E$, and whose morphisms are field homomorphisms\index{homomorphism!field} which fix $F$ pointwise (but need not commute with the inclusions into $E$).
+  There is another strict category whose objects are subgroups $H\subseteq G$, and whose morphisms are morphisms of $G$-sets $G/H \to G/K$.
+  The fundamental theorem of Galois theory
+  \index{fundamental!theorem of Galois theory}%
+  says that these two precategories are isomorphic (not merely equivalent).
+\end{eg}
+
+\index{bargaining|)}%
+
+
+\end{document}

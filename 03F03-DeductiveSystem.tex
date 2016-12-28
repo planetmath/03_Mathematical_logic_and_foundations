@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DeductiveSystem}
+\pmcreated{2013-03-22 19:12:47}
+\pmmodified{2013-03-22 19:12:47}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{deductive system}
+\pmrecord{25}{42132}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F03}
+\pmclassification{msc}{03B99}
+\pmclassification{msc}{03B22}
+\pmsynonym{deduction system}{DeductiveSystem}
+\pmsynonym{proof system}{DeductiveSystem}
+\pmrelated{FormalSystem}
+\pmrelated{InferenceRule}
+\pmrelated{LogicalAxiom}
+\pmdefines{deductively equivalent}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+\subsubsection*{Introduction}
+
+A \emph{deductive system} is a formal (mathematical) setup of reasoning.  In order to describe a deductive system, a (formal) language system must first be in place, consisting of (well-formed) formulas, strings of symbols constructed according to some prescribed syntax.  With the language in place, reasoning, from a formal point of view, is just derivation of a formula, called a conclusion, from a given set of formulas, called assumptions, via a set of formulas, called axioms, and rules, called rules of inference.
+
+More specifically, given a language $L$ of well-formed formulas, a \emph{deductive system} $D$ consists of
+\begin{enumerate}
+\item a set of formulas in $L$ called \emph{axioms}, and 
+\item a set of binary relations on subsets of $L$; each relation is called a \emph{rule of inference}, or simply \emph{rule}; if $R$ is a rule, and $(\Delta, \Gamma)\in R$, we say that from $\Delta$ we infer $\Gamma$ via $R$; elements of $\Delta$ are called \emph{premises}, and elements of $\Gamma$ are \emph{conclusions}.  Typically, $\Delta$ is assumed finite (and maybe empty), and $\Gamma$ a singleton.
+\end{enumerate}
+There are also variations to the setup above.  Sometimes the formulas are replaced by other expressions (sequents, etc...), sometimes the rules are not relations, but other constructs (trees, etc...)
+
+A deduction system is also called a \emph{deduction system} or \emph{proof system}.
+
+The central task of a deduction system is the construction of deductions, which, informally, is the application of inference rules to assumptions (or axioms, if any) to arrive at a conclusion, in a finite number of steps.  For more detail, please see \PMlinkname{this entry}{Deduction}.
+
+A deductive system together with the underlying language is called a formal system.
+
+\subsubsection*{Some Major Formulations of Deductive Systems in Logic}
+
+Let us fix a language $L$ (of well-formed formulas).  There are four main formulations of deductive systems:
+\begin{itemize}
+\item Hilbert system, or axiom system:  in this formulation, axioms are the main ingredient, and there are only one or two rules of inference (modus ponens is usually one of them).  Theorems in a Hilbert system are those formulas which are conclusions of deductions from axioms.
+\item natural deduction:  as opposed to a Hilbert system, a natural deduction system consists of all rules and no axioms, so that the focus is on deductions from assumptions.  One special aspect about some of the inference rules is the allowance to cancel assumptions, so that theorems are conclusions from those deductions where all of the premises may be cancelled.
+\item Gentzen system, or sequent system: unlike the last two systems, where axioms and inference rules are based on formulas from $L$, in a Gentzen system, the building blocks of axioms and inference rules are sequents, which are expressions of the form $$\Delta \Rightarrow \Gamma,$$ where $\Delta$ and $\Gamma$ are finite sequences of formulas (in $L$, and $\Rightarrow$ is a symbol not in $L$.  In a Gentzen system, all axioms are of the form $A\Rightarrow A$, for each formula $A$ in $L$.  Theorems in a Gentzen system are those formulas $B$ (in $L$) such that $\Rightarrow B$ is the conclusion of a deduction.
+\item tableau system: in a tableau system, like natural deduction, there are only inference rules and no axioms.  However, unlike all of the systems above, the rules are not relations, but labeled trees, which are used to construct larger labeled trees called tableaux from given formulas.  Theorems are those formulas corresponding to tableaux satisfying a certain property (namely, being closed).
+\end{itemize}
+
+Of the four formulations above, Hilbert systems are most widely used in logic, and are applicable to many types of logics.  Natural deduction and Gentzen systems are more amenable to analysis of deductions, and therefore are mainly used in structural proof theory.
+
+Given a language $L$, two deductive systems $D_1$ and $D_2$ are \emph{deductively equivalent} if any theorem deducible from one system is deducible from another.  In other words, $$ \vdash_{D_1} A \qquad \mbox{iff} \qquad \vdash_{D_2} A.$$
+There is also a stronger notion of deductive equivalence: $D_1$ is (strongly) deductively equivalent to $D_2$ exactly when $$\Delta \vdash_{D_1} A \qquad \mbox{iff} \qquad \Delta \vdash_{D_2} A,$$
+where $\Delta$ is a set of formulas, and $A$ is a formula, in $L$.  Note that strong deductive equivalence implies weak deductive equivalence.  On the other hand, if the deduction theorem and its converse hold in both $D_1$ and $D_2$, then weak also implies strong.
+
+In classical propositional logic (as well as predicate logic), all four formulations of deductive systems which are pairwise deductively equivalent exist.  In addition, each can be shown to be sound and complete with respect to the usual truth-valuation semantics.
+
+\begin{thebibliography}{0}
+\bibitem{TS}
+A. S. Troelstra, H. Schwichtenberg, 
+{\it Basic Proof Theory}, 2nd Edition, Cambridge University Press, 2000
+\bibitem{DD}
+D. Dalen,
+{\it Logic and Structure}, 4th Edition, Springer, 2008
+\bibitem{GP}
+G. Priest,
+{\it Introduction to Non-Classical Logic: From If to Is}, 2nd Edition, Cambridge University Press, 2008
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

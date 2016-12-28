@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{LobsTheorem}
+\pmcreated{2013-03-22 17:05:19}
+\pmmodified{2013-03-22 17:05:19}
+\pmowner{dankomed}{17058}
+\pmmodifier{dankomed}{17058}
+\pmtitle{L\"ob's theorem}
+\pmrecord{25}{39381}
+\pmprivacy{1}
+\pmauthor{dankomed}{17058}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F03}
+\pmclassification{msc}{03F45}
+\pmclassification{msc}{03F40}
+%\pmkeywords{L\"ob's theorem}
+%\pmkeywords{second G\"odel theorem}
+%\pmkeywords{consistency}
+%\pmkeywords{formal system}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+\title{L\"ob's theorem}
+
+In this short article we will provide an example where one's intuition can be faulty, and that strict formalization is always needed when one does mathematics in order to avoid possible hidden intuitive inconsistencies. A striking example is the erroneous but intuitively obvious thesis: "if a formal system $F$ proves that there exists proof of formula $A$ in $F$, then $F$ has proved $A$" or slightly differently version is this one: "it must be always provable in all formal systems that from formula saying that there exists proof of $A$ in $F$, indeed follows $A$ in $F$". 
+Both formulations of this naive intuition concerning basics of math logic severely fail. We will show that a consistent $F$ cannot prove for arbitrary formula $\phi_{n}$ that from formula that asserts {}``exists proof
+of $\phi_{n}$'' follows $\phi_{n}$. This is a major ingredient of a theorem proved by L\"ob in 1955.
+
+\begin{verse}
+L\"ob's theorem: If $F\vdash\exists xP(x,\check{n})\Rightarrow\phi_{n}$, where $x$ is the G\"odel number of the proof of the formula with G\"odel number $n$, and $\check{n}$ is the numeral of the G\"odel number of
+the formula $\phi_{n}$, then $F\vdash\phi_{n}$.
+\end{verse}
+
+The proof presented here follows Karlis Podnieks (2006): 
+
+Suppose $F\vdash\exists xP(x,\check{n})\Rightarrow\phi_{n}$.
+Let $F^{*}$ be the new proof system that is equal to $F$ plus the new axiom $\neg\phi_{n}$. By modus tollens $F^{*}\vdash\neg\phi_{n}\Rightarrow\neg\exists xP(x,\check{n})$. 
+Since $F^{*}$ has as axiom $\neg\phi_{n}$ by modus ponens $F^{*}\vdash\neg\exists xP(x,\check{n})$.
+In this case $F^{*}$ proves that $\phi_{n}$ is not provable in $F$ (and also that $F$ is consistent).
+This however leads to proof that $F^{*}$ is also consistent because it contains only $F$ and $\neg\phi_{n}$, and we already know both that $F$ is consistent and that $F$ does not prove $\phi_{n}$. Thus $F^{*}$ proves its own consistency. According to G\"odel's second theorem however $F^{*}$ cannot prove
+its own consistency unless being inconsistent. Therefore $F+\neg\phi_{n}$
+must be always inconsistent theory, and we conclude that $F\vdash\phi_{n}$. 
+
+Now see that the intuitive notion that $\exists xP(x,\check{n})\Rightarrow\phi_{n}$ is not provable within arbitrary formal system. If the formal system is inconsistent obviously it proves every formula so the above intuitive
+notion will be provable. If however $F$ is consistent it cannot prove $\exists xP(x,\check{n})\Rightarrow\phi_{n}$ for arbitrary formula, because \emph{if it could}, for formally refutable formula $\phi_{k}\equiv[0=1]$, $F$ \emph{could} prove by modus tollens $\neg\phi_{k}\Rightarrow\neg\exists xP(x,\check{k})$, and since $\neg\phi_{k}$ is formally provable formula, then the formal system \emph{could} infer its own consistency, or said in ordinary language: from $\neg\phi_{k}$, $F$ \emph{could} have proved "there exists at least one unprovable formula in $F$", which is impossible according to G\"odel's second theorem.
+
+\begin{verse}
+Corollary: If $F$ is consistent formal system then $F$ cannot prove for arbitrary formula $\phi_{n}$ that from formula that asserts {}``exists proof of $\phi_{n}$'' follows $\phi_{n}$.
+\end{verse}
+
+The proof of the corollary is straigthforward either directly from L\"ob's theorem, or by independent reasoning using the fact that consistent $F$ cannot prove $\exists xP(x,\check{n})\Rightarrow\phi_{k}$ for refutable $\phi_{k}$.
+
+The relationship between the direct text of L\"ob's theorem in the proof provided by Podnieks, and the corrolary is this one: if the system $F$ is consistent, it might be able to prove $\exists xP(x,\check{n})\Rightarrow\phi_{n}$ for provable formulas $\phi_{n}$, because the provability of $\phi_{n}$ taken together with the consistency of $F$ ensure unprovability of $\neg \phi_{n}$ and hence modus tollens reversed formula of $\exists xP(x,\check{n})\Rightarrow\phi_{n}$ cannot be used for $F$ to prove its own consistency. Also taking into account the second G\"odel theorem it is easy to be seen that $F$ should not be able to prove $\exists xP(x,\check{n})\Rightarrow\phi_{k}$ for disprovable (refutable) formulas $\phi_{k}$, a result that alone is sufficient to prove the corollary. Still the corollary is a weaker result than L\"ob's theorem, because the corrolary does not give us clue whether $\exists xP(x,\check{n})\Rightarrow\phi_{p}$ is provable for undecidable formulas $\phi_{p}$. This was indeed the "open problem" proposed by Leon \PMlinkescapetext{Henkin}. The L\"ob's theorem answers this question, and shows that it is impossible for consistent $F$ to prove $\exists xP(x,\check{n})\Rightarrow\phi_{p}$ for undecidable formulas $\phi_{p}$. Therefore summarized, L\"ob's theorem says that for refutable or undecidable formulas $\phi$, the intuition "if {}``exists proof of $\phi$'' then $\phi$" is erroneous.
+
+\begin{verse}
+Modus tollens inversed L\"ob's theorem: If $F$ is consistent formal system then $F$ cannot prove for any unprovable formula $\phi_{k}$ that from formula that asserts {}``exists proof of $\phi_{k}$'' follows $\phi_{k}$.
+\end{verse}
+
+Comparing the above theorem with the corrolary shows small but significant difference, which makes it stronger proposition (note: in consistent formal system $F$ unprovable formulas are all refutable (disprovable) formulas, as well as all undecidable formulas).
+
+References
+
+1. Crossley JN, Brickhill C, Ash C, Stillwell J, Williams
+N (1972) \emph{What is mathematical logic?} Oxford University Press.
+
+2. Detlovs V, Podnieks K (2006) \PMlinkexternal{\emph{Introduction to
+Mathematical Logic}. Hypertextbook for students in mathematical logic}{http://www.ltn.lv/~podnieks/mlog/ml.htm} 
+
+3. G\"odel K (1931) \"Uber formal unentscheidbare S\"atze der
+Principia \PMlinkescapetext{Mathematica} und verwandter Systeme I. \emph{Monatshefte
+f\"ur Mathematik und Physik} \textbf{38}: 173-198.
+
+4. L\"ob MH (1955) Solution of a Problem of Leon Henkin.
+\emph{The Journal of Symbolic Logic} \textbf{20}(2): 115-118.
+
+5. Podnieks K (2006) \PMlinkexternal{\emph{What is Mathematics? G\"odel's
+Theorem and Around}. Hypertextbook for students in mathematical logic}{http://www.ltn.lv/~podnieks/gt.html} 
+%%%%%
+%%%%%
+\end{document}

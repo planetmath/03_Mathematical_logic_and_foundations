@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CharacterizationOfPrimitiveRecursiveFunctionsOfOneVariable}
+\pmcreated{2013-03-22 16:45:25}
+\pmmodified{2013-03-22 16:45:25}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{characterization of primitive recursive functions of one variable}
+\pmrecord{9}{38983}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\begin{document}
+It is possible to characterize primitive recursive functions of one
+variable in terms of operations involving only functions of a single
+variable.  To describe how this goes, it is useful to first define
+some notation.
+
+\begin{definition}
+Define the constant function $K \colon 
+\mathbb{N} \to \mathbb{N}$ by $K(n) = 1$ for all $n$.  
+\end{definition}
+
+\begin{definition}
+Define the identity function $I \colon 
+\mathbb{N} \to \mathbb{N}$ by $I(n) = n$ for all $n$.  
+\end{definition}
+
+\begin{definition}
+Define the excess over square function 
+$E \colon \mathbb{N} \to \mathbb{N}$ by 
+$E(n) = n - m^2$, where $m$ is the largest integer such that
+$m^2 \le n$. 
+\end{definition}
+
+\begin{definition}
+Given a function $f \colon \mathbb{N} \to \mathbb{N}$, define
+the function $R(f) \colon \mathbb{N} \to \mathbb{N}$ by the
+following conditions:
+\begin{itemize}
+\item $R(f)(0) = 0$
+\item $R(f)(n+1) = f(R(f)(n))$ for all integers $n \ge 0$.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}
+The class of primitive recursive functions of a single variable is
+the smallest class $X$ of functions which contains the functions 
+$E$ and $K$ defined above and is closed under the following
+three operations:
+\begin{enumerate}
+\item If $f \in X$ and $g \in X$, then $f \circ g \in X$.
+\item If $f \in X$, then $f + I \in X$.
+\footnote{Here $f + I$ has the usual meaning of pointwise addition ---
+$(f + I)(x) = f(x) + I(x)$}
+\item If $f \in X$, then $R(f) \in X$.
+\end{enumerate}
+\end{theorem}
+%%%%%
+%%%%%
+\end{document}

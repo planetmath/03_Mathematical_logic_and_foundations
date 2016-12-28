@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofOfDeltaSystemLemma}
+\pmcreated{2013-03-22 12:55:03}
+\pmmodified{2013-03-22 12:55:03}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{proof of delta system lemma}
+\pmrecord{5}{33269}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E99}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Since there are only $\aleph_0$ possible cardinalities for any element of $S$, there must be some $n$ such that there are an uncountable number of elements of $S$ with cardinality $n$.  Let $S^*=\{a\in S\mid |a|=n\}$ for this $n$.  By induction, the lemma holds:
+
+If $n=1$ then there each element of $S^*$ is distinct, and has no intersection with the others, so $X=\emptyset$ and $S^\prime=S^*$.
+
+Suppose $n>1$.  If there is some $x$ which is in an uncountable number of elements of $S^*$ then take $S^{**}=\{a\setminus\{x\}\mid x\in a\in S^*\}$.  Obviously this is uncountable and every element has $n-1$ elements, so by the induction hypothesis there is some $S^\prime\subseteq S^{**}$ of uncountable cardinality such that the intersection of any two elements is $X$.  Obviously $\{a\cup\{x\}\mid a\in S^\prime\}$ satisfies the lemma, since the intersection of any two elements is $X\cup\{x\}$.
+
+On the other hand, if there is no such $x$ then we can construct a sequence $\langle a_i\rangle_{i<\omega_1}$ such that each $a_i\in S^*$ and for any $i\neq j$, $a_i\cap a_j=\emptyset$ by induction.  Take any element for $a_0$, and given $\langle a_i\rangle_{i<\alpha}$, since $\alpha$ is countable, $A=\bigcup_{i<\alpha} a_i$ is countable.  Obviously each element of $A$ is in only a countable number of elements of $S^*$, so there are an uncountable number of elements of $S^*$ which are candidates for $a_\alpha$.  Then this sequence satisfies the lemma, since the intersection of any two elements is $\emptyset$.
+%%%%%
+%%%%%
+\end{document}

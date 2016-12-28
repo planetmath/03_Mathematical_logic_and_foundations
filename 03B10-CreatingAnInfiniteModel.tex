@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CreatingAnInfiniteModel}
+\pmcreated{2013-03-22 12:44:29}
+\pmmodified{2013-03-22 12:44:29}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{creating an infinite model}
+\pmrecord{9}{33043}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03C07}
+%\pmkeywords{Skolem-L\"owenheim}
+\pmrelated{CompactnessTheoremForFirstOrderLogic}
+\pmrelated{GettingModelsIModelsConstructedFromConstants}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newcommand{\Prob}[2]{\mathbb{P}_{#1}\left\{#2\right\}}
+\newcommand{\Expect}{\mathbb{E}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+
+% Some sets
+\newcommand{\Nats}{\mathbb{N}}
+\newcommand{\Ints}{\mathbb{Z}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+
+
+
+%%%%%% END OF SAVED PREAMBLE %%%%%%
+\newcommand{\T}{\textbf{T}}
+\renewcommand{\L}{\textbf{L}}
+\newcommand{\M}{\mathcal{M}}
+\begin{document}
+From the syntactic compactness theorem for first order logic, we get this nice (and useful) result:
+
+Let $\T$ be a theory of first-order logic.  If $\T$ has finite models of unboundedly large sizes, then $\T$ also has an infinite model.
+
+\begin{proof}
+Define the propositions
+$$
+\Phi_n \equiv \underline{\exists x_1 \cdots \exists x_n . (x_1\ne x_2)\wedge \cdots \wedge(x_1\ne x_n)
+\wedge(x_2\ne x_3)\wedge \cdots \wedge(x_{n-1}\ne x_n)}
+$$
+($\Phi_n$ says ``\textit{there exist (at least) $n$ \emph{different} elements in the world}'').  Note that
+$$\cdots \vdash \Phi_n \vdash \cdots \vdash \Phi_2 \vdash \Phi_1.$$
+Define a new theory
+$$
+\T_\infty = \T \cup \left\{\Phi_1, \Phi_2, \ldots \right\}.
+$$
+For any \emph{finite} subset $\T'\subset \T_\infty$, we claim that $\T'$ is consistent:  Indeed, $\T'$ contains axioms of $\T$, along with finitely many of $\left\{\Phi_n\right\}_{n\ge 1}$.  Let $\Phi_m$ correspond to the largest index appearing in $\T'$.  If $\M_m\models\T$ is a model of $\T$ with at least $m$ elements (and by hypothesis, such as model exists), then $\M_m\models \T\cup\{\Phi_m\}\vdash\T'$.
+
+So every finite subset of $\T_\infty$ is consistent; by the compactness theorem for first-order logic, $\T_\infty$ is consistent, and by G\"odel's completeness theorem for first-order logic it has a model $\M$.  Then $\M\models\T_\infty\vdash\T$, so $\M$ is a model of $\T$ with infinitely many elements ($\M\models \Phi_n$ for any $n$, so $\M$ has at least $\ge n$ elements for all $n$).
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

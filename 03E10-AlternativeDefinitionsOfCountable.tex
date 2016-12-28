@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AlternativeDefinitionsOfCountable}
+\pmcreated{2013-03-22 19:02:49}
+\pmmodified{2013-03-22 19:02:49}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{alternative definitions of countable}
+\pmrecord{7}{41925}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+The following are alternative ways of characterizing a countable set.
+
+\begin{prop}  Let $A$ be a set and $\mathbb{N}$ the set of natural numbers.  The following are equivalent:
+\begin{enumerate}
+\item there is a surjection from $\mathbb{N}$ to $A$.
+\item there is an injection from $A$ to $\mathbb{N}$.
+\item either $A$ is finite or there is a bijection between $A$ and $\mathbb{N}$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}  First notice that if $A$ were the empty set, then any map to or from $A$ is empty, so $(1)\Leftrightarrow (2) \Leftrightarrow (3)$ vacuously.  Now, suppose that $A \ne \varnothing$.
+
+$(1)\Rightarrow (2)$.  Suppose $f: \mathbb{N}\to A$ is a surjection.  For each $a\in A$, let $f^{-1}(a)$ be the set $\lbrace n \in \mathbb{N} \mid f(n)=a\rbrace$.  Since $f^{-1}(a)$ is a subset of $\mathbb{N}$, which is well-ordered, $f^{-1}(a)$ itself is well-ordered, and thus has a least element (keep in mind $A\ne \varnothing$, the existence of $a\in A$ is guaranteed, so that $f^{-1}(a)\ne \varnothing$ as well).  Let $g(a)$ be this least element.  Then $a \mapsto g(a)$ is a well-defined mapping from $A$ to $\mathbb{N}$.  It is one-to-one, for if $g(a)=g(b)=n$, then $a=f(n)=b$.
+
+$(2)\Rightarrow (1)$.  Suppose $g:A\to \mathbb{N}$ is one-to-one.  So $g^{-1}(n)$ is at most a singleton for every $n\in \mathbb{N}$.  If it is a singleton, identify $g^{-1}(n)$ with that element.  Otherwise, identify $g^{-1}(n)$ with a designated element $a_0\in A$ (remember $A$ is non-empty).  Define a function $f:\mathbb{N} \to A$ by $f(n):=g^{-1}(n)$.  By the discussion above, $g^{-1}(n)$ is a well-defined element of $A$, and therefore $f$ is well-defined.  $f$ is onto because for every $a\in A$, $f(g(a))=a$.
+
+$(3)\Rightarrow (2)$ is clear.
+
+$(2)\Rightarrow (3)$.  Let $g: A\to \mathbb{N}$ be an injection.  Then $g(A)$ is either finite or infinite.  If $g(A)$ is finite, so is $A$, since they are equinumerous.  Suppose $g(A)$ is infinite.  Since $g(A) \subseteq \mathbb{N}$, it is well-ordered.  The (induced) well-ordering on $g(A)$ implies that $g(A)=\lbrace n_1, n_2, \ldots \rbrace$, where $n_1 < n_2 < \cdots$.
+
+Now, define $h: \mathbb{N}\to A$ as follows, for each $i\in \mathbb{N}$, $h(i)$ is the element in $A$ such that $g(h(i))=n_i$.  So $h$ is well-defined.  Next, $h$ is injective.  For if $h(i)=h(j)$, then $n_i = g(h(i))=g(h(j)) = n_j$, implying $i=j$.  Finally, $h$ is a surjection, for if we pick any $a\in A$, then $g(a)\in g(A)$, meaning that $g(a)=n_i$ for some $i$, so $h(i)=g(a)$.
+\end{proof}
+
+Therefore, countability can be defined in terms of either of the above three statements.
+
+Note that the axiom of choice is not needed in the proof of $(1)\Rightarrow (2)$, since the selection of an element in $f^{-1}(a)$ is definite, not arbitrary.
+
+For example, we show that $\mathbb{N}^2$ is countable.  By the proposition above, we either need to find a surjection $f: \mathbb{N} \to \mathbb{N}^2$, or an injection $g: \mathbb{N}^2 \to \mathbb{N}$.  Actually, in this case, we can find both:
+\begin{enumerate}
+\item the function $f:\mathbb{N} \to \mathbb{N}^2$ given by $f(a)=(m,n)$ where $a=2^m(2n+1)$ is surjective.  First, the function is well-defined, for every positive integer has a unique representation as the product of a power of $2$ and an odd number.  It is surjective because for every $(m,n)$, we see that $f(2^m(2n+1))=(m,n)$.
+\item the function $g:\mathbb{N}^2 \to \mathbb{N}$ given by $f(m,n)=2^m 3^n$ is clearly injective.
+\end{enumerate}
+Note that the injectivity of $g$, as well as $f$ being well-defined, rely on the unique factorization of integers by prime numbers.  In this \PMlinkname{entry}{ProductOfCountableSets}, we actually find a bijection between $\mathbb{N}$ and $\mathbb{N}^2$.
+
+As a corollary, we record the following:
+\begin{cor} Let $A,B$ be sets, $f:A\to B$ a function.  
+\begin{itemize}
+\item If $f$ is an injection, and $B$ is countable, so is $A$.  
+\item If $f$ is a surjection, and $A$ countable, so is $B$. 
+\end{itemize}
+\end{cor}
+
+The proof is left to the reader.
+%%%%%
+%%%%%
+\end{document}

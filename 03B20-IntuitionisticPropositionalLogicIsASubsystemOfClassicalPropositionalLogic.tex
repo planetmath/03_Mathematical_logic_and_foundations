@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{IntuitionisticPropositionalLogicIsASubsystemOfClassicalPropositionalLogic}
+\pmcreated{2013-03-22 19:33:12}
+\pmmodified{2013-03-22 19:33:12}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{intuitionistic propositional logic is a subsystem of classical propositional logic}
+\pmrecord{31}{42535}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B20}
+\pmclassification{msc}{03F55}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Suppose logical systems $\mathcal{L}_1$ and $\mathcal{L}_2$ share the same set $L$ of well-formed formulas (wff's).  Let $F_1$ be the set of all theorems of $\mathcal{L}_1$, and $F_2$ the set of all theorems of $\mathcal{L}_2$.  We say that $\mathcal{L}_1$ is a subsystem of $\mathcal{L}_2$ if $F_1 \subseteq F_2$, and a proper subsystem if $F_1 \subset F_2$.
+
+In the subsequent discussion, PL$_c$ stands for classical propositional logic, and PL$_i$ for intuitionistic propositional logic.  We write PL$_i \le $ PL$_c$ to mean that PL$_i$ is a subsystem of PL$_c$, or $<$ if it is proper.
+
+\begin{prop} PL$_i < $ PL$_c$.  \end{prop}
+
+Unless otherwise specified, $\vdash A$ means the wff $A$ is a theorem of PL$_c$.
+
+Before proving this, we need the following facts about PL$_c$:
+\begin{multicols}{2}{
+\begin{enumerate}
+\item $\vdash A$ and $\vdash B$ iff $\vdash A\land B$.
+\item $\vdash A$ implies $\vdash B$ iff $\vdash A\to B$.
+\item $A\to B,  B\to C \vdash A\to C$
+\item $A\to B,  \neg A \to B \vdash B$
+\item if $\Delta \vdash A$ and $\Gamma, A \vdash B$, then $\Delta, \Gamma \vdash B$.
+\end{enumerate}
+\end{multicols}
+\begin{proof}  The first two facts are proved \PMlinkid{here}{12533}, and the third is \PMlinkid{here}{12561}.
+
+Fact 4 is equivalent to $\vdash (A\to B)\to ((\neg A\to B)\to B)$ by the deduction theorem twice.  Use the theorem schemas $\vdash (A\to B)\leftrightarrow (\neg B\to \neg A)$ and $\vdash A\leftrightarrow \neg \neg A$ (law of double negation), and the substitution theorem twice, it is enough to show $$\vdash (\neg B\to \neg A) \to ((\neg B\to A) \to \neg \neg B).$$  By the deduction theorem three times, it is enough to show $\neg B\to \neg A, \neg B\to A, \neg B \vdash \perp$, which is provided by the deduction $\neg B\to \neg A, \neg B\to A, \neg B, \neg A, A, \perp$.
+
+For the last fact, given deduction $\mathcal{E}_1$ of $A$ from $\Delta$, and deduction $\mathcal{E}_2$ of $A\to B$ from $\Gamma$, $\mathcal{E}_1, \mathcal{E}_2, B$ is a deduction of $B$ from $\Delta \cup \Gamma$.
+\end{proof}
+
+\begin{proof}  Since in both systems, the only inference rule is modus ponens, and theoremhood of wff's is preserved by the inference rule (that is, if $\vdash A$ and $\vdash A\to B$, then $\vdash B$), all we need to show is that every axiom of PL$_i$ is a theorem of PL$_c$.
+\begin{enumerate}
+\item $A \to (B \to A)$.  This is just an axiom schema for PL$_c$.
+\item $A \to (B \to A \land B)$.
+
+$A,B,A\to \neg B, \neg B, \perp$ leads to $A,B,A\to \neg B \vdash \perp$.  Applying the deduction theorem three times, we get $\vdash A\to (B\to ((A\to \neg B)\to \perp))$, or $\vdash A \to (B \to A\land B)$.
+\item $A \land B \to A$ and $A \land B \to B$.  See \PMlinkid{here}{12533}.
+
+\item $A \to A \lor B$.
+
+$A,\neg A, \perp, \perp\to B, B$ results in $A,\neg A \vdash B$, since $\perp \to B$ is a theorem.  By applying the deduction theorem twice, we get $\vdash A \to (\neg A \to B)$, or $\vdash A\to A\lor B$.
+\item $B \to A \lor B$.
+
+Clearly, $B, \neg A \vdash B$.  By the deduction theorem, $B\vdash \neg A \to B$, or $B \vdash A \lor B$.  By the deduction theorem again, $\vdash B \to A\lor B$.
+\item $(A \to C) \to ((B \to C) \to (A \lor B \to C))$.
+
+By fact 3, $A\to C, B\to C, \neg A\to B \vdash \neg A \to C$.  With fact 4: $A\to C, \neg A \to C \vdash C$, so $A\to C, B\to C, \neg A\to B \vdash C$ by fact 5.  Now apply the deduction theorem 3 times.
+\item $(A \to B) \to ((A \to (B \to C)) \to (A \to C))$.
+
+From $A \to B, A\to (B\to C), A, B\to C, B, C$, we get $A\to B, A\to (B\to C), A \vdash C$.  Applying the deduction theorem three times, we have the result.
+\item $(A \to B) \to ((A \to \neg B) \to \neg A)$.  This is just 7, where $C$ is $\perp$.
+\item $\neg A \to  (A \to B)$.
+
+From $\neg A, A\vdash \perp$ and $\perp \vdash B$, we get $\neg A,A\vdash B$ by fact 5, and the result follows with two applications of the deduction theorem.
+\end{enumerate}
+Since $A\lor \neg A$ is a theorem of PL$_c$ and not of PL$_i$ (see \PMlinkid{here}{12493}), we conclude that PL$_i$ is a proper subsystem of PL$_c$.
+\end{proof}
+
+\textbf{Remarks}.  
+\begin{enumerate}
+\item
+Strictly speaking, the language $L_i$ of PL$_i$ under \PMlinkid{this system}{12491} is different from the language $L_c$ of PL$_c$ under \PMlinkid{this system}{12507}.  In $L_i$, the logical connectives consist of $\to$, $\neg$, $\land$, $\lor$, whereas in $L_c$, only $\to$ is used.  The other connectives are introduced as abbreviational devices: $\neg A$ is $A\to \perp$, $A\lor B$ is $\neg A \to B$, and $A\land B$ is $\neg (A\to \neg B)$.  So it doesn't make much sense to say that PL$_i < $ PL$_c$.  
+\item One way to get around this issue is to re-define what it means for one logical system to be a subsystem of another.   For example, one can define a mapping $\tau: L_i \to L_c$ such that 
+\begin{itemize}
+\item takes propositional variables to propositional variables
+\item $\tau$ preserves the formation rules of wff's
+\end{itemize}
+A mapping satisfying these conditions is called a \emph{translation}.  Then, a system PL$_i$ is a subsystem of PL$_c$ if there is a translation $\tau: L_i \to L_c$ such that 
+\begin{itemize}
+\item for any wff $A$ in $L_i$, we have $\vdash_i A$ implies $\vdash_c \tau(A)$.
+\end{itemize}
+To further require that PL$_i$ be a proper subsystem of PL$_c$, we also need
+\begin{itemize}
+\item there is an wff $B$ in $L_i$ such that $\not \vdash_i B$ and $\vdash_c \tau(B)$.
+\end{itemize}
+\item Using this definition, define $\tau: L_i \to L_c$ by
+\begin{displaymath}
+\tau(A):= \left\{
+\begin{array}{ll}
+A & \textrm{if $A$ is a propositional variable}\\
+\tau(B)\to \tau(C) & \textrm{if $A$ is $B\to C$}\\
+\neg \tau(B) & \textrm{if $A$ is $\neg B$}\\
+\tau(B) \land \tau(C) & \textrm{if $A$ is $B\land C$}\\
+\tau(B)\lor \tau(C)  & \textrm{if $A$ is $B\lor C$.}
+\end{array}
+\right.
+\end{displaymath}
+where the symbols $\neg$, $\land$, and $\lor$ in $L_c$ are used as abbreviational tools (see the first remark).  Then we see that the proposition makes sense.
+\item 
+Another way of getting around this issue is to come up with another axiom system for PL$_c$ that uses $\to$, $\neg$, $\land$, and $\lor$ as primitive logical connectives.  Such an axiom system exists.  In fact, add $\neg \neg A \to A$ to the list of axiom schemas for PL$_i$, and we get an axiom system for PL$_c$.
+\item
+Using the idea in 2 above further, it can be shown that PL$_c$ is a subsystem of PL$_i$ (under the right translation)!  The existence of such a translation $\nu$ is known as the Glivenko's theorem.  This translation $\nu$ has the further property that for any wff $A$ in $L_c$, $$\vdash_c A \qquad\mbox{iff} \qquad \vdash_i \nu(A).$$
+\end{enumerate}
+
+%%%%%
+%%%%%
+\end{document}

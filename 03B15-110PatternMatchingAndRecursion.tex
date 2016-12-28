@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{110PatternMatchingAndRecursion}
+\pmcreated{2013-11-13 18:36:23}
+\pmmodified{2013-11-13 18:36:23}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.10 Pattern matching and recursion}
+\pmrecord{4}{87546}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{xspace}
+\makeatletter
+
+\newcommand{\dbl}{\ensuremath{\mathsf{double}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\inr}{\ensuremath\inrsym\xspace}
+\newcommand{\inrsym}{{\mathsf{inr}}}
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\newcommand{\suc}{\mathsf{succ}}
+\newcommand{\vcentcolon}{:\!\!}
+\makeatother
+
+\let\autoref\cref
+\let\nat\N
+\begin{document}
+
+\index{pattern matching|(defstyle}%
+\indexsee{matching}{pattern matching}%
+\index{definition!by pattern matching|(}%
+The natural numbers introduce an additional subtlety over the types considered up until now.
+In the case of coproducts, for instance, we could define a function $f:A+B\to C$ either with the recursor:
+\[ f \defeq \rec{A+B}(C, g_0, g_1) \]
+or by giving the defining equations:
+\begin{align*}
+  f(\inl(a)) &\defeq g_0(a)\\
+  f(\inr(b)) &\defeq g_1(b).
+\end{align*}
+To go from the former expression of $f$ to the latter, we simply use the computation rules for the recursor.
+Conversely, given any defining equations
+\begin{align*}
+  f(\inl(a)) &\defeq \Phi_0\\
+  f(\inr(b)) &\defeq \Phi_1
+\end{align*}
+where $\Phi_0$ and $\Phi_1$ are expressions that may involve the variables
+\index{variable}%
+$a$ and $b$ respectively, we can express these equations equivalently in terms of the recursor by using $\lambda$-abstraction\index{lambda abstraction@$\lambda$-abstraction}:
+\[ f\defeq \rec{A+B}(C, \lam{a} \Phi_0, \lam{b} \Phi_1).\]
+In the case of the natural numbers, however, the ``defining equations'' of a function such as $\dbl$:
+\begin{align}
+  \dbl(0) &\defeq 0 \label{eq:dbl0}\\
+  \dbl(\suc(n)) &\defeq \suc(\suc(\dbl(n)))\label{eq:dblsuc}
+\end{align}
+involve \emph{the function $\dbl$ itself} on the right-hand side.
+However, we would still like to be able to give these equations, rather than~\eqref{eq:dbl-as-rec}, as the definition of \dbl, since they are much more convenient and readable.
+The solution is to read the expression ``$\dbl(n)$'' on the right-hand side of~\eqref{eq:dblsuc} as standing in for the result of the recursive call, which in a definition of the form $\dbl\defeq \rec{\nat}(\nat,c_0,c_s)$ would be the second argument of $c_s$.
+
+More generally, if we have a ``definition'' of a function $f:\nat\to C$ such as
+\begin{align*}
+  f(0) &\defeq \Phi_0\\
+  f(\suc(n)) &\defeq \Phi_s
+\end{align*}
+where $\Phi_0$ is an expression of type $C$, and $\Phi_s$ is an expression of type $C$ which may involve the variable $n$ and also the symbol ``$f(n)$'', we may translate it to a definition
+\[ f \defeq \rec{\nat}(C,\,\Phi_0,\,\lam{n}{r} \Phi_s') \]
+where $\Phi_s'$ is obtained from $\Phi_s$ by replacing all occurrences of ``$f(n)$'' by the new variable $r$.
+
+This style of defining functions by recursion (or, more generally, dependent functions by induction) is so convenient that we frequently adopt it.
+It is called definition by \define{pattern matching}.
+Of course, it is very similar to how a computer programmer may define a recursive function with a body that literally contains recursive calls to itself.
+However, unlike the programmer, we are restricted in what sort of recursive calls we can make: in order for such a definition to be re-expressible using the recursion principle, the function $f$ being defined can only appear in the body of $f(\suc(n))$ as part of the composite symbol ``$f(n)$''.
+Otherwise, we could write nonsense functions such as
+\begin{align*}
+  f(0)&\defeq 0\\
+  f(\suc(n)) &\defeq f(\suc(\suc(n))).
+\end{align*}
+If a programmer wrote such a function, it would simply call itself forever on any positive input, going into an infinite loop and never returning a value.
+In mathematics, however, to be worthy of the name, a \emph{function} must always associate a unique output value to every input value, so this would be unacceptable.
+
+This point will be even more important when we introduce more complicated inductive types in \PMlinkexternal{Chapter 5}{http://planetmath.org/node/87578},\PMlinkexternal{Chapter 6}{http://planetmath.org/node/87579},\PMlinkexternal{Chapter 11}{http://planetmath.org/node/87585}.
+Whenever we introduce a new kind of inductive definition, we always begin by deriving its induction principle.
+Only then do we introduce an appropriate sort of ``pattern matching'' which can be justified as a shorthand for the induction principle.
+
+\index{pattern matching|)}%
+\index{definition!by pattern matching|)}%
+
+
+\end{document}

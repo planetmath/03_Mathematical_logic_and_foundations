@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{28TheUnitType}
+\pmcreated{2013-11-14 3:23:33}
+\pmmodified{2013-11-14 3:23:33}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2.8 The unit type}
+\pmrecord{6}{87614}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newtheorem{thm}{Theorem}[section]
+\let\autoref\cref
+\setcounter{chapter}{2}
+\setcounter{section}{8}
+\renewcommand{\thethm}{2.8.\arabic{thm}}
+\begin{document}
+\index{type!unit|(}%
+Trivial cases are sometimes important, so we mention briefly the case of the unit type~\unit.
+
+\begin{thm}\label{thm:path-unit}
+  For any $x,y:\unit$, we have $\eqv{(x=y)}{\unit}$.
+\end{thm}
+\begin{proof}
+  A function $(x=y)\to\unit$ is easy to define by sending everything to \ttt.
+  Conversely, for any $x,y:\unit$ we may assume by induction that $x\jdeq \ttt\jdeq y$.
+  In this case we have $\refl{\ttt}:x=y$, yielding a constant function $\unit\to(x=y)$.
+
+  To show that these are inverses, consider first an element $u:\unit$.
+  We may assume that $u\jdeq\ttt$, but this is also the result of the composite $\unit \to (x=y)\to\unit$.
+
+  On the other hand, suppose given $p:x=y$.
+  By path induction, we may assume $x\jdeq y$ and $p$ is $\refl x$.
+  We may then assume that $x$ is \ttt, in which case the composite $(x=y) \to \unit\to(x=y)$ takes $p$ to $\refl x$, i.e.\ to~$p$.
+\end{proof}
+
+In particular, any two elements of $\unit$ are equal.
+We leave it to the reader to formulate this equivalence in terms of introduction, elimination, computation, and uniqueness rules.
+\index{transport!in unit type}%
+The transport lemma for \unit is simply the transport lemma for constant type families (\PMlinkname{Lemma 2.3.5}{23typefamiliesarefibrations#Thmlem4}).
+
+\index{type!unit|)}%
+
+
+\end{document}

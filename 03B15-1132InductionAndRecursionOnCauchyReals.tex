@@ -1,0 +1,687 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1132InductionAndRecursionOnCauchyReals}
+\pmcreated{2013-11-06 18:07:55}
+\pmmodified{2013-11-06 18:07:55}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{11.3.2 Induction and recursion on Cauchy reals}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bbsim}{\smile}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\bsim}{\frown}
+\newcommand{\CAP}{\mathcal{C}}    
+\newcommand{\close}[1]{\sim_{#1}} 
+\newcommand{\closesym}{\mathord\sim}
+\newcommand{\decode}{\ensuremath{\mathsf{decode}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\dpath}[4]{#3 =^{#1}_{#2} #4}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\encode}{\ensuremath{\mathsf{encode}}\xspace}
+\newcommand{\eqvspaced}[2]{\ensuremath{#1 \;\simeq\; #2}\xspace}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\hapbname}{\heartsuit}
+\newcommand{\hapname}{\diamondsuit}
+\newcommand{\hapx}{\diamondsuit\approx}
+\newcommand{\hapxb}{\heartsuit\approx}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\narrowbreak}{}
+\newcommand{\narrowequation}[1]{$#1$}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+\newcommand{\Qp}{\Q_{+}}
+\newcommand{\RC}{\ensuremath{\mathbb{R}_\mathsf{c}}\xspace} 
+\newcommand{\rceq}{\mathsf{eq}_{\RC}} 
+\newcommand{\rclim}{\mathsf{lim}} 
+\newcommand{\rcrat}{\mathsf{rat}} 
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\newcommand{\tap}[1]{\bullet\approx_{#1}\triangle}
+\newcommand{\tapb}[1]{\bullet\approx_{#1}\square}
+\newcommand{\tapbname}{\square}
+\newcommand{\tapname}{\triangle}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{11.3.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{11.3.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{11.3.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{11.3.\arabic{mathcount}}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{11.3.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{11.3.\arabic{mathcount}}
+\let\autoref\cref
+\let\setof\Set    
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+In order to do anything useful with $\RC$, of course, we need to give its induction principle.
+As is the case whenever we inductively define two or more objects at once, the basic induction principle for $\RC$ and $\closesym$ requires a simultaneous induction over both at once.
+Thus, we should expect it to say that assuming two type families over $\RC$ and $\closesym$, respectively, together with data corresponding to each constructor, there exist sections of both of these families.
+However, since $\closesym$ is indexed on two copies of $\RC$, the precise dependencies of these families is a bit subtle.
+The induction principle will apply to any pair of type families:
+\begin{align*}
+A&:\RC\to\type\\
+B&:\prd{x,y:\RC} A(x) \to A(y) \to \prd{\epsilon:\Qp} (x\close\epsilon y) \to \type.
+\end{align*}
+The type of $A$ is obvious, but the type of $B$ requires a little thought.
+Since $B$ must depend on $\closesym$, but $\closesym$ in turn depends on two copies of $\RC$ and one copy of $\Qp$, it is fairly obvious that $B$ must also depend on the variables $x,y:\RC$ and $\epsilon:\Qp$ as well as an element of $(x\close\epsilon y)$.
+What is slightly less obvious is that $B$ must also depend on $A(x)$ and $A(y)$.
+
+This may be more evident if we consider the non-dependent case (the recursion principle), where $A$ is a simple type (rather than a type family).
+In this case we would expect $B$ not to depend on $x,y:\RC$ or $x\close\epsilon y$.
+But the recursion principle (along with its associated uniqueness principle) is supposed to say that $\RC$ with $\close\epsilon$ is an ``initial object'' in some category, so in this case the dependency structure of $A$ and $B$ should mirror that of $\RC$ and $\close\epsilon$: that is, we should have $B:A\to A\to \Qp \to \type$.
+Combining this observation with the fact that, in the dependent case, $B$ must also depend on $x,y:\RC$ and $x\close\epsilon y$, leads inevitably to the type given above for $B$.
+
+\symlabel{RC-recursion}
+It is helpful to think of $B$ as an $\epsilon$-indexed family of relations between the types $A(x)$ and $A(y)$.
+With this in mind, we may write $B(x,y,a,b,\epsilon,\xi)$ as $(x,a) \bsim_\epsilon^\xi (y,b)$.
+Since $\xi:x\close\epsilon y$ is unique when it exists, we generally omit it from the notation and write $(x,a) \bsim_\epsilon (y,b)$; this is harmless as long as we keep in mind that this relation is only defined when $x\close\epsilon y$.
+We may also sometimes simplify further and write $a\bsim_\epsilon b$, with $x$ and $y$ inferred from the types of $a$ and $b$, but sometimes it will be necessary to include them for clarity.
+
+\index{induction principle!for Cauchy reals}%
+Now, given a type family $A:\RC\to\type$ and a family of relations $\bsim$ as above, the hypotheses of the induction principle consist of the following data, one for each constructor of $\RC$ or $\closesym$:
+\begin{itemize}
+\item For any $q : \Q$, an element $f_q:A(\rcrat(q))$.
+\item For any Cauchy approximation $x$, and any $a:\prd{\epsilon:\Qp} A(x_\epsilon)$ such that
+  \begin{myeqn}
+    \fall{\delta, \epsilon : \Qp}
+    (x_\delta,a_\delta) \bsim_{\delta+\epsilon} (x_\epsilon,a_\epsilon),
+    \label{eq:depCauchyappx}
+  \end{myeqn}
+  an element $f_{x,a}:A(\rclim(x))$.
+  We call such $a$ a \define{dependent Cauchy approximation}
+  \indexdef{Cauchy!approximation!dependent}%
+  \indexsee{approximation, Cauchy}{Cauchy approximation}%
+  \indexdef{dependent!Cauchy approximation}%
+  over $x$.
+\item For $u, v : \RC$ such that $h:\fall{\epsilon : \Qp} u \close\epsilon v$, and all $a:A(u)$ and $b:A(v)$ such that
+  $\fall{\epsilon:\Qp} (u,a) \bsim_\epsilon (v,b)$,
+  a dependent path $\dpath{A}{\rceq(u,v)}{a}{b}$.
+\item For $q,r:\Q$ and $\epsilon:\Qp$, if $-\epsilon < q - r < \epsilon$, we have
+  \narrowequation{(\rcrat(q),f_q) \bsim_\epsilon (\rcrat(r),f_r).}
+\item For $q:\Q$ and $\delta,\epsilon:\Qp$ and $y$ a Cauchy approximation, and $b$ a dependent Cauchy approximation over $y$, if $\rcrat(q) \close{\epsilon - \delta} y_\delta$, then
+  \[(\rcrat(q),f_q) \bsim_{\epsilon-\delta} (y_\delta,b_\delta)
+  \;\Rightarrow\;
+  (\rcrat(q),f_q) \bsim_\epsilon (\rclim(y),f_{y,b}).\]
+\item Similarly, for $r:\Q$ and $\delta,\epsilon:\Qp$ and $x$ a Cauchy approximation, and $a$ a dependent Cauchy approximation over $x$, if $x_\delta \close{\epsilon - \delta} \rcrat(r)$, then
+  \[(x_\delta,a_\delta) \bsim_{\epsilon-\delta} (\rcrat(r),f_r)
+  \;\Rightarrow\;
+  (\rclim(x),f_{x,a}) \bsim_\epsilon (\rcrat(q),f_r).
+  \]
+\item For $\epsilon,\delta,\eta:\Qp$ and $x,y$ Cauchy approximations, and $a$ and $b$ dependent Cauchy approximations over $x$ and $y$ respectively, if we have $x_\delta \close{\epsilon - \delta - \eta} y_\eta$, then
+  \[ (x_\delta,a_\delta) \bsim_{\epsilon - \delta - \eta} (y_\eta,b_\eta)
+  \;\Rightarrow\;
+  (\rclim(x),f_{x,a}) \bsim_\epsilon (\rclim(y),f_{y,b}).\]
+\item For $\epsilon:\Qp$ and $x,y:\RC$ and $\xi,\zeta:x\close{\epsilon} y$, and $a:A(x)$ and $b:A(y)$, any two elements of $(x,a) \bsim_\epsilon^\xi (y,b)$ and $(x,a) \bsim_\epsilon^\zeta (y,b)$ are dependently equal over $\xi=\zeta$.
+  Note that as usual, this is equivalent to asking that $\bsim$ takes values in mere propositions.
+\end{itemize}
+Under these hypotheses, we deduce functions
+\begin{align*}
+  f&:\prd{x:\RC} A(x)\\
+  g&:\prd{x,y:\RC}{\epsilon:\Qp}{\xi:x\close{\epsilon} y}
+  (x,f(x)) \bsim_\epsilon^\xi (y,f(y))
+\end{align*}
+which compute as expected:
+\begin{align}
+  f(\rcrat(q)) &\defeq f_q, \label{eq:rcsimind1}\\
+  f(\rclim(x)) &\defeq f_{x,(f,g)[x]}. \label{eq:rcsimind2}
+\end{align}
+Here $(f,g)[x]$ denotes the result of applying $f$ and $g$ to a Cauchy approximation $x$ to obtain a dependent Cauchy approximation over $x$.
+That is, we define $(f,g)[x]_\epsilon \defeq f(x_\epsilon) : A(x_\epsilon)$, and then for any $\epsilon,\delta:\Qp$ we have $g(x_\epsilon,x_\delta,\epsilon+\delta,\xi)$ to witness the fact that $(f,g)[x]$ is a dependent Cauchy approximation, where $\xi: x_\epsilon \close{\epsilon+\delta} x_\delta$ arises from the assumption that $x$ is a Cauchy approximation.
+
+We will never use this notation again, so don't worry about remembering it.
+Generally we use the pattern-matching convention, where $f$ is defined by equations such as~\eqref{eq:rcsimind1} and~\eqref{eq:rcsimind2} in which the right-hand side of~\eqref{eq:rcsimind2} may involve the symbols $f(x_\epsilon)$ and an assumption that they form a dependent Cauchy approximation.
+
+However, this induction principle is admittedly still quite a mouthful.
+To help make sense of it, we observe that it contains as special cases two separate induction principles for~$\RC$ and for~$\closesym$.
+Firstly, suppose given only a type family $A:\RC\to\type$, and define $\bsim$ to be constant at \unit.
+Then much of the required data becomes trivial, and we are left with:
+\begin{itemize}
+\item for any $q : \Q$, an element $f_q:A(\rcrat(q))$,
+\item for any Cauchy approximation $x$, and any $a:\prd{\epsilon:\Qp} A(x_\epsilon)$, an element $f_{x,a}:A(\rclim(x))$,
+\item for $u, v : \RC$ and $h:\fall{\epsilon : \Qp} u \close\epsilon v$, and $a:A(u)$ and $b:A(v)$, we have $\dpath{A}{\rceq(u,v)}{a}{b}$.
+\end{itemize}
+Given these data, the induction principle yields a function $f:\prd{x:\RC} A(x)$ such that
+\begin{align*}
+  f(\rcrat(q)) &\defeq f_q,\\
+  f(\rclim(x)) &\defeq f_{x,f(x)}.
+\end{align*}
+We call this principle \define{$\RC$-induction}; it says essentially that if we take $\close\epsilon$ as given, then $\RC$ is inductively generated by its constructors.
+
+In particular, if $A$ is a mere property, the third hypothesis in $\RC$-induction is trivial.
+Thus, we may prove mere properties of real numbers by simply proving them for rationals and for limits of Cauchy approximations.
+Here is an example.
+
+\begin{lem}
+  For any $u:\RC$ and $\epsilon:\Qp$, we have $u\close\epsilon u$.
+\end{lem}
+\begin{proof}
+  Define $A(u) \defeq \fall{\epsilon:\Qp} (u\close\epsilon u)$.
+  Since this is a mere proposition (by the last constructor of $\closesym$), by $\RC$-induction, it suffices to prove it when $u$ is $\rcrat(q)$ and when $u$ is $\rclim(x)$.
+  In the first case, we obviously have $|q-q|<\epsilon$ for any $\epsilon$, hence $\rcrat(q) \close\epsilon \rcrat(q)$ by the first constructor of $\closesym$.
+  %
+  And in the second case, we may assume inductively that $x_\delta \close\epsilon x_\delta$ for all $\delta,\epsilon:\Qp$.
+  Then in particular, we have $x_{\epsilon/3} \close{\epsilon/3} x_{\epsilon/3}$, whence $\rclim(x) \close{\epsilon} \rclim(x)$ by the fourth constructor of $\closesym$.
+\end{proof}
+
+\begin{thm}\label{thm:Cauchy-reals-are-a-set}
+  $\RC$ is a set.
+\end{thm}
+\begin{proof}
+  We have just shown that the mere relation
+  \narrowequation{P(u,v) \defeq \fall{\epsilon:\Qp} (u\close\epsilon v)}
+  is reflexive.
+  Since it implies identity, by the path constructor of $\RC$, the result follows from \autoref{thm:h-set-refrel-in-paths-sets}.
+\end{proof}
+
+We can also show that although $\RC$ may not be a quotient of the set of Cauchy sequences of \emph{rationals}, it is nevertheless a quotient of the set of Cauchy sequences of \emph{reals}.
+(Of course, this is not a valid \emph{definition} of $\RC$, but it is a useful property.)
+We define the type of Cauchy approximations to be
+% 
+\symlabel{cauchy-approximations}%
+\index{Cauchy!approximation!type of}%
+\begin{equation*}
+  \CAP \defeq
+  \setof{ x : \Qp \to \RC |
+    \fall{\epsilon, \delta : \Qp} x_\delta \close{\delta + \epsilon} x_\epsilon
+  }.
+\end{equation*}
+The second constructor of $\RC$ gives a function $\rclim:\CAP\to\RC$.
+
+\begin{lem} \label{RC-lim-onto}
+  Every real merely is a limit point: $\fall{u : \RC} \exis{x : \CAP} u = \rclim(x)$.
+  In other words, $\rclim:\CAP\to\RC$ is surjective.
+\end{lem}
+\begin{proof}
+  By $\RC$-induction, we may divide into cases on $u$.
+  Of course, if $u$ is a limit $\rclim(x)$, the statement is trivial.
+  So suppose $u$ is a rational point $\rcrat(q)$; we claim $u$ is equal to $\rclim(\lam{\epsilon} \rcrat(q))$.
+  By the path constructor of $\RC$, it suffices to show $\rcrat(q) \close\epsilon \rclim(\lam{\epsilon} \rcrat(q))$ for all $\epsilon:\Qp$.
+  And by the second constructor of $\closesym$, for this it suffices to find $\delta:\Qp$ such that $\rcrat(q)\close{\epsilon-\delta} \rcrat(q)$.
+  But by the first constructor of $\closesym$, we may take any $\delta:\Qp$ with $\delta<\epsilon$.
+\end{proof}
+
+% 
+
+\begin{lem} \label{RC-lim-factor}
+  If $A$ is a set and $f : \CAP \to A$ respects coincidence\index{coincidence!of Cauchy approximations} of Cauchy approximations, in the sense that
+  %
+  \begin{equation*}
+    \fall{x, y : \CAP} \rclim(x) = \rclim(y) \Rightarrow f(x) = f(y),
+  \end{equation*}
+  %
+  then $f$ factors uniquely through $\rclim : \CAP \to \RC$.
+\end{lem}
+\begin{proof}
+  Since $\rclim$ is surjective, by \autoref{lem:images_are_coequalizers}, $\RC$ is the quotient of $\CAP$ by the kernel pair\index{kernel!pair} of $\rclim$.
+  But this is exactly the statement of the lemma.
+\end{proof}
+
+For the second special case of the induction principle, suppose instead that we take $A$ to be constant at $\unit$.
+In this case, $\bsim$ is simply an $\epsilon$-indexed family of relations on $\epsilon$-close pairs of real numbers, so we may write $u\bsim_\epsilon v$ instead of $(u,\ttt)\bsim_\epsilon (v,\ttt)$.
+Then the required data reduces to the following, where $q, r$ denote rational numbers, $\epsilon, \delta, \eta$ positive rational numbers, and $x, y$ Cauchy approximations:
+\begin{itemize}
+\item if $-\epsilon < q - r < \epsilon$, then
+  $\rcrat(q) \bsim_\epsilon \rcrat(r)$,
+\item if $\rcrat(q) \close{\epsilon - \delta} y_\delta$ and
+  $\rcrat(q)\bsim_{\epsilon-\delta} y_\delta$,
+  then $\rcrat(q) \bsim_\epsilon \rclim(y)$,
+\item if $x_\delta \close{\epsilon - \delta} \rcrat(r)$ and
+  $x_\delta \bsim_{\epsilon-\delta} \rcrat(r)$,
+  then $\rclim(y) \bsim_\epsilon \rcrat(q)$,
+\item if $x_\delta \close{\epsilon - \delta - \eta} y_\eta$ and
+  $x_\delta\bsim_{\epsilon - \delta - \eta} y_\eta$,
+  then $\rclim(x) \bsim_\epsilon \rclim(y)$.
+\end{itemize}
+The resulting conclusion is $\fall{u,v:\RC}{\epsilon:\Qp} (u\close\epsilon v) \to (u \bsim_\epsilon v)$.
+We call this principle \define{$\closesym$-induction}; it says essentially that if we take $\RC$ as given, then $\close\epsilon$ is inductively generated (as a family of types) by \emph{its} constructors.
+For example, we can use this to show that $\closesym$ is symmetric.
+
+\begin{lem}\label{thm:RCsim-symmetric}
+  For any $u,v:\RC$ and $\epsilon:\Qp$, we have $(u\close\epsilon v) = (v\close\epsilon u)$.
+\end{lem}
+\begin{proof}
+  Since both are mere propositions, by symmetry it suffices to show one implication.
+  Thus, let $(u\bsim_\epsilon v) \defeq (v\close\epsilon u)$.
+  By $\closesym$-induction, we may reduce to the case that $u\close\epsilon v$ is derived from one of the four interesting constructors of $\closesym$.
+  In the first case when $u$ and $v$ are both rational, the result is trivial (we can apply the first constructor again).
+  In the other three cases, the inductive hypothesis (together with commutativity of addition in $\Q$) yields exactly the input to another of the constructors of $\closesym$ (the second and third constructors switch, while the fourth stays put).
+\end{proof}
+
+The general induction principle, which we may call \define{$(\RC,\closesym)$-induction}, is therefore a sort of joint $\RC$-induction and $\closesym$-induction.
+Consider, for instance, its non-dependent version, which we call \define{$(\RC,\closesym)$-recursion}, which is the one that we will have the most use for.
+\index{recursion principle!for Cauchy reals}%
+Ordinary $\RC$-recursion tells us that to define a function $f : \RC \to A$ it suffices to:
+\begin{enumerate}
+\item for every $q : \Q$ construct $f(\rcrat(q)) : A$,
+\item for every Cauchy approximation $x : \Qp \to \RC$, construct $f(x) : A$,
+  assuming that $f(x_\epsilon)$ has already been defined for all $\epsilon : \Qp$,
+\item prove $f(u) = f(v)$ for all $u, v : \RC$ satisfying $\fall{\epsilon:\Qp} u\close\epsilon v$.\label{item:rcrec3}
+\end{enumerate}
+However, it is generally quite difficult to show~\ref{item:rcrec3} without knowing something about how $f$ acts on $\epsilon$-close Cauchy reals.
+The enhanced principle of $(\RC,\closesym)$-recursion remedies this deficiency, allowing us to specify an \emph{arbitrary} ``way in which $f$ acts on $\epsilon$-close Cauchy reals'', which we can then prove to be the case by a simultaneous induction with the definition of $f$.
+This is the family of relations $\bsim$.
+Since $A$ is independent of $\RC$, we may assume for simplicity that $\bsim$ depends only on $A$ and $\Qp$, and thus there is no ambiguity in writing $a\bsim_\epsilon b$ instead of $(u,a) \bsim_\epsilon (v,b)$.
+In this case, defining a function $f:\RC\to A$ by $(\RC,\closesym)$-recursion requires the following cases (which we now write using the pattern-matching convention).
+\begin{itemize}
+\item For every $q : \Q$, construct $f(\rcrat(q)) : A$.
+\item For every Cauchy approximation $x : \Qp \to \RC$, construct $f(x) : A$, assuming inductively that $f(x_\epsilon)$ has already been defined for all $\epsilon : \Qp$ and form a ``Cauchy approximation with respect to $\bsim$'', i.e.\ that $\fall{\epsilon,\delta:\Qp} (f(x_\epsilon) \bsim_{\epsilon+\delta} f(x_\delta))$.
+\item Prove that the relations $\bsim$ are \emph{separated}, i.e.\ that, for any $a,b:A$,
+  \indexdef{relation!separated family of}%
+  \indexdef{separated family of relations}%
+\narrowequation{(\fall{\epsilon:\Qp} a\bsim_\epsilon b) \Rightarrow (a=b).}
+\item Prove that if $-\epsilon< q-r <\epsilon$ for $q,r:\Q$, then $f(\rcrat(q))\bsim_\epsilon f(\rcrat(r))$.
+\item For any $q:\Q$ and any Cauchy approximation $y$, prove that
+\narrowequation{f(\rcrat(q)) \bsim_\epsilon f(\rclim(y)),} assuming inductively that $\rcrat(q)\close{\epsilon-\delta} y_\delta$ and $f(\rcrat(q)) \bsim_{\epsilon-\delta} f(y_\delta)$ for some $\delta:\Qp$, and that $\eta \mapsto f(x_\eta)$ is a Cauchy approximation with respect to $\bsim$.
+\item For any Cauchy approximation $x$ and any $r:\Q$, prove that
+\narrowequation{f(\rclim(x)) \bsim_\epsilon f(\rcrat(r)),}
+assuming inductively that $x_\delta \close{\epsilon-\delta} \rcrat(r)$ and $f(x_\delta) \bsim_{\epsilon-\delta} f(\rcrat(r))$ for some $\delta:\Qp$, and that $\eta\mapsto f(x_\eta)$ is a Cauchy approximation with respect to $\bsim$.
+\item For any Cauchy approximations $x,y$, prove that
+\narrowequation{f(\rclim(x)) \bsim_\epsilon f(\rclim(y)),}
+assuming inductively that $x_\delta \close{\epsilon-\delta-\eta} y_\eta$ and $f(x_\delta) \bsim_{\epsilon-\delta-\eta} f(y_\eta)$ for some $\delta,\eta:\Qp$, and that $\theta\mapsto f(x_\theta)$ and $\theta\mapsto f(y_\theta)$ are Cauchy approximations with respect to $\bsim$.
+\end{itemize}
+Note that in the last four proofs, we are free to use the specific definitions of $f(\rcrat(q))$ and $f(\rclim(x))$ given in the first two data.
+However, the proof of separatedness must apply to \emph{any} two elements of $A$, without any relation to $f$: it is a sort of ``admissibility'' condition on the family of relations $\bsim$.
+Thus, we often verify it first, immediately after defining $\bsim$, before going on to define $f(\rcrat(q))$ and $f(\rclim(x))$.
+
+Under the above hypotheses, $(\RC,\closesym)$-recursion yields a function $f:\RC\to A$ such that $f(\rcrat(q))$ and $f(\rclim(x))$ are judgmentally equal to the definitions given for them in the first two clauses.
+Moreover, we may also conclude
+\begin{myeqn}
+  \fall{u,v:\RC}{\epsilon:\Qp} (u\close\epsilon v) \to (f(u) \bsim_\epsilon f(v)).\label{eq:RC-sim-recursion-extra}
+\end{myeqn}
+
+As a paradigmatic example, $(\RC,\closesym)$-recursion allows us to extend functions defined on $\Q$ to all of $\RC$, as long as they are sufficiently continuous.
+\index{function!continuous}%
+
+\begin{defn}\label{defn:lipschitz}
+  A function $f:\Q\to\RC$ is \define{Lipschitz}
+  \indexdef{function!Lipschitz}%
+  \indexdef{Lipschitz!function}%
+  \indexdef{Lipschitz!constant}%
+  \indexdef{constant!Lipschitz}%
+  if there exists $L:\Qp$ (the \define{Lipschitz constant}) such that
+  \[ |q - r|<\epsilon \Rightarrow (f(q) \close{L\epsilon} f(r)) \]
+  for all $\epsilon:\Qp$ and $q,r:\Q$.
+  %
+  Similarly, $g:\RC\to\RC$ is \define{Lipschitz} if there exists $L:\Qp$ such that
+  \[ (u\close\epsilon v) \Rightarrow (g(u) \close{L\epsilon} g(v)) \]
+  for all $\epsilon:\Qp$ and $u,v:\RC$..
+\end{defn}
+
+In particular, note that by the first constructor of $\closesym$, if $f:\Q\to\Q$ is Lipschitz in the obvious sense, then so is the composite $\Q\xrightarrow{f} \Q \to \RC$.
+
+\begin{lem}\label{RC-extend-Q-Lipschitz}
+  Suppose $f : \Q \to \RC$ is Lipschitz with constant $L : \Qp$.
+  Then there exists a Lipschitz map $\bar{f} : \RC \to \RC$, also with constant $L$, such that $\bar{f}(\rcrat(q)) \jdeq f(q)$ for all $q:\Q$.
+\end{lem}
+
+\begin{proof}
+  % Uniqueness follows directly from \autoref{RC-continuous-eq}.
+  We define $\bar{f}$ by $(\RC,\closesym)$-recursion, with codomain $A\defeq \RC$.
+  We define the relation $\mathord{\bsim}: \RC \to \RC \to \Qp \to \prop$ to be
+  \begin{align*}
+    (u \bsim_\epsilon v) &\defeq (u \close{L\epsilon} v).
+  \end{align*}
+  For $q : \Q$, we define
+  %
+  \begin{equation*}
+    \bar{f}(\rcrat(q)) \defeq \rcrat(f(q)).
+  \end{equation*}
+  %
+  For a Cauchy approximation $x : \Qp \to \RC$, we define
+  % 
+  \begin{equation*}
+    \bar{f}(\rclim(x)) \defeq \rclim(\lamu{\epsilon : \Qp} \bar{f}(x_{\epsilon/L})).
+  \end{equation*}
+  %
+  For this to make sense, we must verify that $y \defeq \lamu{\epsilon : \Qp} \bar{f}(x_{\epsilon/L})$ is a Cauchy approximation.
+  However, the inductive hypothesis for this step is that for any $\delta,\epsilon:\Qp$ we have $\bar{f}(x_\delta) \bsim_{\delta+\epsilon} \bar{f}(x_\epsilon)$, i.e.\ $\bar{f}(x_\delta) \close{L\delta+L\epsilon} \bar{f}(x_\epsilon)$.
+  Thus we have
+  \[y_\delta \jdeq f(x_{\delta/L}) \close{\delta + \epsilon} f(x_{\epsilon/L})   \jdeq y_\epsilon. \]
+  
+  For proving separatedness, we simply observe that $\fall{\epsilon:\Qp} a\bsim_\epsilon b$ means $\fall{\epsilon:\Qp} a\close{L\epsilon} b$, which implies $\fall{\epsilon:\Qp}a\close\epsilon b$ and thus $a=b$.
+
+  To complete the $(\RC,\closesym)$-recursion, it remains to verify the four conditions on $\bsim$.
+  This basically amounts to proving that $\bar f$ is Lipschitz for all the four constructors of $\closesym$.
+  \begin{enumerate}
+  \item When $u$ is $\rcrat(q)$ and $v$ is $\rcrat(r)$ with $-\epsilon < |q-r| <\epsilon$, the assumption that $f$ is Lipschitz yields $f(q) \close{L\epsilon} f(r)$, hence $\bar{f}(\rcrat(q)) \bsim_\epsilon \bar{f}(\rcrat(r))$ by definition.
+  \item When $u$ is $\rclim(x)$ and $v$ is $\rcrat(q)$ with $x_\eta \close{\epsilon - \eta} \rcrat(q)$, then the
+      inductive hypothesis is $\bar{f}(x_\eta) \close{L \epsilon - L \eta} \rcrat(f(q))$, which proves
+      \narrowequation{\bar{f}(\rclim(x)) \close{L \epsilon} \bar{f}(\rcrat(q))}
+      by the third constructor of $\closesym$.
+  \item The symmetric case when $u$ is rational and $v$ is a limit is essentially identical.
+  \item When $u$ is $\rclim(x)$ and $v$ is $\rclim(y)$, with $\delta, \eta : \Qp$ such that $x_\delta \close{\epsilon - \delta - \eta} y_\eta$,
+      the inductive hypothesis is $\bar{f}(x_\delta) \close{L \epsilon - L \delta - L \eta} \bar{f}(y_\eta)$, which proves $\bar{f}(\rclim(x)) \close{L
+        \epsilon} \bar{f}(\rclim(y))$ by the fourth constructor of $\closesym$.
+  \end{enumerate}
+  This completes the $(\RC,\closesym)$-recursion, and hence the construction of $\bar f$.
+  The desired equality $\bar f(\rcrat(q))\jdeq f(q)$ is exactly the first computation rule for $(\RC,\closesym)$-recursion, and the additional condition~\eqref{eq:RC-sim-recursion-extra} says exactly that $\bar f$ is Lipschitz with constant $L$.
+\end{proof}
+
+At this point we have gone about as far as we can without a better characterization of $\closesym$.
+We have specified, in the constructors of $\closesym$, the conditions under which we want Cauchy reals of the two different forms to be $\epsilon$-close.
+However, how do we know that in the resulting inductive-inductive type family, these are the \emph{only} witnesses to this fact?
+We have seen that inductive type families (such as identity types, see \autoref{sec:identity-systems}) and higher inductive types have a tendency to contain ``more than was put into them'', so this is not an idle question.
+
+In order to characterize $\closesym$ more precisely, we will define a family of relations $\approx_\epsilon$ on $\RC$ \emph{recursively}, so that they will compute on constructors, and prove that this family is equivalent to $\close\epsilon$.
+
+\begin{thm}\label{defn:RC-approx}
+  There is a family of mere relations $\mathord\approx:\RC\to\RC\to\Qp\to\prop$ such that
+  \begin{align}
+    (\rcrat(q) \approx_\epsilon \rcrat(r))  &\defeq
+    (-\epsilon < q - r < \epsilon)\label{eq:RCappx1}\\
+    (\rcrat(q) \approx_\epsilon \rclim(y)) &\defeq
+    \exis{\delta : \Qp} \rcrat(q) \approx_{\epsilon - \delta} y_\delta\label{eq:RCappx2}\\
+    (\rclim(x) \approx_\epsilon \rcrat(r)) &\defeq
+    \exis{\delta : \Qp} x_\delta \approx_{\epsilon - \delta} \rcrat(r)\label{eq:RCappx3}\\
+    (\rclim(x) \approx_\epsilon \rclim(y)) &\defeq
+    \exis{\delta, \eta : \Qp} x_\delta \approx_{\epsilon - \delta - \eta} y_\eta.\label{eq:RCappx4}
+  \end{align}
+  Moreover, we have
+  \begin{gather}
+    (u \approx_\epsilon v) \Leftrightarrow \exis{\theta:\Qp} (u \approx_{\epsilon-\theta} v) \label{RC-sim-rounded}\\
+    (u \approx_\epsilon v) \to (v\close\delta w) \to (u\approx_{\epsilon+\delta} w)\label{eq:RC-sim-rtri}\\ 
+    (u \close\epsilon v) \to (v\approx_\delta w) \to (u\approx_{\epsilon+\delta} w)\label{eq:RC-sim-ltri}.
+  \end{gather}
+\end{thm}
+
+The additional conditions~\eqref{RC-sim-rounded}--\eqref{eq:RC-sim-ltri} turn out to be required in order to make the inductive definition go through.
+Condition~\eqref{RC-sim-rounded} is called being \define{rounded}.
+\indexsee{relation!rounded}{rounded relation}%
+\indexdef{rounded!relation}%
+Reading it from right to left gives \define{monotonicity} of $\approx$,
+\index{monotonicity}%
+\index{relation!monotonic}%
+%
+\begin{equation*}
+  (\delta < \epsilon) \land (u \approx_\delta v) \Rightarrow (u \approx_\epsilon v)
+\end{equation*}
+%
+while reading it left to right to \define{openness} of $\approx$,
+\index{open!relation}%
+\index{relation!open}%
+%
+\begin{equation*}
+  (u \approx_\epsilon v) \Rightarrow \exis{\epsilon : \Qp} (\delta < \epsilon) \land (u \approx_\delta v).
+\end{equation*}
+%
+Conditions~\eqref{eq:RC-sim-rtri} and~\eqref{eq:RC-sim-ltri} are forms of the triangle inequality, which say that $\approx$ is a ``module'' over $\closesym$ on both sides.
+
+\begin{proof}
+  We will define $\mathord\approx:\RC\to\RC\to\Qp\to\prop$ by double $(\RC,\closesym)$-recursion.
+  First we will apply $(\RC,\closesym)$-recursion with codomain the subset of $\RC\to\Qp\to\prop$ consisting of those families of predicates which are rounded and satisfy the one appropriate form of the triangle inequality.
+  Thinking of these predicates as half of a binary relation, we will write them as $(u,\epsilon) \mapsto (\hapx_\epsilon u)$, with the symbol $\hapname$ referring to the whole relation.
+  Now we can write $A$ precisely as
+  \begin{multline*}
+    A \defeq\; \Bigg\{ \hapname :\RC\to\Qp\to\prop \;\bigg|\; \\
+    \Big(\fall{u:\RC}{\epsilon:\Qp}
+    \big((\hapx_\epsilon u) \Leftrightarrow \exis{\theta:\Qp} (\hapx_{\epsilon-\theta} u)\big)\Big)  \\
+    \land \Big(\fall{u,v:\RC}{\eta,\epsilon:\Qp} (u\close\epsilon v) \to\\
+    \big((\hapx_\eta u) \to (\hapx_{\eta+\epsilon} v) \big) \land \big((\hapx_\eta v) \to (\hapx_{\eta+\epsilon} u) \big)\Big)\Bigg\}
+  \end{multline*}
+  As usual with subsets, we will use the same notation for an inhabitant of $A$ and its first component $\hapname$.
+  As the family of relations required for $(\RC,\closesym)$-recursion, we consider the following, which will ensure the other form of the triangle inequality:
+  \begin{narrowmultline*}
+    (\hapname \bsim_\epsilon \hapbname ) \defeq \narrowbreak
+    \fall{u:\RC}{\eta:\Qp} ((\hapx_\eta u) \to (\hapxb_{\epsilon+\eta} u))
+    \land \narrowbreak
+    ((\hapxb_\eta u) \to (\hapx_{\epsilon+\eta} u)).
+  \end{narrowmultline*}
+  We observe that these relations are separated.
+  For assuming
+  \narrowequation{\fall{\epsilon:\Qp} (\hapname \bsim_\epsilon \hapbname),}
+  to show $\hapname = \hapbname$ it suffices to show $(\hapx_\epsilon u) \Leftrightarrow (\hapxb_\epsilon u)$ for all $u:\RC$.
+  But $\hapx_\epsilon u$ implies $\hapx_{\epsilon-\theta} u$ for some $\theta$, by roundedness, which together with $\hapname \bsim_\epsilon \hapbname$ implies $\hapxb_\epsilon u$; and the converse is identical.
+
+  Now the first two data the recursion principle requires are the following.
+  \begin{itemize}
+  \item For any $q:\Q$, we must give an element of $A$, which we denote $(\rcrat(q)\approx_{(\blank)} \blank)$.
+  \item For any Cauchy approximation $x$, if we assume defined a function $\Qp \to A$, which we will denote by $\epsilon \mapsto (x_\epsilon \approx_{(\blank)} \blank)$, with the property that 
+    % \[ \fall{u,v:\RC}{\delta,\epsilon,\eta:\Qp} (x_\delta \approx_\eta u) \to (u\close{\delta+\epsilon} v) \to (x_\epsilon \approx_{\eta+\delta+\epsilon} v) \]
+    \begin{myeqn}
+      \fall{u:\RC}{\delta,\epsilon,\eta:\Qp} (x_\delta \approx_\eta u) \to (x_\epsilon \approx_{\eta+\delta+\epsilon} u),\label{eq:appxrec2}
+    \end{myeqn}
+    we must give an element of $A$, which we write as $(\rclim(x)\approx_{(\blank)} \blank)$.
+  \end{itemize}
+  In both cases, we give the required definition by using a nested $(\RC,\closesym)$-recursion, with codomain the subset of $\Qp\to\prop$ consisting of rounded families of mere propositions.
+  Thinking of these propositions as zero halves of a binary relation, we will write them as $\epsilon \mapsto (\tap{\epsilon})$, with the symbol $\tapname$ referring to the whole family.
+  Now we can write the codomain of these inner recursions precisely as
+  \begin{narrowmultline*}
+    C \defeq
+    \bigg\{ \tapname :\Qp\to\prop \;\;\Big|\;\; \narrowbreak
+    \fall{\epsilon:\Qp} \Big((\tap\epsilon) \Leftrightarrow \exis{\theta:\Qp} (\tap{\epsilon-\theta})\Big)\bigg\}
+  \end{narrowmultline*}
+  We take the required family of relations to be the remnant of the triangle inequality:
+  \begin{narrowmultline*}
+    (\tapname \bbsim_\epsilon \tapbname) \defeq
+    \fall{\eta:\Qp} ((\tap\eta) \to (\tapb{\epsilon+\eta})) \land
+    \narrowbreak
+    ((\tapb\eta) \to (\tap{\epsilon+\eta})).
+  \end{narrowmultline*}
+  These relations are separated by the same argument as for $\bsim$, using roundedness of all elements of $C$.
+
+  Note that if such an inner recursion succeeds, it will yield a family of predicates $\hapname : \RC\to\Qp\to \prop$ which are rounded
+(since their image in $\Qp\to\prop$ lies in $C$) and satisfy
+  \[ \fall{u,v:\RC}{\epsilon:\Qp} (u\close\epsilon v) \to \big((\hapx_{(\blank)} u) \bbsim_\epsilon (\hapx_{(\blank)} u)\big). \]
+  Expanding out the definition of $\bbsim$, this yields precisely the third condition for $\hapname$ to belong to $A$; thus it is exactly what we need.
+
+  It is at this point that we can give the definitions~\eqref{eq:RCappx1}--\eqref{eq:RCappx4}, as the first two clauses of each of the two inner recursions, corresponding to rational points and limits.
+  In each case, we must verify that the relation is rounded and hence lies in $C$.
+  In the rational-rational case~\eqref{eq:RCappx1} this is clear, while in the other cases it follows from an inductive hypothesis.
+  (In~\eqref{eq:RCappx2} the relevant inductive hypothesis is that $(\rcrat(q) \approx_{(\blank)} y_\delta) : C$, while in~\eqref{eq:RCappx3} and~\eqref{eq:RCappx4} it is that $(x_\delta \approx_{(\blank)} \blank) : A$.)
+
+  The remaining data of the sub-recursions consist of showing that \eqref{eq:RCappx1}--\eqref{eq:RCappx4} satisfy the triangle inequality on the right with respect to the constructors of $\closesym$.
+  There are eight cases --- four in each sub-recursion --- corresponding to the eight possible ways that $u$, $v$, and $w$ in~\eqref{eq:RC-sim-rtri} can be chosen to be rational points or limits.
+  First we consider the cases when $u$ is $\rcrat(q)$.
+  \begin{enumerate}
+  \item Assuming $\rcrat(q)\approx_\phi \rcrat(r)$ and $-\epsilon<|r-s|<\epsilon$, we must show $\rcrat(q)\approx_{\phi+\epsilon} \rcrat(s)$.
+    But by definition of $\approx$, this reduces to the triangle inequality for rational numbers.
+  \item We assume $\phi,\epsilon,\delta:\Qp$ such that $\rcrat(q)\approx_\phi \rcrat(r)$ and $\rcrat(r) \close{\epsilon-\delta} y_\delta$, and inductively that
+    \begin{myeqn}
+      \fall{\psi:\Qp}(\rcrat(q) \approx_{\psi} \rcrat(r)) \to (\rcrat(q) \approx_{\psi+\epsilon-\delta} y_\delta).\label{eq:RCappx-rtri-rrl1}
+    \end{myeqn}
+    We assume also that $\psi,\delta\mapsto (\rcrat(q) \approx_{\psi} y_\delta)$ is a Cauchy approximation with respect to $\bbsim$, i.e.\
+    \begin{myeqn}
+      \fall{\psi,\xi,\zeta:\Qp} (\rcrat(q) \approx_{\psi} y_\xi) \to (\rcrat(q) \approx_{\psi+\xi+\zeta} y_\zeta),\label{eq:RCappx-rtri-rrl2}
+    \end{myeqn}
+    although we do not need this assumption in this case.
+    Indeed, \eqref{eq:RCappx-rtri-rrl1} with $\psi\defeq \phi$ yields immediately $\rcrat(q) \approx_{\phi+\epsilon-\delta} y_\delta$, and hence $\rcrat(q) \approx_{\phi+\epsilon} \rclim(y)$ by definition of $\approx$.
+  \item We assume $\phi,\epsilon,\delta:\Qp$ such that $\rcrat(q)\approx_\phi \rclim(y)$ and $y_\delta \close{\epsilon-\delta} \rcrat(r)$, and inductively that
+    \begin{gather}
+      \fall{\psi:\Qp}(\rcrat(q) \approx_{\psi} y_\delta) \to (\rcrat(q) \approx_{\psi+\epsilon-\delta} \rcrat(r)).\label{eq:RCappx-rtri-rlr1}\\
+      \fall{\psi,\xi,\zeta:\Qp} (\rcrat(q) \approx_{\psi} y_\xi) \to (\rcrat(q) \approx_{\psi+\xi+\zeta} y_\zeta).\label{eq:RCappx-rtri-rlr2}
+    \end{gather}
+    By definition, $\rcrat(q)\approx_\phi \rclim(y)$ means that we have $\theta:\Qp$ with $\rcrat(q) \approx_{\phi-\theta} y_\theta$.
+    By assumption~\eqref{eq:RCappx-rtri-rlr2}, therefore, we have also $\rcrat(q) \approx_{\phi+\delta} y_\delta$, and then by~\eqref{eq:RCappx-rtri-rlr1} it follows that $\rcrat(q) \approx_{\phi+\epsilon} \rcrat(r)$, as desired.
+  \item We assume $\phi,\epsilon,\delta,\eta:\Qp$ such that $\rcrat(q)\approx_\phi \rclim(y)$ and $y_\delta \close{\epsilon-\delta-\eta} z_\eta$, and inductively that 
+    \begin{gather}
+      \fall{\psi:\Qp}(\rcrat(q) \approx_{\psi} y_\delta) \to (\rcrat(q) \approx_{\psi+\epsilon-\delta-\eta} z_\eta), \label{eq:RCappx-rtri-rll1}\\
+      \fall{\psi,\xi,\zeta:\Qp} (\rcrat(q) \approx_{\psi} y_\xi) \to (\rcrat(q) \approx_{\psi+\xi+\zeta} y_\zeta), \label{eq:RCappx-rtri-rll2}\\
+      \fall{\psi,\xi,\zeta:\Qp} (\rcrat(q) \approx_{\psi} z_\xi) \to (\rcrat(q) \approx_{\psi+\xi+\zeta} z_\zeta). \label{eq:RCappx-rtri-rll3}
+    \end{gather}
+    Again, $\rcrat(q)\approx_\phi \rclim(y)$ means we have $\xi:\Qp$ with $\rcrat(q) \approx_{\phi-\xi} y_\xi$, while~\eqref{eq:RCappx-rtri-rll2} then implies $\rcrat(q) \approx_{\phi+\delta} y_\delta$ and~\eqref{eq:RCappx-rtri-rll1} implies $\rcrat(q) \approx_{\phi+\epsilon-\eta} z_\eta$.
+    But by definition of $\approx$, this implies $\rcrat(q) \approx_{\phi+\epsilon} \rclim(z)$ as desired.
+  \end{enumerate}
+  Now we move on to the cases when $u$ is $\rclim(x)$, with $x$ a Cauchy approximation.
+  In this case, the ambient inductive hypothesis of the definition of $(\rclim(x) \approx_{(\blank)} {\blank}) : A$ is that we have ${(x_\delta \approx_{(\blank)} {\blank})}: A$, so that in addition to being rounded they satisfy the triangle inequality on the right.
+  \begin{enumerate}\setcounter{enumi}{4}
+  \item Assuming $\rclim(x)\approx_\phi \rcrat(r)$ and $-\epsilon<|r-s|<\epsilon$, we must show $\rclim(x)\approx_{\phi+\epsilon} \rcrat(s)$.
+    By definition of $\approx$, the former means $x_\delta \approx_{\phi-\delta} \rcrat(r)$, so that above triangle inequality implies $x_\delta \approx_{\epsilon+\phi-\delta} \rcrat(s)$, hence $\rclim(x)\approx_{\phi+\epsilon} \rcrat(s)$ as desired.
+  \item We assume $\phi,\epsilon,\delta:\Qp$ such that $\rclim(x)\approx_\phi \rcrat(r)$ and $\rcrat(r) \close{\epsilon-\delta} y_\delta$, and two unneeded inductive hypotheses.
+    %
+    By definition, we have $\eta:\Qp$ such that $x_\eta \approx_{\phi-\eta} \rcrat(r)$, so the inductive triangle inequality gives $x_\eta \approx_{\phi+\epsilon-\eta-\delta} y_\delta$.
+    The definition of $\approx$ then immediately yields $\rclim(x) \approx_{\phi+\epsilon} \rclim(y)$.
+  \item We assume $\phi,\epsilon,\delta:\Qp$ such that $\rclim(x)\approx_\phi \rclim(y)$ and $y_\delta \close{\epsilon-\delta} \rcrat(r)$, and two unneeded inductive hypotheses.
+    By definition we have $\xi,\theta:\Qp$ such that $x_\xi \approx_{\phi-\xi-\theta} y_\theta$.
+    Since $y$ is a Cauchy approximation, we have $y_\theta \close{\theta+\delta} y_\delta$, so the inductive triangle inequality gives $x_\xi \approx_{\phi+\delta-\xi} y_\delta$ and then $x_\xi \close{\phi+\epsilon-\xi} \rcrat(r)$.
+    The definition of $\approx$ then gives $\rclim(x) \approx_{\phi+\epsilon}\rcrat(r)$, as desired.
+  \item Finally, we assume $\phi,\epsilon,\delta,\eta:\Qp$ such that $\rclim(x)\approx_\phi \rclim(y)$ and $y_\delta \close{\epsilon-\delta-\eta} z_\eta$.
+    Then as before we have $\xi,\theta:\Qp$ with $x_\xi \approx_{\phi-\xi-\theta} y_\theta$, and two applications of the triangle inequality suffices as before.
+  \end{enumerate}
+
+  This completes the two inner recursions, and thus the definitions of the families of relations $(\rcrat(q)\approx_{(\blank)}\blank)$ and $(\rclim(x)\approx_{(\blank)}\blank)$.
+  Since all are elements of $A$, they are rounded and satisfy the triangle inequality on the right with respect to $\closesym$.
+% , and satisfy~\eqref{eq:appxrec2}.
+  What remains is to verify the conditions relating to $\bsim$, which is to say that these relations satisfy the triangle inequality on the \emph{left} with respect to the constructors of $\closesym$.
+  The four cases correspond to the four choices of rational or limit points for $u$ and $v$ in~\eqref{eq:RC-sim-ltri}, and since they are all mere propositions, we may apply $\RC$-induction and assume that $w$ is also either rational or a limit.
+  This yields another eight cases, whose proofs are essentially identical to those just given; so we will not subject the reader to them.
+\end{proof}
+
+We can now prove:
+
+\begin{thm}\label{thm:RC-sim-characterization}
+  For any $u,v:\RC$ and $\epsilon:\Qp$ we have $(u\close\epsilon v) = (u\approx_\epsilon v)$.
+\end{thm}
+\begin{proof}
+  Since both are mere propositions, it suffices to prove bidirectional implication.
+  For the left-to-right direction, we use $\closesym$-induction applied to $C(u,v,\epsilon)\defeq (u\approx_\epsilon v)$.
+  Thus, it suffices to consider the four constructors of $\closesym$.
+  In each case, $u$ and $v$ are specialized to either rational points or limits, so that the definition of $\approx$ evaluates, and the inductive hypothesis always applies.
+
+  For the right-to-left direction, we use $\RC$-induction to assume that $u$ and $v$ are rational points or limits, allowing $\approx$ to evaluate.
+  But now the definitions of $\approx$, and the inductive hypotheses, supply exactly the data required for the relevant constructors of $\closesym$.
+\end{proof}
+
+\index{encode-decode method}%
+Stretching a point, one might call $\approx$ a fibration of ``codes'' for $\closesym$, with the two directions of the above proof being \encode and \decode respectively.
+By the definition of $\approx$, from \autoref{thm:RC-sim-characterization} we get equivalences
+\begin{align*}
+  (\rcrat(q) \close\epsilon \rcrat(r))  &=
+  (-\epsilon < q - r < \epsilon)\\
+  (\rcrat(q) \close\epsilon \rclim(y)) &=
+  \exis{\delta : \Qp} \rcrat(q) \close{\epsilon - \delta} y_\delta\\
+  (\rclim(x) \close\epsilon \rcrat(r)) &=
+  \exis{\delta : \Qp} x_\delta \close{\epsilon - \delta} \rcrat(r)\\
+  (\rclim(x) \close\epsilon \rclim(y)) &=
+  \exis{\delta, \eta : \Qp} x_\delta \close{\epsilon - \delta - \eta} y_\eta.
+\end{align*}
+Our proof also provides the following additional information.
+
+\begin{cor}
+  \index{triangle!inequality for R@inequality for $\RC$}%
+  \indexsee{inequality!triangle}{triangle inequality}%
+  $\closesym$ is rounded\index{rounded!relation} and satisfies the triangle inequality:
+    \begin{gather}
+      \eqvspaced{
+        (u \close\epsilon v)
+      }{
+        \exis{\theta : \Qp} u \close{\epsilon - \theta} v
+      }\\
+      (u\close\epsilon v) \to (v\close\delta w) \to (u\close{\epsilon+\delta} w). \label{item:RC-sim-triangle}
+    \end{gather}
+\end{cor}
+% \begin{proof}
+%   The construction of $\approx$ showed simultaneously that it is rounded, and satisfies ``triangle inequalities'' such as
+%   \[ (u\approx_\epsilon v) \to (v\close\delta w) \to (u\approx_{\epsilon+\delta} w). \]
+%   Thus, both properties follow from \autoref{thm:RC-sim-characterization}.
+% \end{proof}
+
+With the triangle inequality in hand, we can show that ``limits'' of Cauchy approximations actually behave like limits.
+
+\begin{lem}\label{thm:RC-sim-lim}
+  For any $u:\RC$, Cauchy approximation $y$, and $\epsilon,\delta:\Qp$, if $u\close\epsilon y_\delta$ then $u\close{\epsilon+\delta} \rclim(y)$.
+\end{lem}
+\begin{proof}
+  We use $\RC$-induction on $u$.
+  If $u$ is $\rcrat(q)$, then this is exactly the second constructor of $\closesym$.
+  Now suppose $u$ is $\rclim(x)$, and that each $x_\eta$ has the property that for any $y,\epsilon,\delta$, if $x_\eta\close\epsilon y_\delta$ then $x_\eta \close{\epsilon+\delta} \rclim(y)$.
+  In particular, taking $y\defeq x$ and $\delta\defeq\eta$ in this assumption, we conclude that $x_\eta \close{\eta+\theta} \rclim(x)$ for any $\eta,\theta:\Qp$.
+
+  Now let $y,\epsilon,\delta$ be arbitrary and assume $\rclim(x) \close\epsilon y_\delta$.
+  By roundedness, there is a $\theta$ such that $\rclim(x) \close{\epsilon-\theta} y_\delta$.
+  Then by the above observation, for any $\eta$ we have $x_\eta \close{\eta+\theta/2} \rclim(x)$, and hence $x_\eta \close{\epsilon+\eta-\theta/2} y_\delta$ by the triangle inequality.
+  Hence, the fourth constructor of $\closesym$ yields $\rclim(x) \close{\epsilon+2\eta+\delta-\theta/2} \rclim(y)$.
+  Thus, if we choose $\eta \defeq \theta/4$, the result follows.
+\end{proof}
+
+\begin{lem}\label{thm:RC-sim-lim-term}
+  For any Cauchy approximation $y$ and any $\delta,\eta:\Qp$ we have $y_\delta \close{\delta+\eta} \rclim(y)$.
+\end{lem}
+\begin{proof}
+  Take $u\defeq y_\delta$ and $\epsilon\defeq \eta$ in the previous lemma.
+\end{proof}
+
+\begin{rmk}
+  We might have expected to have $y_\delta \close{\delta} \rclim(y)$, but this fails in examples.
+  For instance, consider $x$ defined by $x_\epsilon \defeq \epsilon$.
+  Its limit is clearly $0$, but we do not have $|\epsilon - 0 |<\epsilon$, only $\le$.
+\end{rmk}
+
+As an application, \autoref{thm:RC-sim-lim-term} enables us to show that the extensions of Lipschitz functions from \autoref{RC-extend-Q-Lipschitz} are unique.
+
+\begin{lem}\label{RC-continuous-eq}
+  \index{function!continuous}%
+  Let $f,g:\RC\to\RC$ be continuous, in the sense that
+  \[ \fall{u:\RC}{\epsilon:\Qp}\exis{\delta:\Qp}\fall{v:\RC} (u\close\delta v) \to (f(u) \close\epsilon f(v)) \]
+  and analogously for $g$.
+  If $f(\rcrat(q))=g(\rcrat(q))$ for all $q:\Q$, then $f=g$.
+\end{lem}
+\begin{proof}
+  We prove $f(u)=g(u)$ for all $u$ by $\RC$-induction.
+  The rational case is just the hypothesis.
+  Thus, suppose $f(x_\delta)=g(x_\delta)$ for all $\delta$.
+  We will show that $f(\rclim(x))\close\epsilon g(\rclim(x))$ for all $\epsilon$, so that the path constructor of $\RC$ applies.
+
+  Since $f$ and $g$ are continuous, there exist $\theta,\eta$ such that for all $v$, we have
+  \begin{align*}
+    (\rclim(x)\close\theta v) &\to (f(\rclim(x)) \close{\epsilon/2} f(v))\\
+    (\rclim(x)\close\eta v) &\to (g(\rclim(x)) \close{\epsilon/2} g(v)).
+  \end{align*}
+  Choosing $\delta < \min(\theta,\eta)$, by \autoref{thm:RC-sim-lim-term} we have both $\rclim(x)\close\theta y_\delta$ and $\rclim(x)\close\eta y_\delta$.
+  Hence
+  \[ f(\rclim(x)) \close{\epsilon/2} f(y_\delta) = g(y_\delta) \close{\epsilon/2} g(\rclim(x))\]
+  and thus $f(\rclim(x))\close\epsilon g(\rclim(x))$ by the triangle inequality.
+\end{proof}
+
+
+\end{document}

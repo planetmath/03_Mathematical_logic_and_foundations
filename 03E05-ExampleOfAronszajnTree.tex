@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExampleOfAronszajnTree}
+\pmcreated{2013-03-22 12:52:39}
+\pmmodified{2013-03-22 12:52:39}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{example of Aronszajn tree}
+\pmrecord{5}{33219}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E05}
+\pmclassification{msc}{05C05}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+\emph{Construction 1:} If $\kappa$ is a singular cardinal then there is a \PMlinkescapetext{simple} construction of a $\kappa$\PMlinkname{-Aronszajn tree}{KappaAronszjanTree}.  Let $\langle k_\beta\rangle_{\beta<\iota}$ with $\iota<\kappa$ be a sequence cofinal in $\kappa$.  Then consider the tree where $T=\{(\alpha,k_\beta)\mid \alpha<k_\beta \wedge \beta<\iota\}$ with $(\alpha_1,k_{\beta_1})<_T(\alpha_2,k_{\beta_2})$ iff $\alpha_1<\alpha_2$ and $k_{\beta_1}=k_{\beta_2}$.
+
+Note that this is similar to (indeed, a subtree of) the construction given for a tree with no cofinal branches.  It consists of $\iota$ disjoint branches, with the $\beta$-th branch of height $k_\beta$.  Since $\iota<\kappa$, every level has fewer than $\kappa$ elements, and since the sequence is cofinal in $\kappa$, $T$ must have height and cardinality $\kappa$.
+
+\emph{Construction 2:} We can construct an Aronszajn tree out of the compact subsets of $\mathbb{Q}^+$.  $<_T$ will be defined by $x<_T y$ iff $y$ is an end-extension of $x$.  That is, $x\subseteq y$ and if $r\in y\setminus x$ and $s\in x$ then $s<r$.
+
+Let $T_0=\{[0]\}$.  Given a level $T_\alpha$, let $T_{\alpha+1}=\{x\cup\{q\}\mid x\in T_\alpha \wedge q>\operatorname{max} x\}$.  That is, for every element $x$ in $T_\alpha$ and every rational number $q$ larger than any element of $x$, $x\cup \{q\}$ is an element of $T_{\alpha+1}$.  If $\alpha<\omega_1$ is a limit ordinal then each element of $T_\alpha$ is the union of some branch in $T(\alpha)$.
+
+We can show by induction that $|T_\alpha|<\omega_1$ for each $\alpha<\omega_1$.  For the \PMlinkescapetext{base} case, $T_0$ has only one element.  If $|T_\alpha|<\omega_1$ then $|T_{\alpha+1}|=|T_{\alpha}|\cdot |\mathbb{Q}|=|T_{\alpha}|\cdot\omega=\omega<\omega_1$.  If $\alpha<\omega_1$ is a limit ordinal then $T(\alpha)$ is a countable union of countable sets, and therefore itself countable.  Therefore there are a countable number of branches, so $T_\alpha$ is also countable.  So $T$ has countable levels.
+
+Suppose $T$ has an uncountable branch, $B=\langle b_0,b_1,\ldots\rangle$.  Then for any $i<j<\omega_1$, $b_i\subset b_j$.  Then for each $i$, there is some $x_i\in b_{i+1}\setminus b_i$ such that $x_i$ is greater than any element of $b_i$.  Then $\langle x_0,x_1,\ldots\rangle$ is an uncountable increasing sequence of rational numbers.  Since the rational numbers are countable, there is no such sequence, so $T$ has no uncountable branch, and is therefore Aronszajn.
+%%%%%
+%%%%%
+\end{document}

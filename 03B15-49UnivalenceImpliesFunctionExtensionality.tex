@@ -1,0 +1,190 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{49UnivalenceImpliesFunctionExtensionality}
+\pmcreated{2013-11-18 1:02:21}
+\pmmodified{2013-11-18 1:02:21}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{4.9 Univalence implies function extensionality}
+\pmrecord{5}{87671}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\happly}{\mathsf{happly}}
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\htpy}{\sim}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\idtoeqv}{\ensuremath{\mathsf{idtoeqv}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\iscontr}{\ensuremath{\mathsf{isContr}}}
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{4.9.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{4.9.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{4.9.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{4.9.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{4.9.\arabic{mathcount}}
+\let\autoref\cref
+\let\hfiber\hfib
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{function extensionality!proof from univalence}%
+In the last section of this chapter we include a proof that the univalence axiom implies function
+extensionality. Thus, in this section we work \emph{without} the function extensionality axiom.
+The proof consists of two steps. First we show
+in \PMlinkname{Theorem 4.9.4}{49univalenceimpliesfunctionextensionality#Thmprethm1} that the univalence
+axiom implies a weak form of function extensionality, defined in \PMlinkname{Definition 4.9.1}{49univalenceimpliesfunctionextensionality#Thmpredefn1} below. The
+principle of weak function extensionality in turn implies the usual function extensionality,
+and it does so without the univalence axiom (\PMlinkname{Theorem 4.9.5}{49univalenceimpliesfunctionextensionality#Thmprethm2}).
+
+\index{univalence axiom}%
+Let $\type$ be a universe; we will explicitly indicate where we assume that it is univalent.
+
+\begin{defn}\label{weakfunext}
+The \define{weak function extensionality principle}
+\indexdef{function extensionality!weak}%
+asserts that there is a function
+\begin{equation*}
+\Parens{\prd{x:A}\iscontr(P(x))} \to\iscontr\Parens{\prd{x:A}P(x)}
+\end{equation*}
+for any family $P:A\to\type$ of types over any type $A$.
+\end{defn}
+
+The following lemma is easy to prove using function extensionality; the point here is that it also follows from univalence without assuming function extensionality separately.
+
+\begin{lem} \label{UA-eqv-hom-eqv}
+Assuming $\type$ is univalent, for any $A,B,X:\type$ and any $e:\eqv{A}{B}$, there is an equivalence
+\begin{equation*}
+\eqv{(X\to A)}{(X\to B)}
+\end{equation*}
+of which the underlying map is given by post-composition with the underlying function of $e$.
+\end{lem}
+
+\begin{proof}
+  % Immediate by induction on $\eqv{}{}$ (see \PMlinkname{Corollary 5.8.5}{58identitytypesandidentitysystems#Thmprecor1}).
+  As in the proof of \PMlinkname{Lemma 4.1.1}{41quasiinverses#Thmprelem1}, we may assume that $e = \idtoeqv(p)$ for some $p:A=B$.
+  Then by path induction, we may assume $p$ is $\refl{A}$, so that $e = \idfunc[A]$.
+  But in this case, post-composition with $e$ is the identity, hence an equivalence.
+\end{proof}
+
+\begin{cor}\label{contrfamtotalpostcompequiv}
+Let $P:A\to\type$ be a family of contractible types, i.e.\ \narrowequation{\prd{x:A}\iscontr(P(x)).}
+Then the projection $\proj{1}:(\sm{x:A}P(x))\to A$ is an equivalence. Assuming $\type$ is univalent, it follows immediately that precomposition with $\proj{1}$ gives an equivalence
+\begin{equation*}
+\alpha : \eqv{\Parens{A\to\sm{x:A}P(x)}}{(A\to A)}.
+\end{equation*}
+\end{cor}
+
+\begin{proof}
+  By \PMlinkname{Lemma 4.8.1}{48theobjectclassifier#Thmprelem1}, for $\proj{1}:\sm{x:A}P(X)\to A$ and $x:A$ we have an equivalence
+  \begin{equation*}
+    \eqv{\hfiber{\proj{1}}{x}}{P(x)}.
+  \end{equation*}
+  Therefore $\proj{1}$ is an equivalence whenever each $P(x)$ is contractible. The assertion is now a consequence of \PMlinkname{Lemma 4.9.2}{49univalenceimpliesfunctionextensionality#Thmprelem1}.
+\end{proof}
+
+In particular, the homotopy fiber of the above equivalence at $\idfunc[A]$ is contractible. Therefore, we can show that univalence implies weak function extensionality by showing that the dependent function type $\prd{x:A}P(x)$ is a retract of $\hfiber{\alpha}{\idfunc[A]}$.
+
+\begin{thm}\label{uatowfe}
+In a univalent universe $\type$, suppose that $P:A\to\type$ is a family of contractible types
+and let $\alpha$ be the function of \PMlinkname{Corollary 4.9.3}{49univalenceimpliesfunctionextensionality#Thmprecor1}. 
+Then $\prd{x:A}P(x)$ is a retract of $\hfiber{\alpha}{\idfunc[A]}$. As a consequence, $\prd{x:A}P(x)$ is contractible. In other words, the univalence axiom implies the weak function extensionality principle.
+\end{thm}
+
+\begin{proof}
+Define the functions
+\begin{align*}
+  \varphi &: \tprd{x:A}P(x)\to\hfiber{\alpha}{\idfunc[A]},\\
+  \varphi(f) &\defeq (\lam{x} (x,f(x)),\refl{\idfunc[A]}),
+\intertext{and}
+  \psi &: \hfiber{\alpha}{\idfunc[A]}\to \tprd{x:A}P(x), \\
+  \psi(g,p) &\defeq \lam{x} \trans p{\proj{2} (g(x))}.
+\end{align*}
+Then $\psi(\varphi(f))=\lam{x} f(x)$, which is $f$, by the uniqueness principle for dependent function types.
+\end{proof}
+
+We now show that weak function extensionality implies the usual function extensionality.
+Recall from~\PMlinkname{(2.9.2)}{29pitypesandthefunctionextensionalityaxiom#S0.E2} the function $\happly (f,g) : (f = g)\to(f\htpy g)$ which
+converts equality of functions to homotopy. In the proof that follows, the univalence
+axiom is not used.
+
+\begin{thm}\label{wfetofe}
+  \index{function extensionality}%
+Weak function extensionality implies the function extensionality \PMlinkname{Axiom 2.9.3}{29pitypesandthefunctionextensionalityaxiom#Thmpreaxiom1}.
+\end{thm}
+
+\begin{proof}
+We want to show that
+\begin{equation*}
+\prd{A:\type}{P:A\to\type}{f,g:\prd{x:A}P(x)}\isequiv(\happly (f,g)).
+\end{equation*}
+Since a fiberwise map induces an equivalence on total spaces if and only if it is fiberwise an equivalence by \PMlinkname{Theorem 4.7.7}{47closurepropertiesofequivalences#Thmprethm4}, it suffices to show that the function of type
+\begin{equation*}
+\Parens{\sm{g:\prd{x:A}P(x)}(f= g)} \to \sm{g:\prd{x:A}P(x)}(f\htpy g)
+\end{equation*}
+induced by $\lam{g:\prd{x:A}P(x)} \happly (f,g)$ is an equivalence.
+Since the type on the left is contractible by \PMlinkname{Lemma 3.11.8}{311contractibility#Thmprelem5}, it suffices to show that the type on the right:
+\begin{myeqn}\label{eq:uatofesp}
+\sm{g:\prd{x:A}P(x)}\prd{x:A}f(x)= g(x)
+\end{myeqn}
+is contractible.
+Now \PMlinkname{Theorem 2.15.7}{215universalproperties#Thmprethm3} says that this is equivalent to
+\begin{myeqn}\label{eq:uatofeps}
+\prd{x:A}\sm{u:P(x)}f(x)= u.
+\end{myeqn}
+The proof of \PMlinkname{Theorem 2.15.7}{215universalproperties#Thmprethm3} uses function extensionality, but only for one of the composites.
+Thus, without assuming function extensionality, we can conclude that~\eqref{eq:uatofesp} is a retract\index{retract!of a type} of~\eqref{eq:uatofeps}.
+And~\eqref{eq:uatofeps} is a product of contractible types, which is contractible by the weak function extensionality principle; hence~\eqref{eq:uatofesp} is also contractible.
+\end{proof}
+
+
+\end{document}

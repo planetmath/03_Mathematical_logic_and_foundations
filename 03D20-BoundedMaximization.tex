@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{BoundedMaximization}
+\pmcreated{2013-03-22 19:05:37}
+\pmmodified{2013-03-22 19:05:37}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{bounded maximization}
+\pmrecord{8}{41984}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmrelated{BoundedMinimization}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+The proof involved in showing that functions obtained via \PMlinkname{bounded minimizing}{BoundedMinimization} primitive recursive functions are themselves primitive recursive can be used to show the primitive recursiveness of another family of functions derived from existing primitive recursive functions via a similar technique, called \emph{bounded maximization}.
+
+\textbf{Definition}.  Let $f:\mathbb{N}^{m+1} \to \mathbb{N}$ be a function.  For each $y\in \mathbb{N}$, set $$A_f(\boldsymbol{x},y):=\lbrace z\in \mathbb{N}\mid z \le y \mbox{ and }f(\boldsymbol{x},z)=0\rbrace.$$  Define
+\begin{displaymath}
+f_{bmax}(\boldsymbol{x},y):= \left\{
+\begin{array}{ll}
+\max A_f(\boldsymbol{x},y) & \textrm{if } A_f(\boldsymbol{x},y) \ne \varnothing, \\
+0 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+$f_{bmax}$ is called the function obtained from $f$ by \emph{bounded maximization}.
+
+\begin{prop}  If $f:\mathbb{N}^{m+1} \to \mathbb{N}$ is primitive recursive, so is $f_{bmax}$. \end{prop}
+\begin{proof}
+The proof of this is very similar to the proof that $f_{bmin}$ is primitive recursive in the parent entry.  The initial set up is the same: define $g:=\operatorname{sgn}\circ f$, where $\operatorname{sgn}$ is the sign function.  So $g$ is primitive recursive.
+
+Next, define $h:\mathbb{N}^{m+2} \to \mathbb{N}$ by $h(\boldsymbol{x},y,z)=g(\boldsymbol{x},y\dot{-}z)$.  So $h$, and therefore its bounded product:
+$$h_p(\boldsymbol{x},y,z):=\prod_{i=0}^z h(\boldsymbol{x},y,i)$$
+are primitive recursive.  $h_p$ has the following property: given $y$, 
+\begin{itemize}
+\item if $k$ is the largest number less than or equal to $y$ such that $f(\boldsymbol{x},k)=0$, then 
+\begin{displaymath}
+h_p(\boldsymbol{x},y,z):= \left\{
+\begin{array}{ll}
+1 & \textrm{if } z < y - k, \\
+0 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+\item if no such $k$ exists, then $h_p(\boldsymbol{x},y,z)=1$, for all $(\boldsymbol{x},y,z)\in \mathbb{N}^{m+2}$.
+\end{itemize}
+
+As a result, the bounded sum 
+$$(h_p)_s(\boldsymbol{x},y,z):=\sum_{i=0}^z h_p(\boldsymbol{x},y,i),$$
+and in particular, the function $g^*(\boldsymbol{x},y):=(h_p)_s(\boldsymbol{x},y,y)$, are primitive recursive.  After some simplification, $g^*$ becomes
+\begin{displaymath}
+g^*(\boldsymbol{x},y):= \left\{
+\begin{array}{ll}
+y-k & \textrm{if } k = \max A_f(\boldsymbol{x},y) \mbox{ exists}, \\
+s(y) & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+Finally, the function $g^{**}(\boldsymbol{x},y):=y\dot{-} g^*(\boldsymbol{x},y)$, which is just $f_{bmax}(\boldsymbol{x},y)$, is primitive recursive too.
+\end{proof}
+
+\textbf{Example}.  Using bounded maximization, we can show that $q(x,y)$, the quotient of $x\div y$, is primitive recursive.  When $y=0$, we set $q(x,y)=0$
+
+First note that $q(x,y)$ is the largest integer $z$ less than or equal to $x$ such that $zy\le x$.  Let $A(y,x)=\lbrace z\in \mathbb{N} \mid zy \le x \rbrace$.  Then $A(y,x)$ can be rewritten as $$\lbrace z\in \mathbb{N} \mid z \le x \mbox{ and } \operatorname{sgn}(yz \dot{-} x)=0 \rbrace.$$
+Define $f:\mathbb{N}^3 \to \mathbb{N}$ by $f(x,y,t)=\operatorname{sgn}(yt \dot{-} x)$.  Then $$A_f(x,y,t)=\lbrace z\in \mathbb{N} \mid z\le t \mbox{ and }\operatorname{sgn}(yz \dot{-} x) = 0 \rbrace.$$
+Since $f$ is primitive recursive, so is $f_{bmax}(x,y,t)$.  Since $A(x,y)=A_f(x,y,x)$, the quotient $q(x,y)$ may be defined as $f_{bmax}(x,y,x)$, and therefore is primitive recursive.
+
+With $q(x,y)$, we may define $\operatorname{rem}(x,y)$, the remainder of $x\div y$, as $x\dot{-} y q(x,y)$, which is easily seen to be primitive recursive.
+
+\textbf{Remark}.  Please see \PMlinkname{this entry}{ExamplesOfPrimitiveRecursiveFunctions} for an alternative way of showing that $q(x,y)$ and $\operatorname{rem}(x,y)$ are primitive recursive without using bounded maximization.  In the alternative method, one shows that $\operatorname{rem}(x,y)$ is primitive recursive first.  In addition, $\operatorname{rem}(x,0):=0$ in the alternative method, as opposed to $x$ discussed here.
+%%%%%
+%%%%%
+\end{document}

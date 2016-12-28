@@ -1,0 +1,175 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{35SubsetsAndPropositionalResizing}
+\pmcreated{2013-11-17 19:18:06}
+\pmmodified{2013-11-17 19:18:06}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{3.5 Subsets and propositional resizing}
+\pmrecord{7}{87652}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\newcommand{\isprop}{\ensuremath{\mathsf{isProp}}}
+\newcommand{\isset}{\ensuremath{\mathsf{isSet}}}
+\newcommand{\LEM}[1]{\ensuremath{\mathsf{LEM}_{#1}}\xspace}
+\newcommand{\power}[1]{\mathcal{P}(#1)} 
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\propU}{\ensuremath{\mathsf{Prop}_\UU}\xspace}
+\renewcommand{\set}{\ensuremath{\mathsf{Set}}\xspace}
+\newcommand{\setU}{\ensuremath{\mathsf{Set}_\UU}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{preaxiom}{Axiom}
+\newenvironment{axiom}{\begin{preaxiom}}{\end{preaxiom}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreaxiom}{3.5.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{3.5.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{3.5.\arabic{mathcount}}
+\let\autoref\cref
+\def\setof#1{\{#1\}}  
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{mere proposition|(}%
+
+As another example of the usefulness of mere propositions, we discuss subsets (and more generally subtypes).
+Suppose $P:A\to\type$ is a type family, with each type $P(x)$ regarded as a proposition.
+Then $P$ itself is a \emph{predicate} on $A$, or a \emph{property} of elements of $A$.
+
+In set theory, whenever we have a predicate on $P$ on a set $A$, we may form the subset $\setof{x\in A | P(x)}$.
+In type theory, the obvious analogue is the $\Sigma$-type $\sm{x:A} P(x)$.
+An inhabitant of $\sm{x:A} P(x)$ is, of course, a pair $(x,p)$ where $x:A$ and $p$ is a proof of $P(x)$.
+However, for general $P$, an element $a:A$ might give rise to more than one distinct element of $\sm{x:A} P(x)$, if the proposition $P(a)$ has more than one distinct proof.
+This is counter to the usual intuition of a subset.
+But if $P$ is a \emph{mere} proposition, then this cannot happen.
+
+\begin{lem}\label{thm:path-subset}
+  Suppose $P:A\to\type$ is a type family such that $P(x)$ is a mere proposition for all $x:A$.
+  If $u,v:\sm{x:A} P(x)$ are such that $\proj1(u) = \proj1(v)$, then $u=v$.
+\end{lem}
+\begin{proof}
+  Suppose $p:\proj1(u) = \proj1(v)$.
+  By \PMlinkname{Theorem 2.7.2}{27sigmatypes#Thmprethm1}, to show $u=v$ it suffices to show $\trans{p}{\proj2(u)} = \proj2(v)$.
+  But $\trans{p}{\proj2(u)}$ and $\proj2(v)$ are both elements of $P(\proj1(v))$, which is a mere proposition; hence they are equal.
+\end{proof}
+
+For instance, recall that in \PMlinkname{\S 2.4}{24homotopiesandequivalences} we defined
+\[(\eqv A B) \;\defeq\; \sm{f:A\to B} \isequiv (f),\]
+where each type $\isequiv (f)$ was supposed to be a mere proposition.
+It follows that if two equivalences have equal underlying functions, then they are equal as equivalences.
+
+\label{defn:setof}%
+Henceforth, if $P:A\to \type$ is a family of mere propositions (i.e.\ each $P(x)$ is a mere proposition), we may write
+%
+\begin{myeqn}
+  \label{eq:subset}
+  \setof{x:A | P(x)}
+\end{myeqn}
+%
+as an alternative notation for $\sm{x:A} P(x)$.
+(There is no technical reason not to use this notation for arbitrary $P$ as well, but such usage could be confusing due to unintended connotations.)
+If $A$ is a set, we call \eqref{eq:subset} a \define{subset}
+\indexdef{subset}%
+\indexdef{type!subset}%
+of $A$; for general $A$ we might call it a \define{subtype}.
+\indexdef{subtype}%
+We may also refer to $P$ itself as a \emph{subset} or \emph{subtype} of $A$; this is actually more correct, since the type~\eqref{eq:subset} in isolation doesn't remember its relationship to $A$.
+
+\symlabel{membership}
+Given such a $P$ and $a:A$, we may write $a\in P$ or $a\in \setof{x:A | P(x)}$ to refer to the mere proposition $P(a)$.
+If it holds, we may say that $a$ is a \define{member} of $P$.
+\symlabel{subset}
+Similarly, if $\setof{x:A | Q(x)}$ is another subset of $A$, then we say that $P$ is \define{contained}
+\indexdef{containment!of subsets}%
+\indexdef{inclusion!of subsets}%
+in $Q$, and write $P\subseteq Q$, if we have $\prd{x:A}(P(x)\rightarrow Q(x))$.
+
+As further examples of subtypes, we may define the ``subuniverses'' of sets and of mere propositions in a universe \UU:
+\symlabel{setU}\symlabel{propU}
+\begin{align*}
+  \setU &\defeq \setof{A:\UU | \isset(A) },\\
+  \propU &\defeq \setof{A:\UU | \isprop(A) }.
+\end{align*}
+An element of $\setU$ is a type $A:\UU$ together with evidence $s:\isset(A)$, and similarly for $\propU$.
+\PMlinkname{Lemma 3.5.1}{35subsetsandpropositionalresizing#Thmprelem1} implies that $\id[\setU]{(A,s)}{(B,t)}$ is equivalent to $\id[\UU]AB$ (and hence to $\eqv AB$).
+Thus, we will frequently abuse notation and write simply $A:\setU$ instead of $(A,s):\setU$.
+We may also drop the subscript \UU if there is no need to specify the universe in question.
+
+Recall that for any two universes $\UU_i$ and $\UU_{i+1}$, if $A:\UU_i$ then also $A:\UU_{i+1}$.
+Thus, for any $(A,s):\set_{\UU_i}$ we also have $(A,s):\set_{\UU_{i+1}}$, and similarly for $\prop_{\UU_i}$, giving natural maps
+\begin{align}
+  \set_{\UU_i} &\to \set_{\UU_{i+1}}\label{eq:set-up},\\
+  \prop_{\UU_i} &\to \prop_{\UU_{i+1}}.\label{eq:prop-up}
+\end{align}
+The map~\eqref{eq:set-up} cannot be an equivalence, since then we could reproduce the paradoxes\index{paradox} of self-reference that are familiar from Cantorian set theory.
+However, although~\eqref{eq:prop-up} is not automatically an equivalence in the type theory we have presented so far, it is consistent to suppose that it is.
+That is, we may consider adding to type theory the following axiom.
+
+\begin{axiom}[Propositional resizing]
+  \indexsee{axiom!propositional resizing}{propositional resizing}%
+  \indexdef{propositional!resizing}%
+  \indexsee{resizing!propositional}{propositional resizing}%
+  The map $\prop_{\UU_i} \to \prop_{\UU_{i+1}}$ is an equivalence.
+\end{axiom}
+
+We refer to this axiom as \define{propositional resizing},
+since it means that any mere proposition in the universe $\UU_{i+1}$ can be ``resized'' to an equivalent one in the smaller universe $\UU_i$.
+It follows automatically if $\UU_{i+1}$ satisfies \LEM{} (see \PMlinkexternal{Exercise 3.13}{http://planetmath.org/node/87770}).
+We will not assume this axiom in general, although in some places we will use it as an explicit hypothesis.
+It is a form of \emph{impredicativity} for mere propositions, and by avoiding its use, the type theory is said to remain \emph{predicative}.
+\indexsee{impredicativity!for mere propositions}{propositional resizing}%
+\indexdef{mathematics!predicative}%
+
+In practice, what we want most frequently is a slightly different statement: that a universe \UU under consideration contains a type which ``classifies all mere propositions''.
+In other words, we want a type $\Omega:\UU$ together with an $\Omega$-indexed family of mere propositions, which contains every mere proposition up to equivalence.
+This statement follows from propositional resizing as stated above if $\UU$ is not the smallest universe $\UU_0$, since then we can define $\Omega\defeq \prop_{\UU_0}$.
+
+One use for impredicativity is to define power sets.
+It is natural to define the \define{power set}\indexdef{power set} of a set $A$ to be $A\to\propU$; but in the absence of impredicativity, this definition depends
+(even up to equivalence) on the choice of the universe \UU.
+But with propositional resizing, we can define the power set to be
+\symlabel{powerset}%
+\[ \power A \defeq (A\to\Omega),\]
+which is then independent of $\UU$.
+See also \PMlinkname{\S 10.1.4}{1014setisapimathsfwpretopos}.
+
+
+\end{document}

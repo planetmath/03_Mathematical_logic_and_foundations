@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AxiomSystemForPropositionalLogic}
+\pmcreated{2013-03-22 19:31:50}
+\pmmodified{2013-03-22 19:31:50}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{axiom system for propositional logic}
+\pmrecord{13}{42507}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmsynonym{axiom system for classical propositional logic}{AxiomSystemForPropositionalLogic}
+\pmrelated{DeductionTheoremHoldsForClassicalPropositionalLogic}
+\pmrelated{SubstitutionTheoremForPropositionalLogic}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The language of (classical) propositional logic PL$_c$ consists of a set of propositional letters or variables, the symbol $\perp$ (for falsity), together with two symbols for logical connectives $\neg$ and $\to$.  The well-formed formulas (wff's) of PL$_c$ are inductively defined as follows:
+\begin{itemize}
+\item each propositional letter is a wff
+\item $\perp$ is a wff
+\item if $A$ and $B$ are wff's, then $A\to B$ is a wff
+\end{itemize}
+We also use parentheses $($ and $)$ to remove ambiguities.  The other familiar logical connectives may be defined in terms of $\to$: $\neg A$ is $A\to \perp$, $A\lor B$ is the abbreviation for $\neg A \to B$, $A\land B$ is the abbreviation for $\neg (A\to \neg B)$, and $A \leftrightarrow B$ is the abbreviation for $(A\to B)\land (B\to A)$.
+
+The axiom system for PL$_c$ consists of sets of wffs called \emph{axiom schemas} together with a rule of inference.  The axiom schemas are:
+\begin{enumerate}
+\item $A\to (B\to A)$,
+\item $(A\to (B\to C)) \to ((A\to B)\to (A\to C))$,
+\item $(\neg A\to \neg B)\to (B\to A)$,
+\end{enumerate}
+and the rule of inference is modus ponens (MP): from $A\to B$ and $A$, we may infer $B$.
+
+A \emph{deduction} is a finite sequence of wff's $A_1, \ldots, A_n$ such that each $A_i$ is either an instance of one of the axiom schemas above, or as a result of applying rule MP to earlier wff's in the sequence.  In other words, there are $j,k<i$ such that $A_k$ is the wff $A_j \to A_i$.  The last wff $A_n$ in the deduction is called a \emph{theorem} of PL$_c$.  When $A$ is a theorem of PL$_c$, we write $$\vdash_c A \qquad\qquad \mbox{or simply} \qquad\qquad \vdash A.$$
+For example, $\vdash A \to A$, whose deduction is
+\begin{enumerate}
+\item $(A \to ((B\to A) \to A)) \to ((A \to (B\to A)) \to (A \to A))$ by Axiom II,
+\item $A \to ((B \to A) \to A)$ by Axiom I,
+\item $(A \to (B\to A)) \to (A \to A)$ by modus ponens on $2$ to $1$,
+\item $A\to (B\to A)$ by Axiom I,
+\item $A\to A$ by modus ponens on $4$ to $3$.
+\end{enumerate}
+
+More generally, given a set $\Sigma$ of wff's, we write $$\Sigma \vdash A$$ if there is a finite sequence of wff's such that each wff is either an axiom, a member of $\Sigma$, or as a result of applying MP to earlier wff's in the sequence.  An important (meta-)theorem called the deduction theorem, states: if $\Sigma, A \vdash B$, then $\Sigma \vdash A\to B$.  The deduction theorem holds for PL$_c$ (proof \PMlinkname{here}{deductiontheoremholdsforclassicalpropositionallogic})
+
+\textbf{Remark}.  The axiom system above was first introduced by Polish logician Jan \text{\L}ukasiewicz.  Two axiom systems are said to be \emph{deductively equivalent} if every theorem in one system is also a theorem in the other system.  There are many axiom systems for PL$_c$ that are deductively equivalent to \text{\L}ukasiewicz's system.  One such system consists of the first two axiom schemas above, but the third axiom schema is $\neg \neg A \to A$, with MP its sole inference rule.
+
+%%%%%
+%%%%%
+\end{document}

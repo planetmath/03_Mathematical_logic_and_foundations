@@ -1,0 +1,267 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{58IdentityTypesAndIdentitySystems}
+\pmcreated{2013-11-18 3:15:13}
+\pmmodified{2013-11-18 3:15:13}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{5.8 Identity types and identity systems}
+\pmrecord{2}{87681}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bfalse}{{0_{\bool}}}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\btrue}{{1_{\bool}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\htpy}{\sim}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\mentalpause}{\medskip} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\nameless}{\mathord{\hspace{1pt}\underline{\hspace{1ex}}\hspace{1pt}}}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{5.8.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{5.8.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{5.8.\arabic{mathcount}}
+\let\autoref\cref
+\let\nat\N
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+\index{type!identity!as inductive}%
+We now wish to point out that the \emph{identity types}, which play so central a role in homotopy type theory, may also be considered to be defined inductively.
+Specifically, they are an ``inductive family'' with indices, in the sense of \PMlinkname{\S 5.7}{57generalizationsofinductivetypes}.
+In fact, there are \emph{two} ways to describe identity types as an
+inductive family, resulting in the two induction principles described in
+\PMlinkexternal{Chapter 1}{http://planetmath.org/node/87533}, path induction and based path induction.  
+
+In both definitions, the type $A$ is a parameter.
+For the first definition, we inductively define a family $=_A : A\to A\to \type$, with two indices belonging to $A$, by the following constructor:
+\begin{itemize}
+\item for any $a:A$, an element $\refl A : a=_A a$.
+\end{itemize}
+By analogy with the other inductive families, we may extract the induction principle from this definition.
+It states that given any \narrowequation{C:\prd{a,b:A} (a=_A b) \to \type,} along with $d:\prd{a:A} C(a,a,\refl{a})$, there exists \narrowequation{f:\prd{a,b:A}{p:a=_A b} C(a,b,p)} such that $f(a,a,\refl a)\jdeq d(a)$.
+This is exactly the path induction principle for identity types.
+
+For the second definition, we consider one element $a_0:A$ to be a parameter along with $A:\type$, and we inductively define a family $(a_0 =_A \blank):A\to \type$, with \emph{one} index belonging to $A$, by the following constructor:
+\begin{itemize}
+\item an element $\refl{a_0} : a_0 =_A a_0$.
+\end{itemize}
+Note that because $a_0:A$ was fixed as a parameter, the constructor $\refl{a_0}$ does not appear inside the inductive definition as a function, but only an element.
+The induction principle for this definition says that given $C:\prd{b:A} (a_0 =_A b) \to \type$ along with an element $d:C(a_0,\refl{a_0})$, there exists $f:\prd{b:A}{p:a_0 =_A b} C(b,p)$ with $f(a_0,\refl{a_0})\jdeq d$.
+This is exactly the based path induction principle for identity types.
+
+The view of identity types as inductive types has historically caused some confusion, because of the intuition mentioned in \PMlinkname{\S 5.1}{51introductiontoinductivetypes} that all the elements of an inductive type should be obtained by repeatedly applying its constructors.
+For ordinary inductive types such as \bool and \nat, this is the case: we saw in \PMlinkname{}{18thetypeofbooleans#1 } that indeed every element of \bool is either $\bfalse$ or $\btrue$, and similarly one can prove that every element of \nat is either $0$ or a successor.
+
+However, this is \emph{not} true for identity types: there is only one constructor $\refl{}$, but not every path is equal to the constant path.
+More precisely, we cannot prove, using only the induction principle for identity types (either one), that every inhabitant of $a=_A a$ is equal to $\refl a$.
+In order to actually exhibit a counterexample, we need some additional principle such as the univalence axiom --- recall that in \PMlinkname{Example 3.1.9}{31setsandntypes#Thmpreeg6} we used univalence to exhibit a particular path $\bool=_\type\bool$ which is not equal to $\refl{\bool}$.
+
+\index{free!generation of an inductive type}%
+\index{generation!of a type, inductive|(}%
+The point is that, as validated by the study of homotopy-initial algebras, an inductive definition should be regarded as \emph{freely generated} by its constructors.
+Of course, a freely generated structure may contain elements other than its generators: for instance, the free group on two symbols $x$ and $y$ contains not only $x$ and $y$ but also words such as $xy$, $yx^{-1}y$, and $x^3y^2x^{-2}yx$.
+In general, the elements of a free structure are obtained by applying not only the generators, but also the operations of the ambient structure, such as the group operations if we are talking about free groups.
+
+In the case of inductive types, we are talking about freely generated \emph{types} --- so what are the ``operations'' of the structure of a type?
+If types are viewed as like \emph{sets}, as was traditionally the case in type theory, then there are no such operations, and hence we expect there to be no elements in an inductive type other than those resulting from its constructors.
+In homotopy type theory, we view types as like \emph{spaces} or $\infty$-groupoids,%
+\index{.infinity-groupoid@$\infty$-groupoid}
+in which case there are many operations on the \emph{paths} (concatenation, inversion, etc.) --- this will be important in \PMlinkexternal{Chapter 6}{http://planetmath.org/node/87579} --- but there are still no operations on the \emph{objects} (elements).
+Thus, it is still true for us that, e.g., every element of \bool is either $\bfalse$ or $\btrue$, and every element of $\nat$ is either $0$ or a successor.
+
+However, as we saw in \PMlinkexternal{Chapter 2}{http://planetmath.org/node/87569}, viewing types as $\infty$-groupoids entails also viewing functions as functors, and this includes type families $B:A\to\type$.
+Thus, the identity type $(a_0 =_A \blank)$, viewed as an inductive type family, is actually a \emph{freely generated functor} $A\to\type$.
+Specifically, it is the functor $F:A\to\type$ freely generated by one element $\refl{a_0}: F(a_0)$.
+And a functor does have operations on objects, namely the action of the morphisms (paths) of $A$.
+
+In category theory, the \emph{Yoneda lemma}\index{Yoneda!lemma} tells us that for any category $A$ and object $a_0$, the functor freely generated by an element of $F(a_0)$ is the representable functor $\hom_A(a_0,\blank)$.
+Thus, we should expect the identity type $(a_0 =_A \blank)$ to be this representable functor, and this is indeed exactly how we view it: $(a_0 =_A b)$ is the space of morphisms (paths) in $A$ from $a_0$ to $b$.
+
+\index{generation!of a type, inductive|)}
+
+\mentalpause
+
+One reason for viewing identity types as inductive families is to apply the uniqueness principles of \PMlinkname{\S 5.2}{52uniquenessofinductivetypes},\PMlinkname{\S 5.5}{55homotopyinductivetypes}.
+Specifically, we can characterize the family of identity types of a type $A$, up to equivalence, by giving another family of types over $A\times A$ satisfying the same induction principle.
+This suggests the following definitions and theorem.
+
+\indexsee{system, identity}{identity system}%
+\index{identity!system!at a point|(defstyle}%
+
+\begin{defn}\label{defn:identity-systems}
+  Let $A$ be a type and $a_0:A$ an element.
+  \begin{itemize}
+  \item A \define{pointed predicate}
+    \indexdef{predicate!pointed}%
+    \indexdef{pointed!predicate}%
+    over $(A,a_0)$ is a family $R:A\to\type$ equipped with an element $r_0:R(a_0)$.
+  \item For pointed predicates $(R,r_0)$ and $(S,s_0)$, a family of maps $g:\prd{b:A} R(b) \to S(b)$ is \define{pointed} if $g(a_0, r_0)=s_0$.
+    We have
+    \[ \mathsf{ppmap}(R,S) \defeq \sm{g:\prd{b:A} R(b) \to S(b)} (g(a_0, r_0)=s_0).\]
+  \item An \define{identity system at $a_0$}
+    is a pointed predicate $(R,r_0)$ such that for any type family $D:\prd{b:A} R(b) \to \type$ and $d:D(a_0,r_0)$, there exists a function $f:\prd{b:A}{r:R(b)} D(b,r)$ such that $f(a_0,r_0)=d$.
+\end{itemize}
+\end{defn}
+
+\begin{thm}\label{thm:identity-systems}
+  For a pointed predicate $(R,r_0)$, the following are logically equivalent.
+  \begin{enumerate}
+  \item $(R,r_0)$ is an identity system at $a_0$.\label{item:identity-systems1}
+  \item For any pointed predicate $(S,s_0)$, the type $\mathsf{ppmap}(R,S)$ is contractible.\label{item:identity-systems2}
+  \item For any $b:A$, the function $\transfib{R}{\nameless}{r_0} : (a_0 =_A b) \to R(b)$ is an equivalence.\label{item:identity-systems3}
+  \item The type $\sm{b:A} R(b)$ is contractible.\label{item:identity-systems4}
+  \end{enumerate}
+\end{thm}
+
+Note that the equivalences~\ref{item:identity-systems1}$\Leftrightarrow$\ref{item:identity-systems2}$\Leftrightarrow$\ref{item:identity-systems3} are a version of \PMlinkname{Lemma 5.5.4}{55homotopyinductivetypes#Thmprelem1} for identity types $a_0 =_A \blank$, regarded as inductive families varying over one element of $A$.
+Of course,~\ref{item:identity-systems2}--\ref{item:identity-systems4} are mere propositions, so that logical equivalence implies actual equivalence.
+(Condition~\ref{item:identity-systems1} is also a mere proposition, but we will not prove this.)
+
+\begin{proof}
+  First, assume~\ref{item:identity-systems1} and let $(S,s_0)$ be a pointed predicate.
+  Define $D(b,r) \defeq S(b)$ and $d\defeq s_0: S(a_0) \jdeq D(a_0,r_0)$.
+  Since $R$ is an identity system, we have $f:\prd{b:A} R(b) \to S(b)$ with $f(a_0,r_0) = s_0$; hence $\mathsf{ppmap}(R,S)$ is inhabited.
+  Now suppose $(f,f_r),(g,g_r) : \mathsf{ppmap}(R,S)$, and define $D(b,r) \defeq (f(b,r) = g(b,r))$, and let $d \defeq f_r \ct \opp{g_r} : f(a_0,r_0) = s_0 = g(a_0,r_0)$.
+  Then again since $R$ is an identity system, we have $h:\prd{b:A}{r:R(b)} D(b,r)$ such that $h(a_0,r_0) = f_r \ct \opp{g_r}$.
+  By the characterization of paths in $\Sigma$-types and path types, these data yield an equality $(f,f_r) = (g,g_r)$.
+  Hence $\mathsf{ppmap}(R,S)$ is an inhabited mere proposition, and thus contractible; so~\ref{item:identity-systems2} holds.
+
+  Now suppose~\ref{item:identity-systems2}, and define $S(b) \defeq (a_0=b)$ with $s_0 \defeq \refl{a_0}:S(a_0)$.
+  Then $(S,s_0)$ is a pointed predicate, and $\lamu{b:B}{p:a_0=b} \transfib{R}{p}{r} : \prd{b:A} S(b) \to R(b)$ is a pointed family of maps from $S$ to $R$.
+  By assumption, $\mathsf{ppmap}(R,S)$ is contractible, hence inhabited, so there also exists a pointed family of maps from $R$ to $S$.
+  And the composites in either direction are pointed families of maps from $R$ to $R$ and from $S$ to $S$, respectively, hence equal to identities since $\mathsf{ppmap}(R,R)$ and $\mathsf{ppmap}(S,S)$ are contractible.
+  Thus~\ref{item:identity-systems3} holds.
+
+  Now supposing~\ref{item:identity-systems3}, condition~\ref{item:identity-systems4} follows from \PMlinkname{Lemma 3.11.8}{311contractibility#Thmprelem5}, using the fact that $\Sigma$-types respect equivalences (the ``if'' direction of \PMlinkname{Theorem 4.7.7}{47closurepropertiesofequivalences#Thmprethm4}).
+
+  Finally, assume~\ref{item:identity-systems4}, and let $D:\prd{b:A} R(b)\to  \type$ and $d:D(a_0,r_0)$.
+  We can equivalently express $D$ as a family $D':(\sm{b:A} R(b)) \to \type$.
+  Now since $\sm{b:A} R(b)$ is contractible, we have
+  \[p:\prd{u:\sm{b:A} R(b)} (a_0,r_0) = u. \]
+  Moreover, since the path types of a contractible type are again contractible, we have $p((a_0,r_0)) = \refl{(a_0,r_0)}$.
+  Define $f(u) \defeq \transfib{D'}{p(u)}{d}$, yielding $f:\prd{u:\sm{b:A} R(b)} D'(u)$, or equivalently $f:\prd{b:A}{r:R(b)} D(b,r)$.
+  Finally, we have
+  \[f(a_0,r_0) \jdeq \transfib{D'}{p((a_0,r_0))}{d} = \transfib{D'}{\refl{(a_0,r_0)}}{d} = d.\]
+  Thus,~\ref{item:identity-systems1} holds.
+\end{proof}
+
+\index{identity!system!at a point|)}%
+
+We can deduce a similar result for identity types $=_A$, regarded as a family varying over two elements of $A$.
+
+\index{identity!system|(defstyle}%
+
+\begin{defn}
+  An \define{identity system}
+  over a type $A$ is a family $R:A\to A\to \type$ equipped with a function $r_0:\prd{a:A} R(a,a)$ such that for any type family $D:\prd{a,b:A} R(a,b) \to \type$ and $d:\prd{a:A} D(a,a,r_0(a))$, there exists a function $f:\prd{a,b:A}{r:R(b)} D(a,b,r)$ such that $f(a,a,r_0(a))=d(a)$ for all $a:A$.
+\end{defn}
+
+\begin{thm}\label{thm:ML-identity-systems}
+  For $R:A\to A\to\type$ equipped with $r_0:\prd{a:A} R(a,a)$, the following are logically equivalent.
+  \begin{enumerate}
+  \item $(R,r_0)$ is an identity system over $A$.\label{item:MLis1}
+  \item For all $a_0:A$, the pointed predicate $(R(a_0),r_0(a_0))$ is an identity system at $a_0$.\label{item:MLis2}
+  \item For any $S:A\to A\to\type$ and $s_0:\prd{a:A} S(a,a)$, the type
+    \[ \sm{g:\prd{a,b:A} R(a,b) \to S(a,b)} \prd{a:A} g(a,a,r_0(a)) = s_0(a) \]
+    is contractible.\label{item:MLis3}
+  \item For any $a,b:A$, the map $\transfib{R(a)}{\nameless}{r_0(a)} : (a =_A b) \to R(a,b)$ is an equivalence.\label{item:MLis4}
+  \item For any $a:A$, the type $\sm{b:A} R(a,b)$ is contractible.\label{item:MLis5}
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  The equivalence~\ref{item:MLis1}$\Leftrightarrow$\ref{item:MLis2} follows exactly the proof of equivalence between the path induction and based path induction principles for identity types; see \PMlinkname{\S 1.12}{112identitytypes}.
+  The equivalence with~\ref{item:MLis4} and~\ref{item:MLis5} then follows from \PMlinkname{Theorem 5.8.2}{58identitytypesandidentitysystems#Thmprethm1}, while~\ref{item:MLis3} is straightforward.
+\end{proof}
+
+\index{identity!system|)}%
+
+One reason this characterization is interesting is that it provides an alternative way to state univalence and function extensionality.
+\index{univalence axiom}%
+The univalence axiom for a universe \UU says exactly that the type family
+\[ (\eqv{\blank}{\blank}) : \UU\to\UU\to\UU \]
+together with $\idfunc : \prd{A:\UU} (\eqv AA)$ satisfies \PMlinkname{Theorem 5.8.4}{58identitytypesandidentitysystems#Thmprethm2}\ref{item:MLis4}.
+Therefore, it is equivalent to the corresponding version of~\ref{item:MLis1}, which we can state as follows.
+
+\begin{cor}[Equivalence induction]\label{thm:equiv-induction}
+  \index{induction principle!for equivalences}%
+  \index{equivalence!induction}%
+  Given any type family \narrowequation{D:\prd{A,B:\UU} (\eqv AB) \to \type} and function $d:\prd{A:\UU} D(A,A,\idfunc[A])$, there exists \narrowequation{f : \prd{A,B:\UU}{e:\eqv AB} D(A,B,e)} such that $f(A,A,\idfunc[A]) = d(A)$ for all $A:\UU$.
+\end{cor}
+
+In other words, to prove something about all equivalences, it suffices to prove it about identity maps.
+We have already used this principle (without stating it in generality) in \PMlinkname{Lemma 4.1.1}{41quasiinverses#Thmprelem1}.
+
+Similarly, function extensionality says that for any $B:A\to\type$, the type family
+\[ (\blank\htpy\blank) : \Parens{\prd{a:A} B(a)} \to \Parens{\prd{a:A} B(a)} \to \type
+\]
+together with $\lamu{f:\prd{a:A} B(a)}{a:A} \refl{f(a)}$ satisfies \PMlinkname{Theorem 5.8.4}{58identitytypesandidentitysystems#Thmprethm2}\ref{item:MLis4}.
+Thus, it is also equivalent to the corresponding version of~\ref{item:MLis1}.
+
+\begin{cor}[Homotopy induction]\label{thm:htpy-induction}
+  \index{induction principle!for homotopies}%
+  \index{homotopy!induction}%
+  Given any \narrowequation{D:\prd{f,g:\prd{a:A} B(a)} (f\htpy g) \to \type} and $d:\prd{f:\prd{a:A} B(a)} D(f,f,\lam{x}\refl{f(x)})$, there exists
+  %
+  \begin{equation*}
+    k:\prd{f,g:\prd{a:A} B(a)}{h:f\htpy g} D(f,g,h)    
+  \end{equation*}
+  %
+  such that $k(f,f,\lam{x}\refl{f(x)}) = d(f)$ for all $f$.
+\end{cor}
+
+
+\end{document}

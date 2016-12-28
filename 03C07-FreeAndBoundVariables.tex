@@ -1,0 +1,161 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FreeAndBoundVariables}
+\pmcreated{2013-03-22 12:42:57}
+\pmmodified{2013-03-22 12:42:57}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{free and bound variables}
+\pmrecord{24}{33008}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+\pmclassification{msc}{03B10}
+\pmsynonym{occur free}{FreeAndBoundVariables}
+\pmsynonym{occur bound}{FreeAndBoundVariables}
+\pmsynonym{closed}{FreeAndBoundVariables}
+\pmsynonym{open}{FreeAndBoundVariables}
+\pmrelated{Substitutability}
+\pmdefines{free variable}
+\pmdefines{bound variable}
+\pmdefines{free occurrence}
+\pmdefines{bound occurrence}
+\pmdefines{occurs free}
+\pmdefines{occurs bound}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newcommand{\br}{[\![}
+\newcommand{\rb}{]\!]}
+\newcommand{\oq}{\text{``}}
+\newcommand{\cq}{\text{''}}
+
+
+\newcommand{\im}{\mathbf{Im}}
+\newcommand{\dom}{\mathbf{Dom}}
+
+
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\proves}{\vdash}
+\renewcommand{\And}{\wedge}
+\newcommand{\Sup}{\bigwedge}
+\newcommand{\Inf}{\bigvee}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\N}{\mathfrak{N}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\K}{\mathfrak{K}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Def}{\overset{\operatorname{def}}{:=}}
+
+
+
+\newcommand{\spec}{\text{{\bf Spec}}}
+\newcommand{\stab}{\text{{\bf Stab}}}
+\newcommand{\ann}{\text{{\bf Ann}}}
+\newcommand{\irr}{\text{{\bf Irr}}}
+\newcommand{\qt}{\text{{\bf Qt}}}
+\newcommand{\st}{\mathcal{Qt}}
+\newcommand{\ro}{\mathbf{r.o.}}
+
+
+\newcommand{\Endo}{\text{{\bf End}}}
+\newcommand{\mat}{\text{{\bf Mat}}}
+\newcommand{\der}{\text{{\bf Der}}}
+\newcommand{\rad}{\text{{\bf Rad}}}
+\newcommand{\trd}{\text{{\bf tr.d.}}}
+\newcommand{\cl}{\text{{\bf acl}}}
+\newcommand{\Int}{\text{{\bf int}}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\D}{\mathbf{D}}
+
+\newcommand{\del}{\partial}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\aut}{\mathbf{Aut}}
+\newcommand{\height}{\text{\bf Height}}
+\newcommand{\coheight}{\text{\bf Co-height}}
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\inner}[2]{\langle #1|#2\rangle}
+\renewcommand{\r}{{r}}
+\renewcommand{\t}{{t}}
+
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\Matrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 
+\end{array}\right)}
+
+\begin{document}
+\PMlinkescapeword{bound}
+
+In the entry \PMlinkname{first-order language}{TermsAndFormulas}, I have mentioned the use of variables without mentioning what variables really are.  A variable is a symbol that is supposed to range over the universe of discourse.  Unlike a constant, it has no fixed value.
+
+There are two ways in which a variable can occur in a formula: {\bf free} or {\bf bound}.  Informally, a variable is said to occur {\em free} in a formula $\varphi$ if and only if it is not within the ``scope'' of a quantifier.  For instance, $x$ occurs free in $\varphi$ if and only if it occurs in it as a symbol, and no subformula of $\varphi$ is of the form $\exists x.\psi$.  Here the $x$ after the $\exists$ is to be taken literally : it is $x$ and no other symbol.
+
+\subsubsection*{Variables in Terms}
+
+To formally define free (resp. bound) variables in a formula, we start by defining variables occurring in terms, which can be easily done inductively: let $\t$ be a term (in a first-order language), then $\operatorname{Var}(t)$ is
+\begin{itemize}
+\item if $t$ is a variable $v$, then $\operatorname{Var}(t)$ is $\lbrace v\rbrace$
+\item if $t$ is $f(t_1,\ldots, t_n)$, where $f$ is a function symbol of arity $n$, and each $t_i$ is a term, then $\operatorname{Var}(t)$ is the union of all the $\operatorname{Var}(t_i)$.
+\end{itemize}
+
+\subsubsection*{Free Variables}
+
+Now, let $\varphi$ be a formula.  Then the set $\operatorname{FV}(\varphi)$ of \emph{free variables} of $\varphi$ is now defined inductively as follows:
+\begin{itemize}
+\item if $\varphi$ is $t_1=t_2$, then $\operatorname{FV}(\varphi)$ is $\operatorname{Var}(t_1) \cup \operatorname{Var}(t_2)$,
+\item if $\varphi$ is $R(t_1,\ldots,t_n)$, then $\operatorname{FV}(\varphi)$ is $\operatorname{Var}(t_1) \cup \cdots \cup \operatorname{Var}(t_n)$
+\item if $\varphi$ is $\neg \psi$, then $\operatorname{FV}(\varphi)$ is $\operatorname{FV}(\psi)$
+\item if $\varphi$ is $\psi \vee \sigma$, then $\operatorname{FV}(\varphi)$ is $\operatorname{FV}(\psi) \cup \operatorname{FV}(\sigma)$, and
+\item if $\varphi$ is $\exists x \psi$, then $\operatorname{FV}(\varphi)$ is $\operatorname{FV}(\psi)-\lbrace x \rbrace$.
+\end{itemize}
+
+If $\operatorname{FV}(\varphi) \ne \varnothing$, it is customary to write $\varphi$ as $\varphi(x_1,\ldots, x_n),$ in order to stress the fact that there are some free variables left in $\varphi$, and that those free variables are among $x_1,\ldots, x_n$.  When $x_1, \ldots, x_n$ appear free in $\varphi$, then they are considered as {\bf place-holders}, and it is understood that we will have to supply ``values'' for them, when we want to determine the truth of $\varphi$. If $\operatorname{FV}(\varphi)=\varnothing$, then $\varphi$ is called a {\bf sentence}.  Another name for a sentence is a \emph{closed formula}.  A formula that is not closed is said to be \emph{open}.
+
+\subsubsection*{Bound Variables}
+
+Bound variables in formulas are inductively defined as well: let $\varphi$ be a formula.  Then the set $\operatorname{BV}(\varphi)$ of \emph{bound variables} of $\varphi$
+\begin{itemize}
+\item if $\varphi$ is an atomic formula, then $\operatorname{BV}(\varphi)$ is $\varnothing$, the empty set,
+\item if $\varphi$ is $\neg \psi$, then $\operatorname{BV}(\varphi)$ is $\operatorname{BV}(\psi)$
+\item if $\varphi$ is $\psi \vee \sigma$, then $\operatorname{BV}(\varphi)$ is $\operatorname{BV}(\psi) \cup \operatorname{BV}(\sigma)$, and
+\item if $\varphi$ is $\exists x \psi$, then $\operatorname{BV}(\varphi)$ is $\operatorname{BV}(\psi) \cup \lbrace x \rbrace$.
+\end{itemize}
+Thus, a variable $x$ is bound in $\varphi$ if and only if $\exists x\psi$ is a subformula of $\varphi$ for some formula $\psi$.
+
+The set of all variables occurring in a formula $\varphi$ is denoted $\operatorname{Var}(\varphi)$, and is $\operatorname{FV}(\varphi)\cup \operatorname{BV}(\varphi)$.
+
+Note that it is possible for a variable to be both free and bound.  In other words, $\operatorname{FV}(\varphi)$ and $\operatorname{BV}(\varphi)$ are not necessarily disjoint.  For example, consider the following formula $\varphi$ of the lenguage $\{+,\cdot,0,1\}$ of ring theory :
+\begin{displaymath}
+x+1=0\And\exists x(x+y=1)
+\end{displaymath}
+Then $\operatorname{FV}(\varphi)=\lbrace x,y\rbrace$ and $\operatorname{BV}(\varphi)=\lbrace x\rbrace$: the variable $x$ occurs both free and bound.  However, the following lemma tells us that we can always avoid this situation :
+
+{\bf Lemma 1. }
+It is possible to rename the bound variables without affecting the truth of a formula.  In other words, if $\varphi=\exists x(\psi)$, or $\forall x(\psi)$, and $z$ is a variable not occurring in $\psi$, then $\proves \varphi\Iff\exists z(\psi[z/x])$, where $\psi[z/x]$ is the formula obtained from $\psi$ by replacing every free occurrence of $x$ by $z$.
+
+As a result of the lemma above, we see that every formula is logically equivalent to a formula $\varphi$ such that $\operatorname{FV}(\varphi)\cap \operatorname{BV}(\varphi)=\varnothing$.
+
+%%%%%
+%%%%%
+\end{document}

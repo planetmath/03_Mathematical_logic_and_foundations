@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{KleeneStarOfAnAutomaton}
+\pmcreated{2013-03-22 18:04:06}
+\pmmodified{2013-03-22 18:04:06}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Kleene star of an automaton}
+\pmrecord{16}{40601}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $A=(S,\Sigma,\delta,I,F)$ be an automaton.  Define the Kleene star $A^*$ of $A$ as an \PMlinkname{automaton with $\epsilon$-transitions}{AutomatonWithEpsilonTransitions} $(S_1,\Sigma,\delta_1, I_1,F_1,\epsilon)$ where
+\begin{enumerate}
+\item $S_1=S\stackrel{\cdot}{\cup} \lbrace q\rbrace$ (we either assume that $q$ is not a symbol in $\Sigma$, or we take the disjoint union)
+\item $\delta_1$ is a function from $S_1\times (\Sigma\stackrel{\cdot}{\cup} \lbrace \epsilon\rbrace)$ to $P(S_1)$ given by:
+\begin{itemize}
+\item $\delta_1(s,\epsilon):=I$ if $s=q$, $\delta_1(s,\epsilon):=\lbrace q\rbrace$ for any $s\in F$,
+\item $\delta_1(s,\alpha):=\delta(s,\alpha)$, for any $(s,\alpha)\in S\times \Sigma$, and 
+\item $\delta_1(s,\alpha):=\varnothing$ otherwise.
+\end{itemize}
+\item $I_1=F_1=\lbrace q\rbrace$
+\end{enumerate}
+Basically, we throw into $A^*$ all transitions in $A$.  In addition, we add to $A^*$ transitions taking $s$ to any initial states of $A$, as well as transitions taking any final states of $A$ to $s$.  Visually, the state diagram $G_{A^*}$ of $A^*$ is obtained by adding a node $q$ to the state diagram $G_A$ of $A$, and making $q$ both the start and the final node of $G_{A^*}$.  Furthermore, add edges from $q$ to the start nodes of $G_A$, and edges from the final nodes of $G_A$ to $q$, and let $\epsilon$ be the label for all of the newly added edges.
+\begin{prop} $L(A)^*=L(A^*)$. \end{prop}
+\begin{proof}  Clearly $\lambda \in L(A)*$.  In addition, since $I_1=F_1$, $\lambda \in L(A^*_{\epsilon})=L(A^*)$.  This proves the case when the word is empty.  Now, we move to the case when the word has non-zero length.
+
+\begin{itemize}
+\item $L(A)^*\subseteq L(A^*)$.
+
+Suppose $a=a_1a_2\cdots a_n$ is a word such that $a_i\in L(A)$, then we claim that $b=b_1b_2\cdots b_n$, where $b_i=\epsilon a_i \epsilon$, is accepted by $A^*_{\epsilon}$.  This can be proved by induction on $n$: 
+\begin{enumerate}
+\item First, $n=1$.  Then $$\delta_1(q, b_1) = \delta_1(\delta_1(q, \epsilon), a_1\epsilon) = \delta_1(I,a_1\epsilon) = \delta_1(\delta_1(I,a_1),\epsilon).$$  Since $a_1$ is accepted by $A$, $\delta_1(I,a_1)=\delta(I,a_1)$ contains an accepting state $s\in F$, so that $$q\in \delta_1(s,\epsilon)\subseteq \delta_1( \delta_1(I,a_1), \epsilon).$$  Hence $b_1$ is accepted by $A^*_{\epsilon}$.  
+\item Next, suppose that given $b=b_1\cdots b_n$, the subword $b_1 \cdots b_{n-1}$ (induction step) is accepted by $A^*_{\epsilon}$.  This means that $q\in \delta_1 (q, b_1 \cdots b_{n-1})$, so that $$\delta_1(q, b_n) \subseteq \delta_1(\delta_1(q, b_1 \cdots b_{n-1} ), b_n) = \delta_1(q, b_1 \cdots b_n).$$  But $\delta_1(q,b_n)$ contains $q$ as was shown in step 1 above.  As a result, $b_1 \cdots b_n $ is accepted by $A^*_{\epsilon}$.  
+\end{enumerate}
+This shows that $L(A)^*\subseteq L(A^*)$.
+\item $L(A^*)\subseteq L(A)^*$.
+
+Suppose now that $a$ is a word over $\Sigma$ accepted by $A^*$.  This means that, for some $i_j$, $j=0,1,\ldots ,n$, the word $$b:=\epsilon^{i_0} a_1 \epsilon^{i_1} \cdots \epsilon^{i_{n-1}} a_n \epsilon^{i_n}$$ is accepted by $A^*_{\epsilon}$, where each $a_j$ is a word over $\Sigma$ with $a=a_1\cdots a_n$.  We want to show that each $a_j$ is accepted by $A$.
+
+The main thing is to notice is that if $q\in \delta_1(J,\epsilon^i)$ and $J\subseteq S$, where $i$ is a positive integer, then $J$ must contain a state in $F$.  Otherwise, $J\subseteq S-F$, so that $\delta_1(J,\epsilon)=\varnothing$, and we must have $\delta_1(J,\epsilon^i) = \delta_1(\delta_1(J,\epsilon),\epsilon^{i-1}) = \delta_1(\varnothing, \epsilon^{i-1}) =\varnothing$.
+
+Set $J = \delta_1(q,\epsilon^{i_0} a_1 \epsilon^{i_1} \cdots \epsilon^{i_{n-1}} a_n)$ and $K=\delta_1(q,\epsilon^{i_0} a_1 \epsilon^{i_1} \cdots \epsilon^{i_{n-1}})$.  Then $J = \delta_1(K,a_n) = \delta(K,a_n) \subseteq S$.  Furthermore, by assumption $q\in \delta_1(q,b)=\delta_1(J, \epsilon^{i_n})$.  Therefore, $J$ must contain a state in $F$.  Thus, $a_n$ is accepted by $A$.  The fact that the remaining $a_i$'s are accepted by $A$ is proved inductively.
+
+This shows that $L(A^*)\subseteq L(A)^*$.
+\end{itemize}
+This completes the proof.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

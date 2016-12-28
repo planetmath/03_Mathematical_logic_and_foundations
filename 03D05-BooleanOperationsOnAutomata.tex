@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{BooleanOperationsOnAutomata}
+\pmcreated{2013-03-22 18:03:09}
+\pmmodified{2013-03-22 18:03:09}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Boolean operations on automata}
+\pmrecord{8}{40578}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmdefines{complement of an automaton}
+\pmdefines{union of automata}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A Boolean operation is any one of the three set-theoretic operations: union, intersection, and complementation.  Boolean operations on automata are operations defined on automata resembling those from set theory.
+
+\subsubsection*{Union of Two Automata}
+If $A_1=(S_1,\Sigma,\delta_1,I_1,F_1)$ and $A_2=(S_2,\Sigma,\delta_2,I_2,F_2)$.  Let $S,I,F$ be the disjoint unions of $S_1$ and $S_2$, $I_1$ and $I_2$, $F_1$ and $F_2$ respectively.  For any $(s,a)\in S\times \Sigma$, define $\delta$ to be 
+
+\begin{displaymath}
+\delta(s,a):= \left\{
+\begin{array}{ll}
+\delta_1(s,a) & \textrm{if }s\in S_1, \\
+\delta_2(s,a) & \textrm{if }s\in S_2.
+\end{array}
+\right.
+\end{displaymath}
+
+The automaton $A=(S,\Sigma,\delta,I,F)$ is called the \emph{union} of $A_1$ and $A_2$, and is denoted by $A_1 \cup A_2$.  Intuitively, we take the disjoint union of the state diagrams of $A_1$ and $A_2$, and let it be the state diagram of $A$.
+
+It is easy to see that $L(A_1\cup A_2)=L(A_1)\cup L(A_2)$, and that $A_1\cup A_2$ is equivalent to $A_2\cup A_1$.
+
+If only one starting state is required, one can modify the definition of $A_1\cup A_2$ by adding a new state $q$ and setting it as the new start state, then adding an edge from $q$ to each of the states in $I$ with label $\lambda$.  The modified $A_1\cup A_2$ is equivalent to the original $A_1\cup A_2$.  Furthermore, if $A_1$ and $A_2$ are DFA's, so is $A_1\cup A_2$.
+
+\subsubsection*{Complement of an Automaton}
+
+Let $A=(S,\Sigma,\delta,I,F)$ be an automaton.  We define the complement $A'$ of $A$ as the quintuple $$(S,\Sigma,\delta,I,F')$$ where $F'=S-F$.  It is clear that $A'$ is a well-defined automaton.  Additionally, $A$ is finite iff $A'$ is, and $A$ is deterministic iff $A'$ is.  
+
+Visually, the state diagram of $A'$ is a directed graph whose final nodes are exactly the non-final nodes of $A$.
+
+It is obvious that $(A')'=A$ and that $A$ is a DFA iff $A'$ is.
+
+Suppose $A$ is a DFA.  Then it is easy to see that a string $a\in \Sigma^*$ is accepted by $A'$ precisely when $a$ is rejected by $A$.  If $L(A)$ denotes the language consisting of all words accepted by $A$.  Then $$L(A')=L(A)',$$ where $L(A)'=\Sigma^*-L(A)$, the complement of $L(A)$ in $\Sigma^*$.
+
+However, because it is possible that for some $(s,a)$, $\delta(s,a)=\varnothing$, the language accepted by an arbitrary automaton $A'$ is in general not $L(A)'$.
+
+\subsubsection*{Intersection of Two Autamata}
+
+One may define $A_1\cap A_2$ to be $(A_1'\cup A_2')'$.  However, defined this way, $$L(A_1\cap A_2)=L(A_1)\cap L(A_2)$$ is in general not true.
+
+The way to ensure that the equation above always holds is to define $A_1\cap A_2$ via the product of $A_1$ and $A_2$.  For more details, see the entry on product of automata.
+
+If both $A_1$ and $A_2$ are DFA's, then $A_1\cap A_2$ is equivalent to $(A_1'\cup A_2')'$.
+%%%%%
+%%%%%
+\end{document}

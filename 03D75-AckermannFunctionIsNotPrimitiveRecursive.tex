@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AckermannFunctionIsNotPrimitiveRecursive}
+\pmcreated{2013-03-22 19:07:29}
+\pmmodified{2013-03-22 19:07:29}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Ackermann function is not primitive recursive}
+\pmrecord{11}{42019}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D75}
+\pmrelated{AckermannFunctionIsTotalRecursive}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we show that the Ackermann function $A(x,y)$, given by $$A(0,y)=y+1, \qquad A(x+1,0)=A(x,1), \qquad A(x+1,y+1) = A(x,A(x+1,y))$$
+is not primitive recursive.  We will utilize the properties of $A$ listed in \PMlinkname{this entry}{PropertiesOfAckermannFunction}.
+
+The key to showing that $A$ is not primitive recursive, is to find a properties shared by all primitive recursive functions, but not by $A$.  One such property is in showing that $A$ in some way ``grows'' faster than any primitive recursive function.  This is formalized by the notion of ``majorization'', which is explained \PMlinkname{here}{SuperexponentiationIsNotElementary}.
+
+\begin{prop} Let $\mathcal{A}$ be the set of all functions majorized by $A$.  Then $\mathcal{PR} \subseteq \mathcal{A}$.  \end{prop}
+\begin{proof} We break this up into three parts: show all initial functions are in $\mathcal{A}$, show $\mathcal{A}$ is closed under functional composition, and show $\mathcal{A}$ is closed under primitive recursion.  The proof is completed by realizing that $\mathcal{PR}$ is the smallest set satisfying the three conditions.
+
+In the proofs below, $\boldsymbol{x}$ denotes some tuple of non-negative integers $(x_1,\ldots,x_n)$ for some $n$, and $x = \max\lbrace x_1,\ldots,x_n\rbrace$.  Likewise for $\boldsymbol{y}$ and $y$.
+\begin{enumerate}
+\item We show that the zero function, the successor function, and the projection functions are in $\mathcal{A}$.
+\begin{itemize}
+\item $z(n)=0 < n+1=A(0,n)$, so $z\in \mathcal{A}$.
+\item $s(n)=n+1 < n+2 = A(1,n)$, so $s\in \mathcal{A}$.
+\item $p_m^k(x_1,\ldots, x_k)=x_m \le x < x+1 = A(0,x)$, so $p_m^k \in \mathcal{A}$.
+\end{itemize}
+\item Next, suppose $g_1, \ldots, g_m$ are $k$-ary, and $h$ is $m$-ary, and that each $g_i$, and $h$ are in $\mathcal{A}$.  This means that $g_i(\boldsymbol{x}) < A(r_i,x)$, and $h(\boldsymbol{y}) < A(s,y)$.  Let $$f=h(g_1,\ldots,g_m), \quad\mbox{and}\quad g_j(\boldsymbol{x}) = \max \lbrace g_i(\boldsymbol{x}) \mid i=1,\ldots, m \rbrace.$$  Then $f(\boldsymbol{x}) < A(s,g_j(\boldsymbol{x})) < A(s, A(r_j, x)) < A(s+ r_j+2,x)$, showing that $f\in \mathcal{A}$.
+\item Finally, suppose $g$ is $k$-ary and $h$ is $(k+2)$-ary, and that $g,h\in \mathcal{A}$.  This means that $g(\boldsymbol{x})< A(r,x)$ and $h(\boldsymbol{y}) < A(s,y)$.   We want to show that $f$, defined by primitive recursion via functions $g$ and $h$, is in $\mathcal{A}$.
+
+We first prove the following claim: $$f(\boldsymbol{x},n)<A(q,n+x), \quad \mbox{for some }q\mbox{ not depending on }x\mbox{ and }n.$$
+
+Pick $q=1+\max \lbrace r,s\rbrace$, and induct on $n$.  First, $f(\boldsymbol{x},0) = g(\boldsymbol{x}) < A(r,x) <  A(q,x)$.  Next, suppose $f(\boldsymbol{x},n)< A(q,n+x)$.  Then $f(\boldsymbol{x},n+1) = h(\boldsymbol{x},n, f(\boldsymbol{x},n)) < A(s, z)$, where $z=\max \lbrace x,n, f(\boldsymbol{x},n)\rbrace$.  By the induction hypothesis, together with the fact that $\max\lbrace x,n\rbrace \le n+x < A(q,n+x)$, we see that $z<A(q,n+x)$.  Thus, $f(\boldsymbol{x},n+1) < A(s,z) < A(s,A(q,n+x)) \le A(q-1,A(q,n+x)) = A(q,n+1+x)$, proving the claim.
+
+To finish the proof, let $z=\max\lbrace x,y\rbrace$.  Then, by the claim, $f(\boldsymbol{x},y) < A(q,x+y) \le A(q,2z) < A(q,2z+3) = A(q,A(2,z))=A(q+4,z)$, showing that $f\in \mathcal{A}$.
+\end{enumerate}
+Since $\mathcal{PR}$ is by definition the smallest set containing the initial functions, and closed under composition and primitive recursion, $\mathcal{PR}\subseteq \mathcal{A}$.
+\end{proof}
+
+As a corollary, we have
+\begin{cor} The Ackermann function $A$ is not primitive recursive. \end{cor}
+\begin{proof} Otherwise, $A\in \mathcal{A}$, which is impossible.  \end{proof}
+%%%%%
+%%%%%
+\end{document}

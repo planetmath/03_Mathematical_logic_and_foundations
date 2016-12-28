@@ -1,0 +1,165 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{33MerePropositions}
+\pmcreated{2013-11-17 18:59:43}
+\pmmodified{2013-11-17 18:59:43}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{3.3 Mere propositions}
+\pmrecord{3}{87650}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\newcommand{\isprop}{\ensuremath{\mathsf{isProp}}}
+\newcommand{\isset}{\ensuremath{\mathsf{isSet}}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\mapdep}[2]{\ensuremath{\mapdepfunc{#1}\mathopen{}\left(#2\right)\mathclose{}}\xspace}
+\newcommand{\mapdepfunc}[1]{\ensuremath{\mathsf{apd}_{#1}}\xspace} 
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{3.3.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{3.3.\arabic{mathcount}}
+\let\apd\mapdep
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{logic!of mere propositions|(}%
+\index{mere proposition|(defstyle}%
+\indexsee{proposition!mere}{mere proposition}%
+We have seen that the propositions-as-types logic has both good and bad properties.
+Both have a common cause: when types are viewed as propositions, they can contain more information than mere truth or falsity, and all ``logical'' constructions on them must respect this additional information.
+This suggests that we could obtain a more conventional logic by restricting attention to types that do \emph{not} contain any more information than a truth value, and only regarding these as logical propositions.
+
+Such a type $A$ will be ``true'' if it is inhabited, and ``false'' if its inhabitation yields a contradiction (i.e.\ if $\neg A \jdeq (A\to\emptyt)$ is inhabited).
+\index{inhabited type}%
+What we want to avoid, in order to obtain a more traditional sort of logic, is treating as logical propositions those types for which giving an element of them gives more information than simply knowing that the type is inhabited.
+For instance, if we are given an element of \bool, then we receive more information than the mere fact that \bool contains some element.
+Indeed, we receive exactly \emph{one bit}
+\index{bit}%
+more information: we know \emph{which} element of \bool we were given.
+By contrast, if we are given an element of \unit, then we receive no more information than the mere fact that \unit contains an element, since any two elements of \unit are equal to each other.
+This suggests the following definition.
+
+\begin{defn}\label{defn:isprop}
+  A type $P$ is a \define{mere proposition}
+  if for all $x,y:P$ we have $x=y$.
+\end{defn}
+
+Note that since we are still doing mathematics \emph{in} type theory, this is a definition \emph{in} type theory, which means it is a type --- or, rather, a type family.
+Specifically, for any $P:\type$, the type $\isprop(P)$ is defined to be
+\[ \isprop(P) \defeq \prd{x,y:P} (x=y). \]
+Thus, to assert that ``$P$ is a mere proposition'' means to exhibit an inhabitant of $\isprop(P)$, which is a dependent function connecting any two elements of $P$ by a path.
+The continuity/naturality of this function implies that not only are any two elements of $P$ equal, but $P$ contains no higher homotopy either.
+
+\begin{lem}\label{thm:inhabprop-eqvunit}
+  If $P$ is a mere proposition and $x_0:P$, then $\eqv P \unit$.
+\end{lem}
+\begin{proof}
+  Define $f:P\to\unit$ by $f(x)\defeq \ttt$, and $g:\unit\to P$ by $g(u)\defeq x_0$.
+  The claim follows from the next lemma, and the observation that \unit is a mere proposition by \PMlinkname{Theorem 2.8.1}{28theunittype#S8.Thmthm1}.
+\end{proof}
+
+\begin{lem}\label{lem:equiv-iff-hprop}
+  If $P$ and $Q$ are mere propositions such that $P\to Q$ and $Q\to P$, then $\eqv P Q$.
+\end{lem}
+\begin{proof}
+  Suppose given $f:P\to Q$ and $g:Q\to P$.
+  Then for any $x:P$, we have $g(f(x))=x$ since $P$ is a mere proposition.
+  Similarly, for any $y:Q$ we have $f(g(y))=y$ since $Q$ is a mere proposition; thus $f$ and $g$ are quasi-inverses.
+\end{proof}
+
+That is, as promised in \PMlinkname{\S 1.11}{111propositionsastypes}, if two mere propositions are logically equivalent, then they are equivalent.
+
+In homotopy theory, a space that is homotopy equivalent to \unit is said to be \emph{contractible}.
+Thus, any mere proposition which is inhabited is contractible (see also \PMlinkname{\S 3.11}{311contractibility}).
+On the other hand, the uninhabited type \emptyt is also (vacuously) a mere proposition.
+In classical\index{mathematics!classical} mathematics, at least, these are the only two possibilities.
+
+Mere propositions are also called \emph{subterminal objects} (if thinking categorically), \emph{subsingletons} (if thinking set-theoretically), or \emph{h-propositions}.
+\indexsee{object!subterminal}{mere proposition}%
+\indexsee{subterminal object}{mere proposition}%
+\indexsee{subsingleton}{mere proposition}%
+\indexsee{h-proposition}{mere proposition}
+The discussion in \PMlinkname{\S 3.1}{31setsandntypes} suggests we should also call them \emph{$(-1)$-types}; we will return to this in \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580}.
+The adjective ``mere'' emphasizes that although any type may be regarded as a proposition (which we prove by giving an inhabitant of it), a type that is a mere proposition cannot usefully be regarded as any \emph{more} than a proposition: there is no additional information contained in a witness of its truth.
+
+Note that a type $A$ is a set if and only if for all $x,y:A$, the identity type $\id[A]xy$ is a mere proposition.
+On the other hand, by copying and simplifying the proof of \PMlinkname{Lemma 3.1.8}{31setsandntypes#Thmprelem1}, we have:
+
+\begin{lem}\label{thm:prop-set}
+  Every mere proposition is a set.
+\end{lem}
+\begin{proof}
+  Suppose $f:\isprop(A)$; thus for all $x,y:A$ we have $f(x,y):x=y$.  Fix $x:A$
+  and define $g(y)\defeq f(x,y)$.   Then for any $y,z:A$ and $p:y=z$ we have $\apd
+  g p : \trans{p}{g(y)}={g(z)}$.  Hence by \PMlinkname{Lemma 1}{211identitytype#Thmlem1}, we have
+  $g(y)\ct p = g(z)$, which is to say that $p=\opp{g(y)}\ct g(z)$.  Thus, for
+  any $p,q:x=y$, we have $p = \opp{g(x)}\ct g(y) = q$.
+\end{proof}
+
+In particular, this implies:
+
+\begin{lem}\label{thm:isprop-isprop}\label{thm:isprop-isset}
+  For any type $A$, the types $\isprop(A)$ and $\isset(A)$ are mere propositions.
+\end{lem}
+\begin{proof}
+  Suppose $f,g:\isprop(A)$.  By function extensionality, to show $f=g$ it
+  suffices to show $f(x,y)=g(x,y)$ for any $x,y:A$.  But $f(x,y)$ and $g(x,y)$
+  are both paths in $A$, and hence are equal because, by either $f$ or $g$, we
+  have that $A$ is a mere proposition, and hence by \PMlinkname{Lemma 3.3.4}{33merepropositions#Thmprelem3} is a
+  set.  Similarly, suppose $f,g:\isset(A)$, which is to say that for all
+  $a,b:A$ and $p,q:a=b$, we have $f(a,b,p,q):p=q$ and $g(a,b,p,q):p=q$.  But by then since $A$ is a set (by
+  either $f$ or $g$), and hence a 1-type, it follows that $f(a,b,p,q)=g(a,b,p,q)$; hence $f=g$ by
+  function extensionality.
+\end{proof}
+
+We have seen one other example so far: condition~\PMlinkname{(3.)}{24homotopiesandequivalences#I1.i3} in \PMlinkname{\S 2.4}{24homotopiesandequivalences} asserts that for any function $f$, the type $\isequiv (f)$ should be a mere proposition.
+
+\index{logic!of mere propositions|)}%
+\index{mere proposition|)}%
+
+
+\end{document}

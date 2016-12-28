@@ -1,0 +1,427 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{73Truncations}
+\pmcreated{2013-11-21 15:00:46}
+\pmmodified{2013-11-21 15:00:46}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{7.3 Truncations}
+\pmrecord{4}{87700}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\base}{\ensuremath{\mathsf{base}}\xspace}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\decode}{\ensuremath{\mathsf{decode}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\dpath}[4]{#3 =^{#1}_{#2} #4}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\encode}{\ensuremath{\mathsf{encode}}\xspace}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\ext}{\mathsf{ext}}
+\newcommand{\extend}[1]{\extendsmb(#1)}
+\newcommand{\function}[4]{\left\{\begin{array}{rcl}#1 &      \longrightarrow & #2 \\ #3 & \longmapsto & #4 \end{array}\right.}
+\newcommand{\htpy}{\sim}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\Map}{\mathsf{Map}}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\nameless}{\mathord{\hspace{1pt}\underline{\hspace{1ex}}\hspace{1pt}}}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\tprojf}[2][]{|\blank|_{#2}^{#1}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\Trunc}[2]{\Bigl\Vert #2\Bigr\Vert_{#1}}
+\newcommand{\truncf}[1]{\Vert \blank \Vert_{#1}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttrunc}[2]{\bigl\Vert #2\bigr\Vert_{#1}}
+\newcommand{\typele}[1]{\ensuremath{{#1}\text-\mathsf{Type}}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{7.3.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{7.3.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{7.3.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{7.3.\arabic{mathcount}}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\extendsmb\ext
+\let\type\UU
+\makeatother
+
+\begin{document}
+\indexsee{n-truncation@$n$-truncation}{truncation}%
+\index{truncation!n-truncation@$n$-truncation|(defstyle}%
+
+In \PMlinkname{\S 3.7}{37propositionaltruncation} we introduced the propositional truncation, which makes the ``best approximation'' of a type that is a mere
+proposition, i.e.\ a $(-1)$-type.
+In \PMlinkname{\S 6.9}{69truncations} we constructed this truncation as a higher inductive type, and gave one way to generalize it to a
+0-truncation.
+We now explain a better generalization of this, which truncates any type into an $n$-type for any $n\geq -2$; in classical homotopy theory this would be called its \define{$n^{\mathrm{th}}$ Postnikov section}.\index{Postnikov tower}
+
+The idea is to make use of \PMlinkname{}{72uniquenessofidentityproofsandhedbergstheorem# utoref}, which states that $A$ is an $n$-type just when $\Omega^{n+1}(A,a)$
+\index{loop space!iterated}%
+is contractible for
+all $a:A$, and \PMlinkname{Lemma 6.5.4}{65suspensions#Thmprelem3}, which implies that
+\narrowequation{\Omega^{n+1}(A,a) \eqvsym \Map_{*}(\Sn^{n+1},(A,a)),} where $\Sn^{n+1}$ is equipp\-ed with some basepoint which we may as well call \base.
+However, contractibility of $\Map_*(\Sn^{n+1},(A,a))$ is something that we can ensure directly by giving path constructors.
+
+We might first of all try to define $\trunc nA$ to be generated by a function $\tprojf n : A \to \trunc n A$, together with for each
+$r:\Sn^{n+1} \to \trunc n A$ and each $x:\Sn^{n+1}$, a path $s_r(x):r(x) = r(\base)$.
+%
+But this does not quite work, for the same reason that \PMlinkname{Remark 6.7.1}{67hubsandspokes#Thmprermk1} fails.
+\index{hub and spoke}%
+Instead, we use the full ``hub and spoke'' construction as in \PMlinkname{\S 6.7}{67hubsandspokes}.
+
+Thus, for $n\ge -1$, we take $\trunc nA$ to be the higher inductive type generated by:
+\begin{itemize}
+\item a function $\tprojf n : A \to \trunc n A$,
+\item for each $r:\Sn^{n+1} \to \trunc n A$, a \emph{hub} point $h(r):\trunc n A$, and
+\item for each $r:\Sn^{n+1} \to \trunc n A$ and each $x:\Sn^{n+1}$, a \emph{spoke} path $s_r(x):r(x) = h(r)$.
+\end{itemize}
+
+\noindent
+The existence of these constructors is now enough to show:
+
+\begin{lem}
+  $\trunc n A$ is an $n$-type.
+\end{lem}
+\begin{proof}
+  By \PMlinkname{}{72uniquenessofidentityproofsandhedbergstheorem# utoref}, it suffices to show that $\Omega ^{n+1}(\trunc nA,b)$ is contractible for all $b:\trunc nA$, which by
+\PMlinkname{Lemma 6.5.4}{65suspensions#Thmprelem3} is equivalent to \narrowequation{\Map_*(\Sn^{n+1},(\trunc nA,b)).}
+  As center of contraction for the latter, we choose the function $c_b:\Sn^{n+1} \to \trunc nA$ which is constant at $b$, together with
+$\refl b : c_b(\base) = b$.
+
+  Now, an arbitrary element of $\Map_*(\Sn^{n+1},(\trunc nA,b))$ consists of a map $r:\Sn^{n+1} \to \trunc n A$ together with a path
+$p:r(\base)=b$.
+  By function extensionality, to show $r = c_b$ it suffices to give, for each $x:\Sn^{n+1}$, a path $r(x)=c_b(x) \jdeq b$.
+  We choose this to be the composite $s_r(x) \ct \opp{s_r(\base)} \ct p$, where $s_r(x)$ is the spoke at $x$.
+
+
+  Finally, we must show that when transported along this equality $r=c_b$, the path $p$ becomes $\refl b$.
+  By transport in path types, this means we need
+  \[\opp{(s_r(\base) \ct \opp{s_r(\base)} \ct p)} \ct p = \refl b.\]
+  But this is immediate from path operations.
+\end{proof}
+
+(This construction fails for $n=-2$, but in that case we can simply define $\trunc{-2}{A}\defeq \unit$ for all $A$.
+From now on we assume $n\ge -1$.)
+
+\index{induction principle!for truncation}%
+To show the desired universal property of the $n$-truncation, we need the induction principle.
+We extract this from the constructors in the usual way; it says that given $P:\trunc nA\to\type$ together with
+\begin{itemize}
+\item For each $a:A$, an element $g(a) : P(\tproj na)$,
+\item For each $r:\Sn^{n+1} \to \trunc n A$ and $r':\prd{x:\Sn^{n+1}} P(r(x))$, an element $h'(r,r'):P(h(r))$,
+\item For each $r:\Sn^{n+1} \to \trunc n A$ and $r':\prd{x:\Sn^{n+1}} P(r(x))$, and each $x:\Sn^{n+1}$, a dependent path
+$\dpath{P}{s_r(x)}{r'(x)}{h'(r,r')}$,
+\end{itemize}
+there exists a section $f:\prd{x:\trunc n A} P(x)$ with $f(\tproj n a) \jdeq g(a)$ for all $a:A$.
+To make this more useful, we reformulate it as follows.
+
+\begin{thm}\label{thm:truncn-ind}
+  For any type family $P:\trunc n A \to \type$ such that each $P(x)$ is an $n$-type, and any function $g : \prd{a:A} P(\tproj n a)$, there
+exists a section $f:\prd{x:\trunc n A} P(x)$ such that $f(\tproj n a)\defeq g(a)$ for all $a:A$.
+\end{thm}
+\begin{proof}
+  It will suffice to construct the second and third data listed above, since $g$ has exactly the type of the first datum.
+  Given $r:\Sn^{n+1} \to \trunc n A$ and $r':\prd{x:\Sn^{n+1}} P(r(x))$, we have $h(r):\trunc n A$ and $s_r :\prd{x:\Sn^{n+1}} (r(x) =
+h(r))$.
+  Define $t:\Sn^{n+1} \to P(h(r))$ by $t(x) \defeq \trans{s_r(x)}{r'(x)}$.
+  Then since $P(h(r))$ is $n$-truncated, there exists a point $u:P(h(r))$ and a contraction $v:\prd{x:\Sn^{n+1}} (t(x) = u)$.
+  Define $h'(r,r') \defeq u$, giving the second datum.
+  Then (recalling the definition of dependent paths), $v$ has exactly the type required of the third datum.
+\end{proof}
+
+In particular, if $E$ is some $n$-type, we can consider the constant family of types equal to $E$ for every point of $A$.
+\symlabel{extend}
+\index{recursion principle!for truncation}%
+Thus, every map $f:A\to{}E$ can be extended to a map $\extend{f}:\trunc nA\to{}E$ defined by $\extend{f}(\tproj na)\defeq f(a)$; this is the \emph{recursion principle} for $\trunc n A$.
+
+The induction principle also implies a uniqueness principle for functions of this form.
+\index{uniqueness!principle, propositional!for functions on a truncation}%
+Namely, if $E$ is an $n$-type and $g,g':\trunc nA\to{}E$ are such
+that $g(\tproj na)=g'(\tproj na)$ for every $a:A$, then $g(x)=g'(x)$ for all $x:\trunc nA$, since the type $g(x)=g'(x)$ is an $n$-type.
+Thus, $g=g'$.
+This yields the following universal property.
+
+\begin{lem}[Universal property of truncations]\label{thm:trunc-reflective}
+  \index{universal!property!of truncation}%
+  Let $n\ge-2$, $A:\type$ and $B:\typele{n}$. The following map is an
+  equivalence:
+  \[\function{(\trunc nA\to{}B)}{(A\to{}B)}{g}{g\circ\tprojf n}\]
+\end{lem}
+
+\begin{proof}
+  Given that $B$ is $n$-truncated, any $f:A\to{}B$ can be extended to a map $\extend{f}:\trunc nA\to{}B$.
+  The map $\extend{f}\circ\tprojf n$ is equal to $f$, because for every $a:A$ we have $\extend{f}(\tproj na)=f(a)$ by definition.
+  And the map $\extend{g\circ\tprojf n}$ is equal to $g$, because they both send $\tproj na$ to $g(\tproj na)$.
+\end{proof}
+
+In categorical language, this says that the $n$-types form a \emph{reflective subcategory} of the category of types.
+\index{reflective!subcategory}%
+(To state this fully precisely, one ought to use the language of $(\infty,1)$-categories.)
+\index{.infinity1-category@$(\infty,1)$-category}%
+In particular, this implies that the $n$-truncation is functorial:
+given $f:A\to B$, applying the recursion principle to the composite $A\xrightarrow{f} B \to \trunc n B$ yields a map $\trunc n f: \trunc n A \to \trunc n B$.
+By definition, we have a homotopy
+\begin{myeqn}
+  \mathsf{nat}^f_n : \prd{a:A} \trunc n f(\tproj n a) = \tproj n {f(a)},\label{eq:trunc-nat}
+\end{myeqn}
+expressing \emph{naturality} of the maps $\tprojf n$.
+
+Uniqueness implies functoriality laws such as $\trunc n {g\circ f} = \trunc n g \circ \trunc n f$ and $\trunc n{\idfunc[A]} = \idfunc[\trunc n A]$, with attendant coherence laws.
+We also have higher functoriality, for instance:
+
+\begin{lem}\label{thm:trunc-htpy}
+  Given $f,g:A\to B$ and a homotopy $h:f\htpy g$, there is an induced homotopy $\trunc n h : \trunc n f \htpy \trunc n g$ such that the composite
+  \begin{myeqn}\label{eq:trunc-htpy}
+  \includegraphics{HoTT_fig_7.3.1.png}
+%    \xymatrix@C=3.6pc{\tproj n{f(a)} \ar@{=}[r]^-{\opp{\mathsf{nat}^f_n(a)}} &
+%      \trunc n f(\tproj n a) \ar@{=}[r]^-{\trunc n h(\tproj na)} &
+%      \trunc n g(\tproj n a) \ar@{=}[r]^-{\mathsf{nat}^g_n(a)} &
+%      \tproj n{g(a)}}\label{eq:trunc-htpy}
+  \end{myeqn}
+  is equal to $\apfunc{\tprojf n}(h(a))$.
+\end{lem}
+\begin{proof}
+  First, we indeed have a homotopy with components $\apfunc{\tprojf n}(h(a)) : \tproj n{f(a)} = \tproj n{g(a)}$.
+  Composing on either sides with the paths $\tproj n{f(a)} = \trunc n f(\tproj n a)$ and $\tproj n{g(a)} = \trunc n g(\tproj n a)$, which arise from the definitions of $\trunc n f$ and $\trunc ng$, we obtain a homotopy $(\trunc n f \circ \tprojf n) \htpy (\trunc n g \circ \tprojf n)$, and hence an equality by function extensionality.
+  But since $(\blank\circ \tprojf n)$ is an equivalence, there must be a path $\trunc nf = \trunc ng$ inducing it, and the coherence laws for function extensionality imply~\eqref{eq:trunc-htpy}.
+\end{proof}
+
+The following observation about reflective subcategories is also standard.
+
+\begin{cor}
+  A type $A$ is an $n$-type if and only if $\tprojf n : A \to \trunc n A$ is an equivalence.
+\end{cor}
+\begin{proof}
+  ``If'' follows from closure of $n$-types under equivalence.
+  On the other hand, if $A$ is an $n$-type, we can define $\ext(\idfunc[A]):\trunc n A\to{}A$.
+  Then we have $\ext(\idfunc[A])\circ\tprojf n=\idfunc[A]:A\to{}A$ by
+  definition.  In order to prove that
+  $\tprojf n\circ\ext(\idfunc[A])=\idfunc[\trunc nA]$, we only need to prove
+  that $\tprojf n\circ\ext(\idfunc[A])\circ\tprojf n=
+  \idfunc[\trunc nA]\circ\tprojf n$.
+  This is again true:
+ \begin{figure}
+  \centering
+  \includegraphics{HoTT_fig_7.3.2.png}
+ \end{figure}
+ % \[\raisebox{\depth-\height+1em}{\xymatrix{
+ %   A \ar^-{\tprojf n}[r] \ar_{\idfunc[A]}[rd] &
+ %   \trunc nA \ar^>>>{\ext(\idfunc[A])}[d] \ar@/^40pt/^{\idfunc[\trunc nA]}[dd] \\
+ %   & A \ar_{\tprojf n}[d] \\
+ %   & \trunc nA}}
+  \qedhere\]
+\end{proof}
+
+The category of $n$-types also has some special properties not possessed by all reflective subcategories.
+For instance, the reflector $\trunc n-$ preserves finite products.
+
+\begin{thm}\label{cor:trunc-prod}
+  For any types $A$ and $B$, the induced map $\trunc n{A\times B} \to \trunc nA \times \trunc nB$ is an equivalence.
+\end{thm}
+\begin{proof}
+  It suffices to show that $\trunc nA \times \trunc nB$ has the same universal property as $\trunc n{A\times B}$.
+  Thus, let $C$ be an $n$-type; we have
+  \begin{align*}
+    (\trunc nA \times \trunc nB \to C)
+    &= (\trunc nA \to (\trunc nB \to C))\\
+    &= (\trunc nA \to (B \to C))\\
+    &= (A \to (B \to C))\\
+    &= (A \times B \to C)
+  \end{align*}
+  using the universal properties of $\trunc nB$ and $\trunc nA$, along with the fact that $B\to C$ is an $n$-type since $C$ is.
+  It is straightforward to verify that this equivalence is given by composing with $\tprojf n \times \tprojf n$, as needed.
+\end{proof}
+
+The following related fact about dependent sums is often useful.
+
+\begin{thm}\label{thm:trunc-in-truncated-sigma}
+Let $P:A\to\type$ be a family of types. Then there is an equivalence
+\begin{equation*}
+\eqv{\Trunc n{\sm{x:A}\trunc n{P(x)}}}{\Trunc n{\sm{x:A}P(x)}}.
+\end{equation*}
+\end{thm}
+
+\begin{proof}
+We use the induction principle of $n$-truncation several times to construct
+functions
+\begin{align*}
+\varphi & : \Trunc n{\sm{x:A}\trunc n{P(x)}}\to\Trunc n{\sm{x:A}P(x)}\\
+\psi & : \Trunc n{\sm{x:A}P(x)}\to \Trunc n{\sm{x:A} \trunc n{P(x)}}
+\end{align*}
+and homotopies $H:\varphi\circ\psi\htpy \idfunc$ and $K:\psi\circ\varphi\htpy
+\idfunc$ exhibiting them as quasi-inverses.
+We define $\varphi$ by setting $\varphi(\tproj n{\pairr{x,\tproj nu}})\defeq\tproj n{\pairr{x,u}}$.
+We define $\psi$ by setting $\psi(\tproj n{\pairr{x,u}})\defeq\tproj n{\pairr{x,\tproj nu}}$.
+Then we define $H(\tproj n{\pairr{x,u}})\defeq \refl{\tproj n{\pairr{x,u}}}$ and
+$K(\tproj n{\pairr{x,\tproj nu}})\defeq \refl{\tproj n{\pairr{x,\tproj nu}}}$.
+\end{proof}
+
+\begin{cor}\label{thm:refl-over-ntype-base}
+  If $A$ is an $n$-type and $P:A\to\type$ is any type family, then
+  \[ \eqv{\sm{a:A} \trunc n{P(a)}}{\Trunc n{\sm{a:A}P(a)}} \]
+\end{cor}
+\begin{proof}
+  If $A$ is an $n$-type, then the left-hand type above is already an $n$-type, hence equivalent to its $n$-truncation; thus this follows from \PMlinkname{Theorem 7.3.9}{73truncations#Thmprethm3}.
+\end{proof}
+
+We can characterize the path spaces of a truncation using the same method that we used in \PMlinkname{\S 2.12}{212coproducts},\PMlinkname{\S 2.13}{213naturalnumbers} for
+coproducts and natural numbers (and which we will use in \PMlinkexternal{Chapter 8}{http://planetmath.org/node/87582} to calculate homotopy groups).
+Unsurprisingly, the path spaces in the $(n+1)$-truncation of $A$ are the $n$-truncations of the path spaces of $A$.
+Indeed, for any $x,y:A$ there is a canonical map
+\begin{myeqn}
+  f:\ttrunc n{x=_Ay}\to \Big(\tproj {n+1}x=_{\trunc{n+1}A}\tproj {n+1}y\Big)\label{eq:path-trunc-map}
+\end{myeqn}
+defined by
+\[f(\tproj n{p})\defeq \apfunc{\tprojf {n+1}}(p). \]
+This definition uses the recursion principle for $\truncf n$, which is correct because $\trunc {n+1}A$ is $(n+1)$-truncated, so that the
+codomain of $f$ is $n$-truncated.
+
+\begin{thm} \label{thm:path-truncation}
+  For any $A$ and $x,y:A$ and $n\ge -2$, the map~\eqref{eq:path-trunc-map} is an equivalence; thus we have
+  \[ \eqv{\ttrunc n{x=_Ay}}{\Big(\tproj {n+1}x=_{\trunc{n+1}A}\tproj {n+1}y\Big)}. \]
+\end{thm}
+
+\begin{proof}
+  The proof is a simple application of the encode-decode method: 
+  As in previous situations, we cannot directly define a quasi-inverse to the map~\eqref{eq:path-trunc-map} because there is no way to induct on an
+equality between $\tproj {n+1}x$ and $\tproj {n+1}y$.
+  Thus, instead we generalize its type, in order to have general elements of the type $\trunc{n+1}A$ instead of $\tproj {n+1}x$ and $\tproj
+{n+1}y$.
+  Define $P:\trunc {n+1}A\to\trunc {n+1}A\to\typele{n}$ by
+  \[P(\tproj {n+1}x,\tproj {n+1}y)\defeq \trunc n{x=_Ay}\]
+  This definition is correct because $\trunc n{x=_Ay}$ is $n$-truncated, and $\typele{n}$ is $(n+1)$-truncated by
+\PMlinkname{Theorem 7.1.11}{71definitionofntypes#Thmprethm7}.
+  Now for every $u,v:\trunc{n+1}A$, there is a map
+  \[\encode:P(u,v) \to \big(u=_{\trunc{n+1}A}v\big)\]
+  defined for $u=\tproj {n+1}x$ and $v=\tproj {n+1}y$ and $p:x=y$ by
+  \[\encode(\tproj n{p})\defeq \apfunc{\tproj{n+1}\nameless} (p).\]
+  Since the codomain of $\encode$ is $n$-truncated, it suffices to define it only for $u$ and $v$ of this form, and then it's just the same
+definition as before.
+  We also define a function
+  \[ r : \prd{u:\trunc{n+1} A} P(u,u) \]
+  by induction on $u$, where $r(\tproj{n+1} x) \defeq \tproj n {\refl x}$.
+
+  Now we can define an inverse map
+  \[\decode: (u=_{\trunc{n+1}A}v) \to P(u,v)\]
+  by
+  \[\decode(p) \defeq \transfib{v\mapsto P(u,v)}{p}{r(u)}. \]
+  To show that the composite
+  \[ (u=_{\trunc{n+1}A}v) \xrightarrow{\decode} P(u,v) \xrightarrow{\encode} (u=_{\trunc{n+1}A}v) \]
+  is the identity function, by path induction it suffices to check it for $\refl u : u=u$, in which case what we need to know is that
+$\decode(r(u)) = \refl{u}$.
+  But since this is an $n$-type, hence also an $(n+1)$-type, we may assume $u\jdeq \tproj {n+1} x$, in which case it follows by definition
+of $r$ and $\decode$.
+  Finally, to show that 
+  \[ P(u,v) \xrightarrow{\encode} (u=_{\trunc{n+1}A}v) \xrightarrow{\decode} P(u,v) \]
+  is the identity function, since this goal is again an $n$-type, we may assume that $u=\tproj {n+1}x$ and $v=\tproj {n+1}y$ and that we are
+considering $\tproj n p:P(\tproj{n+1}x,\tproj{n+1}y)$ for some $p:x=y$.
+  Then we have
+  \begin{align*}
+    \decode(\encode(\tproj n p)) &= \decode(\apfunc{\tproj{n+1}\nameless}(p))\\
+    &= \transfib{v\mapsto P(\tproj{n+1}x,v)}{\apfunc{\tproj{n+1}\nameless}(p)}{\tproj n {\refl x}}\\
+    &= \transfib{v\mapsto \trunc n{u=v}}{p}{\tproj n {\refl x}}\\
+    &= \tproj n {\transfib{v \mapsto (u=v)}{p}{\refl x}}\\
+    &= \tproj n p.
+  \end{align*}
+  This completes the proof that \encode and \decode are quasi-inverses.
+  The stated result is then the special case where $u=\tproj {n+1}x$ and $v=\tproj {n+1}y$.
+\end{proof}
+
+\begin{cor}
+  Let $n\ge-2$ and $(A,a)$ be a pointed type. Then
+  \[\ttrunc n{\Omega(A,a)}=\Omega\mathopen{}\left(\trunc{n+1}{(A,a)}\right)\]
+\end{cor}
+\begin{proof}
+  This is a special case of the previous lemma where $x=y=a$.
+\end{proof}
+
+\begin{cor}
+  Let $n\ge -2$ and $k\ge 0$ and $(A,a)$ a pointed type.  Then
+  \[\ttrunc n{\Omega^k(A,a)} = \Omega^k\mathopen{}\left(\trunc{n+k}{(A,a)}\right). \]
+\end{cor}
+\begin{proof}
+  By induction on $k$, using the recursive definition of $\Omega^k$.
+\end{proof}
+
+We also observe that ``truncations are cumulative'': if we truncate to an $n$-type and then to a $k$-type with $k\le n$, then we might as
+well have truncated directly to a $k$-type.
+
+\begin{lem} \label{lem:truncation-le}
+  Let $k,n\ge-2$ with $k\le{}n$ and $A:\type$. Then
+  $\trunc k{\trunc nA}=\trunc kA$.
+\end{lem}
+\begin{proof}
+  We define two maps $f:\trunc k{\trunc nA}\to\trunc kA$ and
+  $g:\trunc kA\to\trunc k{\trunc nA}$ by
+  %
+  \[
+   f(\tproj k{\tproj na}) \defeq \tproj ka
+   \qquad\text{and}\qquad
+   g(\tproj ka) \defeq \tproj k{\tproj na}.
+  \]
+  %
+  The map $f$ is well-defined because $\trunc kA$ is $k$-truncated and also
+  $n$-truncated (because $k\le{}n$), and the map $g$ is well-defined because
+  $\trunc k{\trunc nA}$ is $k$-truncated.
+
+  The composition $f\circ{}g:\trunc kA\to\trunc kA$ satisfies
+  $(f\circ{}g)(\tproj ka)=\tproj ka$, hence $f\circ{}g=\idfunc[\trunc kA]$.
+  Similarly, we have $(g\circ{}f)(\tproj k{\tproj na})=\tproj k{\tproj na}$ and hence $g\circ{}f=\idfunc[\trunc k{\trunc nA}]$.
+\end{proof}
+
+% \begin{lem}
+%   We have $\trunc n{\unit}=\unit$.
+% \end{lem}
+% \begin{proof}
+%   Indeed, $\unit$ is $n$-truncated for every $n$ hence $\trunc n{\unit}=\unit$ by
+%   \autoref{reflectPequiv}.
+% \end{proof}
+
+\index{truncation!n-truncation@$n$-truncation|)}%
+
+
+\end{document}

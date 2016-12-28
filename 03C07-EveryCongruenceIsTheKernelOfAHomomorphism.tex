@@ -1,0 +1,130 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EveryCongruenceIsTheKernelOfAHomomorphism}
+\pmcreated{2013-03-22 13:48:59}
+\pmmodified{2013-03-22 13:48:59}
+\pmowner{almann}{2526}
+\pmmodifier{almann}{2526}
+\pmtitle{every congruence is the kernel of a homomorphism}
+\pmrecord{11}{34541}
+\pmprivacy{1}
+\pmauthor{almann}{2526}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+\pmclassification{msc}{03C05}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\let	\proves	=	\vdash
+\let	\implies	=	\rightarrow
+\let	\Implies	=	\Rightarrow
+\let	\iff		=	\leftrightarrow
+\let	\Iff		=	\Leftrightarrow
+\let	\n		=	\overline
+\let 	\cl 		=	\overline
+\let	\iso		=	\cong
+\let	\embeds	=	\hookrightarrow
+\let	\normal	=	\lhd
+\let	\normaleq		=	\unlhd
+\let	\ideal	=	\lhd
+\let	\idealeq	=	\unlhd
+\let	\divides	=	\mid
+\let	\submodel	=	\subset
+\let	\submodeleq	=	\subseteq
+
+\newcommand{\eqclass}[1]{[\![#1]\!]}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\setof}[2]{\{\,#1 \mid #2\,\}}
+\newcommand{\indexof}[2]{\abs{#1 : #2}}
+\newcommand{\tuple}[1]{\langle#1\rangle}
+\newcommand{\gen}[1]{\langle\!\langle #1 \rangle\!\rangle}
+\newcommand{\genrel}[2]{\langle\!\langle\, #1 \mid #2 \,\rangle\!\rangle}
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+\newcommand{\restrict}[1]{\upharpoonright{#1}}
+\newcommand{\qapprox}{/\!\!\approx}
+\newcommand{\qsim}{/\!\!\sim}
+
+% Math operators
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Sub}{Sub}
+\DeclareMathOperator{\Con}{Con}
+\DeclareMathOperator{\Cong}{Cong}
+\DeclareMathOperator{\Syl}{Syl}
+
+
+%Axiom systems
+\newcommand{\PA}{\mathrm{PA}}
+\newcommand{\ZFC}{\mathrm{ZFC}}
+
+% Math script
+\newcommand{\powerset}{\mathscr P}
+
+% Fraktur
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\C}{\mathfrak{C}}
+\newcommand{\D}{\mathfrak{D}}
+\newcommand{\X}{\mathfrak{X}}
+
+% Mathbb
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+% Typography
+\newcommand{\AM}{\textsc{a.m.}}
+\newcommand{\PM}{\textsc{p.m.}}
+\newcommand{\latin}[1]{\textit{#1}} 
+\newcommand{\book}[1]{\textit{#1}} 
+\begin{document}
+Let $\Sigma$ be a fixed signature, and $\A$ a structure for $\Sigma$. If $\sim$ is a congruence on $\A$, then there is a homomorphism $f$ such that $\sim$ is the kernel of $f$.
+\begin{proof}
+Define a homomorphism $f\colon \A \to \A/\!\sim\ : a \mapsto \eqclass{a}$. Observe that \(a \sim b\) if and only if \(f(a) = f(b)\), so $\sim$ is the kernel of $f$. To verify that $f$ is a homomorphism, observe that 
+\begin{enumerate}
+  \item For each constant symbol $c$ of $\Sigma$, \(f(c^\A) = \eqclass{c^\A} = c^{\A/\!\sim}\).
+  \item For each $n \in \NN$ and each $n$-ary function symbol $F$ of $\Sigma$,
+	  	\begin{align*}
+		 f(F^\A(a_1, \ldots a_n)) &= \eqclass{F^\A(a_1, \ldots a_n)} \\
+		 &= F^{\A/\!\sim}(\eqclass{a_1}, \ldots \eqclass{a_n}) \\
+		 &= F^{\A/\!\sim}(f(a_1), \ldots f(a_n)). \qedhere
+		 \end{align*}
+  \item For each $n \in \NN$ and each $n$-ary relation symbol $R$ of $\Sigma$, 
+  		if \(R^\A(a_1, \ldots, a_n)\) then \(R^{\A/\!\sim}(\eqclass{a_1}, \ldots, \eqclass{a_n})\), so 
+		\(R^{\A/\!\sim}(f(a_1), \ldots, f(a_n))\).		
+\end{enumerate}
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

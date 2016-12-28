@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A14CoproductTypes}
+\pmcreated{2013-11-09 4:51:41}
+\pmmodified{2013-11-09 4:51:41}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.1.4 Coproduct types}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Application}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\inr}{\ensuremath\inrsym\xspace}
+\newcommand{\inrsym}{{\mathsf{inr}}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\makeatother
+\begin{document}
+We introduce primitive constants $c_+$, $c_\inlsym$, and $c_\inrsym$.
+We write $A+B$ instead of $c_+(A,B)$, $\inl(a)$ instead of
+$c_\inlsym(a)$, and $\inr(a)$ instead of $c_\inrsym(a)$:
+%
+\begin{itemize}
+\item if $A,B : \UU_n$ then $A + B : \UU_n$
+\item moreover, $\inl: A \rightarrow A+B$ and $\inr: B \rightarrow A+B$
+\end{itemize}
+%
+If we have $A$ and $B$ as above, $C : A+B \rightarrow \UU_m$, 
+$d:\tprd{x:A} C(\inl(x))$, and $e:\tprd{y:B} C(\inr(y))$,
+then we can introduce a defined constant $f:\tprd{z:A+B}C(z)$ with the defining equations
+%
+\begin{equation*}
+  f(\inl(x)) \defeq d(x)
+  \qquad\text{and}\qquad
+  f(\inr(y)) \defeq e(y).
+\end{equation*}
+\end{document}

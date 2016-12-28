@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PrimitiveRecursiveFunctionsWithoutPrimitiveRecursion}
+\pmcreated{2013-03-22 19:08:09}
+\pmmodified{2013-03-22 19:08:09}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{primitive recursive functions without primitive recursion}
+\pmrecord{7}{42034}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+What sorts of functions can be built from the simplest primitive recursive functions (the initial functions) using functional composition alone?  In this entry, we list some useful examples:
+
+To begin with, we list the initial functions:
+\begin{enumerate}
+\item (zero function) $z(x)=0$, 
+\item (successor function) $s(x)=x+1$, 
+\item (projection functions) $p_i^n(x_1,\ldots,x_n)=x_i$ for $i=1,\ldots,n$; in particular, we have the identity function $\operatorname{id}(x)=x$, which is just $p_1^1$.
+\end{enumerate}
+
+With the help of functional composition, more functions can be derived:
+\begin{enumerate}
+\item (addition by a fixed number $n$) $s_n(x)=x+n$, which can be obtained by repeated application of the successor function $s$: $$s_n := \underbrace{s\circ s \circ \cdots \circ s}_{n\mbox{ times}},$$
+\item (constant functions) $\operatorname{const}_1(x)=1$, which is just $s(z(x))$; more generally, $\operatorname{const}_n(x)=n$ is $s_n(z(x))$, where $s_n$ is defined previously.
+\end{enumerate}
+
+Next, we list some properties derivable using functional composition which are preserved by primitive recursiveness.
+\begin{enumerate}
+\item (permutation of variables) if $f(x_1,\ldots, x_n)$ is primitive recursive, then so is any function $g$ obtained from $f$ by permuting the variables $x_i$: $$g(x_1,\ldots, x_n)=f(x_{\sigma(1)},\ldots,x_{\sigma(n)}),$$ where $\sigma$ is a permutation on $\lbrace 1,\ldots, n\rbrace$;
+\item (removing a variable) if $f(x_1,\ldots, x_n, x_{n+1})$ is primitive recursive, then so is $g$ defined by $$g(x_1,\ldots,x_n):=f(x_1,\ldots,x_n,x_n);$$
+\item (adding a variable) if $f(x_1,\ldots,x_n)$ is primitive recursive, then so is $g$ defined by $$g(x_1,\ldots,x_n,x_{n+1}):=f(x_1,\ldots,x_n).$$
+\end{enumerate}
+\begin{proof}  All of the above can be proved by appropriately substituting the suitable projection functions:
+\begin{enumerate}
+\item For each $i=1,\ldots,n$, let $h_i = p_{\sigma(i)}^n$.  Then each $h_i$ is primitive recursive, and therefore $g=f(h_1,\ldots,h_n)$ is primitive recursive also.
+\item For each $i=1,\ldots, n$, let $h_i=p_i^n$, and $h_{n+1}=p_n^n$.  Then each $h_i$ is primitive, and therefore $g=f(h_1,\ldots,h_{n+1})$ is primitive recursive also.
+\item For each $i=1,\ldots,n$, let $h_i=p_i^{n+1}$.  Then each $h_i$ is primitive recursive, and therefore $g=f(h_1,\ldots,h_n)$ is primitive recursive also.
+\end{enumerate}
+\end{proof}
+
+As a corollary, we see that primitive recursiveness is preserved under generalized composition, in the following sense:
+\begin{cor} If $g_i:\mathbb{N}^{k_i}\to \mathbb{N}$, where $i=1,\ldots,n$, and $h:\mathbb{N}^n\to \mathbb{N}$ are primitive recursive, then the function $f$, given by $$f(x_1,\ldots,x_m)=h(g_1(x_{t_1(1)},\ldots,x_{t_1(k_1)}),\ldots,g_n(x_{t_n(1)},\ldots,x_{t_n(k_n)})),$$ where each $t_i$ is a function on $\lbrace 1,\ldots, k_i\rbrace$, and $m\ge \max\lbrace k_1,\ldots, k_n\rbrace$, is also primitive recursive.
+\end{cor}
+\begin{proof} Define $h_i(x_1,\ldots,x_m):=g_i(x_{t_i(1)},\ldots,x_{t_i(k_i)})$.  Then by repeated applications of the properties listed above, we see that $h_i$ is primitive recursive.  Hence $f=h(h_1,\ldots,h_n)$ is also primitive recursive. \end{proof}
+%%%%%
+%%%%%
+\end{document}

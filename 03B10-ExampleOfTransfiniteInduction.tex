@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExampleOfTransfiniteInduction}
+\pmcreated{2013-03-22 17:51:12}
+\pmmodified{2013-03-22 17:51:12}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{example of transfinite induction}
+\pmrecord{6}{40328}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Suppose we are interested in showing the property $\Phi(\alpha)$ holds for all ordinals $\alpha$ using transfinite induction.  The proof basically involves three steps:
+\begin{enumerate}
+\item (first ordinal) show that $\Phi(0)$ holds;
+\item (successor ordinal) if $\Phi(\beta)$ holds, then $\Phi(S\beta)$ holds;
+\item (limit ordinal) if $\Phi(\gamma)$ holds for all $\gamma<\beta$ and $\beta=\sup\lbrace \gamma\mid \gamma<\beta\rbrace$, then $\Phi(\beta)$ holds.
+\end{enumerate}
+
+Below is an example of a proof using transfinite induction.
+
+\begin{prop} $0+\alpha=\alpha$ for any ordinal $\alpha$.  \end{prop}
+
+\begin{proof}
+Let $\Phi(\alpha)$ be the property: $0+\alpha=\alpha$.  We follow the three steps outlined above.
+\begin{enumerate}
+\item Since $0+0=0$ by definition, $\Phi(0)$ holds.
+\item Suppose $0+\beta=\beta$. By definition $0+S\beta=S(0+\beta)$, which is equal to $S\beta$ by the induction hypothesis, so $\Phi(S\beta)$ holds.
+\item Suppose $\beta=\sup\lbrace\gamma\mid \gamma<\beta\rbrace$ and $0+\gamma=\gamma$ for all $\gamma<\beta$.  Then $$0+\beta = 0+\sup\lbrace\gamma\mid \gamma<\beta\rbrace = \sup \lbrace 0+\gamma\mid \gamma<\beta\rbrace.$$  The second equality follows from definition.  Furthermore, the last expression above is equal to $\sup \lbrace \gamma\mid \gamma<\beta\rbrace =\beta$ by the induction hypothesis.  So $\Phi(\beta)$ holds.
+\end{enumerate}
+Therefore $\Phi(\alpha)$ holds for every ordinal $\alpha$, which is the statement of the theorem, completing the proof.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofOfDownwardLowenheimSkolemTheorem}
+\pmcreated{2013-03-22 18:18:59}
+\pmmodified{2013-03-22 18:18:59}
+\pmowner{GodelsTheorem}{21277}
+\pmmodifier{GodelsTheorem}{21277}
+\pmtitle{proof of downward Lowenheim-Skolem theorem}
+\pmrecord{14}{40942}
+\pmprivacy{1}
+\pmauthor{GodelsTheorem}{21277}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+We present here a proof of the Downward Lowenheim Skolem Theorem. The idea is to construct a submodel that meets the requirements of the DLS Theorem: we take $K$ and close it under a procedure of choosing appropriate witnesses for the existential formulas satisfied by $\mathcal{A}$. Choosing the appropriate witnesses is done with the help of the so-called  \emph{Skolem functions} and thus rests upon the \emph{choice function}.
+
+\emph{Proof}: First of all we introduce a usefull tool for the proof.
+Lemma: (\emph{Tarski's Lemma}) If  $\mathcal{A}$ and  $\mathcal{B}$ are $L$-structures with the domain of $\mathcal{A}$ being a subset of the domain of $\mathcal{B}$  then $\mathcal{A}$ is an elementary substructure of $\mathcal{B}$ if for every $L$-formula $\phi(\emph{x},y)$ with $a \in A$ and $b \in B$, we have
+$\mathcal{B}\models \phi(a,b)$ <-> For some $a' \in A$ we have $\mathcal{A}\models \phi(a,a')$ 
+
+\emph{Proof}. Let's supposes the biconditionnal holds, then we need to show that $\mathcal{A}$ is a substructure of $\mathcal{B}$. This means that we need to show that every formula that is true in $\mathcal{A}$ is true in $\mathcal{B}$. The proof is straighforward with an induction on the complexity of formulas (connectives, negation, quantifiers).  
+                       
+
+Now, fix a point $p \in {dom}(\mathcal{A})$. For each $L$-formula $\phi(\emph{x},y)$, define the \emph{Skolem function} of $\phi$, $g_\phi : A^n \to A$ (with $A={dom}(\mathcal{A})$) by:
+
+       $p \in A^n \to$ some $p' \in A$ such that $\mathcal{A}\models \phi(p,p')$ if such a $p'$ exists and $p$ otherwise.
+The set of \emph{Skolem functions} has a cardinality equal to that of $L$.
+
+The purpose here is to construct a model $\mathcal{B}$ whose domain $B$ is closed under the skolem functions. This means that the domain of $\mathcal{A}$ contains all the witnesses we've appropriately choosen. If we take an existential formula $\exists y \phi(\emph{x},y)$ and $b \in B^k$ and if we apply the Skolem function to $b$ we will have a witness for $\exists x \phi(\emph{b},x)$. In other words, this means that $\mathcal{A}\models \exists x \phi(b,x) \to \mathcal{A}\models \phi(b,g_\phi(b))$. By construction $g_\phi(b)$ is in $B$ and thus $\mathcal{B}$ meets the requirements of Tarski's Lemma. We can find an elementary substructure of  $\mathcal{A}$.
+
+Let's take $K$ of above and set $K_0:=K$ and $K_{i+1}$ is the set of the $g_\phi(p), p \in K_i \wedge  g_\phi$ (with $g_\phi$ a Skolem function). Let $B:= \bigcup K_i$. Then $B$ is closed under Skolem functions. And we have $|K|\leq \omega .|L|+|K|= |L|+|K|$. This comes from the fact that $|L|+|K_i|=|\emph{SF}|+|K_i|= \sum_{k \in \mathbb{N} }|(SF)_k|+|K_i|= \sum_{k \in \mathbb{N} }|(SF)_k|*|K_i|$ but we have $|K_{i+1}| \leq \sum_{k \in \mathbb{N} }|(SF)_k|*|K_i|$.
+We need now to provide interpretations of relations, predicates, functions and constants so it can fit $\mathcal{A}$.
+
+We have because $B$ is closed under $L$-terms and for an $L$-function symbol $f$, the Skolem function of the $L$-formula $f(x)=y$ takes the value $f^\mathcal{A}(p)$ at p:  
+
+          for any n-ary relation symbol $P$:  $P^\mathcal{B}=P^\mathcal{A}\bigcap B^n$
+
+          for an m-ary function symbol $f$ and $p \in B^m , p' \in B$ we have $f^\mathcal{A}(p)=p'$ <-> $f^\mathcal{B}(p)=p'$.
+
+          for a constant symbol $c$, we have $c^\mathcal{A}=c^\mathcal{B}$ We have constructed a substructure $\mathcal{B}$ of $\mathcal{A}$.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,320 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{77Modalities}
+\pmcreated{2013-11-06 2:00:52}
+\pmmodified{2013-11-06 2:00:52}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{7.7 Modalities}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\function}[4]{\left\{\begin{array}{rcl}#1 &      \longrightarrow & #2 \\ #3 & \longmapsto & #4 \end{array}\right.}
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\modal}{\ensuremath{\ocircle}}
+\newcommand{\modaltype}{\ensuremath{\type_\modal}}
+\newcommand{\mreturn}{\ensuremath{\eta}}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{7.7.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{7.7.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{7.7.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{7.7.\arabic{mathcount}}
+\let\autoref\cref
+\let\project\mreturn
+\let\reflect\modal
+\let\setof\Set    
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+\index{modality|(}
+
+Nearly all of the theory of $n$-types and connectedness can be done in much greater generality.
+This section will not be used in the rest of the book.
+
+Our first thought regarding generalizing the theory of $n$-types might be to take \autoref{thm:trunc-reflective} as a definition.
+
+\begin{defn}\label{defn:reflective-subuniverse}
+  A \define{reflective subuniverse}
+  \indexdef{reflective!subuniverse}%
+  \indexdef{subuniverse, reflective}%
+  is a predicate $P:\type\to\prop$ such that
+  for every $A:\type$ we have a type $\reflect A$ such that $P(\reflect A)$ and a map
+  $\project_A:A\to\reflect A$, with the property that for every $B:\type$ with $P(B)$, the following map is an equivalence:
+  \[\function{(\reflect A\to{}B)}{(A\to{}B)}{f}{f\circ\project_A}.\]
+\end{defn}
+
+We write $\P \defeq \setof{A:\type | P(A)}$, so $A:\P$ means that $A:\type$ and we have $P(A)$.
+We also write $\rec{\modal}$ for the quasi-inverse of the above map.
+The notation $\reflect$ may seem slightly odd, but it will make more sense soon.
+
+For any reflective subuniverse, we can prove all the familiar facts about reflective subcategories from category theory, in the usual way.
+For instance, we have:
+\begin{itemize}
+\item A type $A$ lies in $\P$ if and only if $\project_A:A\to\reflect A$ is an equivalence.
+\item $\P$ is closed under retracts.
+  In particular, $A$ lies in $\P$ as soon as $\project_A$ admits a retraction.
+\item The operation $\reflect$ is a functor in a suitable up-to-coherent-homotopy sense, which we can make precise at as high levels as necessary.
+\item The types in $\P$ are closed under all limits such as products and pullbacks.
+  In particular, for any $A:\P$ and $x,y:A$, the identity type $(x=_A y)$ is also in $\P$, since it is a pullback of two functions $\unit\to A$.
+\item Colimits in $\P$ can be constructed by applying $\reflect$ to ordinary colimits of types.
+\end{itemize}
+
+Importantly, closure under products extends also to ``infinite products'', i.e.\ dependent function types.
+
+\begin{thm}\label{thm:reflsubunv-forall}
+  If $B:A\to\P$ is any family of types in a reflective subuniverse \P, then $\prd{x:A} B(x)$ is also in \P.
+\end{thm}
+\begin{proof}
+  For any $x:A$, consider the function $\mathsf{ev}_x : (\prd{x:A} B(x)) \to B(x)$ defined by $\mathsf{ev}_x(f) \defeq f(x)$.
+  Since $B(x)$ lies in $P$, this extends to a function
+  \[ \rec{\modal}(\mathsf{ev}_x) : \reflect\Parens{\prd{x:A} B(x)} \to B(x). \]
+  Thus we can define $h:\reflect(\prd{x:A} B(x)) \to \prd{x:A} B(x)$ by $h(z)(x) \defeq \rec{\modal}(\mathsf{ev}_x)(z)$.
+  Then $h$ is a retraction of $\project_{\prd{x:A} B(x)}$, so that ${\prd{x:A} B(x)}$ is in $\P$.
+\end{proof}
+
+In particular, if $B:\P$ and $A$ is any type, then $(A\to B)$ is in \P.
+In categorical language, this means that any reflective subuniverse is an \define{exponential ideal}.
+\indexdef{exponential ideal}%
+This, in turn, implies by a standard argument that the reflector preserves finite products.
+
+\begin{cor}\label{cor:trunc_prod}
+  For any types $A$ and $B$ and any reflective subuniverse, the induced map $\reflect(A\times B) \to \reflect(A) \times \reflect(B)$ is an equivalence.
+\end{cor}
+\begin{proof}
+  It suffices to show that $\reflect(A) \times \reflect(B)$ has the same universal property as $\reflect(A\times B)$.
+  Thus, let $C:\P$; we have
+  \begin{align*}
+    (\reflect(A) \times \reflect(B) \to C)
+    &= (\reflect(A) \to (\reflect(B) \to C))\\
+    &= (\reflect(A) \to (B \to C))\\
+    &= (A \to (B \to C))\\
+    &= (A \times B \to C)
+  \end{align*}
+  using the universal properties  of $\reflect(B)$ and $\reflect(A)$, along with the fact that $B\to C$ is in \P since $C$ is.
+  It is straightforward to verify that this equivalence is given by composing with $\mreturn_A \times \mreturn_B$, as needed.
+\end{proof}
+
+It may seem odd that every reflective subcategory of types is automatically an exponential ideal, with a product-preserving reflector.
+However, this is also the case classically in the category of \emph{sets}, for the same reasons.
+It's just that this fact is not usually remarked on, since the classical category of sets---in contrast to the category of homotopy
+types---does not have many interesting reflective subcategories.
+
+Two basic properties of $n$-types are \emph{not} shared by general reflective subuniverses: \autoref{thm:ntypes-sigma} (closure under $\Sigma$-types) and \autoref{thm:truncn-ind} (truncation induction).
+However, the analogues of these two properties are equivalent to each other.
+
+
+\begin{thm}\label{thm:modal-char}
+  For a reflective subuniverse \P, the following are logically equivalent.
+  \begin{enumerate}
+  \item If $A:\P$ and $B:A\to \P$, then $\sm{x:A} B(x)$ is in \P.\label{item:mchr1}
+  \item for every $A:\type$, type family $B:\reflect A\to\P$, and map $g:\prd{a:A} B(\project(a))$, there exists $f:\prd{z:\reflect A} B(z)$ such that $f(\project(a)) = g(a)$ for all $a:A$.\label{item:mchr2}
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  Suppose~\ref{item:mchr1}.
+  Then in the situation of~\ref{item:mchr2}, the type $\sm{z:\reflect A} B(z)$ lies in $\P$, and we have $g':A\to \sm{z:\reflect A} B(z)$ defined by $g'(a)\defeq (\project(a),g(a))$.
+  Thus, we have $\rec{\modal}(g'):\reflect A \to \sm{z:\reflect A} B(z)$ such that $\rec{\modal}(g')(\project(a)) = (\project(a),g(a))$.
+
+  Now consider the functions $\proj2 \circ \rec{\modal}(g') : \reflect A \to \reflect A$ and $\idfunc[\reflect A]$.
+  By assumption, these become equal when precomposed with $\project$.
+  Thus, by the universal property of $\reflect$, they are equal already, i.e.\ we have $p_z:\proj2(\rec{\modal}(g')(z)) = z$ for all $z$.
+  Now we can define
+  %
+  \narrowequation{f(z) \defeq \trans{p_z}{\proj2(\rec{\modal}(g')(z))},}
+  %
+  and the second component of
+  %
+  \narrowequation{\rec{\modal}(g')(\project(a)) = (\project(a),g(a))}
+  %
+  yields $f(\project(a)) = g(a)$.
+
+  Conversely, suppose~\ref{item:mchr2}, and that $A:\P$ and $B:A\to\P$.
+  Let $h$ be the composite
+  \[ \reflect\Parens{\sm{x:A} B(x)} \xrightarrow{\reflect(\proj1)} \reflect A \xrightarrow{\opp{(\project_A)}} A. \]
+  Then for $z:\sm{x:A} B(x)$ we have
+  \begin{align*}
+    h(\project(z)) &= \opp\project(\reflect(\proj1)(\project(z)))\\
+    &= \opp\project(\project(\proj1(z)))\\
+    &= \proj1(z).
+  \end{align*}
+  Denote this path by $p_z$.
+  Now if we define $C:\reflect(\sm{x:A} B(x)) \to \type$ by $C(w) \defeq B(h(w))$, we have
+  \[ g \defeq \lam{z} \trans{p_z}{\proj2(z)} \;:\; \prd{z:\sm{x:A} B(x)} C(\project(z)). \]
+  Thus, the assumption yields
+  %
+  \narrowequation{f:\prd{w:\reflect(\sm{x:A}B(x))} C(w)}
+  %
+  such that $f(\project(z)) = g(z)$.
+  Together, $h$ and $f$ give a function
+  %
+  \narrowequation{k:\reflect(\sm{x:A}B(x)) \to \sm{x:A}B(x)}
+  %
+  defined by $k(w) \defeq (h(w),f(w))$, while $p_z$ and the equality $f(\project(z)) = g(z)$ show that $k$ is a retraction of $\project_{\sm{x:A}B(x)}$.
+  Therefore, $\sm{x:A}B(x)$ is in \P.
+\end{proof}
+
+Note the similarity to the discussion in \autoref{sec:htpy-inductive}.
+\index{recursion principle!for a modality}%
+\index{induction principle!for a modality}%
+\index{uniqueness!principle, propositional!for a modality}%
+The universal property of the reflector of a reflective subuniverse is like a recursion principle with its uniqueness property, while \autoref{thm:modal-char}\ref{item:mchr2} is like the corresponding induction principle.
+Unlike in \autoref{sec:htpy-inductive}, the two are not equivalent here, because of the restriction that we can only eliminate into types that lie in $\P$.
+Condition~\ref{item:mchr1} of \autoref{thm:modal-char} is what fixes the disconnect.
+
+Unsurprisingly, of course, if we have the induction principle, then we can derive the recursion principle.
+We can also derive its uniqueness property, as long as we allow ourselves to eliminate into path types.
+This suggests the following definition.
+Note that any reflective subuniverse can be characterized by the operation $\reflect:\type\to\type$ and the functions $\project_A:A\to \reflect A$, since we have $P(A) = \isequiv(\project_A)$.
+
+\begin{defn}\label{defn:modality}
+A \define{modality}
+\indexdef{modality}
+is an operation $\modal:\type\to\type$ for which there are
+\begin{enumerate}
+\item functions $\mreturn^\modal_A:A\to\modal(A)$ for every type $A$.\label{item:modal1}
+\item for every $A:\type$ and every type family $B:\modal(A)\to\type$, a function\label{item:modal2}
+\begin{equation*}
+\ind{\modal}:\Parens{\prd{a:A}\modal(B(\mreturn^\modal_A(a)))}\to\prd{z:\modal(A)}\modal(B(z)).
+\end{equation*}
+\item A path $\ind\modal(f)(\mreturn^\modal_A(a)) = f(a)$ for each $f:\prd{a:A}\modal(B(\mreturn^\modal_A(a)))$.\label{item:modal3}
+\item For any $z,z':\modal(A)$, the function $\mreturn^\modal_{z=z'} : (z=z') \to \modal(z=z')$ is an equivalence.\label{item:modal4}
+\end{enumerate}
+We say that $A$ is \define{modal}
+\indexdef{modal!type}%
+\indexdef{type!modal}%
+for $\modal$ if $\mreturn^\modal_A:A\to\modal(A)$ is an equivalence, and we write
+\begin{myeqn}
+  \modaltype\defeq\setof{X:\type | X \text{ is $\modal$-modal} }\label{eq:modaltype}
+\end{myeqn}
+for the type of modal types.
+\end{defn}
+
+Conditions~\ref{item:modal2} and~\ref{item:modal3} are very similar to \autoref{thm:modal-char}\ref{item:mchr2}, but phrased using $\modal B(z)$ rather than assuming $B$ to be valued in $\P$.
+This allows us to state the condition purely in terms of the operation $\modal$, rather than requiring the predicate $P:\type\to\prop$ to be given in advance.
+(It is not entirely satisfactory, since we still have to refer to $P$ not-so-subtly in clause~\ref{item:modal4}.
+We do not know whether~\ref{item:modal4} follows from~\ref{item:modal1}--\ref{item:modal3}.)
+However, the stronger-looking property of \autoref{thm:modal-char}\ref{item:mchr2} follows from \autoref{defn:modality}\ref{item:modal2} and~\ref{item:modal3}, since for any $C:\modal A \to \modaltype$ we have $C(z) \eqvsym \modal C(z)$, and we can pass back across this equivalence.
+
+\index{universal!property!of a modality}%
+As with other induction principles, this implies a universal property.
+
+\begin{thm}\label{prop:lv_n_deptype_sec_equiv_by_precomp}
+Let $A$ be a type and let $B:\modal(A)\to\modaltype$. Then the function
+\begin{equation*}
+(\blank\circ \mreturn^\modal_A) : \Parens{\prd{z:\modal(A)}B(z)} \to \Parens{\prd{a:A}B(\mreturn^\modal_A(a))}
+\end{equation*}
+is an equivalence.
+\end{thm}
+\begin{proof}
+By definition, the operation $\ind{\modal}$ is a right inverse to $(\blank\circ \mreturn^\modal_A)$.
+Thus, we only need to find a homotopy
+\begin{equation*}
+\prd{z:\modal(A)}s(z)= \ind{\modal}(s\circ \mreturn^\modal_A)(z)
+\end{equation*}
+for each $s:\prd{z:\modal(A)}B(z)$, exhibiting it as a left inverse as well.
+By assumption, each $B(z)$ is modal, and hence each type $s(z)= R^\modal_X(s\circ \mreturn^\modal_A)(z)$
+is also modal.
+Thus, it suffices to find a function of type
+\begin{equation*}
+\prd{a:A}s(\mreturn^\modal_A(a))= \ind{\modal}(s\circ \mreturn^\modal_A)(\mreturn^\modal_A(a)).
+\end{equation*}
+which follows from \autoref{defn:modality}\ref{item:modal3}.
+\end{proof}
+
+In particular, for every type $A$ and every modal type $B$, we have an equivalence $(\modal A\to B)\eqvsym (A\to B)$.
+
+\begin{cor}
+  For any modality $\modal$, the $\modal$-modal types form a reflective subuniverse satisfying the equivalent conditions of \autoref{thm:modal-char}.
+\end{cor}
+
+Thus, modalities can be identified with reflective subuniverses closed under $\Sigma$-types.
+The name \emph{modality} comes, of course, from \emph{modal logic}\index{modal!logic}, which studies logic where we can form statements such as ``possibly $A$'' (usually written $\diamond A$) or ``necessarily $A$'' (usually written $\Box A$).
+The symbol $\modal$ is somewhat common for an arbitrary modal operator\index{modal!operator}. % (rather than a specific one such as $\diamond$ or $\Box$).
+Under the propositions-as-types principle, a modality in the sense of modal logic corresponds to an operation on \emph{types}, and \autoref{defn:modality} seems a reasonable candidate for how such an operation should be defined.
+(More precisely, we should perhaps call these \emph{idempotent, monadic} modalities; see the Notes.)
+\index{idempotent!modality}%
+As mentioned in \autoref{subsec:when-trunc}, we may in general use adverbs\index{adverb} to speak informally about such modalities, such as ``merely''\index{merely} for the propositional truncation and ``purely''\index{purely} for the identity modality
+\index{identity!modality}%
+\index{modality!identity}%
+(i.e.\ the one defined by $\modal A \defeq A$).
+
+For any modality $\modal$, we define a map $f:A\to B$ to be \define{$\modal$-connected}
+\indexdef{function!.circle-connected@$\modal$-connected}%
+\indexdef{.circle-connected function@$\modal$-connected function}%
+if $\modal(\hfib f b)$ is contractible for all $b:B$, and to be \define{$\modal$-truncated}
+\indexdef{function!.circle-truncated@$\modal$-truncated}%
+\indexdef{.circle-truncated function@$\modal$-truncated function}%
+if $\hfib f b$ is modal for all $b:B$.
+All of the theory of \autoref{sec:connectivity},\autoref{sec:image-factorization} which doesn't involve relating $n$-types for different values of $n$ applies verbatim in this generality.
+\index{orthogonal factorization system}%
+\index{unique!factorization system}%
+In particular, we have an orthogonal factorization system.
+
+An important class of modalities which does \emph{not} include the $n$-trun\-ca\-tions is the \emph{left exact} modalities: those for which the functor $\modal$ preserves pullbacks as well as finite products.
+\index{topology!Lawvere-Tierney}%
+These are a categorification of ``Lawvere-Tierney\index{Lawvere}\index{Tierney} topologies'' in elementary topos\index{topos} theory,
+and correspond in higher-categorical semantics to sub-$(\infty,1)$-toposes.
+\index{.infinity1-topos@$(\infty,1)$-topos}%
+However, this is beyond the scope of this book.
+
+Some particular examples of modalities other than $n$-truncation can be found in the exercises.
+
+\index{modality|)}
+
+
+\end{document}

@@ -1,0 +1,161 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{213NaturalNumbers}
+\pmcreated{2013-11-14 18:12:08}
+\pmmodified{2013-11-14 18:12:08}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2.13 Natural numbers}
+\pmrecord{2}{87619}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\code}{\ensuremath{\mathsf{code}}\xspace}
+\newcommand{\decode}{\ensuremath{\mathsf{decode}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\encode}{\ensuremath{\mathsf{encode}}\xspace}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\narrowbreak}{}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\suc}{\mathsf{succ}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{2.13.\arabic{mathcount}}
+\newenvironment{narrowmultline}{\csname equation\endcsname}{\csname endequation\endcsname}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{2.13.\arabic{mathcount}}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\nat\N
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+\index{natural numbers|(}%
+\index{encode-decode method|(}%
+We use the encode-decode method to characterize the path space of the natural numbers, which are also a positive type.
+In this case, rather than fixing one endpoint, we characterize the two-sided path space all at once.
+Thus, the codes for identities are a type family
+\[\code:\N\to\N\to\type,\]
+defined by double recursion over \N as follows:
+\begin{align*}
+  \code(0,0) &\defeq \unit\\
+  \code(\suc(m),0) &\defeq \emptyt\\
+  \code(0,\suc(n)) &\defeq \emptyt\\
+  \code(\suc(m),\suc(n)) &\defeq \code(m,n).
+\end{align*}
+We also define by recursion a dependent function $r:\prd{n:\N} \code(n,n)$, with
+\begin{align*}
+  r(0) &\defeq \ttt\\
+  r(\suc(n)) &\defeq r(n).
+\end{align*}
+
+\begin{thm}\label{thm:path-nat}
+  For all $m,n:\N$ we have $\eqv{(m=n)}{\code(m,n)}$.
+\end{thm}
+\begin{proof}
+  We define
+  \[ \encode : \prd{m,n:\N} (m=n) \to \code(m,n) \]
+  by transporting, $\encode(m,n,p) \defeq \transfib{\code(m,{\blank})}{p}{r(m)}$.
+  And we define
+  \[ \decode : \prd{m,n:\N} \code(m,n) \to (m=n) \]
+  by double induction on $m,n$.
+  When $m$ and $n$ are both $0$, we need a function $\unit \to (0=0)$, which we define to send everything to $\refl{0}$.
+  When $m$ is a successor and $n$ is $0$ or vice versa, the domain $\code(m,n)$ is \emptyt, so the eliminator for \emptyt suffices.
+  And when both are successors, we can define $\decode(\suc(m),\suc(n))$ to be the composite
+  %
+  \begin{narrowmultline*}
+    \code(\suc(m),\suc(n))\jdeq\code(m,n)
+    \xrightarrow{\decode(m,n)} \narrowbreak
+    (m=n)
+    \xrightarrow{\apfunc{\suc}}
+    (\suc(m)=\suc(n)).
+  \end{narrowmultline*}
+  %
+  Next we show that $\encode(m,n)$ and $\decode(m,n)$ are quasi-inverses for all $m,n$.
+
+  On one hand, if we start with $p:m=n$, then by induction on $p$ it suffices to show
+  \[\decode(n,n,\encode(n,n,\refl{n}))=\refl{n}.\]
+  But $\encode(n,n,\refl{n}) \jdeq r(n)$, so it suffices to show that $\decode(n,n,r(n)) =\refl{n}$.
+  We can prove this by induction on $n$.
+  If $n\jdeq 0$, then $\decode(0,0,r(0)) =\refl{0}$ by definition of \decode.
+  And in the case of a successor, by the inductive hypothesis we have $\decode(n,n,r(n)) = \refl{n}$, so it suffices to observe that $\apfunc{\suc}(\refl{n}) \jdeq \refl{\suc(n)}$.
+
+  On the other hand, if we start with $c:\code(m,n)$, then we proceed by double induction on $m$ and $n$.
+  If both are $0$, then $\decode(0,0,c) \jdeq \refl{0}$, while $\encode(0,0,\refl{0})\jdeq r(0) \jdeq \ttt$.
+  Thus, it suffices to recall from \PMlinkname{\S 2.8}{28theunittype} that every inhabitant of $\unit$ is equal to \ttt.
+  If $m$ is $0$ but $n$ is a successor, or vice versa, then $c:\emptyt$, so we are done.
+  And in the case of two successors, we have
+  \begin{multline*}
+    \encode(\suc(m),\suc(n),\decode(\suc(m),\suc(n),c))\\
+    \begin{aligned}
+    &= \encode(\suc(m),\suc(n),\apfunc{\suc}(\decode(m,n,c)))\\
+    &= \transfib{\code(\suc(m),{\blank})}{\apfunc{\suc}(\decode(m,n,c))}{r(\suc(m))}\\
+    &= \transfib{\code(\suc(m),\suc({\blank}))}{\decode(m,n,c)}{r(\suc(m))}\\
+    &= \transfib{\code(m,{\blank})}{\decode(m,n,c)}{r(m)}\\
+    &= \encode(m,n,\decode(m,n,c))\\
+    &= c
+  \end{aligned}
+  \end{multline*}
+  using the inductive hypothesis.
+\end{proof}
+
+In particular, we have
+\begin{myeqn}\label{eq:zero-not-succ}
+  \encode(\suc(m),0) : (\suc(m)=0) \to \emptyt
+\end{myeqn}
+which shows that ``$0$ is not the successor of any natural number''.
+We also have the composite
+\begin{narrowmultline}\label{eq:suc-injective}
+  (\suc(m)=\suc(n))
+  \xrightarrow{\encode} \narrowbreak
+  \code(\suc(m),\suc(n))
+  \jdeq \code(m,n) \xrightarrow{\decode} (m=n)
+\end{narrowmultline}
+which shows that the function $\suc$ is injective.
+\index{successor}%
+
+We will study more general positive types in \PMlinkexternal{Chapter 5}{http://planetmath.org/node/87578},\PMlinkexternal{Chapter 6}{http://planetmath.org/node/87579}.
+In \PMlinkexternal{Chapter 8}{http://planetmath.org/node/87582}, we will see that the same technique used here to characterize the identity types of coproducts and \nat can also be used to calculate homotopy groups of spheres.
+
+\index{encode-decode method|)}%
+\index{natural numbers|)}%
+
+
+\end{document}

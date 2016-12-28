@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfSetDifference}
+\pmcreated{2013-03-22 17:55:35}
+\pmmodified{2013-03-22 17:55:35}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of set difference}
+\pmrecord{7}{40420}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $A,B,C,D,X$ be sets.
+
+\begin{enumerate}
+\item $A\setminus B\subseteq A$.  This is obvious by definition.
+\item If $A,B\subseteq X$, then $$A\setminus B = A\cap B^\complement,\qquad (A\setminus B)^\complement = A^\complement \cup B,\qquad\mbox{and}\qquad A^\complement\setminus B^\complement = B\setminus A$$ where $^\complement$ denotes complement in $X$.
+\begin{proof}  For the first equation, see \PMlinkname{here}{PropertiesOfComplement}.  The second equation comes from the first: $(A\setminus B)^\complement=(A\cap B^\complement)^\complement = (A^\complement)\cup (B^\complement)^\complement = A^\complement \cup B$.  The last equation also follows from the first: $A^\complement\setminus B^\complement = A^\complement \cap (B^\complement)^\complement = B\cap A^\complement = B\setminus A$.
+\end{proof}
+\item $A\subseteq B$ iff $A\setminus B=\emptyset$.
+\begin{proof}  Since $A\subseteq B$, $B^\complement \subseteq A^\complement$.  Then $A\setminus B= A\cap B^\complement \subseteq A\cap A^\complement=\emptyset$.  On the other hand, suppose $A\setminus B=\emptyset$.  Then $A\cap B^\complement = \emptyset$ by property 1, which means $A\subseteq (B^\complement)^\complement=B$.
+\end{proof}
+\item $A\cap B=\emptyset$ iff $A\setminus B=A$.
+\begin{proof}  Suppose first that $A\cap B=\emptyset$.  If $a\in A$, then $a\notin B$, so $a\in A\setminus B$, and hence $A\subseteq A\setminus B$.  The equality is shown by applying property 1.  Next suppose $A\setminus B=A$.  If $a\in A$, then $a\in A\setminus B$, so $a\notin B$, which means $A\subseteq B^\complement$, or $A\cap B=\emptyset$.
+\end{proof}
+\item $A\setminus\emptyset = A$ and $A\setminus A = \emptyset = \emptyset\setminus A$.
+\begin{proof} The first equation follows from property 4 and the last two equations from property 3. 
+\end{proof}
+\item (de Morgan's laws on set difference): $$A\setminus (B\cap C)=(A\setminus B)\cup (A\setminus C)\qquad \mbox{ and }\qquad A\setminus (B\cup C) = (A\setminus B)\cap (A\setminus C).$$
+\begin{proof} These laws follow from property 2 and the de Morgan's laws on set complement.  For example, $A\setminus (B\cap C)=(A\setminus B)\cup (A\setminus C) = A\cap (B\cap C)^\complement = A\cap (B^\complement \cup C^\complement) = (A\cap B^\complement) \cup (A\cap C^\complement) = (A\setminus B)\cup (A\setminus C)$.  The other equation is proved similarly.
+\end{proof}
+\item $A\setminus(A\cap B) = A\setminus B = (A\cup B)\setminus B$.
+\begin{proof}  The first equation follows from property 6: $A\setminus (A\cap B)=(A\setminus A)\cup (A\setminus B)= A\setminus B$ by property 5.  Next, $(A\cup B)\setminus B=(A\cup B)\cap B^\complement = (A\cap B^\complement)\cup (B\cap B^\complement)= A\cap B^\complement =A\setminus B$, proving the second equation.
+\end{proof}
+\item $(A\cap B)\setminus C=(A\setminus C)\cap (B\setminus C)$.
+\begin{proof}  Using property 2, we get $(A\cap B)\setminus C=(A\cap B)\cap C^\complement = (A\cap C^\complement)\cap (B\cap C^\complement) = (A\setminus C)\cap (B\setminus C)$.
+\end{proof}
+\item $A\cap (B\setminus C)=(A\cap B)\setminus (A\cap C)$.
+\begin{proof} $(A\cap B)\setminus (A\cap C) = (A\cap B)\cap (A\cap C)^\complement = (A\cap B)\cap (A^\complement \cup C^\complement) = ((A\cap B)\cap A^\complement)\cup ((A\cap B)\cap C^\complement) = (A\cap B)\cap C^\complement = A\cap (B\cap C^\complement) = A\cap (B\setminus C)$.
+\end{proof}
+\item $(A\setminus B)\cap (C\setminus D) = (C\setminus B)\cap (A\setminus D)$
+\begin{proof} Expanding the LHS, we get $A\cap B^\complement \cap C \cap D^\complement$.  Expanding the RHS, we get the same thing.
+\end{proof}
+\item $(A\setminus B)\cap (C\setminus D) = (A\cap C)\setminus (B\cup D)$.
+\begin{proof}  Starting from the RHS: $(A\cap C)\setminus (B\cup D)=((A\cap C)\setminus B)\cap ((A\cap C)\setminus D)=(A\setminus B)\cap (C\setminus B)\cap (A\setminus D)\cap (C\setminus D)=(A\setminus B)\cap (C\setminus D)$, where the last equality comes from property 10.
+\end{proof}
+\end{enumerate}
+
+\textbf{Remarks}.  
+\begin{enumerate}
+\item
+Many of the proofs above use the properties of the set complement.  Please see this \PMlinkname{link}{PropertiesOfComplement} for more detail.
+\item
+All of the properties of $\setminus$ on sets can be generalized to \PMlinkname{Boolean subtraction}{DerivedBooleanOperations} on Boolean algebras.
+\end{enumerate}
+%%%%%
+%%%%%
+\end{document}

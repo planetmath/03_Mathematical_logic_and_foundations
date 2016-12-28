@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SymmetricDifference}
+\pmcreated{2013-03-22 11:59:41}
+\pmmodified{2013-03-22 11:59:41}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{symmetric difference}
+\pmrecord{20}{30916}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmsynonym{set symmetric difference}{SymmetricDifference}
+\pmsynonym{symmetric set difference}{SymmetricDifference}
+\pmsynonym{symmetric difference between sets}{SymmetricDifference}
+%\pmkeywords{set}
+%\pmkeywords{union}
+%\pmkeywords{intersection}
+\pmrelated{SetDifference}
+\pmrelated{ProofOfTheAssociativityOfTheSymmetricDifferenceOperator}
+\pmdefines{symmetric difference operator}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage{graphicx}
+%%%%\usepackage{xypic}
+\usepackage{pstricks}
+\newcommand{\symd}{\triangle}
+\begin{document}
+The \emph{symmetric difference} between two sets $A$ and $B$, written $A \symd B$, is the set of all $x$ such that either $x \in A$ or $x \in B$ but not both.  In other words, 
+$$A\symd B:= (A\cup B)\setminus (A\cap B).$$
+
+The Venn diagram for the symmetric difference of two sets $A,B$, represented by the two discs, is illustrated below, in light red:
+
+\begin{center}
+\begin{pspicture}(0,0)(8,4)
+\begin{psclip}
+{\pscircle[fillstyle=vlines,hatchcolor=red,hatchwidth=0.1\pslinewidth,hatchsep=1\pslinewidth](3,2){2}}
+\pscircle[fillstyle=solid,hatchcolor=white,hatchwidth=0.1\pslinewidth,hatchsep=1\pslinewidth](5,2){2}
+\end{psclip}
+\begin{psclip}
+{\pscircle[fillstyle=vlines,hatchcolor=red,hatchwidth=0.1\pslinewidth,hatchsep=1\pslinewidth](5,2){2}}
+\pscircle[fillstyle=solid,hatchcolor=white,hatchwidth=0.1\pslinewidth,hatchsep=1\pslinewidth](3,2){2}
+\end{psclip}
+\rput(1.25,3.75){$A$}
+\rput(6.75,3.75){$B$}
+\rput(0,0){$.$}
+\rput(8,4){$.$}
+\end{pspicture}
+\end{center}
+
+\subsubsection*{Properties}
+Suppose that $A$, $B$, and $C$ are sets.
+\begin{itemize}
+\item $A \symd B=(A\setminus B) \cup (B\setminus A)$.
+\item $A \symd B=A^c \symd B^c$, where the superscript $c$ denotes taking complements.
+\item Note that for any set $A$, the symmetric difference satisfies $A \symd A=\emptyset$ and $A \symd \emptyset=A$.
+\item The symmetric difference operator is commutative since $A \symd B=(A\setminus B) \cup (B\setminus A) = (B\setminus A) \cup (A\setminus B) = B \symd A$.
+\item The symmetric difference operation is associative:  $(A \symd B) \symd C = A \symd (B \symd C)$.  This means that we may drop the parentheses without any ambiguity, and we can talk about the symmetric difference of multiple sets.
+\item Let $A_1,\ldots, A_n$ be sets.  The symmetric difference of these sets is written $$\substack{n \\ \displaystyle{\symd} \\ i=1} A_i.$$  In general, an element will be in the symmetric difference of several sets iff it is in an odd number of the sets.
+\end{itemize}
+
+It is worth noting that these properties show that the symmetric difference operation can be used as a group law to define an abelian group on the power set of some \PMlinkescapetext{fixed} set.  
+
+Finally, we note that intersection distributes over the symmetric difference operator: $$A\cap(B\symd C)=(A\cap B)\symd(A\cap C),$$ giving us that the power set of a given fixed set can be made into a Boolean ring using symmetric difference as addition, and intersection as multiplication.
+%%%%%
+%%%%%
+%%%%%
+\end{document}

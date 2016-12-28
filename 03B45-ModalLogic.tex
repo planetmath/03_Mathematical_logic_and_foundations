@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ModalLogic}
+\pmcreated{2013-03-22 19:13:54}
+\pmmodified{2013-03-22 19:13:54}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{modal logic}
+\pmrecord{34}{42155}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmrelated{KripkeSemanticsForModalPropositionalLogic}
+\pmdefines{quasi-atomic}
+\pmdefines{quasi-atom}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+\subsubsection*{Introduction}
+
+Modal logic is the logic of ``necessity'' and ``possibility''.  It is an extension of the classical logic, with two additional unary logical connectives $\square$ and $\Diamond$.  The well-formed formulas of modal logic is then the smallest set satisfying the following: 
+\begin{enumerate}
+\item the propositional variables are well-formed formulas,
+\item if $A,B$ are (well-formed) formulas, then so are $A\vee B$, $A\wedge B$, $\neg A$, $A\to B$, 
+\item if $A$ is a formula, so are $\square A$ and $\Diamond A$,
+\item and if the logic is first-order, then for any formula $A$, so are $\exists x A$ and $\forall x A$.
+\end{enumerate}
+Let $L$ be the set of all well-formed formulas described above, and $L_0$ the set of all formulas formed with condition 3 removed.  Then $L_0 \subseteq L$ is just the set of all formulas of the classical logic (the underlying classical logic), and is part of the reason why we call modal logic an extension of the classical logic.  The other reasons have to do with semantics and deductions, to be discussed below.
+
+$\square A$ is usually interpreted as ``it is necessarily true that $A$'', and $\Diamond A$ as ``it is possibly true that $A$''.
+
+In order to study the logical truth and valid deductions in modal logic, we need to know how to interpret $\square$ and $\Diamond$.  So just what are precisely the meanings of ``necessity'' and ``possibility''?  Because of the lack of exact mathematical interpretations of these vague terms, and $\square$ and $\Diamond$ more generally, there are a great many kinds of modal logics, than the other well-known logical systems, such as classical logic and intuitionistic logic.
+
+In fact, one can take $\square$ and $\Diamond$ to be qualifiers attachable to any propositions (or sentences).  So $\square$ could mean ``in South Africa'' and $\Diamond$ ``in the U.S.''.  Then, if $A$ is the sentence ``July is a summer month'', then $\square A$ and $\Diamond A$ are read ``July is a summer month in South Africa'' and ``July is a summer month in the U.S.'' respectively.  Some of the common interpretations of $\square A$ are:
+\begin{multicols}{2}{
+\begin{itemize}
+\item (alethic logic) $A$ is necessarily true
+\item (provability logic) $A$ is provable in PA
+\item (deontic logic) it ought to be that $A$
+\item (epistemic logic) it is known that $A$
+\item (doxastic logic) it is believed that $A$
+\item (temporal logic) $A$ will always be true
+\end{itemize}
+}\end{multicols}
+Additionally, for most of the modal logics, $\Diamond$ is `defined'' in terms of $\square$: 
+\begin{equation}
+\Diamond A:=\neg \square \neg A.
+\end{equation}
+
+In the next two subsections, we restrict our attention to only propositional modal logic.
+
+\subsubsection*{Semantics}
+
+As mentioned previously, a modal logic is an extension of the classical logic.  As such, tautologies and tautological consequences of valid formulas should be valid in any semantical model of modal logic.  More precisely, call a formula in a modal logic $L$ \emph{prime} or \emph{quasi-atomic} if it is
+\begin{multicols}{2}{ 
+\begin{itemize}
+\item either a propositional variable, or 
+\item of the form $\square A$, where $A$ is in $L$.  
+\end{itemize}}
+\end{multicols}
+It is easy to see that any formula in $L$ can be built up from quasi-atoms using just $\to$ (or other connectives, depending on the choice of axiom system for classical propositional logic).  In this sense, $L$ can be thought of as a classical logic where the propositional variables range over quasi-atoms.  Now, let $M$ be any semantic model of the $L$, we write $$M \models A$$ to mean $A$ is true in the model $M$.  Then,
+\begin{itemize}
+\item if $A$ is an instance of a tautology (viewing $L$ as the classical propositional logic here), then $M \models A$,
+\item if $A_1, \ldots, A_n$ tautologically implies $A$, and if $M \models A_i$ for each $i$, then $M \models A$.
+\end{itemize}
+We call a formula in a modal logic $L$ a \emph{tautology} if it is an instance of a tautology of $L$ viewed as the classical propositional logic over its quasi-atoms.  Therefore, $\square A\to \square A$ is a tautology, since it is an instance of the tautology $X\to X$.  Also, if $\square A$ and $\square A\to \square B$ are both valid, so is $\square B$, since $\square B$ may be deduced by modus ponens.
+
+For the majority of the modal logics (known as normal modal logics), the principal semantic model is the Kripke semantics, or possible-world semantics.  It is a generalization of the truth-value semantics for the classical propositional logic.  A Kripke model $M$ consists of a triple $(W,R,T)$ where $W$ is a non-empty set of elements called possible worlds, $R$ is a binary relation on $W$ (called accessibility relation), and $T$ is a function from the set of atomic propositions (propositional variables) to $P(W)$, the powerset of $W$.  Semantic truth condition of a proposition $A$ is written $$M \models_{\alpha} A$$ to mean ``$A$ is true in possible world $\alpha$ in model $M$'', or $\models_{\alpha} A$ if $M$ is clear from the context.
+
+The relation $\models$ is defined recursively as follows:
+\begin{multicols}{2}{
+\begin{enumerate}
+\item if $A$ is atomic, then $\models_{\alpha} A$ iff $\alpha \in T(A)$
+\item $\models_{\alpha} \perp$ for no $\alpha \in W$
+\item $\models_{\alpha} A \to B$ iff if $\models_{\alpha} A$ then $\models_{\alpha} B$
+\item $\models_{\alpha} \square A$ iff for all $\beta$ where $\alpha R \beta$, $\models_{\beta} A$
+\end{enumerate}}
+\end{multicols}
+The truth conditions of $\neg A, A\land B, A\lor B$, and $\diamond A$ can be derived.  For example, $\models_{\alpha} \Diamond A$ iff there is some $\beta$ where $\alpha R \beta$, such that $\models_{\beta} A$.
+
+If $A$ is true in every possible world in $M$, we say that $A$ is true in $M$, and write $M \models A$.  When $A$ is true in every model, then we say that $A$ is valid, and write $\models A$.  The formula schema K, for example, is a set of valid formulas.  Also, if $A$ is valid, it is easy to see that so is $\square A$ valid.
+
+In addition to Kripke semantics, there are also a number of semantic tools, some are lattices with operators, some are systems of open neighborhoods in topological spaces, while others are just variations or generalizations of the Kripke models, such as including more than one binary relation on the possible worlds, or having a subset of the possible worlds called ``impossible worlds''.
+
+\subsubsection*{Axiom Systems}
+
+As explained in the previous subsection, tautologies and tautological consequences of valid formulas are valid, in any semantic interpretation of a modal logic.  Similarly, in any axiom system for a modal logic:
+\begin{itemize}
+\item tautologies are to be considered axioms (or deducible from axioms), and 
+\item modus ponens as an inference rule.
+\end{itemize}
+
+By including additional schemas of formulas as axioms, and imposing additional inference rules, one arrives at axiom systems for the different kinds of modal logics.  Some of the common axioms schemas are listed above: K, 4, 5, D, T, B, and W.  Some common inference rules (and their abbreviations) are
+\begin{multicols}{2}{
+\begin{itemize}
+\item RK: $\displaystyle{\frac{(A_1 \wedge \cdots \wedge A_n) \to A}{(\square A_1 \wedge \cdots \wedge \square A_n)\to \square A}}$, $n\ge 0$
+\item RR: $\displaystyle{\frac{(A \wedge B) \to C}{(\square A \wedge \square B)\to \square C}}$
+\item RM: $\displaystyle{\frac{A \to B}{\square A \to \square B}}$
+\item RN (necessitation rule): $\displaystyle{\frac{A}{\square A}}$
+\end{itemize}
+}
+\end{multicols}
+For example, a widely studied class of modal logics is the class of normal modal logics.  A modal logic is normal if its axiom system consists of the axiom schema K and the rule RN.  
+
+\textbf{Remarks}.
+\begin{itemize}
+\item Like other logical systems, issues of soundness and completeness of a model with respect to an axiom system, as well as various decidability questions are also studied in modal logic.  In addition, questions regarding on the equivalence of axiom systems are also very interesting.
+\item Extending modal logic, one has the notion of \emph{multi-modal logic}, where the language of the logical system contains several, sometimes infinitely many, modal connectives.  From the discussion above, a modal logic where connectives $\square$ and $\Diamond$ are not inter-definable (and therefore must be non-normal) is really an example of a bimodal logic.
+\end{itemize}
+
+\begin{thebibliography}{6}
+\bibitem{bc} B. F. Chellas, {\it Modal Logic, An Introduction}, Cambridge University Press (1980)
+\bibitem{rg} R. Goldblatt, {\it Logic of Time and Computation}, 2nd Edition, CSLI (1992)
+\bibitem{gp} G. Priest, {\it An Introduction to Non-Classical Logic}, Cambridge University Press (2001)
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

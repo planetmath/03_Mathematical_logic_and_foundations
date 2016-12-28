@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DeterministicPushdownAutomaton}
+\pmcreated{2013-03-22 18:56:00}
+\pmmodified{2013-03-22 18:56:00}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{deterministic pushdown automaton}
+\pmrecord{14}{41787}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D10}
+\pmclassification{msc}{68Q42}
+\pmclassification{msc}{68Q05}
+\pmsynonym{DPDA}{DeterministicPushdownAutomaton}
+\pmrelated{ContextFreeLanguage}
+\pmrelated{AmbiguousGrammar}
+\pmdefines{deterministic}
+\pmdefines{deterministic language}
+\pmdefines{deterministic context-free}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A pushdown automaton $M=(Q,\Sigma,\Gamma,T,q_0,\bot,F)$ is usually called ``non-deterministic'' because the image of the transition function $T$ is a subset of $Q\times \Gamma^*$, which may possibly contain more than one element.  In other words, the transition from one configuration to the next is not uniquely determined.  When there is uniqueness, $M$ is called ``deterministic''.
+
+Formally, a \emph{deterministic pushdown automaton}, or \emph{DPDA} for short, is a non-deterministic pushdown automaton $M=(Q,\Sigma,\Gamma,T,q_0,\bot,F)$ where the transition function $T$ has the following properties: for any $p\in Q$, $a\in \Sigma$, and $A\in \Gamma$,
+\begin{enumerate}
+\item $T(p,a,A)\cup T(p,\lambda,A)$ is at most a singleton,
+\item $T(p,a,A)\cap T(p,\lambda,A)=\varnothing$.
+\end{enumerate}
+The properties can be interpreted as follows: given any configuration of $M$, if there is a transition to the next configuration, the transition must be unique.  The second property just insures that $T(p,a,A)\ne T(p,\lambda,A)$, so that when a $\lambda$-transition is possible for a given $(p,A)$, no other transitions are possible for the same $(p,A)$.
+
+The way a DPDA works is exactly the same as an NPDA, with several modes of acceptance: acceptance on final state, acceptance on empty stack, and acceptance on final state and empty stack.  However, unlike a NPDA, these acceptance methods are not equivalent.  It can be shown that the set $\mathscr{E}$ of languages accepted on empty stack is a proper subset of the set $\mathscr{F}$ of languages determined on final state.  In fact, every language in $\mathscr{E}$ is prefix-free, while some languages in $\mathscr{F}$ are not.
+
+Nevertheless, any regular language can be accepted by a DPDA on empty stack, and any language accepted by a DPDA on final state is unambiguous, and, as a result, $\mathscr{F}$ is a proper subset of the family of all context-free languages.  This is quite unlike the case for finite automata: every non-deterministic finite automaton is equivalent to a deterministic finite automaton.  A language in $\mathscr{F}$ called a \emph{deterministic language}.
+
+Some examples: the set of palindromes $\lbrace u \in \Sigma^* \mid u = \operatorname{rev}(u) \rbrace$ is unambiguous, but not deterministic.  The language $\lbrace a^m b^n \mid m \ge n \ge 0 \rbrace$ is deterministic, but not prefix-free, and hence can not be accepted by any DPDA on empty stack.  The language $\lbrace a^n b^n \mid n\ge 0 \rbrace$ can be accepted by a DPDA on empty stack, but is not regular.
+
+Any formal grammar that generates a deterministic language is said to be \emph{deterministic context-free}.  A deterministic context-free grammar can be described by what is known as the \PMlinkname{$LR(k)$}{LRk} grammars.
+
+The family of deterministic languages is closed under complementation, intersection with a regular language, but not arbitrary (finite) intersection, and hence not union.
+
+\textbf{Remark}.  The reason why $\mathscr{E}\ne \mathscr{F}$ can be traced back to the definition of a DPDA: it allows for the following possibilities for a DPDA $M$:
+\begin{itemize}
+\item $M$ completely stops reading an input word because either there are no available transitions from one configuration to the next: $$T(p,a,A)\cup T(p,\lambda,A)=\varnothing,$$ or the stack is emptied before the last input symbol is read: a configuration $(p,u,\lambda)$ is reached and $u$ is not empty.
+\item $M$ consumes the last input symbol, and continues processing because of $\lambda$-transitions.
+\end{itemize}
+Some authors consider these imperfections of $M$ as being ``non-deterministic'', and put additional constraints on $M$, such as making sure $T$ is a total function, the stack is never empty, and delimiting input strings.
+
+\begin{thebibliography}{9}
+\bibitem{as} A. Salomaa {\em Computation and Automata, Encyclopedia of Mathematics and Its Applications, Vol. 25}. Cambridge (1985).
+\bibitem{sg} S. Ginsburg, {\em The Mathematical Theory of Context-Free Languages}, McGraw-Hill, New York (1966).
+\bibitem{dk} D. C. Kozen, {\em Automata and Computability}, Springer, New York (1997).
+\bibitem{hu} J.E. Hopcroft, J.D. Ullman, {\em Formal Languages and Their Relation to Automata}, Addison-Wesley, (1969).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

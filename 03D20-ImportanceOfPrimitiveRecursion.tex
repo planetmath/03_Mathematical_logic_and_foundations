@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ImportanceOfPrimitiveRecursion}
+\pmcreated{2013-03-22 19:05:21}
+\pmmodified{2013-03-22 19:05:21}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{importance of primitive recursion}
+\pmrecord{12}{41979}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Feature}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we show that the operation of primitive recursion is an important ingredient in the definition of primitive recursive functions.  Very basic arithmetic functions, such as addition, depend on primitive recursion in an essential way.  One can not go very far without it.
+
+One way to prove this is to come up with a property on those functions which are derivable from the initial functions using functional composition alone, and then find a primitive recursive function that fails this property.  Thus, we begin with the following definition:
+
+\textbf{Definition}.  Let $\mathcal{PR}_0$ be the smallest subset of the set $\mathcal{PR}$ of primitive recursive functions such that
+\begin{enumerate}
+\item (initial functions): $z,s,p_m^k \in \mathcal{PR}_0$ for all positive integers $m,k$ with $m\le k$.
+\item (closure under functional composition): if $f, g_1,\ldots,g_m  \in \mathcal{PR}_0$ with $f$ $m$-ary and $g_i$ $n$-ary, then the $n$-ary function $h:=f(g_1,\ldots, g_m) \in \mathcal{PR}_0$ as well.
+\end{enumerate}
+
+From the definition above, we observe that any function $f(x_1,\ldots, x_n)$ obtained without the use of the successor function $s$ must be bounded by $\max\lbrace x_1,\ldots, x_n\rbrace$.  Now, since one application of $s$ increments the input by $1$, a finite applications of $s$ in the construction of $f$ results in $f$ being bounded by $\max \lbrace x_1,\ldots,x_n\rbrace$ plus some fixed integer.  This is the property we seek, and we prove it formally:
+
+\begin{prop} For any $f\in \mathcal{PR}_0$ with arity $n$, the following condition is satisfied:
+\begin{quote} (*) there is an integer $r\ge 0$ such that $f(x_1,\ldots, x_n) \le \max\lbrace x_1,\ldots,x_n \rbrace +r$. \end{quote}
+\end{prop}
+\begin{proof}  For each integer $n\ge 0$, let $\mathcal{X}_n$ be the subset of $\mathcal{PR}_0$ that contains all the initial functions, as well as functions derivable from the initial functions by applying functional composition at most $n$ times.  The following facts are clear:
+\begin{enumerate}
+\item $\mathcal{X}_0$ is the set of all initial functions,
+\item $\mathcal{X}_n\subseteq \mathcal{X}_{n+1}$, 
+\item and $\mathcal{PR}_0=\bigcup \lbrace \mathcal{X}_n \mid n \in \mathbb{N}\rbrace$, where $\mathbb{N}$ contains $0$ in this context.
+\end{enumerate}
+
+We prove our assertion by induction on $n$.  In fact, we will prove a stronger assertion: 
+\begin{quote}
+in the conditon (*) above, $r=n+1$ can be picked for every function in $\mathcal{X}_n$.
+\end{quote}
+\begin{itemize}
+\item For $n=0$, it is clear that all initial functions have the desired property: $r=0$ for $z$ and $p_m^k$, and $r=1$ for $s$.  In either case, we can pick $r=1$.
+\item Suppose now that we can pick $r=i+1$ for any function in $\mathcal{X}_i$.  
+\item Let $f$ be an $k$-ary function in $\mathcal{X}_{i+1}$.  If $f\in \mathcal{X}_i$, then $r=i+1$ can be picked by assumption.  Otherwise, $f=h(g_1,\ldots, g_m)$, where $h$ is $m$-ary, and each $g_j$ is $k$-ary.  Furthermore, $g_j \in \mathcal{X}_{i_j}$, each $i_j \le i$, and $h \in \mathcal{X}_t$, where $t=i-\max \lbrace i_1,\ldots, i_m\rbrace$.  Then, by assumption $g_j(x_1,\ldots,x_k) \le x + i_j + 1 \le x + \ell + 1$ for all $j\in \lbrace 1,\ldots, m\rbrace$, where $x=\max\lbrace x_1,\ldots,x_k\rbrace$ and $\ell = \max \lbrace i_1,\ldots, i_m\rbrace$.  As a result, 
+\begin{eqnarray*}
+f(x_1,\ldots,x_k) &=& h(g_1(x_1,\ldots,x_k),\ldots,g_m(x_1,\ldots,x_k)) \\
+&\le& \max\lbrace g_j(x_1,\ldots,x_k)\mid j=1,\ldots, m \rbrace + t + 1 \\
+&\le& (x + \ell + 1) + t + 1 = x + (i + 1) + 1.
+\end{eqnarray*}
+This proves the stronger assertion.
+\end{itemize}
+Now, if we pick any $f\in \mathcal{PR}_0$, then $f\in \mathcal{X}_m$ for some $m$ by the third fact above.  The proof is now complete by setting $r=m+1$.
+\end{proof}
+
+Now, we show the following:
+\begin{prop} $\mathcal{PR}_0 \subset \mathcal{PR}$. \end{prop}
+\begin{proof} We prove that $\operatorname{add}(x,y)=x+y$ does not have property (*) above.  But if it does, then $\operatorname{add}(x,y)\le \max\lbrace x,y\rbrace + r$ for some non-negative integer $r$.  Then, for an arbitrary non-negative integer $n$, $2n=\operatorname{add}(n,n)\le \max\lbrace n,n\rbrace + r = n+r$, so that $n\le r$, a contradiction (pick $n=r+1$)!  \end{proof}
+
+In fact, the above proof shows the function $f(x)=2x$, simpler than addition in the sense that $f$ is unary, can not be defined in terms of the initial functions and functional composition alone.  Primitive recursion is required at least once to define $f$.
+
+\textbf{Remark}.  In fact, one can obtain an infinite chain of subsets of $\mathcal{PR}$ in the following manner: $\mathcal{PR}_n$ is the smallest set of all primitive recursive functions generated by the initial functions, closed under functional composition, and at most $n$ applications of primitive recursion.  Then
+$$\mathcal{PR}_n \subset \mathcal{PR}_{n+1} \qquad \mbox{and} \qquad \mathcal{PR} = \bigcup_{i=0}^{\infty} \mathcal{PR}_i$$
+For example, addition is in $\mathcal{PR}_1 - \mathcal{PR}_0$, as was shown earlier.  Furthermore, it is not hard to show that multiplication is in $\mathcal{PR}_2 - \mathcal{PR}_1$, and exponentiation is in $\mathcal{PR}_3 - \mathcal{PR}_2$.  In fact, the Ackermann function can be utilized to show that each $\mathcal{PR}_n \subset \mathcal{PR}_{n+1}$ is proper.  Using this technique, it is possible to show that the Ackermann function is a total recursive function that is not primitive recursive.  With respect to the set $\mathcal{ER}$ of elementary recursive functions, it can be shown that $\mathcal{ER}=\mathcal{PR}_3$.
+%%%%%
+%%%%%
+\end{document}

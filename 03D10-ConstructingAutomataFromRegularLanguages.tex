@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ConstructingAutomataFromRegularLanguages}
+\pmcreated{2013-03-22 19:02:09}
+\pmmodified{2013-03-22 19:02:09}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{constructing automata from regular languages}
+\pmrecord{11}{41912}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D10}
+\pmclassification{msc}{68Q42}
+\pmclassification{msc}{68Q05}
+\pmdefines{Myhill-Nerode relation}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we describe how a certain equivalence relation on words gives rise to a deterministic automaton, and show that deterministic automata to a certain extent can be characterized by these equivalence relations.
+
+\subsubsection*{Constructing the automaton}
+
+Let $\Sigma$ be an alphabet and $R$ a subset of $\Sigma^*$, the set of all words over $\Sigma$.  Consider an equivalence relation $\equiv$ on $\Sigma^*$ satisfying the following two conditions:
+\begin{itemize}
+\item $\equiv$ is a right congruence: if $u\equiv v$, then $uw\equiv vw$ for any word $w$ over $\Sigma$,
+\item $u \equiv v$ implies that $u\in R$ iff $v\in R$.
+\end{itemize}
+An example of this is the Nerode equivalence $\mathcal{N}_R$ of $R$ (in fact, the largest such relation).
+
+We can construct an automaton $A=(S,\Sigma,\delta,I,F)$ based on $\equiv$.  Here's how:
+\begin{itemize}
+\item $S=\Sigma^*/\equiv$, the set of equivalence classes of $\equiv$; elements of $S$ are denoted by $[u]$ for any $u\in \Sigma^*$,
+\item $\delta:S\times \Sigma \to S$ is given by $\delta([u],a)=[ua]$,
+\item $I$ is a singleton consisting of $[\lambda]$, the equivalence class consisting of the empty word $\lambda$,
+\item $F$ is the set consisting of $[u]$, where $u\in R$.
+\end{itemize}
+By condition 1, $\delta$ is well-defined, so $A$ is a deterministic automaton.  By the second condition above, $[u]\in F$ iff $u\in R$.
+
+By induction, we see that $\delta([u],v)=[uv]$ for any word $v$ over $\Sigma$.  So $$u\equiv v \qquad \mbox{iff} \qquad \delta([u],\lambda)=\delta([v],\lambda).$$  One consequence of this is that $A$ is accessible (all states are accessible).
+
+In addition, $R=L(A)$, as $u\in L(A)$ iff $\delta([\lambda],u)\in F$ iff $[u]\in F$ iff $u\in R$.
+
+\subsubsection*{Constructing the equivalence relation}
+
+Conversely, given a deterministic automaton $A=(S,\Sigma,\delta,\lbrace q_0\rbrace,F)$, a binary relation $\equiv$ on $\Sigma^*$ may be defined:
+$$u\equiv v\qquad \mbox{iff} \qquad \delta(q_0,u)=\delta(q_0,v).$$
+This binary relation is clearly an equivalence relation, and it satisfies the two conditions above, with $R=L(A)$: 
+\begin{itemize}
+\item $\delta(q_0,uw)=\delta(\delta(q_0,u),w)= \delta(\delta(q_0,v),w)=\delta(q_0,vw)$,
+\item if $\delta(q_0,u)=\delta(q_0,v)$, then clearly $u\in L(A)$ iff $v\in L(A)$.
+\end{itemize}
+So $[u]=\lbrace v \in S \mid \delta(q_0,v)=\delta(q_0,u)\rbrace$.
+
+\textbf{Remark}.  We could have defined the binary relation $u \equiv v$ to mean $\delta(q,u)=\delta(q,v)$ for all $q\in S$.  This is also an equivalence relation that satisfies both of the conditions above.  However, this is stronger in the sense that $\equiv$ is a congruence: if $u\equiv v$, then $\delta(q,wu)=\delta(\delta(q,w),u)=\delta( \delta(q,w),v) = \delta(q,wv)$ so that $wu\equiv wv$.  In this entry, only the weaker assumption that $\equiv$ is a right congruence is needed.
+
+\subsubsection*{Characterization}
+
+Fix an alphabet $\Sigma$ and a set $R\subseteq \Sigma^*$.  Let $X$ the set of equivalence relations satisfying the two conditions above, and $Y$ the set of accessible deterministic automata over $\Sigma$ accepting $R$.  Define $f:X\to Y$ and $g:Y\to X$ such that $f(\equiv)$ and $g(A)$ are the automaton and relation constructed above.
+
+\begin{prop} $g\circ f=1_X$ and $f(g(A))$ is isomorphic to $A$.  \end{prop}
+\begin{proof}  Suppose $\equiv_1 \; \stackrel{f}{\mapsto} A \stackrel{g}{\mapsto} \; \equiv_2$.  Then $u \equiv_1 v$ iff $\delta([u],\lambda)=\delta([v],\lambda)$ iff $\delta([\lambda],u) = \delta([\lambda],v)$ iff $u\equiv_2 v$.
+
+Conversely, suppose $A_1=(S_1,\Sigma,\delta_1,q_1,F_2) \stackrel{g}{\mapsto} \; \equiv \; \stackrel{f}{\mapsto} A_2=(S_2,\Sigma,\delta_2,q_2,F_2)$.  Then $S_2=\Sigma^*/\equiv$, $q_2=[\lambda]$, and $F_2$ consists of all $[u]$ such that $u\in L(A_1)$.  As a result, $u\in L(A_2)$ iff $\delta_2([\lambda],u)=\delta_2(q_2,u)\in F_2$ iff $[u]=\delta_2([u],\lambda)\in F_2$ iff $u\in L(A_1)$.  This shows that $A_1$ is equivalent to $A_2$.
+
+To show $A_1$ is isomorphic to $A_2$, define $\phi:S_2\to S_1$ by $\phi([u])=\delta_1(q_1,u)$.  Then 
+\begin{itemize}
+\item $\phi$ is well-defined by the definition of $\equiv$, and it is injective for the same reason.  Now, let $s\in S$, then since $A_1$ is accessible, there is a word $u$ such that $\delta_1(q_1,u)=s$, so that $\phi([u])=s$.  This shows that $\phi$ is a bijection.
+\item $\phi(q_2)=\phi([\lambda])=\delta_1(q_1,\lambda)=q_1$.
+\item $\phi([u]) \in F_1$ iff $\delta_1(q_1,u)\in F_1$ iff $u\in L(A_1)=L(A_2)$ iff $[u]\in F_2$.  Therefore, $\phi(F_2)=F_1$.
+\item Finally, $\phi(\delta_2([u],a))=\phi([ua])=\delta_1(q_1,ua)=\delta_1(\delta_1(q_1,u),a)=\delta_1(\phi([u]),a)$. 
+\end{itemize}
+Thus, $\phi$ is a homomorphism from $A_1$ to $A_2$, together with the fact that $\phi$ is a bijection, $A_1$ is isormorphic to $A_2$.
+\end{proof}
+
+\begin{prop} If $\equiv$ is the Nerode equivalence of $R$, then the $f(\equiv)$ is a reduced automaton.  If $A$ is reduced, then $g(A)$ is the Nerode equivalence of $R$.  \end{prop}
+\begin{proof}  Suppose $\equiv$ is the Nerode equivlance.  If $f(\equiv)$ is not reduced, reduce it to a reduced automaton $A$.  Then $\equiv \subseteq g(A)$.  Since $g(A)$ satisfies the two conditions above and $\equiv$ is the largest such relation, $\equiv = g(A)$.  Therefore $f(\equiv)=f(g(A))$ is isomorphic to $A$.  But $A$ is reduced, so must $f(\equiv)$.
+
+On the other hand, suppose $A$ is reduced.  Then $g(A) \subseteq \mathcal{N}_R$.  Conversely, if $u \mathcal{N}_R v$, then $uw\in R$ iff $vw\in R$ for any word $w$, so that $\delta(q_0,uw)=\delta(q_0,vw)$, or $\delta(\delta(q_0,u),w)=\delta(\delta(q_0,v),w)$, which implies $\delta(q_0,u)$ and $\delta(q_0,v)$ are indistinguishable.  But $A$ is reduced, this means $\delta(q_0,u) = \delta(q_0,v)$.  As a result $u g(A) v$, or $g(A) = \mathcal{N}_R$.
+\end{proof}
+
+\textbf{Definition}.  A \emph{Myhill-Nerode relation} for $R\subseteq \Sigma^*$ is an equivalence relation $\equiv$ that satisfies the two conditions above, and that $\Sigma^*/\equiv$ is finite.
+
+Combining from what we just discussed above, we see that a language $R$ is regular iff its Nerode equivalence is a Myhill-Nerode relation, which is the essence of Myhill-Nerode theorem.
+%%%%%
+%%%%%
+\end{document}

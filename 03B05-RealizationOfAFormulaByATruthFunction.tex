@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{RealizationOfAFormulaByATruthFunction}
+\pmcreated{2013-03-22 18:52:53}
+\pmmodified{2013-03-22 18:52:53}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{realization of a formula by a truth function}
+\pmrecord{8}{41729}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Fix a countable set $V=\lbrace v_1, v_2, \ldots \rbrace$ of propositional variables.  Let $p$ be a well-formed formula over $V$ constructed by a set $F$ of logical connectives.  Let $S:=\lbrace v_{k_1},\ldots, v_{k_n} \rbrace$ be the set of variables occurring in $p$ ($S$ is finite as $p$ is a string of finite length).  Fix the $n$-tuple $\boldsymbol{v}:=(v_{k_1},\ldots, v_{k_n})$.  Every valuation $\nu$ on $V$, when restricted to $S$, determines an $n$-tupe of zeros and ones: $\nu(\boldsymbol{v}):=(\nu(v_{k_1}),\ldots, \nu(v_{k_n}))\in \lbrace 0,1\rbrace^n$.  For this $\nu(\boldsymbol{v})$, we associate the interpretation $\overline{\nu}(p) \in \lbrace 0,1\rbrace$.
+
+Two valuations on $V$ determine the same $a\in \lbrace 0,1\rbrace^n$ iff they agree on every $v_{k_i}$.  If we set $\nu_1 \sim \nu_2$ iff they determine the same $a\in \lbrace 0,1\rbrace^n$, then $\sim$ is an equivalence relation on the set of all valuations on $V$.  As there are $2^n$ elements in $\lbrace 0,1\rbrace^n$, there are $2^n$ equivalence classes.
+
+From the two paragraphs above, we see that there is a truth function $\phi: \lbrace 0,1\rbrace^n \to \lbrace 0,1\rbrace$ such that $$\phi(\nu(\boldsymbol{v}))=\overline{\nu}(p)$$ for any valuation $\nu$ on $V$.  This function is called a \emph{realization} of the wff $p$.  Since $p$ is arbitrary, it is easy to see that every wff admits a realization.  It is also not hard to see that a realization of $p$ is unique up to the order of the variables in the $n$-tuple $\boldsymbol{v}$.  From now only, we make the assumption that every $n$-tuple $(v_{k_1},\ldots, v_{k_n})$ has the property that $k_1< \cdots <k_n$.  Let us write $\phi_p$ \emph{the} realization of $p$.
+
+Realizations of wffs are closely related to semantical implications and equivalences:
+\begin{enumerate}
+\item $p \models q$ ($p$ semantically implies $q$, or $p$ entails $q$) iff $\phi_p \le \phi_q$;
+\item $p \equiv q$ iff $\phi_p = \phi_q$, where $\equiv$ denotes semantical equivalence;
+\item $p$ is a tautology iff $\phi_p=1$, the constant function whose value is $1\in \lbrace 0,1\rbrace$.
+\end{enumerate}
+
+If $F=\lbrace \neg, \vee, \wedge \rbrace$, then every wff $p$ over $V$ corresponds to a realization $[p]$ that ``looks'' exactly likes $p$.  We do this by induction:
+\begin{itemize}
+\item if $p$ is a propositional variable $v_i$, let $[v_i]$ be the identity function on $\lbrace 0,1\rbrace$;
+\item if $p$ has the form $\neg q$, define $[p]:=\neg [q]$;
+\item if $p$ has the form $q\vee r$, define $[p]:=[q]\vee [r]$;
+\item if $p$ has the form $q\wedge r$, define $[p]:=[q]\wedge [r]$;
+\end{itemize}
+where the $\neg, \vee,$ and $\wedge$ on the right hand side of the definitions are the Boolean complementation, join and meet operations on the Boolean algebra $\lbrace 0,1\rbrace$.  Again by an easy induction, for each wff $p$, the function $[p]$ is the realization of $p$ (a function written in terms of symbols in $F$ is called a polynomial).
+
+Conversely, every $n$-ary truth function $\phi: \lbrace 0,1\rbrace^n \to \lbrace 0,1\rbrace$ is the realization of some wff $p$.  This is true because every $n$-ary operation on $\lbrace 0,1\rbrace$ has a conjunctive normal form.  Suppose $\phi$ is a function in variables $x_1, \ldots, x_n$, with the form $\alpha_1 \wedge \cdots \wedge \alpha_m$, where each $\alpha_i$ is the join of the variables in $x_i$.  If $\alpha_i$ is a function in $x_{k_1},\ldots, x_{k_m}$ (each $k_j \in \lbrace 1,\ldots, n\rbrace$), then let $p_i$ be the disjunction of propositional variables $v_{k_1}, \ldots, v_{k_m}$.  Then $\phi$ is the realization of wff $p:= p_1\wedge \cdots \wedge p_n$.  Notice that we have omitted parenthesis, and $p_1\wedge \cdots \wedge p_n$ is an abbreviation of $(\cdots (p_1 \wedge p_2) \wedge \cdots ) \wedge p_n)$.
+
+Since every wff, regardless of logical connectives, has a realization, what we have just proved in fact is the following: 
+\begin{thm}
+$\lbrace \neg, \vee, \wedge \rbrace$ is functionally complete.
+\end{thm}
+
+\begin{thebibliography}{7}
+\bibitem{he} H. Enderton: {\em A Mathematical Introduction to Logic}, Academic Press, San Diego (1972).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

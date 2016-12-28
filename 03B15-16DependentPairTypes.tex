@@ -1,0 +1,215 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{16DependentPairTypes}
+\pmcreated{2013-11-13 18:01:54}
+\pmmodified{2013-11-13 18:01:54}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.6 Dependent pair types}
+\pmrecord{22}{87542}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Definition}
+\pmclassification{msc}{03B15}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+
+% making logically defined graphics
+%\usepackage{xypic}
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\def\index#1{}
+\def\indexdef#1{}
+\def\indexsee#1#2{}
+\def\symlabel#1{}
+\def\define#1{\textbf{#1}}
+
+\usepackage{xspace}
+\newcommand{\vcentcolon}{܃\!\!}
+\newcommand{\ac}{\ensuremath{\mathsf{ac}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}
+\newcommand{\define}[1]{\textbf{#1}}
+
+\newcommand{\fst}{\ensuremath{\proj1}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\jdeq}{\equiv} 
+
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\def\smsym{\textstyle\sum}
+
+\newcommand{\snd}{\ensuremath{\proj2}\xspace}
+\newcommand{\tup}[2]{(#1,#2)}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+
+\def\dprd#1{\prod_{(#1)}\,}
+\def\tprd#1{\textstyle\prod_{(#1)}}
+\let\prd\tprd
+
+\def\dsm#1{\sum_{(#1)}\,}
+\def\lsm#1{\sum({\textstyle #1}),\ }
+\def\tsm#1{\textstyle\sum_{(#1)}}
+\let\sm\tsm
+
+\newcommand{\narrowbreak}{}
+\newcommand{\narrowequation}[1]{$#1$}
+\newenvironment{narrowmultline}{\csname equation\endcsname}{\csname endequation\endcsname}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\begin{document}
+Just as we generalized function types (\PMlinkname{\S 1.2}{12functiontypes}) to dependent function types (\PMlinkname{\S 1.4}{14dependentfunctiontypes}), it is often useful to generalize the product types from \PMlinkname{\S 1.5}{15producttypes} to allow the type of
+the second component of a pair to vary depending on the choice of the first
+component. This is called a \define{dependent pair type}, or \define{$\Sigma$-type}, because in set theory it
+corresponds to an indexed sum (in the sense of coproduct or
+disjoint union) over a given type.
+
+Given a type $A:\UU$ and a family $B : A \to \UU$, the dependent
+pair type is written as $\sm{x:A} B(x) : \UU$.
+Alternative notations are 
+\[ \tsm{x:A} B(x) \hspace{2cm} \dsm{x:A}B(x) \hspace{2cm} \lsm{x:A} B(x). \]
+Like other binding constructs such as $\lambda$-abstractions and $\Pi$s, $\Sigma$s automatically scope\index{scope} over the rest of the expression unless delimited, so e.g.\ $\sm{x:A} B(x) \times C(x)$ means $\sm{x:A} (B(x) \times C(x))$.
+
+\symlabel{defn:dependent-pair}%
+\indexdef{pair!dependent}%
+The way to construct elements of a dependent pair type is by pairing: we have
+$\tup{a}{b} : \sm{x:A} B(x)$ given $a:A$ and $b:B(a)$.
+If $B$ is constant, then the dependent pair type is the
+ordinary cartesian product type:
+\[ \Parens{\sm{x:A} B} \jdeq (A \times B).\]
+All the constructions on $\Sigma$-types arise as straightforward generalizations of the ones for product types, with dependent functions often replacing non-dependent ones.
+
+For instance, the recursion principle%
+\index{recursion principle!for dependent pair type}
+says that to define a non-dependent function out of a $\Sigma$-type
+$f : (\sm{x:A} B(x)) \to C$, we provide a function 
+$g : \prd{x:A} B(x) \to C$, and then we can define $f$ via the defining
+equation
+\[ f(\tup{a}{b}) \defeq g(a)(b). \]
+\indexdef{projection!from dependent pair type}%
+For instance, we can derive the first projection from a $\Sigma$-type:
+\symlabel{defn:dependent-proj1}%
+\begin{equation*}
+  \fst : \Parens{\sm{x : A}B(x)} \to A.
+\end{equation*}
+by the defining equation
+\begin{equation*}
+  \fst(\tup{a}{b}) \defeq a.
+\end{equation*}
+However, since the type of the second component of a pair
+\narrowequation{
+  (a,b):\sm{x:A} B(x)
+}
+is $B(a)$, the second projection must be a \emph{dependent} function, whose type involves the first projection function:
+\symlabel{defn:dependent-proj2}%
+\[ \snd : \prd{p:\sm{x : A}B(x)}B(\fst(p)). \]
+Thus we need the \emph{induction} principle%
+\index{induction principle!for dependent pair type}
+for $\Sigma$-types (the ``dependent eliminator'').
+This says that to construct a dependent function out of a $\Sigma$-type into a family $C : (\sm{x:A} B(x)) \to \UU$, we need a function
+\[ g : \prd{a:A}{b:B(a)} C(\tup{a}{b}). \]
+We can then derive a function 
+\[ f : \prd{p : \sm{x:A}B(x)} C(p) \]
+with  defining equation\index{computation rule!for dependent pair type}
+\[ f(\tup{a}{b}) \defeq g(a)(b).\]
+Applying this with $C(p)\defeq B(\fst(p))$, we can define
+\narrowequation{
+\snd : \prd{p:\sm{x : A}B(x)}B(\fst(p))
+}
+with the obvious equation
+\[ \snd(\tup{a}{b})  \defeq  b. \]
+To convince ourselves that this is correct, we note that $B (\fst(\tup{a}{b})) \jdeq B(a)$, using the defining equation for $\fst$, and
+indeed $b : B(a)$.
+
+We can package the recursion and induction principles into the recursor for $\Sigma$:
+\symlabel{defn:recursor-sm}%
+\[ \rec{\sm{x:A}B(x)} : \dprd{C:\UU}\Parens{\tprd{x:A} B(x) \to C} \to
+\Parens{\tsm{x:A}B(x)} \to C \]
+with the defining equation
+\[ \rec{\sm{x:A}B(x)}(C,g,\tup{a}{b}) \defeq g(a)(b) \]
+and the corresponding induction operator:
+\symlabel{defn:induction-sm}%
+\begin{narrowmultline*}
+  \ind{\sm{x:A}B(x)} : \narrowbreak
+    \dprd{C:(\sm{x:A} B(x)) \to \UU}
+    \Parens{\tprd{a:A}{b:B(a)} C(\tup{a}{b})}
+    \to \dprd{p : \sm{x:A}B(x)} C(p)
+\end{narrowmultline*}
+with the defining equation 
+\[ \ind{\sm{x:A}B(x)}(C,g,\tup{a}{b}) \defeq g(a)(b). \]
+As before, the recursor is the special case of induction
+when the family $C$ is constant.
+
+As a further example, consider the following principle, where $A$ and $B$ are types and $R:A\to B\to \UU$.
+\[ \ac : \Parens{\tprd{x:A} \tsm{y :B} R(x,y)} \to
+\Parens{\tsm{f:A\to B} \tprd{x:A} R(x,f(x))}
+\]
+We may regard $R$ as a ``proof-relevant relation''
+\index{mathematics!proof-relevant}%
+between $A$ and $B$, with $R(a,b)$ the type of witnesses for relatedness of $a:A$ and $b:B$.
+Then $\ac$ says intuitively that if we have a dependent function $g$ assigning to every $a:A$ a dependent pair $(b,r)$ where $b:B$ and $r:R(a,b)$, then we have a function $f:A\to B$ and a dependent function assigning to every $a:A$ a witness that $R(a,f(a))$.
+Our intuition tells us that we can just split up the values of $g$ into their components.
+Indeed, using the projections we have just defined, we can define:
+\[ \ac(g) \defeq \Parens{\lamu{x:A} \fst(g(x)),\, \lamu{x:A} \snd(g(x))}. \]
+To verify that this is well-typed, note that if $g:\prd{x:A} \sm{y :B} R(x,y)$, we have
+\begin{align*}
+\lamu{x:A} \fst(g(x)) &: A \to  B, \\
+\lamu{x:A} \snd(g(x)) &: \tprd{x:A} R(x,\fst(g(x))).
+\end{align*}
+Moreover, the type $\prd{x:A} R(x,\fst(g(x)))$ is the result of substituting the function $\lamu{x:A} \fst(g(x))$ for $f$ in the family being summed over in the co\-do\-main of \ac:
+\[ \tprd{x:A} R(x,\fst(g(x))) \jdeq
+\Parens{\lamu{f:A\to B} \tprd{x:A} R(x,f(x))}\big(\lamu{x:A} \fst(g(x))\big). \]
+Thus, we have
+\[ \Parens{\lamu{x:A} \fst(g(x)),\, \lamu{x:A} \snd(g(x))} : \tsm{f:A\to B} \tprd{x:A} R(x,f(x))\]
+as required.
+
+If we read $\Pi$ as ``for all'' and $\Sigma$ as ``there exists'', then the type of the function $\ac$ expresses:
+\emph{if for all $x:A$ there is a $y:B$ such that $R(x,y)$, then there is a function $f : A \to B$ such that for all $x:A$ we have $R(x,f(x))$}.
+Since this sounds like a version of the axiom of choice, the function \ac has traditionally been called the \define{type-theoretic axiom of choice}, and as we have just shown, it can be proved directly from the rules of type theory, rather than having to be taken as an axiom.
+\index{axiom!of choice!type-theoretic}%
+However, note that no choice is actually involved, since the choices have already been given to us in the premise: all we have to do is take it apart into two functions: one representing the choice and the other its correctness.
+In \autoref{sec:axiom-choice} we will give another formulation of an ``axiom of choice'' which is closer to the usual one.
+
+Dependent pair types are often used to define types of mathematical structures, which commonly consist of several dependent pieces of data.
+To take a simple example, suppose we want to define a \define{magma}\indexdef{magma} to be a type $A$ together with a binary operation $m:A\to A\to A$.
+The precise meaning of the phrase ``together with''\index{together with} (and the synonymous ``equipped with''\index{equipped with}) is that ``a magma'' is a \emph{pair} $(A,m)$ consisting of a type $A:\UU$ and an operation $m:A\to A\to A$.
+Since the type $A\to A\to A$ of the second component $m$ of this pair depends on its first component $A$, such pairs belong to a dependent pair type.
+Thus, the definition ``a magma is a type $A$ together with a binary operation $m:A\to A\to A$'' should be read as defining \emph{the type of magmas} to be
+\[ \mathsf{Magma} \defeq \sm{A:\UU} (A\to A\to A). \]
+Given a magma, we extract its underlying type (its ``carrier''\index{carrier}) with the first projection $\proj1$, and its operation with the second projection $\proj2$.
+Of course, structures built from more than two pieces of data require iterated pair types, which may be only partially dependent; for instance the type of pointed magmas (magmas $(A,m)$ equipped with a basepoint $e:A$) is
+\[ \mathsf{PointedMagma} \defeq \sm{A:\UU} (A\to A\to A) \times A. \]
+We generally also want to impose axioms on such a structure, e.g.\ to make a pointed magma into a monoid or a group.
+This can also be done using $\Sigma$-types; see \autoref{sec:pat}.
+
+In the rest of the book, we will sometimes make definitions of this sort explicit, but eventually we trust the reader to translate them from English into $\Sigma$-types.
+We also generally follow the common mathematical practice of using the same letter for a structure of this sort and for its carrier (which amounts to leaving the appropriate projection function implicit in the notation): that is, we will speak of a magma $A$ with its operation $m:A\to A\to A$.
+
+Note that the canonical elements of $\mathsf{PointedMagma}$ are of the form $(A,(m,e))$ where $A:\UU$, $m:A\to A\to A$, and $e:A$.
+Because of the frequency with which iterated $\Sigma$-types of this sort arise, we use the usual notation of ordered triples, quadruples and so on to stand for nested pairs (possibly dependent) associating to the right.
+That is, we have $(x,y,z) \defeq (x,(y,z))$ and $(x,y,z,w)\defeq (x,(y,(z,w)))$, etc.
+
+\index{type!dependent pair|)}%
+
+
+\end{document}

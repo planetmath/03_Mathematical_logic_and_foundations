@@ -1,0 +1,183 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{48TheObjectClassifier}
+\pmcreated{2013-11-20 2:12:44}
+\pmmodified{2013-11-20 2:12:44}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{4.8 The object classifier}
+\pmrecord{5}{87670}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\htpy}{\sim}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\newcommand{\Pairr}[1]{{\mathopen{}\left(#1\right)\mathclose{}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\newcommand{\pointed}[1]{\ensuremath{#1_\bullet}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\def\tsm#1{\@tsm{#1}\@ifnextchar\bgroup{\tsm}{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ua}{\ensuremath{\mathsf{ua}}\xspace} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{4.8.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{4.8.\arabic{mathcount}}
+\let\autoref\cref
+\let\hfiber\hfib
+\let\type\UU
+\makeatother
+
+\begin{document}
+In type theory we have a basic notion of \emph{family of types}, namely a function $B:A\to\type$.
+We have seen that such families behave somewhat like \emph{fibrations} in homotopy theory, with the fibration being the projection $\proj1:\sm{a:A} B(a) \to A$.
+A basic fact in homotopy theory is that every map is equivalent to a fibration.
+With univalence at our disposal, we can prove the same thing in type theory.
+
+\begin{lem}\label{thm:fiber-of-a-fibration}
+  For any type family $B:A\to\type$, the fiber of $\proj1:\sm{x:A} B(x) \to A$ over $a:A$ is equivalent to $B(a)$:
+  \[ \eqv{\hfib{\proj1}{a}}{B(a)} \]
+\end{lem}
+\begin{proof}
+  We have
+  \begin{align*}
+    \hfib{\proj1}{a} &\defeq \sm{u:\sm{x:A} B(x)} \proj1(u)=a\\
+    &\eqvsym \sm{x:A}{b:B(x)} (x=a)\\
+    &\eqvsym \sm{x:A}{p:x=a} B(x)\\
+    &\eqvsym B(a)
+  \end{align*}
+  using the left universal property of identity types.
+\end{proof}
+
+\begin{lem}\label{thm:total-space-of-the-fibers}
+  For any function $f:A\to B$, we have $\eqv{A}{\sm{b:B}\hfib{f}{b}}$.
+\end{lem}
+\begin{proof}
+  We have
+  \begin{align*}
+    \sm{b:B}\hfib{f}{b} &\defeq \sm{b:B}{a:A} (f(a)=b)\\
+    &\eqvsym \sm{a:A}{b:B} (f(a)=b)\\
+    &\eqvsym A
+  \end{align*}
+  using the fact that $\sm{b:B} (f(a)=b)$ is contractible.
+\end{proof}
+
+\begin{thm}\label{thm:nobject-classifier-appetizer}
+For any type $B$ there is an equivalence
+\begin{equation*}
+\chi:\Parens{\sm{A:\type} (A\to B)}\eqvsym (B\to\type).
+\end{equation*}
+\end{thm}
+\begin{proof}
+We have to construct quasi-inverses
+\begin{align*}
+\chi & : \Parens{\sm{A:\type} (A\to B)}\to B\to\type\\
+\psi & : (B\to\type)\to\Parens{\sm{A:\type} (A\to B)}.
+\end{align*}
+We define $\chi$ by $\chi((A,f),b)\defeq\hfiber{f}b$, and $\psi$ by $\psi(P)\defeq\Pairr{(\sm{b:B} P(b)),\proj1}$.
+Now we have to verify that $\chi\circ\psi\htpy\idfunc{}$ and that $\psi\circ\chi \htpy\idfunc{}$.
+\begin{enumerate}
+\item Let $P:B\to\type$.
+  By \PMlinkname{Lemma 4.8.1}{48theobjectclassifier#Thmprelem1},
+$\hfiber{\proj1}{b}\eqvsym P(b)$ for any $b:B$, so it follows immediately
+that $P\htpy\chi(\psi(P))$.
+\item Let $f:A\to B$ be a function. We have to find a path
+\begin{equation*}
+\Pairr{\tsm{b:B} \hfiber{f}b,\,\proj1}=\pairr{A,f}.
+\end{equation*}
+First note that by \PMlinkname{Lemma 4.8.2}{48theobjectclassifier#Thmprelem2}, we have
+$e:\sm{b:B} \hfiber{f}b\eqvsym A$ with $e(b,a,p)\defeq a$ and $e^{-1}(a)
+\defeq(f(a),a,\refl{f(a)})$.
+By \PMlinkname{Theorem 2.7.2}{27sigmatypes#Thmprethm1}, it remains to show $\trans{(\ua(e))}{\proj1} = f$.
+But by the computation rule for univalence and~\PMlinkname{(2.9.4)}{29pitypesandthefunctionextensionalityaxiom#S0.E3}, we have $\trans{(\ua(e))}{\proj1} = \proj1\circ e^{-1}$, and the definition of $e^{-1}$ immediately yields $\proj1 \circ e^{-1} \jdeq f$.\qedhere
+\end{enumerate}
+\end{proof}
+
+\noindent
+\indexdef{object!classifier}%
+\indexdef{classifier!object}%
+\index{.infinity1-topos@$(\infty,1)$-topos}%
+In particular, this implies that we have an \emph{object classifier} in the sense of higher topos theory.
+Recall from \PMlinkname{Definition 2.1.7}{21typesarehighergroupoids#Thmpredefn1} that $\pointed\type$ denotes the type $\sm{A:\type} A$ of pointed types.
+
+\begin{thm}\label{thm:object-classifier}
+Let $f:A\to B$ be a function. Then the diagram
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_4.8.1.png}
+\end{figure}
+%\begin{equation*}
+%  \vcenter{\xymatrix{
+%      A\ar[r]^-{\vartheta_f} \ar[d]_{f} &
+%      \pointed{\type}\ar[d]^{\proj1}\\
+%      B\ar[r]_{\chi_f} &
+%      \type
+%      }}
+%\end{equation*}
+is a pullback\index{pullback} square (see \PMlinkexternal{Exercise 2.11}{http://planetmath.org/node/87642}).
+Here the function $\vartheta_f$ is defined by
+\begin{equation*}
+ \lam{a} \pairr{\hfiber{f}{f(a)},\pairr{a,\refl{f(a)}}}.
+\end{equation*}
+\end{thm}
+\begin{proof}
+Note that we have the equivalences
+\begin{align*}
+A & \eqvsym \sm{b:B} \hfiber{f}b\\
+& \eqvsym \sm{b:B}{X:\type}{p:\hfiber{f}b= X} X\\
+& \eqvsym \sm{b:B}{X:\type}{x:X} \hfiber{f}b= X\\
+& \eqvsym \sm{b:B}{Y:\pointed{\type}} \hfiber{f}b = \proj1 Y\\
+& \jdeq B\times_{\type}\pointed{\type}.
+\end{align*}
+which gives us a composite equivalence $e:A\eqvsym B\times_\type\pointed{\type}$. 
+We may display the action of this composite equivalence step by step by
+\begin{align*}
+a & \mapsto \pairr{f(a),\; \pairr{a,\refl{f(a)}}}\\
+& \mapsto \pairr{f(a), \; \hfiber{f}{f(a)}, \; \refl{\hfiber{f}{f(a)}}, \; \pairr{a,\refl{f(a)}}}\\
+& \mapsto \pairr{f(a), \; \hfiber{f}{f(a)}, \; \pairr{a,\refl{f(a)}}, \; \refl{\hfiber{f}{f(a)}}}.
+\end{align*}
+Therefore, we get homotopies $f\htpy\proj1\circ e$ and $\vartheta_f\htpy \proj2\circ e$. 
+\end{proof}
+
+
+\end{document}

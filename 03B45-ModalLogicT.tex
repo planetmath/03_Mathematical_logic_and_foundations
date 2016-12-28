@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ModalLogicT}
+\pmcreated{2013-03-22 19:33:58}
+\pmmodified{2013-03-22 19:33:58}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{modal logic T}
+\pmrecord{9}{42552}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmrelated{ModalLogicD}
+\pmdefines{T}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The modal logic \textbf{T} is the smallest normal modal logic containing the schema T:
+$$\square A \to A$$
+A Kripke frame $(W,R)$ is reflexive if $R$ is reflexive on $W$.
+
+\begin{prop} T is valid in a frame $\mathcal{F}$ iff $\mathcal{F}$ is reflexive. \end{prop}
+\begin{proof}  First, suppose $\mathcal{F}$ is not reflexive, say, $(w,w)\notin R$.  Let $M$ be a model based on $\mathcal{F}$ such that $V(p)=\lbrace u\mid w R u \rbrace$, where $p$ is a propositional variable.  By the construction of $V(p)$, we see that for all $u$ such that $w R u$, we have $\models_u p$, so $\models_w \square p$.  But since $w\notin V(p)$, $\not \models_w p$.  This means that $\not \models_w \square p \to p$.
+
+Conversely, let $\mathcal{F}$ be a reflexive frame, and $M$ any model based on $\mathcal{F}$, with $w$ a world in $M$.  Suppose $\models_w \square A$.  Then for all $u$ such that $w R u$, $\models_u A$.  Since $w R w$, we get $\models_w A$.  Therefore, $\models_w \square A \to A$.
+\end{proof}
+
+As a result,
+\begin{prop} \textbf{T} is sound in the class of reflexive frames. \end{prop}
+\begin{proof}  Since any theorem in \textbf{T} is deducible from a finite sequence consisting of tautologies, which are valid in any frame, instances of T, which are valid in reflexive frames by the proposition above, and applications of modus ponens and necessitation, both of which preserve validity in any frame, whence the result.
+\end{proof}
+
+In addition, using the canonical model of \textbf{T}, we have
+\begin{prop} \textbf{T} is complete in the class of reflexive frames. \end{prop}
+\begin{proof}  We show that the canonical frame $\mathcal{F}_{\textbf{T}}$ is reflexive.  For any maximally consistent set $w$, if $A \in \Delta_w:=\lbrace B\mid \square B\in w\rbrace$, then $\square A \in w$.  Since \textbf{T} contains $\square A\to A$, we get that $A\in w$ by modus ponens and the fact that $w$ is closed under modus ponens.  Therefore $w R_{\textbf{T}} w$, or $R_{\textbf{T}}$ is reflexive.
+\end{proof}
+
+\textbf{T} properly extends the modal system \textbf{D}, for $\square A \to A$ is not valid in any non-reflexive serial frame, such as the one $(W,R)$, where $W=\lbrace u,w\rbrace$ and $R=\lbrace (u,u),(w,u)\rbrace$: just let $V(p)=\lbrace w \rbrace$.  So $\models_w p$ and $\not \models_u p$, or $\not \models_w \square p$.  This means $\not \models_w \square p \to p$.
+
+%%%%%
+%%%%%
+\end{document}

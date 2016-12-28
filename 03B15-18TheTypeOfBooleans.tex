@@ -1,0 +1,165 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{18TheTypeOfBooleans}
+\pmcreated{2013-11-13 18:07:17}
+\pmmodified{2013-11-13 18:07:17}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.8 The type of booleans}
+\pmrecord{9}{87544}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{xspace}
+\makeatletter
+\let\autoref\cref
+\newcommand{\bfalse}{{0_{\bool}}}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\btrue}{{1_{\bool}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\dprd#1{\@dprd{#1}\@ifnextchar\bgroup{\dprd}{}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\fst}{\ensuremath{\proj1}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\inr}{\ensuremath\inrsym\xspace}
+\newcommand{\inrsym}{{\mathsf{inr}}}
+\newcommand{\jdeq}{\equiv}      
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\snd}{\ensuremath{\proj2}\xspace}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\tup}[2]{(#1,#2)}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\let\type\UU
+\newcommand{\vcentcolon}{:\!\!}
+\makeatother
+\newtheorem{thm}{Theorem}[section]
+\renewcommand{\thethm}{1.8.\arabic{thm}}
+\begin{document}
+\indexsee{boolean!type of}{type of booleans}%
+\index{type!of booleans|(defstyle}%
+The type of booleans $\bool:\UU$ is intended to have exactly two elements 
+$\bfalse,\btrue : \bool$. It is clear that we could construct this
+type out of coproduct
+% this one results in a warning message just because it's on the same page as the previous entry 
+% for {type!coproduct}, so it's not our fault
+\index{type!coproduct}%
+and unit\index{type!unit} types as $\unit + \unit$. However,
+since it is used frequently, we give the explicit rules here.
+Indeed, we are going to observe that we can also go the other way
+and derive binary coproducts from $\Sigma$-types and $\bool$.
+
+\index{recursion principle!for type of booleans}
+To derive a function $f : \bool \to C$ we need $c_0,c_1 : C$ and
+add the defining equations
+\begin{align*}
+  f(\bfalse) &\defeq c_0, \\
+  f(\btrue)  &\defeq c_1.
+\end{align*}
+The recursor corresponds to the if-then-else construct in
+functional programming:
+\symlabel{defn:recursor-bool}%
+\[ \rec{\bool} : \prd{C:\UU}  C \to C \to \bool \to C \]
+with the defining equations
+\begin{align*}
+  \rec{\bool}(C,c_0,c_1,\bfalse) &\defeq c_0, \\
+  \rec{\bool}(C,c_0,c_1,\btrue)  &\defeq c_1.
+\end{align*}
+
+\index{induction principle!for type of booleans}
+Given $C : \bool \to \UU$, to derive a dependent function 
+$f : \prd{x:\bool}C(x)$ we need $c_0:C(\bfalse)$ and $c_1 : C(\btrue)$, in which case we can give the defining equations
+\begin{align*}
+  f(\bfalse) &\defeq c_0, \\
+  f(\btrue)  &\defeq c_1.
+\end{align*}
+We package this up into the induction principle
+\symlabel{defn:induction-bool}%
+\[ \ind{\bool} : \dprd{C:\bool \to \UU}  C(\bfalse) \to C(\btrue)
+\to \tprd{x:\bool} C(x) \]
+with the defining equations
+\begin{align*}
+  \ind{\bool}(C,c_0,c_1,\bfalse) &\defeq c_0, \\
+  \ind{\bool}(C,c_0,c_1,\btrue)  &\defeq c_1.
+\end{align*}
+
+As an example, using the induction principle we can prove that, as we expect, every element of $\bool$ is either $\btrue$ or $\bfalse$.
+As before, we use the equality types which we have not yet introduced, but we need only the fact that everything is equal to itself by $\refl{x}:x=x$.
+
+\begin{thm}\label{thm:allbool-trueorfalse}
+  We have
+  \[ \prd{x:\bool}(x=\bfalse)+(x=\btrue). \]
+\end{thm}
+\begin{proof}
+  We use the induction principle with $C(x) \defeq (x=\bfalse)+(x=\btrue)$.
+  The two inputs are $\inl(\refl{\bfalse}) : C(\bfalse)$ and $\inr(\refl{\btrue}):C(\btrue)$.
+\end{proof}
+
+We have remarked that $\Sigma$-types can be regarded as analogous to indexed disjoint unions, while coproducts are binary disjoint unions.
+It is natural to expect that a binary disjoint union $A+B$ could be constructed as an indexed one over the two-element type \bool.
+For this we need a type family $P:\bool\to\type$ such that $P(\bfalse)\jdeq A$ and $P(\btrue)\jdeq B$.
+Indeed, we can obtain such a family precisely by the recursion principle for $\bool$.
+\index{type!family of}%
+(The ability to define \emph{type families} by induction and recursion, using the fact that the universe $\UU$ is itself a type, is a subtle and important aspect of type theory.)
+Thus, we could have defined
+\index{type!coproduct}%
+\[ A + B \defeq \sm{x:\bool} \rec{\bool}(\UU,A,B,x). \]
+with
+\begin{align*}
+  \inl(a) &\defeq \tup{\bfalse}{a}, \\
+  \inr(b) &\defeq \tup{\btrue}{b}.
+\end{align*}
+We leave it as an exercise to derive the induction principle of a coproduct type from this definition.
+(See also PMlinkexternal{Exercise 1.5}{http://planetmath.org/node/87558},\PMlinkname{\S 5.2}{52uniquenessofinductivetypes}.)
+
+We can apply the same idea to products and $\Pi$-types: we could have defined
+\[ A \times B \defeq \prd{x:\bool}\rec{\bool}(\UU,A,B,x) \]
+Pairs could then be constructed using induction for \bool:
+\[ \tup{a}{b} \defeq \ind{\bool}(\rec{\bool}(\UU,A,B),a,b) \]
+while the projections are straightforward applications
+\begin{align*}
+  \fst(p) &\defeq p(\bfalse), \\
+  \snd(p) &\defeq p(\btrue).
+\end{align*}
+The derivation of the induction principle for binary products defined in this way is a bit more involved, and requires function extensionality, which we will introduce in \PMlinkname{\S 2.9}{29pitypesandthefunctionextensionalityaxiom}.
+Moreover, we do not get the same judgmental equalities; see \PMlinkexternal{Exercise 1.6}{http://planetmath.org/node/87559}.
+This is a recurrent issue when encoding one type as another; we will return to it in \PMlinkname{\S 5.5}{55homotopyinductivetypes}. 
+
+We may occasionally refer to the elements $\bfalse$ and $\btrue$ of $\bool$ as ``false'' and ``true'' respectively.
+However, note that unlike in classical\index{mathematics!classical} mathematics, we do not use elements of $\bool$ as truth values
+\index{value!truth}%
+or as propositions.
+(Instead we identify propositions with types; see \PMlinkname{\S 1.11}{111propositionsastypes}.)
+In particular, the type $A \to \bool$ is not generally the power set\index{power set} of $A$; it represents only the ``decidable'' subsets of $A$ (see \PMlinkexternal{Chapter 3}{http://planetmath.org/node/87576}).
+\index{decidable!subset}%
+
+\index{type!of booleans|)}%
+
+
+
+\end{document}

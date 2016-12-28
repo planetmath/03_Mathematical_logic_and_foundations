@@ -1,0 +1,158 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FirstorderTheory}
+\pmcreated{2013-03-22 12:43:04}
+\pmmodified{2013-03-22 12:43:04}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{first-order theory}
+\pmrecord{19}{33012}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+\pmclassification{msc}{03B10}
+\pmsynonym{first order theory}{FirstorderTheory}
+\pmrelated{PropertiesOfConsistency}
+\pmrelated{MaximallyConsistent}
+\pmdefines{theory}
+\pmdefines{complete theory}
+\pmdefines{axiomatizable theory}
+\pmdefines{deductively closed}
+\pmdefines{finitely axiomatizable theory}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+\usepackage[arrow,curve,poly,arc,2cell,frame,web]{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newcommand{\br}{[\![}
+\newcommand{\rb}{]\!]}
+\newcommand{\oq}{\text{``}}
+\newcommand{\cq}{\text{''}}
+
+
+\newcommand{\im}{\mathbf{Im}}
+\newcommand{\dom}{\mathbf{Dom}}
+
+
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\proves}{\vdash}
+\renewcommand{\And}{\wedge}
+\newcommand{\Sup}{\bigwedge}
+\newcommand{\Inf}{\bigvee}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\N}{\mathfrak{N}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\K}{\mathfrak{K}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Def}{\overset{\operatorname{def}}{:=}}
+
+
+
+\newcommand{\spec}{\text{{\bf Spec}}}
+\newcommand{\stab}{\text{{\bf Stab}}}
+\newcommand{\ann}{\text{{\bf Ann}}}
+\newcommand{\irr}{\text{{\bf Irr}}}
+\newcommand{\qt}{\text{{\bf Qt}}}
+\newcommand{\st}{\mathcal{Qt}}
+\newcommand{\ro}{\mathbf{r.o.}}
+
+
+\newcommand{\Endo}{\text{{\bf End}}}
+\newcommand{\mat}{\text{{\bf Mat}}}
+\newcommand{\der}{\text{{\bf Der}}}
+\newcommand{\rad}{\text{{\bf Rad}}}
+\newcommand{\trd}{\text{{\bf tr.d.}}}
+\newcommand{\cl}{\text{{\bf acl}}}
+\newcommand{\Int}{\text{{\bf int}}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\D}{\mathbf{D}}
+
+\newcommand{\del}{\partial}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\aut}{\mathbf{Aut}}
+\newcommand{\height}{\text{\bf Height}}
+\newcommand{\coheight}{\text{\bf Co-height}}
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\inner}[2]{\langle #1|#2\rangle}
+\renewcommand{\r}{{r}}
+\renewcommand{\t}{{t}}
+
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\Matrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 
+\end{array}\right)}
+
+\begin{document}
+In what follows, references to sentences and sets of sentences are
+all relative to some fixed first-order language $L$. \\
+
+\textbf{Definition.} A \textbf{theory} $T$ is a \emph{deductively
+closed} set of sentences in $L$; that is, a set $T$ such that for each
+sentence $\varphi$, $T \vdash \varphi$ only if $\varphi \in
+T$.\\
+
+\textbf{Remark}.  Some authors do not require that a theory be deductively closed.  Therefore, a theory is simply a set of sentences.  This is not a cause for alarm, since every theory $T$ under this definition can be ``extended'' to a deductively closed theory $T^{\vdash}:=\lbrace \varphi \in L\mid T\vdash \varphi\rbrace$.  Furthermore, $T^{\vdash}$ is unique (it is the smallest deductively closed theory including $T$), and any structure $M$ is a model of $T$ iff it is a model of $T^{\vdash}$.
+
+\textbf{Definition.} A theory $T$ is \emph{consistent} if and only
+if for some sentence $\varphi$, $T \not \vdash \varphi$.
+Otherwise, $T$ is \emph{inconsistent}. A sentence
+$\varphi$ is \emph{consistent with $T$} if and only if the
+theory $T \cup \lbrace \varphi \rbrace$ is consistent.\\
+
+\textbf{Definition.} A theory $T$ is \emph{complete} if and only
+if $T$ is consistent and for each sentence $\varphi$, either $\varphi \in T$
+or $\neg \varphi \in T$.\\
+
+\textbf{Lemma.} A consistent theory $T$ is complete if and only if $T$ is
+maximally consistent. That is, $T$ is complete if and only if for
+each sentence $\varphi$, $\varphi \not \in T$ only if
+$T \cup \lbrace \varphi \rbrace$ is inconsistent.  See \PMlinkname{this entry}{MaximallyConsistent} for a proof. \\
+
+\textbf{Theorem. (Tarski)} Every consistent theory $T$ is included
+in a complete theory.
+
+\textbf{Proof :} Use Zorn's lemma on the set of consistent
+theories that include $T$.\\
+
+\textbf{Remark}. A theory $T$ is \emph{axiomatizable} if and only
+if $T$ includes a \PMlinkname{decidable}{DecidableSet} subset $\Delta$ such that $\Delta
+\vdash T$ (every sentence of $T$ is a logical consequence of
+$\Delta$), and \emph{finitely axiomatizable} if $\Delta$ can be made finite. Every complete axiomatizable theory $T$ is decidable;
+that is, there is an algorithm that given a sentence $\varphi$ as
+input yields $0$ if $\varphi \in T$, and $1$ otherwise.
+
+%%%%%
+%%%%%
+\end{document}

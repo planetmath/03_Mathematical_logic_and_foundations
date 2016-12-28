@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{GametheoreticalQuantifier}
+\pmcreated{2013-03-22 12:59:19}
+\pmmodified{2013-03-22 12:59:19}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{game-theoretical quantifier}
+\pmrecord{7}{33363}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B15}
+\pmrelated{Quantifier}
+\pmdefines{Henkin quantifier}
+\pmdefines{Henkin}
+\pmdefines{branching quantifier}
+\pmdefines{branching}
+\pmdefines{game-theoretic quantifier}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+A \emph{Henkin} or \emph{branching} quantifier is a multi-variable quantifier in which the selection of variables depends only on some, but not all, of the other quantified variables.  For instance the simplest Henkin quantifier can be written:
+$$\begin{array}{c}\forall x\exists y\\\forall a\exists b\end{array}\phi(x,y,a,b)$$
+
+This quantifier, inexpressible in ordinary first order logic, can best be understood by its skolemization.  The formula above is equivalent to $\forall x\forall a\phi(x,f(y),a,g(a))$.  Critically, the selection of $y$ depends only on $x$ while the selection of $b$ depends only on $a$.  For instance, given a value for $a$, a value of $b$ must be chosen which is compatible with every possible value of $x$, while given any $x$, the value of $y$ chosen must be compatible with every value of $a$.
+
+Logics with this quantifier are stronger than first order logic, lying between first and second order logic in strength.  For instance the Henkin quantifier can be used to define the Rescher quantifier, and by extension H\"artig's quantifer:
+
+$$\begin{array}{c}
+\forall x\exists y\\
+\forall a\exists b
+\end{array}
+[(x=a\leftrightarrow y=b)\wedge\phi(x)\rightarrow\psi(y)]\leftrightarrow Rxy\phi(x)\psi(y)$$
+
+To see that this is true, observe that this essentially requires that the Skolem functions $f(x)=y$ and $g(a)=b$ the same, and moreover that they are injective.  Then for each $x$ satisfying $\phi(x)$, there is a different $f(x)$ satisfying $\psi((f(x))$.
+
+This concept can be generalized to the \emph{game-theoretical quantifiers}.  This concept comes from interpreting a formula as a game between a ``Prover'' and ``Refuter.''  A theorem is provable whenever the Prover has a winning strategy; at each $\wedge$ the Refuter chooses which side they will play (so the Prover must be prepared to win on either) while each $\vee$ is a choice for the Prover.  At a $\neg$, the players switch roles.  Then $\forall$ represents a choice for the Refuter and $\exists$ for the Prover.
+
+Classical first order logic, then, adds the requirement that the games have perfect information.  The game-theoretical quantifers remove this requirement, so for instance the Henkin quantifier, which would be written $\forall x\exists y\forall a\exists_{/\forall x} b\phi(x,y,a,b)$ states that when the Prover makes a choice for $b$, it is made without knowledge of what was chosen at $x$.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofOfPigeonholePrinciple}
+\pmcreated{2013-03-22 13:31:09}
+\pmmodified{2013-03-22 13:31:09}
+\pmowner{Wkbj79}{1863}
+\pmmodifier{Wkbj79}{1863}
+\pmtitle{proof of pigeonhole principle}
+\pmrecord{8}{34106}
+\pmprivacy{1}
+\pmauthor{Wkbj79}{1863}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E05}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{psfrag}
+\usepackage{graphicx}
+\usepackage{amsthm}
+%%\usepackage{xypic}
+\begin{document}
+\begin{proof}
+It will first be proven that, if a bijection exists between two finite sets, then the two sets have the same number of elements.  Let $S$ and $T$ be finite sets and $f \colon S \to T$ be a bijection.  The claim will be proven by induction on $|S|$.
+
+If $|S|=0$, then $S=\emptyset$, and $f \colon \emptyset \to T$ can only be surjective if $T=\emptyset$.
+
+Assume the statement holds for any set $S$ with $|S|=n$.  Let $|S|=n+1$.  Let $x_1, \dots , x_{n+1} \in S$ with $S=\{x_1, \dots , x_{n+1}\}$.  Let $R=S \setminus \{x_{n+1}\}$.  Then $|R|=n$.
+
+Define $g \colon R \to T \setminus \{f(x_{n+1})\}$ by $g(x)=f(x)$.  Since $R \subset S$, $f(x) \in T$ for all $x \in R$.  Thus, to show that $g$ is well-defined, it only needs to be verified that $f(x) \neq f(x_{n+1})$ for all $x \in R$.  This follows immediately from the facts that $x_{n+1} \notin R$ and $f$ is injective.  Therefore, $g$ is well-defined.
+
+Now it need to be proven that $g$ is a bijection.  The fact that $g$ is injective follows immediately from the fact that $f$ is injective.  To verify that $g$ is surjective, let $y \in T \setminus \{f(x_{n+1})\}$.  Since $f$ is surjective, there exists $x \in S$ with $f(x)=y$.  Since $f(x)=y \neq f(x_{n+1})$ and $f$ is injective, $x \neq x_{n+1}$.  Thus, $x \in R$.  Hence, $g(x)=f(x)=y$.  It follows that $g$ is a bijection.
+
+By the induction hypothesis, $|R|=|T \setminus \{f(x_{n+1})\}|$.  Thus, $n=|R|=|T \setminus \{f(x_{n+1})\}|=|T|-1$.  Therefore, $|T|=n+1=|S|$.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

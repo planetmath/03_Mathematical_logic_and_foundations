@@ -1,0 +1,267 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{88WhiteheadsTheoremAndWhiteheadsPrinciple}
+\pmcreated{2013-11-06 15:34:12}
+\pmmodified{2013-11-06 15:34:12}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.8 Whitehead’s theorem and Whitehead’s principle}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\choice}[1]{\ensuremath{\mathsf{AC}_{#1}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqvspaced}[2]{\ensuremath{#1 \;\simeq\; #2}\xspace}
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\LEM}[1]{\ensuremath{\mathsf{LEM}_{#1}}\xspace}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{8.8.\arabic{mathcount}}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{8.8.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{8.8.\arabic{mathcount}}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\nat\N
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+In classical homotopy theory, a map $f:A\to B$ which induces an isomorphism $\pi_n(A,a) \cong \pi_n(B,f(a))$ for all points $a$ in $A$ (and also an isomorphism $\pi_0(A)\cong\pi_0(B)$) is necessarily a homotopy equivalence, as long as the spaces $A$ and $B$ are well-behaved (e.g.\ have the homotopy types of CW-complexes).
+\index{theorem!Whitehead's}%
+\index{Whitehead's!theorem}%
+This is known as \emph{Whitehead's theorem}.
+In fact, the ``ill-behaved'' spaces for which Whitehead's theorem fails are invisible to type theory.
+Roughly, the well-behaved topological spaces suffice to present $\infty$-groupoids,%
+\index{.infinity-groupoid@$\infty$-groupoid}
+and homotopy type theory deals with $\infty$-groupoids directly rather than actual topological spaces.
+Thus, one might expect that Whitehead's theorem would be true in univalent foundations.
+
+However, this is \emph{not} the case: Whitehead's theorem is not provable.
+In fact, there are known models of type theory in which it fails to be true, although for entirely different reasons than its failure for ill-behaved topological spaces.
+These models are ``non-hypercomplete $\infty$-toposes''
+\index{.infinity1-topos@$(\infty,1)$-topos}%
+\index{.infinity1-topos@$(\infty,1)$-topos!non-hypercomplete}%
+(see~\cite{lurie:higher-topoi}); roughly speaking, they consist of sheaves of $\infty$-groupoids over $\infty$-dimensional base spaces.
+
+\index{axiom!Whitehead's principle|(}%
+\index{Whitehead's!principle|(}%
+
+From a foundational point of view, therefore, we may speak of \emph{Whitehead's principle} as a ``classicality axiom'', akin to \LEM{} and \choice{}.
+It may consistently be assumed, but it is not part of the computationally motivated type theory, nor does it hold in all natural models.
+But when working from set-theoretic foundations, this principle is invisible: it cannot fail to be true in a world where $\infty$-groupoids are built up out of sets (using topological spaces, simplicial sets, or any other such model).
+
+This may seem odd, but actually it should not be surprising.
+Homotopy type theory is the \emph{abstract} theory of homotopy types, whereas the homotopy theory of topological spaces or simplicial sets in set theory is a \emph{concrete} model of this theory, in the same way that the integers are a concrete model of the abstract theory of rings.
+It is to be expected that any concrete model will have special properties which are not intrinsic to the corresponding abstract theory, but which we might sometimes want to assume as additional axioms (e.g.\ the integers are a Principal Ideal Domain, but not all rings are).
+
+It is beyond the scope of this book to describe any models of type theory, so we will not explain how Whitehead's principle might fail in some of them.
+However, we can prove that it holds whenever the types involved are $n$-truncated for some finite $n$, by ``downward'' induction on $n$.
+In addition to being of interest in its own right (for instance, it implies the essential uniqueness of Eilenberg--Mac Lane spaces), the proof of this result will hopefully provide some intuitive explanation for why we cannot hope to prove an analogous theorem without truncation hypotheses.
+
+We begin with the following modification of \autoref{thm:mono-surj-equiv}, which will eventually supply the induction step in the proof of the truncated Whitehead's principle.
+It may be regarded as a type-theoretic, $\infty$-group\-oid\-al version of the classical statement that a fully faithful and essentially surjective functor is an equivalence of categories.
+
+\begin{thm}\label{thm:whitehead0}
+  Suppose $f:A\to B$ is a function such that
+  \begin{enumerate}
+  \item $\trunc0 f : \trunc0 A \to \trunc0 B$ is surjective, and\label{item:whitehead01}
+  \item for any $x,y:A$, the function $\apfunc f : (\id[A]xy) \to (\id[B]{f(x)}{f(y)})$ is an equivalence.\label{item:whitehead02}
+  \end{enumerate}
+  Then $f$ is an equivalence.
+\end{thm}
+\begin{proof}
+  Note that~\ref{item:whitehead02} is precisely the statement that $f$ is an embedding, c.f.~\autoref{sec:mono-surj}.
+  Thus, by \autoref{thm:mono-surj-equiv}, it suffices to show that $f$ is surjective, i.e.\ that for any $b:B$ we have $\trunc{-1}{\hfib f b}$.
+  Suppose given $b$; then since $\trunc0 f$ is surjective, there merely exists an $a:A$ such that $\trunc 0 f(\tproj0a) = \tproj0b$.
+  And since our goal is a mere proposition, we may assume given such an $a$.
+  Then we have $\tproj0{f(a)} = \trunc 0 f(\tproj0a) =\tproj0b$, hence $\trunc{-1}{f(a)=b}$.
+  Again, since our goal is still a mere proposition, we may assume $f(a)=b$.
+  Hence $\hfib f b$ is inhabited, and thus merely inhabited.
+\end{proof}
+
+Since homotopy groups are truncations of loop spaces\index{loop space}, rather than path spaces, we need to modify this theorem to speak about these instead.
+
+\begin{cor}\label{thm:whitehead1}
+  Suppose $f:A\to B$ is a function such that
+  \begin{enumerate}
+  \item $\trunc0 f : \trunc0 A \to \trunc0 B$ is a bijection, and
+  \item for any $x:A$, the function $\apfunc f : \Omega(A,x) \to \Omega(B,f(x))$ is an equivalence.
+  \end{enumerate}
+  Then $f$ is an equivalence.
+\end{cor}
+\begin{proof}
+  By \autoref{thm:whitehead0}, it suffices to show that $\apfunc f : (\id[A]xy) \to (\id[B]{f(x)}{f(y)})$ is an equivalence for any $x,y:A$.
+  And by \autoref{thm:equiv-inhabcod}, we may assume $\id[B]{f(x)}{f(y)}$.
+  In particular, $\tproj0{f(x)} = \tproj0{f(y)}$, so since $\trunc0 f$ is an equivalence, we have $\tproj0 x = \tproj0y$, hence $\tproj{-1}{x=y}$.
+  Since we are trying to prove a mere proposition ($f$ being an equivalence), we may assume given $p:x=y$.
+  But now the following square commutes up to homotopy:
+  \begin{equation*}
+  \vcenter{\xymatrix@C=3pc{
+      \Omega(A,x)\ar[r]^-{\blank\ct p}\ar[d]_{\apfunc f} &
+      (\id[A]xy) \ar[d]^{\apfunc f}\\
+      \Omega(B,f(x))\ar[r]_-{\blank\ct f(p)} &
+      (\id[B]{f(x)}{f(y)}).
+      }}
+  \end{equation*}
+  The top and bottom maps are equivalences, and the left-hand map is so by assumption.
+  Hence, by the 2-out-of-3 property, so is the right-hand map.
+\end{proof}
+
+Now we can prove the truncated Whitehead's principle.
+
+\begin{thm}\label{thm:whiteheadn}
+  Suppose $A$ and $B$ are $n$-types and $f:A\to B$ is such that
+  \begin{enumerate}
+  \item $\trunc0f:\trunc0A \to \trunc0B$ is an isomorphism, and\label{item:wh0}
+  \item $\pi_k(f):\pi_k(A,x) \to \pi_k(B,f(x))$ is a bijection for all $k\ge 1$ and all $x:A$.\label{item:whk}
+  \end{enumerate}
+  Then $f$ is an equivalence.
+\end{thm}
+
+\noindent
+Condition~\ref{item:wh0} is almost the case of~\ref{item:whk} when $k=0$, except that it makes no reference to any basepoint $x:A$.
+
+\begin{proof}
+  We proceed by induction on $n$.
+  When $n=-2$, the statement is trivial.
+  Thus, suppose it to be true for all functions between $n$-types, and let $A$ and $B$ be $(n+1)$-types and $f:A\to B$ as above.
+  The first condition in \autoref{thm:whitehead1} holds by assumption, so it will suffice to show that for any $x:A$, the function $\apfunc f: \Omega(A,x) \to \Omega(B,f(x))$ is an equivalence.
+  However, $\Omega(A,x)$ and $\Omega(B,f(x))$ are $n$-types, and $\pi_k(\apfunc f) = \pi_{k+1}(f)$, so this follows from the inductive hypothesis.
+\end{proof}
+
+Note that if $A$ and $B$ are not $n$-types for any finite $n$, then there is no way for the induction to get started.
+
+\begin{cor}\label{thm:whitehead-contr}
+  If $A$ is a $0$-connected $n$-type and $\pi_k(A,a)=0$ for all $k$ and $a:A$, then $A$ is contractible.
+\end{cor}
+\begin{proof}
+  Apply \autoref{thm:whiteheadn} to the map $A\to\unit$.
+\end{proof}
+
+As an application, we can deduce the converse of \autoref{thm:conn-pik}.
+
+\begin{cor}\label{thm:pik-conn}
+  For $n\ge 0$, a map $f:A\to B$ is $n$-connected if and only if the following all hold:
+  \begin{enumerate}
+  \item $\trunc0f:\trunc0A \to \trunc0B$ is an isomorphism.
+  \item For any $a:A$ and $k\le n$, the map $\pi_k(f):\pi_k(A,a) \to \pi_k(B,f(a))$ is an isomorphism.
+  \item For any $a:A$, the map $\pi_{n+1}(f):\pi_{n+1}(A,a) \to \pi_{n+1}(B,f(a))$ is surjective.
+  \end{enumerate}
+\end{cor}
+\begin{proof}
+  The ``only if'' direction is \autoref{thm:conn-pik}.
+  Conversely, by the long exact sequence of a fibration (\autoref{thm:les}),
+  \index{sequence!exact}%
+  the hypotheses imply that $\pi_k(\hfib f {f(a)})=0$ for all $k\le n$ and $a:A$, and that $\trunc 0{\hfib f{f(a)}}$ is contractible.
+  Since $\pi_k(\hfib f {f(a)}) = \pi_k(\trunc n{\hfib f{f(a)}})$ for $k\le n$, and $\trunc n{\hfib f{f(a)}}$ is $n$-connected, by \autoref{thm:whitehead-contr} it is contractible for any $a$.
+
+  It remains to show that $\trunc n{\hfib f{b}}$ is contractible for $b:B$ not necessarily of the form $f(a)$.
+  However, by assumption, there is $x:\trunc0A$ with $\tproj 0b = \trunc0f(x)$.
+  Since contractibility is a mere proposition, we may assume $x$ is of the form $\tproj0a$ for $a:A$, in which case $\tproj 0 b = \trunc0f(\tproj0a) = \tproj0{f(a)}$, and therefore $\trunc{-1}{b=f(a)}$.
+  Again since contractibility is a mere proposition, we may assume $b=f(a)$, and the result follows.
+\end{proof}
+
+A map $f$ such that $\trunc0f$ is a bijection and $\pi_k(f)$ is a bijection for all $k$ is called \define{$\infty$-connected}%
+\indexdef{function!.infinity-connected@$\infty$-connected}%
+\indexdef{.infinity-connected function@$\infty$-connected function}
+or a \define{weak equivalence}.%
+\indexdef{equivalence!weak}%
+\indexdef{weak equivalence!of types}
+This is equivalent to asking that $f$ be $n$-connected for all $n$.
+A type $Z$ is called \define{$\infty$-truncated}%
+\indexdef{type!.infinity-truncated@$\infty$-truncated}%
+\indexdef{.infinity-truncated type@$\infty$-truncated type}
+or \define{hypercomplete}%
+\indexdef{type!hypercomplete}%
+\indexdef{hypercomplete type}
+if the induced map
+\[(\blank\circ f):(B\to Z) \to (A\to Z)\]
+is an equivalence whenever $f$ is $\infty$-connected --- that is, if $Z$ thinks every $\infty$-connected map is an equivalence.
+\indexdef{axiom!Whitehead's principle}%
+Then if we want to assume Whitehead's principle as an axiom, we may use either of the following equivalent forms.
+\begin{itemize}
+\item Every $\infty$-connected function is an equivalence.
+\item Every type is $\infty$-truncated.
+\end{itemize}
+In higher topos models,
+\index{.infinity1-topos@$(\infty,1)$-topos}%
+the $\infty$-truncated types form a reflective subuniverse in the sense of 
+\autoref{sec:modalities} (the ``hypercompletion'' of an $(\infty,1)$-topos), but we do not know whether this is 
+true in general.
+
+\index{axiom!Whitehead's principle|)}%
+\index{Whitehead's!principle|)}%
+
+It may not be obvious that there \emph{are} any types which are not $n$-types for any $n$, but in fact there are.
+Indeed, in classical homotopy theory, $\Sn^n$ has this property for any $n\ge 2$.
+We have not proven this fact in homotopy type theory yet, but there are other types which we can prove to have ``infinite truncation level''.
+
+\begin{eg}
+  Suppose we have $B:\nat\to\type$ such that for each $n$, the type $B(n)$ contains an $n$-loop\index{loop!n-@$n$-} which is not equal to $n$-fold reflexivity, say $p_n:\Omega^n(B(n),b_n)$ with $p_n \neq \refl{b_n}^n$.
+  (For instance, we could define $B(n)\defeq \Sn^n$, with $p_n$ the image of $1:\Z$ under the isomorphism $\pi_n(\Sn^n)\cong \Z$.)
+  Consider $C\defeq \prd{n:\nat} B(n)$, with the point $c:C$ defined by $c(n)\defeq b_n$.
+  Since loop spaces commute with products, for any $m$ we have
+  \[\eqvspaced{\Omega^m (C,c)}{\prd{n:\nat}\Omega^m(B(n),b_n)}.\]
+  Under this equivalence, $\refl{c}^m$ corresponds to the function $(n\mapsto \refl{b_n}^m)$.
+  Now define $q_m$ in the right-hand type by
+  \[ q_m(n) \defeq
+  \begin{cases}
+    p_n &\quad m=n\\
+    \refl{b_n}^m &\quad m\neq n.
+  \end{cases}
+  \]
+  If we had $q_m = (n\mapsto \refl{b_n}^m)$, then we would have $p_n = \refl{b_n}^n$, which is not the case.
+  Thus, $q_m \neq (n\mapsto \refl{b_n}^m)$, and so there is a point of $\Omega^m(C,c)$ which is unequal to $\refl{c}^m$.
+  Hence $C$ is not an $m$-type, for any $m:\nat$.
+\end{eg}
+
+We expect it should also be possible to show that a universe $\UU$ itself is not an $n$-type for any $n$, using the fact that it contains higher inductive types such as $\Sn^n$ for all $n$.
+However, this has not yet been done.
+
+
+\end{document}

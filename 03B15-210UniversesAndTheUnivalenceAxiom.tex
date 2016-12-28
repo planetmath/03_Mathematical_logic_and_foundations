@@ -1,0 +1,175 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{210UniversesAndTheUnivalenceAxiom}
+\pmcreated{2013-11-17 4:49:03}
+\pmmodified{2013-11-17 4:49:03}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2.10 Universes and the univalence axiom}
+\pmrecord{5}{87616}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\happly}{\mathsf{happly}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\idtoeqv}{\ensuremath{\mathsf{idtoeqv}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\qinv}{\ensuremath{\mathsf{qinv}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\transf}[1]{\ensuremath{{#1}_{*}}\xspace} 
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\transfibf}[1]{\ensuremath{\mathsf{transport}^{#1}\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ua}{\ensuremath{\mathsf{ua}}\xspace} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{preaxiom}{Axiom}
+\newenvironment{axiom}{\begin{preaxiom}}{\end{preaxiom}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreaxiom}{2.10.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{2.10.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{2.10.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{2.10.\arabic{mathcount}}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{type!universe|(}%
+\index{equivalence|(}%
+Given two types $A$ and $B$, we may consider them as elements of some universe type \type, and thereby form the identity type $\id[\type]AB$.
+As mentioned in the introduction, \emph{univalence} is the identification of $\id[\type]AB$ with the type $(\eqv AB)$ of equivalences from $A$ to $B$, which we described in \PMlinkname{\S 2.4}{24homotopiesandequivalences}.
+We perform this identification by way of the following canonical function.
+
+\begin{lem}
+  For types $A,B:\type$, there is a certain function,
+  \begin{myeqn}\label{eq:uidtoeqv}
+    \idtoeqv : (\id[\type]AB) \to (\eqv A B),
+  \end{myeqn}
+  defined in the proof.
+\end{lem}
+\begin{proof}
+  We could construct this directly by induction on equality, but the following description is more convenient.
+  \index{identity!function}%
+  \index{function!identity}%
+  Note that the identity function $\idfunc[\type]:\type\to\type$ may be regarded as a type family indexed by the universe \type; it assigns to each type $X:\type$ the type $X$ itself.
+  (When regarded as a fibration, its total space is the type $\sm{A:\type}A$ of ``pointed types''; see also \PMlinkname{\S 4.8}{48theobjectclassifier}.)
+  Thus, given a path $p:A =_\type B$, we have a transport\index{transport} function $\transf{p}:A \to B$.
+  We claim that $\transf{p}$ is an equivalence.
+  But by induction, it suffices to assume that $p$ is $\refl A$, in which case $\transf{p} \jdeq \idfunc[A]$, which is an equivalence by \PMlinkname{Example 2.4.7}{24homotopiesandequivalences#Thmpreeg1}.
+  Thus, we can define $\idtoeqv(p)$ to be $\transf{p}$ (together with the above proof that it is an equivalence).
+\end{proof}
+
+We would like to say that \idtoeqv is an equivalence.
+However, as with $\happly$ for function types, the type theory described in \PMlinkexternal{Chapter 1}{http://planetmath.org/node/87533} is insufficient to guarantee this.
+Thus, as we did for function extensionality, we formulate this property as an axiom: Voevodsky's \emph{univalence axiom}.
+
+\begin{axiom}[Univalence]\label{axiom:univalence}
+  \indexdef{univalence axiom}%
+  \indexsee{axiom!univalence}{univalence axiom}%
+  For any $A,B:\type$, the function~\eqref{eq:uidtoeqv} is an equivalence,
+  \[
+\eqv{(\id[\type]{A}{B})}{(\eqv A B)}.
+\]
+\end{axiom}
+
+Technically, the univalence axiom is a statement about a particular universe type $\UU$.
+If a universe $\UU$ satisfies this axiom, we say that it is \define{univalent}.
+\indexdef{type!universe!univalent}%
+\indexdef{univalent universe}%
+Except when otherwise noted (e.g.\ in \PMlinkname{\S 4.9}{49univalenceimpliesfunctionextensionality}) we will assume that \emph{all} universes are univalent.
+
+\begin{rmk}
+  It is important for the univalence axiom that we defined $\eqv AB$ using a ``good'' version of $\isequiv$ as described in \PMlinkname{\S 2.4}{24homotopiesandequivalences}, rather than (say) as $\sm{f:A\to B} \qinv(f)$.
+\end{rmk}
+
+In particular, univalence means that \emph{equivalent types may be identified}.
+As we did in previous sections, it is useful to break this equivalence into:
+%
+\symlabel{ua}
+\begin{itemize}
+\item An introduction rule for {(\id[\type]{A}{B})},
+  \[
+  \ua : ({\eqv A B}) \to (\id[\type]{A}{B}).
+  \]
+\item The elimination rule, which is $\idtoeqv$,
+  \[
+  \idtoeqv \jdeq \transfibf{X \mapsto X} : (\id[\type]{A}{B}) \to (\eqv A B).
+  \]
+\item The propositional computation rule\index{computation rule!propositional!for univalence},
+  \[
+  \transfib{X \mapsto X}{\ua(f)}{x} = f(x).
+  \]
+\item The propositional uniqueness principle: \index{uniqueness!principle, propositional!for univalence}
+  for any $p : \id A B$,
+  \[
+  \id{p}{\ua(\transfibf{X \mapsto X}(p))}.
+  \]
+\end{itemize}
+%
+We can also identify the reflexivity, concatenation, and inverses of equalities in the universe with the corresponding operations on equivalences:
+\begin{align*}
+  \refl{A} &= \ua(\idfunc[A]) \\
+  \ua(f) \ct \ua(g) &= \ua(g\circ f) \\
+  \opp{\ua(f)} &= \ua(f^{-1}).
+\end{align*}
+The first of these follows because $\idfunc[A] = \idtoeqv(\refl{A})$ by definition of \idtoeqv, and \ua is the inverse of \idtoeqv.
+For the second, if we define $p \defeq \ua(f)$ and $q\defeq \ua(g)$, then we have
+\[ \ua(g\circ f) = \ua(\idtoeqv(q) \circ \idtoeqv(p)) = \ua(\idtoeqv(p\cdot q)) = p\cdot q\]
+using \PMlinkname{Lemma 2.3.9}{23typefamiliesarefibrations#Thmprelem6} and the definition of $\idtoeqv$.
+The third is similar.
+
+The following observation, which is a special case of \PMlinkname{Lemma 2.3.10}{23typefamiliesarefibrations#Thmprelem7}, is often useful when applying the univalence axiom.
+
+\begin{lem}\label{thm:transport-is-ap}
+  For any type family $B:A\to\type$ and $x,y:A$ with a path $p:x=y$ and $u:B(x)$, we have
+  \begin{align*}
+    \transfib{B}{p}{u} &= \transfib{X\mapsto X}{\apfunc{B}(p)}{u}\\
+    &= \idtoeqv(\apfunc{B}(p))(u).
+  \end{align*}
+\end{lem}
+
+\index{equivalence|)}%
+\index{type!universe|)}%
+
+
+\end{document}

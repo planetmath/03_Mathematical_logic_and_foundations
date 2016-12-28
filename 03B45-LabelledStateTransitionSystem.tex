@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{LabelledStateTransitionSystem}
+\pmcreated{2013-03-22 19:23:20}
+\pmmodified{2013-03-22 19:23:20}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{labelled state transition system}
+\pmrecord{17}{42344}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmclassification{msc}{68Q85}
+\pmclassification{msc}{68Q10}
+\pmsynonym{labeled state transition system}{LabelledStateTransitionSystem}
+\pmsynonym{TS}{LabelledStateTransitionSystem}
+\pmsynonym{LTS}{LabelledStateTransitionSystem}
+\pmsynonym{STS}{LabelledStateTransitionSystem}
+\pmsynonym{LSTS}{LabelledStateTransitionSystem}
+\pmrelated{SemiThueSystem}
+\pmdefines{state transition system}
+\pmdefines{reachability}
+\pmdefines{reachable}
+\pmdefines{inaccessible state}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+A \emph{state transition system} (TS) is a pair $(S,\rightarrow)$, where $\rightarrow$ is a binary relation on $S$.  Elements of $S$ are called \emph{states} and elements of $\rightarrow$ are called \emph{transitions}.  When $(p,q)\in \rightarrow$, we write $p\rightarrow q$.  
+
+A \emph{labelled state transition system} (LTS) is a triple $(S,\Sigma,\rightarrow)$ where $\rightarrow \subseteq S\times \Sigma \times S$.  Elements of $\Sigma$ are called \emph{labels} of the system.  If $(p,\alpha,q)\in \rightarrow$, we write $p\stackrel{\alpha}{\rightarrow} q$.  In this way, an LTS can be thought of as an STS where each transition is labelled (possibly by more than one label).  On the other hand, any TS is just a LTS with one label and every transition has the same label.
+
+Examples of LTS are mostly found in theoretical computer science, such as automata and Turing machines.  An automaton, for example, is just an LTS $(S,\rightarrow)$ with two distinguished mutually disjoint sets (subsets of $S$) of states: a set of \emph{start states}, and a set of \emph{final} or \emph{accept states}.
+
+Given an LTS $(S,\rightarrow)$, if we take the reflexive transitive closure of $\rightarrow$, then we get a binary relation $\Rightarrow$ on $S$ called the \emph{reachability relation}.  In other words, for any $p\in S$, $p\Rightarrow p$, and for any $q\in S$, if $p\Rightarrow q$, then there is a finite sequence $p=p_1,\ldots p_{n+1}=q$, such that $p_i\rightarrow p_{i+1}$ for $i=1,\ldots n$.  When $p\Rightarrow q$, we say that $q$ is \emph{reachable} from $p$.
+
+For an LTS $(S,\rightarrow)$ with a set $I$ of start states, a state is said to be \emph{inaccessible} if it is not reachable from any start state.  If $S$ is finite, one can use the one of the search techniques to find all inaccessible states of $S$.  Here's a basic breadth-first search algorithm:
+\begin{enumerate}
+\item Initially, circle all start states as accessible.  If there are no start states, skip to step 5.
+\item Then for each circled $p$, circle all $q$ such that $p\rightarrow q$.  
+\item Then cross out each $p$ after all $q$ such $p\rightarrow q$ have been circled.  
+\item Repeat the last two steps for each circled $q$.  Do this until there are no more circled states.  
+\item Finally, the states in $S$ are either crossed out or unmarked, and inaccessible states are precisely the unmarked states.
+\end{enumerate}
+
+An LTS is said to be \emph{deterministic} if $\rightarrow$ is a partial function.  Otherwise, it is \emph{non-deterministic}.
+
+%%%%%
+%%%%%
+\end{document}

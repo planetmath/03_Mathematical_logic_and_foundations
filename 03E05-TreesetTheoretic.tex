@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TreesetTheoretic}
+\pmcreated{2013-03-22 12:52:19}
+\pmmodified{2013-03-22 12:52:19}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{tree (set theoretic)}
+\pmrecord{14}{33210}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E05}
+\pmsynonym{tree}{TreesetTheoretic}
+\pmrelated{Antichain}
+\pmrelated{Aronszajn}
+\pmrelated{SuslinTree}
+\pmdefines{level}
+\pmdefines{root}
+\pmdefines{height}
+\pmdefines{tree}
+\pmdefines{child}
+\pmdefines{children}
+\pmdefines{parent}
+\pmdefines{ancestor}
+\pmdefines{descendant}
+\pmdefines{$\alpha$-th level}
+\pmdefines{$\kappa$-tree}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+In a set \PMlinkescapetext{theory}, a \emph{tree} is defined to be a set $T$ and a relation $<_T\subseteq T\times T$ such that:
+\begin{itemize}
+
+\item $<_T$ is a partial ordering of $T$
+
+\item For any $t\in T$, $\{s\in T\mid s<_Tt\}$ is well-ordered
+
+\end{itemize}
+
+The nodes (elements of the tree) immediately greater than a node are termed its \emph{children}, the node immediately less is its \emph{parent} (if it exists), any node less is an \emph{ancestor} and any node greater is a \emph{descendant}.  A node with no ancestors is a \emph{root}.
+
+The partial ordering represents \PMlinkescapetext{distance} from the root, and the well-ordering requirement prohibits any loops or splits below a node (that is, each node has at most one parent, and therefore at most one grand-parent, and so on).  Conversely, if $a<_Td$ then there is exactly one $b\leq_Td$ such that $a<_Tb$ and there is nothing between $a$ and $b$.  Note that there is no requirement that a node have a parent--there could be an infinitely long branch $a_1<_Ta_2<_Ta_2<_T\cdots$ with each $a_i<_Tb$.
+
+Since there is generally no requirement that the tree be connected, the null ordering makes any set into a tree, although the tree is a trivial one, since each element of the set forms a single node with no children.
+
+Since the set of ancestors of any node is well-ordered, we can \PMlinkescapetext{associate} it with an ordinal.  We call this the \emph{height}, and write: $\operatorname{ht}(t)=\operatorname{o.t.}(\{s\in T\mid s<_Tt\})$.  This all accords with \PMlinkescapetext{normal} usage: a root has height $0$, something immediately above the root has height $1$, and so on.  We can then assign a height to the tree itself, which we define to be the least number greater than the height of any element of the tree.  For finite trees this is just one greater than the height of its tallest element, but infinite trees may not have a tallest element, so we define $\operatorname{ht}(T)=\sup\{\operatorname{ht}(t)+1\mid t\in T\}$.
+
+For every $\alpha<_T\operatorname{ht}(T)$ we define the $\alpha$-th \emph{level} to be the set $T_\alpha=\{t\in T\mid\operatorname{ht}(t)=\alpha\}$.  So of course $T_0$ is all roots of the tree.  If $\alpha<_T\operatorname{ht}(T)$ then $T(\alpha)$ is the subtree of elements with height less than $\alpha$: $t\in T(\alpha)\leftrightarrow x\in T \wedge \operatorname{ht}(t)<\alpha$.
+
+We call a tree a $\kappa$-tree for any cardinal $\kappa$ if $|T|=\kappa$ and $\operatorname{ht} (T)=\kappa$.  If $\kappa$ is finite, the only way to do this is to have a single branch of length $\kappa$.
+%%%%%
+%%%%%
+\end{document}

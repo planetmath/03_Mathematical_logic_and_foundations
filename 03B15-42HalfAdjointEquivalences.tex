@@ -1,0 +1,319 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{42HalfAdjointEquivalences}
+\pmcreated{2013-11-20 1:58:44}
+\pmmodified{2013-11-20 1:58:44}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{4.2 Half adjoint equivalences}
+\pmrecord{4}{87664}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Application}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\htpy}{\sim}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\newcommand{\ishae}{\ensuremath{\mathsf{ishae}}}
+\newcommand{\lcoh}[3]{\mathsf{lcoh}_{#1}(#2,#3)}
+\newcommand{\linv}{\ensuremath{\mathsf{linv}}}
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\qinv}{\ensuremath{\mathsf{qinv}}}
+\newcommand{\rcoh}[3]{\mathsf{rcoh}_{#1}(#2,#3)}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\newcommand{\rinv}{\ensuremath{\mathsf{rinv}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{4.2.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{4.2.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{4.2.\arabic{mathcount}}
+\let\ap\map
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\index{equivalence!half adjoint|(defstyle}%
+\index{half adjoint equivalence|(defstyle}%
+\index{adjoint!equivalence!of types, half|(defstyle}%
+
+In \PMlinkname{\S 4.1}{41quasiinverses} we concluded that $\qinv(f)$ is equivalent to $\prd{x:A} (x=x)$ by discarding a contractible type.
+Roughly, the type $\qinv(f)$ contains three data $g$, $\eta$, and $\epsilon$, of which two ($g$ and $\eta$) could together be seen to be contractible when $f$ is an equivalence.
+The problem is that removing these data left one remaining ($\epsilon$).
+In order to solve this problem, the idea is to add one \emph{additional} datum which, together with $\epsilon$, forms a contractible type.
+
+\begin{defn}\label{defn:ishae}
+  A function $f:A\to B$ is a \define{half adjoint equivalence}
+  if there are $g:B\to A$ and homotopies $\eta: g \circ f \htpy \idfunc[A]$ and $\epsilon:f \circ g \htpy \idfunc[B]$ such that there exists a homotopy
+  \[\tau : \prd{x:A} \map{f}{\eta x} = \epsilon(fx).\]
+\end{defn}
+
+Thus we have a type $\ishae(f)$, defined to be
+\begin{equation*}
+  \sm{g:B\to A}{\eta: g \circ f \htpy \idfunc[A]}{\epsilon:f \circ g \htpy \idfunc[B]} \prd{x:A} \map{f}{\eta x} = \epsilon(fx).
+\end{equation*}
+Note that in the above definition, the coherence\index{coherence} condition relating $\eta$ and $\epsilon$ only involves $f$.
+We might consider instead an analogous coherence condition involving $g$:
+\[\upsilon : \prd{y:B} \map{g}{\epsilon y} = \eta(gy)\]
+and a resulting analogous definition $\ishae'(f)$.
+
+Fortunately, it turns out each of the conditions implies the other one:
+
+\begin{lem}\label{lem:coh-equiv}
+For functions $f : A \to B$ and $g:B\to A$ and homotopies $\eta: g \circ f \htpy \idfunc[A]$ and $\epsilon:f \circ g \htpy \idfunc[B]$, the following conditions are logically equivalent:
+\begin{itemize}
+\item $\prd{x:A} \map{f}{\eta x} = \epsilon(fx)$
+\item $\prd{y:B} \map{g}{\epsilon y} = \eta(gy)$
+\end{itemize}
+\end{lem}
+\begin{proof}
+  It suffices to show one direction; the other one is obtained by replacing $A$, $f$, and $\eta$ by $B$, $g$, and $\epsilon$ respectively.
+  Let $\tau : \prd{x:A}\;\map{f}{\eta x} = \epsilon(fx)$.
+  Fix $y : B$.
+  Using naturality of $\epsilon$ and applying $g$, we get the following commuting diagram of paths:
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_4.2.1.png}
+\end{figure}
+%\[\uppercurveobject{{ }}\lowercurveobject{{ }}\twocellhead{{ }}
+%  \xymatrix@C=3pc{gfgfgy \ar@{=}^-{gfg(\epsilon y)}[r] \ar@{=}_{g(\epsilon (fgy))}[d] & gfgy \ar@{=}^{g(\epsilon y)}[d] \\ gfgy \ar@{=}_{g(\epsilon y)}[r] & gy
+%  }\]
+Using $\tau(gy)$ on the left side of the diagram gives us
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_4.2.2.png}
+\end{figure}
+%\[\uppercurveobject{{ }}\lowercurveobject{{ }}\twocellhead{{ }}
+%  \xymatrix@C=3pc{gfgfgy \ar@{=}^-{gfg(\epsilon y)}[r] \ar@{=}_{gf(\eta (gy))}[d] & gfgy \ar@{=}^{g(\epsilon y)}[d] \\ gfgy \ar@{=}_{g(\epsilon y)}[r] & gy
+%  }\]
+Using the commutativity of $\eta$ with $g \circ f$ (\PMlinkname{Definition 2}{24homotopiesandequivalences#Thmdefn2}), we have
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_4.2.3.png}
+\end{figure}
+%\[\uppercurveobject{{ }}\lowercurveobject{{ }}\twocellhead{{ }}
+%  \xymatrix@C=3pc{gfgfgy \ar@{=}^-{gfg(\epsilon y)}[r] \ar@{=}_{\eta (gfgy)}[d] & gfgy \ar@{=}^{g(\epsilon y)}[d] \\ gfgy \ar@{=}_{g(\epsilon y)}[r] & gy
+%  }\]
+However, by naturality of $\eta$ we also have
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_4.2.4.png}
+\end{figure}
+%\[\uppercurveobject{{ }}\lowercurveobject{{ }}\twocellhead{{ }}
+%  \xymatrix@C=3pc{gfgfgy \ar@{=}^-{gfg(\epsilon y)}[r] \ar@{=}_{\eta (gfgy)}[d] & gfgy \ar@{=}^{\eta(gy)}[d] \\ gfgy \ar@{=}_{g(\epsilon y)}[r] & gy 
+%  }\]
+Thus, canceling all but the right-hand homotopy, we have $g(\epsilon y) = \eta(g y)$ as desired.
+\end{proof}
+
+However, it is important that we do not include \emph{both} $\tau$ and $\upsilon$ in the definition of $\ishae (f)$ (whence the name ``\emph{half} adjoint equivalence'').
+If we did, then after canceling contractible types we would still have one remaining datum --- unless we added another higher coherence condition.
+In general, we expect to get a well-behaved type if we cut off after an odd number of coherences.
+
+Of course, it is obvious that $\ishae(f) \to\qinv(f)$: simply forget the coherence datum.
+The other direction is a version of a standard argument from homotopy theory and category theory.
+
+\begin{thm}\label{thm:equiv-iso-adj}
+  For any $f:A\to B$ we have $\qinv(f)\to\ishae(f)$.
+\end{thm}
+\begin{proof}
+Suppose that $(g,\eta,\epsilon)$ is a quasi-inverse for $f$. We have to provide
+a quadruple $(g',\eta',\epsilon',\tau)$ witnessing that $f$ is a half adjoint equivalence. To
+define $g'$ and $\eta'$, we can just make the obvious choice by setting $g'
+\defeq g$ and $\eta'\defeq \eta$. However, in the definition of $\epsilon'$ we
+need start worrying about the construction of $\tau$, so we cannot just follow our nose
+and take $\epsilon'$ to be $\epsilon$. Instead, we take
+\begin{equation*}
+\epsilon'(b) \defeq \opp{\epsilon(f(g(b)))}\ct (\ap{f}{\eta(g(b))}\ct \epsilon(b)).
+\end{equation*}
+Now we need to find
+\begin{equation*}
+\tau(a): \opp{\epsilon(f(g(f(a))))}\ct (\ap{f}{\eta(g(f(a)))}\ct \epsilon(f(a)))=\ap{f}{\eta(a)}.
+\end{equation*}
+Note first that by \PMlinkname{Corollary 2.4.4}{24homotopiesandequivalences#Thmprelem2}, we have 
+%$\eta(g(f(a)))\ct\eta(a)=\ap{g}{\ap{f}{\eta(a)}}\ct\eta(a)$ and hence it follows that
+$\eta(g(f(a)))=\ap{g}{\ap{f}{\eta(a)}}$. Therefore, we can apply
+\PMlinkname{Lemma 2.4.3}{24homotopiesandequivalences#Thmcor1} to compute
+\begin{align*}
+\ap{f}{\eta(g(f(a)))}\ct \epsilon(f(a))
+& = \ap{f}{\ap{g}{\ap{f}{\eta(a)}}}\ct \epsilon(f(a))\\
+& = \epsilon(f(g(f(a))))\ct \ap{f}{\eta(a)}
+\end{align*}
+from which we get the desired path $\tau(a)$.
+\end{proof}
+
+Combining this with \PMlinkname{Lemma 4.2.2}{42halfadjointequivalences#Thmprelem1} (or symmetrizing the proof), we also have $\qinv(f)\to\ishae'(f)$.
+
+It remains to show that $\ishae(f)$ is a mere proposition.
+For this, we will need to know that the fibers of an equivalence are contractible.
+
+\begin{defn}\label{defn:homotopy-fiber}
+  The \define{fiber}
+  \indexdef{fiber}%
+  \indexsee{function!fiber of}{fiber}%
+  of a map $f:A\to B$ over a point $y:B$ is
+  \[ \hfib f y \defeq \sm{x:A} (f(x) = y).\]
+\end{defn}
+
+In homotopy theory, this is what would be called the \emph{homotopy fiber} of $f$.
+The path lemmas in \PMlinkname{\S 2.5}{25thehighergroupoidstructureoftypeformers} yield the following characterization of paths in fibers:
+
+\begin{lem}\label{lem:hfib}
+  For any $f : A \to B$, $y : B$, and $(x,p),(x',p') : \hfib{f}{y}$, we have
+  \[ \big((x,p) = (x',p')\big) \eqvsym \Parens{\sm{\gamma : x = x'} f(\gamma) \ct p' = p} \qedhere\]
+\end{lem}
+
+\begin{thm}\label{thm:contr-hae}
+  If $f:A\to B$ is a half adjoint equivalence, then for any $y:B$ the fiber $\hfib f y$ is contractible.
+\end{thm}
+\begin{proof}
+  Let $(g,\eta,\epsilon,\tau) : \ishae(f)$, and fix $y : B$.
+  As our center of contraction for $\hfib{f}{y}$ we choose $(gy, \epsilon y)$.
+  Now take any $(x,p) : \hfib{f}{y}$; we want to construct a path from $(gy, \epsilon y)$ to $(x,p)$.
+  By \PMlinkname{Lemma 4.2.5}{42halfadjointequivalences#Thmprelem2}, it suffices to give a path $\gamma : \id{gy}{x}$ such that $\ap f\gamma \ct p = \epsilon y$.
+  We put $\gamma \defeq \opp{g(p)} \ct \eta x$.
+  Then we have 
+  \begin{align*}
+    f(\gamma) \ct p & = \opp{fg(p)} \ct f (\eta x) \ct p \\
+    & = \opp{fg(p)} \ct \epsilon(fx) \ct p \\
+    & = \epsilon y
+  \end{align*}
+  where the second equality follows by $\tau x$ and the third equality is naturality of $\epsilon$.
+\end{proof}
+
+We now define the types which encapsulate contractible pairs of data.
+The following types put together the quasi-inverse $g$ with one of the homotopies.
+
+\begin{defn}\label{defn:linv-rinv}
+  Given a function $f:A\to B$, we define the types 
+    \begin{align*}
+      \linv(f) &\defeq \sm{g:B\to A} (g\circ f\htpy \idfunc[A])\\
+      \rinv(f) &\defeq \sm{g:B\to A} (f\circ g\htpy \idfunc[B])
+    \end{align*}
+  of \define{left inverses}
+  \indexdef{left!inverse}%
+  \indexdef{inverse!left}%
+  and \define{right inverses}
+  \indexdef{right!inverse}%
+  \indexdef{inverse!right}%
+  to $f$, respectively.
+  We call $f$ \define{left invertible}
+  \indexdef{function!left invertible}%
+  \indexdef{function!right invertible}%
+  if $\linv(f)$ is inhabited, and similarly \define{right invertible}
+  \indexdef{left!invertible function}%
+  \indexdef{right!invertible function}%
+  if $\rinv(f)$ is inhabited.
+\end{defn}
+
+\begin{lem}\label{thm:equiv-compose-equiv}
+  If $f:A\to B$ has a quasi-inverse, then so do
+  \begin{align*}
+    (f\circ \blank) &: (C\to A) \to (C\to B)\\
+    (\blank\circ f) &: (B\to C) \to (A\to C).
+  \end{align*}
+\end{lem}
+\begin{proof}
+  If $g$ is a quasi-inverse of $f$, then $(g\circ \blank)$ and $(\blank\circ g)$ are quasi-inverses of $(f\circ \blank)$ and $(\blank\circ f)$ respectively.
+\end{proof}
+
+\begin{lem}\label{lem:inv-hprop}
+  If $f : A \to B$ has a quasi-inverse, then the types $\rinv(f)$ and $\linv(f)$ are contractible.
+\end{lem}
+\begin{proof}
+  By function extensionality, we have
+  \[\eqv{\linv(f)}{\sm{g:B\to A} (g\circ f = \idfunc[A])}.\]
+  But this is the fiber of $(\blank\circ f)$ over $\idfunc[A]$, and so
+  by \PMlinkname{Lemma 4.2.8}{42halfadjointequivalences#Thmprelem3},\PMlinkname{Theorem 4.2.3}{42halfadjointequivalences#Thmprethm1},\PMlinkname{Theorem 4.2.6}{42halfadjointequivalences#Thmprethm2}, it is contractible.
+  Similarly, $\rinv(f)$ is equivalent to the fiber of $(f\circ \blank)$ over $\idfunc[B]$ and hence contractible.
+\end{proof}
+
+Next we define the types which put together the other homotopy with the additional coherence datum.\index{coherence}%
+
+\begin{defn}\label{defn:lcoh-rcoh}
+For $f : A \to B$, a left inverse $(g,\eta) : \linv(f)$, and a right inverse $(g,\epsilon) : \rinv(f)$, we denote
+\begin{align*}
+\lcoh{f}{g}{\eta} & \defeq \sm{\epsilon : f\circ g \htpy \idfunc[B]} \prd{y:B} g(\epsilon y) = \eta (gy), \\
+\rcoh{f}{g}{\epsilon} & \defeq \sm{\eta : g\circ f \htpy \idfunc[A]} \prd{x:A} f(\eta x) = \epsilon (fx).
+\end{align*}
+\end{defn}
+
+\begin{lem}\label{lem:coh-hfib}
+For any $f,g,\epsilon,\eta$, we have
+\begin{align*}
+\lcoh{f}{g}{\eta} & \eqvsym {\prd{y:B} \id[\hfib{g}{gy}]{(fgy,\eta(gy))}{(y,\refl{gy})}}, \\
+\rcoh{f}{g}{\epsilon} & \eqvsym {\prd{x:A} \id[\hfib{f}{fx}]{(gfx,\epsilon(fx))}{(x,\refl{fx})}}.
+\end{align*}
+\end{lem}
+\begin{proof}
+Using \PMlinkname{Lemma 4.2.5}{42halfadjointequivalences#Thmprelem2}.
+\end{proof}
+
+\begin{lem}\label{lem:coh-hprop}
+  If $f$ is a half adjoint equivalence, then for any $(g,\epsilon) : \rinv(f)$, the type $\rcoh{f}{g}{\epsilon}$ is contractible.
+\end{lem}
+\begin{proof}
+  By \PMlinkname{Lemma 4.2.11}{42halfadjointequivalences#Thmprelem5} and the fact that dependent function types preserve contractible spaces, it suffices to show that for each $x:A$, the type $\id[\hfib{f}{fx}]{(gfx,\epsilon(fx))}{(x,\refl{fx})}$ is contractible.
+  But by \PMlinkname{Theorem 4.2.6}{42halfadjointequivalences#Thmprethm2}, $\hfib{f}{fx}$ is contractible, and any path space of a contractible space is itself contractible.
+\end{proof}
+
+\begin{thm}\label{thm:hae-hprop}
+  For any $f : A \to B$, the type $\ishae(f)$ is a mere proposition.
+\end{thm}
+\begin{proof}
+  By \PMlinkname{Lemma 3.11.3}{311contractibility#Thmprelem1} it suffices to assume $f$ to be a half adjoint equivalence and show that $\ishae(f)$ is contractible.
+  Now by associativity of $\Sigma$ (\PMlinkexternal{Exercise 2.10}{http://planetmath.org/node/87641}), the type $\ishae(f)$ is equivalent to
+  \[\sm{u : \rinv(f)} \rcoh{f}{\proj{1}(u)}{\proj{2}(u)}.\]
+  But by \PMlinkname{Lemma 4.2.9}{42halfadjointequivalences#Thmprelem4},\PMlinkname{Lemma 4.2.12}{42halfadjointequivalences#Thmprelem6} and the fact that $\Sigma$ preserves contractibility, the latter type is also contractible.
+\end{proof}
+
+Thus, we have shown that $\ishae(f)$ has all three desiderata for the type $\isequiv(f)$.
+In the next two sections we consider a couple of other possibilities.
+
+\index{equivalence!half adjoint|)}%
+\index{half adjoint equivalence|)}%
+\index{adjoint!equivalence!of types, half|)}%
+
+
+\end{document}

@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PrimitiveRecursiveFunction}
+\pmcreated{2013-03-22 12:33:19}
+\pmmodified{2013-03-22 12:33:19}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{primitive recursive function}
+\pmrecord{19}{32801}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmsynonym{primitive recursive}{PrimitiveRecursiveFunction}
+\pmrelated{RecursiveFunction}
+\pmdefines{primitive recursive set}
+\pmdefines{primitive recursive predicate}
+\pmdefines{partial primitive recursive function}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newtheorem{theorem}{Theorem}[section] \renewcommand{\thetheorem}{}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition} \renewcommand{\thedefinition}{}
+\theoremstyle{remark}
+\newtheorem{notation}{Notation and Terminology\negthickspace} \renewcommand{\thenotation}{}
+\renewcommand{\labelenumi}{[\arabic{enumi}]}
+\newcounter{temp}
+
+\begin{document}
+To define what a primitive recursive function is, the following notations are used:
+\begin{quote} $\mathcal{F} = \bigcup \lbrace F_k \mid k \in \mathbb{N}
+\rbrace$, where for each $k \in \mathbb{N}\text{, }F_k = \lbrace f \mid f \colon \mathbb{N}^{k}
+\to \mathbb{N} \rbrace$. \end{quote}
+
+\textbf{Definition}.  The set of \emph{primitive recursive functions} is the smallest subset $\mathcal{PR}$ of $\mathcal{F}$ where:
+	\begin{enumerate}
+		\item[1.] (zero function) $z \in \mathcal{PR}\cap F_1$, given by $z(n):=0$;
+		\item[2.] (successor function) $s \in \mathcal{PR}\cap F_1$, given by $s(n):=n+1$;
+		\item[3.] (projection functions) $p^k_m \in \mathcal{PR}\cap F_k$, where $m\le k$, given by $p^k_m(n_1,\ldots,n_k):=n_m$;
+		\item[4.] $\mathcal{PR}$ is closed under composition: If $\lbrace g_1, \ldots, g_m \rbrace \subseteq \mathcal{PR} \cap F_{k}$ and $h \in \mathcal{PR} \cap F_m$, then $f \in \mathcal{PR} \cap F_{k}$, where 
+		$$f(n_1,\ldots, n_k) = h(g_1(n_1,  \ldots, n_k), \ldots, g_m(n_1,\ldots, n_k));$$
+		
+		\item[5.] $\mathcal{PR}$ is closed under primitive recursion: If $g \in \mathcal{PR} \cap F_{k}$ and $h \in \mathcal{PR} \cap F_{k+2}$, then $f \in \mathcal{PR}\cap F_{k+1}$, where   
+		\begin{eqnarray*}
+		f(n_1, \ldots, n_k, 0) &=& g(n_1, \ldots, n_k) \\ 
+		f(n_1, \ldots, n_k, s(n)) &=& h(n_1,  \ldots, n_k, n, f(n_1, \ldots, n_k, n)).
+		\end{eqnarray*}
+	\end{enumerate}
+
+Many of the arithmetic functions that we encounter in basic math are primitive recursive, including addition, multiplication, and  exponentiation.  More examples can be found in \PMlinkname{this entry}{ExamplesOfPrimitiveRecursiveFunctions}.
+
+Primitive recursive functions are computable by Turing machines.  In fact, it can be shown that $\mathcal{PR}$ is precisely the set of functions computable by programs using FOR NEXT loops.  However, not all Turing-computable functions are primitive recursive: the Ackermann function is one such example.
+
+Since $\mathcal{F}$ is countable, so is $\mathcal{PR}$.  Moreover, $\mathcal{PR}$ is recursively enumerable (can be listed by a Turing machine).
+
+\textbf{Remarks}.  
+\begin{enumerate}
+\item Every primitive recursive function is total, since it is built from $z$, $s$, and $p^k_m$, each of which is total, and that functional composition, and primitive recursion preserve totalness.  By including $\varnothing$ in $\mathcal{PR}$ above, and close it by functional composition and primitive recursion, one gets the set of \emph{partial primitive recursive functions}.
+\item Primitive recursiveness can be defined on subsets of $\mathbb{N}^k$: a subset $S\subseteq \mathbb{N}^k$ is \emph{primitive recursive} if its characteristic function $\varphi_S$, which is defined as
+\begin{displaymath}
+\varphi_S(x):= \left\{
+\begin{array}{ll}
+1 & \textrm{if } x \in S, \\
+0 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+is primitive recursive.
+\item Likewise, primitive recursiveness can be defined for predicates over tuples of natural numbers.  A predicate $\Phi(\boldsymbol{x})$, where $\boldsymbol{x}\in \mathbb{N}^k$, is said to be \emph{primitive recursive} if the set $S(\Phi):=\lbrace \boldsymbol{x}\mid \Phi(\boldsymbol{x})\rbrace$ is primitive recursive.
+\end{enumerate}
+%%%%%
+%%%%%
+\end{document}

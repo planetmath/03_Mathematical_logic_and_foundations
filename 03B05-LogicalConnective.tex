@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{LogicalConnective}
+\pmcreated{2013-03-22 16:26:58}
+\pmmodified{2013-03-22 16:26:58}
+\pmowner{mps}{409}
+\pmmodifier{mps}{409}
+\pmtitle{logical connective}
+\pmrecord{19}{38605}
+\pmprivacy{1}
+\pmauthor{mps}{409}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmsynonym{logical symbol}{LogicalConnective}
+\pmsynonym{connective}{LogicalConnective}
+\pmsynonym{conjunctive connective}{LogicalConnective}
+\pmsynonym{disjunctive connective}{LogicalConnective}
+\pmrelated{Ampheck}
+\pmrelated{ContradictoryStatement}
+\pmrelated{LogicalAxiom}
+\pmrelated{SoleSufficientOperator}
+\pmrelated{PropositionalCalculus}
+\pmrelated{LogicalImplication}
+\pmrelated{ZerothOrderLogic}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+\PMlinkescapeword{equivalence}
+\PMlinkescapeword{combination}
+\PMlinkescapeword{terms}
+\PMlinkescapeword{similar}
+
+In propositional logic, the usual way of forming a well-formed formula out of existing ones is by attaching a designated symbol to the existing wffs.  This designated symbol is variously known as a \emph{logical connective}, \emph{logical symbol}, or simply a \emph{connective}.  Given a connective, the number of wffs needed to form a new wff is a fixed integer, and is called the \emph{arity} of the connective.  For example, if $\#$ is a connective of arity 3, and $p,q,r$ are three existing wffs, then $$\#pqr$$ is the wff formed by attaching $\#$ to the $p,q$ and $r$ \emph{in order}.  Instead of prefixing to the string of wffs as above, the connective may also be attached at the end (as a suffix), or customarily infixed in case it has arity of 2 (binary).  $0$-ary connectives are also allowed, in which case it is just a symbol with no wffs attached.
+
+The common classical logical connectives are:
+\begin{itemize}
+\item
+$\lnot$: \PMlinkname{logical not}{Negation};
+
+\item
+$\lor$: logical or;
+
+\item
+$\land$: logical and;
+
+\item
+$\rightarrow$ or $\supset$: material implication; and 
+
+\item
+$\leftrightarrow$ or $\equiv$: \PMlinkname{material equivalence}{Biconditional}.
+\end{itemize}
+The symbols $\supset$ and $\equiv$ are due to Russell.
+
+\textbf{Remark}.  ``\emph{Logical implication}'' $\to$ and ``\emph{logical is equivalent to}'' $\leftrightarrow$ symbols are typically used for logicians. Nevertheless, the symbols $\Rightarrow$ for material implication and $\Leftrightarrow$ for material equivalence are commonly used in the literature. In particular, $\to$ is usually reserved for the concept of limit.
+
+Usually, given a logical connective $\#$, a truth function is associated.  The arity of the truth function is defined to be the arity of the connective.  When there is no confusion, the symbol for the associated truth function is the same as the symbol of the connective.  A truth function of small arity can be easily represented by a table, called the \emph{truth table} of the truth function.  The truth functions and truth tables associated with the connectives listed above are 
+
+\begin{itemize}
+\item
+$\lnot: \boldsymbol{2} \to \boldsymbol{2}$ given by $\lnot(x)=1-x$;
+
+\begin{center}
+\begin{tabular}{cc}
+$P$ & $\lnot P$ \\
+\hline
+F & T \\
+T & F 
+\end{tabular}
+\end{center}
+
+\item
+$\lor: \boldsymbol{2}^2 \to \boldsymbol{2}$ given by $\lor(x,y)=\max(x,y)$;
+
+\begin{center}
+\begin{tabular}{ccc}
+$P$ & $Q$ & $P \lor Q$ \\
+\hline
+F & F & F \\
+F & T & T \\
+T & F & T \\
+T & T & T
+\end{tabular}
+\end{center}
+
+\item
+$\land: \boldsymbol{2}^2 \to \boldsymbol{2}$ given by $\land(x,y)=\min(x,y)$;
+
+\begin{center}
+\begin{tabular}{ccc}
+$P$ & $Q$ & $P \land Q$ \\
+\hline
+F & F & F \\
+F & T & F \\
+T & F & F \\
+T & T & T
+\end{tabular}
+\end{center}
+
+\item
+$\rightarrow: \boldsymbol{2}^2 \to \boldsymbol{2}$ given by $\rightarrow(x,y)=\max(1-x,y)$; and 
+
+\begin{center}
+\begin{tabular}{ccc}
+$P$ & $Q$ & $P \rightarrow Q$ \\
+\hline
+F & F & T \\
+F & T & T \\
+T & F & F \\
+T & T & T
+\end{tabular}
+\end{center}
+
+\item
+$\leftrightarrow: \boldsymbol{2}^2 \to \boldsymbol{2}$ given by $\leftrightarrow(x,y)=(x+y+1) \pmod 2$.
+
+\begin{center}
+\begin{tabular}{ccc}
+$P$ & $Q$ & $P \leftrightarrow Q$ \\
+\hline
+F & F & T \\
+F & T & F \\
+T & F & F \\
+T & T & T
+\end{tabular}
+\end{center}
+
+\end{itemize}
+
+where $\boldsymbol{2}=\lbrace 0,1\rbrace$.  Note that $0$ and $1$ have been converted to $F$ and $T$ in the tables above.
+
+Any truth function of any finite arity can be written as a finite combination of these connectives (see the entry on functional completeness).  However, the collection is redundant; the final three symbols, $\land$, $\rightarrow$, and $\leftrightarrow$, can be defined in terms of prior ones.  By DeMorgan's law, we can define logical and by
+\[
+P\land Q := \lnot P\lor \lnot Q.
+\]
+Material implication can be defined by
+\[
+P\rightarrow Q := \lnot P\lor Q.
+\]
+Finally, material equivalence can be defined by
+\begin{align*}
+P\leftrightarrow Q 
+&:= (P\rightarrow Q)\land(Q\rightarrow P) \\
+&= \lnot(\lnot P\lor Q)\lor\lnot(\lnot Q\lor P).
+\end{align*}
+Hence $\lnot$ and $\vee$ suffice to define all other connectives.
+%%%%%
+%%%%%
+\end{document}

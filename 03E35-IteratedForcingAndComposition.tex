@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{IteratedForcingAndComposition}
+\pmcreated{2013-03-22 12:54:51}
+\pmmodified{2013-03-22 12:54:51}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{iterated forcing and composition}
+\pmrecord{6}{33265}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E35}
+\pmclassification{msc}{03E40}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+There is a function satisfying forcings are equivalent if one is dense in the other $f:P_{\alpha}*Q_\alpha\rightarrow P_{\alpha+1}$.
+
+\section*{Proof}
+
+Let $f(\langle g,\hat{q}\rangle)=g\cup\{\langle \alpha,\hat{q}\rangle\}$.  This is obviously a member of $P_{\alpha+1}$, since it is a partial function from $\alpha+1$ (and if the domain of $g$ is less than $\alpha$ then so is the domain of $f(\langle g,\hat{q}\rangle)$), if $i<\alpha$ then obviously $f(\langle g,\hat{q}\rangle)$ applied to $i$ satisfies the definition of iterated forcing (since $g$ does), and if $i=\alpha$ then the definition is satisfied since $\hat{q}$ is a name in $P_i$ for a member of $Q_i$.
+
+$f$ is order preserving, since if $\langle g_1,\hat{q}_1\rangle\leq \langle g_2,\hat{q}_2\rangle$, all the appropriate characteristics of a function carry over to the image, and $g_1\upharpoonright\alpha\Vdash_{P_i} \hat{q}_1\leq \hat{q}_2$ (by the definition of $\leq$ in $*$).
+
+If $\langle g_1,\hat{q}_1\rangle$ and $\langle g_2,\hat{q}_2\rangle$ are incomparable then either $g_1$ and $g_2$ are incomparable, in which case whatever prevents them from being compared applies to their images as well, or $\hat{q}_1$ and $\hat{q}_2$ aren't compared appropriately, in which case again this prevents the images from being compared.
+
+Finally, let $g$ be any element of $P_{\alpha+1}$.  Then $g\upharpoonright\alpha\in P_\alpha$.  If $\alpha\notin \operatorname{dom}(g)$ then this is just $g$, and $f(\langle g,\hat{q}\rangle)\leq g$ for any $\hat{q}$.  If $\alpha\in\operatorname{dom}(g)$ then $f(\langle g\upharpoonright\alpha,g(\alpha)\rangle)=g$.  Hence $f[P_\alpha*Q_\alpha]$ is dense in $P_{\alpha+1}$, and so these are equivalent.
+%%%%%
+%%%%%
+\end{document}

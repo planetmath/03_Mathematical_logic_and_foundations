@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfAFunction}
+\pmcreated{2013-03-22 16:21:38}
+\pmmodified{2013-03-22 16:21:38}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of a function}
+\pmrecord{24}{38497}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmrelated{PropertiesOfFunctions}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+
+\begin{document}
+Let $X,Y$ be sets and $f:X\to Y$ be a function.  For any $A\subseteq X$, define $$f(A):=\lbrace f(x)\in Y \mid x\in A\rbrace$$ and any $B\subseteq Y$, define $$f^{-1}(B):=\lbrace x\in X\mid f(x)\in B\rbrace.$$
+So $f(A)$ is a subset of $Y$ and $f^{-1}(B)$ is a subset of $X$.
+
+Let $A,A_1,A_2,A_i$ be arbitrary subsets of $X$ and $B,B_1,B_2,B_j$ be arbitrary subsets of $Y$, where $i$ belongs to the index set $I$ and $j$ to the index set $J$.\, We have the following properties:
+
+\begin{enumerate}
+\item If $A_1\subset A_2$, then $f(A_1)\subseteq f(A_2)$.  In particular, $f(A)\subseteq f(X)$.
+\item $f(A_1\cup A_2)=f(A_1)\cup f(A_2)$.  More generally, $f(\bigcup_i A_i)=\bigcup_i f(A_i)$.
+\item \label{intersection_property} $f(A_1\cap A_2)\subseteq f(A_1)\cap f(A_2)$.  The equality fails in the example where $f$ is a real function defined by $f(x)=x^2$ and $A_1=\lbrace 1\rbrace$, $A_2=\lbrace -1\rbrace$.  Equality occurs iff $f$ is one-to-one: \begin{quote} Suppose $f(x)=f(y)=z$. Pick $A_1=\lbrace x\rbrace$ and $A_2=
+\lbrace y\rbrace$.   Then $f(A_1\cap A_2) = f(A_1)\cap f(A_2)= \lbrace z\rbrace\ne\varnothing $.  This means that $A_1\cap A_2\ne \varnothing$.  Since both $A_1$ and $A_2$ are singletons, $A_1=A_2$, or $x=y$.  \end{quote}
+\begin{quote} Conversely, let's show that $f$ is one-to-one then $f(A_1\cap A_2) = f(A_1)\cap f(A_2)$.  To do this, we only need to show the right hand side is included in the left, and this follows since if $x \in f(A_1)\cap f(A_2)$ then for some $a_1 \in A_1$ and $a_2 \in A_2$ we have $x = f(a_1) = f(a_2)$.  As $f$ is one-to-one, $a_1 = a_2$ and so $a_1$ lies in $A_1 \cap A_2$ and $x$ is in $f(A_1 \cap A_2)$. \end{quote}
+
+More generally, $f(\bigcap_i A_i)\subseteq \bigcap_i f(A_i)$.
+\item $f(A_1)-f(A_2)\subseteq f(A_1-A_2)$: If $y\in f(A_1)-f(A_2)$, then $y=f(x)$ for some $x\in A_1$.  If $x\in A_2$, then $y=f(x)\in f(A_2)$ as well, a contradiction.  So $x\in A_1-A_2$, and $y=f(x)\in f(A_1-A_2)$.  The inequality is strict in the case when $f:\mathbb{Z}\to \mathbb{Z}$ given by $f(x)=1$, and $A_1=\mathbb{Z}$ and $A_2=\lbrace 2\rbrace$.
+\item \label{inv_image_property} $A\subseteq f^{-1}f(A)$.  Again, one finds that equality fails for the real function $f(x)=x^2$ by selecting $A=\lbrace 1\rbrace$.  Equality again holds iff $f$ is injective:
+\begin{quote}
+Suppose $x \in f^{-1}f(A)$.  By definition this means that $f(x) = f(a)$ for some $x \in A$, and since $f$ is injective we have $x = a \in A$. It follows that $f^{-1}f(A) \subseteq A$.  Convserly, if $f(x)=f(y)=z$, then $\lbrace x,y\rbrace=f^{-1}f(\lbrace x,y\rbrace)=f^{-1}(\lbrace z\rbrace)$.  On the other hand $\lbrace x\rbrace =f^{-1}f(\lbrace x\rbrace)=f^{-1}(\lbrace z\rbrace)$.  So $\lbrace x,y\rbrace =\lbrace x\rbrace$, $x=y$.
+\end{quote}
+\item If $B_1\subseteq B_2$, then $f^{-1}(B_1)\subseteq f^{-1}(B_2)$.  In particular, $f^{-1}(B)\subseteq f^{-1}(Y)$.
+\item $f^{-1}(B_1\cup B_2)=f^{-1}(B_1)\cup f^{-1}(B_2)$.  More generally, $f^{-1}(\bigcup_j B_j)=\bigcup_j f^{-1}(B_j)$.
+\item $f^{-1}(B_1\cap B_2)=f^{-1}(B_1)\cap f^{-1}(B_2)$.  More generally, $f^{-1}(\bigcap_j B_j)=\bigcap_j f^{-1}(B_j)$.
+\item $f^{-1}(Y-B)=X-f^{-1}(B)$.  As a result, $f^{-1}(B_1-B_2)=f^{-1}(B_1)-f^{-1}(B_2)$.
+\item \label{inv_image_property_2} $ff^{-1}(B) \subseteq B$.  Yet again, one finds that equality fails for the real function $f(x)=x^2$ by selecting $B=[-1,1]$.  Equality holds iff $f$ is surjective:
+\begin{quote}
+Suppose $f$ is onto.  Pick any $y\in B\subset Y$.  Then $y=f(x)$ for some $x\in X$.  In other words, $x\in f^{-1}(B)$ and hence $y=f(x)\in ff^{-1}(B)$.  Now suppose the convserse, then pick $B=Y$, and we have $Y=ff^{-1}(Y)=f(X)$.
+\end{quote}
+\item \label{quasi_inverse_property} Combining \ref{inv_image_property_2} and \ref{inv_image_property}, we have that $ff^{-1}f(A)=f(A)$ and $f^{-1}ff^{-1}(B)=f^{-1}(B)$.  Let's show the first equality:
+\begin{quote}
+From \ref{inv_image_property}, $A\subseteq f^{-1}f(A)$, so that $f(A)\subseteq ff^{-1}f(A)$ (by 1).  Set $B=f(A)$.  Then by \ref{inv_image_property_2}, $ff^{-1}f(A)=ff^{-1}(B)\subseteq B=f(A)$.
+\end{quote}
+\end{enumerate}
+
+\textbf{Remarks.}  
+\begin{itemize}
+\item $f^{-1}f$ and $ff^{-1}$ \PMlinkescapetext{mean} the compositions of the function and its inverse as defined at the beginning of the entry, so that $f^{-1}f(A)=f^{-1}(f(A))$ and $ff^{-1}(B)=f(f^{-1}(B))$.
+\item From the definition above, we see that a function $f:X\to Y$ induces two functions $[f]$ and $[f^{-1}]$ defined by
+$$[f]:2^X\to 2^Y\mbox{ such that }[f](A):=f(A)\mbox{ and}$$
+$$[f^{-1}]:2^Y\to 2^X\mbox{ such that }[f^{-1}](B):=f^{-1}(B).$$
+The last property \ref{quasi_inverse_property} says that $[f]$ and $[f^{-1}]$ are quasi-inverses of each other.
+\item $f$ is a bijection iff $[f]$ and $[f^{-1}]$ are inverses of one another.
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

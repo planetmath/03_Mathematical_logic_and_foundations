@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{VariationsOnAxiomOfChoice}
+\pmcreated{2013-03-22 18:47:09}
+\pmmodified{2013-03-22 18:47:09}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{variations on axiom of choice}
+\pmrecord{6}{41581}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E30}
+\pmclassification{msc}{03E25}
+\pmsynonym{AMC}{VariationsOnAxiomOfChoice}
+\pmsynonym{MC}{VariationsOnAxiomOfChoice}
+\pmdefines{axiom of choice for finite sets}
+\pmdefines{axiom of multiple choice}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+The axiom of choice states that every set $C$ of non-empty sets has a choice function.  There are a number of ways to modify the statement so as to produce something that is similar but perhaps weaker version of the axiom.  For example, we can play with the size (cardinality) of the set $C$, the sizes of the elements in $C$, as well as the choice function itself.  Below are some of the variations of AC:
+
+\begin{enumerate}
+\item Varying the size of $C$: let $\lambda$ be a cardinal.  Then AC$(\lambda,\infty)$ is the statement that every set $C$ of non-empty sets, where $|C|=\lambda$, has a choice function.  If $\lambda = \aleph_0$, then we have the axiom of countable choice.
+\item Varying sizes of members of $C$: let $\lambda$ be a cardinal.  Then AC$(\infty,\kappa)$ is the statement that every set $C$ of non-empty sets of cardinality $\kappa$ has a choice function.  Another variation is called the \emph{axiom of choice for finite sets} AC$(\infty,<\! \aleph_0)$: every set $C$ of non-empty finite sets has a choice function.
+\item Varying choice function: The most popular is what is known as the \emph{axiom of multiple choice} (AMC), which states that every set $C$ of non-empty sets, there is a multivalued function from $C$ to $\bigcup C$ such that $f(A)$ is finite non-empty and $f(A)\subseteq A$.
+\item Varying any combination of the above three, for example AC$(\lambda,\kappa)$ is the statement that every collection $C$ of size $\lambda$ of non-empty sets of size $\kappa$ has a choice function.
+\end{enumerate}
+
+It's easy to see that all of the variations are provable in ZFC.  In addition, some of them are provable in ZF, for example, AC$(n,\infty)$ for any finite cardinal, and AC$(\infty,1)$.
+
+Conversely, it can be shown that AMC implies AC in ZF.
+
+Other implications include: AC$(\infty,\kappa)$ for all $\kappa$ implies the axiom of dependent choices, another weaker version of AC.  For finite cardinals, we have the following: AC$(\infty,mn)$ implies AC$(\infty,n)$, where $m,n$ are finite cardinals.
+\begin{proof}  Let $C$ be a set of non-empty sets of cardinality $n$.  For each $a\in C$, define $a^*:=a\times m:=\lbrace (x,i)\mid x\in a,\mbox{ and } i\in m\rbrace$.  Then the set $D=\lbrace a^*\mid a\in C\rbrace$ is a set of non-empty sets of cardinality $mn$, hence has a choice function $f$ by assumption.  Then $p\circ f\circ g$ is a choice function for $C$, where $p:\bigcup D\to \bigcup C$ is the projection given by $p(x,i)=x$, and $g:C\to D$ is the function given by $g(a)=a^*$.
+\end{proof}
+
+For more implications, see the references below.
+
+\begin{thebibliography}{8}
+\bibitem{hh} H. Herrlich, \emph{Axiom of Choice}, Springer, (2006).
+\bibitem{tjj} T. J. Jech, \emph{The Axiom of Choice}, North-Holland Pub. Co., Amsterdam, (1973).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

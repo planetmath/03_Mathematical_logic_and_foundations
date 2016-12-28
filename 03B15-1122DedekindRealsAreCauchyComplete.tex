@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1122DedekindRealsAreCauchyComplete}
+\pmcreated{2013-11-06 17:48:43}
+\pmmodified{2013-11-06 17:48:43}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{11.2.2 Dedekind reals are Cauchy complete}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\narrowbreak}{}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+\newcommand{\Qp}{\Q_{+}}
+\newcommand{\RD}{\ensuremath{\mathbb{R}_\mathsf{d}}\xspace} 
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{11.2.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{11.2.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{11.2.\arabic{mathcount}}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{11.2.\arabic{mathcount}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+
+Recall that $x : \N \to \Q$ is a \emph{Cauchy sequence}\indexdef{Cauchy!sequence} when it satisfies
+%
+\begin{myeqn} \label{eq:cauchy-sequence}
+  \prd{\epsilon : \Qp} \sm{n : \N} \prd{m, k \geq n} |x_m - x_k| < \epsilon.
+\end{myeqn}
+%
+Note that we did \emph{not} truncate the inner existential because we actually want to
+compute rates of convergence---an approximation without an error estimate carries little
+useful information. By \autoref{thm:ttac}, \eqref{eq:cauchy-sequence} yields a function $M
+: \Qp \to \N$, called the \emph{modulus of convergence}\indexdef{modulus!of convergence}, such that $m, k \geq M(\epsilon)$
+implies $|x_m - x_k| < \epsilon$. From this we get $|x_{M(\delta/2)} - x_{M(\epsilon/2)}|<
+\delta + \epsilon$ for all $\epsilon : \Qp$. In fact, the map $(\epsilon \mapsto
+x_{M(\epsilon/2)}) : \Qp \to \Q$ carries the same information about the limit as the
+original Cauchy condition~\eqref{eq:cauchy-sequence}. We shall work with these
+approximation functions rather than with Cauchy sequences.
+
+\begin{defn} \label{defn:cauchy-approximation}
+  A \define{Cauchy approximation}
+  \indexdef{Cauchy!approximation}%
+  is a map $x : \Qp \to \RD$ which satisfies
+  %
+  \begin{myeqn}
+    \label{eq:cauchy-approx}
+    \fall{\delta, \epsilon :\Qp} |x_\delta - x_\epsilon| < \delta + \epsilon.
+  \end{myeqn}
+  %
+  The \define{limit}
+  \index{limit!of a Cauchy approximation}%
+  of a Cauchy approximation $x : \Qp \to \RD$ is a number $\ell : \RD$ such
+  that
+  % 
+  \begin{equation*}
+    \fall{\epsilon, \theta : \Qp} |x_\epsilon - \ell| < \epsilon + \theta.
+  \end{equation*}
+\end{defn}
+
+\begin{thm} \label{RD-cauchy-complete}
+  Every Cauchy approximation in $\RD$ has a limit.
+\end{thm}
+
+\begin{proof}
+  Note that we are showing existence, not mere existence, of the limit.
+  Given a Cauchy approximation $x : \Qp \to \RD$, define
+  % 
+  \begin{align*}
+    L_y(q) &\defeq \exis{\epsilon, \theta : \Qp} L_{x_\epsilon}(q + \epsilon + \theta),\\
+    U_y(q) &\defeq \exis{\epsilon, \theta : \Qp} U_{x_\epsilon}(q - \epsilon - \theta).
+  \end{align*}
+  %
+  It is clear that $L_y$ and $U_y$ are inhabited, rounded, and disjoint. To establish
+  locatedness, consider any $q, r : \Q$ such that $q < r$. There is $\epsilon : \Qp$ such
+  that $5 \epsilon < r - q$. Since $q + 2 \epsilon < r - 2 \epsilon$ merely
+  $L_{x_\epsilon}(q + 2 \epsilon)$ or $U_{x_\epsilon}(r - 2 \epsilon)$. In the first case
+  we have $L_y(q)$ and in the second $U_y(r)$.
+
+  To show that $y$ is the limit of $x$, consider any $\epsilon, \theta : \Qp$. Because
+  $\Q$ is dense in $\RD$ there merely exist $q, r : \Q$ such that
+  %
+  \begin{narrowmultline*}
+    x_\epsilon - \epsilon - \theta/2 < q < x_\epsilon - \epsilon - \theta/4
+    < x_\epsilon < \\
+    x_\epsilon + \epsilon + \theta/4 < r < x_\epsilon + \epsilon + \theta/2,
+  \end{narrowmultline*}
+  % 
+  and thus $q < y < r$. Now either $y < x_\epsilon + \theta/2$ or $x_\epsilon - \theta/2 < y$.
+  In the first case we have
+  %
+  \begin{equation*}
+    x_\epsilon - \epsilon - \theta/2 < q < y < x_\epsilon + \theta/2,
+  \end{equation*}
+  %
+  and in the second
+  %
+  \begin{equation*}
+    x_\epsilon - \theta/2 < y < r < x_\epsilon + \epsilon + \theta/2.
+  \end{equation*}
+  %
+  In either case it follows that $|y - x_\epsilon| < \epsilon + \theta$.
+\end{proof}
+
+For sake of completeness we record the classic formulation as well.
+
+\begin{cor}
+  Suppose $x : \N \to \RD$ satisfies the Cauchy condition~\eqref{eq:cauchy-sequence}. Then
+  there exists $y : \RD$ such that
+  %
+  \begin{equation*}
+    \prd{\epsilon : \Qp} \sm{n : \N} \prd{m \geq n} |x_m - y| < \epsilon.
+  \end{equation*}
+\end{cor}
+
+\begin{proof}
+  By \autoref{thm:ttac} there is $M : \Qp \to \N$ such that $\bar{x}(\epsilon) \defeq
+  x_{M(\epsilon/2)}$ is a Cauchy approximation. Let $y$ be its limit, which exists by
+  \autoref{RD-cauchy-complete}. Given any $\epsilon : \Qp$, let $n \defeq M(\epsilon/4)$
+  and observe that, for any $m \geq n$,
+  %
+  \begin{narrowmultline*}
+    |x_m - y| \leq |x_m - x_n| + |x_n - y| =
+    |x_m - x_n| + |\bar{x}(\epsilon/2) - y| < \narrowbreak
+    \epsilon/4 + \epsilon/2 + \epsilon/4 = \epsilon.\qedhere
+  \end{narrowmultline*}
+\end{proof}
+
+
+\end{document}

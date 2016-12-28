@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Quantifier}
+\pmcreated{2013-03-22 12:59:09}
+\pmmodified{2013-03-22 12:59:09}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{quantifier}
+\pmrecord{18}{33360}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B15}
+\pmclassification{msc}{03B10}
+\pmsynonym{restricted quantifier}{Quantifier}
+\pmrelated{HartigsQuantifier}
+\pmrelated{GameTheoreticalQuantifier}
+\pmrelated{QuantifierFree}
+\pmrelated{GeneralizedQuantifier}
+\pmdefines{scope}
+\pmdefines{universal quantifier}
+\pmdefines{existential quantifier}
+\pmdefines{bound}
+\pmdefines{bounded quantifier}
+\pmdefines{vacuous}
+\pmdefines{vacuous quantification}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+\PMlinkescapeword{states}
+\PMlinkescapeword{area}
+\PMlinkescapeword{entire}
+
+\subsubsection*{Introduction}
+
+A \emph{quantifier} is a logical symbol which makes an assertion about the set of values which make one or more formulas true.  This is an exceedingly general concept; the vast majority of mathematics is done with the two standard quantifiers, $\forall$ (for all) and $\exists$ (there exists).
+
+The \emph{universal quantifier} $\forall$ takes a variable $x$ and a formula, which may or may not contain $x$, and asserts that the formula holds for any value of $x$ (the value as being taken from some given universe $A$).  A typical example would be a sentence like:
+
+$$\forall x [0\leq x]$$
+
+which states that no matter what value $x$ takes (from $A$), $0\leq x$.
+
+The \emph{existential quantifier} $\exists$ is the dual; that is the formula $\exists x \phi(x)$ is equivalent to $\neg\forall x \neg\phi(x)$.  It states that there is some $x$ satsifying the formula, as in
+
+$$\exists x [x>0]$$
+
+which states that there is some value of $x$ greater than $0$.
+
+\textbf{Remark}.  In practice, for simplicity, one usually writes $\exists x_1,x_2,\ldots,x_n \phi(x_1,\ldots, x_n)$ or $\exists \boldsymbol{x} \phi(\boldsymbol{x})$ (where $\boldsymbol{x}=(x_1,\ldots,x_n)$), instead of $\exists x_1 \exists x_2 \cdots \exists x_n \phi(x_1,\ldots,x_n)$.
+
+\subsubsection*{Scopes}
+
+The \emph{scope} of a quantifier is the portion of a formula where it binds its variables.  Note that previous bindings of a variable are overridden within the scope of a quantifier.  In the examples above, the scope of the quantifiers was the entire formula, but that need not be the case.  The following is a more complicated use of quantifiers:
+
+$$\forall x \underbrace{[x=0 \vee \exists y \overbrace{[x=y+1 \wedge (y=0\vee\exists x \underbrace{[y=x+1]}_{\dagger})]}^{\text{The scope of the first existential quantifier.}}]}_{\text{The scope of the universal quantifier.}}$$
+
+$\dagger$:The scope of the second existential quantifier.  Within this area, all references to $x$ refer to the variable bound by the existential quantifier.  It is impossible to refer directly to the one bound by the universal quantifier.
+
+As that example illustrates, it can be very confusing when one quantifier overrides another.  Since it does not change the meaning of a sentence to change a bound variable and all bound occurrences of it, it is better form to replace sentences like that with an equivalent but more readable one like:
+
+
+$$\forall x [x=0 \vee \exists y [x=y+1 \wedge (y=0\vee\exists z [y=z+1])]]$$
+
+These sentences both assert that every number is either equal to zero, or that there is some number one less than it, and that the number one less than it is also either zero or has a number one less than it.  [Note: This is not the most useful of sentences.  It would be nice to replace this with a mathematically simple sentence which uses nested quantifiers meaningfully.]
+
+\subsubsection*{Variations}
+
+The quantifiers may not range over all objects.  That is, $\forall x\phi(x)$ may not specify that $x$ can be any object, but rather any object belonging to some class of objects.  Similarly $\exists x\phi(x)$ may specify that there is some $x$ within that class which satisfies $\phi$.  For instance second order logic has two universal quantifiers, $\forall^1$ and $\forall^2$ (with corresponding existential quantifiers), and variables bound by them only range over the first and second order objects respectively.  So $\forall^1 x [0\leq x]$ only states that all numbers are greater than or equal to $0$, not that sets of numbers are as well (which would be meaningless).
+
+A particular use of a quantifier is called \emph{bounded} or \emph{restricted} if it limits the objects to a smaller range.  This is not quite the same as the situation mentioned above; in the situation above, the definition of the quantifier does not include all objects.  In this case, quantifiers can range over everything, but in a particular formula it doesn't.  This is expressed in first order logic with formulas like these four:
+
+\begin{align*}
+\forall x [x<c\rightarrow \phi(x)]&
+\forall x[x\in X\rightarrow \phi(x)]&
+\exists x[x<c \wedge \phi(x)]&
+\exists x[x\in X\wedge \phi(X)]
+\end{align*}
+
+The restriction is often incorporated into the quantifier.  For instance the first example might be written $\forall x<c[\phi(c)]$.
+
+A quantifier is called \emph{vacuous} if the variable it binds does not appear anywhere in its scope, such as $\forall x\exists y[0\leq x]$.  While vacuous quantifiers do not change the meaning of a sentence, they are occasionally useful in finding an equivalent formula of a specific form.
+
+While these are the most common quantifiers (in particular, they are the only quantifiers appearing in classical first-order logic), some logics use others.  The quantifier $$\exists! x\phi(x),$$ which means that there is a unique $x$ satsifying $\phi(x)$ is equivalent to $$\exists x[\phi(x)\wedge\forall y[\phi(y)\rightarrow x=y]].$$
+
+Other quantifiers go beyond the usual two.  Examples include interpreting $Q x\phi(x)$ to mean there are an infinite (or uncountably infinite) number of $x$ satisfying $\phi(x)$.  More elaborate examples include the branching Henkin quantifier, written:
+
+$$\begin{array}{cc}\forall x&\exists y\\\forall a&\exists b\end{array}\phi(x,y,a,b)$$
+
+This quantifier is similar to $\forall x\exists y\forall a\exists b\phi(x,y,a,b)$ except that the choice of $a$ and $b$ cannot depend on the values of $x$ and $y$.  This concept can be further generalized to the game-semantic, or independence-friendly, quantifiers.  All of these quantifiers are examples of generalized quantifiers.
+%%%%%
+%%%%%
+\end{document}

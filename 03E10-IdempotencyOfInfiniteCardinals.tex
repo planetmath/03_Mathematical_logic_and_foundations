@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{IdempotencyOfInfiniteCardinals}
+\pmcreated{2013-03-22 18:53:30}
+\pmmodified{2013-03-22 18:53:30}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{idempotency of infinite cardinals}
+\pmrecord{8}{41739}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmrelated{CanonicalWellOrdering}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we show that every infinite cardinal is idempotent with respect to cardinal addition and cardinal multiplication.
+
+\begin{thm} $\kappa\cdot \kappa = \kappa$ for any infinite cardinal $\kappa$. \end{thm}
+\begin{proof} For any non-zero cardinal $\lambda$, we have $\lambda = 1\cdot \lambda \le \lambda \cdot \lambda$.  So given an infinite cardinal $\kappa$, either $\kappa = \kappa\cdot\kappa$ or $\kappa < \kappa \cdot \kappa$.  Let $\mathscr{C}$ be the class of infinite cardinals that fail to be idempotent (with respect to $\cdot$).  Suppose $\mathscr{C}\ne \varnothing$.  We shall derive a contradiction.  Since $\mathscr{C}$ consists entirely of ordinals, it is therefore well-ordered, and has a least member $\kappa$.
+
+Let $K= \kappa \times \kappa$.  As $K$ is a collection of ordered pairs of ordinals, it has the canonical well-ordering inherited from the canonical ordering on \textbf{On}$\times$\textbf{On}.  Let $\alpha$ be the ordinal isomorphic to $K$.  Since $\kappa < \kappa \cdot \kappa = |K|$, there is an initial segment $L$ of $K$ that is order isomorphic to $\kappa$.
+
+Since $L$ is an initial segment of $K$, $L=\lbrace (\beta_1,\beta_2) \mid (\beta_1,\beta_2) \prec (\alpha_1,\alpha_2) \rbrace$ for some $(\alpha_1,\alpha_2)\in K$.  The well-order $\preceq$ denotes the canonical ordering on $K$. Let $\lambda = \max(\alpha_1,\alpha_2)$.  Since $L \subset K = \kappa\times \kappa$, $\alpha_1<\kappa$ and $\alpha_2<\kappa$, and therefore $\lambda <\kappa$.
+
+For any $(\beta_1,\beta_2)\in L$, we have $(\beta_1,\beta_2) \prec (\alpha_1,\alpha_2)$, which implies that $\max(\beta_1,\beta_2) \le \lambda$.  Therefore $L \subseteq \lambda^+ \times \lambda^+$, or $|L| \le |\lambda^+ \times \lambda^+|\le |\lambda^+|\cdot |\lambda^+|$.  There are two cases to discuss:
+\begin{enumerate}
+\item If $\lambda$ is finite, so is $\lambda^+ \times \lambda^+$, contradicting that $L$ is (order) isomorphic to $\kappa$, an infinite set.
+\item If $\lambda$ is infinite, so is $|\lambda^+|$.  Since $\lambda <\kappa$, and $\kappa$ is a limit ordinal, $|\lambda^+|<k$ as well, which means $|\lambda^+|\notin \mathscr{C}$, or $|\lambda^+|\cdot |\lambda^+| = |\lambda^+|$.  Therefore $|L|\le |\lambda^+|\cdot |\lambda^+| = |\lambda^+|\le \lambda^+ < \kappa$, again contradicting that $L$ is (order) isomorphic to $\kappa$.
+\end{enumerate}
+Therefore, the assumption $\mathscr{C} \ne \varnothing$ is false, and the proof is complete.
+\end{proof}
+
+\begin{cor} If $0< \lambda \le \kappa$ and $\kappa$ is infinite, then $\lambda \cdot \kappa = \kappa$. \end{cor}
+\begin{proof}  $\kappa = 1 \cdot \kappa \le \lambda \cdot \kappa \le \kappa \cdot \kappa = \kappa$.  By Schroder-Bernstein's Theorem, $\lambda \cdot \kappa = \kappa$.
+\end{proof}
+
+\begin{cor} If $\lambda \le \kappa$ and $\kappa$ is infinite, then $\lambda + \kappa = \kappa$. \end{cor}
+\begin{proof}  $\kappa = 0 + \kappa \le \lambda + \kappa \le \kappa + \kappa = 2\cdot \kappa \le \kappa \cdot \kappa = \kappa$ by the corollary above (since $2\le \kappa$).  Another application of Schroder-Bernstein gives $\kappa = \lambda+\kappa$.
+\end{proof}
+
+Since $\kappa\le \kappa$, we get the following:
+\begin{cor} $\kappa + \kappa = \kappa$ for any infinite cardinal. \end{cor}
+
+\textbf{Remark}.  No cardinal greater than $1$ is idempotent with respect to cardinal exponentiation.  This is a direct consequence of Cantor's theorem: $\kappa < 2^ \kappa \le \kappa ^ \kappa$.
+%%%%%
+%%%%%
+\end{document}

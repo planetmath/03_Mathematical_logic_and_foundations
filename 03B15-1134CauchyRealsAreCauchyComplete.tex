@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1134CauchyRealsAreCauchyComplete}
+\pmcreated{2013-11-06 18:23:05}
+\pmmodified{2013-11-06 18:23:05}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{11.3.4 Cauchy reals are Cauchy complete}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\bsim}{\frown}
+\newcommand{\closesym}{\mathord\sim}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+\newcommand{\Qp}{\Q_{+}}
+\newcommand{\RC}{\ensuremath{\mathbb{R}_\mathsf{c}}\xspace} 
+\newcommand{\rclim}{\mathsf{lim}} 
+\newcommand{\rcrat}{\mathsf{rat}} 
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{11.3.\arabic{mathcount}}
+\let\autoref\cref
+
+\begin{document}
+
+We constructed $\RC$ by closing $\Q$ under limits of Cauchy approximations, so it better
+be the case that $\RC$ is Cauchy complete. Thanks to \autoref{RC-sim-eqv-le} there is no
+difference between a Cauchy approximation $x : \Qp \to \RC$ as defined in the construction
+of $\RC$, and a Cauchy approximation in the sense of \autoref{defn:cauchy-approximation}
+(adapted to $\RC$).
+
+Thus, given a Cauchy approximation $x : \Qp \to \RC$ it is quite natural to expect that
+$\rclim(x)$ is its limit, where the notion of limit is defined as in
+\autoref{defn:cauchy-approximation}. But this is so by \autoref{RC-sim-eqv-le} and
+\autoref{thm:RC-sim-lim-term}. We have proved:
+
+\begin{thm}
+  Every Cauchy approximation in $\RC$ has a limit.
+\end{thm}
+
+An archimedean ordered field in which every Cauchy approximation has a limit is called
+\define{Cauchy complete}.
+\indexdef{Cauchy!completeness}%
+\indexdef{complete!ordered field, Cauchy}%
+\index{ordered field}%
+The Cauchy reals are the least such field.
+
+\begin{thm} \label{RC-initial-Cauchy-complete}
+  The Cauchy reals embed into every Cauchy complete archimedean ordered field.
+\end{thm}
+
+\begin{proof}
+  \index{limit!of a Cauchy approximation}%
+  Suppose $F$ is a Cauchy complete archimedean ordered field. Because limits are unique,
+  there is an operator $\lim$ which takes Cauchy approximations in $F$ to their limits. We
+  define the embedding $e : \RC \to F$ by $(\RC, {\closesym})$-recursion as
+  %
+  \begin{equation*}
+    e(\rcrat(q)) \defeq q
+    \qquad\text{and}\qquad
+    e(\rclim(x)) \defeq \lim (e \circ x).
+  \end{equation*}
+  %
+  A suitable $\bsim$ on $F$ is
+  %
+  \begin{equation*}
+    (a \bsim_\epsilon b) \defeq |a - b| < \epsilon.
+  \end{equation*}
+  %
+  This is a separated relation because $F$ is archimedean. The rest of the clauses for
+  $(\RC, {\closesym})$-recursion are easily checked. One would also have to check that $e$ is
+  an embedding of ordered fields which fixes the rationals.
+\end{proof}
+
+\index{real numbers!Cauchy|)}%
+
+
+\end{document}

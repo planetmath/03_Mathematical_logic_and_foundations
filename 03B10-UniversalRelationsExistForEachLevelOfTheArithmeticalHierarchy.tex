@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{UniversalRelationsExistForEachLevelOfTheArithmeticalHierarchy}
+\pmcreated{2013-03-22 12:58:40}
+\pmmodified{2013-03-22 12:58:40}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{universal relations exist for each level of the arithmetical hierarchy}
+\pmrecord{5}{33349}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Let $L\in\{\Sigma_n,\Delta_n,\Pi_n\}$ and take any $k\in\mathbb{N}$.  Then there is a $k+1$-ary relation $U\in L$ such that $U$ is universal for the $k$-ary relations in $L$.
+
+\subsection*{Proof}
+
+First we prove the case where $L=\Delta_1$, the recursive relations.  We use the example of a G\"odel numbering.
+
+Define $T$ to be a $k+2$-ary relation such that $T(e,\vec{x},a)$ if:
+
+\begin{itemize}
+\item $e=\ulcorner\phi\urcorner$ 
+
+\item $a$ is a deduction of either $\phi(\vec{x})$ or $\neg\phi(\vec{x})$
+\end{itemize}
+
+Since \PMlinkname{deductions are }{DeductionsAreDelta1}$\Delta_1$, it follows that $T$ is $\Delta_1$.  Then define $U^\prime(e,\vec{x})$ to be the least $a$ such that $T(e,\vec{x},a)$ and $U(e,\vec{x})\leftrightarrow (U^\prime(e,\vec{x}))_{\operatorname{len}(U^\prime(e,\vec{x}))}=e$.  This is again $\Delta_1$ since the $\Delta_1$ functions are \PMlinkname{closed under minimization}{Delta_1Bootstrapping}.
+
+If $f$ is any $k-ary$ $\Delta_1$ function then $f(\vec{x})=U(\ulcorner f\urcorner,\vec{x})$.
+
+Now take $L$ to be the $k$-ary relatons in either $\Sigma_n$ or $\Pi_n$.  Call the universal relation for $k+n$-ary $\Delta_1$ relations $U_\Delta$.  Then any $\phi\in L$ is equivalent to a relation in the form $Q y_1 Q^\prime y_2 \cdots Q^* y_n \psi(\vec{x},\vec{y})$ where $g\in\Delta_1$, and so $U(\vec{x})=Q y_1 Q^\prime y_2 \cdots Q^* y_n U_\Delta(\ulcorner\psi\urcorner,\vec{x},\vec{y})$.  Then $U$ is universal for $L$.
+
+Finally, if $L$ is the $k$-ary $\Delta_n$ relations and $\phi\in L$ then $\phi$ is equivalent to relations of the form $\exists y_1\forall y_2\cdots Q y_n \psi(\vec{x},\vec{y})$ and $\forall z_1\exists z_2\cdots Q z_n\eta(\vec{x},\vec{z})$.  If the $k$-ary universal relations for $\Sigma_n$ and $\Pi_n$ are $U_\Sigma$ and $U_\Pi$ respectively then $\phi(\vec{x})\leftrightarrow U_\Sigma(\ulcorner\psi\urcorner,\vec{x})\wedge U_\Pi(\ulcorner\eta\urcorner,\vec{x})$.
+%%%%%
+%%%%%
+\end{document}

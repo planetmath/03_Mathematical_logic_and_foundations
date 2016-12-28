@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EquivalenceClassOfEquinumerousSetsIsNotASet}
+\pmcreated{2013-03-22 18:50:34}
+\pmmodified{2013-03-22 18:50:34}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{equivalence class of equinumerous sets is not a set}
+\pmrecord{4}{41648}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Recall that two sets are equinumerous iff there is a bijection between them.
+
+\begin{prop} Let $A$ be a non-empty set, and $E(A)$ the class of all sets equinumerous to $A$.  Then $E(A)$ is a proper class. \end{prop}
+\begin{proof}  $E(A)\ne \varnothing$ since $A$ is in $E(A)$.  Since $A\ne \varnothing$, pick an element $a\in A$, and let $B=A-\lbrace a\rbrace$.  Then $C:=\lbrace y\mid y\mbox{ is a set, and }y\notin B\rbrace$ is a proper class, for otherwise $C\cup B$ would be the ``set'' of all sets, which is impossible.  For each $y$ in $C$, the set $F(y):=B\cup \lbrace y\rbrace$ is in one-to-one correspondence with $A$, with the bijection $f:F(y)\to A$ given by $f(x)=x$ if $x\in B$, and $f(y)=a$.  Therefore $E(A)$ contains $F(y)$ for every $y$ in the proper class $C$.  Furthermore, since $F(y_1)\ne F(y_2)$ whenever $y_1\ne y_2$, we have that $E(A)$ is a proper class as a result.
+\end{proof}
+
+\textbf{Remark}.  In the proof above, one can think of $F$ as a class function from $C$ to $E(A)$, taking every $y\in C$ into $F(y)$.  This function is one-to-one, so $C$ embeds in $E(A)$, and hence $E(A)$ is a proper class.
+%%%%%
+%%%%%
+\end{document}

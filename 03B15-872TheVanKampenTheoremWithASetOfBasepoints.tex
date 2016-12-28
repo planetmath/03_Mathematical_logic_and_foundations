@@ -1,0 +1,275 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{872TheVanKampenTheoremWithASetOfBasepoints}
+\pmcreated{2013-11-06 15:29:18}
+\pmmodified{2013-11-06 15:29:18}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.7.2 The van Kampen theorem with a set of basepoints}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\code}{\ensuremath{\mathsf{code}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\decode}{\ensuremath{\mathsf{decode}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\encode}{\ensuremath{\mathsf{encode}}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\kbar}{\overline{k}} 
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{8.7.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{8.7.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.7.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{8.7.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{8.7.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+\index{basepoint!set of}%
+The improvement of van Kampen we present now is closely analogous to a similar improvement in classical algebraic topology, where $A$ is equip\-ped with a \emph{set $S$ of base points}.
+In fact, it turns out to be unnecessary for our proof to assume that the ``set of basepoints'' is a \emph{set} --- it might just as well be an arbitrary type; the utility of assuming $S$ is a set arises later, when applying the theorem to obtain computations.
+What is important is that $S$ contains at least one point in each connected component of $A$.
+We state this in type theory by saying that we have a type $S$ and a function $k:S \to A$ which is surjective, i.e.\ $(-1)$-connected.
+If $S\jdeq A$ and $k$ is the identity function, then we will recover the naive van Kampen theorem.
+Another example to keep in mind is when $A$ is pointed and (0-)connected, with $k:\unit\to A$ the point: by \autoref{thm:minusoneconn-surjective},\autoref{thm:connected-pointed} this map is surjective just when $A$ is 0-connected.
+
+Let $A,B,C,f,g,P,i,j,h$ be as in the previous section.
+We now define, given our surjective map $k:S\to A$, an auxiliary type which improves the connectedness of $k$.
+Let $T$ be the higher inductive type generated by
+\begin{itemize}
+\item A function $\ell:S\to T$, and
+\item For each $s,s':S$, a function $m:(\id[A]{ks}{ks'}) \to (\id[T]{\ell s}{\ell s'})$.
+\end{itemize}
+There is an obvious induced function $\kbar:T\to A$ such that $\kbar \ell = k$, and any $p:ks=ks'$ is equal to the composite $ks = \kbar \ell s \overset{\kbar m p}{=} \kbar \ell s' = k s'$.
+
+\begin{lem}\label{thm:kbar}
+  $\kbar$ is 0-connected.
+\end{lem}
+\begin{proof}
+  We must show that for all $a:A$, the 0-truncation of the type $\sm{t:T}(\kbar t = a)$ is contractible.
+  Since contractibility is a mere proposition and $k$ is $(-1)$-connected, we may assume that $a=ks$ for some $s:S$.
+  Now we can take the center of contraction to be $\tproj0{(\ell s,q)}$ where $q$ is the equality $\kbar\ell s = k s$.
+
+  It remains to show that for any $\phi:\trunc0{\sm{t:T} (\kbar t = ks)}$ we have $\phi = \tproj0{(\ell s,q)}$.
+  Since the latter is a mere proposition, and in particular a set, we may assume that $\phi=\tproj0{(t,p)}$ for $t:T$ and $p:\kbar t = ks$.
+
+  Now we can do induction on $t:T$.
+  If $t\jdeq\ell s'$, then $ks' = \kbar \ell s' \overset{p}{=} ks$ yields via $m$ an equality $\ell s = \ell s'$.
+  Hence by definition of $\kbar$ and of equality in homotopy fibers, we obtain an equality $(ks',p) = (ks,q)$, and thus $\tproj0{(ks',p)} = \tproj0{(ks,q)}$.
+  Next we must show that as $t$ varies along $m$ these equalities agree.
+  But they are equalities in a set (namely $\trunc0{\sm{t:T} (\kbar t = ks)}$), and hence this is automatic.
+\end{proof}
+
+\begin{rmk}
+  \index{kernel!pair}%
+  $T$ can be regarded as the (homotopy) coequalizer of the ``kernel pair'' of $k$.
+  If $S$ and $A$ were sets, then the $(-1)$-connectivity of $k$ would imply that $A$ is the $0$-truncation of this coequalizer (see \autoref{cha:set-math}).
+  For general types, higher topos theory suggests that $(-1)$-con\-nec\-tiv\-i\-ty of $k$ will imply instead that $A$ is the colimit (a.k.a.\ ``geometric realization'') of the ``simplicial kernel'' of $k$.
+  \index{.infinity1-topos@$(\infty,1)$-topos}%
+  \index{geometric realization}%
+  \index{simplicial!kernel}%
+  \index{kernel!simplicial}%
+  The type $T$ is the colimit of the ``1-skeleton'' of this simplicial kernel, so it makes sense that it improves the connectivity of $k$ by $1$.
+  More generally, we might expect the colimit of the $n$-skeleton\index{skeleton!of a CW-complex} to improve connectivity by $n$.
+\end{rmk}
+
+\index{encode-decode method|(}%
+
+Now we define $\code:P\to P\to \type$ by double induction as follows
+\begin{itemize}
+\item $\code(ib,ib')$ is now a set-quotient of the type of sequences
+  \[ (b, p_0, x_1, q_1, y_1, p_1, x_2, q_2, y_2, p_2, \dots, y_n, p_n, b') \]
+  where
+  \begin{itemize}
+  \item $n:\mathbb{N}$,
+  \item $x_k:S$ and $y_k:S$ for $0<k \le n$,
+  \item $p_0:\Pi_1B(b,f k x_1)$ and $p_n:\Pi_1B(f k y_n, b')$ for $n>0$, and $p_0:\Pi_1B(b,b')$ for $n=0$,
+  \item $p_k:\Pi_1B(fk y_k, fkx_{k+1})$ for $1\le k < n$,
+  \item $q_k:\Pi_1C(gkx_k, gky_k)$ for $1\le k\le n$.
+  \end{itemize}
+  The quotient is generated by the following equalities (see \autoref{rmk:naive}):
+  \begin{align*}
+    (\dots, q_k, y_k, \refl{fy_k}, y_k, q_{k+1},\dots)
+    &= (\dots, q_k\ct q_{k+1},\dots)\\
+    (\dots, p_k, x_k, \refl{gx_k}, x_k, p_{k+1},\dots)
+    &= (\dots, p_k\ct p_{k+1},\dots)\\
+    (\dots, p_{k-1} \ct fw, x_{k}', q_{k}, \dots) &=
+    (\dots, p_{k-1}, x_{k}, gw \ct q_{k}, \dots)
+    \tag{for $w:\Pi_1A(kx_{k},kx_{k}')$}\\
+    (\dots, q_k \ct gw, y_k', p_k, \dots) &=
+    (\dots, q_k, y_k, fw \ct p_k, \dots).
+    \tag{for $w:\Pi_1A(ky_k, ky_k')$}
+  \end{align*}
+  We will need below the definition of the case of $\decode$ on such a sequence, which as before concatenates all the paths $p_k$ and $q_k$ together with instances of $h$ to give an element of $\Pi_1P(ifb,ifb')$, cf.~\eqref{eq:decode}.
+  As before, the other three point cases are nearly identical.
+\item For $a:A$ and $b:B$, we require an equivalence
+  \begin{myeqn}
+    \code(ib, ifa) \eqvsym \code(ib,jga).\label{eq:bfa-bga2}
+  \end{myeqn}
+  Since $\code$ is set-valued, by \autoref{thm:kbar} we may assume that $a=\kbar t$ for some $t:T$.
+  Next, we can do induction on $t$.
+  If $t\jdeq \ell s$ for $s:S$, then we define~\eqref{eq:bfa-bga2} as in \autoref{sec:naive-vankampen}:
+  \begin{align*}
+    (\dots, y_n, p_n,fks) &\mapsto (\dots,y_n,p_n,s,\refl{gks},gks),\\
+    (\dots, x_n, p_n, s, \refl{fks}, fks) &\mapsfrom (\dots, x_n, p_n, gks).
+  \end{align*}
+  These respect the equivalence relations, and define quasi-inverses just as before.
+  Now suppose $t$ varies along $m_{s,s'}(w)$ for some $w:ks=ks'$; we must show that~\eqref{eq:bfa-bga2} respects transporting along $\kbar mw$.
+  By definition of $\kbar$, this essentially boils down to transporting along $w$ itself.
+  By the characterization of transport in path types, what we need to show is that
+  \[ w_*(\dots, y_n, p_n,fks) = (\dots,y_n, p_n \ct fw, fks') \]
+  is mapped by~\eqref{eq:bfa-bga2} to
+  \[ w_*(\dots,y_n,p_n,s,\refl{gks},gks) = (\dots, y_n, p_n, s, \refl{gks} \ct gw, gks') \]
+  But this follows directly from the new generators we have imposed on the set-quotient relation defining \code.
+\item The other three requisite equivalences are defined similarly.
+\item Finally, since the commutativity~\eqref{eq:bfa-bga-comm} is a mere proposition, by $(-1)$-connectedness of $k$ we may assume that $a=ks$ and $a'=ks'$, in which case it follows exactly as before.
+\end{itemize}
+
+\begin{thm}[van Kampen with a set of basepoints]\label{thm:van-Kampen}
+  For all $u,v:P$ there is an equivalence
+  \[ \Pi_1P(u,v) \eqvsym \code(u,v). \]
+  with \code defined as in this section.
+\end{thm}
+
+\begin{proof}
+  Basically just like before.
+  To show that $\decode$ respects the new generators of the quotient relation, we use the naturality of $h$.
+  And to show that $\decode$ respects the equivalences such as~\eqref{eq:bfa-bga2}, we need to induct on $\kbar$ and on $T$ in order to decompose those equivalences into their definitions, but then it becomes again simply functoriality of $f$ and $g$.
+  The rest is easy.
+  In particular, no additional argument is required for $\encode\circ\decode$, since the goal is to prove an equality in a set, and so the case of $h$ is trivial.
+\end{proof}
+
+\index{encode-decode method|)}%
+
+\index{fundamental!group|(}%
+\autoref{thm:van-Kampen} allows us to calculate the fundamental group of a space~$A$,
+even when $A$ is not a set, provided $S$ is a set, for in that case,
+each $\code(u,v)$ is, by definition, a set-quotient of a \emph{set} by a
+relation.  In that respect, it is an improvement over
+\autoref{thm:naive-van-kampen}.
+
+\begin{eg}\label{eg:clvk}
+  Suppose $S\defeq \unit$, so that $A$ has a basepoint $a \defeq k(\ttt)$ and is connected.
+  Then code for loops in the pushout can be identified with alternating sequences of loops in $\pi_1(B,f(a))$ and $\pi_1(C,g(a))$, modulo an equivalence relation which allows us to slide elements of $\pi_1(A,a)$ between them (after applying $f$ and $g$ respectively).
+  Thus, $\pi_1(P)$ can be identified with the \emph{amalgamated free product}
+  \index{amalgamated free product}%
+  \index{free!product!amalgamated}%
+  $\pi_1(B) *_{\pi_1(A)} \pi_1(C)$ (the pushout in the category of groups), as constructed in \autoref{sec:free-algebras}.
+  This (in the case when $B$ and $C$ are open subspaces of $P$ and $A$ their intersection) is probably the most classical version of the van Kampen theorem.
+\end{eg}
+
+\begin{eg}\label{eg:cofiber}
+  \index{cofiber}
+  As a special case of \autoref{eg:clvk}, suppose additionally that $C\defeq\unit$, so that $P$ is the cofiber $B/A$.
+  Then every loop in $C$ is equal to reflexivity, so the relations on path codes allow us to collapse all sequences to a single loop in $B$.
+  The additional relations require that multiplying on the left, right, or in the middle by an element in the image of $\pi_1(A)$ is the identity.
+  We can thus identify $\pi_1(B/A)$ with the quotient of the group $\pi_1(B)$ by the normal subgroup generated by the image of $\pi_1(A)$.
+\end{eg}
+
+\begin{eg}\label{eg:torus}
+  \index{torus}
+  As a further special case of \autoref{eg:cofiber}, let $B\defeq S^1 \vee S^1$, let $A\defeq S^1$, and let $f:A\to B$ pick out the composite loop $p \ct q \ct \opp p \ct \opp q$, where $p$ and $q$ are the generating loops in the two copies of $S^1$ comprising $B$.
+  Then $P$ is a presentation of the torus $T^2$.
+  Indeed, it is not hard to identify $P$ with the presentation of $T^2$ as described in \autoref{sec:hubs-spokes}, using the cone on a particular loop.
+  Thus, $\pi_1(T^2)$ is the quotient of the free group on two generators\index{generator!of a group} (i.e., $\pi_1(B)$) by the relation $p \ct q \ct \opp p \ct \opp q = 1$.
+  This clearly yields the free \emph{abelian}\index{group!abelian} group on two generators, which is $\Z\times\Z$.
+\end{eg}
+
+
+\begin{eg}
+  \index{CW complex}
+  \index{hub and spoke}
+  More generally, any CW complex can be obtained by repeatedly ``coning off'' spheres, as described in \autoref{sec:hubs-spokes}.
+  That is, we start with a set $X_0$ of points (``0-cells''), which is the ``0-skeleton'' of the CW complex.
+  We take the pushout
+  \begin{equation*}
+    \vcenter{\xymatrix{
+        S_1 \times \Sn^0\ar[r]^-{f_1}\ar[d] &
+        X_0\ar[d]\\
+        \unit \ar[r] &
+        X_1
+      }}
+  \end{equation*}
+  for some set $S_1$ of 1-cells and some family $f_1$ of ``attaching maps'', obtaining the ``1-skeleton''\index{skeleton!of a CW-complex} $X_1$.
+  \index{attaching map}%
+  Then we take the pushout
+  \begin{equation*}
+    \vcenter{\xymatrix{
+        S_2 \times \Sn^1\ar[r]^{f_2}\ar[d] &
+        X_1\ar[d]\\
+        \unit \ar[r] &
+        X_2
+      }}
+  \end{equation*}
+  for some set $S_2$ of 2-cells and some family $f_2$ of attaching maps, obtaining the 2-skeleton $X_2$, and so on.
+  The fundamental group of each pushout can be calculated from the van Kampen theorem: we obtain the group presented by generators derived from the 1-skeleton, and relations derived from $S_2$ and $f_2$.
+  The pushouts after this stage do not alter the fundamental group, since $\pi_1(\Sn^n)$ is trivial for $n>1$ (see \autoref{sec:pik-le-n}).
+\end{eg}
+
+
+\begin{eg}\label{eg:kg1}
+  In particular, suppose given any presentation\index{presentation!of a group} of a (set-)group $G = \langle X \mid R \rangle$, with $X$ a set of generators and $R$ a set of words in these generators\index{generator!of a group}.
+  Let $B\defeq \bigvee_X S^1$ and $A\defeq \bigvee_R S^1$, with $f:A\to B$ sending each copy of $S^1$ to the corresponding word in the generating loops of $B$.
+  It follows that $\pi_1(P) \cong G$; thus we have constructed a connected type whose fundamental group is $G$.
+  Since any group has a presentation, any group is the fundamental group of some type.
+  If we 1-truncate such a type, we obtain a type whose only nontrivial homotopy group is $G$; this is called an \define{Eilenberg--Mac Lane space} $K(G,1)$.%
+  \indexdef{Eilenberg--Mac Lane space}%
+\end{eg}
+
+\index{fundamental!group|)}%
+
+\index{van Kampen theorem|)}%
+\index{theorem!van Kampen|)}%
+
+
+\end{document}

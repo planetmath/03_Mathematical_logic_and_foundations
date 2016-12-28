@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofOfTheoremsInAdditivelyIndecomposable}
+\pmcreated{2013-03-22 13:29:07}
+\pmmodified{2013-03-22 13:29:07}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{proof of theorems in additively indecomposable}
+\pmrecord{9}{34057}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmclassification{msc}{03F15}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+\PMlinkescapeword{decomposable}
+
+\begin{itemize} 
+
+\item $\mathbb{H}$ is closed.\\
+
+Let $\{\alpha_i\mid i<\kappa\}$ be some increasing sequence of elements of $\mathbb{H}$ and let $\alpha=\sup \{\alpha_i\mid i<\kappa\}$.  Then for any $x,y<\alpha$,  it must be that $x<\alpha_i$ and $y<\alpha_j$ for some $i,j<\kappa$.  But then $x+y<\alpha_{\max\{i,j\}}<\alpha$.
+
+\item $\mathbb{H}$ is unbounded.\\
+
+Consider any $\alpha$, and define a sequence by $\alpha_0=S\alpha$ and $\alpha_{n+1}=\alpha_n+\alpha_n$.  Let $\alpha_\omega=\sup_{n<\omega}\alpha_n$ be the limit of this sequence.  If $x,y<\alpha_\omega$ then it must be that $x<\alpha_i$ and $y<\alpha_j$ for some $i,j<\omega$, and therefore $x+y<\alpha_{\max\{i,j\}+1}$.  Note that $\alpha_\omega$ is, in fact, the next element of $\mathbb{H}$, since every element in the sequence is clearly additively decomposable.
+
+\item $f_\mathbb{H}(\alpha)=\omega^\alpha$.\\
+
+Since $0$ is not in $\mathbb{H}$, we have $f_\mathbb{H}(0)=1$.
+
+For any $\alpha+1$, we have $f_\mathbb{H}(\alpha+1)$ is the least additively indecomposable number greater than $f_\mathbb{H}(\alpha)$.  Let $\alpha_0=Sf_\mathbb{H}(\alpha)$ and $\alpha_{n+1}=\alpha_n+\alpha_n=\alpha_n\cdot 2$.  Then $f_\mathbb{H}(\alpha+1)=\sup_{n<\omega} \alpha_n=\sup_{n<\omega}S\alpha\cdot 2\cdots 2=f_\mathbb{H}(\alpha)\cdot\omega$.  The limit case is trivial since $\mathbb{H}$ is closed and unbounded, so $f_\mathbb{H}$ is continuous.
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TermAlgebra}
+\pmcreated{2013-03-22 17:35:24}
+\pmmodified{2013-03-22 17:35:24}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{term algebra}
+\pmrecord{9}{40002}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C99}
+\pmclassification{msc}{03C60}
+\pmsynonym{word algebra}{TermAlgebra}
+\pmrelated{PolynomialsInAlgebraicSystems}
+\pmrelated{FreeAlgebra}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\PMlinkescapeword{structure}
+
+Let $\Sigma$ be a signature and $V$ a set of variables.  Consider the set of all terms of $T:=T(\Sigma)$ over $V$.  Define the following:
+\begin{itemize}
+\item For each constant symbol $c\in \Sigma$, $c^T$ is the element $c$ in $T$.
+\item For each $n$ and each $n$-ary function symbol $f\in \Sigma$, $f^T$ is an $n$-ary operation on $T$ given by $$f^T(t_1,\ldots,t_n)=f(t_1,\ldots,t_n),$$ meaning that the evaluation of $f^T$ at $(t_1,\ldots,t_n)$ is the term $f(t_1,\ldots, t_n)\in T$.
+\item For each relational symbol $R\in \Sigma$, $R^T=\varnothing$.
+\end{itemize}
+
+Then $T$, together with the set of constants and $n$-ary operations defined above is an $\Sigma$-\PMlinkname{structure}{Structure}.  Since there are no relations defined on it, $T$ is an algebraic system whose signature $\Sigma'$ is the subset of $\Sigma$ consisting of all but the relation symbols of $\Sigma$.  The algebra $T$ is aptly called the \emph{term algebra} of the signature $\Sigma$ (over $V$).
+
+The prototypical example of a term algebra is the set of all well-formed formulas over a set $V$ of propositional variables in classical propositional logic.  The signature $\Sigma$ is just the set of logical connectives.  For each $n$-ary logical connective $\#$, there is an associated $n$-ary operation $[\#]$ on $V$, given by $[\#](p_1,\ldots, p_n)=\# p_1 \cdots p_n$.
+
+\textbf{Remark}.  The term algebra $T$ of a signature $\Sigma$ over a set $V$ of variables can be thought of as a \emph{free structure} in the following sense: if $A$ is any $\Sigma$-structure, then any function $\phi:V\to A$ can be extended to a unique structure homomorphism $\phi':T\to A$.  In this regard, $V$ can be viewed as a free basis for the algebra $T$.  As such, $T$ is also called the \emph{absolutely free $\Sigma$-structure with basis $V$}.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,207 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Constructivity}
+\pmcreated{2013-11-13 17:39:19}
+\pmmodified{2013-11-13 17:39:19}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{Constructivity}
+\pmrecord{5}{87921}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\choice}[1]{\ensuremath{\mathsf{AC}_{#1}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\LEM}[1]{\ensuremath{\mathsf{LEM}_{#1}}\xspace}
+\newcommand{\narrowbreak}{}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\let\autoref\cref
+\def\setof#1{\{#1\}}
+\makeatother
+
+\begin{document}
+%
+\index{mathematics!constructive|(}%
+
+One of the most striking differences between classical\index{mathematics!classical} foundations and type theory is the idea of \emph{proof relevance}, according to which mathematical statements, and even their proofs, become first-class mathematical objects.
+In type theory, we represent mathematical statements by types, which can be regarded simultaneously as both mathematical constructions and mathematical assertions, a conception also known as \emph{propositions as types}.
+\index{proposition!as types}%
+Accordingly, we can regard a term $a : A$ as both an element of the type $A$ (or in homotopy type theory, a point of the space $A$), and at the same time, a proof of the proposition $A$.
+To take an example, suppose we have sets $A$ and $B$ (discrete spaces),
+\index{discrete!space}%
+and consider the statement ``$A$ is isomorphic to $B$.''
+In type theory, this can be rendered as:
+\begin{narrowmultline*}
+  \mathsf{Iso}(A,B) \defeq \narrowbreak
+  \sm{f : A\to B}{g : B\to A}\Big(\big(\tprd{x:A} g(f(x)) = x\big) \times \big(\tprd{y:B}\, f(g(y)) = y\big)\Big).
+\end{narrowmultline*}
+%
+Reading the type constructors $\Sigma, \Pi, \times$  here  as ``there exists'', ``for all'', and ``and'' respectively yields the usual formulation of ``$A$ and $B$ are isomorphic''; on the other hand, reading them as sums and products yields the \emph{type of all isomorphisms} between $A$ and $B$!  To prove that $A$ and $B$ are isomorphic, one  constructs a proof $p : \mathsf{Iso}(A,B)$, which is therefore the same  as constructing an isomorphism between $A$ and $B$, i.e., exhibiting a pair of functions $f, g$ together with \emph{proofs} that their composites are the respective identity maps.  The latter proofs, in turn, are nothing but homotopies of the appropriate sorts.  In this way, \emph{proving a proposition is the same as constructing an element of some particular type.}
+
+In particular, to prove a statement of the form ``$A$ and $B$'' is just to prove $A$ and to prove $B$, i.e., to give an element of the type $A\times B$.
+And to prove that $A$ implies $B$ is just to find an element of $A\to B$, i.e.\ a function from $A$ to $B$ (determining a mapping of proofs of $A$ to proofs of $B$).
+This ``constructive'' conception (for more on which, see~\cite{kolmogorov},\cite{TroelstraI},\cite{TroelstraII}) is what gives type theory its good 
+computational character.
+For instance, every proof that something exists carries with it enough information to actually find such an object; and from a proof that  ``$A$ or $B$'' holds, one can extract either a proof that $A$ holds or one that $B$ holds.
+Thus, from every proof we can automatically extract an algorithm;\index{algorithm} \index{extraction of algorithms} this can be very useful in applications to computer programming.
+
+However, this conception of logic does behave in ways that are unfamiliar to most mathematicians.
+\index{axiom!of choice}%
+On one hand, a naive translation of the \emph{axiom of choice} yields a statement that we can simply prove.
+Essentially, this notion of ``there exists'' is strong enough to ensure that, by showing that for every $x: A$ there exists a $y:B$ such that $R(x,y)$, we automatically construct a function $f : A\to B$ such that, for all $x:A$, we have $R(x, f(x))$.
+
+\index{excluded middle}%
+\index{univalence axiom}%
+On the other hand, this notion of ``or'' is so strong that a naive translation of the \emph{law of excluded middle} is inconsistent with the univalence axiom.
+For if we assume ``for all $A$, either $A$ or not $A$'', then since proving ``$A$'' means exhibiting an element of it, we would have a uniform way of selecting an element from every nonempty type --- a sort of Hilbertian choice operator.
+However, univalence implies that the element of $A$ selected by such a choice operator must be invariant under all self-equivalences of $A$, since these are identified with self-identities and every operation must respect identity.
+But clearly some types have automorphisms with no fixed points, e.g.\ we can swap the elements of a two-element type.
+\index{automorphism!fixed-point-free}%
+
+Thus, the logic of ``proposition as types'' suggested by traditional type theory is not the ``classical'' logic familiar to most mathematicians.
+But it is also different from the logic sometimes called ``intuitionistic'', which may lack \emph{both} the law of excluded middle and the axiom of choice. For present purposes, it may be called \emph{constructive logic}
+\index{logic!constructive vs classical}%
+(but one should be aware that the terms  ``intuitionistic'' and ``constructive'' are often used differently).
+
+The computational advantages of constructive logic imply that we should not  discard it lightly; but for some purposes in classical mathematics, its non-classical character can be problematic.
+Many mathematicians are, of course, accustomed to rely on the law of excluded middle; while the ``axiom of choice'' that is available in constructive logic looks superficially similar to its classical namesake, but does not have all of its strong consequences.
+Fortunately, homotopy type theory gives a finer analysis of this situation,  allowing various different kinds of logic to coexist and intermix.
+
+The new insight that makes this possible is that the system of all types, just like spaces in classical homotopy theory, is ``stratified'' according to the dimensions in which their higher homotopy structure exists or collapses.
+In particular, Voevodsky has found a purely type-theoretic definition of \emph{homotopy $n$-types}, corresponding to spaces with no nontrivial homotopy information above dimension $n$.
+(The $0$-types are the ``sets'' mentioned previously as satisfying Lawvere's axioms\index{Lawvere}.)
+Moreover, with higher inductive types, we can universally ``truncate'' a type into an $n$-type; in classical homotopy theory this would be its $n^{\mathrm{th}}$ Postnikov\index{Postnikov tower} section.\index{n-type@$n$-type}%%
+
+With these notions in hand, the homotopy $(-1)$-types, which we call \emph{(mere) propositions}, support a logic that is much more like traditional ``intuitionistic'' logic.
+(Classically, every $(-1)$-type is empty or contractible; we interpret these possibilities as the truth values ``false'' and ``true'' respectively.)
+The ``$(-1)$-truncated axiom of choice'' is not automatically true, but is a strong assumption with the same sorts of consequences as its counterpart in classical\index{mathematics!classical} set theory.
+Similarly, the ``$(-1)$-truncated law of excluded middle'' may be assumed, with many of the same consequences as in classical mathematics.
+Thus, the homotopical perspective reveals that classical and constructive logic can coexist, as endpoints of a spectrum of different systems, with an infinite number of possibilities in between (the homotopy $n$-types for $-1 < n < \infty$).
+We may speak of ``\LEM{n}'' and ``\choice{n}'', with $\choice{\infty}$ being provable and \LEM{\infty} inconsistent with univalence, while $\choice{-1}$ and $\LEM{-1}$ are the versions familiar to classical mathematicians (hence in most cases it is appropriate to assume the subscript $(-1)$ when none is given).  Indeed, one can even have useful systems in which only \emph{certain} types satisfy such further ``classical'' principles, while types in general remain ``constructive.''\index{excluded middle}\index{axiom!of choice}%%
+
+It is worth emphasizing that univalent foundations does not \emph{require} the use of constructive or intuitionistic logic.\index{logic!intuitionistic}\index{logic!constructive} %
+Most of classical mathematics which depends on the law of excluded middle and the axiom of choice can be performed in univalent foundations, simply by assuming that these two principles hold (in their proper, $(-1)$-truncated, form).
+However, type theory does encourage avoiding these principles when they are unnecessary, for several reasons.
+
+First of all, every mathematician knows that a theorem is more powerful when proven using fewer assumptions, since it applies to more examples.
+The situation with \choice{} and \LEM{} is no different:
+type theory admits many interesting ``nonstandard'' models, such as in sheaf toposes,\index{topos} where classicality principles such as \choice{} and \LEM{} tend to fail.
+Homotopy type theory admits similar models in higher toposes, such as are studied in~\cite{ToenVezzosi02},\cite{Rezk05},\cite{lurie:higher-topoi}.
+Thus, if we avoid using these principles, the theorems we prove will be valid internally to all such models.
+
+Secondly, one of the additional virtues of type theory is its computable character.
+In addition to being a foundation for mathematics, type theory is a formal theory of computation, and can be treated as a powerful programming language.
+\index{programming}%
+From this perspective, the rules of the system cannot be chosen arbitrarily the way set-theoretic axioms can: there must be a harmony between them which allows all proofs to be ``executed'' as programs.
+We do not yet fully understand the new principles introduced by homotopy type theory, such as univalence and higher inductive types, from
+this point of view, but the basic outlines are emerging; see, for example,~\cite{lh:canonicity}.
+It has been known for a long time, however, that principles such as \choice{} and \LEM{} are fundamentally antithetical to computability, since they assert baldly that certain things exist without giving any way to compute them.
+Thus, avoiding them is necessary to maintain the character of type theory as a theory of computation.
+
+Fortunately, constructive reasoning is not as hard as it may seem.
+In some cases, simply by rephrasing some definitions, a theorem can be made constructive and its proof more elegant.
+Moreover, in univalent foundations this seems to happen more often.
+For instance:
+\begin{enumerate}
+\item In set-theoretic foundations, at various points in homotopy theory and category theory one needs the axiom of choice to perform transfinite constructions.
+  But with higher inductive types, we can encode these constructions directly and constructively.
+  In particular, none of the ``synthetic'' homotopy theory in \PMlinkexternal{Chapter 8}{http://planetmath.org/node/87582} requires \LEM{} or \choice{}.
+\item In set-theoretic foundations, the statement ``every fully faithful and essentially surjective functor is an equivalence of categories'' is equiv\-a\-lent to the axiom of choice.
+  But with the univalence axiom, it is just \emph{true}; see \PMlinkexternal{Chapter 9}{http://planetmath.org/node/87583}.
+\item In set theory, various circumlocutions are required to obtain notions of ``cardinal number'' and ``ordinal number'' which canonically represent isomorphism classes of sets and well-ordered sets, respectively --- possibly involving the axiom of choice or the axiom of foundation.
+  But with univalence and higher inductive types, we can obtain such representatives directly by truncating the universe; see \PMlinkexternal{Chapter 10}{http://planetmath.org/node/87584}.
+\item In set-theoretic foundations, the definition of the real numbers as equivalence classes of Cauchy sequences requires either the law of excluded middle or the axiom of (countable) choice to be well-behaved.
+  But with higher inductive types, we can give a version of this definition which is well-behaved and avoids any choice principles; see \PMlinkexternal{Chapter 11}{http://planetmath.org/node/87585}.
+\end{enumerate}
+Of course, these simplifications could as well be taken as evidence that the new methods will not, ultimately, prove to be really constructive.  However, we emphasize again that the reader does not have to care, or worry, about constructivity in order to read this book.  The point is that in all of the above examples, the version of the theory we give has independent advantages, whether or not \LEM{} and \choice{} are assumed to be available.  Constructivity, if attained, will be an added bonus.\index{constructivity}%
+
+Given this discussion of adding new principles such as univalence, higher inductive types, \choice{}, and \LEM{}, one may wonder whether the resulting system remains consistent.
+(One of the original virtues of type theory, relative to set theory, was that it can be seen to be consistent by proof-theoretic means).
+As with any foundational system, consistency\index{consistency} is a relative question: ``consistent with respect to what?''
+The short answer is that all of the constructions and axioms considered in this book have a model in the category of Kan\index{Kan complex} complexes, due to Voevodsky~\cite{klv:ssetmodel} (see~\cite{ls:hits} for higher inductive types).
+Thus, they are known to be consistent relative to ZFC (with as many inaccessible cardinals
+\index{inaccessible cardinal}\index{consistency}%
+as we need nested univalent universes).
+Giving a more traditionally type-theoretic account of this consistency is work in progress (see,
+e.g.,~\cite{lh:canonicity},\cite{coquand2012constructive}).
+
+We summarize the different points of view of the type-theoretic operations in Table 1.
+
+\begin{table}[htb]
+  \centering
+ \begin{tabular}{lllll}
+    \hline
+       Types && Logic & Sets & Homotopy\\ 
+    \hline
+       $A$ && proposition & set & space\\ 
+       $a:A$ && proof & element & point \\ 
+       $B(x)$ && predicate & family of sets & fibration \\ 
+       $b(x) : B(x)$ && conditional proof & family of elements & section\\ 
+       $\emptyt, \unit$ && $\bot, \top$ & $\emptyset, \{ \emptyset \}$ & $\emptyset, *$\\ 
+       $A + B$ && $A\vee B$ & disjoint union & coproduct\\ 
+       $A\times B$ && $A\wedge B$ & set of pairs & product space\\ 
+       $A\to B$ && $A\Rightarrow B$ & set of functions & function space\\ 
+       $\sm{x:A}B(x)$ &&  $\exists_{x:A}B(x)$ & disjoint sum & total space\\ 
+       $\prd{x:A}B(x)$ &&  $\forall_{x:A}B(x)$ & product & space of sections\\ 
+       $\mathsf{Id}_{A}$ && equality $=$ & $\setof{\pairr{x,x} | x\in A}$ & path space $A^I$ \\ 
+    \hline
+  \end{tabular}
+  \caption{Comparing points of view on type-theoretic operations}\label{tab:pov}
+\end{table}
+
+\index{mathematics!constructive|)}%
+
+\begin{thebibliography}{99}
+
+\bibitem{coquand2012constructive} {Bruno Barras and Thierry Coquand and Simon Huber}. {A Generalization of {T}akeuti-{G}andy Interpretation}. {\url{http://uf-ias-2012.wikispaces.com/file/view/semi.pdf}}, 2013.
+
+\bibitem{klv:ssetmodel} {Chris Kapulkin and Peter LeFanu Lumsdaine and Vladimir Voevodsky}. {The Simplicial Model of Univalent Foundations}, 2012. {\href{http://arxiv.org/abs/1211.2851/}{arXiv:1211.2851}}.
+
+\bibitem{kolmogorov} {Andrey Kolmogorov}. {Zur {D}eutung der intuitionistischen {L}ogik}. \emph{Mathematische Zeitschrift}, {35}:{58--65} {1932}
+
+\bibitem{lh:canonicity} {Licata,Daniel R. and Harper,Robert}. {Canonicity for 2-dimensional type theory}. In emph{Proceedings of the 39th annual ACM SIGPLAN-SIGACT symposium on Principles of programming languages}, pages {337--348}{ACM}, .
+
+\bibitem{lh:canonicity} {Licata,Daniel R. and Harper,Robert}. {Canonicity for 2-dimensional type theory}. In emph{Proceedings of the 39th annual ACM SIGPLAN-SIGACT symposium on Principles of programming languages}, pages {337--348}{ACM}, .
+
+\bibitem{ls:hits} {Peter LeFanu Lumsdaine and Michael Shulman}. {Higher inductive types}. {In preparation}, 2013.
+
+\bibitem{lurie:higher-topoi} {Jacob Lurie}, \emph{{Higher topos theory}}  {Princeton University Press},{2009}
+
+\bibitem{Rezk05} {Charles Rezk}. {Toposes and homotopy toposes}. {\url{http://www.math.uiuc.edu/~rezk/homotopy-topos-sketch.pdf}}, 2005.
+
+\bibitem{ToenVezzosi02} {Bertrand To\"en and Gabriele Vezzosi}. {Homotopical Algebraic Geometry {I}: Topos theory}, 2002. {\href{http://arxiv.org/abs/math/0207028/}{arXiv:math/0207028}}.
+
+\bibitem{TroelstraI} {Troelstra,Anne Sjerp and van Dalen,Dirk}, \emph{{Constructivism in mathematics. {V}ol. {I}}}  {North-Holland Publishing Co.},{1988}
+
+\bibitem{TroelstraII} {Troelstra,Anne Sjerp and van Dalen,Dirk}, \emph{{Constructivism in mathematics. {V}ol. {II}}}  {North-Holland Publishing Co.},{1988}
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{RussellsTheoryOfTypes}
+\pmcreated{2013-03-22 13:49:27}
+\pmmodified{2013-03-22 13:49:27}
+\pmowner{Aatu}{2569}
+\pmmodifier{Aatu}{2569}
+\pmtitle{Russell's theory of types}
+\pmrecord{10}{34555}
+\pmprivacy{1}
+\pmauthor{Aatu}{2569}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B15}
+\pmrelated{Class}
+\pmrelated{HilbertsVarepsilonOperator}
+\pmdefines{type theory}
+\pmdefines{ramified type theory}
+\pmdefines{simple type theory}
+\pmdefines{axiom of reducibility}
+\pmdefines{stratification}
+\pmdefines{NF}
+\pmdefines{theory of types}
+\pmdefines{simple theory of types}
+\pmdefines{ramified theory of types}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+After the discovery of the paradoxes of set theory (notably Russell's paradox), it become apparent that naive set theory must be replaced by something in which the paradoxes can't arise. Two solutions were proposed: type theory and axiomatic set theory based on a limitation of size principle (see the entries class and von Neumann-Bernays-G\"odel set theory).
+
+Type theory is based on the idea that impredicative definitions are the root of all evil. Bertrand Russell and various other logicians in the beginning of the 20th century proposed an analysis of the paradoxes that singled out so called vicious circles as the culprits. A vicious circle arises when one attempts to define a class by quantifying over a totality of classes including the class being defined. For example, Russell's class $R = \{x \mid x \not\in x\}$ contains a variable $x$ that ranges over all classes.
+
+Russell's type theory, which is found in its mature form in the momentous {\em Principia Mathematica} avoids the paradoxes by two devices. First, Frege's fifth axiom is abandoned entirely: the extensions of predicates do not appear among the objects. Secondly, the predicates themselves are ordered into a ramified hierarchy so that the predicates at the lowest level can be defined by speaking of objects only, the predicates at the next level by speaking of objects and of predicates at the previous level and so forth.
+
+The first of these principles has drastic implications to mathematics. For example, the predicate ``has the same cardinality'' seemingly can't be defined at all. For predicates apply only to objects, and not to other predicates. In Frege's system this is easy to overcome: the equicardinality predicate is defined for {\em extensions} of predicates, which are objects. In order to overcome this, Russell introduced the notion of types (which are today known as degrees). Predicates of degree 1 apply only to objects, predicates of degree 2 apply to predicates of degree 1, and so forth.
+
+Type theoretic universe may seem quite odd to someone familiar with the cumulative hierarchy of set theory. For example, the empty set appears anew in all degrees, as do various other familiar structures, such as the natural numbers. Because of this, it is common to indicate only the relative differences in degrees when writing down a formula of type theory, instead of the absolute degrees. Thus instead of writing
+
+\begin{displaymath}
+ \exists P_1 \forall x_0 (x_0 \in P_1 \leftrightarrow x_0 \neq x_0)
+\end{displaymath}
+
+one writes
+
+\begin{displaymath}
+ \exists P_{i+1} \forall x_i (x_i \in P_{i+1} \leftrightarrow x_i \neq x_i)
+\end{displaymath}
+
+to indicate that the formula holds for any $i$. Another possibility is simply to drop the subscripts indicating degree and let the degrees be determined implicitly (this can usually be done since we know that $x \in y$ implies that if $y$ is of degree $n$, then $x$ is of degree $n+1$). A formula for which there is an assignment of types (degrees) to the variables and constants so that it accords to the restrictions of type theory is said to be stratified.
+
+The second device implies another dimension in which the predicates are ordered. In any given degree, there appears a hierarchy of levels. At first level of degree $n+1$ one has predicates that apply to elements of degree $n$ and which can be defined with reference only to predicates of degree $n$. At second level there appear all the predicates that can be defined with reference to predicates of degree $n$ and to predicates of degree $n+1$ of level 1, and so forth.
+
+This second principle makes virtually all mathematics break down. For example, when speaking of real number system and its completeness, one wishes to quantify over all predicates of real numbers (this is possible at degree $n+1$ if the predicates of real numbers appear at degree $n$), not only of those of a given level. In order to overcome this, Russell and Whitehead introduced in PM the so-called axiom of reducibility, which states that if a predicate $P_n$ occurs  at some level $k$ (i.e. $P_n$ = $P_n^k$), it occurs already on the first level.
+
+The philosopher and logician Frank Plumpton Ramsey (1903-1930) was the first to notice that the axiom of reducibility in effect collapses the hierarchy of levels, so that the hierarchy is entirely superfluous in presence of the axiom. The original form of type theory is known as ramified type theory, and the simpler alternative with no second hierarchy of levels is known as unramified type theory or simply as simple type theory.
+
+One descendant of type theory is W. v. Quine's system of set theory known as NF (New Foundations), which differs considerably from the more familiar set theories (ZFC, NBG, Morse-Kelley). In NF there is a class comprehension axiom saying that to any stratified formula there corresponds a set of elements satisfying the formula. The Russell class is not a set, since it contains the formula $x \in x$, which can't be stratified, but the universal class is a set: $x = x$ is perfectly legal in type theory, as we can assign to $x$ any degree and get a well-formed formula of type theory. It is not known if NF axiomatises any extensor (see the entry class) based on a limitation of size principle, like the more familiar set theories do.
+
+In the modern variants of type theory, one usually has a more general supply of types. Beginning with some set $\tau$ of types (presumably a division of the simple objects into some natural categories), one defines the set of types $T$ by setting
+
+\begin{itemize}
+ \item if $a,b \in T$, then $(a \rightarrow b) \in T$
+ \item for all $t \in \tau$, $t \in T$
+\end{itemize}
+
+One way to proceed to get something familiar is to have $\tau$ contain a type $t$ for truth values. Then sentences are objects of type $t$, open formulae of one variable are of type $\mathbf{Object}\rightarrow t$ and so forth. This sort of type system is often found in the study of typed lambda calculus and also in intensional logics, which are often based on the former.
+%%%%%
+%%%%%
+\end{document}

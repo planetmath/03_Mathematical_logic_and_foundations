@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PointedSet}
+\pmcreated{2013-03-22 15:55:42}
+\pmmodified{2013-03-22 15:55:42}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{pointed set}
+\pmrecord{10}{37936}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmsynonym{base point}{PointedSet}
+\pmsynonym{base-point}{PointedSet}
+\pmdefines{basepoint}
+\pmdefines{pointed subset}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+
+% define commands here
+
+\begin{document}
+\subsection{Definition}
+A \emph{pointed set} is an ordered pair $(A,a)$ such that $A$ is a set and $a\in A$.  The element $a$ is called the \emph{basepoint} of $(A,a)$.  At first glance, it seems appropriate enough to call any non-empty set a pointed set.  However, the basepoint plays an important role in that if we select a different element $a^{\prime}\in A$, the ordered pair $(A,a^{\prime})$ forms a different pointed set from $(A,a)$.  In fact, given any non-empty set $A$ with $n$ elements, $n$ pointed sets can be formed from $A$.
+
+A function $f$ between two pointed sets $(A,a)$ and $(B,b)$ is just a function from $A$ to $B$ such that $f(a)=b$.  Whereas there are $|B|^{\mid A\mid}$ functions from $A$ to $B$, only $|B|^{\mid A\mid-1}$ of them are from $(A,a)$ to $(B,b)$.
+
+Pointed sets are mainly used as illustrative examples in the study of universal algebra as algebras with a single constant operator.  This operator takes every element in the algebra to a unique constant, which is clearly the basepoint in our definition above.  Any \PMlinkname{homomorphism}{HomomorphismBetweenAlgebraicSystems} between two algebras preserves basepoints (taking the basepoint of the domain algebra to the basepoint of the codomain algebra).
+
+From the above discussion, we see that a pointed set can alternatively described as any constant function $p$ where the its domain is the underlying set, and its range consists of a single element $p_0\in \operatorname{dom}(p)$.  A function $f$ from one pointed set $p$ to another pointed set $q$ can be seen as a function from the domain of $p$ to the domain of $q$ such that the following diagram commutes:
+
+$$\xymatrix{
+{\operatorname{dom}(p)}\ar[r]^{f}\ar[d]_{p}&{\operatorname{dom}(q)}\ar[d]^{q}\\
+{\lbrace p_0\rbrace}\ar[r]_{c}&{\lbrace q_0\rbrace}}
+$$
+
+
+\subsection{Creation of Pointed Sets from Existing Ones}
+\textbf{Pointed Subsets}.  Given a pointed set $(A,a)$, a pointed subset of $(A,a)$ is an ordered pair $(A^{\prime},a)$, where $A^{\prime}$ is a subset of $A$.  A pointed subset is clearly a pointed set.
+
+\textbf{Products of Pointed Sets}.  Given two pointed sets $(A,a)$ and $(B,b)$, their product is defined to be the ordered pair $(A\times B,(a,b))$.  More generally, given a family of pointed sets $(A_i,a_i)$ indexed by $I$, we can form their Cartesian product to be the ordered pair $(\prod A_i, (a_i))$.  Both the finite and the arbitrary cases produce pointed sets.
+
+\textbf{Quotients}.  Given a pointed set $(A,a)$ and an equivalence relation $R$ defined on $A$.  For each $x\in A$, define $\overline{x}:=\lbrace y\in A \mid y R x\rbrace$.  Then $A/R:=\lbrace \overline{x}\mid x\in A\rbrace$ is a subset of the power set $2^A$ of $A$, called the quotient of $A$ by $R$.  Then $(A/R,\overline{a})$ is a pointed set.
+%%%%%
+%%%%%
+\end{document}

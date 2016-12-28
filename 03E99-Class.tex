@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Class}
+\pmcreated{2013-03-22 13:49:15}
+\pmmodified{2013-03-22 13:49:15}
+\pmowner{yark}{2760}
+\pmmodifier{yark}{2760}
+\pmtitle{class}
+\pmrecord{20}{34551}
+\pmprivacy{1}
+\pmauthor{yark}{2760}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E99}
+\pmrelated{Set}
+\pmrelated{RussellsTheoryOfTypes}
+\pmdefines{class}
+\pmdefines{proper class}
+\pmdefines{subclass}
+\pmdefines{extensor}
+\pmdefines{Frege's fifth axiom}
+\pmdefines{limitation of size principle}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% The following lines should work as the command
+% \renewcommand{\bibname}{References}
+% without creating havoc when rendering an entry in 
+% the page-image mode.
+\makeatletter
+\@ifundefined{bibname}{}{\renewcommand{\bibname}{References}}
+\makeatother
+\begin{document}
+\PMlinkescapeword{disjoint}
+\PMlinkescapeword{divide}
+\PMlinkescapeword{divides}
+\PMlinkescapeword{division}
+\PMlinkescapeword{mean}
+\PMlinkescapeword{reduced}
+\PMlinkescapeword{state}
+\PMlinkescapeword{states}
+
+By a \emph{class} in modern set theory we mean an arbitrary collection of elements of the universe.
+All sets are classes (as they are collections of elements of the universe --- which are usually sets, but could also be urelements), but not all classes are sets --- and indeed cannot be.
+Classes which are not sets are called \emph{proper classes}.
+Given two classes $A$ and $B$, we say that $A$ is a \emph{subclass} of $B$ if every element of $A$ is an element of $B$.
+Every subclass of a set is a set.
+
+The need for the distinction between sets and classes arises from the paradoxes of the so-called naive set theory. In naive set theory one assumes that to each possible division of the universe into two disjoint and mutually comprehensive parts there corresponds an entity of the universe, a set. This is the content of \emph{Frege's fifth axiom}, which states that to each second order predicate $P$ there corresponds a first order object $p$ called the extension of $P$, such that $\forall x ( P(x) \leftrightarrow x \in p)$. (Every predicate $P$ divides the universe into two mutually comprehensive and disjoint parts; namely the part which consists of objects for which $P$ holds and the part consisting of objects for which $P$ does not hold). It should be noted that the view which ascribes the assumptions of the so called ``naive set theory'' to practitioners of set theory prior to its axiomatisation is incorrect; Frege is the only logician who has assumed the unrestricted comprehension principle. Cantor and others had no such principle, and therefore it is not correct to say that Russell's paradox demonstrated their views inconsistent.
+
+Speaking in modern terms we may view the situation as follows. Consider a model of set theory $\mathbf{M}$. The interpretation the model gives to $\in$ defines implicitly a function $f\colon P(\mathbf{M}) \to \mathbf{M}$. Seen this way, the fact that not all classes can be sets simply means that we can't injectively map the power set of any set into the set itself, which is a famous result by Cantor. Functions like $f$ here are known as extensors and they have been used in the study of semantics of set theory.
+
+Russell's paradox --- which could be seen as a proof of Cantor's theorem about cardinalities of power sets --- shows that Frege's fifth axiom is contradictory; not all classes can be sets. From here there are two traditional ways to proceed: either through the theory of types or through some form of limitation of size principle.
+
+The limitation of size principle in its vague form says that all small classes (in the sense of cardinality) are sets, while all proper classes are very big; ``too big'' to be sets. The limitation of size principle can be found in Cantor's work where it is the basis for Cantor's doctrine that only transfinite collections can be thought as specific objects (sets), but some collections are ``absolutely infinite'', and can't be thought to be comprehended into an object. This can be given a precise formulation: all classes which are of the same cardinality as the universal class are too big, and all other classes are small. In fact, this formulation can be used in von Neumann-Bernays-G\"odel set theory to replace the replacement axiom and almost all other set existence axioms (with the exception of the power set axiom).
+
+The limitation of size principle can be seen to give rise to extensors of type $P^{<|A|}(A) \rightarrow A$, where $P^{<|A|}(A)$ is the set of all subsets of $A$ of cardinality less than that of $A$. This is not the only possible way to avoid Russell's paradox. We could use an extensor according to which all classes which are of cardinality less than that of the universe or for which the cardinality of their complement is less than that of the universe are sets (i.e., map into elements of the model). 
+
+In many set theories there are formally no proper classes; ZFC is an example of just such a set theory. In these theories one usually means by a proper class an open formula $\Phi$, possibly with set parameters $a_1,...,a_n$. Notice, however, that these do not exhaust all possible proper classes that should ``really'' exist for the universe, as it only allows us to deal with proper classes that can be defined by means of an open formula with parameters. The theory NBG formalises this usage: it's conservative over ZFC (as clearly speaking about open formulae with parameters must be!). 
+
+There is a set theory known as Morse-Kelley set theory which allows us to speak about and to quantify over an extended class of impredicatively defined proper classes that can't be reduced to simply speaking about open formulae.
+
+In addition to the NBG and MK set theories which have proper classes, there are more substantive theories involving proper classes. For example, Ackermann set theory\cite{ackermann}, which is based on set theoretic reflection principles, allows proper classes to be members of other proper classes (although not of themselves) and adds $\omega$ levels of proper classes on top of the cumulative hierarchy. Inductive theories of truth such as Kripke's and semi-inductive theories of truth such as Herzenberg's and Gupta's have also been used to model theories of proper classes in which the classes are allowed to be partial (membership in class need not be determined for every object, e.g. the class itself) or otherwise differing from usual (the Church-scheme $a \in \{x|P(x)\}\leftrightarrow P(a)$ does not hold). Such theories are rather exotic, and are rarely if ever used in mathematical practice in contrast to NBG and MK. The notable exception is the use of certain theories (such as Ackermann's) of proper classes based on reflection principles in the study of large cardinals.
+
+\begin{thebibliography}{9}
+\bibitem{ackermann}
+ Wilhelm Ackermann,
+ {\it Zur Axiomatik der Mengenlehre},
+ Mathematische Annalen 131 (1956), 336--345. (This paper is \PMlinkexternal{available from GDZ}{http://dz-srv1.sub.uni-goettingen.de/sub/digbib/loader?did=D59988}.)
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

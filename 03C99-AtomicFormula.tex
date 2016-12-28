@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AtomicFormula}
+\pmcreated{2013-03-22 12:42:54}
+\pmmodified{2013-03-22 12:42:54}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{atomic formula}
+\pmrecord{10}{33002}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C99}
+\pmclassification{msc}{03B10}
+\pmsynonym{quantifier free formula}{AtomicFormula}
+\pmrelated{TermsAndFormulas}
+\pmrelated{CNF}
+\pmrelated{DNF}
+\pmdefines{literal}
+\pmdefines{clause}
+\pmdefines{quantifier-free formula}
+\pmdefines{positive literal}
+\pmdefines{negative literal}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+\usepackage[arrow,curve,poly,arc,2cell,frame,web]{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newcommand{\br}{[\![}
+\newcommand{\rb}{]\!]}
+\newcommand{\oq}{\text{``}}
+\newcommand{\cq}{\text{''}}
+
+
+\newcommand{\im}{\mathbf{Im}}
+\newcommand{\dom}{\mathbf{Dom}}
+
+
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\proves}{\vdash}
+\renewcommand{\And}{\wedge}
+\newcommand{\Sup}{\bigwedge}
+\newcommand{\Inf}{\bigvee}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\N}{\mathfrak{N}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\K}{\mathfrak{K}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Def}{\overset{\operatorname{def}}{:=}}
+
+
+
+\newcommand{\spec}{\text{{\bf Spec}}}
+\newcommand{\stab}{\text{{\bf Stab}}}
+\newcommand{\ann}{\text{{\bf Ann}}}
+\newcommand{\irr}{\text{{\bf Irr}}}
+\newcommand{\qt}{\text{{\bf Qt}}}
+\newcommand{\st}{\mathcal{Qt}}
+\newcommand{\ro}{\mathbf{r.o.}}
+
+
+\newcommand{\Endo}{\text{{\bf End}}}
+\newcommand{\mat}{\text{{\bf Mat}}}
+\newcommand{\der}{\text{{\bf Der}}}
+\newcommand{\rad}{\text{{\bf Rad}}}
+\newcommand{\trd}{\text{{\bf tr.d.}}}
+\newcommand{\cl}{\text{{\bf acl}}}
+\newcommand{\Int}{\text{{\bf int}}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\D}{\mathbf{D}}
+
+\newcommand{\del}{\partial}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\aut}{\mathbf{Aut}}
+\newcommand{\height}{\text{\bf Height}}
+\newcommand{\coheight}{\text{\bf Co-height}}
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\inner}[2]{\langle #1|#2\rangle}
+\renewcommand{\r}{{r}}
+\renewcommand{\t}{{t}}
+
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\Matrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 
+\end{array}\right)}
+\begin{document}
+Let $\Sigma$ be a signature and $T(\Sigma)$ the set of terms over $\Sigma$.  The set $S$ of symbols for $T(\Sigma)$ is the disjoint union of $\Sigma$ and $V$, a countably infinite set whose elements are called \emph{variables}.  Now, adjoin $S$ the set $\lbrace =, (, )\rbrace$, assumed to be disjoint from $S$.  An \emph{atomic formula} $\varphi$ over $\Sigma$ is any one of the following:
+\begin{enumerate}
+\item either $(t_1=t_2)$, where $t_1$ and $t_2$ are terms in $T(\Sigma)$, 
+\item or $(R(t_1,...,t_n))$, where $R\in\Sigma$ is an $n$-ary relation symbol, and $t_i\in T(\Sigma)$.
+\end{enumerate}
+
+\textbf{Remarks}.  
+\begin{enumerate}
+\item
+Using atomic formulas, one can inductively build formulas using the logical connectives $\vee$, $\neg$, $\exists$, etc... In this sense, atomic formulas are formulas that can not be broken down into simpler formulas; they are the building blocks of formulas.
+\item 
+A \emph{literal} is a formula that is either atomic or of the form $\neg \varphi$ where $\varphi$ is atomic.  If a literal is atomic, it is called a \emph{positive literal}.  Otherwise, it is a \emph{negative literal}.
+\item
+A finite disjunction of literals is called a \emph{clause}.  In other words, a clause is a formula of the form $\varphi_1 \vee \varphi_2 \vee \cdots \vee \varphi_n$, where each $\varphi_i$ is a literal.
+\item 
+A \emph{qunatifier-free formula} is a formula that does not contain the symbols $\exists$ or $\forall$.  
+\item
+If we identify a formula $\varphi$ with its double negation $\neg (\neg \varphi)$, then it can be shown that any quantifier-free formula can be identified with a formula that is in conjunctive normal form, that is, a finite conjunction of clauses.  For a proof, see this \PMlinkname{link}{EveryPropositionIsEquivalentToAPropositionInDNF}
+\end{enumerate}
+%%%%%
+%%%%%
+\end{document}

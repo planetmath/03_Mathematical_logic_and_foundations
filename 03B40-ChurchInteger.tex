@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ChurchInteger}
+\pmcreated{2013-03-22 12:32:31}
+\pmmodified{2013-03-22 12:32:31}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{Church integer}
+\pmrecord{8}{32785}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B40}
+\pmclassification{msc}{68N18}
+\pmrelated{LambdaCalculus}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{listings}
+\begin{document}
+A \emph{Church integer} is a representation of integers as functions, invented by Alonzo Church.  An integer $N$ is represented as a higher-order function, which applies a given function to a given expression $N$ times.
+
+For example, in the programming language Haskell, a function that returns a particular Church integer might be
+
+\begin{align*}
+\operatorname{church} 0 &= \ f x \rightarrow x\\
+\operatorname{church} n &= c\\
+&\operatorname{where}: c f x = c' f (f x)\\
+&\hspace{.5in}\operatorname{where}: c' = \operatorname{church} (n - 1)\\
+\end{align*}
+
+The transformation from a Church integer to an integer might be
+
+\begin{verbatim}
+unchurch n = n (+1) 0
+\end{verbatim}
+
+Thus we can generate the integers--the \texttt{(+1)} function would be applied to an initial value of $0$ $n$ times, yielding the ordinary integer $n$.
+%%%%%
+%%%%%
+\end{document}

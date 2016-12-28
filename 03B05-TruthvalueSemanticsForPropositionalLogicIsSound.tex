@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TruthvalueSemanticsForPropositionalLogicIsSound}
+\pmcreated{2013-03-22 19:33:01}
+\pmmodified{2013-03-22 19:33:01}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{truth-value semantics for propositional logic is sound}
+\pmrecord{12}{42532}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The soundness theorem of propositional logic says the following: every theorem is a tautology.  In symbol: $\vdash A$ implies $\models A$ for any wff $A$.
+
+\begin{thm} Propositional logic is sound with respect to truth-value semantics. \end{thm}
+\begin{proof}
+Basically, we need to show that every axiom is a tautology, and that the inference rule modus ponens preserves truth.  Since theorems are deduced from axioms and by applications of modus ponens, they are tautologies as a result.
+
+Using truth tables, one easily verifies that every axiom is true (under any valuation).
+
+First, let us verify that $(A\to B)\to (\neg B\to \neg A)$ is a tautology.  The corresponding truth table is
+\begin{center}
+\begin{tabular}{ccccccc}
+$A$ & $B$ & $\neg A$ & $\neg B$ & $A\to B$ & $\neg B\to \neg A$ & $(A\to B)\to (\neg B\to \neg A)$ \\
+\hline 
+T & T & F & F & T & T & T\\
+T & F & F & T & F & F & T\\
+F & T & T & F & T & T & T\\
+F & F & T & T & T & T & T
+\end{tabular}
+\end{center}
+Checking the truth values in the last column confirms that $(A\to B)\to (\neg B\to \neg A)$ is a tautology.
+
+Next, let us check that $(A\to (B\to C))\to ((A\to B)\to (A\to C))$ is a tautology.  This time, we use a ``reduced'' truth table.
+
+\begin{center}
+\begin{tabular}{ccccccccccccc}
+$(A$ & $\to$ & $(B$ & $\to$ & $C))$ & $\to$ & $((A$ & $\to$ & $B)$ & $\to$ & $(A$ & $\to$ & $C))$ \\
+\hline 
+T & T & T & T & T & T & T & T & T & T & T & T & T \\
+T & F & T & F & F & T & T & T & T & F & T & F & F \\
+T & T & F & T & T & T & T & F & F & T & T & T & T \\
+T & T & F & T & F & T & T & F & F & T & T & F & F \\
+F & T & T & T & T & T & F & T & T & T & F & T & T \\
+F & T & T & F & F & T & F & T & T & T & F & T & F \\
+F & T & F & T & T & T & F & T & F & T & F & T & T \\
+F & T & F & T & F & T & F & T & F & T & F & T & F 
+\end{tabular}
+\end{center}
+Notice that the truth values under the third $\to$ are all $T$, hence $(A\to (B\to C))\to ((A\to B)\to (A\to C))$ is a tautology.
+
+Finally, we check that $A\to (B\to A)$ is a tautology.  This can be done without truth tables.  Let $v$ be a valuation.  We may assume $v(A)=1$, since $v(A\to (B\to A))=1$ otherwise.  If $v(A)=1$, then $v(B\to A)=1$ no matter what $v(B)$ is.  Therefore, $v(A\to (B\to A))=1$, and $A\to (B\to A)$ is a tautology.
+
+Next, we show that modus ponens preserves truths.  In other words, $V(A)=V(A\to B)=1$ imply $V(B)=1$.  But if not, then either $V(A)=0$, or $V(A\to B)=0$.
+\end{proof}
+The soundness theorem can be used to prove that certain wff's of propositional logic are not theorems.  For example, we show that the schema $A\to (A\land B)$ is not a theorem schema (an instance of it is not a theorem).  Pick two distinct propositional variables $p$ and $q$, and use the truth table:
+
+\begin{center}
+\begin{tabular}{ccccc}
+$A$ & $\to$ & $(A$ & $\land$ & $B)$\\
+\hline 
+T & T & T & T & T\\
+T & F & T & F & F\\
+F & T & F & F & T\\
+F & T & F & F & F
+\end{tabular}
+\end{center}
+Since the second column contains an $F$, $p\to (p\land  q)$ is not true, and therefore $\not \vdash A\to (A\land B)$ by the soundness theorem.  As another example, we show that the \emph{disjunction property}
+\begin{center} if $\vdash A \lor B$, then $\vdash A$ or $\vdash B$ \end{center}
+is not true in classical propositional logic (it is true, however, in intuitionistic logic).  To see this, let $A$ be $p\to q$ and $B$ be $q\to p$, where $p,q$ are propositional variables.  Then $A\lor B$ is an instance of the theorem schema $(C\to D)\lor (D\to C)$.  However, neither $\vdash A$ nor $\vdash B$, as illustrated in the following truth table:
+\begin{center}
+\begin{tabular}{ccccc}
+$p$ & $q$ & $p\to q$ & $q\to p$ & $(p\to q)\lor (q\to p)$ \\
+\hline 
+T & T & T & T & T\\
+T & F & F & T & T\\
+F & T & T & F & T\\
+F & F & T & T & T
+\end{tabular}
+\end{center}
+Notice that both the third and the fourth columns contain an $F$, and therefore by the soundness theorem, $A$ and $B$ are not theorems.
+
+%%%%%
+%%%%%
+\end{document}

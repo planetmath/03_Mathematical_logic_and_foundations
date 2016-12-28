@@ -1,0 +1,311 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{91CategoriesAndPrecategories}
+\pmcreated{2013-11-06 16:26:48}
+\pmmodified{2013-11-06 16:26:48}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{9.1 Categories and precategories}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\Brck}[1]{\Trunc{}{#1}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idtoeqv}{\ensuremath{\mathsf{idtoeqv}}\xspace}
+\newcommand{\idtoiso}{\ensuremath{\mathsf{idtoiso}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inv}[1]{{#1}^{-1}}
+\newcommand{\isotoid}{\ensuremath{\mathsf{isotoid}}\xspace}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\pizero{\trunc0}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\Trunc}[2]{\Bigl\Vert #2\Bigr\Vert_{#1}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\urel}{\ensuremath{\mathcal{R}el}\xspace}
+\newcommand{\uset}{\ensuremath{\mathcal{S}et}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{9.1.\arabic{mathcount}}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{9.1.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{9.1.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{9.1.\arabic{mathcount}}
+\let\autoref\cref
+\let\rev\opp
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+In classical mathematics, there are many equivalent definitions of a category.
+In our case, since we have dependent types, it is natural to choose the arrows to be a type family indexed by the objects.
+This matches the way hom-types are always used in category theory: we never even consider comparing two arrows unless we know their domains and codomains agree.
+Furthermore, it seems clear that for a theory of 1-categories, the hom-types should all be sets.
+This leads us to the following definition.
+
+\begin{defn}\label{ct:precategory}
+  A \define{precategory}
+  \indexdef{precategory}
+  $A$ consists of the following.
+  \begin{enumerate}
+  \item A type $A_0$ of \define{objects}.%
+    \indexdef{object!in a (pre)category}
+    We write $a:A$ for $a:A_0$.
+  \item For each $a,b:A$, a set $\hom_A(a,b)$ of \define{arrows} or \define{morphisms}.%
+    \indexsee{arrow}{morphism}%
+    \indexdef{morphism!in a (pre)category}%
+    \indexdef{hom-set}%
+  \item For each $a:A$, a morphism $1_a:\hom_A(a,a)$.%
+    \indexdef{identity!morphism in a (pre)category}
+  \item For each $a,b,c:A$, a function%
+    \indexdef{composition!of morphisms in a (pre)category}
+    \[  \hom_A(b,c) \to \hom_A(a,b) \to \hom_A(a,c) \]
+    denoted infix by $g\mapsto f\mapsto g\circ f$, or sometimes simply by $gf$.
+  \item For each $a,b:A$ and $f:\hom_A(a,b)$, we have $\id f {1_b\circ f}$ and $\id f {f\circ 1_a}$.
+  \item For each $a,b,c,d:A$ and 
+    \begin{equation*}
+      f:\hom_A(a,b), \qquad
+      g:\hom_A(b,c), \qquad
+      h:\hom_A(c,d),
+    \end{equation*}
+    we have $\id {h\circ (g\circ f)}{(h\circ g)\circ f}$.
+  \end{enumerate}
+\end{defn}
+
+The problem with the notion of precategory is that for objects $a,b:A$, we have two possibly-different notions of ``sameness''.
+On the one hand, we have the type $(\id[A_0]{a}{b})$.
+But on the other hand, there is the standard categorical notion of \emph{isomorphism}.
+
+\begin{defn}\label{ct:isomorphism}
+  A morphism $f:\hom_A(a,b)$ is an \define{isomorphism}
+  \indexdef{isomorphism!in a (pre)category}%
+  if there is a morphism $g:\hom_A(b,a)$ such that $\id{g\circ f}{1_a}$ and $\id{f\circ g}{1_b}$.
+  We write $a\cong b$ for the type of such isomorphisms.
+\end{defn}
+
+\begin{lem}\label{ct:isoprop}
+  For any $f:\hom_A(a,b)$, the type ``$f$ is an isomorphism'' is a mere proposition.
+  Therefore, for any $a,b:A$ the type $a\cong b$ is a set.
+\end{lem}
+\begin{proof}
+  Suppose given $g:\hom_A(b,a)$ and $\eta:(\id{1_a}{g\circ f})$ and $\epsilon:(\id{f\circ g}{1_b})$, and similarly $g'$, $\eta'$, and $\epsilon'$.
+We must show $\id{(g,\eta,\epsilon)}{(g',\eta',\epsilon')}$.
+  But since all hom-sets are sets, their identity types are mere propositions, so it suffices to show $\id g {g'}$.
+  For this we have
+  \[g' = 1_a\circ g' = (g\circ f)\circ g' = g\circ (f\circ g') = g\circ 1_b = g\]
+  using $\eta$ and $\epsilon'$.
+\end{proof}
+
+\symlabel{ct:inv}
+\index{inverse!in a (pre)category}%
+If $f:a\cong b$, then we write $\inv f$ for its inverse, which by \autoref{ct:isoprop} is uniquely determined.
+
+The only relationship between these two notions of sameness that we have in a precategory is the following.
+
+\begin{lem}[\textsf{idtoiso}]\label{ct:idtoiso}
+  If $A$ is a precategory and $a,b:A$, then
+  \[(\id a b)\to (a \cong b).\]
+\end{lem}
+\begin{proof}
+  By induction on identity, we may assume $a$ and $b$ are the same.
+  But then we have $1_a:\hom_A(a,a)$, which is clearly an isomorphism.
+\end{proof}
+
+Evidently, this situation is analogous to the issue that motivated us to introduce the univalence axiom.
+In fact, we have the following:
+
+\begin{eg}\label{ct:precatset}
+  \index{set}%
+  There is a precategory \uset, whose type of objects is \set, and with $\hom_{\uset}(A,B) \defeq (A\to B)$.
+  The identity morphisms are identity functions and the composition is function composition.
+  For this precategory, \autoref{ct:idtoiso} is equal to (the restriction to sets of) the map $\idtoeqv$ from \autoref{sec:compute-universe}.
+
+  Of course, to be more precise we should call this category $\uset_\UU$, since its objects are only the \emph{small sets}
+  \index{small!set}%
+  relative to a universe \UU.
+\end{eg}
+
+Thus, it is natural to make the following definition.
+
+\begin{defn}\label{ct:category}
+  A \define{category}
+  \indexdef{category}
+  is a precategory such that for all $a,b:A$, the function $\idtoiso_{a,b}$ from \autoref{ct:idtoiso} is an equivalence.
+\end{defn}
+
+In particular, in a category, if $a\cong b$, then $a=b$.
+
+\begin{eg}\label{ct:eg:set}
+  \index{univalence axiom}%
+  The univalence axiom implies immediately that \uset is a category.
+  One can also show, using univalence, that any precategory of set-level structures such as groups, rings, topological spaces, etc.\ is a category; see \autoref{sec:sip}.
+\end{eg}
+
+We also note the following.
+
+\begin{lem}\label{ct:obj-1type}
+  In a category, the type of objects is a 1-type.
+\end{lem}
+\begin{proof}
+  It suffices to show that for any $a,b:A$, the type $\id a b$ is a set.
+  But $\id a b$ is equivalent to $a \cong b$, which is a set.
+\end{proof}
+
+\symlabel{isotoid}
+We write $\isotoid$ for the inverse $(a\cong b) \to (\id a b)$ of the map $\idtoiso$ from \autoref{ct:idtoiso}.
+The following relationship between the two is important.
+
+\begin{lem}\label{ct:idtoiso-trans}
+  For $p:\id a a'$ and $q:\id b b'$ and $f:\hom_A(a,b)$, we have
+  \begin{myeqn}\label{ct:idtoisocompute}
+    \id{\trans{(p,q)}{f}}
+    {\idtoiso(q)\circ f \circ \inv{\idtoiso(p)}}.
+  \end{myeqn}
+\end{lem}
+\begin{proof}
+  By induction, we may assume $p$ and $q$ are $\refl a$ and $\refl b$ respectively.
+Then the left-hand side of~\eqref{ct:idtoisocompute} is simply $f$.
+  But by definition, $\idtoiso(\refl a)$ is $1_a$, and $\idtoiso(\refl b)$ is $1_b$, so the right-hand side of~\eqref{ct:idtoisocompute} is $1_b\circ f\circ 1_a$, which is equal to $f$.
+\end{proof}
+
+Similarly, we can show
+\begin{gather}
+  \id{\idtoiso(\rev p)}{\inv {(\idtoiso(p))}}\\
+  \id{\idtoiso(p\ct q)}{\idtoiso(q)\circ \idtoiso(p)}\\
+  \id{\isotoid(f\circ e)}{\isotoid(e)\ct \isotoid(f)}
+\end{gather}
+and so on.
+
+\begin{eg}\label{ct:orders}
+  A precategory in which each set $\hom_A(a,b)$ is a mere proposition is equivalently a type $A_0$ equipped with a mere relation ``$\le$'' that is reflexive ($a\le a$) and transitive (if $a\le b$ and $b\le c$, then $a\le c$).
+  We call this a \define{preorder}.
+  \indexdef{preorder}
+
+  In a preorder, a witness $f: a\le b$ is an isomorphism just when there exists some witness $g: b\le a$.
+  Thus, $a\cong b$ is the mere proposition that $a\le b$ and $b\le a$.
+  Therefore, a preorder $A$ is a category just when (1) each type $a=b$ is a mere proposition, and (2) for any $a,b:A_0$ there exists a function $(a\cong b) \to (a=b)$.
+  In other words, $A_0$ must be a set, and $\le$ must be antisymmetric\index{relation!antisymmetric} (if $a\le b$ and $b\le a$, then $a=b$).
+  We call this a \define{(partial) order} or a \define{poset}.
+  \indexdef{partial order}%
+  \indexdef{poset}%
+\end{eg}
+
+\begin{eg}\label{ct:gaunt}
+  If $A$ is a category, then $A_0$ is a set if and only if for any $a,b:A_0$, the type $a\cong b$ is a mere proposition.
+  This is equivalent to saying that every isomorphism in $A$ is an identity; thus it is rather stronger than the classical\index{mathematics!classical} notion of ``skeletal'' category.
+  Categories of this sort are sometimes called \define{gaunt}~\cite{bsp12infncats}.
+  \indexdef{category!gaunt}%
+  \indexdef{gaunt category}%
+  \index{skeletal category}%
+  \index{category!skeletal}%
+  There is not really any notion of ``skeletality'' for our categories, unless one considers \autoref{ct:category} itself to be such.
+\end{eg}
+
+\begin{eg}\label{ct:discrete}
+  For any 1-type $X$, there is a category with $X$ as its type of objects and with $\hom(x,y) \defeq (x=y)$.
+  If $X$ is a set, we call this the \define{discrete}
+  \indexdef{category!discrete}%
+  \indexdef{discrete!category}%
+  category on $X$.
+  In general, we call it a \define{groupoid}
+  \indexdef{groupoid}
+  (see \autoref{ct:groupoids}).
+\end{eg}
+
+\begin{eg}\label{ct:fundgpd}
+  For \emph{any} type $X$, there is a precategory with $X$ as its type of objects and with $\hom(x,y) \defeq \pizero{x=y}$.
+  The composition operation
+  \[ \pizero{y=z} \to \pizero{x=y} \to \pizero{x=z} \]
+  is defined by induction on truncation from concatenation $(y=z)\to(x=y)\to(x=z)$.
+  We call this the \define{fundamental pregroupoid}
+  \indexdef{fundamental!pregroupoid}%
+  \indexsee{pregroupoid, fundamental}{fundamental pregroupoid}%
+  of $X$.
+  (In fact, we have met it already in \autoref{sec:van-kampen}; see also \autoref{ex:rezk-vankampen}.)
+\end{eg}
+
+\begin{eg}\label{ct:hoprecat}
+  There is a precategory whose type of objects is \type and with $\hom(X,Y) \defeq \pizero{X\to Y}$, and composition defined by induction on truncation from ordinary composition $(Y\to Z) \to (X\to Y) \to (X\to Z)$.
+  We call this the \define{homotopy precategory of types}.
+  \indexdef{precategory!of types}%
+  \index{homotopy!category of types@(pre)category of types}%
+\end{eg}
+
+\begin{eg}\label{ct:rel}
+  Let \urel be the following precategory:
+  \begin{itemize}
+  \item Its objects are sets.
+  \item $\hom_{\urel}(X,Y) = X\to Y\to \prop$.
+  \item For a set $X$, we have $1_X(x,x') \defeq (x=x')$.
+  \item For $R:\hom_{\urel}(X,Y)$ and $S:\hom_{\urel}(Y,Z)$, their composite is defined by
+    \[ (S\circ R)(x,z) \defeq \Brck{\sm{y:Y} R(x,y) \times S(y,z)}.\]
+  \end{itemize}
+  Suppose $R:\hom_{\urel}(X,Y)$ is an isomorphism, with inverse $S$.
+  We observe the following.
+  \begin{enumerate}
+  \item If $R(x,y)$ and $S(y',x)$, then $(R\circ S)(y',y)$, and hence $y'=y$.
+    Similarly, if $R(x,y)$ and $S(y,x')$, then $x=x'$.\label{item:rel1}
+  \item For any $x$, we have $x=x$, hence $(S\circ R)(x,x)$.
+    Thus, there merely exists a $y:Y$ such that $R(x,y)$ and $S(y,x)$.\label{item:rel2}
+  \item Suppose $R(x,y)$.
+    By~\ref{item:rel2}, there merely exists a $y'$ with $R(x,y')$ and $S(y',x)$.
+    But then by~\ref{item:rel1}, merely $y'=y$, and hence $y'=y$ since $Y$ is a set.
+    Therefore, by transporting $S(y',x)$ along this equality, we have $S(y,x)$.
+    In conclusion, $R(x,y)\to S(y,x)$.
+    Similarly, $S(y,x) \to R(x,y)$.\label{item:rel3}
+  \item If $R(x,y)$ and $R(x,y')$, then by~\ref{item:rel3}, $S(y',x)$, so that by~\ref{item:rel1}, $y=y'$.
+    Thus, for any $x$ there is at most one $y$ such that $R(x,y)$.
+    And by~\ref{item:rel2}, there merely exists such a $y$, hence there exists such a $y$.
+  \end{enumerate}
+  In conclusion, if $R:\hom_{\urel}(X,Y)$ is an isomorphism, then for each $x:X$ there is exactly one $y:Y$ such that $R(x,y)$, and dually.
+  Thus, there is a function $f:X\to Y$ sending each $x$ to this $y$, which is an equivalence; hence $X=Y$.
+  With a little more work, we conclude that \urel is a category.
+\end{eg}
+
+We might now restrict ourselves to considering categories rather than precategories.
+Instead, we will develop many concepts for precategories as well as categories, in order to emphasize how much better-behaved categories are, as compared both to precategories and to ordinary categories in classical\index{mathematics!classical} mathematics.
+
+We will also see in \crefrange{sec:strict-categories}{sec:dagger-categories} that in slightly more exotic contexts, there are uses for certain kinds of precategories other than categories, each of which ``fixes'' the equality of objects in different ways.
+This emphasizes the ``pre''-ness of precategories: they are the raw material out of which multiple important categorical structures can be defined.
+
+
+
+\end{document}

@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MultivaluedFunction}
+\pmcreated{2013-03-22 18:36:26}
+\pmmodified{2013-03-22 18:36:26}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{multivalued function}
+\pmrecord{15}{41340}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmsynonym{multi-valued}{MultivaluedFunction}
+\pmsynonym{multiple-valued}{MultivaluedFunction}
+\pmsynonym{multiple valued}{MultivaluedFunction}
+\pmsynonym{single-valued}{MultivaluedFunction}
+\pmsynonym{single valued}{MultivaluedFunction}
+\pmsynonym{partial multivalued function}{MultivaluedFunction}
+\pmrelated{Multifunction}
+\pmdefines{multivalued}
+\pmdefines{singlevalued}
+\pmdefines{total relation}
+\pmdefines{multivalued partial function}
+\pmdefines{injective}
+\pmdefines{surjective}
+\pmdefines{bijective}
+\pmdefines{identity}
+\pmdefines{inverse}
+\pmdefines{absolutely injective}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let us recall that a function $f$ from a set $A$ to a set $B$ is an assignment that takes each element of $A$ to a \emph{unique} element of $B$.  One way to generalize this notion is to remove the \emph{uniqueness} aspect of this assignment, and what results is a \emph{multivalued function}.  Although a multivalued function is in general not a function, one may formalize this notion mathematically as a function:
+
+\textbf{Definition}.  A \emph{multivalued function} $f$ from a set $A$ to a set $B$ is a function $f: A\to P(B)$, the power set of $B$, such that $f(a)$ is non-empty for every $a\in A$.  Let us denote $f:A\Rightarrow B$ the multivalued function $f$ from $A$ to $B$.  
+
+A multivalued function is said to be \emph{single-valued} if $f(a)$ is a singleton for every $a\in A$.
+
+From this definition, we see that every function $f:A\to B$ is naturally associated with a multivalued function $f^*:A\Rightarrow B$, given by $$f^*(a)=\lbrace f(a)\rbrace.$$  Thus a function is just a single-valued multivalued function, and vice versa.
+
+As another example, suppose $f:A\to B$ is a surjective function.  Then $f^{-1}:B\Rightarrow A$ defined by $f^{-1}(b)=\lbrace a\in A \mid f(a)=b\rbrace$ is a multivalued function.
+
+Another way of looking at a multivalued function is to interpret it as a special type of a relation, called a \emph{total relation}.  A relation $R$ from $A$ to $B$ is said to be \emph{total} if for every $a\in A$, there exists a $b\in B$ such that $aRb$.
+
+Given a total relation $R$ from $A$ to $B$, the function $f_R: A\Rightarrow B$ given by $$f_R(a)=\lbrace b\in B\mid aRb\rbrace$$ is multivalued.  Conversely, given $f:A \Rightarrow  B$, the relation $R_f$ from $A$ to $B$ defined by $$a R_f b \qquad\mbox{iff}\qquad b\in f(a)$$ is total.
+
+Basic notions such as functional composition, injectivity and surjectivity on functions can be easily translated to multivalued functions:
+
+\textbf{Definition}.  A multivalued function $f:A\Rightarrow B$ is \emph{injective} if $f(a)=f(b)$ implies $a=b$, \emph{absolutely injective} if $a\ne b$ implies $f(a)\cap f(b)=\varnothing$, and \emph{surjective} if every $b\in B$ belongs to some $f(a)$ for some $a\in A$.  If $f$ is both injective and surjective, it is said to be \emph{bijective}.
+
+Given $f:A\Rightarrow B$ and $g:B\Rightarrow C$, then we define the \emph{composition} of $f$ and $g$, written $g\circ f:A\Rightarrow C$, by setting $$(g\circ f)(a):=\lbrace c\in C\mid c\in g(b)\mbox{ for some }b\in f(a)\rbrace.$$
+It is easy to see that $R_{g\circ f}=R_g\circ R_f$, where the $\circ$ on the right hand side denotes relational composition.
+
+For a subset $S\subseteq A$, if we define $f(S)=\lbrace b\in B\mid b\in f(s)\mbox{ for some }s\in S\rbrace$, then $f:A\Rightarrow B$ is surjective iff $f(A)=B$, and functional composition has a simplified and familiar form: $$(g\circ f)(a)=g(f(a)).$$
+
+A bijective multivalued function $i:A\Rightarrow A$ is said to be an \emph{identity} (on $A$) if $a\in i(a)$ for all $a\in A$ (equivalently, $R_f$ is a reflexive relation).  Certainly, the function $id_A$ on $A$, taking $a$ into itself (or equivalently, $\lbrace a\rbrace$), is an identity.  However, given $A$, there may be more than one identity on it: $f:\mathbb{Z}\to \mathbb{Z}$ given by $f(n)=\lbrace n,n+1\rbrace$ is an identity that is not $id_{\mathbb{Z}}$.  An absolute identity on $A$ is necessarily $id_A$.
+
+Suppose $i:A\Rightarrow A$, we have the following equivalent characterizations of an identity:
+\begin{enumerate}
+\item $i$ is an identity on $A$
+\item $f(x)\subseteq (f\circ i)(x)$ for every $f:A\Rightarrow B$ and every $x\in A$
+\item $g(y)\subseteq (i\circ g)(y)$ for all $g:C\Rightarrow A$ and $y\in C$
+\end{enumerate}
+To see this, first assume $i$ is an identity on $A$.  Then $x\in i(x)$, so that $f(x)\subseteq f(i(x))$.  Conversely, $id_A(x)\subseteq (id_A\circ i)(x)$ implies that $\lbrace x\rbrace \subseteq id_A(i(x)) = \lbrace y\mid y\in i(x)\rbrace$, so that $x\in i(x)$.  This proved the equivalence of (1) and (2).  The equivalence of (1) and (3) are established similarly.
+
+A multivalued function $g:B\Rightarrow A$ is said to be an \emph{inverse} of $f:A\Rightarrow B$ if $f\circ g$ is an identity on $B$ and $g\circ f$ is an identity on $A$.  If $f$ possesses an inverse, it must be surjective.  Given that $f:A\Rightarrow B$ is surjective, the multivalued function $f^{-1}: B\Rightarrow A$ defined by $f^{-1}(b)=\lbrace a\in A\mid b\in f(a)\rbrace$ is an inverse of $f$.  Like identities, inverses are not unique.
+
+\textbf{Remark}.  More generally, one defines a \emph{multivalued partial function} (or \emph{partial multivalued function}) $f$ from $A$ to $B$, as a multivalued function from a subset of $A$ to $B$.  The same notation $f:A\Rightarrow B$ is used to mean that $f$ is a multivalued partial function from $A$ to $B$.  A multivalued partial function $f:A\Rightarrow B$ can be equivalently characterized, either as a function $f':A \to P(B)$, where $f'(a)$ is undefined iff $f'(a)=\varnothing$, or simply as a relation $R_f$ from $A$ to $B$, where $a R_f b$ iff $f(a)$ is defined and $b\in f(a)$.  Every partial function $f:A\to B$ has an associated multivalued partial function $f^*:A\Rightarrow B$, so that $f^*(a)$ is defined and is equal to $\lbrace b\rbrace$ iff $f(a)$ is and $f(a)=b$.
+%%%%%
+%%%%%
+\end{document}

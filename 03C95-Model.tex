@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Model}
+\pmcreated{2013-03-22 13:00:14}
+\pmmodified{2013-03-22 13:00:14}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{model}
+\pmrecord{33}{33384}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C95}
+%\pmkeywords{$L$-structure}
+\pmrelated{Structure}
+\pmrelated{SatisfactionRelation}
+\pmrelated{AlgebraicSystem}
+\pmrelated{RelationalSystem}
+\pmdefines{model}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{psfrag}
+%\usepackage{graphicx}
+%\usepackage{amsthm}
+%%%\usepackage{xypic}
+\begin{document}
+Let $\tau$ be a signature and $\varphi$ be a sentence over $\tau$.  A \PMlinkname{structure}{Structure} $\mathcal{M}$ for $\tau$ is called a \emph{model} of $\varphi$ if $$\mathcal{M}\models \varphi,$$
+where $\models$ is the satisfaction relation.  When $\mathcal{M}\models \varphi$, we says that $\varphi$ \emph{satisfies} $\mathcal{M}$, or that $\mathcal{M}$ is \emph{satisfied by} $\varphi$.
+
+More generally, we say that a $\tau$-structure $\mathcal{M}$ is a \emph{model} of a theory $T$ over $\tau$, if $\mathcal{M}\models \varphi$ for every $\varphi\in T$.  When $\mathcal{M}$ is a model of $T$, we say that $T$ \emph{satisfies} $\mathcal{M}$, or that $\mathcal{M}$ is satisfied by $T$, and is written $$\mathcal{M}\models T.$$
+
+\textbf{Example}.  Let $\tau=\lbrace \cdot \rbrace$, where $\cdot$ is a binary operation symbol.  Let $x,y,z$ be variables and $$T=\lbrace \forall x \forall y \forall z \left((x\cdot y)\cdot z=x\cdot (y\cdot z)\right) \rbrace.$$  Then it is easy to see that any model of $T$ is a semigroup, and vice versa.
+
+Next, let $\tau'=\tau\cup \lbrace e\rbrace$, where $e$ is a constant symbol, and $$T'=T\cup \lbrace \forall x (x\cdot e=x), \forall x\exists y (x\cdot y=e)\rbrace.$$  Then $G$ is a model of $T'$ iff $G$ is a group.  Clearly any group is a model of $T'$.  To see the converse, let $G$ be a model of $T'$ and let $1\in G$ be the interpretation of $e\in \tau'$ and $\cdot:G\times G\to G$ be the interpretation of $\cdot\in \tau'$.  Let us write $xy$ for the product $x\cdot y$.  For any $x\in G$, let $y\in G$ such that $xy=1$ and $z\in G$ such that $yz=1$. Then $1z=(xy)z=x(yz)=x1=x$, so that $1x=1(1z)=(1\cdot 1)z=1z=x$.  This shows that $1$ is the identity of $G$ with respect to $\cdot$.  In particular, $x=1z=z$, which implies $1=yz=yx$, or that $y$ is a inverse of $x$ with respect to $\cdot$.
+
+\textbf{Remark}.  Let $T$ be a theory.  A class of $\tau$-structures is said to be \emph{axiomatized by} $T$ if it is the class of all models of $T$.  $T$ is said to be the \emph{set of axioms} for this class.  This class is necessarily unique, and is denoted by $\operatorname{Mod}(T)$.  When $T$ consists of a single sentence $\varphi$, we write $\operatorname{Mod}(\varphi)$.
+
+%\PMlinkescapeword{relations}
+
+%Let $L$ be a formal language with function symbols $F$, relation
+%symbols $R$, and sorts $S$ (if $L$ includes more than one sort of
+%quantifiable variable, then $L$ is a \emph{many-sorted} language,
+%otherwise $S$ may be omitted). Then $$\mathcal{M}=\langle
+%\{\mathcal{M}_s\mid s\in S\},\{f^\mathcal{M}\mid f\in
+%F\},\{r^\mathcal{M}\mid r\in R\}\rangle$$ \emph{interprets} $L$
+%(or is an $L$-structure, or, if the underlying logic is clear, a
+%$\Sigma$-structure, where $\Sigma$ is a signature specifying just
+%$F$ and $R$) if:
+
+%\begin{itemize}
+%\item Whenever $f$ is an $n$-ary function symbol such that $\operatorname{Sort}(f)=s$ and %$\operatorname{Inputs}_n(f)=\langle s_1,\ldots,s_n\rangle$ then $f^\mathcal{M}:\prod_1^n %\mathcal{M}_{s_i}\rightarrow\mathcal{M}_s$
+%\item Whenever $r$ is an $n$-ary relation symbol such that $\operatorname{Inputs}_n(r)=\langle s_1,\ldots,s_n\rangle$ %then $r^\mathcal{M}$ is a relation on $\prod_1^n \mathcal{M}_{s_i}$
+%\end{itemize}
+
+%If $t$ is a term of $L$ of sort $s_t$ without free variables then
+%it follows that $t=ft_1\ldots t_n$ and
+%$t^\mathcal{M}=f^\mathcal{M}(t_1^\mathcal{M},\ldots,t_n^\mathcal{M})\in
+%M_{s_t}$.
+
+%If $\phi$ is a sentence then we write $\mathcal{M}\models\phi $
+%(and say that $\mathcal{M}$ satisfies $\phi$ or that $\mathcal{M}$
+%is a \emph{model} of $\phi$ ) if $\phi$ is true in $\mathcal{M}$,
+%where truth is defined as follows:
+
+%\begin{itemize}
+%\item $Rt_1\ldots t_n$ is true if and only if $R^\mathcal{M}(t_1^\mathcal{M},\ldots,t_n^\mathcal{M})$
+%\item truth of a non-atomic formula is defined using the semantics of the underlying logic.
+%\end{itemize}
+
+%If $\Phi$ is a class of sentences, we write
+%$\mathcal{M}\models\Phi$ if for every $\phi\in\Phi$,
+%$\mathcal{M}\models\phi$.
+
+%For any term $t$ of $L$ whose only free variables are included in
+%$x_1,\ldots,x_n$ of sorts $s_1,\ldots,s_n$ then for any
+%$a_1,\ldots,a_n$ such that $a_i\in M_{s_i}$ define
+%$t^\mathcal{M}(a_1,\ldots,a_n)$ by:
+
+%\begin{itemize}
+%\item If $t_i=x_i$ then $t_i^\mathcal{M}(a_1,\ldots,a_n)=a_i$
+%\item If $t=ft_1\ldots t_m$ then $t^\mathcal{M}(a_1,\ldots,a_n)=
+%f ^\mathcal{M}(t_1^\mathcal{M}(a_1,\ldots,a_n),
+%\ldots,t_n^\mathcal{M}(a_ 1,\ldots,a_n))$
+%\end{itemize}
+
+%If $\phi$ is a formula whose only free variables are included in
+%$x_1,\ldots,x_n$ of sorts $s_1,\ldots,s_n$ then for any
+%$a_1,\ldots,a_n$ such that $a_i\in \mathcal{M}_{s_i}$ define
+%$\mathcal{M}\models\phi(a_1,\ldots,a_n)$ recursively by:
+
+%\begin{itemize}
+%\item If $\phi=Rt_1 \ldots t_m$ then $\mathcal{M}\models\phi(a_1,\ldots,a_n)$ if and only if %$R^\mathcal{M}(t_1^\mathcal{M}(a_1,\ldots,a_n),\ldots,
+%t_n^\mathcal{M}(a_1,\ldots,a_n))$
+%\item Otherwise the truth of $\phi$ is determined by the semantics of the underlying logic.
+%\end{itemize}
+
+%As above, $\mathcal{M}\models\Phi(a_1,\ldots,a_n)$ if and only if
+%for every $\phi\in\Phi$, $\mathcal{M}\models\phi(a_1,\ldots,a_n)$.
+
+%\begin{thebibliography}{9}
+%\bibitem{Manzano} Manzano, Maria, {\em Extensions of First Order Logic}, Cambridge University Press, New York, 1996.
+%\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

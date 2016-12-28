@@ -1,0 +1,178 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chapter1Notes}
+\pmcreated{2013-11-13 21:31:27}
+\pmmodified{2013-11-13 21:31:27}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{Chapter 1 notes}
+\pmrecord{14}{87549}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\Agda}{\textsc{Agda}\xspace}
+\newcommand{\Coq}{\textsc{Coq}\xspace}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\NuPRL}{\textsc{NuPRL}\xspace}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\sectionNotes}{\phantomsection\section*{Notes}\addcontentsline{toc}{section}{Notes}\markright{\textsc{\@chapapp{} \thechapter{} Notes}}}
+\newcommand{\uppt}{\ensuremath{\mathsf{uppt}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+The type theory presented here is a version of Martin-L\"{o}f's intuitionistic type 
+theory~\cite{Martin-Lof-1972},\cite{Martin-Lof-1973},\cite{Martin-Lof-1979},\cite{martin-lof:bibliopolis}, which itself is based on and influenced 
+by the foundational work of Brouwer \cite{beeson}, Heyting~\cite{heyting1966intuitionism}, Scott~\cite{scott70}, de 
+Bruijn~\cite{deBruijn-1973}, Howard~\cite{howard:pat}, Tait~\cite{Tait-1966},\cite{Tait-1968}, and Lawvere~\cite{lawvere:adjinfound}\index{Lawvere}.
+\index{proof!assistant}%
+Three principal variants of Martin-L\"{o}f's type theory underlie the \NuPRL \cite{constable+86nuprl-book}, \Coq~\cite{Coq}, and 
+\Agda \cite{norell2007towards} computer implementations of type theory.  The theory given here differs from these formulations in a number 
+of respects, some of which are critical to the homotopy interpretation, while others are technical conveniences or involve concepts that 
+have not yet been studied in the homotopical setting.
+
+\index{type theory!intensional}%
+\index{type theory!extensional}%
+\index{intensional type theory}%
+\index{extensional!type theory}%
+Most significantly, the type theory described here is derived from the \emph{intensional} version of Martin-L\"{o}f's type 
+theory~\cite{Martin-Lof-1973}, rather than the \emph{extensional} version~\cite{Martin-Lof-1979}.  Whereas the extensional theory makes no 
+distinction between judgmental and propositional equality, the intensional theory regards judgmental equality as purely definitional, and 
+admits a much broader, proof-relevant interpretation of the identity type that is central to the homotopy interpretation.  From the 
+homotopical perspective, extensional type theory confines itself to homotopically discrete sets (see \PMlinkname{\S 3.1}{31setsandntypes}), whereas the 
+intensional theory admits types with higher-dimensional structure.  The \NuPRL system~\cite{constable+86nuprl-book} is extensional, whereas 
+both \Coq~\cite{Coq} and \Agda~\cite{norell2007towards} are intensional.  Among intensional type theories, there are a number of variants 
+that differ in the structure of identity proofs.  The most liberal interpretation, on which we rely here, admits a \emph{proof-relevant} 
+interpretation of equality, whereas more restricted variants impose restrictions such as \emph{uniqueness of identity proofs 
+  (UIP)}~\cite{Streicher93},
+\indexsee{UIP}{uniqueness of identity proofs}%
+\index{uniqueness!of identity proofs}%
+stating that any two proofs of equality are judgmentally equal, and \emph{Axiom K}~\cite{Streicher93},
+\index{axiom!Streicher's Axiom K}
+stating that 
+the only proof of equality is reflexivity (up to judgmental equality).  These additional requirements may be selectively imposed in the \Coq 
+and \Agda\ systems.
+
+%(In the terminology of \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580} such a type theory is about $0$-truncated types.)
+
+Another point of variation among intensional theories is the strength of judgmental equality, particularly as regards objects of function type.  Here we include the uniqueness principle\index{uniqueness!principle} ($\eta$-conversion) $f \jdeq \lam{x} f(x)$, as a principle of judgmental equality.  This principle is used, for example, in \PMlinkname{\S 4.9}{49univalenceimpliesfunctionextensionality}, to show that univalence implies propositional function extensionality.  Uniqueness principles are sometimes considered for other types.
+For instance, the uniqueness principle\index{uniqueness!principle!for product types} for cartesian products would be a judgmental version of the propositional equality $\uppt$ which we constructed in \PMlinkname{\S 1.5}{15producttypes}, saying that $u \jdeq (\proj1(u),\proj2(u))$.
+This and the corresponding version for dependent pairs would be reasonable choices (which we did not make), but we cannot include all such rules, because the corresponding uniqueness principle for identity types would trivialize all the higher homotopical structure.  So we are \emph{forced} to leave it out, and the question then becomes where to draw the line. With regards to inductive types, we discuss these points further in~\PMlinkname{\S 5.5}{55homotopyinductivetypes}.
+
+It is important for our purposes that (propositional) equality of functions is taken to be \emph{extensional} (in a different sense than that used above!).
+This is not a consequence of the rules in this chapter; it will be expressed by \PMlinkname{Axiom 1}{29pitypesandthefunctionextensionalityaxiom#Thmaxiom1}.
+\index{function extensionality}%
+This decision is significant for our purposes, because it specifies that equality of functions is as expected in mathematics.  Although we include \PMlinkname{Axiom 1}{29pitypesandthefunctionextensionalityaxiom#Thmaxiom1} as an axiom, it may be derived from the univalence axiom and the uniqueness principle for functions\index{uniqueness!principle!for function types} (see \PMlinkname{\S 4.9}{49univalenceimpliesfunctionextensionality}), as well as from the existence of an interval type (see \PMlinkname{Lemma 6.3.2}{63theinterval#Thmprelem2}).
+
+Regarding inductive types such as products, $\Sigma$-types, coproducts, natural numbers, and so on (see \PMlinkexternal{Chapter 5}{http://planetmath.org/node/87578}), there are additional choices regarding precisely how to  formulate induction and recursion.
+\index{pattern matching}%
+Formally, one may describe type theory by taking either \emph{pattern matching} or \emph{induction principles} as basic and deriving the other; see \PMlinkexternal{Appendix A}{http://planetmath.org/node/87881}.
+However, pattern matching in general is not yet well understood from the homotopical perspective (in particular, ``nested'' or ``deep'' pattern matching is difficult to make general sense of for higher inductive types).
+Moreover, it can be dangerous unless sufficient care is taken: for instance, the form of pattern matching implemented by default in \Agda
+\index{proof!assistant!Agda@\textsc{Agda}}%
+allows proving Axiom K.
+\index{axiom!Streicher's Axiom K}%
+For these reasons, we have chosen to regard the induction principle as the basic property of an inductive definition, with pattern matching justified in terms of induction.
+
+\index{proof!assistant!Coq@\textsc{Coq}}%
+Unlike the type theory of \Coq, we do not include a primitive type of propositions.  Instead, as discussed in \PMlinkname{\S 1.11}{111propositionsastypes}, we embrace 
+the \emph{propositions-as-types (PAT)} principle, identifying propositions with types.
+This was suggested originally by de Bruijn~\cite{deBruijn-1973}, Howard~\cite{howard:pat}, Tait~\cite{Tait-1968}, and Martin-L\"{o}f~\cite{Martin-Lof-1972}.
+(Our decision is explained more fully in \PMlinkname{\S 3.2}{32propositionsastypes},\PMlinkname{\S 3.3}{33merepropositions}.)
+
+We do, however, include a full cumulative hierarchy of universes, so that the type formation and equality judgments become instances of the membership and equality judgments for a universe.
+As a convenience, we regard objects of a universe as types, rather than as codes for types; in the terminology of \cite{martin-lof:bibliopolis}, this means we use ``Russell-style universes'' rather than ``Tarski-style universes''.
+\index{type!universe!Tarski-style}%
+\index{type!universe!Russell-style}%
+An alternative would be to use Tarski-style universes, with an explicit coercion\index{coercion, universe-raising} function required to make an element $A:\UU$ of a universe into a type $\mathsf{El}(A)$, and just say that the coercion is omitted when working informally.
+
+We also treat the universe hierarchy as cumulative, in that every type in $\UU_i$ is also in $\UU_j$ for each $j\geq i$.
+There are different ways to implement cumulativity formally: the simplest is just to include a rule that if $A:\UU_i$ then $A:\UU_j$.
+However, this has the annoying consequence that for a type family $B:A\to \UU_i$ we cannot conclude $B:A\to\UU_j$, although we can conclude $\lam{a} B(a) : A\to\UU_j$.
+A more sophisticated approach that solves this problem is to introduce a judgmental subtyping relation $<:$ generated by $\UU_i<:\UU_j$, but this makes the type theory more complicated to study.
+Another alternative would be to include an explicit coercion function $\uparrow : \UU_i \to \UU_j$, which could be omitted when working informally.
+
+It is also not necessary that the universes be indexed by natural numbers and linearly ordered.
+For some purposes, it is more appropriate to assume only that every universe is an element of some larger universe, together with a ``directedness'' property that any two universes are jointly contained in some larger one.
+There are many other possible variations, such as including a universe ``$\UU_{\omega}$'' that contains all $\UU_i$ (or even higher ``large cardinal'' type universes), or by internalizing the hierarchy into a type family $\lam{i} \UU_i$.
+The latter is in fact done in \Agda.
+
+The path induction principle for identity types was formulated by Martin-L\"{o}f~\cite{Martin-Lof-1972}.
+The based path induction rule in the setting of Martin-L\"of type theory is due to Paulin-Mohring \cite{Moh93}; it can be seen as an intensional generalization of the concept of ``pointwise functionality''\index{pointwise!functionality} for hypothetical judgments from \NuPRL~\cite[Section~8.1]{constable+86nuprl-book}.
+The fact that Martin-L\"of's rule implies Paulin-Mohring's was proved by Streicher using Axiom K (see~\PMlinkname{\S 7.2}{72uniquenessofidentityproofsandhedbergstheorem}), by Altenkirch and Goguen as in \PMlinkname{\S 1.12}{112identitytypes}, and finally by Hofmann without universes (as in \PMlinkexternal{Exercise 1.7}{http://planetmath.org/node/87560}); see~\cite{Streicher93}, \PMlinkname{\S 1.3}{13universesandfamilies} and Addendum.
+
+\begin{thebibliography}{99}
+
+\bibitem{beeson} {Beeson,Michael}, \emph{{Foundations of Constructive Mathematics}}  {Springer},1985
+
+\bibitem{constable+86nuprl-book} {Robert L. Constable and Stuart F. Allen and H. M. Bromley and W. R. Cleaveland and J. F. Cremer and Robert W. Harper and Douglas J. Howe and T. B. Knoblock and N. P. Mendler and P. Panangaden and James T. Sasaki and Scott F. Smith}, \emph{{Implementing Mathematics with the {NuPRL} Proof Development System}}  {Prentice Hall},1986
+
+\bibitem{constable+86nuprl-book} {Robert L. Constable and Stuart F. Allen and H. M. Bromley and W. R. Cleaveland and J. F. Cremer and Robert W. Harper and Douglas J. Howe and T. B. Knoblock and N. P. Mendler and P. Panangaden and James T. Sasaki and Scott F. Smith}, \emph{{Implementing Mathematics with the {NuPRL} Proof Development System}}  {Prentice Hall},1986
+
+\bibitem{Coq} {{Coq Development Team}}, \emph{{The {C}oq Proof Assistant Reference Manual}}  {INRIA-Rocquencourt},{2012}
+
+\bibitem{Coq} {{Coq Development Team}}, \emph{{The {C}oq Proof Assistant Reference Manual}}  {INRIA-Rocquencourt},{2012}
+
+\bibitem{deBruijn-1973} {de Bruijn,Nicolaas Govert}, \emph{{A{UTOMATH},a language for mathematics}}  {Les Presses de l'Universit\'e de Montr\'eal,Montreal,Quebec},{1973}
+
+\bibitem{deBruijn-1973} {de Bruijn,Nicolaas Govert}, \emph{{A{UTOMATH},a language for mathematics}}  {Les Presses de l'Universit\'e de Montr\'eal,Montreal,Quebec},{1973}
+
+\bibitem{heyting1966intuitionism} {Heyting,Arend}, \emph{{Intuitionism: an introduction}}  {North-Holland Pub. Co.},{1966}
+
+\bibitem{howard:pat} {Howard,William A.}. {The formulae-as-types notion of construction}. In \emph{To H.B. Curry: Essays on Combinatory Logic,Lambda Calculus and Formalism},pages {479--490}. {Academic Press}, {1980}.
+
+\bibitem{howard:pat} {Howard,William A.}. {The formulae-as-types notion of construction}. In \emph{To H.B. Curry: Essays on Combinatory Logic,Lambda Calculus and Formalism},pages {479--490}. {Academic Press}, {1980}.
+
+\bibitem{lawvere:adjinfound} {F. William Lawvere}. {Adjointness in Foundations}. \emph{Reprints in Theory and Applications of Categories}, {16}:{1--16} {2006}
+
+\bibitem{Martin-Lof-1972} {Martin-L{\"o}f,Per}. {An intuitionistic theory of types}. In \emph{Twenty-five years of constructive type theory ({V}enice,1995)},volume 36 of {Oxford Logic Guides}, pages {127--172}. {Oxford University Press}, 1998.
+
+\bibitem{Martin-Lof-1972} {Martin-L{\"o}f,Per}. {An intuitionistic theory of types}. In \emph{Twenty-five years of constructive type theory ({V}enice,1995)},volume 36 of {Oxford Logic Guides}, pages {127--172}. {Oxford University Press}, 1998.
+
+\bibitem{Martin-Lof-1972} {Martin-L{\"o}f,Per}. {An intuitionistic theory of types}. In \emph{Twenty-five years of constructive type theory ({V}enice,1995)},volume 36 of {Oxford Logic Guides}, pages {127--172}. {Oxford University Press}, 1998.
+
+\bibitem{Martin-Lof-1973} {Martin-L{\"o}f,Per}. {An intuitionistic theory of types: predicative part}. In \emph{Logic Colloquium '73,Proceedings of the Logic Colloquium},volume 80 of {Studies in Logic and the Foundations of Mathematics}, pages {73--118}. {North-Holland}, 1975.
+
+\bibitem{Martin-Lof-1973} {Martin-L{\"o}f,Per}. {An intuitionistic theory of types: predicative part}. In \emph{Logic Colloquium '73,Proceedings of the Logic Colloquium},volume 80 of {Studies in Logic and the Foundations of Mathematics}, pages {73--118}. {North-Holland}, 1975.
+
+\bibitem{Martin-Lof-1979} {Martin-L{\"o}f,Per}. {Constructive mathematics and computer programming}. In \emph{Logic,Methodology and Philosophy of Science VI,Proceedings of the Sixth International Congress of Logic,Methodology and Philosophy of Science,Hannover 1979},volume 104 of {Studies in Logic and the Foundations of Mathematics}, pages {153--175}. {North-Holland}, 1982.
+
+\bibitem{Martin-Lof-1979} {Martin-L{\"o}f,Per}. {Constructive mathematics and computer programming}. In \emph{Logic,Methodology and Philosophy of Science VI,Proceedings of the Sixth International Congress of Logic,Methodology and Philosophy of Science,Hannover 1979},volume 104 of {Studies in Logic and the Foundations of Mathematics}, pages {153--175}. {North-Holland}, 1982.
+
+\bibitem{martin-lof:bibliopolis} {Martin-L{\"o}f,Per}, \emph{{Intuitionistic type theory}}  {Bibliopolis},{1984}
+
+\bibitem{martin-lof:bibliopolis} {Martin-L{\"o}f,Per}, \emph{{Intuitionistic type theory}}  {Bibliopolis},{1984}
+
+\bibitem{Moh93} {Christine Paulin-Mohring}. {{Inductive Definitions in the System {Coq} - Rules and Properties}}. In emph{Proceedings of the conference {T}yped {L}ambda {C}alculi and {A}pplications}, .
+
+\bibitem{norell2007towards} {Norell,Ulf}. \emph{Towards a practical programming language based on dependent type theory}. PhD thesis, {{Chalmers,G\"oteborg University}}, {2007}.
+
+\bibitem{norell2007towards} {Norell,Ulf}. \emph{Towards a practical programming language based on dependent type theory}. PhD thesis, {{Chalmers,G\"oteborg University}}, {2007}.
+
+\bibitem{Streicher93} {Thomas Streicher}. {Investigations into intensional type theory}, 1993. {Habilitationsschrift,Ludwig-Maximilians-Universit\"at M\"unchen}.
+
+\bibitem{Streicher93} {Thomas Streicher}. {Investigations into intensional type theory}, 1993. {Habilitationsschrift,Ludwig-Maximilians-Universit\"at M\"unchen}.
+
+\bibitem{Tait-1966} {Tait,William W.}. {Intensional interpretations of functionals of finite type. {I}}. \emph{The Journal of Symbolic Logic}, {32}:{198--212} {1967}
+
+\bibitem{Tait-1968} {Tait,William W.}. {Constructive reasoning}. In \emph{Logic,{M}ethodology and {P}hilos. {S}ci. {III} ({P}roc. {T}hird {I}nternat. {C}ongr.,{A}msterdam,1967)},pages {185--199}. {North-Holland}, {1968}.
+
+\bibitem{Tait-1968} {Tait,William W.}. {Constructive reasoning}. In \emph{Logic,{M}ethodology and {P}hilos. {S}ci. {III} ({P}roc. {T}hird {I}nternat. {C}ongr.,{A}msterdam,1967)},pages {185--199}. {North-Holland}, {1968}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofThatCountableUnionsAreCountable}
+\pmcreated{2013-03-22 12:00:01}
+\pmmodified{2013-03-22 12:00:01}
+\pmowner{Koro}{127}
+\pmmodifier{Koro}{127}
+\pmtitle{proof that countable unions are countable}
+\pmrecord{9}{30935}
+\pmprivacy{1}
+\pmauthor{Koro}{127}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage{graphicx}
+%%%%\usepackage{xypic}
+\begin{document}
+\PMlinkescapeword{contains}
+\PMlinkescapeword{primes}
+
+Let $C$ be a countable set of countable sets.  We will show that $\cup C$ is countable.
+
+Let $P$ be the set of positive \PMlinkname{primes}{Prime}.  $P$ is countably infinite, so there is a bijection between $P$ and $\mathbb{N}$.  Since there is a bijection between $C$ and a subset of $\mathbb{N}$, there must in turn be a one-to-one function $f: C \rightarrow P$.
+
+Each $S \in C$ is countable, so there exists a bijection between $S$ and some subset of $\mathbb{N}$.  Call this function $g$, and define a new function $h_S: S \rightarrow \mathbb{N}$ such that for all $x \in S$,
+$$h_S(x) = f(S)^{g(x)}$$
+Note that $h_S$ is one-to-one.  Also note that for any distinct pair $S, T \in C$, the range of $h_S$ and the range of $h_T$ are disjoint due to the fundamental theorem of arithmetic.
+
+We may now define a one-to-one function $h: \cup C \rightarrow \mathbb{N}$, where, for each $x \in \cup C$, $h(x) = h_S(x)$ for some $S \in C$ where $x \in S$ (the choice of $S$ is irrelevant, so long as it contains $x$).  Since the range of $h$ is a subset of $\mathbb{N}$, $h$ is a bijection into that set and hence $\cup C$ is countable.
+%%%%%
+%%%%%
+%%%%%
+\end{document}

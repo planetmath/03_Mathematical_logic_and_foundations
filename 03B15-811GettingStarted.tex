@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{811GettingStarted}
+\pmcreated{2013-11-06 2:18:50}
+\pmmodified{2013-11-06 2:18:50}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.1.1 Getting started}
+\pmrecord{2}{87708}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\base}{\ensuremath{\mathsf{base}}\xspace}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\defid}{\coloneqq}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\lloop}{\ensuremath{\mathsf{loop}}\xspace}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\newcommand{\Sn}{\mathbb{S}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\ua}{\ensuremath{\mathsf{ua}}\xspace} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcommand{\Zsuc}{\mathsf{succ}}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\type\UU
+\def\coloneqq{:=}
+\begin{document}
+%
+It is not too hard to define functions in both directions between $\Omega(\Sn^1)$ and \Z.
+By specializing \autoref{thm:looptothe} to $\lloop:\base=\base$, we have a function $\lloop^{\blank} : \Z \rightarrow (\id{\base}{\base})$ defined (loosely speaking) by
+\[
+  \lloop^n =
+  \begin{cases}
+    \underbrace{\lloop \ct \lloop \ct \cdots \ct \lloop}_{n}  & \text{if $n > 0$,} \\
+    \underbrace{\opp \lloop \ct \opp \lloop \ct \cdots \ct \opp \lloop}_{-n} & \text{if $n < 0$,} \\
+    \refl{\base} & \text{if $n = 0$.}
+\end{cases}
+\]
+%
+Defining a function $g:\Omega(\Sn^1)\to\Z$ in the other direction is a bit trickier.
+Note that the successor function $\Zsuc:\Z\to\Z$ is an equivalence,
+\index{successor!isomorphism on Z@isomorphism on $\Z$}%
+and hence induces a path $\ua(\Zsuc):\Z=\Z$ in the universe \type.
+Thus, the recursion principle of $\Sn^1$ induces a map $c:\Sn^1\to\type$ by $c(\base)\defeq \Z$ and $\apfunc c (\lloop) \defid \ua(\Zsuc)$.
+Then we have $\apfunc{c} : (\base=\base) \to (\Z=\Z)$, and we can define $g(p)\defeq \transfib{X\mapsto X}{\apfunc{c}(p)}{0}$.
+
+With these definitions, we can even prove that $g(\lloop^n)=n$ for any $n:\Z$, using the induction principle \autoref{thm:sign-induction} for $n$.
+(We will prove something more general a little later on.)
+However, the other equality $\lloop^{g(p)}=p$ is significantly harder.
+The obvious thing to try is path induction, but path induction does not apply to loops such as $p:(\base=\base)$ that have \emph{both} endpoints fixed!
+A new idea is required, one which can be explained both in terms of classical homotopy theory and in terms of type theory.
+We begin with the former.
+
+
+
+\end{document}

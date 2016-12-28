@@ -1,0 +1,111 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{613TheGeneralSyntaxOfHigherInductiveDefinitions}
+\pmcreated{2013-11-18 17:16:52}
+\pmmodified{2013-11-18 17:16:52}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{6.13 The general syntax of higher inductive definitions}
+\pmrecord{3}{87695}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\base}{\ensuremath{\mathsf{base}}\xspace}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\lloop}{\ensuremath{\mathsf{loop}}\xspace}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{6.13.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+In \PMlinkname{\S 5.6}{56thegeneralsyntaxofinductivedefinitions}, we discussed the conditions on a putative ``inductive definition'' which make it acceptable, namely that all inductive occurrences of the type in its constructors are ``strictly positive''.\index{strict!positivity}
+In this section, we say something about the additional conditions required for \emph{higher} inductive definitions.
+Finding a general syntactic description of valid higher inductive definitions is an area of current research, and all of the solutions proposed to date are somewhat technical in nature; thus we only give a general description and not a precise definition.
+Fortunately, the corner cases never seem to arise in practice.
+
+Like an ordinary inductive definition, a higher inductive definition is specified by a list of \emph{constructors}, each of which is a (dependent) function.
+For simplicity, we may require the inputs of each constructor to satisfy the same condition as the inputs for constructors of ordinary inductive types.
+In particular, they may contain the type being defined only strictly positively.
+Note that this excludes definitions such as the $0$-truncation as presented in \PMlinkname{\S 6.9}{69truncations}, where the input of a constructor contains not only the inductive type being defined, but its identity type as well.
+It may be possible to extend the syntax to allow such definitions; but also, in \PMlinkname{\S 7.3}{73truncations} we will give a different construction of the $0$-truncation whose constructors do satisfy the more restrictive condition.
+
+The only difference between an ordinary inductive definition and a higher one, then, is that the \emph{output} type of a constructor may be, not the type being defined ($W$, say), but some identity type of it, such as $\id[W]uv$, or more generally an iterated identity type such as $\id[({\id[W]uv})]pq$.
+Thus, when we give a higher inductive definition, we have to specify not only the inputs of each constructor, but the expressions $u$ and $v$ (or $u$, $v$, $p$, and $q$, etc.)\ which determine the source\index{source!of a path constructor} and target\index{target!of a path constructor} of the path being constructed.
+
+Importantly, these expressions may refer to \emph{other} constructors of $W$.
+For instance, in the definition of $\Sn^1$, the constructor $\lloop$ has both $u$ and $v$ being $\base$, the previous constructor.
+To make sense of this, we require the constructors of a higher inductive type to be specified \emph{in order}, and we allow the source and target expressions $u$ and $v$ of each constructor to refer to previous constructors, but not later ones.
+(Of course, in practice the constructors of any inductive definition are written down in some order, but for ordinary inductive types that order is irrelevant.)
+
+Note that this order is not necessarily the order of ``dimension'': in principle, a 1-dimensional path constructor could refer to a 2-dimensional one and hence need to come after it.
+However, we have not given the 0-dimensional constructors (point constructors) any way to refer to previous constructors, so they might as well all come first.
+And if we use the hub-and-spoke construction (\PMlinkname{\S 6.7}{67hubsandspokes}) to reduce all constructors to points and 1-paths, then we might assume that all point constructors come first, followed by all 1-path constructors --- but the order among the 1-path constructors continues to matter.
+
+The remaining question is, what sort of expressions can $u$ and $v$ be?
+We might hope that they could be any expression at all involving the previous constructors.
+However, the following example shows that a naive approach to this idea does not work.
+
+\begin{eg}\label{eg:unnatural-hit}
+  Consider a family of functions $f:\prd{X:\type} (X\to X)$.
+  Of course, $f_X$ might be just $\idfunc[X]$ for all $X$, but other such $f$s may also exist.
+  For instance, nothing prevents $f_{\bool}:\bool\to\bool$ from being the nonidentity automorphism\index{automorphism!of 2, nonidentity@of $\bool$, nonidentity} (see \PMlinkexternal{Exercise 6.9}{http://planetmath.org/node/87835}).
+
+  Now suppose that we attempt to define a higher inductive type $K$ generated by:
+  \begin{itemize}
+  \item two elements $a,b:K$, and
+  \item a path $\sigma:f_K(a)=f_K(b)$.
+  \end{itemize}
+  What would the induction principle for $K$ say?
+  We would assume a type family $P:K\to\type$, and of course we would need $x:P(a)$ and $y:P(b)$.
+  The remaining datum should be a dependent path in $P$ living over $\sigma$, which must therefore connect some element of $P(f_K(a))$ to some element of $P(f_K(b))$.
+  But what could these elements possibly be?
+  We know that $P(a)$ and $P(b)$ are inhabited by $x$ and $y$, respectively, but this tells us nothing about $P(f_K(a))$ and $P(f_K(b))$.
+\end{eg}
+
+Clearly some condition on $u$ and $v$ is required in order for the definition to be sensible.
+It seems that, just as the domain of each constructor is required to be (among other things) a \emph{covariant functor}, the appropriate condition on the expressions $u$ and $v$ is that they define \emph{natural transformations}.
+Making precise sense of this requirement is beyond the scope of this book, but informally it means that $u$ and $v$ must only involve operations which are preserved by all functions between types.
+
+For instance, it is permissible for $u$ and $v$ to refer to concatenation of paths, as in the case of the final constructor of the torus in \PMlinkname{\S 6.6}{66cellcomplexes}, since all functions in type theory preserve path concatenation (up to homotopy).
+However, it is not permissible for them to refer to an operation like the function $f$ in \PMlinkname{Example 6.13.1}{613thegeneralsyntaxofhigherinductivedefinitions#Thmpreeg1}, which is not necessarily natural: there might be some function $g:X\to Y$ such that $f_Y \circ g \neq g\circ f_X$.
+(Univalence implies that $f_X$ must be natural with respect to all \emph{equivalences}, but not necessarily with respect to functions that are not equivalences.)
+
+The intuition of naturality supplies only a rough guide for when a higher inductive definition is permissible.
+Even if it were possible to give a precise specification of permissible forms of such definitions in this book, such a specification would probably be out of date quickly, as new extensions to the theory are constantly being explored.
+For instance, the presentation of $n$-spheres in terms of ``dependent $n$-loops\index{loop!dependent n-@dependent $n$-}'' referred to in \PMlinkname{\S 6.4}{64circlesandspheres}, and the ``higher inductive-recursive definitions'' used in \PMlinkexternal{Chapter 11}{http://planetmath.org/node/87585}, were innovations introduced while this book was being written.
+We encourage the reader to experiment --- with caution.
+
+
+
+\end{document}

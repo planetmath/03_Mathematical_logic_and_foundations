@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ElementaryRecursiveFunction}
+\pmcreated{2013-03-22 19:06:48}
+\pmmodified{2013-03-22 19:06:48}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{elementary recursive function}
+\pmrecord{9}{42006}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmsynonym{elementary}{ElementaryRecursiveFunction}
+\pmrelated{BoundedRecursion}
+\pmdefines{elementary recursive}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Informally, elementary recursive functions are functions that can be obtained from functions encountered in elementary schools: addition, multiplication, subtraction, and division, using basic operations such as substitutions and finite summation and product.  Before stating the formal definition, the following notations are used:
+\begin{quote} $\mathcal{F} = \bigcup \lbrace F_k \mid k \in \mathbb{N}
+\rbrace$, where for each $k \in \mathbb{N}\text{, }F_k = \lbrace f \mid f \colon \mathbb{N}^{k}
+\to \mathbb{N} \rbrace$. \end{quote}
+
+\textbf{Definition}.  The set of \emph{elementary recursive functions}, or \emph{elementary functions} for short, is the smallest subset $\mathcal{ER}$ of $\mathcal{F}$ where:
+	\begin{enumerate}
+		\item[1.] (addition) $\operatorname{add} \in \mathcal{ER}\cap F_2$, given by $\operatorname{add}(m,n):=m+n$;
+		\item[2.] (multiplication) $\operatorname{mult} \in \mathcal{ER}\cap F_2$, given by $\operatorname{mult}(m,n):=mn$;
+		\item[3.] (difference) $\operatorname{diff} \in \mathcal{ER}\cap F_2$, given by $\operatorname{diff}(m,n):=|m-n|$;
+		\item[4.] (quotient) $\operatorname{quo} \in \mathcal{ER}\cap F_2$, given by $\operatorname{quo}(m,n):=[m/n]$, which is the largest non-negative integer $z$ such that $nz\le m$ (by convention, $\operatorname{quo}(0,0):=1$);
+                \item[5.] (projection) $p^k_m \in \mathcal{ER}\cap F_k$, where $m\le k$, given by $p^k_m(n_1,\ldots,n_k):=n_m$;
+		\item[6.] $\mathcal{ER}$ is closed under composition: If $\lbrace g_1, \ldots, g_m \rbrace \subseteq \mathcal{ER} \cap F_{k}$ and $h \in \mathcal{ER} \cap F_m$, then $f \in \mathcal{ER} \cap F_{k}$, where 
+		$$f(n_1,\ldots, n_k) = h(g_1(n_1,  \ldots, n_k), \ldots, g_m(n_1,\ldots, n_k));$$
+		
+		\item[7.] $\mathcal{ER}$ is closed under bounded sum: if $f\in \mathcal{ER}\cap F_k$, then $f_s \in \mathcal{ER}\cap F_k$, where
+$$f_s(\boldsymbol{x},y):=\sum_{i=0}^y f(\boldsymbol{x},i);$$
+		\item[8.] $\mathcal{ER}$ is closed under bounded product: if $f\in \mathcal{ER}\cap F_k$, then $f_p \in \mathcal{ER}\cap F_k$, where
+$$f_p(\boldsymbol{x},y):=\prod_{i=0}^y f(\boldsymbol{x},i).$$
+	\end{enumerate}
+
+\textbf{Examples}.  
+\begin{itemize}
+\item The initial functions in the definition of primitive recursive functions are elementary:
+\begin{enumerate}
+\item The zero function $z(x)$ is $\operatorname{diff}(x,x)$.  
+\item The constant function $\operatorname{const}_1(x):=1$ is $\operatorname{quo}(x,x)$.
+\item The successor function $s(x)$ can be obtained by substituting (by composition) the constant function $\operatorname{const}_1$ and the projection function $p_1^1$, into the addition function $\operatorname{add}(p_1^1(x),\operatorname{const}_1(x))$.
+\end{enumerate}
+\item Multiplication $\operatorname{mult}$ in 2 above may be removed from the definition, since
+$$\operatorname{mult}(x,y)= \operatorname{diff}(f(x,y), p_1^2(x,y)),\quad \mbox{where }f(x,y):=\sum_{i=0}^y p_1^2(x,i)$$
+\item
+Many other basic functions, such as the restricted subtraction, exponential function, the $i$-th prime function, are all elementary.  One may replace the difference function in 3 above by the restricted subtraction without changing $\mathcal{ER}$.
+\end{itemize}
+
+\textbf{Remarks}
+\begin{itemize}
+\item Consider the set $\mathcal{PR}$ of primitive recursive functions.  The functions in the first five groups above are all in $\mathcal{PR}$.  In addition, $\mathcal{PR}$ is closed under the operations in 6, 7, and 8 above, we see that $\mathcal{ER}\subseteq \mathcal{PR}$, since $\mathcal{ER}$, as defined, is the smallest such set.
+\item Furthermore, $\mathcal{ER}\ne \mathcal{PR}$.  For example, the super-exponential function, given by $f(x,0)=m$, and $f(x,n+1)=\exp(m,f(x,n))$, where $m > 1$, can be shown to be non-elementary.
+\item In addition, it can be shown that $\mathcal{ER}$ is the set of primitive recursive functions that can be obtained from the zero function, the successor function, and the projection functions via composition, and no more than three applications of primitive recursion.
+\item By taking the closure of $\mathcal{ER}$ with respect to unbounded minimization, one obtains $\mathcal{R}$, the set of all recursive functions (partial or total).  In fact, by replacing bounded sum and bounded product with unbounded minimization, and the difference function with restricted subtraction, one obtains $\mathcal{R}$.
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

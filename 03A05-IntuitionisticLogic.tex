@@ -1,0 +1,851 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{IntuitionisticLogic}
+\pmcreated{2013-03-22 18:28:45}
+\pmmodified{2013-03-22 18:28:45}
+\pmowner{gribskoff}{21395}
+\pmmodifier{gribskoff}{21395}
+\pmtitle{intuitionistic logic}
+\pmrecord{85}{41153}
+\pmprivacy{1}
+\pmauthor{gribskoff}{21395}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03A05}
+\pmclassification{msc}{03B20}
+\pmclassification{msc}{03-01}
+\pmsynonym{Brouwer's logic}{IntuitionisticLogic}
+\pmsynonym{intuitionistic foundations}{IntuitionisticLogic}
+%\pmkeywords{constructive proof}
+%\pmkeywords{Evidenz}
+%\pmkeywords{Heyting's formal system}
+%\pmkeywords{functionals}
+\pmrelated{AnOutlineOfHilbertsProgramme}
+\pmrelated{FOUNDATIONSOFMATHEMATICSOVERVIEW}
+\pmrelated{Logicism}
+\pmrelated{QuantumTopos}
+\pmrelated{AxiomsOfTopoi}
+\pmrelated{InterpretationOfIntuitionisticLogicByMeansOfFunctionals}
+\pmrelated{InclusionOfClassicalIntoIntuitionisticLogic}
+\pmrelated{MathematicalPlatonism}
+\pmdefines{intuitionistic proof}
+\pmdefines{functionals}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+%%\usepackage{xypic}
+\usepackage{psfrag}
+\usepackage{amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{yfonts}
+
+
+% define commands here
+\begin{document}
+\title{Intuitionistic logic}\Large 
+\maketitle
+
+\begin{abstract}
+The entry "intuitionistic logic" is a beginner's introduction to the defining features of Brouwer's (and his School) mathematical philosophy. It assumes some familiarity with the basic concepts of classical logic. The level of the exposition is elementary and the emphasis is more on understanding than technicalities. In spite of the provided continuity between the sections one can read most of them in isolation.
+\end{abstract}
+
+\tableofcontents
+
+\section{Range of intuitionistic logic}\normalsize
+
+Intuitionistic logic is the theory of inference advanced by the approach to foundations known as intuitionism.
+
+It differs from classical logic in several respects, the first and most salient of which is the difference in range. 
+
+Whereas classical logic is usually conceived as establishing content-free (for arbitrary objects) patterns of inference, intuitionistic logic aims at defining only patterns of mathematical inference.
+ 
+Secondly it also differs in that classical logic, due to its range, is (wrongly) supposed to be different from mathematics, and for some authors even prior to mathematics, so that it was at one time meaningful to propose the reduction of mathematics to logic in the approach to foundations known as logicism.
+
+In intuitionism there is no similar conception, actually the opposite is true: intuitionistic logic is conceived as a part of intuitionistic mathematics and in intuitionism to understand a logical law one has to understand a mathematical proof or a  rule. 
+
+\section{Evaluation of Brouwer's mathematical philosophy}\normalsize
+
+Intuitionism is a creation of the Dutch mathematician, philosopher, poet and man of wisdom L.E.J. Brouwer (1881-1966).
+
+Around 1915 he became a founding member of the International School for Philosophy in Amersfoort. He held the Chair for set theory, function theory and axiomatics at the University of Amsterdam between 1912 and 1951.
+
+Brouwer was able to integrate his general philosophical views in his mathematical philosophy and we will mention only those of his general views that were relevant to his mathematical philosophy. The best (unintended) over-all judgment of Brouwer's philosophy is to be found in Rasiowa and Sikorski when they write:
+
+\begin{center}
+\emph{it is very surprising that some philosophical ideas}
+
+\emph{have led to the formulation of a logic whose mathematical contents} 
+
+\emph{coincide with the theory of lattices of open subsets of topological spaces}!
+\end{center}
+
+Although Brouwer believed  neither in the possibility nor in the value of communication, he wrote a few remarkable philosophical texts and we will be using some of them to sketch his basic outlook: his Vienna lecture from 1928, the Synopsis of the \textbf{Signific} movement in the Netherlands from 1946 and his address to the International Congress on Philosophy in Amsterdam, 1948.
+
+\section{The \emph{Evidenz} experience}\normalsize
+
+Unlike Frege or Hilbert, Brouwer's initial space is not an external mathematical reality where non-denumerably many mathematical objects are supposed to exist, but rather the inner space of the consciousness of a reflective subject, as this space manifests itself in the act of awareness. The mathematical insight arises here, in the consciousness of the reflective subject, when the awareness of duality, created by the perception of time past and time present, is purged of all individuality and only the pattern common to and binding all dualities remains. It is this primordial act of awareness that Brouwer calls \emph{Ur-intuition}, and thus self-awareness is the only source of knowledge and a mental content the only object of knowledge. But the intuitionistic insight does not rest on immediate intuition alone but also on \emph{reflection} about what is an evident construction. It does not exclude impredicativity as such, since what counts as a construction is explained in terms of the general notion of construction. (See bellow how the reflective subject can bypass impredicativity.)
+
+As we know since Brentano and Husserl, in the realm of consciousness there is no distinction between true and false and so the insight reached through the perception of a mental content has the epistemological predicate of \emph{Evidenz}, which means that it is immune to refutation by a counter-example.
+
+\section{Gentzen-type rules for intuitionistic logic}\normalsize
+
+In Brouwer's vocabulary the word "experience" is always supposed to refer to the act of awareness and therefore it is not surprising that he always maintained that no language can ever capture mental (and therefore mathematical) experience completely. Both positions entail as a corollary that the meaning of a prime or atomic mathematical  statement can not be explained in terms of the conditions under which the statement will be said to be true. 
+
+A mathematical proof expresses a fact of experience, i.e., that a mental act has taken place and for that reason to grasp the meaning of the statement thus proved is to accept the proof of the statement.
+
+What about molecular, i.e., composite statements? We can see best how composition works by providing natural deduction clauses for derivations in which propositional connectives are applied. 
+
+\begin{enumerate}
+\item \textbf{Conjunction Introduction}: 
+
+\begin{center}
+If $X$ and $Y$ are given we are allowed to infer $X \wedge Y$.
+\end{center}
+
+\medskip
+\item \textbf{Conjunction Elimination}:
+
+\begin{center}
+If $X$ and $Y$ are given we are allowed to infer $X$.
+\end{center}
+
+\medskip
+\item \textbf{Disjunction Introduction}:
+
+\begin{center}
+If $X$ is given we are allowed to infer $X \vee Y$.
+\end{center}
+
+\medskip
+\item \textbf{Disjunction Elimination}:
+
+\begin{center}
+If we have a derivation of \textbf{Z} from a premiss $X$ and also a derivation of \textbf{Z} from a premiss $Y$, 
+
+then we are allowed to infer \textbf{Z} from a premiss $X \vee Y$, provided the premisses $X$ and $Y$ are discharged.
+\end{center}
+
+\medskip
+\item \textbf{Implication Introduction}:
+
+\begin{center}
+If we have a derivation of $Y$ from a premises $X$ then we are allowed to infer $X \rightarrow Y$, 
+
+provided that the premiss $X$ is discharged.
+\end{center}
+
+\medskip
+\item \textbf{Implication Elimination}:
+
+\begin{center}
+If $X$ and $X \rightarrow Y$ are given we are allowed to infer $Y.$
+\end{center}
+
+\medskip
+\item \textbf{Universal quantifier Introduction}:
+
+\begin{center}
+From $F (\kappa)$ we are allowed to infer $(\forall x) F (x)$, provided that $x$ does not occur free in $F$.
+\end{center}
+
+\medskip
+\item \textbf{Universal quantifier Elimination}:
+
+\begin{center}
+From $(\forall x) F (x)$ we are allowed to infer $F (\kappa)$.
+\end{center}
+
+\medskip
+\item \textbf{Existential quantifier Introduction}:
+
+\begin{center}
+From $F (\kappa)$ we are allowed to infer $(\exists x) F (x)$. 
+\end{center}
+
+\medskip
+\item \textbf{Existential quantifier Elimination}:
+
+\begin{center}
+If from a set of formulas $\mathcal{F}(x)$ and $F (x)$ we are allowed to infer $X$, then from a set of formulas $\mathcal{F} (x)$ and $(\exists x) F (x)$, 
+
+we are allowed to infer $X$, provided that $x$ remains constant during the derivations.
+\end{center}
+
+\end{enumerate}
+
+If we take the statement $0 = 1$ as expressing a contradiction we can define negation in terms of implication by making:
+ 
+$$\neg X = X \rightarrow 0 = 1.$$
+
+One can add the principle \emph{ex falso sequitur quodlibet} which means that anything can be derived from $0 = 1$.
+
+\section{The Brouwer-Heyting-Kolmogorov Model}\normalsize
+
+In the classical case we give an account of the composition of statements by means of the already mentioned conditions under which they can be said to be true. A truth-table shows conspicuously how the truth value of the molecular statement is obtained from the truth-values of the atomic statements. But in intuitionistic logic the terms "conjunction", "disjunction" etc. do not denote truth-functions and this means that an intuitionistic statement is neither two-valued nor many-valued nor infinitely many-valued.
+
+Although in classical logic the set of propositional functions can be reduced to one of the pairs $(\sim, \vee)$, $(\sim, \wedge)$, $(\sim, \rightarrow)$, the four intuitionistic connectives are not inter-definable. This implies that not every classical truth function in normal form has an intuitionistic equivalent. The same holds for classical prenex normal form.
+
+The elimination of the concept of truth in intuitionistic logic is best represented by the cumulative effort of Brouwer, Heyting and the Russian constructivist Kolmogorov in their interpretation of the intuitionistic logical operators, and accordingly their interpretation is known as the BHK model.
+
+In this model an explanation of the meaning of a composite statement is to be given by reference to the concept of proof. Of course proof here can not be understood as meaning a proof in a formal system, which is a sequence of formulas and thus a physical object.
+
+An intuitionistic proof is a mental act which aims at building a conclusive mathematical argument, examples of which are a construction or the implementation of a rule. Both concepts, proof and rule, are intensional notions, not only instruments of mathematical knowledge but also part of the (intensional) reality that mathematics is about.
+
+If we have a construction that allows the proof of the atomic statement, the explanation of the meaning of the molecular statements in terms of proofs rather than truth-values can be sketched as follows.
+
+We denote constructions by small Greek letters and will have to assume closure axioms for constructions, with the following content:
+
+\begin{itemize}
+\item \emph{i}) The result of joining two constructions $\kappa$ and $\mu$ together is a construction, namely the (ordered) pair of constructions $<\kappa, \mu>$; and 
+\item \emph{ii}) The composition of a construction $\mu$ with another construction $\kappa$ is a construction, namely the construction $(\kappa \circ \mu)$.
+\end{itemize}
+
+The class of constructions on which these closure properties are satisfied is not a completed totality and accordingly we can not specify what is for such a class an admissible construction. The definitions have a ring of impredicativity about them that we can try to remove by using Brouwer's conception of the "reflective subject" or the "ideal mathematician". A basic outline is sketched bellow.  
+
+The ideal mathematician builds constructions in stages, denoted by ordinal numbers $1, 2, \ldots$ Let $\mathcal{B}_n (\pi)$ mean that the ideal mathematician $M$ has built $\pi$ at stage $n$.
+
+For each $n$, $M$ \emph{knows} if he has built $\pi$ or has failed to build $\pi$. So we already have:
+
+$$\mathcal{B}_n (\pi) \vee \neg \mathcal{B}_n (\pi).$$
+
+Thus $M$ has a decidable rule $f$ with values $0$ and $1$ such that:
+
+$$(\forall n) [ f (n) = 1 \leftrightarrow  \mathcal{B}_n (\pi)].$$
+
+We are then allowed to assert:
+
+$$\mathcal{B}_n (\pi) \rightarrow \pi.$$
+
+From here it follows that:
+
+$$\pi \rightarrow (\exists n) \mathcal{B}_n (\pi)$$
+
+and so negation means that: 
+                                 
+$$\neg \pi \rightarrow \neg (\exists n) \mathcal{B}_n (\pi)$$
+
+as it was to be expected. Therefore:
+
+$$\pi \rightarrow \neg \neg \mathcal{B}_n (\pi).$$
+                                     
+We assume that reflection implies memory in the sense that if $m < n$ we have:
+ 
+$$\mathcal{B}_m (\pi) \rightarrow \mathcal{B}_n (\pi).$$
+
+So that instead of assuming the class of all constructions we can refer only to the segment of the already completed constructions.
+
+This motivates the following definitions.
+
+\begin{enumerate}
+\item \textbf{Negation}. 
+
+No construction proves 0 = 1. 
+
+In this sense a proof of $\neg X$ is a construction $\kappa$ which takes every proof $\mu$ of $X$ as argument and yields as value a proof $\kappa \circ \mu$ of 0 = 1.
+
+\item \textbf{Implication}.
+
+$\kappa$ proves $X \rightarrow Y$ if $\kappa$ is a construction which takes every proof $\mu$ of $X$ as argument and yields as value a proof $\kappa \circ \mu$ of $Y$.
+
+\item \textbf{Disjunction}.
+
+$\kappa$ proves $X \vee Y$ if $\kappa$ = $< n, \mu>$ where $n$ is a natural number and $\mu$ proves $X$ if $n = 0$ and $\mu$ proves $Y$ if $n$ is not 0.
+
+\item \textbf{Conjunction}.
+
+$\kappa$ proves $X \wedge Y$ if $\kappa$ = $<\mu, \pi>$ and $\mu$ proves $X$ and $\pi$ proves $Y$.
+
+\item \textbf{Universal quantification}.
+
+$\kappa$ proves $(\forall x) F (x)$ if  $\kappa$ is a construction such that, for every element $a$, $\kappa$ proves $F (a)$.
+
+\item \textbf{Existential quantification}.
+
+$\kappa$ proves $(\exists x) F (x)$ if $\kappa$ = $<a, \mu>$ and $\mu$ proves $F (a)$.
+
+\end{enumerate}
+
+\section{Constructive existence and quantification}\normalsize
+
+The only criterion of mathematical existence is the possibility of construction. This possibility is idealized and for that reason Brouwer maintains that constructions are mental acts and the transition from possibility to actuality is the outcome of the intentional act.
+
+This is better seen by discussing the domain of the quantifiers in clauses 5. and 6., in particular if the domain is infinite.
+
+We can conceive the construction of the natural numbers as an idealized version of the construction of a sequence of symbols. But this idealization can not go so far as to became time-less, i.e. we can not eliminate the fact that the construction is a process in time which is never completed. This is the force of saying that the infinite is meaningful only if it is potential and not actual. An infinite process has no outcome. Although for every natural number $n$ there is a construction of $n$, there is no construction that yields as value the whole natural number sequence.
+
+In spite of the fact that there is no actual infinite, we have nevertheless to secure a meaning for propositions about totalities like all natural numbers or some infinite sets.
+
+A proposition about all natural numbers $n$ is meaningful if the meaning is supported by the rule according to which the natural number sequence is generated, and that is the case if we have a proof of the proposition.
+ 
+We say then that a proof is constructive if reference to the existence of an object $x$ is made in terms of a rule for finding $x$. Accordingly mathematical objects can be said to exist only if they can be constructed and so to say that there is a natural number $x$ such that $F (x)$ is to say that in the construction of the natural number sequence a $x$ will be found such that $F (x)$.
+
+If $y$ depends on a parameter $x$, then $y$ can be computed from $x$ using the rules for the construction of the numbers and the construction of $F$. In this case a claim to prove $(\exists y) F (y)$ is satisfied by showing how to produce the $y$ involved, and the proof ends when $y$ is available. In double quantification a claim to prove:
+
+$$(\forall x) (\exists y) F (x, y)$$
+
+is satisfied by producing a function $f$ such that for every $x$, $F (x, f (x))$.
+
+\section{Heyting's formal system}\normalsize
+
+Although no formal system can ever adequately represent an intuitionistic theory, Heyting has formulated a formal system for intuitionistic propositional and predicate calculus, the former of which as far back as 1930. It should be mentioned that there are other systems of intuitionistic logic. A very well known one is due to Johansson, and it is called "the minimal calculus". It differs from Heyting's because of a stricter interpretation of the implication operator. The formal system that codifies all the logical inferences used in intuitionism is Kleene's.
+
+It is worthwhile to review Heyting's system since it is the system used by GÃ¶del in his proof of the consistency of arithmetic in 1933. We recall that the variables denote mathematical propositions.
+
+\begin{enumerate}
+\item \textbf{Conjunction}
+
+\textbf{A1.} $\mathcal{X} \rightarrow (\mathcal{X} \wedge \mathcal{X})$
+
+\textbf{A2.} $(\mathcal{X} \wedge \mathcal{Y}) \rightarrow (\mathcal{Y} \wedge \mathcal{X})$
+
+\textbf{A3.} $(\mathcal{X} \rightarrow \mathcal{Y}) \rightarrow [(\mathcal{X} \wedge \mathcal{Z}) \rightarrow (\mathcal{Y} \wedge \mathcal{Z})]$
+
+\item \textbf{Implication}
+
+\textbf{A1.} $[(\mathcal{X} \rightarrow \mathcal{Y}) \wedge (\mathcal{Y} \rightarrow \mathcal{Z})] \rightarrow (\mathcal{X} \rightarrow \mathcal{Z})$
+
+\textbf{A2.} $\mathcal{Y} \rightarrow (\mathcal{X} \rightarrow \mathcal{Y})$
+
+\textbf{A3.} $[\mathcal{X} \wedge (\mathcal{X} \rightarrow \mathcal{Y})] \rightarrow \mathcal{Y}$
+
+\item \textbf{Disjunction}
+
+\textbf{A1.} $\mathcal{X} \rightarrow (\mathcal{X} \vee \mathcal{Y})$
+
+\textbf{A2.} $(\mathcal{X} \vee \mathcal{Y}) \rightarrow (\mathcal{Y} \vee \mathcal{X})$
+
+\textbf{A3.} $[(\mathcal{X} \rightarrow \mathcal{Z}) \wedge (\mathcal{Y} \rightarrow \mathcal{Z})] \rightarrow [(\mathcal{X} \vee \mathcal{Y}) \rightarrow \mathcal{Z}]$
+
+\item \textbf{Negation}
+
+\textbf{A1.} $\neg \mathcal{X} \rightarrow (\mathcal{X} \rightarrow \mathcal{Y})$
+
+\textbf{A2.} $[(\mathcal{X} \rightarrow \mathcal{Y}) \wedge (\mathcal{X} \rightarrow \neg \mathcal{Y})] \rightarrow \neg \mathcal{X}$
+
+\end{enumerate}
+
+The rules of deduction are the same as in classical propositional calculus.
+
+The introduction of predicative symbols with 1 or $n$ arguments produces the formulas of the intuitionistic first order predicate calculus with the quantifiers ranging over objects. A formal system for the intuitionistic predicate calculus can be simply obtained from the classical formalization as this is to be found in Hilbert and Ackermann. In particular the axioms are:
+
+\qquad \textbf{P1.} \enspace $(\forall x) F (x) \rightarrow F (a)$ 
+
+\qquad \textbf{P2.} \enspace $F (a) \rightarrow (\exists x) F (x).$
+
+The quantifiers are however interpreted as sketched above.
+
+\section{Deviation from classical logic}\normalsize
+
+The interpretation of the logical constants sketched above  leads  to  a number of deviations  from some basic laws of classical logic.
+
+\subsection{The law of excluded middle}
+
+The best known example is the \emph{tertium non datur}. In intuitionistic logic an assertion of the general form:
+
+\begin{center}
+$"X \vee \neg X"$
+\end{center}
+
+implies a claim to have a decision procedure for $X$, i.e. to be actually able either to prove or to refute $X$. 
+
+As it was said above, while explaining the intuitionistic interpretation of the logical constants, the notion of truth has been eliminated and replaced by the notion of "intuitionistic proof". But we  shall allow as a linguistic convention that if a statement has an intuionistically valid proof then it can be said to be true, resp., false if it has been refuted. Thus if $X$ is decidable it is also intuitionistically true.
+
+In this sense to assume a mathematical statement $X$ as a hypothesis for a conditional proof is to assume that we have a proof of $X$ and therefore that $X$ is true.
+
+In the case of the \emph{tertium non datur} to say that we can not in general assume $X$ to be either true of false is then equivalent to say that we are not justified in asserting:
+
+\begin{center}
+$"X \vee \neg X".$
+\end{center}
+
+But notice that this is not the same as saying that $X$ is neither true nor false, because this last assertion would then be equivalent to say that neither $X$ nor $\neg X$ is true, which we would express by:
+
+\begin{center}
+$\neg (X \vee \neg X).$
+\end{center}
+
+But since de Morgan's law:
+
+\begin{center}
+$\neg (X \vee Y) \rightarrow \neg X \wedge \neg Y$
+\end{center}
+
+is also valid intuitionisically, the statement:
+
+\begin{center}
+$\neg (X \vee \neg X)$
+\end{center}
+
+would be equivalent to:
+
+\begin{center}
+$\neg X \wedge \neg \neg X,$
+\end{center}
+
+which is a contradiction.
+
+Thus by the intuitionistic interpretation of negation it follows that we have a refutation of:
+
+\begin{center}
+$\neg (X \vee \neg X)$
+\end{center}
+
+and therefore:
+
+\begin{center}
+$\neg \neg (X \vee \neg X)$
+\end{center}
+
+can be asserted.
+
+\subsection{Double negation and proof by contradiction (\emph{reductio ad absurdum})}
+
+Axiom \textbf{2.A.3} is the rule of \emph{modus ponens}.
+
+Let us assume that we have the implication:
+
+\begin{center}
+$\neg \neg (X \vee \neg X) \rightarrow (X \vee \neg X).$
+\end{center}
+
+Then one application of \emph{modus ponens} would give a proof of:
+
+\begin{center}
+$(X \vee \neg X),$
+\end{center}
+
+and that as we see from 1. (section 5 above) gives a contradiction. This shows that one half of the double negation law is intuitionistically invalid.
+
+The other half is valid. The implication:
+
+\begin{center}
+$X \rightarrow \neg \neg X$
+\end{center}
+
+is valid because if a proof of $X$ is given then a proof of $\neg X$ would give a contradiction, that is from a proof of $X$ it follows that we can not have a proof of:
+
+\begin{center}
+$\neg X$
+\end{center}
+
+and therefore:          
+
+\begin{center}
+$\neg \neg X.$
+\end{center}
+
+Thus the double negation of $X$ is a weaker statement than the assertion of $X$, since a proof that we can not have a proof of $\neg X$ is not the same as a proof of $X.$
+
+\subsection{Contraposition}
+
+Classical contraposition is also only partially valid in intuitionistic logic. To see this we consider the implication:
+
+\begin{center}
+$X \rightarrow Y,$ 
+\end{center}
+
+the contraposition of which is
+
+\begin{center}
+$\neg Y \rightarrow \neg X.$
+\end{center}
+
+This formula is valid because from a proof of $\neg Y$ we could derive a contradiction from a proof of $X$. But as we already know from the analysis of double negation that the formula:
+
+\begin{center}
+$\neg Y \rightarrow \neg X$
+\end{center}
+
+is not invertible to                            
+
+\begin{center}
+$X \rightarrow Y.$
+\end{center}
+
+\subsection{Triple negation}
+
+If we apply contraposition to:
+
+\begin{center}
+$X \rightarrow \neg \neg X$
+\end{center}
+
+we get: 
+
+\begin{center}
+$\neg \neg \neg X \rightarrow \neg X.$
+\end{center}
+
+On the other hand if we introduce negation in:
+
+\begin{center}
+$X \rightarrow \neg \neg X$
+\end{center}
+
+we get:
+
+\begin{center}
+$\neg X \rightarrow \neg \neg \neg X.$
+\end{center} 
+
+This proves that triple negation reduces to simple negation.
+
+\subsection{De Morgan's laws}
+
+Axiom \textbf{3.A.1} states that:
+
+\begin{center}
+$\mathcal{X} \rightarrow (\mathcal{X} \vee \mathcal{Y}).$
+\end{center}
+
+Applying contraposition one gets:
+
+\begin{center}
+$\neg (X \vee Y) \rightarrow \neg X.$
+\end{center}
+
+By the same token: 
+
+\begin{center}
+$Y \rightarrow (X \vee Y)$
+\end{center}
+
+and applying contraposition we have:
+
+\begin{center}
+$\neg (X \vee Y) \rightarrow \neg Y.$
+\end{center}
+
+Joining both implications we have:
+
+\begin{center}
+$\neg (X \vee Y) \rightarrow \neg X \wedge \neg Y.$
+\end{center}
+
+This formula is obviously invertible and so one of de Morgan's laws is also intuitionistically valid.
+
+Of course if we have a proof that at least one of  the pair $X, Y$ is refutable we can not have a proof of their conjunction. Thus one half of the other De Morgan's law is valid namely:
+
+\begin{center}
+$\neg X \vee \neg Y \rightarrow \neg (X \wedge Y).$
+\end{center}
+
+But this formula is not invertible to
+
+\begin{center}
+$\neg (X \wedge Y) \rightarrow \neg X \vee \neg Y.$
+\end{center}
+
+\subsection{Peirce's law}
+
+It is also important to realize that intuitionistic logic differs from classical logic not only because of a divergent conception of the logical constants but also because classical logic is built on the principle of bivalence and in intuitionistic logic there are no truth values at all. One mentions the truth of a proposition, as it was said above,  only as a linguistic abbreviation of the fact that a proof for that proposition is available.
+ 
+It should be remarked that there are counter-intuitive tautologies of the classical propositional calculus whose validity is secured by bivalence alone and they are not intuitionistically valid. Two well known examples are the classical disjunction:
+
+\begin{center}
+$X \rightarrow Y \vee Y \rightarrow X$
+\end{center}
+
+and Peirce's law:
+
+\begin{center}
+$[(X \rightarrow Y) \rightarrow X] \rightarrow X.$
+\end{center}
+
+(About both formulas see Jon Awbrey's \PMlinkexternal{Logical graph sandbox}{http://mywikibiz.com/Talk:Logical_graph}.)
+
+\section{Overview and deduction theorem}\normalsize
+
+\subsection{List A: Examples of intuitionistic derivable formulas}
+
+\begin{enumerate}
+\item \textbf{Implication}
+
+\textbf{1.} $A \rightarrow A$
+
+\textbf{2.} $A \rightarrow (B \rightarrow A)$
+
+\textbf{3.} $A \rightarrow [ B \rightarrow (A \wedge B)]$
+
+\textbf{4.} $[A \rightarrow (B \rightarrow C)] \rightarrow [(A \rightarrow B) \rightarrow (A \rightarrow C)]$
+
+\textbf{5.} $[ A \rightarrow (B \rightarrow C)] \rightarrow [B \rightarrow (A \rightarrow C)]$
+
+\textbf{6.} ${(C \rightarrow A) \rightarrow [C \rightarrow (A \rightarrow B)] \rightarrow (C \rightarrow B)}$
+                                   
+\item \textbf{Negation}
+
+\textbf{1.} $A \rightarrow \neg \neg A$
+
+\textbf{2.} $\neg (A \wedge \neg A)$
+
+\textbf{3.} $\neg \neg \neg A \rightarrow \neg A$
+
+\textbf{4.} $\neg A \rightarrow \neg \neg \neg A$
+
+\textbf{5.} $\neg \neg (A \rightarrow B) \rightarrow (A \rightarrow \neg \neg B)$
+ 
+\textbf{6.} $[(\neg A \vee B) \rightarrow (A \rightarrow B)]$
+
+\item \textbf{Contraposition}
+
+\textbf{1.} $(A \rightarrow B) \rightarrow (\neg B \rightarrow \neg A)$
+ 
+\textbf{2.} $(A \rightarrow \neg B) \rightarrow (B \rightarrow \neg A)$
+
+\item \textbf{De Morgan's laws}
+
+\textbf{1.} $[\neg (A V B) \rightarrow (\neg A \wedge \neg B)]$
+ 
+\textbf{2.} $(\neg A \wedge \neg B) \rightarrow \neg (A \vee B)$
+ 
+\textbf{3.} $(\neg A \vee \neg B) \rightarrow \neg (A \wedge B)$
+\end{enumerate}
+
+\subsection{List B: Examples of classical tautologies that are not intuitionistically derivable}
+
+\begin{enumerate}
+\item ${[(A \rightarrow B) \rightarrow A] \rightarrow A}$
+
+\item $(A \vee \neg A)$
+
+\item $(A \rightarrow B) \vee (B \rightarrow A)$
+
+\item $(\neg \neg A \rightarrow A)$
+
+\item $(A \rightarrow B) \rightarrow (\neg A \vee B)$
+
+\item $\neg (A \wedge B) \rightarrow (\neg A \vee \neg B)$
+
+\item $(\neg A \rightarrow B) \rightarrow (\neg B \rightarrow A)$
+
+\item $(\neg A \rightarrow \neg B) \rightarrow (B \rightarrow A)$
+\end{enumerate}
+
+\subsection{Deduction theorem}
+
+The deduction theorem was first proved by Herbrand and in essence it says that if a formula $B$ is derivable from a formula $A$ then the formula $A \rightarrow B$ is derivable, with $A$ as the discharged premiss.
+ 
+We can prove the theorem for the intuitionistic propositional calculus by providing a construction of the formula $A \rightarrow B$. For that purpose we use the previously obtained derivation of $B$.
+
+The proof is by (complete) induction on the length of the derivation of $B$ and the argument is as follows.
+
+The original derivation of $B$ from $A$ is a sequence of formulas:
+
+\begin{center} 
+$f_1, \ldots, f_n = B$
+\end{center}
+
+and the induction variable is $i$ in $f_i$. If the proof is valid for derivations of length $k$, with $k < i$, so that  $A \rightarrow f_k$, then it is also valid for $f_i$ and therefore $(\forall i) A \rightarrow f_i$, as it will be shown. 
+
+We first prove the theorem: 
+
+\begin{center}
+$X \rightarrow X$
+\end{center}
+ 
+which we need for induction basis.
+
+\begin{quote}
+\begin{tabular}{lll}
+1.&$[A \rightarrow (B \rightarrow C)] \rightarrow [(A \rightarrow B) \rightarrow (A \rightarrow C)]$&Formula (List A) 1.4\\
+2.&$[X \rightarrow (X \rightarrow X) \rightarrow X] \rightarrow [X  \rightarrow (X \rightarrow X) \rightarrow (X \rightarrow X)]$&1, Rule of Subst.\\
+3.&$\mathcal{Y} \rightarrow (\mathcal{X} \rightarrow \mathcal{Y})$&\textbf{2.A2}\\
+4.&$X \rightarrow (X \rightarrow X) \rightarrow X$&3, Rule of Subst.\\
+5.&$X \rightarrow (X \rightarrow X) \rightarrow (X \rightarrow X)$&2, 4, \emph{modus ponens}\\
+6.&$X \rightarrow (X \rightarrow X)$&3, Rule of Subst.\\
+7.&$X \rightarrow X$&5, 6, \emph{modus ponens}
+\end{tabular}
+\end{quote}
+
+We begin by proving
+
+\begin{itemize}
+\item \textbf{1. Induction Basis}.
+
+If $i = 1$, $f_1$ can only be an axiom, or an hypothesis or the formula $A$ itself.
+
+If $f_1$ is an axiom or an hypothesis, we can use the axiom:
+
+\begin{center}
+$Y \rightarrow (X \rightarrow Y)$
+\end{center}
+
+and the substitution rule gives immediately:
+
+\begin{center}
+$f_1 \rightarrow (A \rightarrow f_1).$
+\end{center}
+
+In that case one application of modus ponens gives:
+
+\begin{center}
+$A \rightarrow f_1.$
+\end{center}
+
+If $f_1$ is the formula $A$ itself then $A = f_1$. The substitution rule and the theorem:
+
+\begin{center}
+$X \rightarrow X$
+\end{center}
+ 
+gives then:
+
+\begin{center}
+$A \rightarrow f_1.$
+\end{center}
+
+\item \textbf{2. Induction Step}.
+
+The induction hypothesis is that if $j < i$ and $k < i$ we already have:
+
+\begin{center}
+$A \rightarrow f_j$
+\end{center}
+
+and
+
+\begin{center}
+$A \rightarrow f_k.$
+\end{center}
+                      
+If $k < i$ let:
+
+\begin{center}
+$f_k = (f_j \rightarrow f_i).$
+\end{center}
+
+This means that $f_i$ follows from $f_k$ and $f_j$ by \emph{modus ponens}.
+
+The derivation is then the following:
+
+\begin{quote}
+\begin{tabular}{lll}
+1.&$A \rightarrow f_k$&Ind. hyp.\\
+2.&$A \rightarrow (f_j \rightarrow f_i )$&1, Def. $f_k$\\
+3.&$[A \rightarrow (f_j \rightarrow f_i)] \rightarrow (A \rightarrow f_j) \rightarrow ( A \rightarrow f_i)$&2, Formula (List A) 1.4\\
+4.&$(A \rightarrow f_j) \rightarrow (A \rightarrow f_i)$&2, 3, \emph{modus ponens}\\
+5.&$A \rightarrow f_i$&4, Ind. hyp., \emph{modus ponens}
+\end{tabular}
+\end{quote}                                     
+
+\end{itemize}
+
+The deduction theorem is also useful for conditional derivations in the predicate calculus. As in the classical case,  free variables have to remain constant as parameters during the derivation.
+ 
+Our example is to derive from the hypothesis $F (x)$ the well known formula 
+
+\begin{center}
+$(\exists x) F (x) \rightarrow \neg (\forall x) \neg F (x),$
+\end{center}
+
+which in the classical case we can derive easily using the full double negation law.
+
+\begin{quote}
+\begin{tabular}{lll}
+1.&$F (x)$&Hyp.\\
+2.&$(\exists x) F (x)$&1, Ax. \textbf{P2}\\
+3.&$(\forall x) \neg F (x) \rightarrow \neg F (x)$&Ax. \textbf{P1}\\
+4.&$F (x) \rightarrow (\forall x) \neg F (x) \rightarrow  F (x)$&\textbf{2.A2}, Rul. subst.\\
+5.&$(\forall x) \neg F (x) \rightarrow F (x)$&1, 4, \emph{modus ponens}\\
+6.&$[(\forall x) \neg F (x) \rightarrow F (x) \rightarrow (\forall x) \neg F (x) \rightarrow \neg F (x)] \rightarrow \neg (\forall x) \neg F (x)$&\textbf{4.A2}\\
+7.&$(\forall x) \neg F (x) \rightarrow \neg F (x) \rightarrow \neg (\forall x) \neg F (x)$&5, 6, \emph{modus ponens}\\
+8.&$\neg (\forall x) \neg F (x)$&3, 7, \emph{modus ponens}\\
+9.&$(\exists x) F (x) \rightarrow \neg (\forall x) \neg F (x)$&2, 8, Deduction theorem
+\end{tabular}
+\end{quote}
+
+\section{Generalized Markov's principle and the axiom of choice}\normalsize
+
+For formulas with quantifiers and negations, as they are known from the classical square of opposition, the only classical inference that is not  valid in Heyting's calculus is the derivation of:
+
+\begin{center} 
+$(\exists x) \neg P (x)$
+\end{center}
+
+from          
+
+\begin{center}
+$\neg (\forall x) P (x).$
+\end{center}
+
+The inference is accepted by the russian constructivists under the name of the generalized Markov's principle. 
+
+Of course the proof by \emph{reductio ad absurdum} is also not acceptable, in the sense that a derivation of:
+
+\begin{center}
+$(\exists x) F (x)$
+\end{center}
+
+from                     
+
+\begin{center}
+$\neg [(\forall x) \neg F (x)]$
+\end{center}
+
+does not create the object $x$ whose existence is supposed to be proved.
+
+It is to be mentioned that if a formula $(\exists x) F (x)$ has been derived in intuitionistic arithmetic, then $F (n^*)$ is derivable, where $n^*$ is the denotation of the natural number $n$.
+
+Double quantifications in the form of:
+
+\begin{center}
+$(\forall x) (\exists y) F (x, y)$
+\end{center}
+ 
+express the existence of functions $f$ such that:
+
+\begin{center}
+$(\forall x) F (x, f (x)).$ 
+\end{center}
+
+Variables of quantification ranging over sequences are subjected to the restrictions mentioned above.
+
+In classical logic an infinite sequence is an extensional object, it is entirely formed by the terms it contains, regardless of the way in which they are defined. It is a completed totality, with specific properties depending only on the totality of its members, notwithstanding the fact that we can only refer to a finite number of them. 
+
+In intuitionism every mathematical entity that we refer to must be conceived as being presented to us in a particular form and its identity is constituted by that form. Intuitionistic entities are therefore intensional even if  some purpose we isolate extensional properties. In this sense an infinite sequence of objects has to be presented to us  by  of  some effective rule by means of which we can compute its terms. It can not be identified with another sequence that is presented in a different way, resp. by a different rule, even if the two sequences are extensionally identical. The properties of a sequence have to be derived from the way in which the sequence is presented to us.
+ 
+The same argument applies to inferences obtained by means of the intuitionistic axiom of choice, i.e., inferences of the general form:
+                 
+\begin{center}
+$(\star)$ \qquad \qquad $(\forall x) (\exists y) F (x, y) \rightarrow (\exists f) (\forall x) F [x, f (x)].$
+\end{center}
+
+The variables may be of any sort or many-sorted and $F (x, y)$ is a statement in which they occur. The variable $f$  ranges over functions defined on the domain of "$x$" and has values in the domain of "$y$". In particular $(\exists f)$ means always that $f$ can be computed.
+
+If we use the \emph{meanings} of the logical constants, already explained above, the formula $(\star)$ is obviously true. 
+
+Let us assume that the variables range over $\mathbb{N}$. A proof of the implicans will be an effective operation that carries each natural number $n$ into a proof of:
+
+\begin{center}
+"$F$ ($n, y$ for some $y$)".
+\end{center}
+ 
+But a proof of this statement will be a natural number $m$ and a proof of $F (n, m)$. Therefore a proof of the \emph{implicans} yields a function that maps any natural number $n$ into a natural number $m$ satisfying $P (n, m)$.
+ 
+It is to be noticed that the function $f$ acts not upon elements in the domain of '$x$' considered extensionally but upon the particular way in which they are presented to us. It does not necessarily map extensionally equivalent elements of '$x$' on to the same elements of '$y$'. 
+
+\section{Complementary material}
+
+See the following PM entrys: \PMlinkname{"inclusion of classical into intuitionistic logic"}{InclusionOfClassicalIntoIntuitionisticLogic}, and \PMlinkname{"the interpretation of intuitionistic logic by means of functionals"}{InterpretationOfIntuitionisticLogicByMeansOfFunctionals}. 
+
+\begin{thebibliography} {99}
+\bibitem{LEB1} Brouwer, L., \emph{Collected works: vol. 1}, North Holland, Amsterdam, 1975.
+\bibitem{LEB2} Brouwer, L., "Mathematik, Wissenschaft und Sprache", \emph{Monatshefte fÃ¼r Mathematik und Physik}, Leipzig, 1929.
+\bibitem{LEB3} Brouwer, L., "Consciousness, philosophy and mathematics", ed. W. Beth, \emph{Library of the tenth international congress of philosophy}, Amsterdam, 1948.
+\bibitem{MD} Dummett, M., \emph{Elements of intuitionism}, Clarendon Press, Oxford, 1977.
+\bibitem{KG} G\"{o}del, K., \emph{Collected works}, ed. S. Feferman, Oxford, 1987-2003.
+\bibitem{AH} Heyting, A. \emph{Intuitionism: An introduction}, 3. ed., North-Holland, Amsterdam, 1971.
+\bibitem{DHPB} Hilbert, D., and, Ackermann, \emph{GrundzÃ¼ge der theoretischen Logik}, Berlin, 1949.
+\bibitem{SK} Kleene, S., \emph{Introduction to metamathematics}, North-Holland, Amsterdam, 1964.
+\bibitem{RS} Rasiowa, H., and, Sikorski, R., \emph{The mathematics of metamathematics}, Warsaw, 1963.
+\bibitem{AT} Tarski, A., "Der AussagenkalkÃ¼l und die Topologie", \emph{Fundamenta Mathematicae}, 31, 1938.
+\end{thebibliography}
+
+\end{document}
+%%%%%
+%%%%%
+\end{document}

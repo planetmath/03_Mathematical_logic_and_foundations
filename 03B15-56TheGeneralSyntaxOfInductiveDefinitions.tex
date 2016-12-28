@@ -1,0 +1,262 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{56TheGeneralSyntaxOfInductiveDefinitions}
+\pmcreated{2013-11-18 2:58:47}
+\pmmodified{2013-11-18 2:58:47}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{5.6 The general syntax of inductive definitions}
+\pmrecord{2}{87679}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\newcommand{\happly}{\mathsf{happly}}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexfoot}[1]{\index{#1|footstyle}} 
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\narrowbreak}{}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\suc}{\mathsf{succ}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\w}{\mathsf{W}}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{5.6.\arabic{mathcount}}
+\newenvironment{narrowmultline}{\csname equation\endcsname}{\csname endequation\endcsname}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{5.6.\arabic{mathcount}}
+\let\autoref\cref
+\let\nat\N
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+\index{type!inductive|(}%
+\indexsee{inductive!type}{type, inductive}%
+
+So far, we have been discussing only particular inductive types: $\emptyt$, $\unit$, $\bool$, $\nat$, coproducts, products, $\Sigma$-types, $\w$-types, etc.
+However, an important aspect of type theory is the ability to define \emph{new} inductive types, rather than being restricted only to some particular fixed list of them.
+In order to be able to do this, however, we need to know what sorts of ``inductive definitions'' are valid or reasonable.
+
+To see that not everything which ``looks like an inductive definition'' makes sense, consider the following ``constructor'' of a type $C$:
+\begin{itemize}
+\item $g:(C\to \nat) \to C$.
+\end{itemize}
+The recursion principle for such a type $C$ ought to say that given a type $P$, in order to construct a function $f:C\to P$, it suffices to consider the case when the input $c:C$ is of the form $g(\alpha)$ for some $\alpha:C\to\nat$.
+Moreover, we would expect to be able to use the ``recursive data'' of $f$ applied to $\alpha$ in some way.
+However, it is not at all clear how to ``apply $f$ to $\alpha$'', since both are functions with domain $C$.
+
+We could write down a ``recursion principle'' for $C$ by just supposing (unjustifiably) that there is some way to apply $f$ to $\alpha$ and obtain a function $P\to\nat$.
+Then the input to the recursion rule would ask for a type $P$ together with a function
+\begin{myeqn}
+  h:(C\to\nat) \to (P\to\nat) \to P\label{eq:fake-recursor}
+\end{myeqn}
+where the two arguments of $h$ are $\alpha$ and ``the result of applying $f$ to $\alpha$''.
+However, what would the computation rule for the resulting function $f:C\to P$ be?
+Looking at other computation rules, we would expect something like ``$f(g(\alpha)) \jdeq h(\alpha,f(\alpha))$'' for $\alpha:C\to\nat$, but as we have seen, ``$f(\alpha)$'' does not make sense.
+The induction principle of $C$ is even more problematic; it's not even clear how to write down the hypotheses.
+(See also \PMlinkexternal{Exercise 5.7}{http://planetmath.org/node/87788},\PMlinkexternal{Exercise 5.8}{http://planetmath.org/node/87866}.)
+
+This example suggests one restriction on inductive definitions: the domains of all the constructors must be \emph{covariant functors}\index{functor!covariant}\index{covariant functor} of the type being defined, so that we can ``apply $f$ to them'' to get the result of the ``recursive call''.
+In other words, if we replace all occurrences of the type being defined with a variable
+\index{variable!type}%
+$X:\type$, then each domain of a constructor
+\index{domain!of a constructor}%
+must be an expression that can be made into a covariant functor of $X$.
+This is the case for all the examples we have considered so far.
+For instance, with the constructor $\inl:A\to A+B$, the relevant functor is constant at $A$ (i.e.\ $X\mapsto A$), while for the constructor $\suc:\nat\to\nat$, the functor is the identity functor ($X\mapsto X$).
+
+However, this necessary condition is also not sufficient.
+Covariance prevents the inductive type from occurring on the left of a single function type, as in the argument $C\to\nat$ of the ``constructor'' $g$ considered above, since this yields a contravariant\index{functor!contravariant}\index{contravariant functor} functor rather than a covariant one.
+However, since the composite of two contravariant functors is covariant, \emph{double} function types such as $((X\to \nat)\to \nat)$ are once again covariant.
+This enables us to reproduce Cantorian-style paradoxes\index{paradox}.
+
+For instance, consider an ``inductive type'' $D$ with the following constructor:
+\begin{itemize}
+\item $k:((D\to\prop)\to\prop)\to D$.
+\end{itemize}
+Assuming such a type exists, we define functions
+\begin{align*}
+  r&:D\to (D\to\prop)\to\prop,\\
+  f&:(D\to\prop) \to D,\\
+  p&:(D\to \prop) \to (D\to\prop)\to \prop,\\
+  \intertext{by}
+  r(k(\theta)) &\defeq \theta,\\
+  f(\delta) &\defeq k(\lam{x} (x=\delta)),\\
+  p(\delta) &\defeq \lam{x} \delta(f(x)).
+\end{align*}
+Here $r$ is defined by the recursion principle of $D$, while $f$ and $p$ are defined explicitly.
+Then for any $\delta:D\to\prop$, we have $r(f(\delta)) = \lam{x}(x=\delta)$.
+
+In particular, therefore, if $f(\delta)=f(\delta')$, then we have a path $s:(\lam{x}(x=\delta)) = (\lam{x}(x=\delta'))$.
+Thus, $\happly(s,\delta) : (\delta=\delta) = (\delta=\delta')$, and so in particular $\delta=\delta'$ holds.
+Hence, $f$ is ``injective'' (although \emph{a priori} $D$ may not be a set).
+This already sounds suspicious --- we have an ``injection'' of the ``power set''\index{power set} of $D$ into $D$ --- and with a little more work we can massage it into a contradiction.
+
+Suppose given $\theta:(D\to\prop)\to\prop$, and define $\delta:D\to\prop$ by
+\begin{myeqn}
+  \delta(d) \defeq \exis{\gamma:D\to\prop} (f(\gamma) = d) \times \theta(\gamma).\label{eq:Pinj}
+\end{myeqn}
+We claim that $p(\delta)=\theta$.
+By function extensionality, it suffices to show $p(\delta)(\gamma) =_\prop \theta(\gamma)$ for any $\gamma:D\to\prop$.
+And by univalence, for this it suffices to show that each implies the other.
+Now by definition of $p$, we have
+\begin{align*}
+  p(\delta)(\gamma) &\jdeq \delta(f(\gamma))\\
+  &\jdeq \exis{\gamma':D\to\prop} (f(\gamma') = f(\gamma)) \times \theta(\gamma').
+\end{align*}
+Clearly this holds if $\theta(\gamma)$, since we may take $\gamma'\defeq \gamma$.
+On the other hand, if we have $\gamma'$ with $f(\gamma') = f(\gamma)$ and $\theta(\gamma')$, then $\gamma'=\gamma$ since $f$ is injective, hence also $\theta(\gamma)$.
+
+This completes the proof that $p(\delta)=\theta$.
+Thus, every element $\theta:(D\to\prop)\to\prop$ is the image under $p$ of some element $\delta:D\to\prop$.
+However, if we define $\theta$ by a classic diagonalization:
+\[ \theta(\gamma) \defeq \neg p(\gamma)(\gamma) \quad\text{for all $\gamma:D\to\prop$} \]
+then from $\theta = p(\delta)$ we deduce $p(\delta)(\delta) = \neg p(\delta)(\delta)$.
+This is a contradiction: no proposition can be equivalent to its negation.
+(Supposing $P\Leftrightarrow \neg P$, if $P$, then $\neg P$, and so $\emptyt$; hence $\neg P$, but then $P$, and so $\emptyt$.)
+
+\begin{rmk}
+  There is a question of universe size to be addressed.
+  In general, an inductive type must live in a universe that already contains all the types going into its definition.
+  Thus if in the definition of $D$, the ambiguous notation \prop means $\prop_{\UU}$, then we do not have $D:\UU$ but only $D:\UU'$ for some larger universe $\UU'$ with $\UU:\UU'$.
+  \index{mathematics!predicative}%
+  \indexsee{impredicativity}{mathematics, predicative}%
+  \indexsee{predicative mathematics}{mathematics, predicative}%
+  In a predicative theory, therefore, the right-hand side of~\eqref{eq:Pinj} lives in $\prop_{\UU'}$, not $\prop_\UU$.
+  So this contradiction does require the propositional resizing axiom
+  \index{propositional!resizing}%
+  mentioned in \PMlinkname{\S 3.5}{35subsetsandpropositionalresizing}.
+\end{rmk}
+
+\index{consistency}%
+This counterexample suggests that we should ban an inductive type from ever appearing on the left of an arrow in the domain of its constructors, even if that appearance is nested in other arrows so as to eventually become covariant.
+(Similarly, we also forbid it from appearing in the domain of a dependent function type.)
+This restriction is called \define{strict positivity}
+\indexdef{strict!positivity}%
+\indexsee{positivity, strict}{strict positivity}%
+(ordinary ``positivity'' being essentially covariance), and it turns out to suffice.
+
+\index{constructor}%
+In conclusion, therefore, a valid inductive definition of a type $W$ consists of a list of \emph{constructors}.
+Each constructor is assigned a type that is a function type taking some number (possibly zero) of inputs (possibly dependent on one another) and returning an element of $W$.
+Finally, we allow $W$ itself to occur in the input types of its constructors, but only strictly positively.
+This essentially means that each argument of a constructor is either a type not involving $W$, or some iterated function type with codomain $W$.
+For instance, the following is a valid constructor type:
+\begin{myeqn}
+  c:(A\to W) \to (B\to C \to W) \to D \to W \to W.\label{eq:example-constructor}
+\end{myeqn}
+All of these function types can also be dependent functions ($\Pi$-types).%
+\footnote{In the language of \PMlinkname{\S 5.4}{54inductivetypesareinitialalgebras}, the condition of strict positivity ensures that the relevant endofunctor is polynomial.\indexfoot{endofunctor!polynomial}\indexfoot{algebra!initial}\indexsee{algebra!initial}{homotopy-initial} It is well-known in category theory that not \emph{all} endofunctors can have initial algebras; restricting to polynomial functors ensures consistency.
+One can consider various relaxations of this condition, but in this book we will restrict ourselves to strict positivity as defined here.}
+
+Note we require that an inductive definition is given by a \emph{finite} list of constructors.
+This is simply because we have to write it down on the page.
+If we want an inductive type which behaves as if it has an infinite number of constructors, we can simply parametrize one constructor by some infinite type.
+For instance, a constructor such as $\nat \to W \to W$ can be thought of as equivalent to countably many constructors of the form $W\to W$.
+(Of course, the infinity is now \emph{internal} to the type theory, but this is as it should be for any foundational system.)
+Similarly, if we want a constructor that takes ``infinitely many arguments'', we can allow it to take a family of arguments parametrized by some infinite type, such as $(\nat\to W) \to W$ which takes an infinite sequence\index{sequence} of elements of $W$.
+
+\index{recursion principle!for an inductive type}%
+Now, once we have such an inductive definition, what can we do with it?
+Firstly, there is a \define{recursion principle} stating that in order to define a function $f:W\to P$, it suffices to consider the case when the input $w:W$ arises from one of the constructors, allowing ourselves to recursively call $f$ on the inputs to that constructor.
+For the example constructor~\eqref{eq:example-constructor}, we would require $P$ to be equipped with a function of type
+\begin{narrowmultline}\label{eq:example-rechyp}
+  d : (A\to W) \to (A\to P) \to (B\to C\to W) \to 
+  \narrowbreak
+  (B\to C \to P) \to D \to W \to P \to P.
+\end{narrowmultline}
+Under these hypotheses, the recursion principle yields $f:W\to P$, which moreover ``preserves the constructor data'' in the evident way --- this is the computation rule, where we use covariance of the inputs.
+\index{computation rule!for inductive types}%
+For instance, in the example~\eqref{eq:example-constructor}, the computation rule says that for any $\alpha:A\to W$, $\beta:B\to C\to W$, $\delta:d$, and $\omega:W$, we have
+\begin{myeqn}
+  f(c(\alpha,\beta,\delta,\omega)) \jdeq d(\alpha,f\circ \alpha,\beta, f\circ \beta, \delta, \omega,f(\omega)).\label{eq:example-comp}
+\end{myeqn}
+% As we have before in particular cases, when defining a particular function $f$, we may write these rules with $\defeq$ as a way of specifying the data $d$, and say that $f$ is defined by them.
+
+\index{induction principle!for an inductive type}%
+The \define{induction principle} for a general inductive type $W$ is only a little more complicated.
+Of course, we start with a type family $P:W\to\type$, which we require to be equipped with constructor data ``lying over'' the constructor data of $W$.
+That means the ``recursive call'' arguments such as $A\to P$ above must be replaced by dependent functions with types such as $\prd{a:A} P(\alpha(a))$.
+In the full example of~\eqref{eq:example-constructor}, the corresponding hypothesis for the induction principle would require
+\begin{multline}\label{eq:example-indhyp}
+d : \prd{\alpha:A\to W}\Parens{\prd{a:A} P(\alpha(a))} \to \narrowbreak
+\prd{\beta:B\to C\to W} \Parens{\prd{b:B}{c:C} P(\beta(b,c))} \to\\
+\prd{\delta:D}
+\prd{\omega:W} P(\omega) \to
+P(c(\alpha,\beta,\delta,\omega)).
+\end{multline}
+The corresponding computation rule looks identical to~\eqref{eq:example-comp}.
+Of course, the recursion principle is the special case of the induction principle where $P$ is a constant family.
+As we have mentioned before, the induction principle is also called the \define{eliminator}, and the recursion principle the \define{non-dependent eliminator}.
+
+As discussed in \PMlinkname{\S 1.10}{110patternmatchingandrecursion}, we also allow ourselves to invoke the induction and recursion principles implicitly, writing a definitional equation with $\defeq$ for each expression that would be the hypotheses of the induction principle.
+This is called giving a definition by (dependent) \define{pattern matching}.
+\index{pattern matching}%
+\index{definition!by pattern matching}%
+In our running example, this means we could define $f:\prd{w:W} P(w) $ by
+\[ f(c(\alpha,\beta,\delta,\omega)) \defeq \cdots \]
+where $\alpha:A\to W$ and $\beta:B\to C\to W$ and $\delta:D$ and $\omega:W$ are variables
+\index{variable}%
+that are bound in the right-hand side.
+Moreover, the right-hand side may involve recursive calls to $f$ of the form $f(\alpha(a))$, $f(\beta(b,c))$, and $f(\omega)$.
+When this definition is repackaged in terms of the induction principle, we replace such recursive calls by $\bar\alpha(a)$, $\bar\beta(b,c)$, and $\bar\omega$, respectively, for new variables
+\begin{align*}
+  \bar\alpha &: \prd{a:A} P(\alpha(a))\\
+  \bar\beta &: \prd{b:B}{c:C} P(\beta(b,c))\\
+  \bar\omega &: P(\omega).
+\end{align*}
+\symlabel{defn:induction-wtype}%
+Then we could write
+\[ f \defeq \ind{W}(P,\, \lam{\alpha}{\bar\alpha}{\beta}{\bar\beta}{\delta}{\omega}{\bar\omega} \cdots ) \]
+where the second argument to $\ind{W}$ has the type of~\eqref{eq:example-indhyp}.
+
+We will not attempt to give a formal presentation of the grammar of a valid inductive definition and its resulting induction and recursion principles and pattern matching rules.
+This is possible to do (indeed, it is necessary to do if implementing a computer proof assistant), but provides no additional insight.
+With practice, one learns to automatically deduce the induction and recursion principles for any inductive definition, and to use them without having to think twice.
+
+
+\end{document}

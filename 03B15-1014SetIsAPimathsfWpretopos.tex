@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1014SetIsAPimathsfWpretopos}
+\pmcreated{2013-11-06 17:10:34}
+\pmmodified{2013-11-06 17:10:34}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{10.1.4 Set is a $\Pi\mathsf{W}$-pretopos}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\isprop}{\ensuremath{\mathsf{isProp}}}
+\newcommand{\LEM}[1]{\ensuremath{\mathsf{LEM}_{#1}}\xspace}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\uset}{\ensuremath{\mathcal{S}et}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{10.1.\arabic{mathcount}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+
+\index{structural!set theory|(}%
+
+The notion of a \emph{$\Pi\mathsf{W}$-pretopos}
+\index{PiW-pretopos@$\Pi\mathsf{W}$-pretopos}%
+\indexsee{pretopos}{$\Pi\mathsf{W}$-pretopos}
+--- that is, a locally cartesian closed category
+\index{locally cartesian closed category}%
+\index{category!locally cartesian closed}%
+with disjoint finite coproducts, effective equivalence relations, and initial algebras for polynomial endofunctors --- is intended as a ``predicative''
+\index{mathematics!predicative}%
+notion of topos, i.e.\ a category of ``predicative sets'', which can serve the purpose for constructive mathematics
+\index{mathematics!constructive}%
+that the usual category of sets does for classical
+\index{mathematics!classical}%
+mathematics.
+
+Typically, in constructive type theory, one resorts to an external construction of ``setoids'' --- an exact completion --- to obtain a category with such closure properties.
+\index{setoid}\index{completion!exact}%
+  In particular, the well-behaved quotients are required for many constructions in mathematics that usually involve (non-constructive) power sets.  It is noteworthy that univalent foundations provides these constructions \emph{internally} (via higher inductive types), without requiring such external constructions.  This represents a powerful advantage of our approach, as we shall see in subsequent examples.
+
+\begin{thm}
+  \index{PiW-pretopos@$\Pi\mathsf{W}$-pretopos}
+  The category $\uset$ is a $\Pi\mathsf{W}$-pretopos.
+\end{thm}
+\begin{proof}
+  We have an initial object
+  \index{initial!set}%
+  $\emptyt$ and finite, disjoint sums $A+B$.  These are stable under pullback, simply because pullback has a right adjoint\index{adjoint!functor}.  Indeed, $\uset$ is locally cartesian closed, since for any map $f:A\to B$ between sets, the ``fibrant replacement'' \index{fibrant replacement} $\sm{a:A}f(a)=b$ is equivalent to $A$ (over $B$), and we have dependent function types for the replacement.
+We've just shown that $\uset$ is regular (\autoref{thm:set_regular}) and that quotients are effective (\autoref{lem:sets_exact}). We thus have a locally cartesian closed pretopos. Finally, since the $n$-types are closed under the formation of $W$-types by \autoref{ex:ntypes-closed-under-wtypes}, and by \autoref{thm:w-hinit} $W$-types are initial algebras for polynomial endofunctors, we see that $\uset$ is a $\Pi\mathsf{W}$-pretopos.
+\end{proof}
+
+
+\index{topos|(}
+One naturally wonders what, if anything, prevents $\uset$ from being an (elementary) topos?
+In addition to the structure already mentioned, a topos has a
+\emph{subobject classifier}:
+\indexdef{subobject classifier}%
+\index{classifier!subobject}%
+\index{power set}%
+a pointed object classifying (equivalence classes of) monomorphisms\index{monomorphism}.  (In fact, in the presence of a subobject
+classifier, things become somewhat simpler: one merely needs cartesian closure in order to get the colimits.)
+In homotopy type theory, univalence implies that the type $\prop \defeq \sm{X:\UU}\isprop(X)$ does classify monomorphisms (by an argument similar to \autoref{sec:object-classification}), but in general it is as large as the ambient universe $\UU$.
+Thus, it is a ``set'' in the sense of being a $0$-type, but it is not ``small'' in the sense of being an object of $\UU$, hence not an object of the category \uset.
+However, if we assume an appropriate form of propositional resizing (see \autoref{subsec:prop-subsets}), then we can find a small version of $\prop$, so that \uset becomes an elementary topos.
+
+\begin{thm}\label{thm:settopos}
+  \index{propositional!resizing}%
+  If there is a type $\Omega:\UU$ of all mere propositions, then the category $\uset_\UU$ is an elementary topos.
+\end{thm}
+\index{topos|)}
+
+A sufficient condition for this is the law of excluded middle, in the ``mere-propositional'' form that we have called \LEM{}; for then we have $\prop = \bool$, which \emph{is} small, and which then also classifies all mere propositions.
+Moreover, in topos theory a well-known sufficient condition for \LEM{} is the axiom of choice, which is of course often assumed as an axiom in classical\index{mathematics!classical} set theory.
+In the next section, we briefly investigate the relation between these conditions in our setting.
+
+\index{structural!set theory|)}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

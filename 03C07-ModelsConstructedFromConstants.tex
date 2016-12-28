@@ -1,0 +1,202 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ModelsConstructedFromConstants}
+\pmcreated{2013-03-22 12:44:42}
+\pmmodified{2013-03-22 12:44:42}
+\pmowner{ratboy}{4018}
+\pmmodifier{ratboy}{4018}
+\pmtitle{models constructed from constants}
+\pmrecord{17}{33049}
+\pmprivacy{1}
+\pmauthor{ratboy}{4018}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+\pmsynonym{completeness theorem}{ModelsConstructedFromConstants}
+\pmsynonym{G\"odel completeness theorem}{ModelsConstructedFromConstants}
+%\pmkeywords{completeness theorem}
+%\pmkeywords{compactness theorem}
+%\pmkeywords{model}
+\pmrelated{UpwardsSkolemLowenheimTheorem}
+\pmdefines{set of witnesses}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage{amsthm}
+
+\newcommand{\br}{[\![}
+\newcommand{\rb}{]\!]}
+\newcommand{\oq}{\text{``}}
+\newcommand{\cq}{\text{''}}
+
+
+\newcommand{\im}{\mathbf{Im}}
+\newcommand{\dom}{\mathbf{Dom}}
+
+
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\proves}{\vdash}
+\renewcommand{\And}{\wedge}
+\newcommand{\Sup}{\bigwedge}
+\newcommand{\Inf}{\bigvee}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\N}{\mathfrak{N}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\K}{\mathfrak{K}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Def}{\overset{\operatorname{def}}{:=}}
+
+
+
+\newcommand{\spec}{\text{{\bf Spec}}}
+\newcommand{\stab}{\text{{\bf Stab}}}
+\newcommand{\ann}{\text{{\bf Ann}}}
+\newcommand{\irr}{\text{{\bf Irr}}}
+\newcommand{\qt}{\text{{\bf Qt}}}
+\newcommand{\st}{\mathcal{Qt}}
+\newcommand{\ro}{\mathbf{r.o.}}
+
+
+\newcommand{\Endo}{\text{{\bf End}}}
+\newcommand{\mat}{\text{{\bf Mat}}}
+\newcommand{\der}{\text{{\bf Der}}}
+\newcommand{\rad}{\text{{\bf Rad}}}
+\newcommand{\trd}{\text{{\bf tr.d.}}}
+\newcommand{\cl}{\text{{\bf acl}}}
+\newcommand{\Int}{\text{{\bf int}}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\D}{\mathbf{D}}
+
+\newcommand{\del}{\partial}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\aut}{\mathbf{Aut}}
+\newcommand{\height}{\text{\bf Height}}
+\newcommand{\coheight}{\text{\bf Co-height}}
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\inner}[2]{\langle #1|#2\rangle}
+\renewcommand{\r}{{r}}
+\renewcommand{\t}{{t}}
+
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\Matrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 
+\end{array}\right)}
+\begin{document}
+\PMlinkescapeword{fixed}
+\PMlinkescapeword{lemma}
+\PMlinkescapeword{simple}
+\PMlinkescapeword{witnesses}
+
+The definition of a structure and of the satisfaction relation is
+nice, but it raises the following question : how do we get models in
+the first place?  The most basic construction for models of
+first-order theory is the construction that uses constants. Throughout
+this entry, $L$ is a fixed first-order language.
+
+Let $C$ be a set of constant symbols of $L$, and $T$ be a theory in
+$L$.  Then we say $C$ is a {\em set of witnesses} for $T$ if and only
+if for every formula $\varphi$ with at most one free variable $x$, 
+we have $T\proves\exists x(\varphi)\Implies\varphi(c)$ for some $c\in C$.
+
+{\bf Lemma.}
+Let $T$ is any consistent 
+set of sentences of $L$, and $C$ is a set of new symbols
+such that $|C|=|L|$.  Let $L'=L\cup C$.  Then there is a consistent
+set $T'\subseteq L'$ extending $T$ and which has $C$ as set of
+witnesses.
+
+{\bf Lemma.}
+If $T$ is a consistent theory in $L$, and $C$ is a set of witnesses
+for $T$ in $L$, then $T$ has a model whose elements are the constants
+in $C$.
+
+{\bf Proof:}
+Let $\Sigma$ be the signature for $L$.  If $T$ is a consistent set of
+sentences of $L$, then there is a maximal consistent $T'\supseteq T$.
+Note that $T'$ and $T$ have the same sets of witnesses.  As every
+model of $T'$ is also a model of $T$, we may assume $T$ is maximal
+consistent.
+
+We let the universe of $\M$ be the set of equivalence classes
+$C/\sim$, where $a\sim b$ if and only if $\oq a=b\cq\in T$.  As $T$ is
+maximal consistent, this is an equivalence relation.  We interpret the
+non-logical symbols as follows :
+\begin{enumerate}
+\item $[a]=^\M[b]$ if and only if $a\sim b$;
+\item Constant symbols are interpreted in the obvious way, i.e. if
+  $c\in \Sigma$ is a constant symbol, then $c^\M=[c]$;
+\item If $R\in\Sigma$ is an $n$-ary relation symbol, then
+  $([a_1],...,[a_n])\in R^\M$ if and only if $R(a_1,...,a_n)\in T$;
+\item If $F\in\Sigma$ is an $n$-any function symbol, then
+  $F^\M([a_0],...,[a_n])=[b]$ if and only if $\oq
+  F(a_1,...,a_n)=b\cq\in T$.
+\end{enumerate}
+From the fact that $T$ is maximal consistent, and $\sim$ is an
+equivalence relation, we get that the operations are well-defined (it
+is not so simple, i'll write it out later).
+The proof that $\M\models T$ is a straightforward induction on the
+complexity of the formulas of $T$.
+\hfill$\diamondsuit$
+
+{\bf Corollary.}
+(The extended completeness theorem) A set $T$ of formulas of $L$ is
+consistent if and only if it has a model (regardless of whether or not
+$L$ has witnesses for $T$).
+
+{\bf Proof:}
+First add a set $C$ of new constants to $L$, and expand $T$ to $T'$ in
+such a way that $C$ is a set of witnesses for $T'$.  Then expand $T'$
+to a maximal consistent set $T''$.  This set has a model $\M$ consisting of
+the constants in $C$, and $\M$ is also a model of $T$.
+\hfill$\diamondsuit$
+
+{\bf Corollary.}
+(Compactness theorem) A set $T$ of sentences of $L$ has a model if
+and only if every finite subset of $T$ has a model.
+
+{\bf Proof:}
+Replace ``has a model'' by ``is consistent'', and apply the syntactic
+compactness theorem.
+\hfill$\diamondsuit$
+
+{\bf Corollary.}
+(G\"odel's completeness theorem)
+Let $T$ be a consistent set of formulas of $L$.  Then
+A sentence $\varphi$ is a theorem of $T$ if and only if it is true in
+every model of $T$.
+
+{\bf Proof:}
+If $\varphi$ is not a theorem of $T$, then $\neg\varphi$ is consistent
+with $T$, so $T\cup\{\neg\varphi\}$ has a model $\M$, in which
+$\varphi$ cannot be true.
+\hfill$\diamondsuit$
+
+{\bf Corollary.}
+(Downward L\"owenheim-Skolem theorem)  If $T\subseteq L$ has a model,
+then it has a model of power at most $|L|$.
+
+{\bf Proof:}
+If $T$ has a model, then it is consistent.  The model constructed from
+constants has power at most $|L|$ (because we must add at most $|L|$
+many new constants).
+\hfill$\diamondsuit$
+
+Most of the treatment found in this entry can be read in more details
+in Chang and Keisler's book {\em Model Theory}.
+%%%%%
+%%%%%
+\end{document}

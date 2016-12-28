@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chapter2Notes}
+\pmcreated{2013-11-17 5:14:28}
+\pmmodified{2013-11-17 5:14:28}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{Chapter 2 notes}
+\pmrecord{4}{87624}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Definition}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\Coq}{\textsc{Coq}\xspace}
+\newcommand{\encode}{\ensuremath{\mathsf{encode}}\xspace}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\inr}{\ensuremath\inrsym\xspace}
+\newcommand{\inrsym}{{\mathsf{inr}}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\sectionNotes}{\phantomsection\section*{Notes}\addcontentsline{toc}{section}{Notes}\markright{\textsc{\@chapapp{} \thechapter{} Notes}}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+The definition of identity types, with their induction principle, is due to Martin-L\"of \cite{Martin-Lof-1972}.
+\index{intensional type theory}%
+\index{extensional!type theory}%
+\index{type theory!intensional}%
+\index{type theory!extensional}%
+\index{reflection rule}%
+As mentioned in the notes to \PMlinkexternal{Chapter 1}{http://planetmath.org/node/87533}, our identity types are those that belong to \emph{intensional} type theory, by contrast with those of \emph{extensional} type theory which have an additional ``reflection rule'' saying that if $p:x=y$, then in fact $x\jdeq y$.
+This reflection rule implies that all the higher groupoid structure collapses (see \PMlinkexternal{Exercise 2.14}{http://planetmath.org/node/87645}), so for nontrivial homotopy we must use the intensional version. 
+One may argue, however, that homotopy type theory is in another sense more ``extensional'' than traditional extensional type theory, because of the function extensionality and univalence axioms.  
+
+The proofs of symmetry (inversion) and transitivity (concatenation) for equalities are well-known in type theory.
+The fact that these make each type into a 1-groupoid (up to homotopy) was exploited in~\cite{hs:gpd-typethy} to give the first ``homotopy'' style semantics for type theory.  
+
+The actual homotopical interpretation, with identity types as path spaces, and type families as fibrations, is due to \cite{AW}, who used the formalism of Quillen model categories.  An interpretation in (strict) $\infty$-groupoids\index{.infinity-groupoid@$\infty$-groupoid} was also given in the thesis \cite{mw:thesis}.
+For a construction of \emph{all} the higher operations and coherences of an $\infty$-groupoid in type theory, see~\cite{pll:wkom-type} and~\cite{bg:type-wkom}.
+
+\index{proof!assistant!Coq@\textsc{Coq}}%
+Operations such as $\transfib{P}{p}{\blank}$ and $\apfunc{f}$, and one good notion of equivalence, were first studied extensively in type theory by Voevodsky, using the proof assistant \Coq.
+Subsequently, many other equivalent definitions of equivalence have been found, which are compared in \PMlinkexternal{Chapter 4}{http://planetmath.org/node/87577}.
+
+The ``computational'' interpretation of identity types, transport, and so on described in \PMlinkname{\S 2.5}{25thehighergroupoidstructureoftypeformers} has been emphasized by~\cite{lh:canonicity}.
+They also described a ``1-truncated'' type theory (see \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580}) in which these rules are judgmental equalities.
+The possibility of extending this to the full untruncated theory is a subject of current research.
+
+\index{function extensionality}%
+The naive form of function extensionality which says that ``if two functions are pointwise equal, then they are equal'' is a common axiom in type theory, going all the way back to \cite{PM2}.
+Some stronger forms of function extensionality were considered in~\cite{garner:depprod}.
+The version we have used, which identifies the identity types of function types up to equivalence, was first studied by Voevodsky, who also proved that it is implied by the naive version (and by univalence; see \PMlinkname{\S 4.9}{49univalenceimpliesfunctionextensionality}).
+
+\index{univalence axiom}%
+The univalence axiom is also due to Voevodsky.
+It was originally motivated by semantic considerations; see~\cite{klv:ssetmodel}.
+
+In the type theory we are using in this book, function extensionality and univalence have to be assumed as axioms, i.e.\ elements asserted to belong to some type but not constructed according to the rules for that type.
+While serviceable, this has a few drawbacks.
+For instance, type theory is formally better-behaved if we can base it entirely on rules rather than asserting axioms.
+It is also sometimes inconvenient that the theorems of \PMlinkname{\S 2.6}{26cartesianproducttypes} to \PMlinkname{\S 2.13}{213naturalnumbers} are only propositional equalities (paths) or equivalences, since then we must explicitly mention whenever we pass back and forth across them.
+One direction of current research in homotopy type theory is to describe a type system in which these rules are \emph{judgmental} equalities, solving both of these problems at once.
+So far this has only been done in some simple cases, although preliminary results such as~\cite{lh:canonicity} are promising.
+There are also other potential ways to introduce univalence and function extensionality into a type theory, such as having a sufficiently powerful notion of ``higher quotients'' or ``higher inductive-recursive types''.
+
+The simple conclusions in \PMlinkname{\S 2.12}{212coproducts} to \PMlinkname{\S 2.13}{213naturalnumbers} such as ``$\inl$ and $\inr$ are injective and disjoint'' are well-known in type theory, and the construction of the function \encode is the usual way to prove them.
+The more refined approach we have described, which characterizes the entire identity type of a positive type (up to equivalence), is a more recent development; see e.g.~\cite{ls:pi1s1}.
+
+\index{axiom!of choice!type-theoretic}%
+The type-theoretic axiom of choice~\PMlinkname{(2.15.6)}{215universalproperties#S0.E4} was noticed in William Howard's original paper~\cite{howard:pat} on the propositions-as-types correspondence, and was studied further by Martin-L\"of with the introduction of his dependent type theory.  It is mentioned as a ``distributivity law'' in Bourbaki's set theory \cite{Bourbaki}.\index{Bourbaki}%
+
+For a more comprehensive (and formalized) discussion of pullbacks and more general homotopy limits in homotopy type theory, see~\cite{AKL13}.
+Limits of diagrams over directed graphs are the easiest general sort of limit to formalize; the problem with diagrams over categories (or more generally $(\infty,1)$-categories)
+\index{.infinity1-category@$(\infty,1)$-category}%
+\indexsee{category!.infinity1-@$(\infty,1)$-}{$(\infty,1)$-category}%
+is that in general, infinitely many coherence conditions are involved in the notion of (homotopy coherent) diagram.\index{diagram}
+Resolving this problem is an important open question\index{open!problem} in homotopy type theory.
+
+\begin{thebibliography}{99}
+
+\bibitem{AKL13} {Jeremy Avigad and Krzysztof Kapulkin and Peter LeFanu Lumsdaine}. {Homotopy limits in {C}oq}, {2013}. {\href{http://arxiv.org/abs/1304.0680/}{arXiv:1304.0680}}.
+
+\bibitem{AW} {Steve Awodey and Michael A. Warren}. {Homotopy theoretic models of identity types}. \emph{Mathematical Proceedings of the Cambridge Philosophical Society}, {146}:{45--55} {2009}
+
+\bibitem{bg:type-wkom} {van den Berg,Benno and Garner,Richard}. {Types are weak $\omega$-groupoids}. \emph{Proceedings of the London Mathematical Society}, {102}:{370--394} {2011},Bdsk-Url-1
+
+\bibitem{Bourbaki} {Nicolas Bourbaki}, \emph{{Theory of Sets}}  {Hermann,Paris},{1968}
+
+\bibitem{garner:depprod} {Garner,Richard}. {On the strength of dependent products in the type theory of {M}artin-{L}\"of}. \emph{Annals of Pure and Applied Logic}, {160}:{1--12} {2009},Bdsk-Url-1
+
+\bibitem{howard:pat} {Howard,William A.}. {The formulae-as-types notion of construction}. In \emph{To H.B. Curry: Essays on Combinatory Logic,Lambda Calculus and Formalism},pages {479--490}. {Academic Press}, {1980}.
+
+\bibitem{hs:gpd-typethy} {Hofmann,Martin and Streicher,Thomas}. {The groupoid interpretation of type theory}. In \emph{Twenty-five years of constructive type theory ({V}enice,1995)},volume 36 of {Oxford Logic Guides}, pages {83--111}. {Oxford University Press}, 1998.
+
+\bibitem{klv:ssetmodel} {Chris Kapulkin and Peter LeFanu Lumsdaine and Vladimir Voevodsky}. {The Simplicial Model of Univalent Foundations}, 2012. {\href{http://arxiv.org/abs/1211.2851/}{arXiv:1211.2851}}.
+
+\bibitem{lh:canonicity} {Licata,Daniel R. and Harper,Robert}. {Canonicity for 2-dimensional type theory}. In emph{Proceedings of the 39th annual ACM SIGPLAN-SIGACT symposium on Principles of programming languages}, pages {337--348}{ACM}, .
+
+\bibitem{lh:canonicity} {Licata,Daniel R. and Harper,Robert}. {Canonicity for 2-dimensional type theory}. In emph{Proceedings of the 39th annual ACM SIGPLAN-SIGACT symposium on Principles of programming languages}, pages {337--348}{ACM}, .
+
+\bibitem{ls:pi1s1} {Daniel R. Licata and Michael Shulman}. {Calculating the Fundamental Group of the Circle in Homotopy Type Theory}. In emph{LICS 2013: Proceedings of the Twenty-Eighth Annual ACM/IEEE Symposium on Logic in Computer Science}, .
+
+\bibitem{Martin-Lof-1972} {Martin-L{\"o}f,Per}. {An intuitionistic theory of types}. In \emph{Twenty-five years of constructive type theory ({V}enice,1995)},volume 36 of {Oxford Logic Guides}, pages {127--172}. {Oxford University Press}, 1998.
+
+\bibitem{mw:thesis} {Michael A. Warren}. \emph{Homotopy Theoretic Aspects of Constructive Type Theory}. PhD thesis, {Carnegie Mellon University}, {2008}.
+
+\bibitem{pll:wkom-type} {Lumsdaine,Peter Le{F}anu}. {Weak omega-categories from intensional type theory}. \emph{Typed lambda calculi and applications}, {6}:{1--19} {2010},Bdsk-Url-1
+
+\bibitem{PM2} {Whitehead,Alfred North and Russell,Bertrand}, \emph{{Principia mathematica,3 vol.s}}  {Cambridge University Press},{1910--1913; Second edition,1925--1927}
+
+\end{thebibliography}
+
+\end{document}

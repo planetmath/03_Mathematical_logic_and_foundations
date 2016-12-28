@@ -1,0 +1,219 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ConstructionOfBanachLimitUsingLimitAlongAnUltrafilter}
+\pmcreated{2013-03-22 15:32:29}
+\pmmodified{2013-03-22 15:32:29}
+\pmowner{kompik}{10588}
+\pmmodifier{kompik}{10588}
+\pmtitle{construction of Banach limit using limit along an ultrafilter}
+\pmrecord{8}{37437}
+\pmprivacy{1}
+\pmauthor{kompik}{10588}
+\pmtype{Application}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E99}
+\pmclassification{msc}{40A05}
+\pmrelated{BanachLimit}
+
+% this is the default PlanetMath preamble. as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newcommand{\sR}[0]{\mathbb{R}}
+\newcommand{\sC}[0]{\mathbb{C}}
+\newcommand{\sN}[0]{\mathbb{N}}
+\newcommand{\sZ}[0]{\mathbb{Z}}
+\newcommand{\N}[0]{\mathbb{N}}
+
+
+\usepackage{bbm}
+\newcommand{\Z}{\mathbbmss{Z}}
+\newcommand{\C}{\mathbbmss{C}}
+\newcommand{\R}{\mathbbmss{R}}
+\newcommand{\Q}{\mathbbmss{Q}}
+
+
+
+\newcommand*{\norm}[1]{\lVert #1 \rVert}
+\newcommand*{\abs}[1]{| #1 |}
+
+\newcommand{\Map}[3]{#1:#2\to#3}
+\newcommand{\Emb}[3]{#1:#2\hookrightarrow#3}
+\newcommand{\Mor}[3]{#2\overset{#1}\to#3}
+
+\newcommand{\Cat}[1]{\mathcal{#1}}
+\newcommand{\Kat}[1]{\mathbf{#1}}
+\newcommand{\Func}[3]{\Map{#1}{\Cat{#2}}{\Cat{#3}}}
+\newcommand{\Funk}[3]{\Map{#1}{\Kat{#2}}{\Kat{#3}}}
+
+\newcommand{\intrv}[2]{\langle #1,#2 \rangle}
+
+\newcommand{\vp}{\varphi}
+\newcommand{\ve}{\varepsilon}
+
+\newcommand{\Invimg}[2]{\inv{#1}(#2)}
+\newcommand{\Img}[2]{#1[#2]}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\limti}[1]{\lim\limits_{#1\to\infty}}
+
+\newcommand{\Ra}{\Rightarrow}
+
+%fonts
+\newcommand{\mc}{\mathcal}
+
+%shortcuts
+\newcommand{\Ob}{\mathrm{Ob}}
+\newcommand{\Hom}{\mathrm{hom}}
+\newcommand{\homs}[2]{\mathrm{hom(}{#1},{#2}\mathrm )}
+\newcommand{\Eq}{\mathrm{Eq}}
+\newcommand{\Coeq}{\mathrm{Coeq}}
+
+%theorems
+\newtheorem{THM}{Theorem}
+\newtheorem{DEF}{Definition}
+\newtheorem{PROP}{Proposition}
+\newtheorem{LM}{Lemma}
+\newtheorem{COR}{Corollary}
+\newtheorem{EXA}{Example}
+
+%categories
+\newcommand{\Top}{\Kat{Top}}
+\newcommand{\Haus}{\Kat{Haus}}
+\newcommand{\Set}{\Kat{Set}}
+
+%diagrams
+\newcommand{\UnimorCD}[6]{
+\xymatrix{ {#1} \ar[r]^{#2} \ar[rd]_{#4}& {#3} \ar@{-->}[d]^{#5} \\
+& {#6} } }
+
+\newcommand{\RovnostrCD}[6]{
+\xymatrix@C=10pt@R=17pt{
+& {#1} \ar[ld]_{#2} \ar[rd]^{#3} \\
+{#4} \ar[rr]_{#5} && {#6} } }
+
+\newcommand{\RovnostrCDii}[6]{
+\xymatrix@C=10pt@R=17pt{
+{#1} \ar[rr]^{#2} \ar[rd]_{#4}&& {#3} \ar[ld]^{#5} \\
+& {#6} } }
+
+\newcommand{\RovnostrCDiiop}[6]{
+\xymatrix@C=10pt@R=17pt{
+{#1}  && {#3} \ar[ll]_{#2}  \\
+& {#6} \ar[lu]^{#4} \ar[ru]_{#5} } }
+
+\newcommand{\StvorecCD}[8]{
+\xymatrix{
+{#1} \ar[r]^{#2} \ar[d]_{#4} & {#3} \ar[d]^{#5} \\
+{#6} \ar[r]_{#7} & {#8}
+}
+}
+
+\newcommand{\TriangCD}[6]{
+\xymatrix{ {#1} \ar[r]^{#2} \ar[rd]_{#4}&
+{#3} \ar[d]^{#5} \\
+& {#6} } }
+
+\newcommand{\F}{\mc F}
+\newcommand{\Flim}{\operatorname{\F\text{-}\lim}}
+\begin{document}
+\section*{Construction of Banach limit using limit along an ultrafilter}
+
+The existence of Banach limit is proved in mathematical analysis
+usually by Hahn-Banach theorem. (This proof can be found e.g.~in
+\cite{swartz}, \cite{costarapopa} or \cite{morisson}.) Here we
+will show another approach using limit along a filter. In fact we
+define it as an $\F$-limit of $(y_n)$, where $(y_n)$ is the
+Ces\`aro mean of the sequence $(x_n)$ and $\F$ is an arbitrary
+ultrafilter on $\N$.
+
+\begin{THM}
+Let $\F$ be a free ultrafilter on $\N$. Let $(x_n)$ be a \PMlinkname{bounded}{Bounded} real
+sequence. Then the functional $\Map\vp{\ell_\infty}{\R}$
+$$\vp(x_n)=\Flim \frac{x_1+\ldots+x_n}n$$
+is a Banach limit.
+\end{THM}
+
+\begin{proof}
+We first observe that $\vp$ is defined. Let us denote
+$y_n:=\frac{x_1+\ldots+x_n}n$. Since $(x_n)$ is bounded, the
+sequence $(y_n)$ is bounded as well. Every bounded sequence has a
+limit along any ultrafilter. This means, that $\vp(x_n)=\Flim y_n$
+exists.
+
+To prove that $\vp$ is a Banach limit, we should verify its
+continuity, positivity, linearity, shift-invariance and to verify
+that it extends limits.
+
+We first show the shift-invariance. By $Sx$ we denote the sequence
+$x_{n+1}$ and we want to show $\vp(Sx)=\vp(x)$. We observe that
+$\frac{x_1+\ldots+x_n}n - \frac{(Sx)_1+\ldots+(Sx)_n}n =
+\frac{x_1+\ldots+x_n}n - \frac{x_2+\ldots+x_{n+1}}n=
+\frac{x_1-x_{n+1}}n$. As the sequence $(x_n)$ is bounded, the last
+expression converges to 0. Thus $\vp(x)-\vp(Sx)=\Flim
+\frac{x_1-x_{n+1}}n =0$ and $\vp(x)=\vp(Sx)$.
+
+The rest of the proof is relatively easy, we only need to use the
+basic properties of a limit along a filter and of Ces\`aro mean.
+
+Continuity: $\norm x \leq 1$ $\Ra$ $\abs{x_n}\leq 1$ $\Ra$
+$\abs{y_n} \leq 1$ $\Ra$ $\abs{\vp(x)}\leq 1$.
+
+Positivity and linearity follow from positivity and linearity of
+$\F$-limit.
+
+Extends limit: If $(x_n)$ is a convergent sequence, then its
+Ces\`aro mean $(y_n)$ is convergent to the same limit.
+\end{proof}
+
+\begin{thebibliography}{1}
+
+\bibitem{balste}
+B.~Balcar and P.~{\v{S}}t\v{e}p\'anek, \emph{Teorie mno\v{z}in},
+Academia,
+  Praha, 1986 (Czech).
+
+\bibitem{costarapopa}
+C.~Costara and D.~Popa, \emph{Exercises in functional analysis},
+Kluwer,
+  Dordrecht, 2003.
+
+\bibitem{hrjech}
+K.~Hrbacek and T.~Jech, \emph{{Introduction to set theory}},
+{Marcel Dekker},
+  New York, 1999.
+
+\bibitem{morisson}
+T.~J. Morisson, \emph{Functional analysis: An introduction to
+{B}anach space
+  theory}, Wiley, 2000.
+
+\bibitem{swartz}
+Ch. Swartz, \emph{An introduction to functional analysis}, Marcel
+Dekker, New
+  York, 1992.
+
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PrimitiveRecursiveVectorvaluedFunction}
+\pmcreated{2013-03-22 19:06:38}
+\pmmodified{2013-03-22 19:06:38}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{primitive recursive vector-valued function}
+\pmrecord{9}{42003}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Recall that a primitive recursive function is an operation on $\mathbb{N}$, the set of all natural numbers ($0$ included here).  In other words, it is a mapping into the set $\mathbb{N}$, mimicking a computation whose outcome has only one value.  However, it is possible to extend this notion, so that a computation yields an outcome with several values simultaneously (imagine a URM where the contents of the output are found in first $n$ tape cells).  This is equivalent to a mapping $\mathbb{N}^m \to \mathbb{N}^n$ (provided with $m$ inputs).
+
+For this entry, $\mathcal{S}:=\lbrace f:\mathbb{N}^m \to \mathbb{N} \mid \mbox{ any } m\ge 1\rbrace$, $\mathcal{V}:=\lbrace f: \mathbb{N}^m \to \mathbb{N}^n \mid \mbox{ any } m,n\ge 1\rbrace$, and for specific $m,n\ge 1$, we set $\mathcal{V}(m,n):=\lbrace f: \mathbb{N}^m \to \mathbb{N}^n \rbrace$.
+
+\textbf{Definition}.  A function $f\in \mathcal{V}$ is \emph{primitive recursive} iff each of its components is.  In other words, if $f=(f_1,\ldots, f_n)$, where each $f_i: \mathbb{N}^m \to \mathbb{N}$, then $f$ is primitive recursive if each $f_i$ is (in the traditional sense).
+
+It is evident that primitive recursiveness in this generalized version is closed under composition: if $f\in \mathcal{V}(m,n)$ and $g\in \mathcal{V}(n,p)$ are primitive recursive, then so is $g\circ f$.
+
+In addition, it is also closed under iterated composition:
+\begin{prop}  If $f \in \mathcal{V}(n,n)$ is primitive recursive, then so is the function $g\in \mathcal{V}(n+1,n)$ such that
+$$g(\boldsymbol{x},0) = \boldsymbol{x} \qquad \mbox{and} \qquad g(\boldsymbol{x},n) = f^n(\boldsymbol{x}).$$
+\end{prop}
+The technique of mutual recursion is used to prove this fact.
+\begin{proof}
+Suppose $f=(f_1,\ldots,f_n)$ with each $f_i\in \mathcal{V}(n,1)$, and $g=(g_1,\ldots, g_n)$ with each $g_i \in \mathcal{V}(n+1,1)$.  Then $$f^n(\boldsymbol{x})=(g_1(\boldsymbol{x},n),\ldots, g_n(\boldsymbol{x},n)).$$  
+From this we compute
+\begin{eqnarray*}
+&& (g_1(\boldsymbol{x},n+1),\ldots, g_n(\boldsymbol{x},n+1)) \\ &=& f^{n+1}(
+\boldsymbol{x})=f(f^n(\boldsymbol{x})) \\ &=& (f_1(g_1(\boldsymbol{x},n),\ldots, g_n(\boldsymbol{x},n)), \ldots, f_n(g_1(\boldsymbol{x},n),\ldots, g_n(\boldsymbol{x},n))).
+\end{eqnarray*}
+So $g_i(\boldsymbol{x},n+1)=f_i(g_1(\boldsymbol{x},n),\ldots, g_n(\boldsymbol{x},n))$.  This shows that the functions $g_i$ are defined by mutual recursion via the functions $f_i$ and the identity function $p_1^1$.  Since each of the $f_i$ is primitive recursive, so is each of the $g_i$, and hence so is $g$.
+\end{proof}
+
+\textbf{Example}.  We give an alternative proof that the function $F(n)$ denoting the $n$-th Fibonacci number is primitive recursive.
+
+Let $$f(x,y)=\begin{bmatrix}x & y \end{bmatrix}\begin{bmatrix}
+    0 & 1 \\
+    1 & 1 
+  \end{bmatrix} = (x,x+y).$$
+Clearly, $f$ is primitive recursive.  Now define $g(x,y,n)$ such that $g(x,y,0)=(x,y)$ and $g(x,y,n)=f^n(x,y)$.  By what we have just shown, $g$ is primitive recursive too.  Since $$\begin{bmatrix}
+    0 & 1 \\
+    1 & 1 
+  \end{bmatrix}^n = \begin{bmatrix}
+    F(n-1) & F(n) \\
+    F(n) & F(n+1)
+  \end{bmatrix}$$
+for any $n > 1$, we see that $$g(x,y,n)=\begin{bmatrix}x & y \end{bmatrix}\begin{bmatrix}
+    F(n-1) & F(n) \\
+    F(n) & F(n+1) 
+  \end{bmatrix} = (xF(n-1)+yF(n),xF(n)+yF(n+1)).$$
+Therefore, the function $h(x,y,n)=xF(n)+yF(n+1)$ is primitive recursive, and hence $F(n)= h(1,0,n)$ is primitive recursive also.
+
+The example above is but a more general phenomenon: the operation of matrix multiplication is primitive recursive.  To see what this means, we define:
+
+\textbf{Definition}.  Let $M(\boldsymbol{x})$ be an $m\times n$ matrix whose cells $M_{ij}(\boldsymbol{x})\in \mathcal{V}(k,1)$.  We say that $M(\boldsymbol{x})$ is \emph{primitive recursive} if each of its cells is primitive recursive.
+
+If $M(\boldsymbol{x})$ and $N(\boldsymbol{x})$ are $m\times n$ and $n\times p$ primitive recursive matrices, then clearly so is their product $M(\boldsymbol{x}) N(\boldsymbol{x})$, for each of its cell is just a finite sum of products of primitive recursive functions.  More over, we have the follow:
+
+\begin{prop} If $M(\boldsymbol{x})$ is an $m\times m$ primitive recursive matrix, so is its $n$-fold power $M(\boldsymbol{x})^n$, where each cell is a function of $\boldsymbol{x}$ and $n$. \end{prop}
+\begin{proof}  We employ the same trick given in the example.  Define, for any $\boldsymbol{y}\in \mathbb{N}^m$, the function $f(\boldsymbol{x},\boldsymbol{y}) := \boldsymbol{y}M(\boldsymbol{x})$, where the right hand side is product of the matrices $\boldsymbol{y}$ (considered as a $1\times m$ matrix) and $M(\boldsymbol{x})$.  So $f$ is primitive recursive because $M$ is.  Next, define $g(\boldsymbol{x},\boldsymbol{y},n)$ such that $g(\boldsymbol{x},\boldsymbol{y},0)=(\boldsymbol{x},\boldsymbol{y})$, and $g(\boldsymbol{x},\boldsymbol{y},n)=f^n(\boldsymbol{x},\boldsymbol{y})$.  Then $g$ is primitive recursive by proposition 1 above.  But then $g(\boldsymbol{x},\boldsymbol{y},n)$ is just $\boldsymbol{y}M(\boldsymbol{x})^n$.  Applying $\boldsymbol{y}=(1,0,\ldots,0)$ to $g$, we get $g(\boldsymbol{x},1,\ldots,0,n)$, which is just the first row of $M(\boldsymbol{x})^n$, and is clearly primitive recursive.  By the same token, the other rows are primitive recursive too, completing the proof.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

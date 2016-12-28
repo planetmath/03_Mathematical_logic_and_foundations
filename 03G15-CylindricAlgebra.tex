@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CylindricAlgebra}
+\pmcreated{2013-03-22 17:51:21}
+\pmmodified{2013-03-22 17:51:21}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{cylindric algebra}
+\pmrecord{10}{40331}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G15}
+\pmclassification{msc}{06E25}
+\pmrelated{PolyadicAlgebra}
+\pmrelated{PolyadicAlgebraWithEquality}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A \emph{cylindric algebra} is a quadruple $(B,V,\exists,d)$, where $B$ is a Boolean algebra, $V$ is a set whose elements we call \emph{variables}, $\exists$ and $d$ are functions
+$$\exists:V\to B^B\qquad \mbox{ and } \qquad d:V\times V\to B$$
+such that
+\begin{enumerate}
+\item $(B,\exists x)$ is a monadic algebra for each $x\in V$,
+\item $\exists x\circ \exists y = \exists y\circ \exists x$ for any $x,y\in V$,
+\item $d_{xx}=1$ for all $x\in V$,
+\item for any $x,y\in V$ with $x\ne y$, and any $a \in B$, we have the equality $$\exists x(a\wedge d_{xy})\wedge \exists x\big(a'\wedge d_{xy}\big)=0$$
+\item for any $x,y,z\in V$ with $x\ne y$ and $x\ne z$, we have the equality $$\exists x (d_{xy}\wedge d_{xz})=d_{yz}.$$
+\end{enumerate}
+where $\exists x$ and $d_{xy}$ are the abbreviations for $\exists(x)$ and $d(x,y)$ respectively.
+
+Basically, the first two conditions say that the $(B,V,\exists)$ portion of the cylindric algebra is very similar to a quantifier algebra, except the domain is no longer the subsets of $V$, but the elements of $V$ instead.  The function $d$ is the algebraic abstraction of equality.  Condition 3 says that $x=x$ is always true, condition 4 says that the proposition $a$ and its complement $a'$, where any occurrences of the variable $x$ are replaced by the variable $y$, distinct from $x$, is always false, while condition 5 says $y=z$ iff there is an $x$ such that $x=y$ and $x=z$.
+
+Below are some elementary properties of $d$:
+\begin{itemize}
+\item (symmetric property) $d_{xy}=d_{yx}$
+\item (transitive property) $d_{xy}\wedge d_{yz}\le d_{xz}$
+\item $\exists x(d_{xy})=1$
+\item $\exists x(d_{yz})=d_{yz}$ provided that $x\notin \lbrace y,z\rbrace$
+\item if $x\ne y$, then
+\begin{enumerate}
+\item $\exists x(d_{xy}\wedge a')= (\exists x(d_{xy}\wedge a))'$,
+\item $d_{xy} \wedge a =d_{xy} \wedge \exists x(a\wedge d_{xy})$.
+\end{enumerate}
+\end{itemize}
+
+\textbf{Remarks}
+\begin{enumerate}
+\item The \emph{dimension} of a cylindric algebra $(B,V,\exists,d)$ is the cardinality of $V$.
+\item From the definition above, a cylindric algebra is a two-sorted structure, with $B$ and $V$ as the two distinct universes.  However, it is often useful to view a cylindric algebra as a one-sorted structure.  The way to do this is to dispense with $V$ and identify each $\exists x$ as a unary operator on $B$, and each $d_{xy}$ as a constant in $B$.  As a result, the cylindric algebra $(B,V,\exists,d)$ becomes a Boolean algebra with possibly infinitely many operators: $$(B,\exists x,d_{xy})_{x,y\in V}.$$
+\item Let $L$ be a the language of a first order logic, and $S$ a set of sentences in $L$.  Define $\equiv$ on $L$ so that $$\varphi \equiv \psi\quad \mbox{ iff }\quad S \vdash (\varphi\leftrightarrow \psi).$$  Then $\equiv$ is an equivalence relation on $L$.  For each formula $\varphi\in L$, let $[\varphi]$ be the equivalence class containing $\varphi$.  Let $V$ be a countably infinite set of variables available to $L$.  Now, define operations $\vee,\wedge,',\exists x,d_{xy}$ as follows:
+\begin{center}
+\begin{eqnarray}
+[\varphi] \vee [\psi] &:=& [\varphi \vee \psi], \\ 
+\left[ \varphi \right] \wedge [\psi] &:=& [\varphi \wedge \psi], \\ 
+\left[ \varphi \right]' &:=& [\neg \varphi], \\ 
+0 &:=& [\neg  x=x], \\ 
+1 &:=& [x=x], \\
+\exists x[\varphi] &:=& [\exists x \varphi], \\
+d_{xy} &:=& [x=y].
+\end{eqnarray}
+\end{center}
+Then it can be shown that $(L/\equiv, V,\exists,d)$ is a cylindric algebra.  Thus a cylindric algebra can be thought of as an ``algebraization'' of first order logic (with equality), much the same way as a Boolean algebra (Lindenbaum-Tarski algebra) as the algebraic counterpart of propositional logic.
+\end{enumerate}
+
+\begin{thebibliography}{8}
+\bibitem{ph} P. Halmos, \emph{Algebraic Logic}, Chelsea Publishing Co. New York (1962).
+\bibitem{hmt} L. Henkin, J. D. Monk, A. Tarski, \emph{Cylindric Algebras, Part I.}, North-Holland, Amsterdam (1971).
+\bibitem{dm} J. D. Monk, \emph{Mathematical Logic}, Springer, New York (1976).
+\bibitem{bp} B. Plotkin, \emph{Universal Algebra, Algebraic Logic, and Databases}, Kluwer Academic Publishers (1994).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

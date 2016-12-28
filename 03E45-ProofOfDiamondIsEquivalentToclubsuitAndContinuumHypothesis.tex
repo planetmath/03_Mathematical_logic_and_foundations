@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofOfDiamondIsEquivalentToclubsuitAndContinuumHypothesis}
+\pmcreated{2013-03-22 12:53:57}
+\pmmodified{2013-03-22 12:53:57}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{proof of $\Diamond$ is equivalent to $\clubsuit$ and continuum hypothesis}
+\pmrecord{6}{33248}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E45}
+\pmsynonym{proof that diamond is equivalent to club and continuum hypothesis}{ProofOfDiamondIsEquivalentToclubsuitAndContinuumHypothesis}
+\pmrelated{Diamond}
+\pmrelated{Clubsuit}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+The proof that $\Diamond_S$ implies both $\clubsuit_S$ and that for every $\lambda<\kappa$, $2^\lambda\leq\kappa$ are given in the entries for $\Diamond_S$ and $\clubsuit_S$.
+
+Let $A=\langle A_\alpha\rangle_{\alpha\in S}$ be a sequence which satisfies $\clubsuit_S$.
+
+Since there are only $\kappa$ bounded subsets of $\kappa$, there is a surjective function $f:\kappa\rightarrow \operatorname{Bounded}(\kappa)\times\kappa$ where $\operatorname{Bounded}(\kappa)$ is the bounded subsets of $\kappa$.  Define a sequence $B=\langle B_\alpha\rangle_{\alpha<\kappa}$ by $B_\alpha=f(\alpha)$ if  $sup(B_\alpha)<\alpha$ and $\emptyset$ otherwise.  Since the set of $(B_\alpha,\lambda)\in \operatorname{Bounded}(\kappa)\times\kappa$ such that $B_\alpha=T$ is unbounded for any bounded subset $T$, it follow that every bounded subset of $\kappa$ occurs $\kappa$ times in $B$.
+
+We can define a new sequence, $D=\langle D_\alpha\rangle_{\alpha\in S}$ such that $x\in D_\alpha\leftrightarrow x\in B_\beta$ for some $\beta\in A_\alpha$.  We can show that $D$ satisfies $\Diamond_S$.
+
+First, for any $\alpha$, $x\in D_\alpha$ means that $x\in B_\beta$ for some $\beta\in A_\alpha$, and since $B_\beta\subseteq\beta\in A_\alpha\subseteq\alpha$, we have $D_\alpha\subseteq\alpha$.
+
+Next take any $T\subseteq\kappa$.  We consider two cases:
+
+\emph{$T$ is bounded}
+
+The set of $\alpha$ such that $T=B_\alpha$ forms an unbounded sequence $T^\prime$, so there is a stationary $S^\prime\subseteq S$ such that $\alpha\in S^\prime\leftrightarrow A_\alpha\subset T^\prime$.  For each such $\alpha$, $x\in D_\alpha\leftrightarrow x\in B_i$ for some $i\in A_\alpha\subset T^\prime$.  But each such $B_i$ is equal to $T$, so $D_\alpha=T$.
+
+\emph{$T$ is unbounded}
+
+We define a function $j:\kappa\rightarrow\kappa$ as follows:
+
+\begin{itemize}
+\item $j(0)=0$
+
+\item To find $j(\alpha)$, take $X\cap \{j(\beta)\mid\beta<\alpha\}$.  This is a bounded subset of $\kappa$, so is equal to an unbounded series of elements of $B$.  Take $j(\alpha)=\gamma$, where $\gamma$ is the least number greater than  any element of $\{\alpha\}\cup\{j(\beta)\mid\beta<\alpha\}$ such that $B_\gamma=X\cap \{j(\beta)\mid\beta<\alpha\}$.
+
+\end{itemize}
+
+Let $T^\prime=\operatorname{range}(j)$.  This is obviously unbounded, and so there is a stationary $S^\prime\subseteq S$ such that $\alpha\in S^\prime\leftrightarrow A_\alpha\subseteq T^\prime$.
+
+Next, consider $C$, the set of ordinals less than $\kappa$ closed under $j$.  Clearly it is unbounded, since if $\lambda<\kappa$ then $j(\lambda)$ includes $j(\alpha)$ for $\alpha<\lambda$, and so induction gives an ordinal greater than $\lambda$ closed under $j$ (essentially the result of applying $j$ an infinite number of times).  Also, $C$ is closed: take any $c\subseteq C$ and suppose $\operatorname{sup}(c\cap\alpha)=\alpha$.  Then for any $\beta<\alpha$, there is some $\gamma\in c$ such that $\beta<\gamma<\alpha$ and therefore $j(\beta)<\gamma$.  So $\alpha$ is closed under $j$, and therefore contained in $C$.
+
+Since $C$ is a club, $C^\prime=C\cap S^\prime$ is stationary.  Suppose $\alpha\in C^\prime$.  Then $x\in D_\alpha\leftrightarrow x\in B_\beta$ where $\beta\in A_\alpha$.  Since $\alpha\in S^\prime$, $\beta\in\operatorname{range}(j)$, and therefore $B_\beta\subseteq T$.  Next take any $x\in T\cap\alpha$.  Since $\alpha\in C$, it is closed under $j$, hence there is some $\gamma\in\alpha$ such that $j(x)\in\gamma$.  Since $\operatorname{sup}(A_\alpha)=\alpha$, there is some $\eta\in A_\alpha$ such that $\gamma<\eta$, so $j(x)\in\eta$.  Since $\eta\in A_\alpha$, $B_\eta\subseteq D_\alpha$, and since $\eta\in\operatorname{range}(j)$, $j(\delta)\in B_\eta$ for any $\delta<j^{-1}(\eta)$, and in particular $x\in B_\eta$.  Since we showed above that $D_\alpha\subseteq\alpha$, we have $D_\alpha=T\cap\alpha$ for any $\alpha\in C^\prime$.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofOfPartialOrderWithChainConditionDoesNotCollapseCardinals}
+\pmcreated{2013-03-22 12:53:43}
+\pmmodified{2013-03-22 12:53:43}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{proof of partial order with chain condition does not collapse cardinals}
+\pmrecord{4}{33243}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E35}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+\emph{Outline:}
+
+Given any function $f$ purporting to violate the theorem by being surjective (or cofinal) on $\lambda$, we show that there are fewer than $\kappa$ possible values of $f(\alpha)$, and therefore only $\max(\alpha,\kappa)$ possible elements in the entire range of $f$, so $f$ is not surjective (or cofinal).
+
+\emph{Details:}
+
+Suppose $\lambda>\kappa$ is a cardinal of $\mathfrak{M}$ that is not a cardinal in $\mathfrak{M}[G]$.  
+
+There is some function $f\in\mathfrak{M}[G]$ and some cardinal $\alpha<\lambda$ such that $f:\alpha\rightarrow\lambda$ is surjective.  This has a name, $\hat{f}$.  For each $\beta<\alpha$, consider 
+$$F_\beta=\{\gamma<\lambda\mid p\Vdash \hat{f}(\beta)=\gamma\}\text{ for some }p\in P$$
+
+$|F_\beta|<\kappa$, since any two $p\in P$ which force different values for $\hat{f}(\beta)$ are incompatible and $P$ has no sets of incompatible elements of size $\kappa$.
+
+Notice that $F_\beta$ is definable in $\mathfrak{M}$.  Then the range of $f$ must be contained in $F=\bigcup_{i<\alpha} F_i$.  But $|F|\leq\alpha\cdot\kappa=\max(\alpha,\kappa)<\lambda$.  So $f$ cannot possibly be surjective, and therefore $\lambda$ is not collapsed.
+
+Now suppose that for some $\alpha\geq\lambda>\kappa$, $\operatorname{cf}(\alpha)=\lambda$ in $\mathfrak{M}$ and for some $\eta<\lambda$ there is a cofinal function $f:\eta\rightarrow\alpha$.
+
+We can construct $F_\beta$ as above, and again the range of $f$ is contained in $F=\bigcup_{i<\eta} F_i$.  But then $|\operatorname{range}(f)|\leq|F|\leq\eta\cdot\kappa<\lambda$.  So there is some $\gamma<\alpha$ such that $f(\beta)<\gamma$ for any $\beta<\eta$, and therefore $f$ is not cofinal in $\alpha$.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfBijections}
+\pmcreated{2013-03-22 18:50:41}
+\pmmodified{2013-03-22 18:50:41}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of bijections}
+\pmrecord{6}{41650}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-00}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $A,B,C,D$ be sets.  We write $A\sim B$ when there is a bijection from $A$ to $B$.  Below are some properties of bijections.
+
+\begin{enumerate}
+\item $A\sim A$.  The identity function is the bijection from $A$ to $A$.
+\item If $A\sim B$, then $B\sim A$.  If $f:A\to B$ is a bijection, then its inverse function $f^{-1}:B\to A$ is also a bijection.
+\item If $A\sim B$, $B\sim C$, then $A\sim C$.  If $f:A\to B$ and $g:B\to C$ are bijections, so is the composition $g\circ f:A\to C$.
+\item If $A\sim B$, $C\sim D$, and $A\cap C=B\cap D=\varnothing$, then $A\cup B\sim C\cup D$.  
+\begin{proof}
+If $f:A\to B$ and $g:C\to D$ are bijections, so is $h:A\cup C\to B\cup D$, defined by 
+\begin{displaymath}
+h(x)= \left\{
+\begin{array}{ll}
+f(x) \quad \mbox{ if }x\in A,\\
+g(x) \quad \mbox{ if }x\in C.
+\end{array}
+\right.
+\end{displaymath}
+Since $A\cap C=\varnothing$, $h$ is a well-defined function.  $h$ is onto since both $f$ and $g$ are.  Since $f,g$ are one-to-one, and $B\cap D=\varnothing$, $h$ is also one-to-one.
+\end{proof}
+\item If $A\sim B$, $C\sim D$, then $A\times C\sim B\times D$.  If $f:A\to B$ and $g:C\to D$ are bijections, so is $h:A\times C\to B\times D$, given by $h(x,y)=(f(x),g(y))$.
+\item $A\times B\sim B\times A$.  The function $f:A\times B\to B\times A$ given by $f(x,y)=(y,x)$ is a bijection.
+\item If $A\sim B$ and $C\sim D$, then $A^C\sim B^D$.
+\begin{proof}  Suppose $\phi:A\to B$ and $\sigma:C\to D$ are bijections.  Define $F:A^C\to B^D$ as follows: for any function $f:A\to C$, let $F(f)= \sigma \circ f \circ \phi^{-1}: B\to D$.  $F$ is a well-defined function.  It is one-to-one because $\sigma$ and $\phi$ are bijections (hence are cancellable).  For any $g:B\to D$, it is easy to see that $F(\sigma^{-1} \circ g \circ \phi)=g$, so that $F$ is onto.  Therefore $F$ is a bijection from $A^C$ to $B^D$.
+\end{proof}
+\item Continuing from property 8, using the bijection $F$, we have $\operatorname{Mono}(A,B)\sim \operatorname{Mono}(C,D)$, $\operatorname{Epi}(A,B)\sim \operatorname{Epi}(C,D)$, and $\operatorname{Iso}(A,B)\sim \operatorname{Iso}(C,D)$, where $\operatorname{Mono}(A,B)$, $\operatorname{Epi}(A,B)$, and $\operatorname{Iso}(A,B)$ are the sets of injections, surjections, and bijections from $A$ to $B$.
+\item $P(A)\sim 2^A$, where $P(A)$ is the powerset of $A$, and $2^A$ is the set of all functions from $A$ to $2=\lbrace 0,1\rbrace$.
+\begin{proof}  For every $B\subseteq A$, define $\varphi_B:A \to 2$ by 
+\begin{displaymath}
+\varphi_B(x) = \left\{
+\begin{array}{ll}
+1 \quad \mbox{ if }x\in B,\\
+0 \quad \mbox{ otherwise}.
+\end{array}
+\right.
+\end{displaymath}
+Then $\varphi: P(A)\to 2^A$, defined by $\varphi(B)=\varphi_B$ is a well-defined function.  It is one-to-one: if $\varphi_B=\varphi_C$ for $B,C\subseteq A$, then $x\in B$ iff $x\in C$, so $B=C$.  It is onto: suppose $f:A\to 2$, then by setting $B=\lbrace x\in A\mid f(x)=1\rbrace$, we see that $\varphi_B=f$.  As a result, $\varphi$ is a bijection.
+\end{proof}
+\end{enumerate}
+
+\textbf{Remark}.  As a result of property 9, we sometimes denote $2^A$ the powerset of $A$.
+%%%%%
+%%%%%
+\end{document}

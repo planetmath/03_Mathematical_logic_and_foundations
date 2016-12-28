@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfInjectiveFunctions}
+\pmcreated{2013-03-22 16:40:20}
+\pmmodified{2013-03-22 16:40:20}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{properties of injective functions}
+\pmrecord{22}{38879}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmclassification{msc}{03E99}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\begin{theorem}
+Suppose $A,B,C$ are sets and $f\colon A\to B$, $g\colon B\to C$
+are injective functions. Then the composition $g\circ f$ is an injection.
+\end{theorem}
+
+\begin{proof}
+Suppose that $(g \circ f) (x) = (g \circ f) (y)$ for some $x, y \in A$.
+By definition of composition, $g(f(x)) = g(f(y))$.  Since $g$, is 
+assumed injective, $f(x) = f(y)$.  Since $f$ is also assumed injective,
+$x = y$.  Therefore, $(g \circ f) (x) = (g \circ f) (y)$ implies 
+$x=y$, so $g \circ f$ is injective.
+\end{proof}
+
+\begin{theorem}
+Suppose $f\colon A\to B$ is an injection, and $C\subseteq A$. Then
+the restriction  $f|_C \colon C\to B$ is an injection.
+\end{theorem}
+
+\begin{proof}
+Suppose $(f|_C) (x) = (f|_C) (y)$ for some $x,y \in C$. By definition
+of restriction, $f(x) = f(y)$.  Since $f$ is assumed injective this,
+in turn, implies that $x = y$.  Thus, $f|_C$ is also injective.
+\end{proof}
+
+\begin{theorem}
+Suppose $A,B,C$ are sets and that the functions $f\colon A\to B$ and 
+$g\colon B\to C$ are such that $g \circ f$ is injective. Then $f$ is 
+injective.
+\end{theorem}
+
+\begin{proof} ({\em direct proof})
+Let $x, y \in A$ be such that $f(x) = f(y)$. Then $g(f(x)) = g(f(y))$. 
+But as $g \circ f$ is injective, this implies that $x = y$, hence
+$f$ is also injective.
+\end{proof}
+
+\begin{proof} ({\em proof by contradiction})
+Suppose that $f$ were not injective.  Then there would exist $x,y \in A$
+such that $f(x) = f(y)$ but $x \neq y$.  Composing with $g$, we would
+then have $g(f(x)) = g(f(y))$.  However, since $g \circ f$ is assumed
+injective, this would imply that $x = y$, which contradicts a previous
+statement.  Hence $f$ must be injective.
+\end{proof}
+
+\begin{theorem}
+Suppose $f\colon A\to B$ is an injection.  Then, for all $C\subseteq A$, it is the case that
+$f^{-1} (f (C)) = C$.\footnote{In this equation, the symbols ``$f$'' and 
+``$f^{-1}$'' as applied to sets denote the direct image and the inverse 
+image, respectively}
+\end{theorem}
+
+\begin{proof}
+It follows from the definition of $f^{-1}$ that $C \subseteq f^{-1}  
+(f (C))$, whether or not $f$ happens to be injective.  Hence, all that
+need to be shown is that $f^{-1} (f (C)) \subseteq C$.  Assume the
+contrary.  Then there would exist $x \in f^{-1} (f (C))$ such that
+$x \notin C$.  By defintion, $x \in f^{-1} (f (C))$ means $f(x) \in 
+f(C)$, so there exists $y \in A$ such that $f(x) = f(y)$.  Since $f$
+is injective, one would have $x = y$, which is impossible because
+$y$ is supposed to belong to $C$ but $x$ is not supposed to belong to $C$.
+\end{proof}
+
+\begin{theorem}
+Suppose $f\colon A\to B$ is an injection.  Then, for all $C, D\subseteq A$, 
+it is the case that $f(C \cap D) = f(C) \cap f(D)$.
+\end{theorem}
+
+\begin{proof}
+Whether or not $f$ is injective, one has $f(C \cap D) \subseteq f(C) 
+\cap f(D)$; if $x$ belongs to both $C$ and $D$, then $f(x)$ will clearly
+belong to both $f(C)$ and $f(D)$.  Hence, all that needs to be shown is
+that $f(C) \cap f(D) \subseteq f(C \cap D)$.  Let $x$ be an element of
+$B$ which belongs to both $f(C)$ and $f(D)$.  Then, there exists $y \in C$
+such that $f(y) = x$ and $z \in D$ such that $f(z) = x$.  Since $f(y) = 
+f(z)$ and $f$ is injective, $y = z$, so $y \in C \cap D$, hence $x \in
+f(C \cap D)$.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

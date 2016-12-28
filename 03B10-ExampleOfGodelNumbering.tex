@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExampleOfGodelNumbering}
+\pmcreated{2013-03-22 12:58:28}
+\pmmodified{2013-03-22 12:58:28}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{example of G\"odel numbering}
+\pmrecord{7}{33345}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+We can define by recursion a function $e$ from formulas of arithmetic to numbers, and the corresponding G\"odel numbering as the inverse.
+
+The symbols of the language of arithmetic are $=$, $\forall$, $\neg$, $\rightarrow$, $0$, $S$, $<$, $+$, $\cdot$, the variables $v_i$ for any integer $i$, and $($ and $)$.  $($ and $)$ are only used to define the order of operations, and should be inferred where appropriate in the definition below.
+
+We can define a function $e$ by recursion as follows:
+
+\begin{itemize}
+\item $e(v_i)=\langle 0,i\rangle$
+
+\item $e(\phi=\psi)=\langle 1,e(\phi),e(\psi)\rangle$
+
+\item $e(\forall v_i \phi)=\langle 2,e(v_i),e(\phi)\rangle$
+
+\item $e(\neg\phi)=\langle 3,e(\phi)\rangle$
+
+\item $e(\phi\rightarrow\psi)=\langle 4,e(\phi),e(\psi)\rangle$
+
+\item $e(0)=\langle 5\rangle$
+
+\item $e(S\phi)=\langle 6,e(\phi)\rangle$
+
+\item $e(\phi<\psi)=\langle 7,e(\phi),e(\psi)\rangle$
+
+\item $e(\phi+\psi)=\langle 8,e(\phi),e(\psi)\rangle$
+
+\item $e(\phi\cdot\psi)=\langle 9,e(\phi),e(\psi)\rangle$
+\end{itemize}
+
+Clearly $e^{-1}$ is a G\"odel numbering, with $\ulcorner\phi\urcorner=e(\phi)$.
+%%%%%
+%%%%%
+\end{document}

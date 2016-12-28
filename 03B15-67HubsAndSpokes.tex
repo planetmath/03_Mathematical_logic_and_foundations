@@ -1,0 +1,174 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{67HubsAndSpokes}
+\pmcreated{2013-11-20 15:53:14}
+\pmmodified{2013-11-20 15:53:14}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{6.7 Hubs and spokes}
+\pmrecord{7}{87689}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\apdtwofunc}[1]{\ensuremath{\mathsf{apd}^2_{#1}}\xspace}
+\newcommand{\base}{\ensuremath{\mathsf{base}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\defid}{\coloneqq}
+\newcommand{\dpath}[4]{#3 =^{#1}_{#2} #4}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\lloop}{\ensuremath{\mathsf{loop}}\xspace}
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\mapdep}[2]{\ensuremath{\mapdepfunc{#1}\mathopen{}\left(#2\right)\mathclose{}}\xspace}
+\newcommand{\mapdepfunc}[1]{\ensuremath{\mathsf{apd}_{#1}}\xspace} 
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{6.7.\arabic{mathcount}}
+\renewcommand{\thefigure}{6.\arabic{figure}}
+\setcounter{figure}{2}
+\let\ap\map
+\let\apd\mapdep
+\let\autoref\cref
+\let\type\UU
+\makeatother
+\def\coloneqq{:=}
+\begin{document}
+\indexsee{spoke}{hub and spoke}%
+\index{hub and spoke|(defstyle}%
+
+In topology, one usually speaks of building CW complexes by attaching $n$-dimensional discs along their $(n-1)$-dimensional boundary spheres.
+\index{attaching map}%
+However, another way to express this is by gluing in the \emph{cone}\index{cone!of a sphere} on an $(n-1)$-dimensional sphere.
+That is, we regard a disc\index{disc} as consisting of a cone point (or ``hub''), with meridians
+\index{meridian}%
+(or ``spokes'') connecting that point to every point on the boundary, continuously, as shown in \PMlinkname{Figure 6.3}{67hubsandspokes#S0.F3}.
+
+\begin{figure}
+  \centering
+  \includegraphics{HoTT_fig_6.7.1.png}
+%  \begin{tikzpicture}
+%    \draw (0,0) circle (2cm);
+%    \foreach \x in {0,20,...,350}
+%      \draw[\OPTblue] (0,0) -- (\x:2cm);
+%    \node[\OPTblue,circle,fill,inner sep=2pt] (hub) at (0,0) {};
+%  \end{tikzpicture}
+  \caption{A 2-disc made out of a hub and spokes}
+  \label{fig:hub-and-spokes}
+\end{figure}
+
+We can use this idea to express higher inductive types containing $n$-dimensional path-con\-struc\-tors for $n>1$ in terms of ones containing only 1-di\-men\-sion\-al path-con\-struc\-tors.
+The point is that we can obtain an $n$-dimensional path as a continuous family of 1-dimensional paths parametrized by an $(n-1)$-di\-men\-sion\-al object.
+The simplest $(n-1)$-dimensional object to use is the $(n-1)$-sphere, although in some cases a different one may be preferable.
+(Recall that we were able to define the spheres in \PMlinkname{\S 6.5}{65suspensions} inductively using suspensions, which involve only 1-dimensional path constructors.
+Indeed, suspension can also be regarded as an instance of this idea, since it involves a family of 1-dimensional paths parametrized by the type being suspended.)
+
+\index{torus}
+For instance, the torus $T^2$ from the previous section could be defined instead to be generated by:
+\begin{itemize}
+\item a point $b:T^2$,
+\item a path $p:b=b$,
+\item another path $q:b=b$,
+\item a point $h:T^2$, and
+\item for each $x:\Sn^1$, a path $s(x) : f(x)=h$, where $f:\Sn^1\to T^2$ is defined by $f(\base)\defeq b$ and $\ap f \lloop \defid p \ct q \ct \opp p \ct \opp q$.
+\end{itemize}
+The induction principle for this version of the torus says that given $P:T^2\to\type$, for a section $\prd{x:T^2} P(x)$ we require
+\begin{itemize}
+\item a point $b':P(b)$,
+\item a path $p' : \dpath P p {b'} {b'}$,
+\item a path $q' : \dpath P q {b'} {b'}$,
+\item a point $h':P(h)$, and
+\item for each $x:\Sn^1$, a path $\dpath {P}{s(x)}{g(x)}{h'}$, where $g:\prd{x:\Sn^1} P(f(x))$ is defined by $g(\base)\defeq b'$ and $\apd g \lloop \defid p' \ct q' \ct \opp{(p')} \ct \opp{(q')}$.
+\end{itemize}
+Note that there is no need for dependent 2-paths or $\apdtwofunc{}$.
+We leave it to the reader to write out the computation rules.
+
+\begin{rmk}\label{rmk:spokes-no-hub}
+One might question the need for introducing the hub point $h$; why couldn't we instead simply add paths continuously relating the boundary of the disc to a point \emph{on} that boundary, as shown in \PMlinkname{Figure 6.4}{67hubsandspokes#S0.F5}?
+This does work, but not as well.
+For if, given some $f:\Sn^1 \to X$, we give a path constructor connecting each $f(x)$ to $f(\base)$, then what we end up with is more like the picture in \PMlinkname{Figure 6.5}{67hubsandspokes#S0.F5} of a cone whose vertex is twisted around and glued to some point on its base.
+The problem is that the specified path from $f(\base)$ to itself may not be reflexivity.
+We could add a 2-dimensional path constructor ensuring this, but using a separate hub avoids the need for any path constructors of dimension above~$1$.
+\end{rmk}
+
+\begin{figure}
+  \centering
+  \begin{minipage}{2in}
+  \includegraphics{HoTT_fig_6.7.2a.png}
+%    \begin{center}
+%      \begin{tikzpicture}
+%        \draw (0,0) circle (2cm);
+%        \clip (0,0) circle (2cm);
+%        \foreach \x in {0,15,...,165}
+%        \draw[\OPTblue] (0,-2cm) -- (\x:4cm);
+%      \end{tikzpicture}
+%    \end{center}
+    \caption{Hubless spokes}
+    \label{fig:spokes-no-hub}
+  \end{minipage}
+  \qquad
+  \begin{minipage}{2in}
+  \includegraphics{HoTT_fig_6.7.2b.png}
+%    \begin{center}
+%      \begin{tikzpicture}[xscale=1.3]
+%        \draw (0,0) arc (-90:90:.7cm and 2cm) ;
+%        \draw[dashed] (0,4cm) arc (90:270:.7cm and 2cm) ;
+%        \draw[\OPTblue] (0,0) to[out=90,in=0] (-1,1) to[out=180,in=180] (0,0);
+%        \draw[\OPTblue] (0,4cm) to[out=180,in=180,looseness=2] (0,0);
+%        \path (0,0) arc (-90:-60:.7cm and 2cm) node (a) {};
+%        \draw[\OPTblue] (a.center) to[out=120,in=10] (-1.2,1.2) to[out=190,in=180] (0,0);
+%        \path (0,0) arc (-90:-30:.7cm and 2cm) node (b) {};
+%        \draw[\OPTblue] (b.center) to[out=150,in=20] (-1.4,1.4) to[out=200,in=180] (0,0);
+%        \path (0,0) arc (-90:0:.7cm and 2cm) node (c) {};
+%        \draw[\OPTblue] (c.center) to[out=180,in=30] (-1.5,1.5) to[out=210,in=180] (0,0);
+%        \path (0,0) arc (-90:30:.7cm and 2cm) node (d) {};
+%        \draw[\OPTblue] (d.center) to[out=190,in=50] (-1.7,1.7) to[out=230,in=180] (0,0);
+%        \path (0,0) arc (-90:60:.7cm and 2cm) node (e) {};
+%        \draw[\OPTblue] (e.center) to[out=200,in=70] (-2,2) to[out=250,in=180] (0,0);
+%        \clip (0,0) to[out=90,in=0] (-1,1) to[out=180,in=180] (0,0);
+%        \draw (0,4cm) arc (90:270:.7cm and 2cm) ;
+%      \end{tikzpicture}
+%    \end{center}
+    \caption{Hubless spokes, II}
+    \label{fig:spokes-no-hub-ii}
+  \end{minipage}
+\end{figure}
+
+\begin{rmk}
+  \index{computation rule!propositional}%
+  Note also that this ``translation'' of higher paths into 1-paths does not preserve judgmental computation rules for these paths, though it does preserve propositional ones.
+\end{rmk}
+
+\index{cell complex|)}%
+\index{CW complex|)}%
+
+\index{hub and spoke|)}%
+
+\end{document}

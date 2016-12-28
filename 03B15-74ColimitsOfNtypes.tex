@@ -1,0 +1,404 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{74ColimitsOfNtypes}
+\pmcreated{2013-11-20 21:53:39}
+\pmmodified{2013-11-20 21:53:39}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{7.4 Colimits of n-types}
+\pmrecord{8}{87701}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\cocone}[2]{\mathsf{cocone}_{#1}(#2)}
+\newcommand{\composecocone}[2]{#1\circ#2}
+\newcommand{\Ddiag}{\mathscr{D}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\function}[4]{\left\{\begin{array}{rcl}#1 &      \longrightarrow & #2 \\ #3 & \longmapsto & #4 \end{array}\right.}
+\newcommand{\funext}{\mathsf{funext}}
+\newcommand{\happly}{\mathsf{happly}}
+\newcommand{\htpy}{\sim}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\modal}{\ensuremath{\ocircle}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\tprojf}[2][]{|\blank|_{#2}^{#1}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{7.4.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{7.4.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{7.4.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{7.4.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{7.4.\arabic{mathcount}}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\reflect\modal
+\let\type\UU
+\makeatother
+
+\begin{document}
+Recall that in \PMlinkname{\S 6.8}{68pushouts}, we used higher inductive types to define pushouts of types, and proved their universal property.
+In general, a (homotopy) colimit of $n$-types may no longer be an $n$-type (for an extreme counterexample, see \PMlinkexternal{Exercise 7.2}{http://planetmath.org/node/87811}).
+However, if we $n$-truncate it, we obtain an $n$-type which satisfies the correct universal property with respect to other $n$-types.
+
+In this section we prove this for pushouts, which are the most important and nontrivial case of colimits.
+Recall the following definitions from \PMlinkname{\S 6.8}{68pushouts}.
+
+\begin{defn}
+  A \define{span} % in $\P$
+  \indexdef{span} %
+  is a 5-tuple $\Ddiag=(A,B,C,f,g)$ with % $A,B,C:\P$ and
+  $f:C\to{}A$ and $g:C\to{}B$.
+ \begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_7.4.1.png}
+\end{figure}
+% \[\Ddiag=\quad\vcenter{\xymatrix{C \ar^g[r] \ar_f[d] & B \\ A & }}\]
+\end{defn}
+
+\begin{defn}
+  Given a span $\Ddiag=(A,B,C,f,g)$ and a type $D$, a %$D:\P$, a
+  \define{cocone under $\Ddiag$ with base $D$} is a triple $(i, j, h)$
+  \index{cocone} %
+  with $i:A\to{}D$, $j:B\to{}D$ and $h : \prd{c:C}i(f(c))=j(g(c))$:
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_7.4.2.png}
+\end{figure}
+%  \[\uppercurveobject{{ }}\lowercurveobject{{ }}\twocellhead{{ }}
+%  \xymatrix{C \ar^g[r] \ar_f[d] \drtwocell{^h} & B \ar^j[d] \\ A \ar_i[r] & D
+%  }\]
+  We denote by $\cocone{\Ddiag}{D}$ the type of all such cocones.
+\end{defn}
+
+The type of cocones is (covariantly) functorial.
+For instance, given $D,E$ % $D,E:\P$
+and a map $t:D\to{}E$, there is a map
+  \[\function{\cocone{\Ddiag}{D}}{\cocone{\Ddiag}{E}}{c}{\composecocone{t}c}\]
+  defined by:
+  \[\composecocone{t}(i,j,h)=(t\circ{}i,t\circ{}j,\mapfunc{t}\circ{}h)\]
+And given $D,E,F$, %$:\P$,
+functions $t:D\to{}E$, $u:E\to{}F$ and $c:\cocone{\Ddiag}{D}$, we have
+\begin{align}
+  \composecocone{\idfunc[D]}c &= c \label{eq:composeconeid}\\
+  \addtocounter{mathcount}{1}
+  \composecocone{(u\circ{}t)}c&=\composecocone{u}(\composecocone{t}c). \label{eq:composeconefunc}
+\end{align}
+\addtocounter{mathcount}{1}
+
+\begin{defn}
+  Given a span $\Ddiag$ of $n$-types, an $n$-type $D$, and a cocone
+  $c:\cocone{\Ddiag}{D}$, the pair $(D,c)$ is said to be a \define{pushout
+  of $\Ddiag$ in $n$-types}
+  \indexdef{pushout!in ntypes@in $n$-types}%
+  if for every $n$-type $E$, the map
+  \[\function{(D\to{}E)}{\cocone{\Ddiag}{E}}{t}{\composecocone{t}c}\]
+  is an equivalence.
+\end{defn}
+
+%\begin{comment}
+%We showed in \PMlinkname{Lemma 6.8.2}{68pushouts#Thmprelem1} that pushouts exist when $\P$ is \type itself, by giving a direct construction in terms of higher
+%inductive types.
+%For a general \P, pushouts may or may not exist, but if they do, then they are unique.
+%
+%\begin{lem}
+%  If $(D,c)$ and $(D',c')$ are two pushouts of $\Ddiag$ in $\P$, then
+%  $(D,c)=(D',c')$.
+%\end{lem}
+%\begin{proof}
+%  We first prove that the two types $D$ and $D'$ are equivalent.
+%
+%  Using the universal property of $D$ with $D'$, we see that the following map is an
+%  equivalence
+  %
+%  \[
+%    \function{(D\to{}D')}{\cocone{\Ddiag}{D'}}{t}{\composecocone{t}c}
+%  \]
+  %
+%  In particular, there is a function $f:D\to{}D'$ satisfying $\composecocone{f}c=c'$. In the
+%  same way there is a function $g:D'\to{}D$ such that $\composecocone{g}c'=c$.
+%
+%  In order to prove that $g\circ{}f=\idfunc[D]$ we use the universal property of
+%  $D$ for $D$, which says that the following map is an equivalence:
+  %
+%  \[
+%  \function{(D\to{}D)}{\cocone{\Ddiag}{D}}{t}{\composecocone{t}c}
+%  \]
+  %
+%  Using the functoriality of $t\mapsto{}\composecocone{t}c$ we see that
+%  \begin{align*}
+%    \composecocone{(g\circ{}f)}c &= \composecocone{g}(\composecocone{f}c) \\
+%    &= \composecocone{g}c' \\
+%    &= c \\
+%    &= \composecocone{\idfunc[D]}c
+%  \end{align*}
+%  hence
+%  $g\circ{}f=\idfunc[D]$, because equivalences are injective. The same argument
+%  with $D'$ instead of $D$ shows that $f\circ{}g=\idfunc[D']$.
+%
+%  Hence $D$ and $D'$ are equal, and the fact that $(D,c)=(D',c')$ follows from
+%  the fact that the equivalence between $D$ and $D'$ we just defined sends $c$
+%  to $c'$.
+%\end{proof}
+%
+%\begin{cor}
+%  The type of pushouts of $\Ddiag$ in $\P$ is a mere proposition. In particular if
+%  pushouts merely exist then they actually exist.
+%\end{cor}
+%
+%As in the case of pullbacks, if \P is reflective, then pushouts in \P always exist.
+%However, unlike the case of pullbacks, pushouts in \P are not the same as the pushouts in \type: they are obtained by applying the
+%reflector.
+%\end{comment}
+
+In order to construct pushouts of $n$-types, we need to explain how to reflect spans and cocones.
+
+\bgroup
+\def\reflect(#1){\trunc n{#1}}
+
+\begin{defn}
+  Let
+  \begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_7.4.3.png}
+\end{figure}
+%  \[\Ddiag=\quad\vcenter{\xymatrix{C \ar^g[r] \ar_f[d] & B \\ A & }}\]
+  be a span. We denote by $\reflect(\Ddiag)$ the following
+  span of $n$-types:
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_7.4.4.png}
+\end{figure}
+%\[\reflect(\Ddiag)\defeq\quad \vcenter{\xymatrix{\reflect(C) \ar^{\reflect(g)}[r]
+%      \ar_{\reflect(f)}[d] & \reflect(B) \\ \reflect(A) & }}\]
+\end{defn}
+
+\begin{defn}
+  Let $D:\type$ and $c=(i,j,h):\cocone{\Ddiag}{D}$.
+  We define
+  \[\reflect(c)=(\reflect(i),\reflect(j),\reflect(h)):
+  \cocone{\reflect(\Ddiag)}{\reflect(D)}\]
+  where $\reflect(h): \reflect(i) \circ \reflect(f) \htpy \reflect(j) \circ \reflect(g)$ is defined as in \PMlinkname{Lemma 7.3.5}{73truncations#Thmprelem3}.
+  % \[\reflect(h):\prd{c:\reflect(C)}\reflect(i)(\reflect(f)(c))=\reflect(j)(\reflect(g)(c))\]
+  % is defined in the following way:
+\end{defn}
+
+\egroup
+
+We now observe that the maps from each type to its $n$-truncation assemble into a map of spans, in the following sense.
+
+\begin{defn}
+  Let 
+  \[
+  \includegraphics{HoTT_fig_7.4.5.png}
+  %\Ddiag=\quad\vcenter{\xymatrix{C \ar^g[r] \ar_f[d] & B \\ A & }}
+  \qquad\text{and}\qquad
+  \includegraphics{HoTT_fig_7.4.6.png}
+  %\Ddiag'=\quad\vcenter{\xymatrix{C' \ar^{g'}[r] \ar_{f'}[d] & B' \\ A' & }}
+  \]
+  be spans.
+  A \define{map of spans}
+  \indexdef{map!of spans}%
+  $\Ddiag \to \Ddiag'$ consists of functions $\alpha:A\to A'$, $\beta:B\to B'$, and $\gamma:C\to C'$ and homotopies $\phi: \alpha\circ f \htpy f'\circ \gamma$ and $\psi:\beta\circ g \htpy g' \circ \gamma$.
+\end{defn}
+
+Thus, for any span $\Ddiag$, we have a map of spans $\tprojf[\Ddiag] n : \Ddiag \to \trunc n\Ddiag$ consisting of $\tprojf[A]n$, $\tprojf[B]n$, $\tprojf[C]n$, and the naturality homotopies $\mathsf{nat}^f_n$ and $\mathsf{nat}^g_n$ from~\PMlinkname{(7.3.4)}{73truncations#S0.E1}.
+
+We also need to know that maps of spans behave functorially.
+Namely, if $(\alpha,\beta,\gamma,\phi,\psi):\Ddiag \to \Ddiag'$ is a map of spans and $D$ any type, then we have
+\[ \function{\cocone{\Ddiag'}{D}}{\cocone{\Ddiag}{D}}{(i,j,h)}{(i\circ \alpha,j\circ\beta, k)} \]
+where $k: \prd{z:C} i(\alpha(f(z))) = j(\beta(g(z)))$ is the composite
+\begin{myeqn}\label{eq:mapofspans-htpy}
+\includegraphics{HoTT_fig_7.4.7.png}
+%\xymatrix{
+%  i(\alpha(f(z))) \ar@{=}[r]^{\apfunc{i}(\phi)} &
+%  i(f'(\gamma(z))) \ar@{=}[r]^{h(\gamma(z))} &
+%  j(g'(\gamma(z))) \ar@{=}[r]^{\apfunc{j}(\psi)} &
+%  j(\beta(g(z))). }
+\end{myeqn}
+We denote this cocone by $(i,j,h) \circ (\alpha,\beta,\gamma,\phi,\psi)$.
+Moreover, this functorial action commutes with the other functoriality of cocones:
+
+\begin{lem}\label{thm:conemap-funct}
+  Given $(\alpha,\beta,\gamma,\phi,\psi):\Ddiag \to \Ddiag'$ and $t:D\to E$, the following diagram commutes:
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_7.4.8.png}
+\end{figure}
+%  \begin{equation*}
+%    \vcenter{\xymatrix{
+%        \cocone{\Ddiag'}{D}\ar[r]^{t \circ {\blank}}\ar[d] &
+%        \cocone{\Ddiag'}{E}\ar[d]\\
+%        \cocone{\Ddiag}{D}\ar[r]_{t \circ {\blank}} &
+%        \cocone{\Ddiag}{E}
+%      }}
+%  \end{equation*}
+\end{lem}
+\begin{proof}
+  Given $(i,j,h):\cocone{\Ddiag'}{D}$, note that both composites yield a cocone whose first two components are $t\circ i\circ \alpha$ and $t\circ j\circ\beta$.
+  Thus, it remains to verify that the homotopies agree.
+  For the top-right composite, the homotopy is~\eqref{eq:mapofspans-htpy} with $(i,j,h)$ replaced by $(t\circ i, t\circ j, \apfunc{t}\circ h)$:
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_7.4.9.png}
+\end{figure}
+%\begin{equation*}
+%    \xymatrix@+2.8em{
+%      {t \, i \, \alpha \, f \, z} \ar@{=}[r]^{\apfunc{t\circ i}(\phi)} &
+%      {t \, i \, f' \, \gamma \, z} \ar@{=}[r]^{\apfunc{t}(h(\gamma(z)))} &
+%      {t \, j \, g' \, \gamma \, z} \ar@{=}[r]^{\apfunc{t\circ j}(\psi)} &
+%      {t \, j \, \beta \, g \, z}
+%    }
+%  \end{equation*}
+  (For brevity, we are omitting the parentheses around the arguments of functions.)
+  On the other hand, for the left-bottom composite, the homotopy is $\apfunc{t}$ applied to~\eqref{eq:mapofspans-htpy}.
+  Since $\apfunc{}$ respects path-concatenation, this is equal to
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_7.4.10.png}
+\end{figure}
+%\begin{equation*}
+%    \xymatrix@+2.8em{
+%      {t \, i \, \alpha \, f \, z} \ar@{=}[r]^{\apfunc{t}(\apfunc{i}(\phi))} &
+%      {t \, i \, f' \, \gamma \, z} \ar@{=}[r]^{\apfunc{t}(h(\gamma(z)))} &
+%      {t \, j \, g' \, \gamma \, z} \ar@{=}[r]^{\apfunc{t}(\apfunc{j}(\psi))} &
+%      {t \, j \, \beta \, g \, z}. }
+%  \end{equation*}
+  But $\apfunc{t}\circ \apfunc{i} = \apfunc{t\circ i}$ and similarly for $j$, so these two homotopies are equal.
+\end{proof}
+
+Finally, note that since we defined $\trunc nc : \cocone{\trunc n \Ddiag}{\trunc n D}$ using \PMlinkname{Lemma 7.3.5}{73truncations#Thmprelem3}, the additional condition~\PMlinkname{(7.3.6)}{73truncations#S0.E2} implies
+\begin{myeqn}
+  \tprojf[D] n \circ c = \trunc n c \circ \tprojf[\Ddiag]n. \label{eq:conetrunc}
+\end{myeqn}
+for any $c:\cocone{\Ddiag}{D}$.
+Now we can prove our desired theorem.
+
+\begin{thm}
+  \label{reflectcommutespushout}
+  \index{universal!property!of pushout}%
+  Let $\Ddiag$ be a span and $(D,c)$ its pushout.
+  Then $(\trunc nD,\trunc n c)$ is a pushout of $\trunc n\Ddiag$ in $n$-types.
+\end{thm}
+\begin{proof}
+  Let $E$ be an $n$-type, and consider the following diagram:
+\bgroup
+\def\reflect(#1){\trunc n{#1}}
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_7.4.11.png}
+\end{figure}
+%  \begin{equation*}
+%  \vcenter{\xymatrix{
+%      (\trunc nD \to E)\ar[r]^-{\blank\circ \tprojf[D] n}\ar[d]_{\blank\circ \trunc nc} &
+%      (D\to E)\ar[d]^{\blank\circ c}\\
+%      \cocone{\trunc n \Ddiag}{E}\ar[r]^-{\blank\circ \tprojf[\Ddiag]n}\ar@{<-}[d]_{\ell_1} &
+%      \cocone{\Ddiag}{E}\ar@{<-}[d]^{\ell_2}\\
+%      (\reflect(A)\to{}E)\times_{(\reflect(C)\to{}E)}(\reflect(B)\to{}E)\ar[r] &
+%      (A\to{}E)\times_{(C\to{}E)}(B\to{}E)
+%      }}
+%  \end{equation*}
+\egroup
+  The upper horizontal arrow is an equivalence since $E$ is an $n$-type, while $\blank\circ c$ is an equivalence since $c$ is a pushout cocone.
+  Thus, by the 2-out-of-3 property, to show that $\blank\circ \trunc nc$ is an equivalence, it will suffice to show that the upper square commutes and that the middle horizontal arrow is an equivalence.
+  To see that the upper square commutes, let $t:\trunc nD \to E$; then
+  \begin{align}
+    \big(t \circ \trunc n c\big) \circ \tprojf[\Ddiag] n
+    &= t \circ \big(\trunc n c \circ \tprojf[\Ddiag] n\big)
+    \tag{by \PMlinkname{Lemma 7.4.10}{74colimitsofntypes#Thmprelem2}}\\
+    &= t\circ \big(\tprojf[D]n \circ c\big)
+    \tag{by~\eqref{eq:conetrunc}}\\
+    &= \big(t\circ \tprojf[D]n\big) \circ c
+    \tag{by~\eqref{eq:composeconefunc}}.
+  \end{align}
+  To show that the middle horizontal arrow is an equivalence, consider the lower square.
+  The two lower vertical arrows are simply applications of $\happly$:
+  \begin{align*}
+    \ell_1(i,j,p) &\defeq (i,j,\happly(p))\\
+    \ell_2(i,j,p) &\defeq (i,j,\happly(p))
+  \end{align*}
+  and hence are equivalences by function extensionality.
+  The lowest horizontal arrow is defined by
+  \[ (i,j,p) \mapsto \big( i\circ \tprojf[A]n,\;\; j \circ \tprojf[B] n,\;\; q\big) \]
+  where $q$ is the composite
+  \begin{align}
+    i\circ \tprojf[A]n \circ f
+    &= i\circ \trunc nf \circ \tprojf[C]n
+    \tag{by $\funext(\lam{z} \apfunc{i}(\mathsf{nat}^f_n(z)))$}\\
+    &= j\circ \trunc ng \circ \tprojf[C]n
+    \tag{by $\apfunc{\blank\circ \tprojf[C] n}(p)$}\\
+    &= j\circ \tprojf[B]n \circ g.
+    \tag{by $\funext(\lam{z} \apfunc{j}(\mathsf{nat}^g_n(z)))$}
+  \end{align}
+  This is an equivalence, because it is induced by an equivalence of cospans.
+  Thus, by 2-out-of-3, it will suffice to show that the lower square commutes.
+  But the two composites around the lower square agree definitionally on the first two components, so it suffices to show that for $(i,j,p)$ in the lower left corner and $z:C$, the path
+  \[ \happly(q,z) : i(\tproj n{f(z)}) = j(\tproj n{g(z)}) \]
+  (with $q$ as above)
+  is equal to the composite
+  \begin{align}
+    i(\tproj n{f(z)})
+    &= i(\trunc nf(\tproj nz))
+    \tag{by $\apfunc{i}(\mathsf{nat}^f_n(z))$}\\
+    &= j(\trunc ng(\tproj nz))
+    \tag{by $\happly(p,\tproj nz)$}\\
+    &= j(\tproj n{g(z)}).
+    \tag{by $\apfunc{j}(\mathsf{nat}^g_n(z))$}
+  \end{align}
+  However, since $\happly$ is functorial, it suffices to check equality for the three component paths:
+  \begin{align*}
+    \happly({\funext(\lam{z} \apfunc{i}(\mathsf{nat}^f_n(z)))},z)
+    &= {\apfunc{i}(\mathsf{nat}^f_n(z))}\\
+    \happly(\apfunc{\blank\circ \tprojf[C] n}(p), z)
+    &= {\happly(p,\tproj nz)}\\
+    \happly({\funext(\lam{z} \apfunc{j}(\mathsf{nat}^g_n(z)))},z)
+    &= {\apfunc{j}(\mathsf{nat}^g_n(z))}.
+  \end{align*}
+  The first and third of these are just the fact that $\happly$ is quasi-inverse to $\funext$, while
+  the second is an easy general lemma about $\happly$ and precomposition.
+\end{proof}
+
+
+
+\end{document}

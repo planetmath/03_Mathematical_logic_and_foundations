@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{NaturalDeductionForIntuitionisticPropositionalLogic}
+\pmcreated{2013-03-22 19:32:11}
+\pmmodified{2013-03-22 19:32:11}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{natural deduction for intuitionistic propositional logic}
+\pmrecord{25}{42514}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B20}
+\pmclassification{msc}{03F03}
+\pmclassification{msc}{03F55}
+\pmrelated{DisjunctionProperty}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+\usepackage{multicol}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The natural deduction system for intuitionistic propositional logic described here is based on the language that consists of a set of propositional variables, a symbol $\perp$ for falsity, and logical connectives $\land$, $\lor$, $\to$.  In this system, there are no axioms, only rules of inference.
+\begin{enumerate}
+\item for $\land$, there are three rules, one introduction rule $\land\!I$, and two elimination rules $\land\! E_L$ and $\land\! E_R$:
+$$\infer[(\land\!I)]{A\land B}{A & \quad B} \hspace{2cm} \infer[(\land\!E_L)]{A}{A \land B} \hspace{2cm} \infer[(\land\!E_R)]{B}{A \land B}$$
+\item for $\to$, there are two rules, one introduction $\to\!I$ and one elimination $\to\!E$ (modus ponens):
+$$ \infer[(\to\!I)]{A\to B}{\infer*{B}{[A]}} \hspace{2cm} \infer[(\to\!E)]{B}{A & \quad A \rightarrow B}$$
+\item for $\lor$, there are three rules, two introduction rules $\lor\!I_E$, $\lor\!I_L$, and one elimination rule $\lor\! E$:
+$$\infer[(\lor\!I_L)]{A\lor B}{A} \hspace{2cm} \infer[(\lor\!I_R)]{A\lor B}{B} \hspace{2cm} \infer[(\lor\!E)]{C}{A \lor B & \quad \infer*{C}{[A]} \quad \infer*{C}{[B]}}$$
+\item for $\perp$, there is one rule, an introduction rule $\perp\!I$ (ex falso quodlibet):
+$$\infer[(\perp\!I)]{A}{\perp}$$
+\end{enumerate}
+In short, intuitionistic propositional logic is classical propositional logic without the rule RAA (reductio ad absurdum).  Furthermore, $\neg$ is a defined one-place logical symbol: $\neg A:=A\to \perp$.
+
+\textbf{Remark}. In the rules $\to\!I$ and $\lor\!E$, the square brackets around the top formula denote that the formula is removed, or \emph{discharged}. In other words,
+\begin{center}
+``once the conclusion is reached, the assumption can be dropped.''
+\end{center}
+
+In $\to\!I$, when the formula $B$ is deduced from the assumption or hypothesis $A$, we conclude with the formula $A\to B$. Once this conclusion is reached, $A$ is superfluous and therefore removed, as it is embodied in the formula $A\to B$. This is often encountered in mathematical proofs: if we want to prove $A\to B$, we first assume $A$, then we proceed with the proof and reach $B$, and therefore $A\to B$. Simiarly, in $\lor\!E$, if $C$ can be concluded from $A$ and from $B$ individually, then $C$ can be concluded from anyone of them, or $A\lor B$, without the assumptions $A$ and $B$ individually.
+
+Intuitionistic propositional logic as defined by the natural deduction system above is termed NJ. Derivations and theorems for NJ are defined in the usual manner like all natural deduction systems, which can be found \PMlinkname{here}{DeductionsFromNaturalDeduction}. Some of the theorems of NJ are listed below:
+\begin{itemize}
+\item $A\to (B\to A)$
+\item $(A\to (B\to C))\to ((A\to B)\to (A\to C))$
+\item $(A \to B)\to (\neg B \to \neg A)$
+\item $A\land B\to B\land A$
+\item $\neg (A\land \neg A)$
+\item $A\to \neg \neg A$
+\item $\neg \neg \neg A \to \neg A$
+\end{itemize}
+For example, $\vdash A \to \neg \neg A$ as
+\begin{prooftree}
+\AxiomC{$[A]_2$}
+\AxiomC{$[\neg A]_1$}
+\RightLabel{\scriptsize $(\to\!E)$}
+\BinaryInfC{$\perp$}
+\RightLabel{\scriptsize $(\to\!I)_1$}
+\UnaryInfC{$\neg A\to \perp$}
+\RightLabel{\scriptsize $(\to\!I)_2$}
+\UnaryInfC{$A \to (\neg A \to \perp)$}
+\end{prooftree}
+and $A\to (\neg A\to \perp)$ is just $A\to \neg \neg A$.  Also, $\vdash \neg \neg \neg A \to \neg A$, as 
+\begin{prooftree}
+\AxiomC{$[A]_1$}
+\AxiomC{\boxed{A\to \neg \neg A}}
+\RightLabel{\scriptsize $(\to\!E)$}
+\BinaryInfC{$\neg \neg A$}
+\AxiomC{$[\neg \neg \neg A]_2$}
+\RightLabel{\scriptsize $(\to\!E)$}
+\BinaryInfC{$\perp$}
+\RightLabel{\scriptsize $(\to\!I)_1$}
+\UnaryInfC{$\neg A$}
+\RightLabel{\scriptsize $(\to\!I)_2$}
+\UnaryInfC{$\neg \neg \neg A \to \neg A$}
+\end{prooftree}
+The subscripts indicate that the discharging of the assumptions at the top correspond to the applications of the inference rules $\to\!I$ at the bottom.  The box around $A\to \neg \neg A$ indicates that the derivation of $A\to \neg \neg A$ has been embedded (as a subtree) into the derivation of $\neg \neg \neg A \to \neg A$.
+
+\textbf{Remark}. If $\neg$ were introduced as a primitive logical symbol instead of it being as ``defined'', then we need to have inference rules for $\neg$ as well, one of which is introduction $\neg I$, and the other elimination $\neg E$:
+$$ \infer[(\neg I)]{\neg A}{\infer*{\perp}{[A]}} \hspace{2cm} \infer[(\neg E)]{\perp}{A & \quad \neg A}$$
+Note that in the original NJ system, $\neg I$ is just an instance of $\to \! I$, and $\neg E$ is just an instance of $\to \! E$.
+
+%%%%%
+%%%%%
+\end{document}

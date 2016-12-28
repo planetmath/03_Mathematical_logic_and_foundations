@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{WeaklyCompactCardinalsAndTheTreeProperty}
+\pmcreated{2013-03-22 12:52:51}
+\pmmodified{2013-03-22 12:52:51}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{weakly compact cardinals and the tree property}
+\pmrecord{7}{33223}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmrelated{TreeProperty}
+\pmrelated{Aronszajn}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+\PMlinkescapeword{group}
+\PMlinkescapeword{class}
+
+A cardinal is weakly compact if and only if it is inaccessible and has the tree property.
+
+\emph{Weak compactness implies tree property}
+
+Let $\kappa$ be a weakly compact cardinal and let $(T,<_T)$ be a $\kappa$ tree with all levels smaller than $\kappa$.  We define a theory in $L_{\kappa,\kappa}$ with for each $x\in T$, a constant $c_x$, and a single unary relation $B$.  Then our theory $\Delta$ consists of the sentences:
+\begin{itemize}
+
+\item $\neg \left[B(c_x) \wedge B(c_y)\right]$ for every incompatible $x,y\in T$
+
+\item $\bigvee_{x\in T(\alpha)} B(c_x)$ for each $\alpha<\kappa$
+\end{itemize}
+
+It should be clear that $B$ represents membership in a cofinal branch, since the first class of sentences asserts that no incompatible elements are both in $B$ while the second class states that the branch intersects every level.
+
+Clearly $|\Delta|=\kappa$, since there are $\kappa$ elements in $T$, and hence fewer than $\kappa\cdot\kappa=\kappa$ sentences in the first group, and of course there are $\kappa$ levels and therefore $\kappa$ sentences in the second group.
+
+Now consider any $\Sigma\subseteq\Delta$ with $|\Sigma|<\kappa$.  Fewer than $\kappa$ sentences of the second group are included, so the set of $x$ for which the corresponding $c_x$ must all appear in $T(\alpha)$ for some $\alpha<\kappa$.  But since $T$ has branches of arbitrary height, $T(\alpha)\models\Sigma$.
+
+Since $\kappa$ is weakly compact, it follows that $\Delta$ also has a model, and that model obviously has a set of $c_x$ such that $B(c_x)$ whose corresponding elements of $T$ intersect every level and are compatible, therefore forming a cofinal branch of $T$, proving that $T$ is not Aronszajn.
+%%%%%
+%%%%%
+\end{document}

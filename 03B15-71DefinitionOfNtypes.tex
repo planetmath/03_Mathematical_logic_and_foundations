@@ -1,0 +1,303 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{71DefinitionOfNtypes}
+\pmcreated{2013-11-18 19:34:24}
+\pmmodified{2013-11-18 19:34:24}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{7.1 Definition of n-types}
+\pmrecord{5}{87698}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\contr}{\ensuremath{\mathsf{contr}}} 
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvspaced}[2]{\ensuremath{#1 \;\simeq\; #2}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\htpy}{\sim}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\iscontr}{\ensuremath{\mathsf{isContr}}}
+\newcommand{\isprop}{\ensuremath{\mathsf{isProp}}}
+\newcommand{\isset}{\ensuremath{\mathsf{isSet}}}
+\newcommand{\istype}[1]{\mathsf{is}\mbox{-}{#1}\mbox{-}\mathsf{type}}
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\nminusone}{\ensuremath{(n-1)}}
+\newcommand{\nplusone}{\ensuremath{(n+1)}}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\set}{\ensuremath{\mathsf{Set}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\typele}[1]{\ensuremath{{#1}\text-\mathsf{Type}}\xspace}
+\newcommand{\typeleU}[1]{\ensuremath{{#1}\text-\mathsf{Type}_\UU}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{7.1.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{7.1.\arabic{mathcount}}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{7.1.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{7.1.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{7.1.\arabic{mathcount}}
+\let\ap\map
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\nat\N
+\let\ntype\typele
+\let\ntypeU\typeleU
+\let\type\UU
+\makeatother
+
+\begin{document}
+As mentioned in \PMlinkname{\S 3.1}{31setsandntypes},\PMlinkname{\S 3.11}{311contractibility}, it turns out to be convenient to define $n$-types starting two levels below zero, with the $(-1)$-types being the mere propositions and the $(-2)$-types the contractible ones.
+
+\begin{defn}\label{def:hlevel}
+  Define the predicate $\istype{n} : \type \to \type$ for $n \geq -2$ by recursion as follows:
+  \[ \istype{n}(X) \defeq
+  \begin{cases}
+    \iscontr(X) & \text{ if } n = -2, \\
+    \prd{x,y : X} \istype{n'}(\id[X]{x}{y}) & \text{ if } n = n'+1.
+  \end{cases}
+  \]
+  We say that $X$ is an \define{$n$-type}, or sometimes that it is \emph{$n$-truncated},
+  \indexdef{n-type@$n$-type}%
+  \indexsee{n-truncated@$n$-truncated!type}{$n$-type}%
+  \indexsee{type!n-type@$n$-type}{$n$-type}%
+  \indexsee{type!n-truncated@$n$-truncated}{$n$-type}%
+ if $\istype{n}(X)$ is inhabited.
+\end{defn}
+
+\begin{rmk}
+  The number $n$ in \PMlinkname{Definition 7.1.1}{71definitionofntypes#Thmpredefn1} ranges over all integers greater than or equal to $-2$.
+  We could make sense of this formally by defining a type $\Z_{{\geq}-2}$ of such integers (a type whose induction principle is identical to that of $\nat$), or instead defining a predicate $\istype{(k-2)}$ for $k : \nat$.
+  Either way, we can prove theorems about $n$-types by induction on $n$, with $n = -2$ as the base case.
+\end{rmk}
+
+\begin{eg}
+  \index{set}
+  We saw in \PMlinkname{Lemma 3.11.10}{311contractibility#Thmprelem7} that $X$ is a $(-1)$-type if and only if it is a mere proposition.
+  Therefore, $X$ is a $0$-type if and only if it is a set.
+\end{eg}
+
+We have also seen that there are types which are not sets (\PMlinkname{Example 3.1.9}{31setsandntypes#Thmpreeg6}).
+So far, however, we have not shown for any $n>0$ that there exist types which are not $n$-types.
+In \PMlinkexternal{Chapter 8}{http://planetmath.org/node/87582}, however, we will show that the $(n+1)$-sphere $\Sn^{n+1}$ is not an $n$-type.
+(Kraus has also shown that the $n^{\mathrm{th}}$ nested univalent universe is also not an $n$-type, without using any higher inductive types.)
+Moreover, in \PMlinkname{\S 8.8}{88whiteheadstheoremandwhiteheadsprinciple} will give an example of a type that is not an $n$-type for \emph{any} (finite) number $n$.
+
+We begin the general theory of $n$-types by showing they are closed under certain operations and constructors.
+
+\begin{thm}\label{thm:h-level-retracts}
+  \index{retract!of a type}%
+  \index{retraction}%
+ Let $p : X \to Y$ be a retraction and suppose that $X$ is an $n$-type, for any $n\geq -2$.
+ Then $Y$ is also an $n$-type.
+\end{thm}
+
+\begin{proof}
+ We proceed by induction on $n$.
+ The base case $n=-2$ is handled by \PMlinkname{Lemma 3.11.7}{311contractibility#Thmprelem4}.
+
+ For the inductive step, assume that any retract of an $n$-type is an $n$-type, and that $X$ is an $\nplusone$-type.
+ Let $y, y' : Y$; we must show that $\id{y}{y'}$ is an $n$-type.
+ Let $s$ be a section of $p$, and let $\epsilon$ be a homotopy $\epsilon : p \circ s \htpy 1$.
+ Since $X$ is an $\nplusone$-type, $\id[X]{s(y)}{s(y')}$ is an $n$-type.
+ We claim that $\id{y}{y'}$ is a retract of $\id[X]{s(y)}{s(y')}$.
+ For the section, we take
+ \[ \apfunc s : (y=y') \to (s(y)=s(y')). \]
+ For the retraction, we define $t:(s(y)=s(y'))\to(y=y')$ by
+ \[ t(q) \defeq  \opp{\epsilon_y} \ct \ap p q \ct \epsilon_{y'}.\]
+ To show that $t$ is a retraction of $\apfunc s$, we must show that
+ \[ \opp{\epsilon_y} \ct \ap p {\ap sr} \ct \epsilon_{y'} = r \]
+ for any $r:y=y'$.
+ But this follows from \PMlinkname{Lemma 2.4.3}{24homotopiesandequivalences#Thmprelem2}.
+\end{proof}
+
+As an immediate corollary we obtain the stability of $n$-types under equivalence (which is also immediate from univalence):
+
+\begin{cor}\label{cor:preservation-hlevels-weq}
+ If $\eqv{X}{Y}$ and $X$ is an $n$-type, then so is $Y$.
+\end{cor}
+
+Recall also the notion of embedding from \PMlinkname{\S 4.6}{46surjectionsandembeddings}.
+
+\begin{thm}\label{thm:isntype-mono}
+  \index{function!embedding}
+  If $f:X\to Y$ is an embedding and $Y$ is an $n$-type for some $n\ge -1$, then so is $X$.
+\end{thm}
+\begin{proof}
+  Let $x,x':X$; we must show that $\id[X]{x}{x'}$ is an $\nminusone$-type.
+  But since $f$ is an embedding, we have $(\id[X]{x}{x'}) \eqvsym (\id[Y]{f(x)}{f(x')})$, and the latter is an $\nminusone$-type by assumption.
+\end{proof}
+
+Note that this theorem fails when $n=-2$: the map $\emptyt \to \unit$ is an embedding, but $\unit$ is a $(-2)$-type while $\emptyt$ is not.
+
+\begin{thm}\label{thm:hlevel-cumulative}
+ The hierarchy of $n$-types is cumulative in the following sense:
+   given a number $n \geq -2$, if $X$ is an $n$-type, then it is also an $\nplusone$-type.
+\end{thm}
+
+\begin{proof}
+ We proceed by induction on $n$.
+
+ For $n = -2$, we need to show that a contractible type, say, $A$, has contractible path spaces.
+       Let $a_0: A$ be the center of contraction of $A$, and let $x, y : A$. We show that $\id[A]{x}{y}$
+       is contractible.
+       By contractibility of $A$ we have a path $\contr_x \ct \opp{\contr_y} : x = y$, which we choose as
+       the center of contraction for $\id{x}{y}$.
+       Given any $p : x = y$, we need to show $p = \contr_x \ct \opp{\contr_y}$.
+           By path induction, it suffices to show that
+        $\refl{x} = \contr_x \ct \opp{\contr_x}$, which is trivial.
+
+ For the inductive step, we need to show that $\id[X]{x}{y}$ is an $\nplusone$-type, provided
+          that $X$ is an $\nplusone$-type. Applying the inductive hypothesis to $\id[X]{x}{y}$
+         yields the desired result.
+\end{proof}
+
+% \section{Preservation under constructors}
+% \label{sec:ntype-pres}
+
+We now show that  $n$-types are preserved by most of the type forming operations.
+
+\begin{thm}\label{thm:ntypes-sigma}
+ Let $n \geq -2$, and let $A : \type$ and $B : A \to \type$.
+ If $A$ is an $n$-type and for all $a : A$, $B(a)$ is an $n$-type, then so is $\sm{x : A} B(x)$.
+\end{thm}
+
+\begin{proof}
+ We proceed by induction on $n$.
+
+ For $n = -2$, we choose the center of contraction for $\sm{x : A} B(x)$ to be the pair
+       $(a_0, b_0)$, where $a_0 : A$ is the center of contraction of $A$ and $b_0 : B(a_0)$ is the center of contraction of $B(a_0)$.
+       Given any other element $(a,b)$ of $\sm{x : A} B(x)$, we provide a path $\id{(a, b)}{(a_0,b_0)}$
+       by contractibility of $A$ and $B(a_0)$, respectively.
+
+ For the inductive step, suppose that $A$ is an $\nplusone$-type and
+         for any $a : A$, $B(a)$ is an $\nplusone$-type. We show that $\sm{x : A} B(x)$ is an $\nplusone$-type:
+      fix $(a_1, b_1)$ and $(a_2,b_2)$ in $\sm{x : A} B(x)$,
+     we show that $\id{(a_1, b_1)}{(a_2,b_2)}$ is an $n$-type.
+      By \PMlinkname{Theorem 2.7.2}{27sigmatypes#Thmprethm1} we have
+      \[ \eqvspaced{(\id{(a_1, b_1)}{(a_2,b_2)})}{\sm{p : \id{a_1}{a_2}} (\id[B(a_2)]{\trans{p}{b_1}}{b_2})} \]
+   and by preservation of $n$-types under equivalences (\PMlinkname{Corollary 7.1.5}{71definitionofntypes#Thmprecor1})
+   it suffices to prove that the latter is an $n$-type. This follows from the
+   inductive hypothesis.
+\end{proof}
+
+As a special case, if $A$ and $B$ are $n$-types, so is $A\times B$.
+Note also that \PMlinkname{Theorem 7.1.7}{71definitionofntypes#Thmprethm3} implies that if $A$ is an $n$-type, then so is $\id[A]xy$ for any $x,y:A$.
+Combining this with \PMlinkname{Theorem 7.1.8}{71definitionofntypes#Thmprethm4}, we see that for any functions $f:A\to C$ and $g:B\to C$ between $n$-types, their pullback\index{pullback}
+\[ A\times_C B \defeq \sm{x:A}{y:B} (f(x)=g(y)) \]
+(see \PMlinkexternal{Exercise 2.11}{http://planetmath.org/node/87642}) is also an $n$-type.
+More generally, $n$-types are closed under all \emph{limits}.
+
+\begin{thm}\label{thm:hlevel-prod}
+ Let $n\geq -2$, and let $A : \type$ and $B : A \to \type$.
+ If for all $a : A$, $B(a)$ is an $n$-type, then so is $\prd{x : A} B(x)$.
+\end{thm}
+
+\begin{proof}
+  We proceed by induction on $n$.
+  For $n = -2$, the result is simply \PMlinkname{Lemma 3.11.6}{311contractibility#Thmprelem3}.
+
+  For the inductive step, assume the result is true for $n$-types, and that each $B(a)$ is an $\nplusone$-type.
+  Let $f, g : \prd{a:A}B(a)$.
+  We need to show that $\id{f}{g}$ is an $n$-type.
+  By function extensionality and closure of $n$-types under equivalence, it suffices to show that $\prd{a : A} (\id[B(a)]{f(a)}{g(a)})$ is an $n$-type.
+  This follows from the inductive hypothesis.
+\end{proof}
+
+As a special case of the above theorem, the function space $A \to B$ is an $n$-type provided that $B$ is an $n$-type.
+We can now generalize our observations in \PMlinkexternal{Chapter 2}{http://planetmath.org/node/87569} that $\isset(A)$ and $\isprop(A)$ are mere propositions.
+
+\begin{thm}\label{thm:isaprop-isofhlevel}
+ For any $n \geq -2$ and any type $X$, the type $\istype{n}(X)$ is a mere proposition.
+\end{thm}
+\begin{proof}
+  We proceed by induction with respect to $n$.
+
+ For the base case, we need to show that for any $X$, the type $\iscontr(X)$ is a mere proposition.
+ This is \PMlinkname{Lemma 3.11.4}{311contractibility#Thmprelem2}.
+
+For the inductive step we need to show
+\[\prd{X : \type} \isprop (\istype{n}(X)) \to \prd{X : \type} \isprop (\istype{\nplusone}(X)) \]
+To show the conclusion of this implication, we need to show that for any type $X$, the type
+\[\prd{x, x' : X}\istype{n}(x = x')\]
+is a mere proposition. By \PMlinkname{Example 3.6.2}{36thelogicofmerepropositions#Thmpreeg2} or \PMlinkname{Theorem 7.1.9}{71definitionofntypes#Thmprethm5}, it suffices to show that for any $x, x' : X$, the type $\istype{n}(x =_X x')$ is a mere
+proposition.
+But this follows from the inductive hypothesis applied to the type $(x =_X x')$.
+\end{proof}
+
+Finally, we show that the type of $n$-types is itself an $\nplusone$-type.
+We define this to be:
+\symlabel{universe-of-ntypes}
+\[\ntype{n} \defeq \sm{X : \type} \istype{n}(X) \]
+If necessary, we may specify the universe $\UU$ by writing $\ntypeU{n}$.
+In particular, we have $\prop \defeq \ntype{(-1)}$ and $\set \defeq \ntype{0}$, as defined in \PMlinkexternal{Chapter 2}{http://planetmath.org/node/87569}.
+Note that just as for \prop and \set, because $\istype{n}(X)$ is a mere proposition, by \PMlinkname{Lemma 3.5.1}{35subsetsandpropositionalresizing#Thmprelem1} for any $(X,p), (X',p'):\ntype{n}$ we have
+\begin{align*}
+  \Big(\id[\ntype{n}]{(X, p)}{(X', p')}\Big) &\eqvsym (\id[\type] X X')\\
+  &\eqvsym (\eqv{X}{X'}).
+\end{align*}
+
+\begin{thm}\label{thm:hleveln-of-hlevelSn}
+ For any $n \geq -2$, the type $\ntype{n}$ is an $\nplusone$-type.
+\end{thm}
+\begin{proof}%[Proof of \PMlinkname{Theorem 7.1.11}{71definitionofntypes#Thmprethm7}]
+  Let $(X, p), (X', p') : \ntype{n}$; we need to show that $\id{(X, p)}{(X', p')}$ is an $n$-type.
+  By the above observation, this type is equivalent to $\eqv{X}{X'}$.
+  Next, we observe that the projection
+  \[(\eqv{X}{X'}) \to (X \rightarrow X').\]
+  is an embedding, so that if $n\geq -1$, then by \PMlinkname{Theorem 7.1.6}{71definitionofntypes#Thmprethm2} it suffices to show that $X \rightarrow X'$ is an $n$-type.
+  But since $n$-types are preserved under the arrow type, this reduces to an assumption that $X'$ is an $n$-type.
+
+  In the case $n=-2$, this argument shows that $\eqv{X}{X'}$ is a $(-1)$-type --- but it is also inhabited, since any two contractible types
+are equivalent to \unit, and hence to each other.
+  Thus, $\eqv{X}{X'}$ is also a $(-2)$-type.
+\end{proof}
+
+
+\end{document}

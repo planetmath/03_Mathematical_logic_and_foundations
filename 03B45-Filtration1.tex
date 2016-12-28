@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Filtration1}
+\pmcreated{2013-03-22 19:35:39}
+\pmmodified{2013-03-22 19:35:39}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{filtration}
+\pmrecord{8}{42584}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+Let $M=(W,R,V)$ be a Kripke model for a modal logic $L$.  Let $\Delta$ be a set of wff's.  Define a binary relation $\sim_{\Delta}$ on $W$: 
+$$w \sim_{\Delta} u \qquad \mbox{iff} \qquad \models_w A \mbox{ iff } \models_u A \mbox{ for any }A\in \Delta.$$  
+Then $\sim_{\Delta}$ is an equivalence relation on $W$.  Let $W'$ be the set of equivalence classes of $\sim_{\Delta}$ on $W$.  It is easy to see that if $\Delta$ is finite, so is $W'$.  Next, let $$V'(p):=\lbrace [w] \in W' \mid w\in V(p)\rbrace.$$  Then $V'$ is a well-defined function.  We call a binary relation $R'$ on $W'$ a \emph{filtration} of $R$ if
+\begin{itemize}
+\item $w R u$ implies $[w] R' [u]$
+\item $[w] R' [u]$ implies that for any wff $A$ with $\square A \in \Delta$, if $\models_w \square A$, then $\models_u A$.
+\end{itemize}
+The triple $M':=(W',R',V')$ is called a \emph{filtration} of the model $M$.
+
+\begin{prop} (Filtration Lemma) Let $\Delta$ be a set of wff's closed under the formation of subformulas: any subformula of any formula in $\Delta$ is again in $\Delta$.  Then $$M' \models_{[w]} A \qquad \mbox{iff} \qquad M \models_w A.$$ \end{prop}
+
+%%%%%
+%%%%%
+\end{document}

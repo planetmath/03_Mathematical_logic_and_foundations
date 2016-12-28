@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A31FunctionExtensionalityAndUnivalence}
+\pmcreated{2013-11-09 5:56:49}
+\pmmodified{2013-11-09 5:56:49}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.3.1 Function extensionality and univalence}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\funext}{\mathsf{funext}}
+\newcommand{\happly}{\mathsf{happly}}
+\newcommand{\idtoeqv}{\ensuremath{\mathsf{idtoeqv}}\xspace}
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\univalence}{\ensuremath{\mathsf{univalence}}\xspace} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+There are two basic ways of introducing axioms which do not introduce new syntax or judgmental equalities (function extensionality and univalence are of this form):
+either add a primitive constant to inhabit the axiom, or prove all theorems which depend on the axiom by hypothesizing a variable that inhabits the axiom, cf.\ \PMlinkname{\S 1.1}{11typetheoryversussettheory}.
+While these are essentially equivalent, we opt for the former approach because we feel that the axioms of homotopy type theory are an essential part of the core theory.
+
+\index{function extensionality}%
+\autoref{axiom:funext} is formalized by introduction of a constant $\funext$ which
+asserts that $\happly$ is an equivalence:
+%
+\begin{mathparpagebreakable}
+  \inferrule*[right=$\Pi$-\textsc{ext}]
+  {\oftp\Gamma{f}{\tprd{x:A} B} \\
+   \oftp\Gamma{g}{\tprd{x:A} B}}
+  {\oftp\Gamma{\funext(f,g)}{\isequiv(\happly_{f,g})}}
+\end{mathparpagebreakable}
+%
+The definitions of $\happly$ and $\isequiv$ can be found in~\eqref{eq:happly} and
+\PMlinkname{\S 4.5}{45onthedefinitionofequivalences}, respectively.
+
+\index{univalence axiom}%
+\autoref{axiom:univalence} is formalized in a similar fashion, too:
+%
+\begin{mathparpagebreakable}
+  \inferrule*[right=$\UU_i$-\textsc{univ}]
+  {\oftp\Gamma{A}{\UU_i} \\
+   \oftp\Gamma{B}{\UU_i}}
+  {\oftp\Gamma{\univalence(A,B)}{\isequiv(\idtoeqv_{A,B})}}
+\end{mathparpagebreakable}
+%
+The definition of $\idtoeqv$ can be found in~\eqref{eq:uidtoeqv}.
+
+
+\end{document}

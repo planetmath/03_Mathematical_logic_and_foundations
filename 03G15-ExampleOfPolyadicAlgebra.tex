@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExampleOfPolyadicAlgebra}
+\pmcreated{2013-03-22 17:53:20}
+\pmmodified{2013-03-22 17:53:20}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{example of polyadic algebra}
+\pmrecord{15}{40372}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G15}
+\pmdefines{functional polyadic algebra}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Recall that the canonical example of a monadic algebra is that of a functional monadic algebra, which is a pair $(B,\exists)$ such that $B$ is the set of all functions from a non-empty set $X$ to a Boolean algebra $A$ such that, for each $f\in B$, the supremum and the infimum of $f(X)$ exist, and $\exists$ is a function on $B$ that maps each element $f$ to $f^{\exists}$, a constant element whose range is a singleton consisting of the supremum of $f(X)$.
+
+The canonical example of a polyadic algebra is an extension (generalization) of a functional monadic algebra, known as the \emph{functional polyadic algebra}.  Instead of looking at functions from $X$ to $A$, we look at functions from $X^I$ (where $I$ is some set), the $I$-fold cartesian power of $X$, to $A$.  In this entry, an element $x\in X^I$ is written as a sequence of elements of $A$: $(x_i)_{i\in I}$ where $x_i\in A$, or $(x_i)$ for short.
+
+Before constructing \emph{the} functional polyadic algebra based on the sets $X,I$ and the Boolean algebra $A$, we first introduce the following notations:
+\begin{itemize}
+\item for any $J\subseteq I$ and $x\in X^I$, define the subset (of $X^I$) $$[x]_J:=\lbrace y\in X^I \mid x_i=y_i\mbox{ for every }i\notin J\rbrace,$$
+\item for any function $\tau:I\to I$ and any $f:X^I\to A$, define the function $f_{\tau}$ from $X^I$ to $A$, given by $$f_{\tau}(x_i):=f(x_{\tau(i)}).$$
+\end{itemize}
+
+Now, let $B$ be the set of all functions from $X^I$ to $A$ such that
+\begin{enumerate}
+\item for every $f\in B$, every $J\subseteq I$ and every $x\in X^I$, the arbitrary join $$\bigvee f\left([x]_J\right)$$ exists.
+
+Before stating the next condition, we introduce, for each $f\in B$, a function $f^{\exists J}:X^I\to A$ as follows: $$f^{\exists J}(x):=\bigvee f\left([x]_J\right).$$  Now, we are ready for the next condition:
+\item if $f\in B$, then $f^{\exists J}\in B$,
+\item if $f\in B$, then $f_{\tau}\in B$ for $\tau:I\to I$.
+\end{enumerate}
+Note that if $A$ were a complete Boolean algebra, we can take $B$ to be $A^{X^I}$, the set of all functions from $X^I$ to $A$.
+
+Next, define $\exists: P(I)\to B^B$ by $\exists(J)(f)=f^{\exists J}$, and let $S$ be the semigroup of functions on $I$ (with functional compositions as multiplications), then we call the quadruple $(B,I,\exists,S)$ the \emph{functional polyadic algebra} for the triple $(A,X,I)$.
+
+\textbf{Remarks}.  Let $(B,I,\exists,S)$ be the functional polyadic algebra for $(A,X,I)$.
+\begin{itemize}
+\item $(B,I,\exists,S)$ is a polyadic algebra.  The proof of this is not difficult, but involved, and can be found in the reference below.
+\item If $I$ is a singleton, then $(B,I,\exists,S)$ can be identified with the functional monadic algebra $(B,\exists)$ for $(A,X)$, for $S$ is just $I$, and $X^I$ is just $X$.
+\item If $I$ is $\varnothing$, then $(B,I,\exists,S)$ can be identified with the Boolean algebra $A$, for $S=\varnothing$ and $X^I$ is a singleton, and hence the set of functions from $X^I$ to $A$ is identified with $A$.
+\end{itemize}
+
+\begin{thebibliography}{8}
+\bibitem{ph} P. Halmos, \emph{Algebraic Logic}, Chelsea Publishing Co. New York (1962).
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

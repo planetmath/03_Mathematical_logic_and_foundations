@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chapter11Notes}
+\pmcreated{2013-11-06 18:29:46}
+\pmmodified{2013-11-06 18:29:46}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{Chapter 11 Notes}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Application}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\define}[1]{\textbf{#1}}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\RC}{\ensuremath{\mathbb{R}_\mathsf{c}}\xspace} 
+\newcommand{\sectionNotes}{\phantomsection\section*{Notes}\addcontentsline{toc}{section}{Notes}\markright{\textsc{\@chapapp{} \thechapter{} Notes}}}
+\let\autoref\cref
+\makeatother
+\begin{document}
+Defining algebraic operations on Dedekind reals, especially multiplication, is both somewhat tricky and tedious.
+There are several ways to get arithmetic going: each has its own advantages, but they all seem to require some technical work.
+For instance, Richman~\cite{Richman:reals} defines multiplication on the Dedekind reals first on the positive cuts and then extends it algebraically to all Dedekind cuts, while Conway~\cite{conway:onag} has observed that the definition of multiplication for surreal numbers works well for Dedekind reals.
+
+Our treatment of the Dedekind reals borrows many ideas from~\cite{BauerTaylor09} where the Dedekind reals are constructed in the context of Abstract Stone Duality.
+\index{Abstract Stone Duality}%
+This is a (restricted) form of simply typed $\lambda$-calculus with a distinguished object $\Sigma$ which classifies open sets, and by duality also the closed ones. In~\cite{BauerTaylor09} you can also find detailed proofs of the basic properties of arithmetical operations.
+
+The fact that $\RC$ is the least Cauchy complete archimedean ordered field, as was proved in \autoref{RC-initial-Cauchy-complete}, indicates that our Cauchy reals probably coincide with the Escard{\'o}-Simpson reals~\cite{EscardoSimpson:01}.
+\index{real numbers!Escardo-Simpson@Escard\'o-Simpson}%
+It would be interesting to check\index{open!problem} whether this is really the case. The notion of Escard{\'o}-Simpson reals, or more precisely the corresponding closed interval, is interesting because it can be stated in any category with finite products.
+
+In constructive set theory augmented by the ``regular extension axiom'', one may also try to define Cauchy completion by closing under limits of Cauchy sequences with a transfinite iteration.
+It would also be interesting to check whether this construction agrees with ours.
+
+It is constructive folklore that coincidence of Cauchy and Dedekind reals requires dependent choice but it is less well known that countable choice suffices. Recall that \define{dependent choice}
+\indexdef{axiom!of choice!dependent}%
+\index{axiom!of choice!countable}%
+\index{total!relation}%
+states that for a total relation $R$ on $A$, by which we mean $\fall{x : A} \exis{y : A} R(x,y)$, and for any $a : A$ there merely exists $f : \N \to A$ such that $f(0) = a$ and $R(f(n), f(n+1))$ for all $n : \N$. Our \autoref{when-reals-coincide} uses the typical trick for converting an application of dependent choice to one using countable choice. Namely, we use countable choice once to make in advance all the choices that could come up, and then use the choice function to avoid the dependent choices.
+
+The intricate relationship between various notions of compactness in a constructive
+setting is discussed in \cite{bridges2002compactness}. Palmgren~\cite{Palmgren:FT} has a 
+good comparison between pointwise analysis and 
+pointfree topology.
+
+The surreal numbers were defined by~\cite{conway:onag}, using a sort of inductive definition but without justifying it explicitly in terms of any foundational system.
+For this reason, some later authors have tended to use sign-expansions or other more explicit presentations which can be coded more obviously into set theory.
+The idea of representing them in type theory was first considered by Hancock, while
+Setzer and Forsberg~\cite{forsbergfinite} noted that the surreals and their inequality relations $<$ and $\le$ naturally form an inductive-inductive definition.
+The \emph{higher} inductive-inductive version presented here, which builds in the correct notion of equality for surreals, is new.
+
+
+
+\end{document}

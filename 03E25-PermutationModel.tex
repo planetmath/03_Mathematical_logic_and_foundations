@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PermutationModel}
+\pmcreated{2013-03-22 14:46:48}
+\pmmodified{2013-03-22 14:46:48}
+\pmowner{ratboy}{4018}
+\pmmodifier{ratboy}{4018}
+\pmtitle{permutation model}
+\pmrecord{13}{36428}
+\pmprivacy{1}
+\pmauthor{ratboy}{4018}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+\pmdefines{G\"odel Operations}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+
+\usepackage{eucal}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newcommand{\w}{\omega}
+\newcommand{\proves}{\vdash}
+\newcommand{\nproves}{\nvdash}
+\renewcommand{\subset}{\subseteq}
+
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\rank}{rank}
+
+
+\newcommand{\R}{\mathbb{R}}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{lem}{Lemma}
+\begin{document}
+A permutation model is a model of the axioms of set theory in which there is a non trivial automorphism of the set theoretic universe.  Such models are used to show the consistency of the negation of the Axiom of Choice (AC).  
+
+A typical construction of a permutation model is done here.  By $ZF^-$ we denote the axioms of $ZF$ minus the axiom of foundation.  In particular we allow sets $a$ such that $a = \{a\}$ which we will call atoms.  Let $A$ be an infinite set of atoms.
+
+Define $V_\alpha(A)$ by induction on $\alpha$ as follows:
+\begin{align*}
+V_0(A) &= A \\
+V_{\alpha+1}(A) &= \mathcal{P}(V_\alpha) \\
+V_\alpha(A) &= \bigcup_{\gamma < \alpha}V_\gamma(A)  \text{ for $\alpha$ limit}
+\end{align*}
+
+Finally define $V = \bigcup_{\alpha \in \text{ON}} V_\alpha(A)$.  Then we have
+\[
+A = V_0(A) \subset V_1(A) \subset \cdots \subset V_\alpha(A) \cdots \subset V
+\]
+For any $x \in V$ we can assign a rank,
+\[
+\rank(x) = \text{ least } \alpha [ x \in V_{\alpha+1}(A)]
+\]
+Let $G$ be the group of permutations of $A$. For $\pi \in G$ we extend $\pi$ to
+a permutation of $V$ by induction on $\in$ by defining
+\[
+\pi(x) = \{ \pi(y) : y \in x \}
+\]
+and letting $\pi(\emptyset) = \emptyset$. Then $G$ permutes $V$ and fixes the well founded sets $WF \subset V$.
+                                                                                
+\begin{lem}
+For all $x,y \in V$ and any $\pi \in G$.
+\[
+x \in y \iff \pi(x) \in \pi(y)
+\]
+\end{lem}
+That is, $\pi$ is an $\in$-automorphism of $V$.  From this we can prove that $\pi(\{X,Y\}) = \{\pi(X), \pi(Y)\}$ and so
+\begin{align*}
+\pi((X,Y)) &= (\pi(X),\pi(Y))\\
+\pi((X,Y,Z)) &= (\pi(X),\pi(Y),\pi(Z))
+\end{align*}
+
+Also by induction on $\alpha$ it is easy to show that
+\[
+\rank(x) = \rank(\pi(x))
+\]
+for all $x \in V$.
+
+Let $a_1,\cdots,a_n \in A$ and define
+\[
+[ a_1, \cdots, a_n ] = \{\pi \in G : \pi(a_i) = a_i,\text{ for } i = 1, \cdots, n \}
+\]
+Call a set $X \in V$ symmetric if there exists $a_1,\cdots,a_n \in A$ such that $\pi(X) = X$ for all $\pi \in [a_1, \cdots, a_n]$.  Define the class $HS \subset V$ of hereditarily symmetric sets
+\[
+HS = \{x \in V : x \text{ is symmetric and } x \subset HS \}
+\]
+                                                                                
+Call a class $N$ transitive if
+\[
+\forall x \in N [ x \subset N]
+\]
+and call $N$ almost universal if (for sets S)
+\[
+\forall S \subset N [ \exists Y \in N (S \subset Y) ]
+\]
+                                                                                
+$HS$ is transitive and almost universal.
+                                                                                
+To show that a class $N \models ZF^-$ is straightforward for most axioms of $ZF^-$ except for the axiom of Comprehension.  To show $N$ is a model of Comprehension it suffices to show that $N$ is closed under \textbf{G\"odel Operations}:
+                                                                                
+\begin{align*}
+G_1(X,Y) &= \{X,Y\} \\
+G_2(X,Y) &= X \setminus Y \\
+G_3(X,Y) &= X \times Y \\
+G_4(X) &= \text{dom}(X)\\
+G_5(X) &= \ \in \!\cap X^2 \\
+G_6(X) &= \{(a,b,c) : (b,c,a) \in X \}\\
+G_7(X) &= \{(a,b,c) : (c,b,a) \in X \}\\
+G_8(X) &= \{(a,b,c) : (a,c,b) \in X \}
+\end{align*}
+                                                                                
+\begin{thm} ($ZF$)  If $N$ is transitive, almost universal and closed under G\"odel Operations, then $N \models ZF$.
+\end{thm}
+                                                                                
+$HS$ is closed under G\"odel operations and so $HS \models ZF^-$.  The class $HS$ is a permutation model.  The set of atoms $A \in HS$ and furthermore:
+                                                                                
+\begin{lem} Let $f : \w \rightarrow A$ be a one to one function.  Then $f \notin HS$ and so $A$ cannot be well ordered in $HS$.
+\end{lem}
+                                                                                
+Which proves the   theorem:                                                                                
+                                                                                
+\begin{thm}
+$HS \models ZF^- + \neg AC$.
+\end{thm}
+                                                                                
+which completes the proof that $\text{Con}(ZF^-) \implies \text{Con}(ZF^- + \neg AC)$.  In particular we have that $ZF^- \nproves AC$.
+%%%%%
+%%%%%
+\end{document}

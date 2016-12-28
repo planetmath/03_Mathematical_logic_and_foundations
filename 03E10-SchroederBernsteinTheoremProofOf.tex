@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SchroederBernsteinTheoremProofOf}
+\pmcreated{2013-03-22 12:49:56}
+\pmmodified{2013-03-22 12:49:56}
+\pmowner{mps}{409}
+\pmmodifier{mps}{409}
+\pmtitle{Schroeder-Bernstein theorem, proof of}
+\pmrecord{19}{33156}
+\pmprivacy{1}
+\pmauthor{mps}{409}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmsynonym{proof of Cantor-Bernstein theorem}{SchroederBernsteinTheoremProofOf}
+\pmsynonym{proof of Cantor-Schroeder-Bernstein theorem}{SchroederBernsteinTheoremProofOf}
+%\pmkeywords{cardinality}
+%\pmkeywords{bijection}
+%\pmkeywords{injection}
+\pmrelated{AnInjectionBetweenTwoFiniteSetsOfTheSameCardinalityIsBijective}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+We first prove as a lemma that for any $B\subset A$, if there is an
+injection $f:A\to B$, then there is also a bijection
+$h:A\to B$.
+
+Inductively define a sequence $(C_n)$ of subsets of $A$ by $C_0=A\setminus B$
+and $C_{n+1}=f(C_n)$.  
+Now let $C=\bigcup_{k=0}^\infty C_k$, and define $h:A\rightarrow B$ by
+\[h(z)=\begin{cases}
+f(z), & z\in C \\
+z,    & z\notin C
+\end{cases}.\]
+If $z\in C$, then $h(z)=f(z)\in B$.  But if $z\notin C$, then $z\in B$, and so $h(z)\in B$.  Hence $h$ is well-defined; $h$ is
+injective by construction.  Let $b\in B$.  If $b\notin C$, then
+$h(b)=b$.  Otherwise, $b\in C_k=f(C_{k-1})$ for some $k>0$, and
+so there is some $a\in C_{k-1}$ such that $h(a)=f(a)=b$.  Thus $h$
+is bijective; in particular, if $B=A$, then $h$ is simply the identity
+map on $A$.
+
+To prove the theorem, suppose $f:S\to T$ and $g:T\to S$
+are injective.  Then the composition $gf:S\to g(T)$ is also
+injective.  By the lemma, there is a bijection $h':S\to g(T)$.
+The injectivity of $g$ implies that $g^{-1}:g(T)\to T$ exists
+and is bijective.  Define $h:S\to T$ by $h(z)=g^{-1}h'(z)$; this
+map is a bijection, and so $S$ and $T$ have the same cardinality.
+%%%%%
+%%%%%
+\end{document}

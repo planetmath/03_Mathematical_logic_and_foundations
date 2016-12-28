@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Skolemization}
+\pmcreated{2013-03-22 12:59:13}
+\pmmodified{2013-03-22 12:59:13}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{Skolemization}
+\pmrecord{5}{33361}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B15}
+\pmclassification{msc}{03B10}
+\pmdefines{Skolem function}
+\pmdefines{Skolem constant}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+\emph{Skolemization} is a way of removing existential quantifiers from a formula.  Variables bound by existential quantifiers which are not inside the scope of universal quantifiers can simply be replaced by constants: $\exists x [x<3]$ can be changed to $c<3$, with $c$ a suitable constant.
+
+When the existential quantifier is inside a universal quantifier, the bound variable must be replaced by a \emph{Skolem function} of the variables bound by universal quantifiers.  Thus $\forall x[x=0\vee\exists y[x=y+1]]$ becomes $\forall x[x=0\vee x=f(x)+1]$.
+
+In general, the functions and constants symbols are new ones added to the language for the purpose of satisfying these formulas, and are often denoted by the formula they realize, for instance $c_{\exists x\phi(x)}$.
+
+This is used in second order logic to move all existential quantifiers outside the scope of first order universal quantifiers.  This can be done since second order quantifiers can quantify over functions.  For instance $\forall^1 x\forall^1 y\exists^1 z\phi(x,y,z)$ is equivalent to $\exists^2 F\forall^1 x\forall^1 y\phi(x,y,F(x,y))$.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DiophantineSet}
+\pmcreated{2013-03-22 18:02:50}
+\pmmodified{2013-03-22 18:02:50}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Diophantine set}
+\pmrecord{13}{40571}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D99}
+\pmclassification{msc}{03D80}
+\pmdefines{Diophantine function}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\PMlinkescapeword{diophantine}
+
+A set $S$ is said to be \emph{Diophantine} if 
+\begin{itemize}
+\item
+it is a subset of $\mathbb{N}^n$, the set of all $n$-tuples of positive integers, and 
+\item
+there is a polynomial $p$ over $\mathbb{Z}$ in $n+k$ variables, $k\ge 0$, such that $x\in S$ iff there is some $y\in \mathbb{N}^k$, such that $p(x,y)=0$.
+\end{itemize}
+
+So $S$ can be thought of as a set such that, there is a Diophantine equation $p=0$ and a non-negative integer $k$, so that when each element in $S$ is ``combined'' with some $k$-tuple, makes up a solution to a Diophantine equation $p=0$.  In other words, if $f_n^{n+k}:\mathbb{N}^{n+k}\to \mathbb{N}^n$ is a projection function given by $f_n^{n+k}(x,y)=x$ where $x\in \mathbb{N}^n$ and $y\in \mathbb{N}^k$, then $S$ is a Diophantine set iff $S=f_n^{n+k}(Z)$, where $Z$ is the zero set of some Diophantine equation $p=0$.  Equivalently, a set $S\in \mathbb{N}^n$ is Diophantine if there is a $p\in \mathbb{Z}[X_1,\ldots , X_{n+k}]$, such that $$S=\lbrace x\in \mathbb{N}^n\mid \exists y\in \mathbb{N}^k \; p(x,y)=0\rbrace.$$
+
+For example, $\mathbb{N}$ itself is Diophantine, for the polynomial $p(x,y)=x-y$ works.  Another trivial example: the set of all positive integers divisible by $3$ is Diophantine, for the polynomial $p(x,y)=x-3y$ works.  
+
+For a less trivial example, let us show that the set of all triples $(a,b,c)$ such that $a\le b\le c$ is Diophantine.  For the inequality $a\le b$, let $p(x_1,x_2,y)= x_2-x_1-(y-1)$.  Then the sentence $\exists y \; p(x_1,x_2,y)=0$ is equivalent to $x_1\le x_2$.  Similarly, for the inequality $b\le c$, we have the same polynomial $p$.  Putting the two inequality together amounts to setting $q(x_1,x_2,x_3,y_1,y_2)=p(x_1,x_2,y_1)^2+p(x_2,x_3,y_2)^2$.  Thus, the sentence $\exists  (y_1,y_2)\; q(x,y)=0$, where $x=(x_1,x_2,x_3)$ and $y=(y_1,y_2)$ is the same as the inequality $x_1\le x_2\le x_3$.
+
+Some other Diophantine sets are:
+\begin{itemize}
+\item the set $A=B\cup C$, where $B$ and $C$ are Diophantine
+\item the set $A=B\cap C$, where $B$ and $C$ are Diophantine
+\item the set $\lbrace a \mid a \equiv b \pmod n\rbrace$
+\item the set of composite numbers
+\item the set of prime numbers 
+\item the set of powers of a positive integer $\lbrace m^n\mid n=0,1,\ldots \rbrace$
+\end{itemize}
+
+\textbf{Remark}.  Associated with the concept of a Diophantine set is that of a \emph{Diophantine function}: a function $f$ is said to be \emph{Diophantine} if its graph $\lbrace (x,f(x)) \mid x\in \operatorname{dom}(f)\rbrace$ is a Diophantine set.  Some well-know Diophantine functions are the exponential functions $f(x)=n^x$ and the factorial function $f(x)=x!$, where $n,x$ are positive integers.
+
+It turns out that a function is Diophantine iff it is recursive.  From this, it is possible to prove that Hilbert's 10th problem is unsolvable.  
+
+The idea behind using Diophantine sets to prove the unsolvability of Hilbert's 10th problem comes from Yuri Matiyasevi\^c, and hence the theorem is known as Matiyasevi\^c's theorem.
+
+\begin{thebibliography}{8}
+\bibitem{md} M Davis, {\em Computability and Unsolvability}. Dover Publications, Inc. New York, 1982
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

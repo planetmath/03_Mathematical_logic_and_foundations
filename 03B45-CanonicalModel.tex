@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CanonicalModel}
+\pmcreated{2013-03-22 19:35:01}
+\pmmodified{2013-03-22 19:35:01}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{canonical model}
+\pmrecord{15}{42571}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmdefines{canonical frame}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+Recall that a logic is a set of wff's containing all tautologies and closed under modus ponens.  Given a logic $\Lambda$, a set $\Delta$ of wff's is $\Lambda$-consistent if $\perp$ can not be deduced from $\Delta$ given $\Lambda$.  $\Lambda$ itself is said to be $\Lambda$-consistent if $\perp$ can not be deduced from the empty set.  Let $\Lambda$ be a consistent normal modal logic.  The \emph{canonical frame} for $\Lambda$ is the Kripke frame $\mathcal{F}_{\Lambda}:=(W_{\Lambda},R_{\Lambda})$, where
+\begin{enumerate}
+\item $W_{\Lambda}$ is the set of all maximally consistent sets, and
+\item $w R_{\Lambda} u$ iff $\square A \in w$ implies $A \in u$ for any wff $A$.
+\end{enumerate}
+If we define $\Delta_w:=\lbrace B\mid \square B\in w\rbrace$, then the second condition above reads $w R_{\Lambda} u$ iff $\Delta_w \subseteq u$.  
+
+The \emph{canonical model} of $\Lambda$ based on $\mathcal{F}_{\Lambda}$ is the pair $M_{\Lambda}:=(\mathcal{F}_{\Lambda}, V_{\Lambda})$, where
+\begin{itemize}
+\item $V(p):=\lbrace w \in W_{\Lambda} \mid p \in w \rbrace$.
+\end{itemize}
+The main result regarding the canonical model of $\Lambda$ is:
+\begin{thm} $M_{\Lambda} \models A$ iff $\Lambda \vdash A$, where $A$ is any wff. \end{thm}
+Since the logic $\Lambda$ is the intersection of all maximally consistent sets (see \PMlinkname{here}{LindenbaumsLemma}), the theorem is the result of the following:
+\begin{prop} $M_{\Lambda} \models_w A$ iff $A \in w$. \end{prop}
+which is the result of the following:
+\begin{lem} For any world $w$ in $M_{\Lambda}$, $\square A \in w$ iff $A\in u$ for all worlds $u$ such that $w R_{\Lambda} u$. \end{lem}
+\begin{proof}  Suppose $\square A \in w$ and $w R_{\Lambda} u$.  Then $A \in u$ by the definition of $R_{\Lambda}$.  Conversely, suppose $A \in u$ for all $u$ such that $w R_{\Lambda} u$.  In other words, $A\in u$ for all $u$ such that $\Delta_w \subseteq u$, or $A\in \bigcap \lbrace u \mid \Delta_w \subseteq u\rbrace$.  But $\bigcap \lbrace u \mid \Delta_w \subseteq u\rbrace = \mbox{Ded}(\Delta_w)$, the deductive closure of $\Delta_w$, so $\Delta_w \vdash A$, and therefore $\square \Delta_w \vdash \square A$ (see \PMlinkname{here}{SyntacticPropertiesOfANormalModalLogic}), or $w \vdash \square A$ (since $\Delta_w \subseteq w$), or $\square A \in w$ (since $w$ is maximally consistent).
+\end{proof}
+
+\textbf{Proof of Proposition 1}.  We do induction on the number $n$ of logical connectives in $A$.  If $n=0$, then $A$ is either a propositional variable or $\perp$.  The former is just the definition of $V_{\Lambda}$.  The later case is just the definition of $\Lambda$-consistency.  Next, if $A$ is $B\to C$, then $M_{\Lambda} \models_w A$ iff either $M_{\Lambda} \not \models_w B$ or $M_{\Lambda} \models_w C$ iff $B \notin w$ or $C \in w$ iff $\neg B \in w$ or $C \in w$ iff $\neg B \lor C \in w$ iff $A \in w$.  Finally, if $A$ is $\square B$, then $M_{\Lambda} \models_w \square B$ iff $\square B \in w$ iff $B\in u$ for all $u$ such that $w R_{\Lambda} u$ iff $M_{\Lambda} \models_u B$ for all $u$ such that $w R_{\Lambda} u$.
+
+Recall that a logic is complete in a frame if it is complete in every model based on the frame.  As a corollary to Theorem 1, we have
+\begin{cor} $\Lambda$ is complete in its canonical frame $\mathcal{F}_{\Lambda}$.  \end{cor}
+\begin{proof} Any wff valid in every model based on $\mathcal{F}_{\Lambda}$ is valid in $M_{\Lambda}$ in particular, and therefore a theorem of $\Lambda$ by Theorem 1. \end{proof}
+
+The converse is not true.  There are in fact normal modal logics that are sound in no frames at all.
+
+Canonical models are useful in proving the completeness theorems for many common normal modal logics.  To prove that a logic is complete in a class of frames, by the corollary above, it is enough to show that the canonical frame is in the class.  Here are two examples:
+\begin{enumerate}
+\item Let $\Lambda$ be the smallest normal logic containing the schema $\square A$.  Then $\Lambda$ is complete in the class of null frames.
+\begin{proof}  By the discussion above, it is enough to show that $\mathcal{F}_{\Lambda}$ is a null frame: the assumption $\exists w\exists u (w R_{\Lambda} u)$ leads to a contradiction.  Suppose $w R_{\Lambda} u$.  Then $\Delta_w \subseteq u$.  This means that if $\square A \in w$, then $A\in u$.  But $\square A$ is a theorem (in $\Lambda$), $\square A \in w$ for any wff $A$.  This means that $A\in u$ for any wff $A$, or that $u$ is inconsistent, a contradiction.
+\end{proof}
+\item Let $\Lambda$ be the smallest normal logic containing the schema $A\to \square A$.  Then $\Lambda$ is complete in the class of weak identity frames (a binary relation $R$ is weak identity it is satisfies the condition $\forall x\forall y (x R y \to x=y)$).
+\begin{proof}  Again, we show that $R_{\Lambda}$ is weak identity.  Suppose $w R_{\Lambda} u$.  Then for any $A$, $\square A \in w$ implies that $A\in u$.  Now, if $A\in w$, then applying modus ponens to $A\to \square A$, we get that $\square A \in w$ since $w$ is closed under modus ponens.  But this means that $A\in u$.  So $w\subseteq u$.  But since both $w$ and $u$ are maximal, they are the same.
+\end{proof}
+\end{enumerate}
+
+%%%%%
+%%%%%
+\end{document}

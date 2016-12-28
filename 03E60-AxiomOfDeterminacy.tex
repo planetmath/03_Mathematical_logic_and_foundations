@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AxiomOfDeterminacy}
+\pmcreated{2013-03-22 14:50:46}
+\pmmodified{2013-03-22 14:50:46}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{axiom of determinacy}
+\pmrecord{8}{36516}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Axiom}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E60}
+\pmclassification{msc}{03E15}
+\pmsynonym{AD}{AxiomOfDeterminacy}
+%\pmkeywords{Descriptive set theory}
+%\pmkeywords{games}
+%\pmkeywords{reals}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+\providecommand{\set}[1]{\lbrace #1 \rbrace}
+\providecommand{\op}[2]{\langle #1 , #2 \rangle}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\cc}{\mathfrak{c}}
+\providecommand{\On}{\mathbb{O}\text{n}}
+\providecommand{\LL}{\mathsf{L}}
+\providecommand{\VV}{\mathsf{V}}
+\providecommand{\PP}{\mathbb{P}}
+\providecommand{\dom}{{\rm{dom}}}
+\providecommand{\Th}[1]{ {\rm Th} (#1)}
+\providecommand{\tuple}[1]{\langle #1 \rangle}
+\providecommand{\xx}{\mathbf{x}}
+\providecommand{\gen}[1]{\langle #1 \rangle}
+\providecommand{\RR}{\mathbb{R}}
+
+\DeclareMathOperator{\acl}{acl}
+\DeclareMathOperator{\dcl}{dcl}
+\DeclareMathOperator{\RM}{RM}
+\DeclareMathOperator{\dM}{dM}
+\DeclareMathOperator{\tp}{tp}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\dd}{d}
+
+\begin{document}
+When doing descriptive set theory, it is conventional to use either $\omega^\omega$ or $2^\omega$ as your space of ``reals'' (these spaces are homeomorphic to the irrationals and the Cantor set, respectively).  Throughout this article, I will use the term ``reals'' to refer to $\omega^\omega$.
+
+Let $X \subseteq \omega^\omega$ be given and consider the following game on $X$ played between two players, I and II: I starts by saying a natural number; II hears this number and replies with another (or possibly the same one); I hears this and replies with another; etc.  The sequence of numbers said (in the order they were said) is a point in $\omega^\omega$.  I wins if this point is in $X$, otherwise II wins.
+
+A map $\sigma: \omega^{<\omega} \to \omega$ is said to be a winning strategy for I if it has the following property: if, after the play has gone $n_0 n_1 \dotsc n_M$, I plays $\sigma(n_0 \dotsc n_M)$ for each move, then I wins.  A winning strategy for II is defined analogously.
+
+The {\em axiom of determinacy} (AD) states that every such game is determined, that is either I or II has a winning strategy.
+
+Using choice, a non-determined game can be constructed directly: for $\alpha< \cc$, enumerate the uncountable closed subsets of the reals $F_\alpha$.  Now construct two sequences $\gen{x_\alpha : \alpha < \cc}$ and $\gen{y_\alpha: \alpha < \cc}$ by choosing $x_\alpha, y_\alpha$ as distinct points from $F_\alpha$ which are not in $\set{x_\gamma, y_\gamma : \gamma < \alpha}$ (this is possible as each uncountable closed set has cardinality $\cc$).  Then the game on the set of all $x_\alpha$s is non-determined.
+
+From ZF+AD, one may prove many nice facts about the reals, such as: any subset is Lebesgue measurable, any subset has a perfect subset and the continuum hypothesis.  ZF+AD also proves the axiom of countable choice.
+
+AD itself is not taken seriously by many set theorists as a genuine alternative to choice.  However, there is a weakening of AD (the axiom of quasi-projective determinacy, or QPD, which states that all games in $\LL[\RR]$ are determined) which is consistent with ZFC (in fact, it's equiconsistent to a large cardinal axiom) which is a serious axiom candidate.
+
+%%%%%
+%%%%%
+\end{document}

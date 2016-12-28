@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{LambdaCalculus}
+\pmcreated{2013-03-22 12:32:39}
+\pmmodified{2013-03-22 12:32:39}
+\pmowner{ratboy}{4018}
+\pmmodifier{ratboy}{4018}
+\pmtitle{lambda calculus}
+\pmrecord{9}{32788}
+\pmprivacy{1}
+\pmauthor{ratboy}{4018}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B40}
+\pmrelated{CombinatoryLogic}
+\pmrelated{ChurchInteger}
+\pmrelated{RussellsParadox}
+\pmdefines{pure lambda calculus}
+\pmdefines{lambda abstraction}
+\pmdefines{lambda expression}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\DeclareMathOperator{\inc}{inc}
+\DeclareMathOperator{\add}{add}
+\DeclareMathOperator{\mul}{mul}
+\DeclareMathOperator{\Not}{not}
+\begin{document}
+\emph{Lambda calculus} (often referred to as $\lambda$-calculus) was invented in the 1930s by Alonzo Church, as a form of mathematical logic dealing primarly with functions and the application of functions to their arguments.
+In \emph{pure lambda calculus}, there are no constants.  Instead, there are only \emph{lambda abstractions} (which are simply specifications of functions), variables, and applications of functions to functions.  For instance, Church integers are used as a substitute for actual constants representing integers.
+
+A lambda abstraction is typically specified using a \emph{lambda expression}, which might look like the following.
+
+$$
+\lambda\;x\;.\;f\;x
+$$
+
+The above specifies a function of one argument, that can be \emph{reduced} by applying the function $f$ to its argument (function application is left-associative by default, and parentheses can be used to specify associativity).
+
+The $\lambda$-calculus is equivalent to combinatory logic (though much more concise).  Most functional programming languages are also equivalent to $\lambda$-calculus, to a degree (any imperative features in such languages are, of course, not equivalent).
+
+\subsubsection*{Examples}
+
+We can specify the Church integer $3$ in $\lambda$-calculus as
+
+$$
+3 = \lambda f\;x\;.\;f\;(f\;(f\;x))
+$$
+
+Suppose we have a function $\inc$, which when given a string representing an integer, returns a new string representing the number following that integer.
+Then
+
+$$
+3\;\inc\;\texttt{"0"} = \texttt{"3"}
+$$
+
+Addition of Church integers in $\lambda$-calculus is
+
+\begin{eqnarray*}
+\add & = & \lambda\;x\;y\;.\;(\lambda\;f\;z\;.\;x\;f\;(y\;f\;z)) \\
+\add\;2\;3 & = & \lambda\;f\; z\; .\; 2\; f\; (3\; f\; z) \\
+        & = & \lambda\; f\; z\; .\; 2\; f\; (f\; (f\; (f\; z))) \\
+        & = & \lambda\; f\; z\; .\; f\; (f\; (f\; (f\; (f\; z)))) \\
+        & = & 5
+\end{eqnarray*}
+
+Multiplication is
+
+\begin{eqnarray*}
+\mul & = & \lambda\;x\;y\;.\;(\lambda\;f\;z\;.\;x\;(\lambda\;w\;.\;y\;f\;w)\;z) \\
+\mul\;2\;3 & = & \lambda\;f\;z\;.\;2\;(\lambda\;w\;.\;3\;f\;w)\;z \\
+& = & \lambda\;f\;z\;.\;2\;(\lambda\;w\;.\;f\;(f\;(f\;w)))\;z \\
+& = & \lambda\;f\;z\;.\;f\;(f\;(f\;(f\;(f\;(f\;z))))) \\
+& = & 6.
+\end{eqnarray*}
+
+\subsubsection*{Russell's Paradox in $\lambda$-calculus}
+
+The $\lambda$-calculus readily admits Russell's Paradox.
+Let us define a function $r$ that takes a function $x$ as an argument, and is reduced to the application of the logical function $\Not$ to the application of $x$ to itself.
+
+$$
+r\;=\;\lambda\;x\;.\;\Not\;(x\;x)
+$$
+
+Now what happens when we apply $r$ to itself?
+
+\begin{eqnarray*}
+r\;r & = & \Not\;(r\;r) \\
+    & = & \Not\;(\Not\;(r\;r)) \\
+    & \vdots &
+\end{eqnarray*}
+
+Since we have $\Not\;(r\;r) = (r\;r)$, we have a paradox.
+%%%%%
+%%%%%
+\end{document}

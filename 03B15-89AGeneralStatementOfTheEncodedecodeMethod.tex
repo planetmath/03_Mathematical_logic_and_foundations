@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{89AGeneralStatementOfTheEncodedecodeMethod}
+\pmcreated{2013-11-06 15:36:45}
+\pmmodified{2013-11-06 15:36:45}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.9 A general statement of the encode-decode method}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\code}{\ensuremath{\mathsf{code}}\xspace}
+\newcommand{\decode}{\ensuremath{\mathsf{decode}}\xspace}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\encode}{\ensuremath{\mathsf{encode}}\xspace}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.9.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+\indexdef{encode-decode method}
+
+We have used the encode-decode method to characterize the path spaces
+of various types, including coproducts (\cref{thm:path-coprod}), natural
+numbers (\cref{thm:path-nat}), truncations (\cref{thm:path-truncation}),
+the circle (\cref{{cor:omega-s1}}), suspensions (\autoref{thm:freudenthal}), and pushouts
+(\cref{thm:van-Kampen}).  Variants of this technique are used in the
+proofs of many of the other theorems mentioned in the introduction to
+this chapter, such as a direct proof of $\pi_n(\Sn^n)$, the Blakers--Massey theorem, and the construction of Eilenberg--Mac Lane spaces.
+While it is tempting to try to
+abstract the method into a lemma, this is difficult because
+slightly different variants are needed for different problems.  For
+example, different variations on the same method  can be used to
+characterize a loop space (as in \cref{thm:path-coprod,cor:omega-s1}) or
+a whole path space (as in \cref{thm:path-nat}), to give a complete
+characterization of a loop space (e.g.\ $\Omega^1(\Sn ^1)$) or only to
+characterize some truncation of it (e.g.\ van Kampen), and to calculate
+homotopy groups or to prove that a map is $n$-connected (e.g.\ Freudenthal and
+Blakers--Massey).
+
+However, we can state lemmas for specific variants of the method.
+The proofs of these lemmas are almost trivial; the main point is to
+clarify the method by stating them in generality.  The simplest
+case is using an encode-decode method to characterize the loop space of a
+type, as in \cref{thm:path-coprod} and \cref{{cor:omega-s1}}.
+
+\begin{lem}[Encode-decode for Loop Spaces]
+  \index{loop space}%
+Given a pointed type $(A,a_0)$ and a fibration
+$\code : A \to \type$, if 
+\begin{enumerate}
+\item $c_0 : \code(a_0)$,\label{item:ed1}
+\item $\decode : \prd{x:A} \code(x) \to (\id{a_0}{x})$,\label{item:ed2}
+\item for all $c : \code(a_0)$, \id{\transfib{\code}{\decode(c)}{c_0}}{c}, and\label{item:ed3}
+\item $\id{\decode(c_0)}{\refl{}}$,\label{item:ed4}
+\end{enumerate}
+then $(\id{a_0}{a_0})$ is equivalent to $\code(a_0)$.
+\end{lem}
+
+\begin{proof}
+Define
+$\encode : \prd{x:A} (\id{a_0}{x}) \to \code(x)$ by
+\[
+\encode_x(\alpha) = \transfib{\code}{\alpha}{c_0}.
+\]
+We show that $\encode_{a_0}$ and $\decode_{a_0}$ are quasi-inverses.  
+The composition $\encode_{a_0} \circ \decode_{a_0}$ is immediate by
+assumption~\ref{item:ed3}.  For the other composition, we show
+\[
+\prd{x:A}{p : \id{a_0}{x}} \id{\decode_{x} (\encode_{x} p)}{p}.
+\] 
+By path induction, it suffices to show 
+$\id{{\decode_{{a_0}} (\encode_{{a_o}} \refl{})}}{\refl{}}$.
+After reducing the $\mathsf{transport}$, it suffices to show 
+$\id{{\decode_{{a_0}} (c_0)}}{\refl{}}$, which is assumption~\ref{item:ed4}.
+\end{proof}
+
+If a fiberwise equivalence between $(\id{a_0}{\blank})$ and $\code$ is desired,
+it suffices to strengthen condition (iii) to
+\[
+\prd{x:A}{c : \code(x)} \id{\encode_{x}(\decode_{x}(c))}{c}.a
+\]
+However, to calculate a loop space (e.g. $\Omega(\Sn ^1)$), this
+stronger assumption is not necessary.  
+
+Another variation, which comes up often when calculating homotopy
+groups, characterizes the truncation of a loop space:
+
+\begin{lem}[Encode-decode for Truncations of Loop Spaces]
+Assume a pointed type $(A,a_0)$ and a fibration
+$\code : A \to \type$, where for every $x$, $\code(x)$ is a $k$-type.
+Define 
+\[
+\encode : \prd{x:A} \trunc{k}{\id{a_0}{x}} \to \code(x).
+\]
+by truncation recursion (using the fact
+that $\code(x)$ is a $k$-type), mapping $\alpha : \id{a_0}{x}$ to 
+\transfib{\code}{\alpha}{c_0}. Suppose:
+\begin{enumerate}
+\item $c_0 : \code(a_0)$,
+\item $\decode : \prd{x:A} \code(x) \to \trunc{k}{\id{a_0}{x}}$,
+\item \label{item:decode-encode-loop-iii}
+  $\id{\encode_{a_0}(\decode_{a0}(c))}{c}$ for all $c : \code(a_0)$, and
+\item \label{item:decode-encode-loop-iv}
+  $\id{\decode(c_0)}{\tproj{}{\refl{}}}$.
+\end{enumerate}
+Then $\trunc{k}{\id{a_0}{a_0}}$ is equivalent to $\code(a_0)$.
+\end{lem}
+
+\begin{proof}
+That $\decode \circ \encode$ is identity is immediate by \ref{item:decode-encode-loop-iii}.
+%
+To prove $\encode \circ \decode$, we first do a truncation induction, by
+which it suffices to show
+\[
+\prd{x:A}{p : \id{a_0}{x}} \id{\decode_{x}(\encode_{x}(\tproj{k}{p}))}{\tproj{k}{p}}.
+\] 
+The truncation induction is allowed because paths in a $k$-type are a
+$k$-type.  To show this type, we do a path induction, and after reducing
+the \encode, use assumption~\ref{item:decode-encode-loop-iv}.
+\end{proof}
+
+
+\end{document}

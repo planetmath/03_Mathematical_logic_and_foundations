@@ -1,0 +1,676 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{115CompactnessOfTheInterval}
+\pmcreated{2013-11-06 18:26:06}
+\pmmodified{2013-11-06 18:26:06}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{11.5 Compactness of the interval}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bfalse}{{0_{\bool}}}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\btrue}{{1_{\bool}}}
+\newcommand{\cover}{\triangleleft} 
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\intfam}[3]{(#2, \lam{#1} #3)} 
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\lst}[1]{\mathsf{List}(#1)}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+\newcommand{\Qp}{\Q_{+}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}\xspace}           
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{11.5.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{11.5.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{11.5.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{11.5.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{11.5.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{11.5.\arabic{mathcount}}
+\let\autoref\cref
+\let\setof\Set    
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+\index{mathematics!classical|(}%
+\index{mathematics!constructive|(}%
+
+We already pointed out that our constructions of reals are entirely compatible with
+classical logic. Thus, by assuming the law of excluded middle~\eqref{eq:lem} and the axiom
+of choice~\eqref{eq:ac} we could develop classical analysis,\index{classical!analysis}\index{analysis!classical} which would essentially
+amount to copying any standard book on analysis.
+
+\index{analysis!constructive}%
+\index{constructive!analysis}%
+Nevertheless, anyone interested in computation, for example a numerical analyst, ought to
+be curious about developing analysis in a computationally meaningful setting. That
+analysis in a constructive setting is even possible was demonstrated by~\cite{Bishop1967}.
+As a sample of the differences and similarities between classical and constructive
+analysis we shall briefly discuss just one topic---compactness of the closed interval
+$[0,1]$ and a couple of theorems surrounding the concept.
+
+Compactness is no exception to the common phenomenon in constructive mathematics that
+classically equivalent notions bifurcate. The three most frequently used notions of
+compactness are:
+%
+\indexdef{compactness}%
+\begin{enumerate}
+\item \define{metrically compact:} ``Cauchy complete and totally bounded'',
+  \indexdef{metrically compact}%
+  \indexdef{compactness!metric}%
+\item \define{Bolzano--Weierstra\ss{} compact:} ``every sequence has a convergent subsequence'',
+  \index{compactness!Bolzano--Weierstrass@Bolzano--Weierstra\ss{}}%
+  \indexsee{Bolzano--Weierstrass@Bolzano--Weierstra\ss{}}{compactness}%
+  \index{sequence}%
+\item \define{Heine-Borel compact:} ``every open cover has a finite subcover''.
+  \index{compactness!Heine-Borel}%
+  \indexsee{Heine-Borel}{compactness}%
+\end{enumerate}
+%
+These are all equivalent in classical mathematics.
+Let us see how they fare in homotopy type theory. We can use either the Dedekind or the
+Cauchy reals, so we shall denote the reals just as~$\R$. We first recall several basic
+definitions.
+
+\indexsee{space!metric}{metric space}
+\index{metric space|(}%
+
+\begin{defn} \label{defn:metric-space}
+  A \define{metric space}
+  \indexdef{metric space}%
+  $(M, d)$ is a set $M$ with a map $d : M \times M \to \R$
+  satisfying, for all $x, y, z : M$,
+  %
+  \begin{align*}
+    d(x,y) &\geq 0, &
+    d(x,y) &= d(y,x), \\
+    d(x,y) &= 0 \Leftrightarrow x = y, &
+    d(x,z) &\leq d(x,y) + d(y,z).
+  \end{align*}
+  %
+\end{defn}
+
+\begin{defn} \label{defn:complete-metric-space}
+  A \define{Cauchy approximation}
+  \index{Cauchy!approximation}%
+  in $M$ is a sequence $x : \Qp \to M$ satisfying
+  %
+  \begin{equation*}
+    \fall{\delta, \epsilon} d(x_\delta, x_\epsilon) < \delta + \epsilon.
+  \end{equation*}
+  %
+  \index{limit!of a Cauchy approximation}%
+  The \define{limit} of a Cauchy approximation $x : \Qp \to M$ is a point $\ell : M$
+  satisfying
+  %
+  \begin{equation*}
+    \fall{\epsilon, \theta : \Qp} d(x_\epsilon, \ell) < \epsilon + \theta.
+  \end{equation*}
+  %
+  \indexdef{metric space!complete}%
+  \indexdef{complete!metric space}%
+  A \define{complete metric space} is one in which every Cauchy approximation has a limit.
+\end{defn}
+
+\begin{defn} \label{defn:total-bounded-metric-space}
+  For a positive rational $\epsilon$, an \define{$\epsilon$-net}
+  \indexdef{epsilon-net@$\epsilon$-net}%
+  in a metric space $(M,
+  d)$ is an element of
+  %
+  \begin{equation*}
+    \sm{n : \N}{x_1, \ldots, x_n : M}
+    \fall{y : M} \exis{k \leq n} d(x_k, y) < \epsilon.
+  \end{equation*}
+  %
+  In words, this is a finite sequence of points $x_1, \ldots, x_n$ such that every point
+  in $M$ merely is within $\epsilon$ of some~$x_k$.
+
+  A metric space $(M, d)$ is \define{totally bounded}
+  \indexdef{totally bounded metric space}%
+  \indexdef{metric space!totally bounded}%
+  when it has $\epsilon$-nets of all
+  sizes:
+  %
+  \begin{equation*}
+    \prd{\epsilon : \Qp} 
+    \sm{n : \N}{x_1, \ldots, x_n : M}
+    \fall{y : M} \exis{k \leq n} d(x_k, y) < \epsilon.
+  \end{equation*}
+\end{defn}
+
+\begin{rmk}
+  In the definition of total boundedness we used sloppy notation $\sm{n : \N}{x_1, \ldots, x_n : M}$. Formally, we should have written $\sm{x : \lst{M}}$ instead,
+  where $\lst{M}$ is the inductive type of finite lists\index{type!of lists} from \autoref{sec:bool-nat}.
+  However, that would make the rest of the statement a bit more cumbersome to express.
+\end{rmk}
+
+Note that in the definition of total boundedness we require pure existence of an
+$\epsilon$-net, not mere existence. This way we obtain a function which assigns to each
+$\epsilon : \Qp$ a specific $\epsilon$-net. Such a function might be called a ``modulus of
+total boundedness''. In general, when porting classical metric notions to homotopy type
+theory, we should use propositional truncation sparingly, typically so that we avoid
+asking for a non-constant map from $\R$ to $\Q$ or $\N$. For instance, here is the
+``correct'' definition of uniform continuity.
+
+\begin{defn} \label{defn:uniformly-continuous}
+  A map $f : M \to \R$ on a metric space is \define{uniformly continuous}
+  \indexdef{function!uniformly continuous}%
+  \indexdef{uniformly continuous function}%
+  when
+  %
+  \begin{equation*}
+    \prd{\epsilon : \Qp}
+    \sm{\delta : \Qp}
+    \fall{x, y : M}
+    d(x,y) < \delta \Rightarrow |f(x) - f(y)| < \epsilon.
+  \end{equation*}
+  %
+  In particular, a uniformly continuous map has a modulus of uniform continuity\indexdef{modulus!of uniform continuity},
+  which is a function that assigns to each $\epsilon$ a corresponding $\delta$.
+\end{defn}
+
+Let us show that $[0,1]$ is compact in the first sense.
+
+\begin{thm} \label{analysis-interval-ctb}
+  \index{compactness!metric}%
+  \index{interval!open and closed}%
+  The closed interval $[0,1]$ is complete and totally bounded.
+\end{thm}
+
+\begin{proof}
+  Given $\epsilon : \Qp$, there is $n : \N$ such that $2/k < \epsilon$, so we may take the
+  $\epsilon$-net $x_i = i/k$ for $i = 0, \ldots, k-1$. This is an $\epsilon$-net because,
+  for every $y : [0,1]$ there merely exists $i$ such that $0 \leq i < k$ and $(i -
+  1)/k < y < (i+1)/k$, and so $|y - x_i| < 2/k < \epsilon$.
+
+  For completeness of $[0,1]$, consider a Cauchy approximation $x : \Qp \to
+  [0,1]$ and let $\ell$ be its limit in $\R$. Since $\max$ and $\min$ are Lipschitz maps,
+  the retraction $r : \R \to [0,1]$ defined by $r(x) \defeq \max(0, \min(1, x))$ commutes
+  with limits of Cauchy approximations, therefore
+  %
+  \begin{equation*}
+    r(\ell) =
+    r (\lim x) =
+    \lim (r \circ x) =
+    r (\lim x) =
+    \ell,
+  \end{equation*}
+  %
+  which means that $0 \leq \ell \leq 1$, as required.
+\end{proof}
+
+We thus have at least one good notion of compactness in homotopy type theory.
+Unfortunately, it is limited to metric spaces because total boundedness is a metric
+notion. We shall consider the other two notions shortly, but first we prove that a
+uniformly continuous map on a totally bounded space has a \define{supremum},
+\indexsee{least upper bound}{supremum}%
+i.e.\ an upper bound which is less than or equal to all other upper bounds.
+
+\begin{thm} \label{ctb-uniformly-continuous-sup}
+  %
+  \indexdef{supremum!of uniformly continuous function}%
+  A uniformly continuous map $f : M \to \R$ on a totally bounded metric space
+  $(M, d)$ has a supremum $m : \R$. For every $\epsilon : \Qp$ there exists $u : M$ such
+  that $|m - f(u)| < \epsilon$.
+\end{thm}
+
+\begin{proof}
+  Let $h : \Qp \to \Qp$ be the modulus of uniform continuity of~$f$.
+  We define an approximation $x : \Qp \to \R$ as follows: for any $\epsilon : \Q$ total
+  boundedness of $M$ gives a $h(\epsilon)$-net $y_0, \ldots, y_n$. Define
+  %
+  \begin{equation*}
+    x_\epsilon \defeq \max (f(y_0), \ldots, f(y_n)).
+  \end{equation*}
+  %
+  We claim that $x$ is a Cauchy approximation. Consider any $\epsilon, \eta : \Q$, so that
+  %
+  \begin{equation*}
+    x_\epsilon \jdeq \max (f(y_0), \ldots, f(y_n))
+    \quad\text{and}\quad
+    x_\eta \jdeq \max (f(z_0), \ldots, f(z_m))
+  \end{equation*}
+  %
+  for some $h(\epsilon)$-net $y_0, \ldots, y_n$ and $h(\eta)$-net $z_0, \ldots, z_m$.
+  Every $z_i$ is merely $h(\epsilon)$-close to some $y_j$, therefore $|f(z_i) - f(y_j)| <
+  \epsilon$, from which we may conclude that
+  %
+  \begin{equation*}
+    f(z_i) < \epsilon + f(y_j) \leq \epsilon + x_\epsilon,
+  \end{equation*}
+  %
+  therefore $x_\eta < \epsilon + x_\epsilon$. Symmetrically we obtain $x_\eta < \eta +
+  x_\eta$, therefore $|x_\eta - x_\epsilon| < \eta + \epsilon$.
+
+  We claim that $m \defeq \lim x$ is the supremum of~$f$. To prove that $f(x) \leq m$ for
+  all $x : M$ it suffices to show $\lnot (m < f(x))$. So suppose to the contrary that $m <
+  f(x)$. There is $\epsilon : \Qp$ such that $m + \epsilon < f(x)$. But now merely for
+  some $y_i$ participating in the definition of $x_\epsilon$ we get $|f(x) - f(y_i) <
+  \epsilon$, therefore $m < f(x) - \epsilon < f(y_i) \leq m$, a contradiction.
+
+  We finish the proof by showing that $m$ satisfies the second part of the theorem, because
+  it is then automatically a least upper bound. Given any $\epsilon : \Qp$, on one hand
+  $|m - f(x_{\epsilon/2})| < 3 \epsilon/4$, and on the other $|f(x_{\epsilon/2}) - f(y_i)| <
+  \epsilon/4$ merely for some $y_i$ participating in the definition of $x_{\epsilon/2}$,
+  therefore by taking $u \defeq y_i$ we obtain $|m - f(u)| < \epsilon$ by triangle
+  inequality.
+\end{proof}
+
+Now, if in \autoref{ctb-uniformly-continuous-sup} we also knew that $M$ were complete, we
+could hope to weaken the assumption of uniform continuity to continuity, and strengthen
+the conclusion to existence of a point at which the supremum is attained. The usual proofs
+of these improvements rely on the facts that in a complete totally bounded space
+%
+\begin{enumerate}
+\item continuity implies uniform continuity, and
+\item every sequence has a convergent subsequence.
+\end{enumerate}
+%
+The first statement follows easily from Heine-Borel compactness, and the second is just
+Bolzano--Weierstra\ss{} compactness.
+\index{compactness!Bolzano--Weierstrass@Bolzano--Weierstra\ss{}}%
+Unfortunately, these are both somewhat problematic. Let
+us first show that Bolzano--Weierstra\ss{} compactness implies an instance of excluded middle
+known as the \define{limited principle of omniscience}:
+\indexsee{axiom!limited principle of omniscience}{limited principle of omniscience}%
+\indexdef{limited principle of omniscience}%
+for every $\alpha : \N \to \bool$,
+% 
+\begin{myeqn} \label{eq:lpo}
+  \Parens{\sm{n : \N} \alpha(n) = \btrue} +
+  \Parens{\prd{n : \N} \alpha(n) = \bfalse}.
+\end{myeqn}
+%
+Computationally speaking, we would not expect this principle to hold, because it asks us to decide
+whether infinitely many values of a function are~$\bfalse$.
+  
+\begin{thm} \label{analysis-bw-lpo}
+  %
+  Bolzano--Weierstra\ss{} compactness of $[0,1]$ implies the limited principle of omniscience.
+  \index{compactness!Bolzano--Weierstrass@Bolzano--Weierstra\ss{}}%
+\end{thm}
+
+\begin{proof}
+  Given any $\alpha : \N \to \bool$, define the sequence\index{sequence} $x : \N \to [0,1]$ by
+  %
+  \begin{equation*}
+    x_n \defeq
+    \begin{cases}
+      0 & \text{if $\alpha(k) = \bfalse$ for all $k < n$,}\\
+      1 & \text{if $\alpha(k) = \btrue$ for some $k < n$}.
+    \end{cases}
+  \end{equation*}
+  %
+  If the Bolzano--Weierstra\ss{} property holds, there exists a strictly increasing $f : \N \to
+  \N$ such that $x \circ f$ is a Cauchy sequence\index{Cauchy!sequence}. For a sufficiently large $n :
+  \N$ the $n$-th term $x_{f(n)}$ is within $1/6$ of its limit. Either $x_{f(n)} < 2/3$ or
+  $x_{f(n)} > 1/3$. If $x_{f(n)} < 2/3$ then~$x_n$ converges to $0$ and so $\prd{n : \N}
+  \alpha(n) = \bfalse$. If $x_{f(n)} > 1/3$ then $x_{f(n)} = 1$, therefore $\sm{n : \N}
+  \alpha(n) = \btrue$.
+\end{proof}
+
+While we might not mourn Bolzano--Weierstra\ss{} compactness too much, it seems harder to live
+without Heine--Borel compactness, as attested by the fact that both classical mathematics
+and Brouwer's Intuitionism accepted it. As we do not want to wade too deeply into general
+topology, we shall work with basic open sets. In the case of $\R$ these are the open
+intervals with rational endpoints. A family of such intervals, indexed by a type~$I$,
+would be a map
+%
+\begin{equation*}
+  \mathcal{F} : I \to \setof{(q, r) : \Q \times \Q | q < r},
+\end{equation*}
+%
+with the idea that a pair of rationals $(q, r)$ with $q < r$ determines the type $\setof{ x : \R | q < x < r}$. It is slightly more convenient to allow degenerate intervals as well, so we take a
+\define{family of basic intervals}
+\indexdef{family!of basic intervals}%
+\indexdef{interval!family of basic}%
+to be a map
+%
+\begin{equation*}
+  \mathcal{F} : I \to \Q \times \Q.
+\end{equation*}
+%
+To be quite precise, a family is a dependent pair $(I, \mathcal{F})$, not just
+$\mathcal{F}$. A \define{finite family of basic intervals} is one indexed by $\setof{ m :
+  \N | m < n}$ for some $n : \N$. We usually present it by a finite list $[(q_0, r_0), \ldots,
+(q_{n-1}, r_{n-1})]$. Finally, a \define{finite subfamily}\indexdef{subfamily, finite, of intervals} of $(I, \mathcal{F})$ is given
+by a list of indices $[i_1, \ldots, i_n]$ which then determine the finite family
+$[\mathcal{F}(i_1), \ldots, \mathcal{F}(i_n)]$.
+
+As long as we are aware of the distinction between a pair $(q, r)$ and the corresponding
+interval $\setof{ x : \R | q < x < r}$, we may safely use the same notation $(q, r)$ for
+both. Intersections\indexdef{intersection!of intervals} and inclusions\indexdef{inclusion!of intervals}\indexdef{containment!of intervals} of intervals are expressible in terms of their
+endpoints:
+%
+\symlabel{interval-intersection}
+\symlabel{interval-subset}
+\begin{align*}
+  (q, r) \cap (s, t) &\ \defeq\  (\max(q, s), \min(r, t)),\\
+  (q, r) \subseteq (s, t) &\ \defeq\ (q < r \Rightarrow s \leq q < r \leq t).
+\end{align*}
+%
+We say that $\intfam{i}{I}{(q_i, r_i)}$ \define{(pointwise) covers $[a,b]$}
+\indexdef{interval!pointwise cover}%
+\indexdef{cover!pointwise}%
+\indexdef{pointwise!cover}%
+when
+%
+\begin{myeqn} \label{eq:cover-pointwise-truncated}
+  \fall{x : [a,b]} \exis{i : I} q_i < x < r_i.
+\end{myeqn}
+%
+The \define{Heine-Borel compactness for $[0,1]$}
+\indexdef{compactness!Heine-Borel}%
+states that every covering family of $[0,1]$
+merely has a finite subfamily which still covers $[0,1]$.
+
+\index{depression}
+\begin{thm} \label{classical-Heine-Borel}
+  \index{excluded middle}%
+  If excluded middle holds then $[0,1]$ is Heine-Borel compact.
+\end{thm}
+
+\begin{proof}
+  Assume for the purpose of reaching a contradiction that a family $\intfam{i}{I}{(a_i,
+    b_i)}$ covers $[0,1]$ but no finite subfamily does. We construct a sequence of closed
+  intervals $[q_n, r_n]$ which are nested, their sizes shrink to~$0$, and none of them is covered
+  by a finite subfamily of $\intfam{i}{I}{(a_i, b_i)}$.
+
+  We set $[q_0, r_0] \defeq [0,1]$. Assuming $[q_n, r_n]$ has been constructed, let $s
+  \defeq (2 q_n + r_n)/3$ and $t \defeq (q_n + 2 r_n)/3$. Both $[q_n, t]$ and $[s, r_n]$
+  are covered by $\intfam{i}{I}{(a_i, b_i)}$, but they cannot both have a finite subcover,
+  or else so would $[q_n, r_n]$. Either $[q_n, t]$ has a finite subcover or it does not.
+  If it does we set $[q_{n+1}, r_{n+1}] \defeq [s, r_n]$, otherwise we set $[q_{n+1},
+  r_{n+1}] \defeq [q_n, t]$.
+
+  The sequences $q_0, q_1, \ldots$ and $r_0, r_1, \ldots$ are both Cauchy and they
+  converge to a point $x : [0,1]$ which is contained in every $[q_n, r_n]$.
+  There merely exists $i : I$ such that $a_i < x < b_i$. Because the sizes of the
+  intervals $[q_n, r_n]$ shrink to zero, there is $n : \N$ such that $a_i < q_n \leq x
+  \leq r_n < b_i$, but this means that $[q_n, r_n]$ is covered by a single interval $(a_i,
+  b_i)$, while at the same time it has no finite subcover. A contradiction.
+\end{proof}
+
+Without excluded middle, or a pinch of Brouwerian Intuitionism, we seem to be stuck.
+Nevertheless, Heine-Borel compactness of $[0,1]$ \emph{can} be recovered in a constructive
+setting, in a fashion that is still compatible with classical mathematics! For this to be
+done, we need to revisit the notion of cover. The trouble with
+\eqref{eq:cover-pointwise-truncated} is that the truncated existential allows a space to
+be covered in any haphazard way, and so computationally speaking, we stand no chance of
+merely extracting a finite subcover. By removing the truncation we get
+%
+\begin{myeqn} \label{eq:cover-pointwise}
+  \prd{x : [0,1]} \sm{i : I} q_i < x < r_i,
+\end{myeqn}
+%
+which might help, were it not too demanding of covers. With this definition we
+could not even show that $(0,3)$ and $(2,5)$ cover $[1,4]$ because that would amount
+to exhibiting a non-constant map $[1,4] \to \bool$, see
+\autoref{ex:reals-non-constant-into-Z}.  Here we can take a lesson from ``pointfree topology''
+\index{pointfree topology}%
+\index{topology!pointfree}%
+(i.e.\ locale theory):
+\index{locale}%
+the notion of cover ought to be expressed in terms of open sets, without
+reference to points. Such a ``holistic'' view of space will then allow us to analyze the
+notion of cover, and we shall be able to recover Heine-Borel compactness.  Locale
+theory uses power sets,
+\index{power set}%
+which we could obtain by assuming propositional resizing;
+\index{propositional!resizing}%
+but instead we can steal ideas from the predicative cousin of locale theory,
+\index{mathematics!predicative}%
+which is called ``formal topology''.
+\index{formal!topology}%
+
+\index{acceptance|(}
+
+Suppose that we have a family $\pairr{I, \mathcal{F}}$ and an interval $(a, b)$. How might
+we express the fact that $(a,b)$ is covered by the family, without referring to points?
+Here is one: if $(a, b)$ equals some $\mathcal{F}(i)$ then it is covered by the family.
+And another one: if $(a,b)$ is covered by some other family $(J, \mathcal{G})$, and in
+turn each $\mathcal{G}(j)$ is covered by $\pairr{I, \mathcal{F}}$, then $(a,b)$ is covered
+$\pairr{I, \mathcal{F}}$. Notice that we are listing \emph{rules} which can be used to
+\emph{deduce} that $\pairr{I, \mathcal{F}}$ covers $(a,b)$. We should find sufficiently
+good rules and turn them into an inductive definition.
+
+\begin{defn} \label{defn:inductive-cover}
+  %
+  The \define{inductive cover $\cover$}
+  \indexdef{inductive!cover}%
+  \indexdef{cover!inductive}%
+  is a mere relation
+  %
+  \begin{equation*}
+    {\cover} : (\Q \times \Q) \to \Parens{\sm{I : \type} (I \to \Q \times \Q)} \to \prop
+  \end{equation*}
+  %
+  defined inductively by the following rules, where $q, r, s, t$ are rational numbers and
+  $\pairr{I, \mathcal{F}}$, $\pairr{J, \mathcal{G}}$ are families of basic intervals:
+  %
+  \begin{enumerate}
+
+  \item \emph{reflexivity:}
+    \index{reflexivity!of inductive cover}%
+    $\mathcal{F}(i) \cover \pairr{I, \mathcal{F}}$ for all $i : I$,
+      
+  \item \emph{transitivity:}
+    \index{transitivity!of inductive cover}%
+    if $(q, r) \cover \pairr{J, \mathcal{G}}$ and $\fall{j : J} \mathcal{G}(j) \cover \pairr{I,\mathcal{F}}$
+    then $(q, r) \cover \pairr{I, \mathcal{F}}$,
+
+  \item \emph{monotonicity:}
+    \index{monotonicity!of inductive cover}%
+    if $(q, r) \subseteq (s, t)$ and $(s,t) \cover \pairr{I, \mathcal{F}}$ then $(q, r) \cover
+    \pairr{I, \mathcal{F}}$,
+
+  \item \emph{localization:}
+    \index{localization of inductive cover}%
+    if $(q, r) \cover (I, \mathcal{F})$ then $(q, r) \cap (s, t) \cover
+    \intfam{i}{I}{(\mathcal{F}(i) \cap (s, t))}$.
+
+  \item \label{defn:inductive-cover-interval-1}
+    if $q < s < t < r$ then $(q, r) \cover [(q, t), (r, s)]$,
+
+  \item \label{defn:inductive-cover-interval-2}
+    $(q, r) \cover \intfam{u}{\setof{ (s,t) : \Q \times \Q | q < s < t < r}}{u}$.
+  \end{enumerate}
+\end{defn}
+
+The definition should be read as a higher-inductive type in which the listed rules are
+point constructors, and the type is $(-1)$-truncated. The first four clauses are of a
+general nature and should be intuitively clear. The last two clauses are specific to the
+real line: one says that an interval may be covered by two intervals if they overlap,
+while the other one says that an interval may be covered from within. Incidentally, if $r
+\leq q$ then $(q, r)$ is covered by the empty family by the last clause.
+
+Inductive covers enjoy the Heine-Borel property, the proof of which requires a lemma.
+
+\begin{lem} \label{reals-formal-topology-locally-compact}
+  Suppose $q < s < t < r$ and $(q, r) \cover \pairr{I, \mathcal{F}}$. Then there merely
+  exists a finite subfamily of $\pairr{I, \mathcal{F}}$ which inductively covers $(s, t)$.
+\end{lem}
+
+\begin{proof}
+  We prove the statement by induction on $(q, r) \cover \pairr{I, \mathcal{F}}$. There are
+  six cases:
+  %
+  \begin{enumerate}
+
+  \item Reflexivity: if $(q, r) = \mathcal{F}(i)$ then by monotonicity $(s, t)$ is covered
+    by the finite subfamily $[\mathcal{F}(i)]$.
+
+  \item Transitivity:
+    suppose $(q, r) \cover \pairr{J, \mathcal{G}}$ and $\fall{j : J} \mathcal{G}(j) \cover
+    \pairr{I, \mathcal{F}}$. By the inductive hypothesis there merely exists
+    $[\mathcal{G}(j_1), \ldots, \mathcal{G}(j_n)]$ which covers $(s, t)$.
+    Again by the inductive hypothesis, each of $\mathcal{G}(j_k)$ is covered by a finite
+    subfamily of $\pairr{I, \mathcal{F}}$, and we can collect these into a finite
+    subfamily which covers $(s, t)$.
+
+  \item Monotonicity:
+    if $(q, r) \subseteq (u, v)$ and $(u, v) \cover \pairr{I, \mathcal{F}}$ then we may
+    apply the inductive hypothesis to $(u, v) \cover \pairr{I, \mathcal{F}}$ because $u <
+    s < t < v$.
+
+  \item Localization:
+    suppose $(q', r') \cover \pairr{I, \mathcal{F}}$ and $(q, r) = (q', r') \cap (a, b)$.
+    Because $q' < s < t < r'$, by the inductive hypothesis there is a finite subcover
+    $[\mathcal{F}(i_1), \ldots, \mathcal{F}(i_n)]$ of $(s, t)$. We also know that $a < s <
+    t < b$, therefore $(s, t) = (s, t) \cap (a, b)$ is covered by
+    $[\mathcal{F}(i_1) \cap (a,b), \ldots, \mathcal{F}(i_n) \cap (a,b)]$, which is a
+    finite subfamily of $\intfam{i}{I}{(\mathcal{F}(i) \cap (a, b))}$.
+
+  \item If $(q, r) \cover [(q, v), (u, r)]$ for some $q < u < v < r$ then by monotonicity
+    $(s, t) \cover [(q, v), (u, r)]$.
+
+  \item Finally, $(s, t) \cover \intfam{z}{\setof{ (u,v):\Q \times \Q | q < u < v < r}}{z}$ by
+    reflexivity. \qedhere
+  \end{enumerate}
+\end{proof}
+
+Say that \define{$\pairr{I, \mathcal{F}}$ inductively covers
+  $[a, b]$} when there merely exists $\epsilon : \Qp$ such that $(a - \epsilon, b +
+\epsilon) \cover \pairr{I, \mathcal{F}}$.
+
+\begin{cor} \label{interval-Heine-Borel}
+  \index{compactness!Heine-Borel}%
+  \index{interval!open and closed}%
+  A closed interval is Heine-Borel compact for inductive covers.
+\end{cor}
+
+\begin{proof}
+  Suppose $[a, b]$ is inductively covered by $\pairr{I, \mathcal{F}}$, so there merely is
+  $\epsilon : \Qp$ such that $(a - \epsilon, b + \epsilon) \cover \pairr{I, \mathcal{F}}$.
+  By \autoref{reals-formal-topology-locally-compact} there is a finite subcover of
+  $(a - \epsilon/2, b + \epsilon/2)$, which is therefore a finite subcover of $[a, b]$.
+\end{proof}
+
+Experience from formal topology\index{topology!formal} shows that the rules for inductive covers are sufficient
+for a constructive development of pointfree topology. But we can also provide our own
+evidence that they are a reasonable notion.
+
+\begin{thm} \label{inductive-cover-classical}
+  \mbox{}
+  %
+  \begin{enumerate}
+  \item An inductive cover is also a pointwise cover.
+  \item Assuming excluded middle, a pointwise cover is also an inductive cover.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  \mbox{}
+  %
+  \begin{enumerate}
+
+  \item 
+    Consider a family of basic intervals $\pairr{I, \mathcal{F}}$, where we write $(q_i,
+    r_i) \defeq \mathcal{F}(i)$, an interval $(a,b)$ inductively covered by $\pairr{I,
+      \mathcal{F}}$, and $x$ such that $a < x < b$.
+    %
+    We prove by induction on $(a,b) \cover \pairr{I, \mathcal{F}}$ that there merely
+    exists $i : I$ such that $q_i < x < r_i$. Most cases are pretty obvious, so we show
+    just two. If $(a,b) \cover \pairr{I, \mathcal{F}}$ by reflexivity, then there merely
+    is some $i : I$ such that $(a,b) = (q_i, r_i)$ and so $q_i < x < r_i$. If $(a,b)
+    \cover \pairr{I, \mathcal{F}}$ by transitivity via $\intfam{j}{J}{(s_j, t_j)}$ then by
+    the inductive hypothesis there merely is $j : J$ such that $s_j < x < t_j$, and then since
+    $(s_j, t_j) \cover \pairr{I, \mathcal{F}}$ again by the inductive hypothesis there merely
+    exists $i : I$ such that $q_i < x < r_i$. Other cases are just as exciting.
+
+  \item Suppose $\intfam{i}{I}{(q_i, r_i)}$ pointwise covers $(a, b)$. By
+    \autoref{defn:inductive-cover-interval-2} of \autoref{defn:inductive-cover} it
+    suffices to show that $\intfam{i}{I}{(q_i, r_i)}$ inductively covers $(c, d)$ whenever
+    $a < c < d < b$, so consider such $c$ and $d$. By \autoref{classical-Heine-Borel}
+    there is a finite subfamily $[i_1, \ldots, i_n]$ which already pointwise covers $[c,
+    d]$, and hence $(c,d)$. Let $\epsilon : \Qp$ be a Lebesgue number
+    \index{Lebesgue number}
+    for $(q_{i_1}, r_{i_1}), \ldots, (q_{i_n}, r_{i_n})$ as in
+    \autoref{ex:finite-cover-lebesgue-number}. There is a positive $k : \N$ such that $2 (d - c)/k
+    < \min(1, \epsilon)$. For $0 \leq i \leq k$ let
+    %
+    \begin{equation*}
+      c_k \defeq ((k - i) c + i d) / k.
+    \end{equation*}
+    %
+    The intervals $(c_0, c_2)$, $(c_1, c_3)$, \dots, $(c_{k-2}, c_k)$ inductively cover
+    $(c,d)$ by repeated use of transitivity and~\autoref{defn:inductive-cover-interval-1}
+    in \autoref{defn:inductive-cover}. Because their widths are below $\epsilon$ each of
+    them is contained in some $(q_i, r_i)$, and we may use transitivity and monotonicity to
+    conclude that $\intfam{i}{I}{(q_i, r_i)}$ inductively cover $(c, d)$. \qedhere
+  \end{enumerate}
+\end{proof}
+
+The upshot of the previous theorem is that, as far as classical mathematics is concerned,
+there is no difference between a pointwise and an inductive cover. In particular, since it
+is consistent to assume excluded middle in homotopy type theory, we cannot exhibit an
+inductive cover which fails to be a pointwise cover. Or to put it in a different way, the
+difference between pointwise and inductive covers is not what they cover but in the
+\emph{proofs} that they cover. 
+
+We could write another book by going on like this, but let us stop here and hope that we
+have provided ample justification for the claim that analysis can be developed in homotopy
+type theory. The curious reader should consult \autoref{ex:mean-value-theorem} for
+constructive versions of the mean value theorem.
+
+\index{acceptance|)}
+
+\index{mathematics!classical|)}%
+\index{mathematics!constructive|)}%
+
+
+\end{document}

@@ -1,0 +1,241 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{92FunctorsAndTransformations}
+\pmcreated{2013-11-06 16:29:07}
+\pmmodified{2013-11-06 16:29:07}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{9.2 Functors and transformations}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idtoiso}{\ensuremath{\mathsf{idtoiso}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inv}[1]{{#1}^{-1}}
+\newcommand{\isotoid}{\ensuremath{\mathsf{isotoid}}\xspace}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\mentalpause}{\medskip} 
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{9.2.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{9.2.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{9.2.\arabic{mathcount}}
+\let\autoref\cref
+
+\begin{document}
+
+The following definitions are fairly obvious, and need no modification.
+
+\begin{defn}\label{ct:functor}
+  Let $A$ and $B$ be precategories.
+  A \define{functor}
+  \indexdef{functor}%
+  $F:A\to B$ consists of
+  \begin{enumerate}
+  \item A function $F_0:A_0\to B_0$, generally also denoted $F$.
+  \item For each $a,b:A$, a function $F_{a,b}:\hom_A(a,b) \to \hom_B(Fa,Fb)$, generally also denoted $F$.
+  \item For each $a:A$, we have $\id{F(1_a)}{1_{Fa}}$.
+  \item For each $a,b,c:A$ and $f:\hom_A(a,b)$ and $g:\hom_B(b,c)$, we have
+    \[\id{F(g\circ f)}{Fg\circ Ff}.\]
+  \end{enumerate}
+\end{defn}
+
+Note that by induction on identity, a functor also preserves \idtoiso.
+
+\begin{defn}\label{ct:nattrans}
+  For functors $F,G:A\to B$, a \define{natural transformation}
+  \indexdef{natural!transformation}%
+  \indexsee{transformation!natural}{natural transformation}%
+  $\gamma:F\to G$ consists of
+  \begin{enumerate}
+  \item For each $a:A$, a morphism $\gamma_a:\hom_B(Fa,Ga)$ (the ``components'').
+  \item For each $a,b:A$ and $f:\hom_A(a,b)$, we have $\id{Gf\circ \gamma_a}{\gamma_b\circ Ff}$ (the ``naturality axiom'').
+  \end{enumerate}
+\end{defn}
+
+Since each type $\hom_B(Fa,Gb)$ is a set, its identity type is a mere proposition.
+Thus, the naturality axiom is a mere proposition, so identity of natural transformations is determined by identity of their components.
+In particular, for any $F$ and $G$, the type of natural transformations from $F$ to $G$ is again a set.
+
+Similarly, identity of functors is determined by identity of the functions $A_0\to B_0$ and (transported along this) of the corresponding functions on hom-sets.
+
+\begin{defn}\label{ct:functor-precat}
+  \indexdef{precategory!of functors}%
+  For precategories $A,B$, there is a precategory $B^A$ defined by
+  \begin{itemize}
+  \item $(B^A)_0$ is the type of functors from $A$ to $B$.
+  \item $\hom_{B^A}(F,G)$ is the type of natural transformations from $F$ to $G$.
+  \end{itemize}
+\end{defn}
+\begin{proof}
+  We define $(1_F)_a\defeq 1_{Fa}$.
+  Naturality follows by the unit axioms of a precategory.
+  For $\gamma:F\to G$ and $\delta:G\to H$, we define $(\delta\circ\gamma)_a\defeq \delta_a\circ \gamma_a$.
+  Naturality follows by associativity.
+  Similarly, the unit and associativity laws for $B^A$ follow from those for $B$.
+\end{proof}
+
+\begin{lem}\label{ct:natiso}
+  \index{natural!isomorphism}%
+  \index{isomorphism!natural}%
+  A natural transformation $\gamma:F\to G$ is an isomorphism in $B^A$ if and only if each $\gamma_a$ is an isomorphism in $B$.
+\end{lem}
+\begin{proof}
+  If $\gamma$ is an isomorphism, then we have $\delta:G\to F$ that is its inverse.
+  By definition of composition in $B^A$, $(\delta\gamma)_a\jdeq \delta_a\gamma_a$ and similarly.
+  Thus, $\id{\delta\gamma}{1_F}$ and $\id{\gamma\delta}{1_G}$ imply $\id{\delta_a\gamma_a}{1_{Fa}}$ and $\id{\gamma_a\delta_a}{1_{Ga}}$, so $\gamma_a$ is an isomorphism.
+
+  Conversely, suppose each $\gamma_a$ is an isomorphism, with inverse called $\delta_a$, say.
+We define a natural transformation $\delta:G\to F$ with components $\delta_a$; for the naturality axiom we have
+  \[ Ff\circ \delta_a = \delta_b\circ \gamma_b\circ Ff \circ \delta_a = \delta_b\circ Gf\circ \gamma_a\circ \delta_a = \delta_b\circ Gf. \]
+  Now since composition and identity of natural transformations is determined on their components, we have $\id{\gamma\delta}{1_G}$ and $\id{\delta\gamma}{1_F}$.
+\end{proof}
+
+The following result is fundamental.
+
+\begin{thm}\label{ct:functor-cat}
+  \indexdef{category!of functors}%
+  \indexdef{functor!category of}%
+  If $A$ is a precategory and $B$ is a category, then $B^A$ is a category.
+\end{thm}
+\begin{proof}
+  Let $F,G:A\to B$; we must show that $\idtoiso:(\id{F}{G}) \to (F\cong G)$ is an equivalence.
+
+  To give an inverse to it, suppose $\gamma:F\cong G$ is a natural isomorphism.
+  Then for any $a:A$, we have an isomorphism $\gamma_a:Fa \cong Ga$, hence an identity $\isotoid(\gamma_a):\id{Fa}{Ga}$.
+  By function extensionality, we have an identity $\bar{\gamma}:\id[(A_0\to B_0)]{F_0}{G_0}$.
+
+  Now since the last two axioms of a functor are mere propositions, to show that $\id{F}{G}$ it will suffice to show that for any $a,b:A$, the functions
+  \begin{align*}
+    F_{a,b}&:\hom_A(a,b) \to \hom_B(Fa,Fb)\mathrlap{\qquad\text{and}}\\
+    G_{a,b}&:\hom_A(a,b) \to \hom_B(Ga,Gb)
+  \end{align*}
+  become equal when transported along $\bar\gamma$.
+  By computation for function extensionality, when applied to $a$, $\bar\gamma$ becomes equal to $\isotoid(\gamma_a)$.
+  But by \autoref{ct:idtoiso-trans}, transporting $Ff:\hom_B(Fa,Fb)$ along $\isotoid(\gamma_a)$ and $\isotoid(\gamma_b)$ is equal to the composite $\gamma_b\circ Ff\circ \inv{(\gamma_a)}$, which by naturality of $\gamma$ is equal to $Gf$.
+
+  This completes the definition of a function $(F\cong G) \to (\id F G)$.
+  Now consider the composite
+  \[ (\id F G) \to (F\cong G) \to (\id F G). \]
+  Since hom-sets are sets, their identity types are mere propositions, so to show that two identities $p,q:\id F G$ are equal, it suffices to show that $\id[\id{F_0}{G_0}]{p}{q}$.
+  But in the definition of $\bar\gamma$, if $\gamma$ were of the form $\idtoiso(p)$, then $\gamma_a$ would be equal to $\idtoiso(p_a)$ (this can easily be proved by induction on $p$).
+  Thus, $\isotoid(\gamma_a)$ would be equal to $p_a$, and so by function extensionality we would have $\id{\bar\gamma}{p}$, which is what we need.
+
+  Finally, consider the composite
+  \[(F\cong G)\to  (\id F G) \to (F\cong G). \]
+  Since identity of natural transformations can be tested componentwise, it suffices to show that for each $a$ we have $\id{\idtoiso(\bar\gamma)_a}{\gamma_a}$.
+  But as observed above, we have $\id{\idtoiso(\bar\gamma)_a}{\idtoiso((\bar\gamma)_a)}$, while $\id{(\bar\gamma)_a}{\isotoid(\gamma_a)}$ by computation for function extensionality.
+  Since $\isotoid$ and $\idtoiso$ are inverses, we have $\id{\idtoiso(\bar\gamma)_a}{\gamma_a}$ as desired.
+\end{proof}
+
+In particular, naturally isomorphic functors between categories (as opposed to precategories) are equal.
+
+\mentalpause
+
+We now define all the usual ways to compose functors and natural transformations.
+
+\begin{defn}
+  For functors $F:A\to B$ and $G:B\to C$, their composite $G\circ F:A\to C$ is given by
+  \begin{itemize}
+  \item The composite $(G_0\circ F_0) : A_0 \to C_0$
+  \item For each $a,b:A$, the composite
+    \[(G_{Fa,Fb}\circ F_{a,b}):\hom_A(a,b) \to \hom_C(GFa,GFb).\]
+  \end{itemize}
+  It is easy to check the axioms.
+\end{defn}
+
+\begin{defn}
+  For functors $F:A\to B$ and $G,H:B\to C$ and a natural transformation $\gamma:G\to H$, the composite $(\gamma F):GF\to HF$ is given by
+  \begin{itemize}
+  \item For each $a:A$, the component $\gamma_{Fa}$.
+  \end{itemize}
+  Naturality is easy to check.
+  Similarly, for $\gamma$ as above and $K:C\to D$, the composite $(K\gamma):KG\to KH$ is given by
+  \begin{itemize}
+  \item For each $b:B$, the component $K(\gamma_b)$.
+  \end{itemize}
+\end{defn}
+
+\begin{lem}\label{ct:interchange}
+  \index{interchange law}%
+  For functors $F,G:A\to B$ and $H,K:B\to C$ and natural transformations $\gamma:F\to G$ and $\delta:H\to K$, we have
+  \[\id{(\delta G)(H\gamma)}{(K\gamma)(\delta F)}.\]
+\end{lem}
+\begin{proof}
+  It suffices to check componentwise: at $a:A$ we have
+  \begin{align*}
+    ((\delta G)(H\gamma))_a
+    &\jdeq (\delta G)_{a}(H\gamma)_a\\
+    &\jdeq \delta_{Ga}\circ H(\gamma_a)\\
+    &= K(\gamma_a) \circ \delta_{Fa} \tag{by naturality of $\delta$}\\
+    &\jdeq (K \gamma)_a\circ (\delta F)_a\\
+    &\jdeq ((K \gamma)(\delta F))_a.\qedhere
+  \end{align*}
+\end{proof}
+
+\index{horizontal composition!of natural transformations}%
+\index{classical!category theory}%
+Classically, one defines the ``horizontal composite'' of $\gamma:F\to G$ and $\delta:H\to K$ to be the common value of ${(\delta G)(H\gamma)}$ and ${(K\gamma)(\delta F)}$.
+We will refrain from doing this, because while equal, these two transformations are not \emph{definitionally} equal.
+This also has the consequence that we can use the symbol $\circ$ (or juxtaposition) for all kinds of composition unambiguously: there is only one way to compose two natural transformations (as opposed to composing a natural transformation with a functor on either side).
+
+\begin{lem}\label{ct:functor-assoc}
+  \index{associativity!of functor composition}
+  Composition of functors is associative: $\id{H(GF)}{(HG)F}$.
+\end{lem}
+\begin{proof}
+  Since composition of functions is associative, this follows immediately for the actions on objects and on homs.
+  And since hom-sets are sets, the rest of the data is automatic.
+\end{proof}
+
+The equality in \autoref{ct:functor-assoc} is likewise not definitional.
+(Composition of functions is definitionally associative, but the axioms that go into a functor must also be composed, and this breaks definitional associativity.)  For this reason, we need also to know about \emph{coherence}\index{coherence} for associativity.
+
+\begin{lem}\label{ct:pentagon}
+  \index{associativity!of functor composition!coherence of}%
+  \autoref{ct:functor-assoc} is coherent, i.e.\ the following pentagon\index{pentagon, Mac Lane} of equalities commutes:
+  \[ \xymatrix{ & K(H(GF)) \ar@{=}[dl] \ar@{=}[dr]\\
+    (KH)(GF) \ar@{=}[d] && K((HG)F) \ar@{=}[d]\\
+    ((KH)G)F && (K(HG))F \ar@{=}[ll] }
+  \]
+\end{lem}
+\begin{proof}
+  As in \autoref{ct:functor-assoc}, this is evident for the actions on objects, and the rest is automatic.
+\end{proof}
+
+We will henceforth abuse notation by writing $H\circ G\circ F$ or $HGF$ for either $H(GF)$ or $(HG)F$, transporting along \autoref{ct:functor-assoc} whenever necessary.
+We have a similar coherence result for units.
+
+\begin{lem}\label{ct:units}
+  For a functor $F:A\to B$, we have equalities $\id{(1_B\circ F)}{F}$ and $\id{(F\circ 1_A)}{F}$, such that given also $G:B\to C$, the following triangle of equalities commutes.
+  \[ \xymatrix{
+    G\circ (1_B \circ F) \ar@{=}[rr] \ar@{=}[dr] &&
+    (G\circ 1_B)\circ F \ar@{=}[dl] \\
+    & G \circ F.}
+  \]
+\end{lem}
+
+See \autoref{ct:pre2cat},\autoref{ct:2cat} for further development of these ideas.
+
+
+
+\end{document}

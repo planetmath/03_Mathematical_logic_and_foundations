@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SimplifiedAutomaton}
+\pmcreated{2013-03-22 19:01:51}
+\pmmodified{2013-03-22 19:01:51}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{simplified automaton}
+\pmrecord{8}{41903}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmsynonym{trim automaton}{SimplifiedAutomaton}
+\pmsynonym{coaccessible}{SimplifiedAutomaton}
+\pmrelated{ReducedAutomaton}
+\pmdefines{reachable}
+\pmdefines{accessible}
+\pmdefines{live}
+\pmdefines{useful}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Word acceptance is the primary function of an automaton.  When a word is fed into an automaton at an initial state, it is accepted exactly when a final state is reached upon reading the last symbol of the word.  So when a state does not contribute in anyway to word acceptance, it may be tossed out without changing the accepting power of the automaton.
+
+\textbf{Definition}.  Let $A=(S,\Sigma,\delta,I,F)$ be an automaton.  A state $s\in S$ is said to be \emph{reachable} from a state $t\in S$, if for some word $u$ over $\Sigma$, $t\in \delta(s,u)$.  A state is said to be \emph{accessible} if it is reachable from a start state.  A state is \emph{live} or \emph{coaccessible} if a final state can be reached from it.  If a state is both accessible and live, then it is called \emph{useful}.
+
+Clearly, every start state is accessible, and every final state is live.  The following is the state diagram of an automaton that illustrates the concepts defined above.
+
+\begin{figure}[!h]
+\centering
+\scalebox{1.0}{\includegraphics{automaton.eps}}
+\end{figure}
+
+States $\sigma,p,r,s$ are accessible, while states $\sigma,p,q$ are live.  So the useful states are $\sigma$ and $p$.
+
+The automaton $A$ is said to be \emph{accessible} if every state in $S$ is accessible, and is \emph{live} if every state is live.  $A$ is called \emph{simplified} or \emph{trim} if it is both accessible and live (every state is useful).
+
+\begin{prop} An automaton is \PMlinkname{equivalent}{EquivalentAutomata} to a simplified automaton iff it accepts at least one word.  \end{prop}
+\begin{proof}  Suppose an automaton $A$ is equivalent to a simplified automaton $A'$.  Then the set of start states of $A'$ is non-empty, say containing a state $q$.  So $q$ is live, which means there is a word $u$ such that $\delta(p,u)$ contains a final state, or that $u\in L(A')=L(A)$.
+
+Conversely, suppose an automaton $A=(S,\Sigma,\delta,I,F)$ accepts a word $u$.  This means that there is a start state $q$ and a final state $r$ such that $r\in \delta(q,u)$, so that both $q$ and $r$ are useful.  Now, let $S'$ be the subset (of $S$) all useful states in $A$, and let $I'=I\cap S'$, $F'=F\cap S'$.  Then neither $I'$ nor $F'$ is empty.  Finally, let $\delta'$ be the restriction of $\delta$ on the set $S'\times \Sigma$, such that $$\delta'(s,a) := \delta(s,a)\cap S'.$$  Then the five-tuple $A':=(S',\Sigma,\delta',I',F')$ is an automaton.  Obviously, $L(A')\subseteq L(A)$.  On the other hand, the word $u$ above is accepted by $A'$.  Since $u$ is arbitrary, we see that $L(A')=L(A)$ as a result.
+\end{proof}
+
+\textbf{Remark}.  If we allow the start state set of an automaton to be empty, then every automaton can be simplified, whether or not it accepts any words.
+
+In the example above, the automaton is equivalent to the following simplified automaton:
+
+\begin{figure}[!h]
+\centering
+\scalebox{1.0}{\includegraphics{automaton2.eps}}
+\end{figure}
+
+However, the construction in the proof shows that, given a deterministic automaton $A$, the simplified automaton $A'$ may not be determinstic.  In the example above, $A'$ is not deterministic because $\delta(\sigma,b)=\varnothing$.  With respect to deterministic automata, the best we can do is the following:
+
+\begin{prop} A deterministic automaton is \PMlinkname{equivalent}{EquivalentAutomata} to a deterministic accessible automaton.  \end{prop}
+The proof of this is very similar to the one given above, except $S',I'$, and $F'$ now consist of all accessible states, and $\delta'$ is just a restriction on the domain of $\delta$, since if a state $s$ is accessible, so is any state in $\delta(s,a)$ for any $a\in \Sigma$.
+
+Again, referring the example above, $A$ is deterministic, and it is equivalent to the following deterministic accessible automaton:
+
+\begin{figure}[!h]
+\centering
+\scalebox{1.0}{\includegraphics{automaton1.eps}}
+\end{figure}
+
+The language accepted by the automaton is represented by the regular expression $a(ab)^*$.
+%%%%%
+%%%%%
+\end{document}

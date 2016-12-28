@@ -1,0 +1,152 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{813TheUniversalCoverInTypeTheory}
+\pmcreated{2013-11-06 2:24:29}
+\pmmodified{2013-11-06 2:24:29}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.1.3 The universal cover in type theory}
+\pmrecord{2}{87710}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\base}{\ensuremath{\mathsf{base}}\xspace}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\code}{\ensuremath{\mathsf{code}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\defid}{\coloneqq}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\lloop}{\ensuremath{\mathsf{loop}}\xspace}
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ua}{\ensuremath{\mathsf{ua}}\xspace} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcommand{\Zsuc}{\mathsf{succ}}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{8.1.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.1.\arabic{mathcount}}
+\let\ap\map
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\type\UU
+\makeatother
+\def\coloneqq{:=}
+\begin{document}
+\index{universal!cover|(}%
+\index{cover!universal|(}%
+\index{covering space!universal|(}%
+
+Let us consider how we might express the preceding proof in type theory.
+We have already remarked that the path fibration of $\Sn^1$ is represented by the type family $(x\mapsto (\base=x))$.
+We have also already seen a good candidate for the universal cover of $\Sn^1$: it's none other than the type family $c:\Sn^1\to\type$ which we defined in \autoref{sec:pi1s1-initial-thoughts}!
+By definition, the fiber of this family over $\base$ is $\Z$, while the effect of transporting around $\lloop$ is to add one --- thus it behaves just as we would expect from \autoref{fig:winding}.
+
+However, since we don't know yet that this family behaves like a universal cover is supposed to (for instance, that its total space is simply connected), we use a different name for it.
+For reference, therefore, we repeat the definition.
+\index{integers}
+
+\begin{defn}[Universal Cover of $\Sn^1$] \label{S1-universal-cover}
+  Define $\code : \Sn ^1 \to \type$ by circle-recursion, with 
+  \begin{align*}
+    \code(\base) &\defeq \Z \\
+    \apfunc{\code}({\lloop}) &\defid \ua(\Zsuc).
+  \end{align*}
+\end{defn}
+
+We emphasize briefly the definition of this family, since it is so different from how one usually defines covering spaces in classical homotopy theory.
+To define a function by circle recursion, we need to find a point and a
+loop in the codomain.  In this case, the codomain is $\type$, and the point
+we choose is $\Z$, corresponding to our expectation that the
+fiber of the universal cover should be the integers.  The loop we choose
+is the successor/predecessor
+\index{successor!isomorphism on Z@isomorphism on $\Z$}%
+\index{predecessor!isomorphism on Z@isomorphism on $\Z$}%
+isomorphism on $\Z$, which
+corresponds to the fact that going around the loop in the base goes up
+one level on the helix.  Univalence is necessary for this part of the
+proof, because we need to convert a \emph{non-trivial} equivalence on $\Z$ into an identity.  
+
+We call this the fibration of ``codes'', because its elements are combinatorial data that act as codes for paths on the circle: the integer $n$ codes for the path which loops around the circle $n$ times.
+
+From this definition, it is simple to calculate that transporting with
+$\code$ takes $\lloop$ to the successor function, and 
+$\opp{\lloop}$ to the predecessor function:
+\begin{lem} \label{lem:transport-s1-code}
+\id{\transfib \code \lloop x} {x + 1} and 
+\id{\transfib \code {\opp \lloop} x} {x - 1}.
+\end{lem}
+\begin{proof}
+For the first equation, we calculate as follows:
+\begin{align}
+{\transfib \code \lloop x} 
+&= \transfib {A \mapsto A} {(\ap{\code}{\lloop})} x \tag{by \autoref{thm:transport-compose}}\\
+&= \transfib {A \mapsto A} {\ua (\Zsuc)} x \tag{by computation for $\rec{\Sn^1}$}\\
+&= x + 1 \tag{by computation for \ua}.
+\end{align}
+The second equation follows from the first, because $\transfib{B}{p}{\blank}$ and $\transfib{B}{\opp p}{\blank}$ are always inverses, so $\transfib\code {\opp \lloop}{\blank}$ must be the inverse of $\Zsuc$.
+\end{proof}
+
+We can now see what was wrong with our first approach: we defined $f$ and $g$ only on the fibers $\Omega(\Sn^1)$ and \Z, when we should have defined a whole morphism \emph{of fibrations} over $\Sn^1$.
+In type theory, this means we should have defined functions having types
+\begin{align}
+  \prd{x:\Sn^1} &((\base=x) \to \code(x)) \qquad\text{and/or} \label{eq:pi1s1-encode}\\
+  \prd{x:\Sn^1} &(\code(x) \to (\base=x))\label{eq:pi1s1-decode}
+\end{align}
+instead of only the special cases of these when $x$ is \base.
+This is also an instance of a common observation in type theory: when attempting to prove something about particular inhabitants of some inductive type, it is often easier to generalize the statement so that it refers to \emph{all} inhabitants of that type, which we can then prove by induction.
+Looked at in this way, the proof of $\Omega(\Sn^1)=\Z$ fits into the same pattern as the characterization of the identity types of coproducts and natural numbers in \autoref{sec:compute-coprod},\autoref{sec:compute-nat}.
+
+At this point, there are two ways to finish the proof.
+We can continue mimicking the classical argument by constructing~\eqref{eq:pi1s1-encode} or~\eqref{eq:pi1s1-decode} (it doesn't matter which), proving that a homotopy equivalence between total spaces induces an equivalence on fibers, and then that the total space of the universal cover is contractible.
+The first type-theoretic proof of $\Omega(\Sn^1)=\Z$ followed this pattern; we call it the \emph{homotopy-theoretic} proof.
+
+Later, however, we discovered that there is an alternative proof, which has a more type-theoretic feel and more closely follows the proofs in \autoref{sec:compute-coprod},\autoref{sec:compute-nat}.
+In this proof, we directly construct both~\eqref{eq:pi1s1-encode} and~\eqref{eq:pi1s1-decode}, and prove that they are mutually inverse by calculation.
+We will call this the \emph{encode-decode} proof, because we call the functions~\eqref{eq:pi1s1-encode} and~\eqref{eq:pi1s1-decode} \emph{encode} and \emph{decode} respectively.
+Both proofs use the same construction of the cover given above.
+Where the classical proof induces an equivalence on fibers from an equivalence between total spaces, the encode-decode proof constructs the inverse map (\emph{decode}) explicitly as a map between fibers.
+And where the classical proof uses contractibility, the encode-decode proof uses path induction, circle induction, and integer induction.
+These are the same tools used to prove contractibility---indeed, path induction \emph{is} essentially contractibility of the path fibration composed with $\mathsf{transport}$---but they are applied in a different way.
+
+Since this is a book about homotopy type theory, we present the encode-decode proof first.
+A homotopy theorist who gets lost is encouraged to skip to the homotopy-theoretic proof (\autoref{subsec:pi1s1-homotopy-theory}).
+
+\index{universal!cover|)}%
+\index{cover!universal|)}%
+\index{covering space!universal|)}%
+
+
+\end{document}

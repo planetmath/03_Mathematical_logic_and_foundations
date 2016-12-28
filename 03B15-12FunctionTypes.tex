@@ -1,0 +1,248 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{12FunctionTypes}
+\pmcreated{2013-11-07 19:39:53}
+\pmmodified{2013-11-07 19:39:53}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.2 Function types}
+\pmrecord{14}{87538}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+
+% making logically defined graphics
+%\usepackage{xypic}
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\def\index#1{}
+\def\indexdef#1{}
+\def\indexsee#1#2{}
+\def\symlabel#1{}
+\def\define#1{\textbf{#1}}
+
+\usepackage{xspace}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\let\nat\N
+
+\makeatletter
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+% \def\@lamvar#1,#2{{#2}^{#1}\@ifnextchar,{.\,{\lambda}\@lamvar{#1}}{\let\@endlamvar\relax}}
+\def\@lameatcolon#1:{#1}
+\let\lamt\lam
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\makeatother
+
+\newcommand{\jdeq}{\equiv}
+\newcommand{\vcentcolon}{܃\!\!}
+\newcommand{\defeq}{\vcentcolon\equiv} 
+
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+
+\renewcommand{\theequation}{1.2.\arabic{equation}}
+\begin{document}
+%7
+\index{type!function|(defstyle}%
+\indexsee{function type}{type, function}%
+Given types $A$ and $B$, we can construct the type $A \to B$ of \define{functions}
+\index{function|(defstyle}%
+\indexsee{map}{function}%
+\indexsee{mapping}{function}%
+with domain $A$ and codomain $B$.
+We also sometimes refer to functions as \define{maps}.
+\index{domain!of a function}%
+\index{codomain, of a function}%
+\index{function!domain of}%
+\index{function!codomain of}%
+\index{functional relation}%
+Unlike in set theory, functions are not defined as
+functional relations; rather they are a primitive concept in type theory.
+We explain the function type by prescribing what we can do with functions,
+how to construct them and what equalities they induce.
+
+Given a function $f : A \to B$ and an element of the domain $a : A$, we
+can \define{apply}
+\indexdef{application!of function}%
+\indexdef{function!application}%
+\indexsee{evaluation}{application, of a function}
+the function to obtain an element of the codomain $B$,
+denoted $f(a)$ and called the \define{value} of $f$ at $a$.
+\indexdef{value!of a function}%
+It is common in type theory to omit the parentheses\index{parentheses} and denote $f(a)$ simply by $f\,a$, and we will sometimes do this as well.
+
+But how can we construct elements of $A \to B$? There are two equivalent ways:
+either by direct definition or by using
+$\lambda$-abstraction. Introducing a function by definition
+\indexdef{definition!of function, direct}%
+means that
+we introduce a function by giving it a name --- let's say, $f$ --- and saying
+we define $f : A \to B$ by giving an equation
+\begin{equation}
+  \label{eq:expldef}
+  f(x) \defeq \Phi
+\end{equation}
+where $x$ is a variable
+\index{variable}%
+and $\Phi$ is an expression which may use $x$.
+In order for this to be valid, we have to check that $\Phi : B$ assuming $x:A$.
+
+Now we can compute $f(a)$ by replacing the variable $x$ in $\Phi$ with
+$a$. As an example, consider the function $f : \nat \to \nat$ which is
+defined by $f(x) \defeq x+x$. (We will define $\nat$ and $+$ in \PMlinkname{\S 1.9}{19thenaturalnumbers}.)
+Then $f(2)$ is judgmentally equal to $2+2$.
+
+If we don't want to introduce a name for the function, we can use
+\define{$\lambda$-abstraction}.
+\index{lambda abstraction@$\lambda$-abstraction|defstyle}%
+\indexsee{function!lambda abstraction@$\lambda$-abstraction}{$\lambda$-abstraction}%
+\indexsee{abstraction!lambda-@$\lambda$-}{$\lambda$-abstraction}%
+Given an expression $\Phi$ of type $B$ which may use $x:A$, as above, we write $\lam{x:A} \Phi$ to indicate the same function defined by~\eqref{eq:expldef}.
+Thus, we have
+\[ (\lamt{x:A}\Phi) : A \to B. \]
+For the example in the previous paragraph, we have the typing judgment
+\[ (\lam{x:\nat}x+x) : \nat \to \nat. \]
+As another example, for any types $A$ and $B$ and any element $y:B$, we have a \define{constant function}
+\indexdef{constant!function}%
+\indexdef{function!constant}%
+$(\lam{x:A} y): A\to B$.
+
+We generally omit the type of the variable $x$ in a $\lambda$-abstraction and write $\lam{x}\Phi$, since the typing $x:A$ is inferable from the judgment that the function $\lam x \Phi$ has type $A\to B$.
+By convention, the ``scope''
+\indexdef{variable!scope of}%
+\indexdef{scope}%
+of the variable binding ``$\lam{x}$'' is the entire rest of the expression, unless delimited with parentheses\index{parentheses}.
+Thus, for instance, $\lam{x} x+x$ should be parsed as $\lam{x} (x+x)$, not as $(\lam{x}x)+x$ (which would, in this case, be ill-typed anyway).
+
+Another equivalent notation is
+\symlabel{mapsto}%
+\[ (x \mapsto \Phi) : A \to B. \]
+\symlabel{blank}%
+We may also sometimes use a blank ``$\blank$'' in the expression $\Phi$ in place of a variable, to denote an implicit $\lambda$-abstraction.
+For instance, $g(x,\blank)$ is another way to write $\lam{y} g(x,y)$.
+
+Now a $\lambda$-abstraction is a function, so we can apply it to an argument $a:A$.
+We then have the following \define{computation rule}\indexdef{computation rule!for function types}\footnote{Use of this equality is often referred to as \define{$\beta$-conversion}
+\indexsee{beta-conversion@$\beta $-conversion}{$\beta$-reduction}%
+\indexsee{conversion!beta@$\beta $-}{$\beta$-reduction}%
+or \define{$\beta$-reduction}.%
+\index{beta-reduction@$\beta $-reduction|footstyle}%
+\indexsee{reduction!beta@$\beta $-}{$\beta$-reduction}%
+}, which is a definitional equality:
+\[(\lamu{x:A}\Phi)(a) \jdeq \Phi'\]
+where $\Phi'$ is the
+expression $\Phi$ in which all occurrences of $x$ have been replaced by $a$.
+Continuing the above example, we have
+%
+\[ (\lamu{x:\nat}x+x)(2) \jdeq 2+2. \]
+%
+Note that from any function $f:A\to B$, we can construct a lambda abstraction function $\lam{x} f(x)$.
+Since this is by definition ``the function that applies $f$ to its argument'' we consider it to be definitionally equal to $f$:\footnote{Use of this equality is often referred to as \define{$\eta$-conversion}
+\indexsee{eta-conversion@$\eta $-conversion}{$\eta$-expansion}%
+\indexsee{conversion!eta@$\eta $-}{$\eta$-expansion}%
+or \define{$\eta$-expansion.
+\index{eta-expansion@$\eta $-expansion|footstyle}%
+\indexsee{expansion, eta-@expansion, $\eta $-}{$\eta$-expansion}%
+}}
+\[ f \jdeq (\lam{x} f(x)). \]
+This equality is the \define{uniqueness principle for function types}\indexdef{uniqueness!principle!for function types}, because it shows that $f$ is uniquely determined by its values.
+
+The introduction of functions by definitions with explicit parameters can be reduced
+to simple definitions by using $\lambda$-abstraction: i.e., we can read
+a definition of $f: A\to B$ by
+\[ f(x) \defeq \Phi \]
+as
+\[ f \defeq \lamu{x:A}\Phi.\]
+
+When doing calculations involving variables, we have to be
+careful when replacing a variable with an expression that also involves
+variables, because we want to preserve the binding structure of
+expressions. By the \emph{binding structure}\indexdef{binding structure} we mean the
+invisible link generated by binders such as $\lambda$, $\Pi$ and
+$\Sigma$ (the latter we are going to meet soon) between the place where the variable is introduced and where it is used. As an example, consider $f : \nat \to (\nat \to \nat)$
+defined as
+\[ f(x) \defeq \lamu{y:\nat} x + y. \]
+Now if we have assumed somewhere that $y : \nat$, then what is $f(y)$? It would be wrong to just naively replace $x$ by $y$ everywhere in the expression ``$\lam{y}x+y$'' defining $f(x)$, obtaining $\lamu{y:\nat} y + y$, because this means that $y$ gets \define{captured}.
+\indexdef{capture, of a variable}%
+\indexdef{variable!captured}%
+Previously, the substituted\index{substitution} $y$ was referring to our assumption, but now it is referring to the argument of the $\lambda$-abstraction. Hence, this naive substitution would destroy the binding structure, allowing us to perform calculations which are semantically unsound.
+
+But what \emph{is} $f(y)$ in this example? Note that bound (or ``dummy'')
+variables
+\indexdef{variable!bound}%
+\indexdef{variable!dummy}%
+\indexsee{bound variable}{variable, bound}%
+\indexsee{dummy variable}{variable, bound}%
+such as $y$ in the expression $\lamu{y:\nat} x + y$
+have only a local meaning, and can be consistently replaced by any
+other variable, preserving the binding structure. Indeed, $\lamu{y:\nat} x + y$ is declared to be judgmentally equal\footnote{Use of this equality is often referred to as \define{$\alpha$-conversion.
+\indexfoot{alpha-conversion@$\alpha $-conversion}
+\indexsee{conversion!alpha@$\alpha$-}{$\alpha$-conversion}
+}} to
+$\lamu{z:\nat} x + z$. It follows that
+$f(y)$ is judgmentally equal to $\lamu{z:\nat} y + z$, and that answers our question. (Instead of $z$,
+any variable distinct from $y$ could have been used, yielding an equal result.)
+
+Of course, this should all be familiar to any mathematician: it is the same phenomenon as the fact that if $f(x) \defeq \int_1^2 \frac{dt}{x-t}$, then $f(t)$ is not $\int_1^2 \frac{dt}{t-t}$ but rather $\int_1^2 \frac{ds}{t-s}$.
+A $\lambda$-abstraction binds a dummy variable in exactly the same way that an integral does.
+
+We have seen how to define functions in one variable. One
+way to define functions in several variables would be to use the
+cartesian product, which will be introduced later; a function with
+parameters $A$ and $B$ and results in $C$ would be given the type
+$f : A \times B \to C$. However, there is another choice that avoids
+using product types, which is called \define{currying}
+\indexdef{currying}%
+\indexdef{function!currying of}%
+(after the mathematician Haskell Curry).
+\index{programming}%
+
+The idea of currying is to represent a function of two inputs $a:A$ and $b:B$ as a function which takes \emph{one} input $a:A$ and returns \emph{another function}, which then takes a second input $b:B$ and returns the result.
+That is, we consider two-variable functions to belong to an iterated function type, $f : A \to (B \to C)$.
+We may also write this without the parentheses\index{parentheses}, as $f : A \to B \to C$, with
+associativity\index{associativity!of function types} to the right as the default convention. Then given $a : A$ and $b : B$,
+we can apply $f$ to $a$ and then apply the result to $b$, obtaining
+$f(a)(b) : C$. To avoid the proliferation of parentheses, we allow ourselves to
+write $f(a)(b)$ as $f(a,b)$ even though there are no products
+involved.
+When omitting parentheses around function arguments entirely, we write $f\,a\,b$ for $(f\,a)\,b$, with the default associativity now being to the left so that $f$ is applied to its arguments in the correct order.
+
+Our notation for definitions with explicit parameters extends to
+this situation: we can define a named function $f : A \to B \to C$ by
+giving an equation
+\[ f(x,y) \defeq \Phi\]
+where $\Phi:C$ assuming $x:A$ and $y:B$. Using $\lambda$-abstraction\index{lambda abstraction@$\lambda$-abstraction} this
+corresponds to
+\[ f \defeq \lamu{x:A}{y:B} \Phi, \]
+which may also be written as
+\[ f \defeq x \mapsto y \mapsto \Phi. \]
+We can also implicitly abstract over multiple variables by writing multiple blanks, e.g.\ $g(\blank,\blank)$ means $\lam{x}{y} g(x,y)$.
+Currying a function of three or more arguments is a straightforward extension of what we have just described.
+ 
+\index{type!function|)}%
+\index{function|)}%
+
+
+\end{document}

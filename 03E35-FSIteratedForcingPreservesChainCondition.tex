@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FSIteratedForcingPreservesChainCondition}
+\pmcreated{2013-03-22 12:57:14}
+\pmmodified{2013-03-22 12:57:14}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{FS iterated forcing preserves chain condition}
+\pmrecord{4}{33314}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E35}
+\pmclassification{msc}{03E40}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Let $\kappa$ be a regular cardinal and let $\langle\hat{Q}_\beta\rangle_{\beta<\alpha}$ be a finite support iterated forcing where for every $\beta<\alpha$, $\Vdash_{P_\beta} \hat{Q}_\beta$\texttt{ has the }$\kappa$\texttt{ chain condition}.
+
+By induction:
+
+$P_0$ is the empty set.
+
+If $P_\alpha$ satisfies the $\kappa$ chain condition then so does $P_{\alpha+1}$, since $P_{\alpha+1}$ is equivalent to $P_\alpha*Q_\alpha$ and composition preserves the $\kappa$ chain condition for regular $\kappa$.
+
+Suppose $\alpha$ is a limit ordinal and $P_\beta$ satisfies the $\kappa$ chain condition for all $\beta<\alpha$.  Let $S=\langle p_i\rangle_{i<\kappa}$ be a subset of $P_{\alpha}$ of size $\kappa$.  The domains of the elements of $p_i$ form $\kappa$ finite subsets of $\alpha$, so if $\operatorname{cf}(\alpha)>\kappa$ then these are bounded, and by the inductive hypothesis, two of them are compatible.
+
+Otherwise, if $\operatorname{cf}(\alpha)<\kappa$, let $\langle \alpha_j\rangle_{j<\operatorname{cf}(\alpha)}$ be an increasing sequence of ordinals cofinal in $\alpha$.  Then for any $i<\kappa$ there is some $n(i)<\operatorname{cf}(\alpha)$ such that $\operatorname{dom}(p_i)\subseteq \alpha_{n(i)}$.  Since $\kappa$ is regular and this is a partition of $\kappa$ into fewer than $\kappa$ pieces, one piece must have size $\kappa$, that is, there is some $j$ such that $j=n(i)$ for $\kappa$ values of $i$, and so $\{p_i\mid n(i)=j\}$ is a set of conditions of size $\kappa$ contained in $P_{\alpha_j}$, and therefore contains compatible members by the induction hypothesis.
+
+Finally, if $\operatorname{cf}(\alpha)=\kappa$, let $C=\langle \alpha_j\rangle_{j<\kappa}$ be a strictly increasing, continuous sequence cofinal in $\alpha$.  Then for every $i<\kappa$ there is some $n(i)<\kappa$ such that $\operatorname{dom}(p_i)\subseteq \alpha_{n(i)}$.  When $n(i)$ is a limit ordinal, since $C$ is continuous, there is also (since $\operatorname{dom}(p_i)$ is finite) some $f(i)<i$ such that $\operatorname{dom}(p_i)\cap [\alpha_{f(i)},\alpha_i)=\emptyset$.  Consider the set $E$ of elements $i$ such that $i$ is a limit ordinal and for any $j<i$, $n(j)<i$.  This is a club, so by Fodor's lemma there is some $j$ such that $\{i\mid f(i)=j\}$ is stationary.
+
+For each $p_i$ such that $f(i)=j$, consider $p^\prime_i=p_i\upharpoonright j$.  There are $\kappa$ of these, all members of $P_j$, so two of them must be compatible, and hence those two are also compatible in $P$.
+%%%%%
+%%%%%
+\end{document}

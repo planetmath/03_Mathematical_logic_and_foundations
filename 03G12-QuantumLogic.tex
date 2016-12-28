@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{QuantumLogic}
+\pmcreated{2013-03-22 16:49:09}
+\pmmodified{2013-03-22 16:49:09}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{quantum logic}
+\pmrecord{10}{39056}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G12}
+\pmsynonym{compatible propositions}{QuantumLogic}
+\pmrelated{LatticeOfProjections}
+\pmrelated{QuantumLogicsTopoi}
+\pmrelated{TopicEntryOnFoundationsOfMathematics}
+\pmrelated{ETAS}
+\pmrelated{QuantumTopos}
+\pmrelated{QuantumGroupsAndVonNeumannAlgebras}
+\pmdefines{state}
+\pmdefines{full set of states}
+\pmdefines{compatible}
+\pmdefines{classical logic}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+
+\begin{document}
+\subsubsection*{Introduction}
+In classical physics, results regarding experiments performed on physical propositions obey classical propositional logic.  When a ball is tossed, one can, at any given time $t$, measure its position $x(t)$ and velocity $v(t)$ with great precision almost ``simultaneously''.  If we know where the ball is, then we know, at that location $x(t)$, whether it is moving at $v(t)$ or not.
+
+Let's translate the above sentence into a logical statement.  Suppose $p$ is the statement that ``the ball is at $x(t)$'', and $q$ is the statement that ``the ball is traveling at velocity $v(t)$''.  Then last sentence in the previous paragraph becomes
+\begin{quote}\begin{center}
+if $p$ is true, then either $p\wedge q$ is true or $p\wedge q'$ is true.  
+\end{center}\end{quote}
+Put it more succinctly, we have the tautology $$p\to (p\wedge q)\vee (p\wedge q').$$  Converted to the language of Boolean algebra (via \PMlinkname{Lindenbaum's construction}{LindenbaumAlgebra}), it says $$p\le (p\wedge q)\vee (p\wedge q')$$ which is clearly true, since the right hand side is equal to $p$ (the distributive property of a Boolean algebra).  
+
+However, when we downsize the scale of the system (the ball) to something at the  subatomic level, say, an electron, we enter the realm of non-classical physics (quantum mechanics), the story is much different.  Because of the uncertainty principle, the nature of being able to measure everything simultaneously is gone here.  Even if we know the location $x(t)$, we will not be able to know its velocity $v(t)$.  In other words, the above inequality no longer holds.  A new logic is needed for reasoning in non-classical physics, in particular, quantum theory.
+
+In the 1930's, Birkhoff and von Neumann introduced a new kind of logic in dealing with quantum mechanics in their paper "The logic of quantum mechanics".  In that paper, physical constructs were converted into mathematical ones.  For example, a physical observable is nothing more than a Hermitian operator acting on an infinite dimensional Hilbert space over the complex numbers.  And it turns out that many of the concepts quantum mechanics can be explained in terms of doing math on operators in a Hilbert space.  Furthermore, the logic of quantum mechanics corresponds to that of the set of closed subspaces of an infinite dimensional Hilbert space.  This set is a lattice and it is not a Boolean algebra, because its lack of distributivity, and therefore does not correspond to classical propositional logic.  They tried to axiomatize this lattice as a complete complemented modular lattice (with atoms).  It was soon realized (by Piron) that this lattice is not even modular.
+
+\subsubsection*{Definition}
+Today, there are several inequivalent definitions of quantum logic, but all of which are in one form or another a generalization of a Boolean algebra (the algebraic form of classical logic).   Initially, a quantum logic is none other than the lattice of projection operators over an infinite-dimensional separable Hilbert space.  Since its introduction, the definition has been generalized, stripping away unnecessary details (atomicity for example) while keeping the essentials.
+
+One of the more general definitions says that a \emph{quantum logic} is an ordered pair $(L,F)$, where $L$ is an orthomodular poset $L$, and $F$ is a set of functions on $L$, called \emph{states}, taking values in the unit inverval $[0,1]$, satisfying the following conditions:
+\begin{enumerate}
+\item $f(0)=0$ for each $f\in F$,
+\item $f(1)=1$ for each $f\in F$,
+\item if $a\le b^{\perp}$, then $f(a\vee b)=f(a)+f(b)$ for each $f\in F$
+\item if $f(a)\le f(b)$ for each $f\in F$, then $a\le b$.  We say that $F$ is \emph{full}.
+\end{enumerate}
+One can think of $L$ as a physical system (an electron, for example), and elements of $L$ are \emph{propositions} concerning the system.  $F$ can be regarded as a set of probability measures on the propositions.  Conditions 1 and 2 say that $1$ and $0$ are propositions of $L$ that are always true or always false, regardless of its states.  Condition 3 is equivalent to the well-known law of finite additivity of a probability measure.
+
+\textbf{Remark}.  One can define the notion of \emph{compatibility} of a pair of elements (propositions) in a quantum logic: $a,b\in L$ are \emph{compatible} if they orthogonally commute, that is, there exist pairwise orthogonal elements $c,d,e\in L$ such that $a=c\vee e$ and $b=d\vee e$.  It turns out that compatible propositions exactly parallel those physical propositions which can be experimentally tested ``simultaneously''.  A quantum logic $L$ in which every two propositions are compatible is said to be a \emph{classical logic}.  It is not hard to show that a classical logic is a Boolean algebra.
+
+\begin{thebibliography}{8}
+\bibitem{lb} L. Beran, {\em Orthomodular Lattices, Algebraic Approach}, Mathematics and Its Applications (East European Series), D. Reidel Publishing Company, Dordrecht, Holland (1985).
+\bibitem{gb} G. Birkhoff, {\em Lattice Theory}, 3rd Edition, AMS Volume XXV, (1967).
+\bibitem{bv} G. Birkhoff, J. von Neumann, {\em The logic of quantum mechanics}, Ann. of Math. 37, pp. 823-843, (1936).
+\bibitem{dc} D. W. Cohen, {\em An Introduction to Hilbert Space and Quantum Logic}, Springer, (1989).
+\bibitem{pm} P. Mittelstaedt, {\em Quantum Logic}, D. Reidel Publishing Company, (1978).
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

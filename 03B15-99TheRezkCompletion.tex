@@ -1,0 +1,428 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{99TheRezkCompletion}
+\pmcreated{2013-11-06 16:45:41}
+\pmmodified{2013-11-06 16:45:41}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{9.9 The Rezk completion}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\choice}[1]{\ensuremath{\mathsf{AC}_{#1}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idtoiso}{\ensuremath{\mathsf{idtoiso}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inv}[1]{{#1}^{-1}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\mentalpause}{\medskip} 
+\newcommand{\op}{^{\mathrm{op}}}
+\def\pizero{\trunc0}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\truncf}[1]{\Vert \blank \Vert_{#1}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\uset}{\ensuremath{\mathcal{S}et}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\y}{\ensuremath{\mathbf{y}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{9.9.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{9.9.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{9.9.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{9.9.\arabic{mathcount}}
+\let\autoref\cref
+\let\bbU\UU
+\let\setof\Set    
+\let\type\UU
+\makeatother
+
+\begin{document}
+ 
+In this section we will give a universal way to replace a precategory by a category.
+In fact, we will give two.
+Both rely on the fact that ``categories see weak equivalences as equivalences''.
+
+To prove this, we begin with a couple of lemmas which are completely standard category theory, phrased carefully so as to make sure we are using the eliminator for $\truncf{-1}$ correctly.
+One would have to be similarly careful in classical\index{mathematics!classical}\index{classical!category theory} category theory if one wanted to avoid the axiom of choice: any time we want to define a function, we need to characterize its values uniquely somehow.
+
+\begin{lem}
+  If $A,B,C$ are precategories and $H:A\to B$ is an essentially surjective functor, then $(\blank\circ H):C^B \to C^A$ is faithful.
+\end{lem}
+\begin{proof}
+  Let $F,G:B\to C$, and $\gamma,\delta:F\to G$ be such that $\gamma H = \delta H$; we must show $\gamma=\delta$.
+  Thus let $b:B$; we want to show $\gamma_b=\delta_b$.
+  This is a mere proposition, so since $H$ is essentially surjective, we may assume given an $a:A$ and an isomorphism $f:Ha\cong b$.
+  But now we have
+  \[ \gamma_b = G(f) \circ \gamma_{Ha} \circ F(\inv{f}) 
+  = G(f) \circ \delta_{Ha} \circ F(\inv{f})
+  = \delta_b.\qedhere
+  \]
+\end{proof}
+
+\begin{lem}\label{ct:esofull-precomp-ff}
+  If $A,B,C$ are precategories and $H:A\to B$ is essentially surjective and full, then $(\blank\circ H):C^B \to C^A$ is fully faithful.
+\end{lem}
+\begin{proof}
+  It remains to show fullness.
+  Thus, let $F,G:B\to C$ and $\gamma:FH \to GH$.
+  We claim that for any $b:B$, the type
+  \begin{myeqn}\label{eq:fullprop}
+    \sm{g:\hom_C(Fb,Gb)} \prd{a:A}{f:Ha\cong b} (\gamma_a =  \inv{Gf}\circ g\circ Ff)
+  \end{myeqn}
+  is contractible.
+  Since contractibility is a mere property, and $H$ is essentially surjective, we may assume given $a_0:A$ and $h:Ha_0\cong b$.
+
+  Now take $g\defeq Gh \circ \gamma_{a_0} \circ \inv{Fh}$.
+  Then given any other $a:A$ and $f:Ha\cong b$, we must show $\gamma_a =  \inv{Gf}\circ g\circ Ff$.
+  Since $H$ is full, there merely exists a morphism $k:\hom_A(a,a_0)$ such that $Hk = \inv{h}\circ f$.
+  And since our goal is a mere proposition, we may assume given some such $k$.
+  Then we have
+  \begin{align*}
+    \gamma_a &= \inv{GHk}\circ \gamma_{a_0} \circ FHk\\
+    &= \inv{Gf} \circ Gh \circ \gamma_{a_0} \circ \inv{Fh} \circ Ff\\
+    &= \inv{Gf}\circ g\circ Ff.
+  \end{align*}
+  Thus,~\eqref{eq:fullprop} is inhabited.
+  It remains to show it is a mere proposition.
+  Let $g,g':\hom_C(Fb, Gb)$ be such that for all $a:A$ and $f:Ha\cong b$, we have both $(\gamma_a =  \inv{Gf}\circ g\circ Ff)$ and $(\gamma_a =  \inv{Gf}\circ g'\circ Ff)$.
+  The dependent product types are mere propositions, so all we have to prove is $g=g'$.
+  But this is a mere proposition, so we may assume $a_0:A$ and $h:Ha_0\cong b$, in which case we have
+  \[ g = Gh \circ \gamma_{a_0} \circ \inv{Fh} = g'.\]
+  %
+  This proves that~\eqref{eq:fullprop} is contractible for all $b:B$.
+  Now we define $\delta:F\to G$ by taking $\delta_b$ to be the unique $g$ in~\eqref{eq:fullprop} for that $b$.
+  To see that this is natural, suppose given $f:\hom_B(b,b')$; we must show $Gf \circ \delta_b = \delta_{b'}\circ Ff$.
+  As before, we may assume $a:A$ and $h:Ha\cong b$, and likewise $a':A$ and $h':Ha'\cong b'$.
+  Since $H$ is full as well as essentially surjective, we may also assume $k:\hom_A(a,a')$ with $Hk = \inv{h'}\circ f\circ h$.
+
+  Since $\gamma$ is natural, $GHk\circ \gamma_a = \gamma_{a'} \circ FHk$.
+  Using the definition of $\delta$, we have
+  \begin{align*}
+    Gf \circ \delta_b
+    &= Gf \circ Gh \circ \gamma_a \circ \inv{Fh}\\
+    &= Gh' \circ GHk\circ \gamma_a \circ \inv{Fh}\\
+    &= Gh' \circ \gamma_{a'} \circ FHk \circ \inv{Fh}\\
+    &= Gh' \circ \gamma_{a'} \circ \inv{Fh'} \circ Ff\\
+    &= \delta_{b'} \circ Ff.
+  \end{align*}
+  Thus, $\delta$ is natural.
+  Finally, for any $a:A$, applying the definition of $\delta_{Ha}$ to $a$ and $1_a$, we obtain $\gamma_a = \delta_{Ha}$.
+  Hence, $\delta \circ H = \gamma$.
+\end{proof}
+
+The rest of the theorem follows almost exactly the same lines, with the category-ness of $C$ inserted in one crucial step, which we have italicized below for emphasis.
+This is the point at which we are trying to define a function into \emph{objects} without using choice, and so we must be careful about what it means for an object to be ``uniquely specified''.
+In classical\index{mathematics!classical}\index{classical!category theory} category theory, all one can say is that this object is specified up to unique isomorphism, but in set-theoretic foundations this is not a sufficient amount of uniqueness to give us a function without invoking \choice{}.
+In univalent foundations, however, if $C$ is a category, then isomorphism is equality, and we have the appropriate sort of uniqueness (namely, living in a contractible space).
+
+\index{weak equivalence!of precategories|(}%
+
+\begin{thm}\label{ct:cat-weq-eq}
+  If $A,B$ are precategories, $C$ is a category, and $H:A\to B$ is a weak equivalence, then $(\blank\circ H):C^B \to C^A$ is an isomorphism.
+\end{thm}
+\begin{proof}
+  By \autoref{ct:functor-cat}, $C^B$ and $C^A$ are categories.
+  Thus, by \autoref{ct:eqv-levelwise} it will suffice to show that $(\blank\circ H)$ is an equivalence.
+  But since we know from the preceding two lemmas that it is fully faithful, by \autoref{ct:catweq} it will suffice to show that it is essentially surjective.
+  Thus, suppose $F:A\to C$; we want there to merely exist a $G:B\to C$ such that $GH\cong F$.
+
+  For each $b:B$, let $X_b$ be the type whose elements consist of:
+  \begin{enumerate}
+  \item An element $c:C$; and
+  \item For each $a:A$ and $h:Ha\cong b$, an isomorphism $k_{a,h}:Fa\cong c$; such that\label{item:eqvprop2}
+  \item For each $(a,h)$ and $(a',h')$ as in~\ref{item:eqvprop2} and each $f:\hom_A(a,a')$ such that $h'\circ Hf = h$, we have $k_{a',h'}\circ Ff = k_{a,h}$.\label{item:eqvprop3}
+  \end{enumerate}
+  We claim that for any $b:B$, the type $X_b$ is contractible.
+  As this is a mere proposition, we may assume given $a_0:A$ and $h_0:Ha_0 \cong b$.
+  Let $c^0\defeq Fa_0$.
+  Next, given $a:A$ and $h:Ha\cong b$, since $H$ is fully faithful there is a unique isomorphism $g_{a,h}:a\to a_0$ with $Hg_{a,h} = \inv{h_0}\circ h$; define $k^0_{a,h} \defeq Fg_{a,h}$.
+  Finally, if $h'\circ Hf = h$, then $\inv{h_0}\circ h'\circ Hf = \inv{h_0}\circ h$, hence $g_{a',h'} \circ f = g_{a,h}$ and thus $k^0_{a',h'}\circ Ff = k^0_{a,h}$.
+  Therefore, $X_b$ is inhabited.
+
+  Now suppose given another $(c^1,k^1): X_b$.
+  Then $k^1_{a_0,h_0}:c^0 \jdeq Fa_0 \cong c^1$.
+  \emph{Since $C$ is a category, we have $p:c^0=c^1$ with $\idtoiso(p) = k^1_{a_0,h_0}$.}
+  And for any $a:A$ and $h:Ha\cong b$, by~\ref{item:eqvprop3} for $(c^1,k^1)$ with $f\defeq g_{a,h}$, we have
+  \[k^1_{a,h} = k^1_{a_0,h_0} \circ k^0_{a,h} = \trans{p}{k^0_{a,h}}\]
+  This gives the requisite data for an equality $(c^0,k^0)=(c^1,k^1)$, completing the proof that $X_b$ is contractible.
+
+  Now since $X_b$ is contractible for each $b$, the type $\prd{b:B} X_b$ is also contractible.
+  In particular, it is inhabited, so we have a function assigning to each $b:B$ a $c$ and a $k$.
+  Define $G_0(b)$ to be this $c$; this gives a function $G_0 :B_0 \to C_0$.
+
+  Next we need to define the action of $G$ on morphisms.
+  For each $b,b':B$ and $f:\hom_B(b,b')$, let $Y_f$ be the type whose elements consist of:
+  \begin{enumerate}[resume]
+  \item A morphism $g:\hom_C(Gb,Gb')$, such that
+  \item For each $a:A$ and $h:Ha\cong b$, and each $a':A$ and $h':Ha'\cong b'$, and any $\ell:\hom_A(a,a')$, we have\label{item:eqvprop5}
+    \[ (h' \circ H\ell = f \circ h)
+    \to
+    (k_{a',h'} \circ F\ell = g\circ k_{a,h}). \]
+  \end{enumerate}
+  We claim that for any $b,b'$ and $f$, the type $Y_f$ is contractible.
+  As this is a mere proposition, we may assume given $a_0:A$ and $h_0:Ha_0\cong b$, and each $a'_0:A$ and $h'_0:Ha'_0\cong b'$.
+  Then since $H$ is fully faithful, there is a unique $\ell_0:\hom_A(a_0,a_0')$ such that $h'_0 \circ H\ell_0 = f \circ h_0$.
+  Define $g_0 \defeq k_{a_0',h_0'} \circ F \ell_0 \circ \inv{(k_{a_0,h_0})}$.
+
+  Now for any $a,h,a',h'$, and $\ell$ such that $(h' \circ H\ell = f \circ h)$, we have $\inv{h}\circ h_0:Ha_0\cong Ha$, hence there is a unique $m:a_0\cong a$ with $Hm = \inv{h}\circ h_0$ and hence $h\circ Hm = h_0$.
+  Similarly, we have a unique $m':a_0'\cong a'$ with $h'\circ Hm' = h_0'$.
+  Now by~\ref{item:eqvprop3}, we have $k_{a,h}\circ Fm = k_{a_0,h_0}$ and $k_{a',h'}\circ Fm' = k_{a_0',h_0'}$.
+  We also have
+  \begin{align*}
+    Hm' \circ H\ell_0 
+    &= \inv{(h')} \circ h_0' \circ H\ell_0\\
+    &= \inv{(h')} \circ f \circ h_0\\
+    &= \inv{(h')} \circ f \circ h \circ \inv{h} \circ h_0\\
+    &= H\ell \circ Hm
+  \end{align*}
+  and hence $m'\circ \ell_0 = \ell\circ m$ since $H$ is fully faithful.
+  Finally, we can compute
+  \begin{align*}
+    g_0 \circ k_{a,h}
+    &= k_{a_0',h_0'} \circ F \ell_0 \circ \inv{(k_{a_0,h_0})} \circ k_{a,h}\\
+    &= k_{a_0',h_0'} \circ F \ell_0 \circ \inv{Fm}\\
+    &= k_{a_0',h_0'} \circ \inv{(Fm')} \circ F\ell\\
+    &= k_{a',h'}\circ F\ell.
+  \end{align*}
+  This completes the proof that $Y_f$ is inhabited.
+  To show it is contractible, since hom-sets are sets, it suffices to take another $g_1:\hom_C(Gb,Gb')$ satisfying~\ref{item:eqvprop5} and show $g_0=g_1$.
+  However, we still have our specified $a_0,h_0,a_0',h_0',\ell_0$ around, and~\ref{item:eqvprop5} implies both $g_0$ and $g_1$ must be equal to $k_{a_0',h_0'} \circ F \ell_0 \circ \inv{(k_{a_0,h_0})}$.
+
+  This completes the proof that $Y_f$ is contractible for each $b,b':B$ and $f:\hom_B(b,b')$.
+  Therefore, there is a function assigning to each such $f$ its unique inhabitant; denote this function $G_{b,b'}:\hom_B(b,b') \to \hom_C(Gb,Gb')$.
+  The proof that $G$ is a functor is straightforward; in each case we can choose $a,h$ and apply~\ref{item:eqvprop5}.
+
+  Finally, for any $a_0:A$, defining $c\defeq Fa_0$ and $k_{a,h}\defeq F g$, where $g:\hom_A(a,a_0)$ is the unique isomorphism with $Hg = h$, gives an element of $X_{Ha_0}$.
+  Thus, it is equal to the specified one; hence $GHa=Fa$.
+  Similarly, for $f:\hom_A(a_0,a_0')$ we can define an element of $Y_{Hf}$ by transporting along these equalities, which must therefore be equal to the specified one.
+  Hence, we have $GH=F$, and thus $GH\cong F$ as desired.
+\end{proof}
+
+\index{universal!property!of Rezk completion}%
+Therefore, if a precategory $A$ admits a weak equivalence functor $A\to \widehat{A}$, then that is its ``reflection'' into categories: any functor from $A$ into a category will factor essentially uniquely through $\widehat{A}$.
+We now give two constructions of such a weak equivalence.
+
+\indexsee{Rezk completion}{completion, Rezk}%
+\index{completion!Rezk|(defstyle}%
+
+\begin{thm}\label{thm:rezk-completion}
+  For any precategory $A$, there is a category $\widehat A$ and a weak equivalence $A\to\widehat{A}$.
+\end{thm}
+
+\begin{proof}[First proof]
+  Let $\widehat{A}_0 \defeq \setof{ F:\uset^{A\op} | \exis{a:A} (\y a \cong F)}$, with hom-sets inherited from $\uset^{A\op}$.
+  Then the inclusion $\widehat{A} \to \uset^{A\op}$ is fully faithful and an embedding on objects.
+  Since $\uset^{A\op}$ is a category (by \autoref{ct:functor-cat}, since \uset is so by univalence), $\widehat A$ is also a category.
+
+  Let $A\to\widehat A$ be the Yoneda embedding.
+  This is fully faithful by \autoref{ct:yoneda-embedding}, and essentially surjective by definition of $\widehat{A}_0$.
+  Thus it is a weak equivalence.
+\end{proof}
+
+This proof is very slick, but it has the drawback that it increases universe level.
+If $A$ is a category in a universe \bbU, then in this proof \uset must be at least as large as $\uset_\bbU$.
+Then $\uset_\bbU$ and $(\uset_\bbU)^{A\op}$ are not themselves categories in \bbU, but only in a higher universe, and \emph{a priori} the same is true of $\widehat A$.
+One could imagine a resizing axiom that could deal with this, but it is also possible to give a direct construction using higher inductive types.
+
+\begin{proof}[Second proof]
+  We define a higher inductive type $\widehat A_0$ with the following constructors:
+  \begin{itemize}
+  \item A function $i:A_0 \to \widehat A_0$.
+  \item For each $a,b:A$ and $e:a\cong b$, an equality $je:\id{ia}{ib}$.
+  \item For each $a:A$, an equality $\id{j(1_a)}{\refl{ia}}$.
+  \item For each $(a,b,c:A)$, $(f:a\cong b)$, and $(g:b\cong c)$, an equality $\id{j(g \circ f)}{j(f)\ct j(g)}$.
+  \item 1-truncation: for all $x,y:\widehat A_0$ and $p,q:\id x y$ and $r,s:\id p q$, an equality $\id r s$.
+  \end{itemize}
+  Note that for any $a,b:A$ and $p:\id a b$, we have $\id{j(\idtoiso(p))}{\map i p}$.
+  This follows by path induction on $p$ and the third constructor.
+
+  The type $\widehat A_0$ will be the type of objects of $\widehat A$; we now build all the rest of the structure.
+  (The following proof is of the sort that can benefit a lot from the help of a computer proof assistant:\index{proof!assistant} it is wide and shallow with many short cases to consider, and a large part of the work consists of writing down what needs to be checked.)
+
+  \mentalpause
+
+  \emph{Step 1:} We define a family $\hom_{\widehat A}:\widehat A_0\to \widehat A_0 \to \set$ by double induction on $\widehat A_0$.
+  Since \set is a 1-type, we can ignore the 1-truncation constructor.
+  When $x$ and $y$ are of the form $ia$ and $ib$, we take $\hom_{\widehat A}(ia,ib) \defeq \hom_A(a,b)$.
+  It remains to consider all the other possible pairs of constructors.
+
+  Let us keep $x=ia$ fixed at first.
+  If $y$ varies along the identity $je:\id{ib}{ib'}$, for some $e:b\cong b'$, we require an identity $\id{\hom_A(a,b)}{\hom_A(a,b')}$.
+  By univalence, it suffices to give an equivalence $\eqv{\hom_A(a,b)}{\hom_A(a,b')}$.
+  We take this to be the function $(e\circ \blank ):\hom_A(a,b)\to \hom_A(a,b')$.
+  To see that this is an equivalence, we give its inverse as $(\inv e\circ \blank )$, with witnesses to inversion coming from the fact that $\inv e$ is the inverse of $e$ in $A$.
+  
+  As $y$ varies along the identity $\id{j(1_b)}{\refl{ib}}$, we require an identity $\id{(1_b\circ \blank )}{\refl{\hom_A(a,b)}}$; this follows from the identity axiom $\id{1_b\circ g}{g}$ of a precategory.
+  Similarly, as $y$ varies along the identity $\id{j(g\circ f)}{j(f)\ct j(g)}$, we require an identity $\id{((g\circ f)\circ \blank )}{(g\circ (f\circ \blank ))}$, which follows from associativity.
+  % Finally, as $y$ varies along the 1-truncation constructor, we need only to observe that \set is 1-truncated.
+
+  Now we consider the other constructors for $x$.
+  Say that $x$ varies along the identity $j(e):\id{ia}{ia'}$, for some $e:a \cong a'$; we again must deal with all the constructors for $y$.
+  If $y$ is $ib$, then we require an identity $\id{\hom_A(a,b)}{\hom_A(a',b)}$.
+  By univalence, this may come from an equivalence, and for this we can use $(\blank\circ \inv e)$, with inverse $(\blank\circ e)$.
+
+  Still with $x$ varying along $j(e)$, suppose now that $y$ also varies along $j(f)$ for some $f:b\cong b'$.
+  Then we need to know that the two concatenated identities
+  \begin{gather*}
+    \hom_A(a,b) = \hom_A(a',b) = \hom_A(a',b') \mathrlap{\qquad\text{and}}\\
+    \hom_A(a,b) = \hom_A(a,b') = \hom_A(a',b')
+  \end{gather*}
+  are identical.
+  This follows from associativity: $(f\circ \blank)\circ \inv e = f\circ (\blank\circ \inv e)$.
+  The other two constructors for $y$ are trivial, since they are 2-fold equalities in sets.
+
+  For the next two constructors of $x$, all but the first constructor for $y$ is likewise trivial.
+  When $x$ varies along $j(1_a)=\refl{ia}$ and $y$ is $ib$, we use the identity axiom again.
+  Similarly, when $x$ varies along $\id{j(g\circ f)}{j(f)\ct j(g)}$, we use associativity again.
+  This completes the construction of $\hom_{\widehat A}:\widehat A_0 \to \widehat A_0 \to \set$.
+
+  \mentalpause
+
+  \emph{Step 2:} We give the precategory structure on $\widehat A$, always by induction on $\widehat A_0$.
+  % The reader is probably getting bored at this point, so we skip the details.
+  We are now eliminating into sets (the hom-sets of $\widehat A$), so all but the first two constructors are trivial to deal with.
+
+  For identities, if $x$ is $ia$ then we have $\hom_{\widehat A}(x,x) \jdeq \hom_A(a,a)$ and we define $1_x \defeq 1_{ia}$.
+  If $x$ varies along $je$ for $e:a\cong a'$, we must show that $\transfib{x\mapsto \hom_{\widehat A}(x,x)}{je}{1_{ia}} = 1_{ia'}$.
+  But by definition of $\hom_{\widehat A}$, transporting along $je$ is given by composing with $e$ and $\inv e$, and we have $e\circ 1_{ia} \circ \inv{e} = 1_{ia'}$.
+
+  For composition, if $x,y,z$ are $ia,ib,ic$ respectively, then $\hom_{\widehat A}$ reduces to $\hom_A$ and we can define composition in $\widehat A$ to be composition in $A$.
+  And when $x$, $y$, or $z$ varies along $je$, then we verify the following equalities:
+  \begin{align*}
+    e \circ (g\circ f) &= (e\circ g) \circ f,\\
+    g\circ f &= (g\circ \inv e) \circ (e\circ f),\\
+    (g\circ f) \circ \inv e &= g \circ (f\circ \inv e).
+  \end{align*}
+  Finally, the associativity and unitality axioms are mere propositions, so all constructors except the first are trivial.
+  But in that case, we have the corresponding axioms in $A$.
+
+  \mentalpause
+
+  \emph{Step 3}: We show that $\widehat A$ is a category.
+  That is, we must show that for all $x,y:\widehat A$, the function $\idtoiso:(x=y) \to (x\cong y)$ is an equivalence.
+  First we define, for all $x,y:\widehat A$, a function $k_{x,y}:(x\cong y) \to (x=y)$ by induction.
+  As before, since our goal is a set, it suffices to deal with the first two constructors.
+
+  When $x$ and $y$ are $ia$ and $ib$ respectively, we have $\hom_{\widehat A}(ia,ib)\jdeq \hom_A(a,b)$, with composition and identities inherited as well, so that $(ia\cong ib)$ is equivalent to $(a\cong b)$.
+  But now we have the constructor $j:(a\cong b) \to (ia=ib)$.
+
+  Next, if $y$ varies along $j(e)$ for some $e:b\cong b'$, we must show that for $f:a\cong b$ we have $j(\trans{j(e)}{f}) = j(f) \ct j(e)$.
+  But by definition of $\hom_{\widehat A}$ on equalities, transporting along $j(e)$ is equivalent to post-composing with $e$, so this equality follows from the last constructor of $\widehat A_0$.
+  The remaining case when $x$ varies along $j(e)$ for $e:a\cong a'$ is similar.
+  This completes the definition of $k:\prd{x,y:\widehat A_0} (x\cong y) \to (x=y)$.
+
+  Now one thing we must show is that if $p:x=y$, then $k(\idtoiso(p))=p$.
+  By induction on $p$, we may assume it is $\refl x$, and hence $\idtoiso(p)\jdeq 1_x$.
+  Now we argue by induction on $x:\widehat A_0$, and since our goal is a mere proposition (since $\widehat A_0$ is a 1-type), all constructors except the first are trivial.
+  But if $x$ is $ia$, then $k(1_{ia}) \jdeq j(1_a)$, which is equal to $\refl{ia}$ by the third constructor of $\widehat A_0$.
+
+  To complete the proof that $\widehat A$ is a category, we must show that if $f:x\cong y$, then $\idtoiso(k(f))=f$.
+  By induction we may assume that $x$ and $y$ are $ia$ and $ib$ respectively, in which case $f$ must arise from an isomorphism $g:a\cong b$ and we have $k(f)\jdeq j(g)$.
+  However, for any $p$ we have $\idtoiso(p) = \trans{p}{1}$, so in particular $\idtoiso (j(g)) = \trans{j(g)}{1_{ia}}$.
+  And by definition of $\hom_{\widehat A}$ on equalities, this is given by composing $1_{ia}$ with the equivalence $g$, hence is equal to $g$.
+
+  \index{encode-decode method}%
+  Note the similarity of this step to the encode-decode method\index{encode-decode method} used in \autoref{sec:compute-coprod,sec:compute-nat,cha:homotopy}.
+  Once again we are characterizing the identity types of a higher inductive type (here, $\widehat A_0$) by defining recursively a family of codes (here, $(x,y)\mapsto (x\cong y)$) and encoding and decoding functions by induction on $\widehat A_0$ and on paths.
+
+  \mentalpause
+
+  \emph{Step 4}: We define a weak equivalence $I:A \to \widehat A$.
+  We take $I_0 \defeq i : A_0 \to \widehat A_0$, and by construction of $\hom_{\widehat A}$ we have functions $I_{a,b}:\hom_A(a,b) \to \hom_{\widehat A}(Ia,Ib)$ forming a functor $I:A \to \widehat A$.
+  This functor is fully faithful by construction, so it remains to show it is essentially surjective.
+  That is, for all $x:\widehat A$ we want there to merely exist an $a:A$ such that $Ia\cong x$.
+  As always, we argue by induction on $x$, and since the goal is a mere proposition, all but the first constructor are trivial.
+  But if $x$ is $ia$, then of course we have $a:A$ and $Ia\jdeq ia$, hence $Ia \cong ia$.
+  (Note that if we were trying to prove $I$ to be \emph{split} essentially surjective, we would be stuck, because we know nothing about equalities in $A_0$ and thus have no way to deal with any further constructors.)
+\end{proof}
+
+We call the construction $A\mapsto \widehat A$ the \define{Rezk completion},
+although there is also an argument (coming from higher topos semantics)
+\index{.infinity1-topos@$(\infty,1)$-topos}%
+for calling it the \define{stack completion}.
+\index{stack}%
+\index{completion!Rezk|)}%
+
+We have seen that most precategories arising in practice are categories, since they are constructed from \uset, which is a category by the univalence axiom.
+However, there are a few cases in which the Rezk completion is necessary to obtain a category.
+
+\begin{eg}\label{ct:rezk-fundgpd-trunc1}
+  Recall from \autoref{ct:fundgpd} that for any type $X$ there is a pregroupoid with $X$ as its type of objects and $\hom(x,y) \defeq \pizero{x=y}$.
+  \indexdef{fundamental!groupoid}%
+  \index{fundamental!pregroupoid}%
+  \indexsee{groupoid!fundamental}{fundamental group\-oid}%
+  Its Rezk completion is the \emph{fundamental groupoid} of $X$.
+  Recalling that groupoids are equivalent to 1-types, it is not hard to identify this groupoid with $\trunc1X$.
+\end{eg}
+
+\begin{eg}\label{ct:hocat}
+  Recall from \autoref{ct:hoprecat} that there is a precategory whose type of objects is \type and with $\hom(X,Y) \defeq \pizero{X\to Y}$.
+  Its Rezk completion may be called the \define{homotopy category of types}.
+  \index{category!of types}%
+  \index{homotopy!category of types@(pre)category of types}%
+  Its type of objects can be identified with $\trunc1\type$ (see \autoref{ct:ex:hocat}).
+\end{eg}
+
+The Rezk completion also allows us to show that the notion of ``category'' is determined by the notion of ``weak equivalence of precategories''.
+Thus, insofar as the latter is inevitable, so is the former.
+
+\begin{thm}
+  A precategory $C$ is a category if and only if for every weak equivalence of precategories $H:A\to B$, the induced functor $(\blank\circ H):C^B \to C^A$ is an isomorphism of precategories.
+\end{thm}
+\begin{proof}
+  ``Only if'' is \autoref{ct:cat-weq-eq}.
+  In the other direction, let $H$ be $I:A\to\widehat A$.
+  Then since $(\blank\circ I)_0$ is an equivalence, there exists $R:\widehat A\to A$ such that $RI=1_A$.
+  Hence $IRI=I$, but again since $(\blank\circ I)_0$ is an equivalence, this implies $IR =1_{\widehat A}$.
+  By \autoref{ct:isoprecat}\ref{item:ct:ipc3}, $I$ is an isomorphism of precategories.
+  But then since $\widehat A$ is a category, so is $A$.
+\end{proof}
+
+\index{weak equivalence!of precategories|)}%
+
+
+\newpage
+
+
+\end{document}

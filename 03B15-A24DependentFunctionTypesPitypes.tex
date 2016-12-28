@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A24DependentFunctionTypesPitypes}
+\pmcreated{2013-11-09 5:28:08}
+\pmmodified{2013-11-09 5:28:08}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.4 Dependent function types ($\Pi$-types)}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\comp}{\textsc{comp}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\elim}{\textsc{elim}}
+\newcommand{\form}{\textsc{form}}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\intro}{\textsc{intro}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\uniq}{\textsc{uniq}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+\index{type!dependent function}%
+\index{type!function}%
+
+In \PMlinkname{\S 1.2}{12functiontypes}, we introduced non-dependent functions $A\to B$ in
+order to define a family of types as a function $\lam{x:A} B:A\to\UU_i$, which
+then gives rise to a type of dependent functions $\tprd{x:A} B$. But with explicit contexts
+we may replace $\lam{x:A} B:A\to\UU_i$ with the judgment
+%
+\begin{equation*}
+  \oftp{\tmtp xA}{B}{\UU_i}.
+\end{equation*}
+%
+Consequently, we may define dependent functions directly, without reference to non-dependent ones. This way we follow the general principle that each type former, with its constants and rules, should be introduced independently of all other type formers.
+%
+In fact, henceforth each type former is introduced systematically by:
+\begin{itemize}
+\item a \define{formation rule}, stating when the type former can be applied;\index{formation rule}\index{rule!formation}
+\item some \define{introduction rules}, stating how to inhabit the type;\index{introduction rule}\index{rule!introduction}
+\item \define{elimination rules}, or an induction principle, stating how to use an
+  element of the type;
+  \index{induction principle}\index{eliminator}
+\item \define{computation rules}, which are judgmental equalities explaining what happens when elimination rules are applied to results of introduction rules;
+  \index{computation rule}
+  \indexsee{rule!computation}{computation rule}
+\item optional \define{uniqueness principles}, which are judgmental equalities explaining how every element of the type is uniquely determined by the results of elimination rules applied to it.
+  \index{uniqueness!principle}
+  \indexsee{principle!uniqueness}{uniqueness principle}
+\end{itemize}
+(See also \autoref{rmk:introducing-new-concepts}.)
+
+For the dependent function type these rules are:
+%
+\begin{mathparpagebreakable}
+  \def\premise{\oftp{\Gamma}{A}{\UU_i} \and \oftp{\Gamma,\tmtp xA}{B}{\UU_i}}
+  \inferrule*[right=$\Pi$-\form]
+    \premise
+    {\oftp\Gamma{\tprd{x:A}B}{\UU_i}}
+\and
+  \inferrule*[right=$\Pi$-\intro]
+  {\oftp{\Gamma,\tmtp xA}{b}{B}}
+  {\oftp\Gamma{\lam{x:A} b}{\tprd{x:A} B}}
+\and
+  \inferrule*[right=$\Pi$-\elim]
+  {\oftp\Gamma{f}{\tprd{x:A} B} \\ \oftp\Gamma{a}{A}}
+  {\oftp\Gamma{f(a)}{B[a/x]}}
+\and
+  \inferrule*[right=$\Pi$-\comp]
+  {\oftp{\Gamma,\tmtp xA}{b}{B} \\ \oftp\Gamma{a}{A}}
+  {\jdeqtp\Gamma{(\lam{x:A} b)(a)}{b[a/x]}{B[a/x]}}
+\and
+  \inferrule*[right=$\Pi$-\uniq]
+  {\oftp\Gamma{f}{\tprd{x:A} B}}
+  {\jdeqtp\Gamma{f}{(\lamu{x:A}f(x))}{\tprd{x:A} B}}
+\end{mathparpagebreakable}
+
+The expression $\lam{x:A} b$ binds free occurrences of $x$ in $b$, as does $\tprd{x:A} B$ for
+$B$.
+
+When $x$ does not occur freely in $B$ so that $B$ does not depend on $A$, we obtain as a
+special case the ordinary function type $A\to B \defeq \tprd{x:A} B$. We take this as the \emph{definition} of $\to$.
+
+We may abbreviate an expression $\lam{x:A} b$ as $\lamu{x:A} b$, with the understanding
+that the omitted type $A$ should be filled in appropriately before type-checking.
+
+
+\end{document}

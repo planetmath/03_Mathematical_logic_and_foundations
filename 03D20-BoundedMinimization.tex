@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{BoundedMinimization}
+\pmcreated{2013-03-22 19:05:18}
+\pmmodified{2013-03-22 19:05:18}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{bounded minimization}
+\pmrecord{11}{41978}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmsynonym{bounded sum}{BoundedMinimization}
+\pmrelated{UnboundedMinimization}
+\pmrelated{RecursiveFunction}
+\pmrelated{BoundedMaximization}
+\pmdefines{bounded summation}
+\pmdefines{bounded product}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+One useful way of generating more primitive recursive functions from existing ones is through what is known as \emph{bounded summation} and \emph{bounded product}.  Given a primitive recursive function $f:\mathbb{N}^{m+1} \to \mathbb{N}$, define two functions $f_s,f_p:\mathbb{N}^{m+1} \to \mathbb{N}$ as follows: for $\boldsymbol{x}\in \mathbb{N}^m$ and $y\in \mathbb{N}$:
+$$f_s(\boldsymbol{x},y):=\sum_{i=0}^y f(\boldsymbol{x},i)$$
+$$f_p(\boldsymbol{x},y):=\prod_{i=0}^y f(\boldsymbol{x},i)$$
+
+These are easily seen to be primitive recursive, because they are defined by primitive recursion.  For example,
+$$f_s(\boldsymbol{x},0)=f(\boldsymbol{x},0),\quad \mbox{and}\quad f_s(\boldsymbol{x},n+1)= g(\boldsymbol{x},n,f_s(\boldsymbol{x},n)),$$
+where $g(\boldsymbol{x},n,y)=\operatorname{add}(f(\boldsymbol{x},n),y)$, which is primitive recursive by functional composition.
+
+\textbf{Definition}. We call $f_s$ and $f_p$ functions obtained from $f$ by \emph{bounded sum} and \emph{bounded product} respectively.
+
+Using bounded summation and bounded product, another useful class of primitive recursive functions can be generated:
+
+\textbf{Definition}.  Let $f:\mathbb{N}^{m+1}\to \mathbb{N}$ be a function.  For each $y\in \mathbb{N}$, set $$A_f(\boldsymbol{x},y):=\lbrace z\in \mathbb{N}\mid z\le y \mbox{ and }f(\boldsymbol{x},z)=0\rbrace.$$  Define
+\begin{displaymath}
+f_{bmin}(\boldsymbol{x},y):= \left\{
+\begin{array}{ll}
+\min A_f(\boldsymbol{x},y) & \textrm{if } A_f(\boldsymbol{x},y) \ne \varnothing, \\
+s(y) & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+$f_{bmin}$ is called the function obtained from $f$ by \emph{bounded minimization}, and is usually denoted $$\mu z\le y (f(\boldsymbol{x},z)=0).$$
+
+\begin{prop}  If $f:\mathbb{N}^{m+1}\to \mathbb{N}$ is primitive recursive, so is $f_{bmin}$. \end{prop}
+\begin{proof}
+Define $g:=\operatorname{sgn}\circ f$.  Then 
+\begin{displaymath}
+g(\boldsymbol{x},y):= \left\{
+\begin{array}{ll}
+0 & \textrm{if } f(\boldsymbol{x},y)=0, \\
+1 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+As $f$ is primitive recursive, so is $g$, since the sign function $\operatorname{sgn}$ is primitive recursive (see \PMlinkname{this entry}{ExamplesOfPrimitiveRecursiveFunctions}).
+
+Next, the function $g_p$ obtained from $g$ by bounded product has the following properties:
+\begin{itemize}
+\item if $g_p(\boldsymbol{x},y)=1$, then $g_p(\boldsymbol{x},z)=1$ for all $z<y$,
+\item if $g_p(\boldsymbol{x},y)=0$, then $g_p(\boldsymbol{x},z)=0$ for all $z\ge y$.
+\end{itemize}
+
+Finally, the function $(g_p)_s$ obtained from $g_p$ by bounded sum has the property that, when applied to $(\boldsymbol{x},y)$, counts the number of $z\le y$ such that $g_p(\boldsymbol{x},z)=1$.  Based on the property of $g_p$, this count is then exactly the least $z\le y$ such that $g_p(\boldsymbol{x},z)=1$.  This means that $(g_p)_s=f_{bmin}$ for all $(\boldsymbol{x},y)\in \mathbb{N}^{m+1}$.  Since $g_p$ is primitive recursive, so is $(g_p)_s$, or that $f_{bmin}$ is primitive recursive.
+\end{proof}
+
+In fact, if $f$ is a (total) recursive function, so is $f_{bmin}$, because all of the derived functions in the proof above preserve primitive recursiveness as well as totalness.
+
+\textbf{Remarks}.  
+\begin{itemize}
+\item
+In the definition of bounded minimization, if we take the $y$ out, then we arrive at the notion of \emph{unbounded minimization}, or just \emph{minimization}.  The proposition above shows that the set $\mathcal{PR}$ of primitive recursive functions is closed under bounded minimization.  However, $\mathcal{PR}$ is not closed under minimization.  The closure of $\mathcal{PR}$ under minimization is the set $\mathcal{R}$ of recursive functions (total or not).
+\item
+It is not hard to show that $\mathcal{ER}$, the set of all elementary recursive functions, is closed under bounded minimization.
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

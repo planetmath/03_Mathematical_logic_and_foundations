@@ -1,0 +1,373 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{612TheFlatteningLemma}
+\pmcreated{2013-11-18 17:02:46}
+\pmmodified{2013-11-18 17:02:46}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{6.12 The flattening lemma}
+\pmrecord{5}{87694}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\base}{\ensuremath{\mathsf{base}}\xspace}
+\newcommand{\cc}{\mathsf{c}}
+\newcommand{\cct}{\widetilde{\mathsf{c}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\defid}{\coloneqq}
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvspaced}[2]{\ensuremath{#1 \;\simeq\; #2}\xspace}
+\newcommand{\happly}{\mathsf{happly}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idtoeqv}{\ensuremath{\mathsf{idtoeqv}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\inr}{\ensuremath\inrsym\xspace}
+\newcommand{\inrsym}{{\mathsf{inr}}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\lloop}{\ensuremath{\mathsf{loop}}\xspace}
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\mapdepfunc}[1]{\ensuremath{\mathsf{apd}_{#1}}\xspace} 
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\narrowbreak}{}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairpath}{\ensuremath{\mathsf{pair}^{\mathord{=}}}\xspace}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\newcommand{\pp}{\mathsf{p}}
+\newcommand{\ppt}{\widetilde{\mathsf{p}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\Transfib}[3]{\ensuremath{\mathsf{transport}^{#1}\Big(#2,\, #3\Big)\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ua}{\ensuremath{\mathsf{ua}}\xspace} 
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Wtil}{\ensuremath{\widetilde{W}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{6.12.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{6.12.\arabic{mathcount}}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\let\ap\map
+\let\apdfunc\mapdepfunc
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\type\UU
+\makeatother
+\def\coloneqq{:=}
+\begin{document}
+As we will see in \PMlinkexternal{Chapter 8}{http://planetmath.org/node/87582}, amazing things happen when we combine higher inductive types with univalence.
+The principal way this comes about is that if $W$ is a higher inductive type and \UU is a type universe, then we can define a type family $P:W\to \UU$ by using the recursion principle for $W$.
+When we come to the clauses of the recursion principle dealing with the path constructors of $W$, we will need to supply paths in \UU, and this is where univalence comes in.
+
+For example, suppose we have a type $X$ and a self-equivalence $e:\eqv X X$.
+Then we can define a type family $P:\Sn^1 \to \UU$ by using $\Sn^1$-recursion:
+\begin{equation*}
+  P(\base) \defeq X
+  \qquad\text{and}\qquad
+  \ap P\lloop \defid \ua(e).
+\end{equation*}
+The type $X$ thus appears as the fiber $P(\base)$ of $P$ over the basepoint.
+The self-equivalence $e$ is a little more hidden in $P$, but the following lemma says that it can be extracted by transporting along \lloop.
+
+\begin{lem}\label{thm:transport-is-given}
+  Given $B:A\to\type$ and $x,y:A$, with a path $p:x=y$ and an equivalence $e:\eqv{P(x)}{P(y)}$ such that $\ap{B}p = \ua(e)$, then for any $u:P(x)$ we have
+  \begin{align*}
+    \transfib{B}{p}{u} &= e(u).
+  \end{align*}
+\end{lem}
+\begin{proof}
+  Applying \PMlinkname{Lemma 2.10.5}{210universesandtheunivalenceaxiom#Thmprelem2}, we have
+  \begin{align*}
+    \transfib{B}{p}{u} &= \idtoeqv(\ap{B}p)(u)\\
+    &= \idtoeqv(\ua(e))(u)\\
+    &= e(u).\qedhere
+  \end{align*}
+\end{proof}
+
+We have seen type families defined by recursion before: in \PMlinkname{\S 2.12}{212coproducts},\PMlinkname{\S 2.13}{213naturalnumbers} we used them to characterize the identity types of (ordinary) inductive types.
+In \PMlinkexternal{Chapter 8}{http://planetmath.org/node/87582}, we will use similar ideas to calculate homotopy groups of higher inductive types.
+
+In this section, we describe a general lemma about type families of this sort which will be useful later on.
+We call it the \define{flattening lemma}:
+\indexdef{flattening lemma}%
+\indexdef{lemma!flattening}%
+it says that if $P:W\to\UU$ is defined recursively as above, then its total space $\sm{x:W} P(x)$ is equivalent to a ``flattened'' higher inductive type, whose constructors may be deduced from those of $W$ and the definition of $P$.
+From a category-theoretic point of view, $\sm{x:W} P(x)$ is the ``Grothendieck\index{Grothendieck construction} construction'' of $P$, and this expresses its universal property as a ``lax\index{lax colimit} colimit''.
+
+We prove here one general case of the flattening lemma, which directly implies many particular cases and suggests the method to prove others.
+Suppose we have $A,B:\type$ and $f,g:B\to{}A$, and that the higher inductive type $W$ is generated by
+\begin{itemize}
+\item $\cc:A\to{}W$ and
+\item $\pp:\prd{b:B} (\cc(f(b))=_W\cc(g(b)))$.
+\end{itemize}
+Thus, $W$ is the \define{(homotopy) coequalizer}
+\indexdef{coequalizer}%
+\indexdef{type!coequalizer}%
+of $f$ and $g$.
+Using binary sums (coproducts) and dependent sums ($\Sigma$-types), a lot of interesting nonrecursive higher
+inductive types can be represented in this form. All point constructors have to
+be bundled in the type $A$ and all path constructors in the type $B$.
+For instance:
+\begin{itemize}
+\item The circle $\Sn^1$ can be represented by taking $A\defeq \unit$ and $B\defeq \unit$, with $f$ and $g$ the identity.
+\item The pushout of $j:X\to Y$ and $k:X\to Z$ can be represented by taking $A\defeq Y+Z$ and $B\defeq X$, with $f\defeq \inl \circ j$ and $g\defeq \inr\circ k$.
+\end{itemize}
+Now suppose in addition that
+\begin{itemize}
+\item $C:A\to\type$ is a family of types over $A$, and
+\item $D:\prd{b:B}\eqv{C(f(b))}{C(g(b))}$ is a family of equivalences over $B$.
+\end{itemize}
+Define a type family $P : W\to\type$ inductively by
+\begin{align*}
+  P(\cc(a)) &\defeq C(a)\\
+  \map{P}{\pp(b)} &\defid \ua(D(b)).
+\end{align*}
+Let \Wtil be the higher inductive type generated by
+\begin{itemize}
+\item $\cct:\prd{a:A} C(a) \to \Wtil$ and
+\item $\ppt:\prd{b:B}{y:C(f(b))} (\cct(f(b),y)=_{\Wtil}\cct(g(b),D(b)(y)))$.
+\end{itemize}
+
+The flattening lemma is:
+
+\begin{lem}[Flattening lemma]\label{thm:flattening}
+  In the above situation, we have
+  \[ \eqvspaced{\Parens{\sm{x:W} P(x)}}{\widetilde{W}}. \]
+\end{lem}
+
+\index{universal!property!of dependent pair type}%
+As remarked above, this equivalence can be seen as expressing the universal property of $\sm{x:W} P(x)$ as a ``lax\index{lax colimit} colimit'' of $P$ over $W$.
+It can also be seen as part of the \emph{stability and descent} property of colimits, which characterizes higher toposes.%
+\index{.infinity1-topos@$(\infty,1)$-topos}%
+\index{stability!and descent}%
+
+The proof of \PMlinkname{Lemma 6.12.2}{612theflatteninglemma#Thmprelem2} occupies the rest of this section.
+It is somewhat technical and can be skipped on a first reading.
+But it is also a good example of ``proof-relevant mathematics'',
+\index{mathematics!proof-relevant}%
+so we recommend it on a second reading.
+
+The idea is to show that $\sm{x:W} P(x)$ has the same universal property as \Wtil.
+We begin by showing that it comes with analogues of the constructors $\cct$ and $\ppt$.
+
+\begin{lem}
+  There are functions
+  \begin{itemize}
+  \item $\cct':\prd{a:A} C(a) \to \sm{x:W} P(x)$ and
+  \item $\ppt':\prd{b:B}{y:C(f(b))} \Big(\cct'(f(b),y)=_{\sm{w:W}P(w)}\cct'(g(b),D(b)(y))\Big)$.
+  \end{itemize}
+\end{lem}
+\begin{proof}
+  The first is easy; define $\cct'(a,x) \defeq (\cc(a),x)$ and note that by definition $P(\cc(a))\jdeq C(a)$.
+  For the second, suppose given $b:B$ and $y:C(f(b))$; we must give an equality
+  \[ (\cc(f(b)),y) = (\cc(g(b),D(b)(y))). \]
+  Since we have $\pp(b):f(b)=g(b)$, by equalities in $\Sigma$-types it suffices to give an equality $\trans{\pp(b)}{y} = D(b)(y)$.
+  But this follows from \PMlinkname{Lemma 6.12.1}{612theflatteninglemma#Thmprelem1}, using the definition of $P$.
+\end{proof}
+
+Now the following lemma says to define a section of a type family over $\sm{w:W} P(w)$, it suffices to give analogous data as in the case of \Wtil.
+
+\begin{lem}\label{thm:flattening-rect}
+  Suppose $Q:\big(\sm{x:W} P(x)\big) \to \type$ is a type family and that we have
+  \begin{itemize}
+  \item $c : \prd{a:A}{x:C(a)} Q(\cct'(a,x))$ and
+  \item $p : \prd{b:B}{y:C(f(b))} \Big(\trans{\ppt'(b,y)}{c(f(b),y)} = c(g(b),D(b)(y))\Big)$. %_{Q(\cct'(g(b),D(b)(y)))}
+  \end{itemize}
+  Then there exists $f:\prd{z:\sm{w:W} P(w)} Q(z)$ such that $f(\cct'(a,x)) \jdeq c(a,x)$.
+\end{lem}
+\begin{proof}
+  Suppose given $w:W$ and $x:P(w)$; we must produce an element $f(w,x):Q(w,x)$.
+  By induction on $w$, it suffices to consider two cases.
+  When $w\jdeq \cc(a)$, then we have $x:C(a)$, and so $c(a,x):Q(\cc(a),x)$ as desired.
+  (This part of the definition also ensures that the stated computational rule holds.)
+
+  Now we must show that this definition is preserved by transporting along $\pp(b)$ for any $b:B$.
+  Since what we are defining, for all $w:W$, is a function of type $\prd{x:P(w)} Q(w,x)$, by \PMlinkname{Lemma 2.9.7}{29pitypesandthefunctionextensionalityaxiom#Thmprelem2} it suffices to show that for any $y:C(f(b))$, we have
+  \[ \transfib{Q}{\pairpath(\pp(b),\refl{\trans{\pp(b)}{y}})}{c(f(b),y)} = c(g(b),\trans{\pp(b)}{y}). \]
+  Let $q:\trans{\pp(b)}{y} = D(b)(y)$ be the path obtained from \PMlinkname{Lemma 6.12.1}{612theflatteninglemma#Thmprelem1}.
+  Then we have
+  \begin{align}
+    c(g(b),\trans{\pp(b)}{y})
+    &= \transfib{x\mapsto Q(c(g(b),x))}{\opp{q}}{c(g(b),D(b)(y))}
+    \tag{by $\apdfunc{x\mapsto c(g(b),x)}(\opp q)$} \\
+    &= \transfib{Q}{\apfunc{x\mapsto c(g(b),x)}(\opp q)}{c(g(b),D(b)(y))}
+    \tag{by \PMlinkname{Lemma 2.3.10}{23typefamiliesarefibrations#Thmprelem7}}.
+  \end{align}
+  Thus, it suffices to show
+  \begin{multline*}
+    \Transfib{Q}{\pairpath(\pp(b),\refl{\trans{\pp(b)}{y}})}{c(f(b),y)} = {}\\
+    \Transfib{Q}{\apfunc{x\mapsto c(g(b),x)}(\opp q)}{c(g(b),D(b)(y))}.
+  \end{multline*}
+  Moving the right-hand transport to the other side, and combining two transports, this is equivalent to
+  %
+  \begin{narrowmultline*}
+    \Transfib{Q}{\apfunc{x\mapsto c(g(b),x)}(q) \ct
+      \pairpath(\pp(b),\refl{\trans{\pp(b)}{y}})}{c(f(b),y)} =
+    \narrowbreak
+    c(g(b),D(b)(y)).
+  \end{narrowmultline*}
+  %
+  However, we have
+  \begin{multline*}
+    \apfunc{x\mapsto c(g(b),x)}(q) \ct \pairpath(\pp(b),\refl{\trans{\pp(b)}{y}})
+    = {} \\
+    \pairpath(\refl{g(b)},q) \ct \pairpath(\pp(b),\refl{\trans{\pp(b)}{y}})
+    = \pairpath(\pp(b),q)
+    = \ppt'(b,y)
+  \end{multline*}
+  so the construction is completed by the assumption $p(b,y)$ of type
+  \[ \transfib{Q}{\ppt'(b,y)}{c(f(b),y)} = c(g(b),D(b)(y)). \qedhere \]
+\end{proof}
+
+\PMlinkname{Lemma 6.12.4}{612theflatteninglemma#Thmprelem4} \emph{almost} gives $\sm{w:W}P(w)$ the same induction principle as \Wtil.
+The missing bit is the equality $\apdfunc{f}(\ppt'(b,y)) = p(b,y)$.
+In order to prove this, we would need to analyze the proof of \PMlinkname{Lemma 6.12.4}{612theflatteninglemma#Thmprelem4}, which of course is the definition of $f$.
+
+It should be possible to do this, but it turns out that we only need the computation rule for the non-dependent recursion principle.
+Thus, we now give a somewhat simpler direct construction of the recursor, and a proof of its computation rule.
+
+\begin{lem}\label{thm:flattening-rectnd}
+  Suppose $Q$ is a type and that we have
+  \begin{itemize}
+  \item $c : \prd{a:A} C(a) \to Q$ and
+  \item $p : \prd{b:B}{y:C(f(b))} \Big(c(f(b),y) =_Q c(g(b),D(b)(y))\Big)$.
+  \end{itemize}
+  Then there exists $f:\big(\sm{w:W} P(w)\big) \to Q$ such that $f(\cct'(a,x)) \jdeq c(a,x)$.
+\end{lem}
+\begin{proof}
+  As in \PMlinkname{Lemma 6.12.4}{612theflatteninglemma#Thmprelem4}, we define $f(w,x)$ by induction on $w:W$.
+  When $w\jdeq \cc(a)$, we define $f(\cc(a),x)\defeq c(a,x)$.
+  Now by \PMlinkname{Lemma 2.9.6}{29pitypesandthefunctionextensionalityaxiom#Thmprelem1}, it suffices to consider, for $b:B$ and $y:C(f(b))$, the composite path
+  \begin{myeqn}\label{eq:flattening-rectnd}
+    \transfib{x\mapsto Q}{\pp(b)}{c(f(b),y)}
+    = c(g(b),\transfib{P}{\pp(b)}{y})
+  \end{myeqn}
+  %
+  defined as the composition
+  %
+  \begin{align}
+    \transfib{x\mapsto Q}{\pp(b)}{c(f(b),y)}
+    &= c(f(b),y) \tag{by \PMlinkname{Lemma 2.3.5}{23typefamiliesarefibrations#Thmprelem4}}\\
+    &= c(g(b),D(b)(y)) \tag{by $p(b,y)$}\\
+    &= c(g(b),\transfib{P}{\pp(b)}{y}). \tag{by \PMlinkname{Lemma 6.12.1}{612theflatteninglemma#Thmprelem1}}
+  \end{align}
+  The computation rule $f(\cct'(a,x)) \jdeq c(a,x)$ follows by definition, as before.
+\end{proof}
+
+For the second computation rule, we need the following lemma.
+
+\begin{lem}\label{thm:ap-sigma-rect-path-pair}
+  Let $Y:X\to\type$ be a type family and let $f:(\sm{x:X}Y(x)) \to Z$ be defined componentwise by $f(x,y) \defeq d(x)(y)$ for a curried function $d:\prd{x:X} Y(x)\to Z$.
+  Then for any $s:\id[X]{x_1}{x_2}$ and any $y_1:P(x_1)$ and $y_2:P(x_2)$ with a path $r:\trans{s}{y_1}=y_2$, the path
+  \[\apfunc f (\pairpath(s,r)) :f(x_1,y_1) = f(x_2,y_2)\]
+  is equal to the composite
+  \begin{align}
+    f(x_1,y_1)
+    &\jdeq d(x_1)(y_1) \notag\\
+    &= \transfib{x\mapsto Q}{s}{d(x_1)(y_1)}
+    \tag{by $\opp{\text{(\PMlinkname{Lemma 2.3.5}{23typefamiliesarefibrations#Thmprelem4})}}$}\\
+    &= \transfib{x\mapsto Q}{s}{d(x_1)(\trans{\opp s}{\trans{s}{y_1}})}
+    \notag\\
+    &= \big(\transfib{x\mapsto (Y(x)\to Z)}{s}{d(x_1)}\big)(\trans{s}{y_1})
+    \tag{by~\PMlinkname{(2.9.4)}{29pitypesandthefunctionextensionalityaxiom#S0.E3}}\\
+    &= d(x_2)(\trans{s}{y_1})
+    \tag{by $\happly(\apdfunc{d}(s))(\trans{s}{y_1}$}\\
+    &= d(x_2)(y_2)
+    \tag{by $\apfunc{d(x_2)}(r)$}\\
+    &\jdeq f(x_2,y_2).
+    \notag
+  \end{align}
+\end{lem}
+\begin{proof}
+  After path induction on $s$ and $r$, both equalities reduce to reflexivities.
+\end{proof}
+
+At first it may seem surprising that \PMlinkname{Lemma 6.12.7}{612theflatteninglemma#Thmprelem6} has such a complicated statement, while it can be proven so simply.
+The reason for the complication is to ensure that the statement is well-typed: $\apfunc f (\pairpath(s,r))$ and the composite path it is claimed to be equal to must both have the same start and end points.
+Once we have managed this, the proof is easy by path induction.
+
+\begin{lem}\label{thm:flattening-rectnd-beta-ppt}
+  In the situation of \PMlinkname{Lemma 6.12.5}{612theflatteninglemma#Thmprelem5}, we have $\apfunc{f}(\ppt'(b,y)) = p(b,y)$.
+\end{lem}
+\begin{proof}
+  Recall that $\ppt'(b,y) \defeq \pairpath(\pp(b),q)$ where $q:\trans{\pp(b)}{y} = D(b)(y)$ comes from \PMlinkname{Lemma 6.12.1}{612theflatteninglemma#Thmprelem1}.
+  Thus, since $f$ is defined componentwise, we may compute $\apfunc{f}(\ppt'(b,y))$ by \PMlinkname{Lemma 6.12.7}{612theflatteninglemma#Thmprelem6}, with
+  \begin{align*}
+    x_1 &\defeq \cc(f(b)) & y_1 &\defeq y\\
+    x_2 &\defeq \cc(g(b)) & y_2 &\defeq D(b)(y)\\
+    s &\defeq \pp(b)      &   r &\defeq q.
+  \end{align*}
+  The curried function $d:\prd{w:W} P(w) \to Q$ was defined by induction on $w:W$;
+  to apply \PMlinkname{Lemma 6.12.7}{612theflatteninglemma#Thmprelem6} we need to understand $\apfunc{d(x_2)}(r)$ and $\happly(\apdfunc{d}(s),\trans s {y_1})$.
+
+  For the first, since $d(\cc(a),x)\jdeq c(a,x)$, we have
+  \[ \apfunc{d(x_2)}(r) \jdeq \apfunc{c(g(b),-)}(q). \]
+  For the second, the computation rule for the induction principle of $W$ tells us that $\apdfunc{d}(\pp(b))$ is equal to the composite~\eqref{eq:flattening-rectnd}, passed across the equivalence of \PMlinkname{Lemma 2.9.6}{29pitypesandthefunctionextensionalityaxiom#Thmprelem1}.
+  Thus, the computation rule given in \PMlinkname{Lemma 2.9.6}{29pitypesandthefunctionextensionalityaxiom#Thmprelem1} implies that $\happly(\apdfunc{d}(\pp(b)),\trans {\pp(b)}{y})$ is equal to the composite
+  \begin{align}
+    \big(\trans{\pp(b)}{c(f(b),-)}\big)(\trans {\pp(b)}{y})
+    &= \trans{\pp(b)}{c(f(b),\trans{\opp {\pp(b)}}{\trans {\pp(b)}{y}})}
+    \tag{by~\PMlinkname{(2.9.4)}{29pitypesandthefunctionextensionalityaxiom#S0.E3}}\\
+    &= \trans{\pp(b)}{c(f(b),y)}
+    \notag \\
+    &= c(f(b),y)
+    \tag{by \PMlinkname{Lemma 2.3.5}{23typefamiliesarefibrations#Thmprelem4}}\\
+    &= c(f(b),D(b)(y))
+   \tag{by $p(b,y)$}\\
+    &= c(f(b),\trans{\pp(b)}{y}).
+    \tag{by $\opp{\apfunc{c(g(b),-)}(q)}$}
+  \end{align}
+  Finally, substituting these values of $\apfunc{d(x_2)}(r)$ and $\happly(\apdfunc{d}(s),\trans s {y_1})$ into \PMlinkname{Lemma 6.12.7}{612theflatteninglemma#Thmprelem6}, we see that all the paths cancel out in pairs, leaving only $p(b,y)$.
+\end{proof}
+
+Now we are finally ready to prove the flattening lemma.
+
+\begin{proof}[Proof of \PMlinkname{Lemma 6.12.2}{612theflatteninglemma#Thmprelem2}]
+  We define $h:\Wtil \to \sm{w:W}P(w)$ by using the recursion principle for \Wtil, with $\cct'$ and $\ppt'$ as input data.
+  Similarly, we define $k:(\sm{w:W}P(w)) \to \Wtil$ by using the recursion principle of \PMlinkname{Lemma 6.12.5}{612theflatteninglemma#Thmprelem5}, with $\cct$ and $\ppt$ as input data.
+
+  On the one hand, we must show that for any $z:\Wtil$, we have $k(h(z))=z$.
+  By induction on $z$, it suffices to consider the two constructors of \Wtil.
+  But we have
+  \[k(h(\cct(a,x))) \jdeq k(\cct'(a,x)) \jdeq \cct(a,x)\]
+  by definition, while similarly
+  \[\ap k{\ap h{\ppt(b,y)}} = \ap k{\ppt'(b,y)} = \ppt(b,y) \]
+  using the propositional computation rule for $\Wtil$ and \PMlinkname{Lemma 6.12.8}{612theflatteninglemma#Thmprelem7}.
+
+  On the other hand, we must show that for any $z:\sm{w:W}P(w)$, we have $h(k(z))=z$.
+  But this is essentially identical, using \PMlinkname{Lemma 6.12.4}{612theflatteninglemma#Thmprelem4} for ``induction on $\sm{w:W}P(w)$'' and the same computation rules.
+\end{proof}
+
+
+\end{document}

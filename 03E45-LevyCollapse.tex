@@ -1,0 +1,34 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{LevyCollapse}
+\pmcreated{2013-04-16 22:08:32}
+\pmmodified{2013-04-16 22:08:32}
+\pmowner{ratboy}{4018}
+\pmmodifier{e1568582}{1000182}
+\pmtitle{Levy collapse}
+\pmrecord{9}{33244}
+\pmprivacy{1}
+\pmauthor{ratboy}{1000182}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E45}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\def\dom{\operatorname{dom}}
+\def\Levy{\operatorname{Levy}}
+\begin{document}
+Given any cardinals $\kappa$ and $\lambda$ in $\mathfrak{M}$, we can use the \emph{Levy collapse} to give a new model $\mathfrak{M}[G]$ where $\lambda=\kappa$.  Let $P=\Levy(\kappa,\lambda)$ be the set of partial functions $f:\kappa\rightarrow\lambda$ with $|\dom(f)|<\kappa$.  These functions each give partial information about a function $F$ which collapses $\lambda$ onto $\kappa$.
+
+Given any generic subset $G$ of $P$, $\mathfrak{M}[G]$ has a set $G$, so let $F=\bigcup G$.  Each element of $G$ is a partial function, and they are all compatible, so $F$ is a function.  $\dom(G)=\kappa$ since for each $\alpha<\kappa$ the set of $f\in P$ such that $\alpha\in\dom(f)$ is dense (given any function without $\alpha$, it is trivial to add $(\alpha,0)$, giving a stronger function which includes $\alpha$).  Also $\operatorname{range}(G)=\lambda$ since the set of $f\in P$ such that $\alpha<\lambda$ is in the range of $f$ is again dense (the domain of each $f$ is bounded, so if $\beta$ is larger than any element of $\dom(f)$, $f\cup\{(\beta,\alpha)\}$ is stronger than $f$ and includes $\lambda$ in its domain).
+
+So $F$ is a surjective function from $\kappa$ to $\lambda$, and $\lambda$ is collapsed in $\mathfrak{M}[G]$.  In addition, $|\Levy(\kappa,\lambda)|=\lambda$, so it satisfies the $\lambda^+$ chain condition, and therefore $\lambda^+$ is not collapsed, and becomes $\kappa^+$ (since for any ordinal between $\lambda$ and $\lambda^+$ there is already a surjective function to it from $\lambda$).
+
+We can generalize this by forcing with $P=\Levy(\kappa,<\lambda)$ with $\kappa$ regular, the set of partial functions $f:\lambda\times\kappa\rightarrow\lambda$ such that $f(0,\alpha)=0$, $|\dom(f)|<\kappa$ and if $\alpha>0$ then $f(\alpha,i)<\alpha$.  In essence, this is the product of $\Levy(\kappa,\eta)$ for each $\eta<\lambda$.
+
+In $\mathfrak{M}[G]$, define $F=\bigcup G$ and $F_\alpha(\beta)=F(\alpha,\beta)$.  Each $F_\alpha$ is a function from $\kappa$ to $\alpha$, and by the same argument as above $F_\alpha$ is both total and surjective.  Moreover, it can be shown that $P$ satisfies the $\lambda$ chain condition, so $\lambda$ does not collapse and $\lambda=\kappa^+$.
+%%%%%
+%%%%%
+\end{document}

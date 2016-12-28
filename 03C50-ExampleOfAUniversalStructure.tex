@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExampleOfAUniversalStructure}
+\pmcreated{2013-03-22 13:23:16}
+\pmmodified{2013-03-22 13:23:16}
+\pmowner{uzeromay}{4983}
+\pmmodifier{uzeromay}{4983}
+\pmtitle{example of a universal structure}
+\pmrecord{15}{33925}
+\pmprivacy{1}
+\pmauthor{uzeromay}{4983}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C50}
+\pmclassification{msc}{03C52}
+\pmrelated{Homogeneous4}
+\pmrelated{KappaCategorical}
+\pmrelated{DifferentialEquation}
+\pmrelated{ExampleOfDefinableType}
+\pmrelated{RandomGraph}
+\pmdefines{back and forth}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\newtheorem{theorem}{Theorem}
+\def\Q{\mathbb{Q}}
+\def\dom{\operatorname{dom}}
+\def\range{\operatorname{range}}
+\begin{document}
+\PMlinkescapeword{proposition}
+\PMlinkescapeword{satisfies}
+
+Let $L$ be the first order language with the binary relation $\leq$. Consider the following sentences:
+\begin{itemize}
+\item $\forall x,y ((x\leq y \lor y\leq x) \land ((x \leq y \land y\leq x )\leftrightarrow x=y))$
+\item $\forall x,y,z (x \leq y \land y \leq z \rightarrow x \leq z)$ \end{itemize}
+Any $L$-structure satisfying these is called a linear order. 
+We define the relation $<$ so that $x<y$ iff $x \leq y \land x \neq y$. Now consider these sentences:
+\begin{enumerate}
+\item $\forall x,y ((x < y  \rightarrow \exists z(x<z<y))$
+\item $\forall x \exists y,z(y<x <z)$ \end{enumerate}
+A linear order that satisfies 1.\ is called \PMlinkname{dense}{DenseTotalOrder}. 
+We say that a linear order that satisfies 2. is {\em without endpoints}. 
+Let $T$ be the theory of dense linear orders without endpoints. This is a complete theory.
+
+We can see that $(\Q,\leq)$ is a model of $T$. It is actually a rather special model.
+
+\begin{theorem} 
+\label{one} Let $(S,\leq)$ be any finite linear order. Then $S$ embeds in $(\Q,\leq)$.
+\end{theorem}
+Proof: By induction on $|S|$, it is trivial for $|S|=1$. 
+
+Suppose that the statement holds for all linear orders with cardinality less than or equal to $n$.
+Let $|S|=n+1$, then pick some $a \in S$, let $S^{\prime}$ be the structure induced by $S$ on $S\setminus {a}$. 
+Then there is some embedding $e$ of $S^{\prime}$ into $\Q$. 
+
+\begin{itemize}
+\item Now suppose $a$ is less than every member of $S^{\prime}$, then as $\Q$ is without endpoints, there is some element $b$ less than every element in the image of $e$. 
+Thus we can extend $e$ to map $a$ to $b$ which is an embedding of $S$ into $\Q$. 
+\item We work similarly if $a$ is greater than every element in $S^{\prime}$.
+\item If neither of the above hold then we can pick some maximum $c_{1} \in S^{\prime}$ so that $c_{1}<a$. 
+Similarly we can pick some minimum $c_{2} \in S^{\prime}$ so that $c_{2}<a$. Now there is some $b \in \Q$ with $e(c_{1})<b<e(c_{2})$. Then extending $e$ by mapping $a$ to $b$ is the required embedding. $\square$ \end{itemize}
+
+It is easy to extend the above result to countable structures. 
+One views a countable structure as a the union of an increasing chain of finite substructures. 
+The necessary embedding is the union of the embeddings of the substructures. Thus $(\Q,\leq)$ is universal countable linear order.
+
+\begin{theorem} $(\Q,\leq)$ is homogeneous. \end{theorem}
+Proof: The following type of proof is known as a {\em back and forth} argument. 
+Let $S_{1}$ and $S_{2}$ be two finite substructures of $(\Q,\leq)$. 
+Let $e:S_{1} \to S_{2}$ be an isomorphism. 
+It is easier to think of two disjoint copies $B$ and $C$ of $\Q$ with $S_{1}$ a substructure of $B$ and $S_{2}$ a substructure of $C$.
+
+Let $b_{1},b_{2},\ldots$ be an enumeration of $B \setminus S_{1}$. 
+Let $c_{1},c_{2},\ldots,c_{n}$ be an enumeration of $C \setminus S_{2}$.  We iterate the following two step process:
+
+{\bf The $i$th forth step} If  $b_{i}$ is already in the domain of $e$ then do nothing. If $b_{i}$ is not in the domain of $e$. 
+Then as in proposition \ref{one}, either $b_{i}$ is less than every element in the domain of $e$ or greater than or it has an immediate successor and predecessor in the range of $e$.
+Either way there is an element  $c$ in $C \setminus\range(e)$ relative to the range of $e$. 
+Thus we can extend the isomorphism to include $b_{i}$.
+
+{\bf The $i$th back step} If  $c_{i}$ is already in the range of $e$ then do nothing. If $c_{i}$ is not in the domain of $e$. 
+Then exactly as above we can find some $b \in B \setminus \dom(e)$ and extend $e$ so that $e(b)=c_{i}$.
+
+After $\omega$ stages, we have an isomorphism whose range includes every $b_{i}$ and whose domain includes every $c_{i}$. Thus we have an isomorphism from $B$ to $C$ extending $e$. $\square$
+
+A similar back and forth argument shows that any countable dense linear order without endpoints is isomorphic to $(\Q,\leq)$ so $T$ is $\aleph_{0}$-categorical.
+%%%%%
+%%%%%
+\end{document}

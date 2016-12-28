@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A17Wtypes}
+\pmcreated{2013-11-09 5:03:29}
+\pmmodified{2013-11-09 5:03:29}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.1.7 $W$-types}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\supp}{\ensuremath\suppsym\xspace}
+\newcommand{\suppsym}{{\mathsf{sup}}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@twtype#1{\mathchoice{{\textstyle\mathsf{W}_{(#1)}}}{\mathsf{W}_{(#1)}}{\mathsf{W}_{(#1)}}{\mathsf{W}_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\def\wtype#1{\@ifnextchar\bgroup  {\mathchoice{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}\wtype}  {\mathchoice{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}}}
+\def\wtypesym{{\mathsf{W}}}
+\makeatother
+\begin{document}
+For $W$-types we introduce primitive constants $c_\wtypesym$ and $c_\suppsym$.
+An expression of the form $c_\wtypesym(A,\lam{x} B)$ is written as
+$\wtype{x:A}B$, and an expression of the form $c_\suppsym(x,u)$ is written
+as $\supp(x,u)$:
+%
+\begin{itemize}
+\item if $A:\UU_n$ and $B: A \rightarrow \UU_n$, then $\wtype{x:A}B(x) : \UU_n$
+\item if moreover, $a:A$ and $g:B(a)\rightarrow \wtype{x:A}B(x)$ then $\supp(a,g):\wtype{x:A}B(x)$.
+\end{itemize}
+% 
+Here also we can define functions by total recursion. If we have $A$ and $B$
+as above and $C : \wtype{x:A}B(x) \rightarrow \UU_m$, then we can introduce a defined constant
+$f:\tprd{z:\wtype{x:A}B(x)} C(z)$ whenever we have
+\[
+  d:\tprd{x:A}{u:B(x) \rightarrow \wtype{x:A}B(x)}((\tprd{y:B(x)}C(u(y))) \rightarrow C(\supp(x,u)))
+\]
+with the defining equation
+\[
+  f(\supp(x,u)) \defeq d(x,u,f\circ u).
+\]
+
+\end{document}

@@ -1,0 +1,281 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{55HomotopyinductiveTypes}
+\pmcreated{2013-11-20 2:25:19}
+\pmmodified{2013-11-20 2:25:19}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{5.5 Homotopy-inductive types}
+\pmrecord{3}{87678}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bfalse}{{0_{\bool}}}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\btrue}{{1_{\bool}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\dbl}{\ensuremath{\mathsf{double}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\funext}{\mathsf{funext}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\ishinitw}{\mathsf{isHinit}_{\mathsf{W}}}
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\def\@lwtypeh#1{\mathchoice{{\textstyle\mathsf{W}^h}}{\mathsf{W}^h}{\mathsf{W}^h}{\mathsf{W}^h}({\textstyle #1})\;}
+\def\@@lwtypeh#1{\mathchoice{{\textstyle\mathsf{W}^h}}{\mathsf{W}^h}{\mathsf{W}^h}{\mathsf{W}^h}({\textstyle #1}),\ }
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\narrowbreak}{}
+\newcommand{\natw}{\ensuremath{\mathbf{N^w}}\xspace}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\sucw}{\ensuremath{\mathbf{s^w}}\xspace}
+\newcommand{\supp}{\ensuremath\suppsym\xspace}
+\newcommand{\suppsym}{{\mathsf{sup}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\def\@twtype#1{\mathchoice{{\textstyle\mathsf{W}_{(#1)}}}{\mathsf{W}_{(#1)}}{\mathsf{W}_{(#1)}}{\mathsf{W}_{(#1)}}}
+\def\@twtypeh#1{\mathchoice{{\textstyle\mathsf{W}^h_{(#1)}}}{\mathsf{W}^h_{(#1)}}{\mathsf{W}^h_{(#1)}}{\mathsf{W}^h_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\w}{\mathsf{W}}
+\newcommand{\walg}{\w\mathsf{Alg}}
+\def\wtype#1{\@ifnextchar\bgroup  {\mathchoice{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}\wtype}  {\mathchoice{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}}}
+\def\wtypeh#1{\@ifnextchar\bgroup  {\mathchoice{\@lwtypeh{#1}}{\@twtypeh{#1}}{\@twtypeh{#1}}{\@twtypeh{#1}}\wtypeh}  {\mathchoice{\@@lwtypeh{#1}}{\@twtypeh{#1}}{\@twtypeh{#1}}{\@twtypeh{#1}}}}
+\newcommand{\zerow}{\ensuremath{0^\mathbf{w}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{5.5.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{5.5.\arabic{mathcount}}
+\let\autoref\cref
+\let\bbU\UU
+\let\nat\N
+\let\type\UU
+\makeatother
+
+\begin{document}
+In \PMlinkname{\S 5.3}{53wtypes} we showed how to encode natural numbers as $\w$-types, with 
+\begin{align*}
+\natw & \defeq \wtype{b:\bool} \rec\bool(\bbU,\emptyt,\unit), \\
+\zerow & \defeq \supp(\bfalse, (\lamu{x:\emptyt} \rec\emptyt(\natw,x))), \\
+\sucw & \defeq \lamu{n:\natw} \supp(\btrue, (\lamu{x:\unit} n)).
+\end{align*}
+We also showed how one can define a $\dbl$ function on $\natw$ using the recursion principle.
+When it comes to the induction principle, however, this encoding is no longer satisfactory: given $E : \natw \to \type$ and recurrences $e_z : E(\zerow)$ and $e_s : \prd{n : \natw}{y : E(n)} E(\sucw(n))$, we can only construct a dependent function $r(E,e_z,e_s) : \prd{n : \natw} E(n)$ satisfying the given recurrences \emph{propositionally}, i.e.\ up to a path.
+This means that the computation rules for natural numbers, which give judgmental equalities, cannot be derived from the rules for $\w$-types in any obvious way.
+
+\index{type!homotopy-inductive}%
+\index{homotopy-inductive type}%
+This problem goes away if instead of the conventional inductive types we consider \emph{homotopy-inductive types}, where all computation rules are stated up to a path, i.e.\ the symbol $\jdeq$ is replaced by $=$. For instance, the computation rule for the homotopy version of $\w$-types $\mathsf{W^h}$ becomes:
+\index{computation rule!propositional}%
+\begin{itemize}
+\item For any $a : A$ and $f : B(a) \to \wtypeh{x:A} B(x)$ we have 
+\begin{equation*}
+  \rec{\wtypeh{x:A} B(x)}(E,\supp(a,f)) = e\Big(a,f,\big(\lamu{b:B(a)} \rec{\wtypeh{x:A} B(x)}(E,f(b))\big)\Big)
+\end{equation*}
+\end{itemize}
+
+Homotopy-inductive types have an obvious disadvantage when it comes to computational properties --- the behavior of any function constructed using the induction principle can now only be characterized propositionally.
+But numerous other considerations drive us to consider homotopy-inductive types as well.
+For instance, while we showed in \PMlinkname{\S 5.4}{54inductivetypesareinitialalgebras} that inductive types are homotopy-initial algebras, not every homotopy-initial algebra is an inductive type (i.e.\ satisfies the corresponding induction principle) --- but every homotopy-initial algebra \emph{is} a homotopy-inductive type.
+Similarly, we might want to apply the uniqueness argument from \PMlinkname{\S 5.2}{52uniquenessofinductivetypes} when one (or both) of the types involved is only a homotopy-inductive type --- for instance, to show that the $\w$-type encoding of $\nat$ is equivalent to the usual $\nat$.
+
+Additionally, the notion of a homotopy-inductive type is now internal to the type theory.
+For example, this means we can form a type of all natural numbers objects and make assertions about it.
+In the case of $\w$-types, we can characterize a homotopy $\w$-type $\wtype{x:A} B(x)$ as any type endowed with a supremum function and an induction principle satisfying the appropriate (propositional) computation rule:
+\begin{multline*}
+\w_d(A,B) \defeq \sm{W : \type} 
+                 \sm{\supp : \prd {a} (B(a) \to W) \to W} 
+                 \prd{E : W \to \type} \\
+                 \prd{e : \prd{a,f} (\prd{b : B(a)} E(f(b))) \to E(\supp(a,f))}
+                 \sm{\ind{} : \prd{w : W} E(w)}
+                 \prd{a,f} \\
+                 \ind{}(\supp(a,f)) = e(a,\lamu{b:B(a)} \ind{}(f(b))).
+\end{multline*}
+In \PMlinkexternal{Chapter 6}{http://planetmath.org/node/87579} we will see some other reasons why propositional computation rules are worth considering.
+
+In this section, we will state some basic facts about homotopy-inductive types.
+We omit most of the proofs, which are somewhat technical.
+
+\begin{thm}
+  For any $A : \type$ and $B : A \to \type$, the type $\w_d(A,B)$ is a mere proposition.
+\end{thm}
+
+It turns out that there is an equivalent characterization of $\w$-types using a recursion principle, plus certain \emph{uniqueness} and \emph{coherence} laws. First we give the recursion principle:
+%
+\begin{itemize}
+\item When constructing a function from the $\w$-type $\wtypeh{x:A} B(x)$ into the type $C$, it suffices to give its value for $\supp(a,f)$, assuming we are given the values of all $f(b)$ with $b : B(a)$.
+In other words, it suffices to construct a function
+\begin{equation*}
+  c : \prd{a:A} (B(a) \to C) \to C.
+\end{equation*}
+\end{itemize}
+\index{computation rule!propositional}%
+The associated computation rule for $\rec{\wtypeh{x:A} B(x)}(C,c) : (\wtype{x:A} B(x)) \to C$ is as follows:
+\begin{itemize}
+\item For any $a : A$ and $f : B(a) \to \wtypeh{x:A} B(x)$ we have
+a witness $\beta(C,c,a,f)$ for equality
+\begin{equation*}
+  \rec{\wtypeh{x:A} B(x)}(C,c,\supp(a,f)) = 
+  c(a,\lamu{b:B(a)} \rec{\wtypeh{x:A} B(x)}(C,c,f(b))).
+\end{equation*}
+\end{itemize}
+
+Furthermore, we assert the following uniqueness principle, saying that any two functions defined by the same recurrence are equal:
+\index{uniqueness!principle, propositional!for homotopy W-types@for homotopy $\w$-types}%
+\begin{itemize}
+\item Let $C : \type$ and $c : \prd{a:A} (B(a) \to C) \to C$ be given. Let $g,h : (\wtypeh{x:A} B(x)) \to C$ be two functions which satisfy the recurrence $c$ up to propositional equality, i.e., such that we have
+\begin{align*}
+  \beta_g &: \prd{a,f} \id{g(\supp(a,f))}{c(a,\lamu{b: B(a)} g(f(b)))}, \\
+  \beta_h &: \prd{a,f} \id{h(\supp(a,f))}{c(a,\lamu{b: B(a)} h(f(b)))}.
+\end{align*}
+Then $g$ and $h$ are equal, i.e.\ there is $\alpha(C,c,f,g,\beta_g,\beta_h)$ of type $g = h$.
+\end{itemize}
+
+\index{coherence}%
+Recall that when we have an induction principle rather than only a recursion principle, this propositional uniqueness principle is derivable (\PMlinkname{Theorem 5.3.1}{53wtypes#Thmprethm1}).
+But with only recursion, the uniqueness principle is no longer derivable --- and in fact, the statement is not even true (exercise).  Hence, we postulate it as an axiom.
+We also postulate the following coherence\index{coherence} law, which tells us how the proof of uniqueness behaves on canonical elements:
+\begin{itemize}
+\item
+For any $a : A$ and $f : B(a) \to C$, the following diagram commutes propositionally:
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_5.5.1.png}
+\end{figure}
+%\[\xymatrix{
+%  g(\supp(x,f)) \ar_{\alpha(\supp(x,f))}[d] \ar^-{\beta_g}[r] & c(a,\lamu{b:B(a)} g(f(b)))
+%  \ar^{c(a,\blank)(\funext (\lam{b} \alpha(f(b))))}[d] \\
+%  h(\supp(x,f)) \ar_-{\beta_h}[r] & c(a,\lamu{b: B(a)} h(f(b))) \\
+%}\]
+where $\alpha$ abbreviates the path $\alpha(C,c,f,g,\beta_g,\beta_h) : g = h$.
+\end{itemize}
+
+Putting all of this data together yields another characterization of $\wtype{x:A} B(x)$, as a type with a supremum function, satisfying simple elimination, computation, uniqueness, and coherence rules:
+\begin{multline*}
+\w_s(A,B) \defeq \sm{W : \type}
+                      \; \sm{\supp : \prd {a} (B(a) \to W) \to W}
+                      \; \prd{C : \type}
+                      \; \prd{c : \prd{a} (B(a) \to C) \to C}
+                      \; \sm{\rec{} : W \to C} \\
+                      \; \sm{\beta : \prd{a,f} \rec{}(\supp(a,f)) = c(a,\lamu{b: B(a)} \rec{}(f(b)))} \narrowbreak
+                      \; \prd{g : W \to C}
+                      \; \prd{h : W \to C}
+                      \; \prd{\beta_g : \prd{a,f} g(\supp(a,f)) = c(a,\lamu{b: B(a)} g(f(b)))} \\
+                      \; \prd{\beta_h : \prd{a,f} h(\supp(a,f)) = c(a,\lamu{b: B(a)} h(f(b)))}
+                      \; \sm{\alpha : \prd {w : W} g(w) = h(w)} \\
+                      \; \alpha(\supp(x,f)) \ct \beta_h = \beta_g \ct c(a,-)(\funext \; \lam{b} \alpha(f(b)))
+\end{multline*}
+
+\begin{thm}
+For any $A : \type$ and $B : A \to \type$, the type $\w_s (A,B)$ is a mere proposition.
+\end{thm}
+
+Finally, we have a third, very concise characterization of $\wtype{x:A} B(x)$ as an h-initial $\w$-algebra:
+\begin{equation*}
+\w_h(A,B) \defeq \sm{I : \walg(A,B)} \ishinitw(A,B,I).
+\end{equation*}
+
+\begin{thm}
+For any $A : \type$ and $B : A \to \type$, the type $\w_h (A,B)$ is a mere proposition.
+\end{thm}
+
+It turns out all three characterizations of $\w$-types are in fact equivalent:
+\begin{lem}\label{lem:homotopy-induction-times-3}
+For any $A : \type$ and $B : A \to \type$, we have
+\[ \w_d(A,B) \eqvsym \w_s(A,B) \eqvsym \w_h(A,B) \]
+\end{lem}
+
+Indeed, we have the following theorem, which is an improvement over \PMlinkname{Theorem 5.4.7}{54inductivetypesareinitialalgebras#Thmprethm3}:
+
+\begin{thm}
+The types satisfying the formation, introduction, elimination, and propositional computation rules for $\w$-types are precisely the homotopy-initial $\w$-algebras.
+\end{thm}
+
+%%%%%
+\begin{proof}[Sketch of proof]
+%%%%%
+Inspecting the proof of \PMlinkname{Theorem 5.4.7}{54inductivetypesareinitialalgebras#Thmprethm3}, we see that only the \emph{propositional} computation rule was required to establish the h-initiality of $\wtype{x:A}B(x)$. 
+For the converse implication, let us assume that the polynomial functor associated
+to $A : \type$ and $B : A \to \UU$, has an h-initial algebra $(W,s_W)$; we show that $W$ satisfies the propositional rules of $\w$-types.
+The $\w$-introduction rule is simple; namely, for $a : A$ and $t : B(a) \rightarrow W$,  we define $\supp(a,t) : W$ to be the 
+result of applying the structure map $s_W : PW \rightarrow W$ to $(a,t) : PW$.
+For the $\w$-elimination rule, let us assume its premisses and in particular that $C' : W \to \type$.
+Using the other premisses, one shows that the type $C \defeq \sm{ w : W} C'(w)$
+can be equipped with a structure map $s_C : PC \rightarrow C$. By the h-initiality of $W$,
+we obtain an algebra homomorphism $(f, s_f) : (W, s_W) \rightarrow (C, s_C)$. Furthermore,
+the first projection $\proj1 : C \rightarrow W$ can be equipped with the structure of a
+homomorphism, so that we obtain a diagram of the form
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_5.5.2.png}
+\end{figure}
+%\[
+%\xymatrix{
+%PW \ar[r]^{Pf} \ar[d]_{s_W}  & PC \ar[d]^{s_C}  \ar[r]^{P \proj1}  & PW  \ar[d]^{s_W}  \\
+%W \ar[r]_f  & C \ar[r]_{\proj1}  & W.}
+%\]
+But the identity function $1_W : W \rightarrow W$ has a canonical structure of an
+algebra homomorphism and so, by the contractibility of the type of homomorphisms
+from $(W,s_W)$ to itself, there must be an identity proof between the composite
+of $(f,s_f)$ with $(\proj1, s_{\proj1})$ and $(1_W, s_{1_W})$. This implies, in particular,
+that there is an identity proof $p :  \proj1 \circ f = 1_W$. 
+
+Since $(\proj2 \circ f) w : C( (\proj1 \circ f) w)$, we can define
+\[
+\rec{}(w,c) \defeq
+p_{\, * \,}( ( \proj2 \circ  f)   w )   : C(w) 
+\]
+where the transport $p_{\, * \,}$ is with respect to the family
+\[
+\lamu{u}C\circ u : (W\to W)\to W\to \UU.
+\]
+The verification of the propositional $\w$-computation rule is a calculation,
+involving the naturality properties of operations of the form $p_{\, * \,}$.
+\end{proof}
+%%%%%
+
+\index{natural numbers!encoded as a W-type@encoded as a $\w$-type}%
+Finally, as desired, we can encode homotopy-natural-numbers as homo\-topy-$\w$-types:
+
+\begin{thm}
+The rules for natural numbers with propositional computation rules can be derived from the rules for $\w$-types with propositional computation rules.
+\end{thm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

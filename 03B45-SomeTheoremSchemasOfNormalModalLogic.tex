@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SomeTheoremSchemasOfNormalModalLogic}
+\pmcreated{2013-03-22 19:34:26}
+\pmmodified{2013-03-22 19:34:26}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{some theorem schemas of normal modal logic}
+\pmrecord{12}{42560}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Recall that a normal modal logic is a logic containing all tautologies, the schema K
+$$\square (A\to B) \to (\square A \to \square B),$$
+and closed under modus ponens and necessitation rules.  Also, the modal operator diamond $\diamond$ is defined as $$\diamond A:=\neg \square \neg A.$$
+Let $\Lambda$ be any normal modal logic.  We write $\vdash A$ to mean $\Lambda \vdash A$, or wff $A\in \Lambda$, or $A$ is a theorem of $\Lambda$.
+
+Based on some of the meta-theorems of $\Lambda$ (see \PMlinkname{here}{SyntacticPropertiesOfANormalModalLogic}), we can easily derive the following theorem schemas:
+\begin{multicols}{2}{
+\begin{enumerate}
+\item $\square (A\land B)\to \square A \land \square B$
+\item $\square A \land \square B \to \square (A\land B)$
+\item $\square \neg \perp$
+\item $\square A \leftrightarrow \neg \diamond \neg A$
+\item $\square (A\to B) \to (\diamond A \to \diamond B)$
+\item $\diamond (A\to B)\to (\square A \to \diamond B)$
+\item $\diamond A \land \square B \to \diamond(A\land B)$
+\item $\square A \lor \square B \to \square (A\lor B)$
+\item $\diamond (A\land B)\to \diamond A\land \diamond B$
+\item $\square (A \lor B)\to \square A \lor \diamond B$
+\item $\diamond (A\lor B) \leftrightarrow \diamond A \lor \diamond B$
+\end{enumerate}
+}\end{multicols}
+\begin{proof}
+\begin{enumerate}
+\item From tautologies $A\land B \to A$ and $A\land B\to B$ and meta-theorem 1, we get $\vdash \square (A\land B)\to \square A$ and $\vdash \square (A\land B)\to \square B$.  So $\vdash \square (A\land B)\to \square A \land \square B$.
+\item From tautology $A\to (B\to (A\land B))$ and meta-theorem 1, we get $$\vdash \square A \to \square (B\to (A\land B)).$$  From the K instance $$\square (B\to (A\land B)) \to (\square B\to \square(A\land B))$$ and the tautology
+$$(p\to q) \to ((q\to (r\to s)) \to ((p \land r) \to s))$$ substituting $p$ for $\square A$, $q$ for $\square (B\to (A\land B))$, $r$ for $\square B$, and $s$ for $\square(A\land B)$, and applying modus ponens twice, we get the result.
+\item From the tautology $\neg \perp$, we have the result by necessitation.
+\item All we need is $\vdash \square A \to \neg \diamond \neg A$.  From tautology $A\to \neg \neg A$, we get $\vdash \square A \to \square \neg \neg A$ by meta-theorem 1.  From tautology $\square \neg \neg A \to \neg \neg \square \neg \neg A$ and the definition of $\diamond$, we get $\vdash \square A \to \neg \diamond \neg A$.
+\item
+To show $\square (A\to B)\to (\diamond A \to \diamond B)$, it is enough to show $\square (A\to B)\to (\square \neg A \lor \diamond B)$, which is enough to show $\square (A\to B)\to (\square \neg B\to \square \neg A)$, which is enough to show $\square (\neg B\to \neg A)\to (\square \neg B\to \square \neg A)$, which is just an instance of K.
+\item
+To show $\diamond (A\to B)\to (\square A \to \diamond B)$, it is enough to show $\neg \square (A\land \neg B) \to (\square A\to \diamond B)$, which is enough to show $\neg (\square A \land \square \neg B) \to (\square A\to \diamond B)$ by 1 and 2, which is enough to show $\neg \square A \lor \diamond B \to (\square A \to \diamond B)$, which is just $(\square A \to \diamond B) \to (\square A\to \diamond B)$.
+\item
+To show $\diamond A \land \square B \to \diamond (A\land B)$, it is enough to show $\neg \square \neg A \land \square B \to \diamond (A\land B)$, which is enough to show $\neg (\neg \square B\lor \square \neg A) \to \diamond (A\land B)$, which is enough to show $\neg (\square B\to \square \neg A) \to \neg \square \neg (A \land B)$, which is enough to show $\square \neg (A\land B) \to (\square B\to \square \neg A)$, which is enough to show $\square (\neg A\lor \neg B) \to (\square B\to \square \neg A)$, which is enough to show $\square (B\to \neg A)\to (\square B\to \square \neg A)$, which is an instance of K.
+\item
+Since $\vdash A\to A\lor B$ and $B\vdash A\lor B$, $\square A \to \square (A\lor B)$ and $\square B \to \square (A \lor B)$, and therefore $\square A \lor \square B \to \square (A \lor B)$.
+\item
+By 8, $\square \neg A \lor \square \neg B \to \square (\neg A \lor \neg B)$, so $\neg \square (\neg A \lor \neg B) \to \neg (\square \neg A \lor \square \neg B)$, whence $\diamond (A\land B) \to \diamond A \land \diamond B$.
+\item
+To show $\square (A\lor B)\to \square A \lor \diamond B$, it is enough to show $\square (\neg B\to A) \to \square A \lor \diamond B$, which is enough to show $\square (\neg B\to A)\to \neg \square \neg B \lor \square A$, or $\square (\neg B\to A)\to \square \neg B\to \square A$, an instance of K.
+\item
+From $A\to A\lor B$ and $B\to A\lor B$, we get $\diamond A \to \diamond (A\lor B)$ and $\diamond B \to \diamond (A\lor B)$, so that $\diamond A \lor \diamond B\to \diamond (A\lor B)$.  On the other hand, from $\square \neg A \land \square \neg B \to \square (\neg A\land \neg B)$, we get $\neg \square (\neg A \land \neg B)\to \neg (\square \neg A \land \square \neg B)$, or $\diamond (A \lor B)\to \diamond A \lor \diamond B$, and the result follows.
+\end{enumerate}
+\end{proof}
+
+\textbf{Remark}.  The proofs are condensed for the sake of space.  Properly, a formal proof should lay out the sequence of wff's and their derivations.  For example, the proof for $\# 5$ is
+\begin{alignat}{2}
+&\mbox{an instance of K} & \qquad \square (\neg B\to \neg A)\to (\square \neg B\to \square \neg A) \\ 
+&\mbox{tautology } (p\to q)\to (\neg q\to \neg p) & (A\to B) \to (\neg B\to \neg A) \\ 
+&\mbox{meta-theorem 1 applied to (2)} & \square (A\to B) \to \square (\neg B\to \neg A) \\ 
+&\mbox{law of syllogism on (3) to (1)} & \square (A\to B)\to (\square \neg B\to \square \neg A) \\ 
+&\mbox{definition of }\lor & \square (A\to B)\to (\neg \square \neg B \lor \square \neg A)  \\ 
+&\mbox{definition of }\diamond & \square (A\to B)\to (\diamond B \lor \square \neg A) \\ 
+&\mbox{a tautology } p\land q \to q\land p & \diamond B \lor \square \neg A \to \square \neg A \lor \diamond B \\ 
+&\mbox{law of syllogism on (7) to (6)} & \square (A\to B)\to (\square \neg A \lor \diamond B) \\
+&\mbox{a tautology } p\leftrightarrow \neg \neg p & \square \neg A \leftrightarrow \neg \neg \square \neg A \\
+&\mbox{substitution theorem on (8) by (9)}\qquad\qquad & \square (A\to B)\to (\neg \neg \square \neg A \lor \diamond B) \\
+&\mbox{definition of }\diamond & \square (A\to B)\to (\neg \diamond A \lor \diamond B) \\
+&\mbox{definition of }\lor & \square (A\to B)\to (\diamond A \to \diamond B)
+\end{alignat}
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

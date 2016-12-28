@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EquivalentFormulationsOfNormality}
+\pmcreated{2013-03-22 19:34:42}
+\pmmodified{2013-03-22 19:34:42}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{equivalent formulations of normality}
+\pmrecord{16}{42565}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Feature}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Recall that a logic in a modal propositional language is a set of wff's containing all the tautologies and is closed under modus ponens.  Depending on the intended meaning of the modal connective $\square$, one may extend the logic by adding wff's and/or imposing additional inference rules.  Among the more common modal inference rules are the following: 
+\begin{multicols}{2}{
+\begin{enumerate}
+\item [RK]: $\displaystyle{\frac{(A_1 \wedge \cdots \wedge A_n) \to A}{(\square A_1 \wedge \cdots \wedge \square A_n)\to \square A}}$, $n\ge 0$
+\item [RR]: $\displaystyle{\frac{(A \wedge B) \to C}{(\square A \wedge \square B)\to \square C}}$
+\item [RM]: $\displaystyle{\frac{A \to B}{\square A \to \square B}}$
+\item [RN](necessitation rule): $\displaystyle{\frac{A}{\square A}}$
+\end{enumerate}
+}
+\end{multicols}
+The most common modification is what is known as the normal modal logic.  It is obtained from a logic by adding the schema K: $$\square (A\to B)\to (\square A \to \square B)$$
+and the rule of necessitation RN.
+
+As it turns out, this is not the only way to formulate the notion of normality, as the following proposition illustrates:
+\begin{prop}  Let $L$ be a logic.  Then the following are equivalent:
+\begin{enumerate}
+\item $L$ is normal
+\item $L$ is closed under RK
+\item $L$ contains $\square \top$ and is closed under RM and RR, where $\top$ is $\neg \perp$.
+\item $L$ contains schemas $\square (A\to A)$, $\square A \land \square B \to \square (A\land B)$, and is closed under RM
+\item $L$ contains schemas $\square (A\to A)$, K, and is closed under RM
+\end{enumerate}
+\end{prop}
+
+First, three quick observations:
+\begin{enumerate}
+\item If $L$ is closed under RK, then it is closed under RR, RM, and RN.
+\begin{proof} RR, RM, and RN are RK with $n=2,1$, and $0$ respectively.  \end{proof}
+\item If $L$ is closed under RN, then $L$ contains \square (A\to A)$, and in particular $\square \top$.
+\begin{proof} Since $A \to A$ is a tautology, we have $\vdash \square (A\to A)$ by RN.  Letting $A$ be $\perp$ gives us $\vdash \top$.  \end{proof}
+\item If $L$ is closed under RM, and contains $\square B$ for some wff $B$, then $L$ is closed under RN.
+\begin{proof} For any wff $A$ in $L$, by modus ponens on tautology $A\to (B\to A)$, we have $\vdash B\to A$, and so by RM, $\vdash \square B\to \square A$.  But $\vdash \square B$ by assumption, $\vdash \square A$ by modus ponens. \end{proof}
+\end{enumerate}
+
+Now, we prove the proposition.
+\begin{proof}  We will prove the following implications $1 \Rightarrow 2 \Rightarrow 3 \Rightarrow 4 \Rightarrow 5 \Rightarrow 1$.
+\begin{enumerate}
+\item[$1 \Rightarrow 2$.] See this \PMlinkID{entry}{12558}.
+\item[$2 \Rightarrow 3$.] By the first observation, $L$ is closed under RM and RR, and RN, and therefore contains $\square \top$ based on the second observation.
+\item[$3 \Rightarrow 4$.] Apply RR to $A\land B \to A\land B$, we get $\vdash \square A \land \square B \to \square (A\land B)$.  Apply the third observation to $\square \top$, $L$ is closed under RN, and therefore contains $\square (A\to A)$ by the second observation.
+\item[$4 \Rightarrow 5$.]  Apply the third observation to $\vdash \square (A\to A)$, we see that $L$ is closed under RN.  
+
+Next, we show that $L$ contains K.  From the tautologies $A \land (A\to B)\to A\land B$ and $A\land B\to B$, we get the tautology $A \land (A\to B)\to B$ by the law of syllogism, so that $\vdash \square (A\land (A\to B)) \to \square B$ by RM.  Now, $\vdash \square A \land \square (A\to B) \to \square (A\land (A\to B))$ by assumption, $\vdash \square A \land \square (A\to B) \to \square B$ by the law of syllogism.  From the tautologies $X\land Y \leftrightarrow Y\land X$ and $(X\land Y \to Z) \to (X \to (Y \to Z))$, we get $\vdash $K by the substitution theorem and modus ponens.
+\item[$5 \Rightarrow 1$.]  Similarly, $L$ is closed under RN.  Since $L$ contains K, it is normal.
+\end{enumerate}
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

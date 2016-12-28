@@ -1,0 +1,179 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{26CartesianProductTypes}
+\pmcreated{2013-11-16 5:31:16}
+\pmmodified{2013-11-16 5:31:16}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2.6 Cartesian product types}
+\pmrecord{7}{87612}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairpath}{\ensuremath{\mathsf{pair}^{\mathord{=}}}\xspace}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\projpath}[1]{\ensuremath{\apfunc{\proj{#1}}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{2.6.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{2.6.\arabic{mathcount}}
+\let\ap\map
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\type\UU
+
+\begin{document}
+\index{type!product|(}%
+Given types $A$ and $B$, consider the cartesian product type $A \times B$.  
+For any elements $x,y:A\times B$ and a path $p:\id[A\times B]{x}{y}$, by functoriality we can extract paths $\ap{\proj1}p:\id[A]{\proj1(x)}{\proj1(y)}$ and $\ap{\proj2}p:\id[B]{\proj2(x)}{\proj2(y)}$.
+Thus, we have a function
+\begin{myeqn}\label{eq:path-prod}
+  (\id[A\times B]{x}{y}) \to (\id[A]{\proj1(x)}{\proj1(y)}) \times (\id[B]{\proj2(x)}{\proj2(y)}).
+\end{myeqn}
+
+\begin{thm}\label{thm:path-prod}
+  For any $x$ and $y$, the function~\eqref{eq:path-prod} is an equivalence.
+\end{thm}
+
+Read logically, this says that two pairs are equal if they are equal
+componentwise.  Read category-theoretically, this says that the
+morphisms in a product groupoid are pairs of morphisms.  Read
+homotopy-theoretically, this says that the paths in a product
+space are pairs of paths.
+
+\begin{proof}
+  We need a function in the other direction:
+  \begin{myeqn}
+    (\id[A]{\proj1(x)}{\proj1(y)}) \times (\id[B]{\proj2(x)}{\proj2(y)}) \to (\id[A\times B]{x}{y}). \label{eq:path-prod-inverse}
+  \end{myeqn}
+  By the induction rule for cartesian products, we may assume that $x$ and $y$ are both pairs, i.e.\ $x\jdeq (a,b)$ and $y\jdeq (a',b')$ for some $a,a':A$ and $b,b':B$.
+  In this case, what we want is a function
+  \begin{equation*}
+    (\id[A]{a}{a'}) \times (\id[B]{b}{b'}) \to \big(\id[A\times B]{(a,b)}{(a',b')}\big).
+  \end{equation*}
+  Now by induction for the cartesian product in its domain, we may assume given $p:a=a'$ and $q:b=b'$.
+  And by two path inductions, we may assume that $a\jdeq a'$ and $b\jdeq b'$ and both $p$ and $q$ are reflexivity.
+  But in this case, we have $(a,b)\jdeq(a',b')$ and so we can take the output to also be reflexivity.
+
+  It remains to prove that~\eqref{eq:path-prod-inverse} is quasi-inverse to~\eqref{eq:path-prod}.
+  This is a simple sequence of inductions, but they have to be done in the right order.
+
+  In one direction, let us start with $r:\id[A\times B]{x}{y}$.
+  We first do a path induction on $r$ in order to assume that $x\jdeq y$ and $r$ is reflexivity.
+  In this case, since $\apfunc{\proj1}$ and $\apfunc{\proj2}$ are defined by path induction,~\eqref{eq:path-prod} takes $r\jdeq \refl{x}$ to the pair $(\refl{\proj1x},\refl{\proj2x})$.
+  Now by induction on $x$, we may assume $x\jdeq (a,b)$, so that this is $(\refl a, \refl b)$.
+  Thus,~\eqref{eq:path-prod-inverse} takes it by definition to $\refl{(a,b)}$, which (under our current assumptions) is $r$.
+  
+  In the other direction, if we start with $s:(\id[A]{\proj1(x)}{\proj1(y)}) \times (\id[B]{\proj2(x)}{\proj2(y)})$, then we first do induction on $x$ and $y$ to assume that they are pairs $(a,b)$ and $(a',b')$, and then induction on $s:(\id[A]{a}{a'}) \times (\id[B]{b}{b'})$ to reduce it to a pair $(p,q)$ where $p:a=a'$ and $q:b=b'$.
+  Now by induction on $p$ and $q$, we may assume they are reflexivities $\refl a$ and $\refl b$, in which case~\eqref{eq:path-prod-inverse} yields $\refl{(a,b)}$ and then~\eqref{eq:path-prod} returns us to $(\refl a,\refl b)\jdeq (p,q)\jdeq s$.
+\end{proof}
+
+In particular, we have shown that~\eqref{eq:path-prod} has an inverse~\eqref{eq:path-prod-inverse}, which we may denote by
+\symlabel{defn:pairpath}
+\[
+\pairpath : (\id{\proj{1}(x)}{\proj{1}(y)}) \times (\id{\proj{2}(x)}{\proj{2}(y)}) \to (\id x y).
+\]
+Note that a special case of this yields the propositional uniqueness principle\index{uniqueness!principle, propositional!for product types} for products: $z = (\proj1(z),\proj2(z))$.
+
+It can be helpful to view \pairpath as a \emph{constructor} or \emph{introduction rule} for $\id x y$, analogous to the ``pairing'' constructor of $A\times B$ itself, which introduces the pair $(a,b)$ given $a:A$ and $b:B$.
+From this perspective, the two components of~\eqref{eq:path-prod}:
+\begin{align*}
+  \projpath{1} &: (\id{x}{y}) \to (\id{\proj{1}(x)}{\proj{1} (y)})\\
+  \projpath{2} &: (\id{x}{y}) \to (\id{\proj{2}(x)}{\proj{2} (y)})
+\end{align*}
+are \emph{elimination} rules.
+Similarly, the two homotopies which witness~\eqref{eq:path-prod-inverse} as quasi-inverse to~\eqref{eq:path-prod} consist, respectively, of \emph{propositional computation rules}:
+\index{computation rule!propositional!for identities between pairs}%
+\begin{align*}
+  {\projpath{1}{(\pairpath(p, q)})}
+  &= %_{(\id{\proj{1} x}{\proj{1} y})}
+  {p} \qquad\text{for } p:\id{\proj{1} x}{\proj{1} y} \\
+  {\projpath{2}{(\pairpath(p,q)})}
+  &= %_{(\id{\proj{2} x}{\proj{2} y})}
+  {q} \qquad\text{for } q:\id{\proj{2} x}{\proj{2} y}
+\end{align*}
+and a \emph{propositional uniqueness principle}:
+\index{uniqueness!principle, propositional!for identities between pairs}%
+\[
+\id{r}{\pairpath(\projpath{1} (r), \projpath{2} (r)) }
+\qquad\text{for } r : \id[A \times B] x y.
+\]
+
+We can also characterize the reflexivity, inverses, and composition of paths in $A\times B$ componentwise:
+\begin{align*}
+  {\refl{(z : A \times B)}}
+  &= {\pairpath (\refl{\proj{1} z},\refl{\proj{2} z})} \\
+  {\opp{p}}
+  &= {\pairpath \big(\opp{\projpath{1} (p)},\, \opp{\projpath{2} (p)}\big)} \\
+  {{p \ct q}}
+  &= {\pairpath \big({\projpath{1} (p)} \ct {\projpath{1} (q)},\,{\projpath{2} (p)} \ct {\projpath{2} (q)}\big)}.
+\end{align*}
+The same is true for the rest of the higher groupoid structure considered in \PMlinkname{\S 2.1}{21typesarehighergroupoids}.
+All of these equations can be derived by using path induction on the given paths and then returning reflexivity.  
+
+\index{transport!in product types}%
+We now consider transport in a pointwise product of type families.
+Given type families $ A, B : Z \to \type$, we abusively write $A\times B:Z\to \type$ for the type family defined by $(A\times B)(z) \defeq A(z) \times B(z)$.
+Now given $p : \id[Z]{z}{w}$ and $x : A(z) \times B(z)$, we can transport $x$ along $p$ to obtain an element of $A(w)\times B(w)$.
+
+\begin{thm}\label{thm:trans-prod}
+  In the above situation, we have
+  \[
+  \id[A(y) \times B(y)]
+  {\transfib{A\times B}px}
+  {(\transfib{A}{p}{\proj{1}x}, \transfib{B}{p}{\proj{2}x})}.
+  \]
+\end{thm}
+\begin{proof}
+  By path induction, we may assume $p$ is reflexivity, in which case we have
+  \begin{align*}
+    \transfib{A\times B}px&\jdeq x\\
+    \transfib{A}{p}{\proj{1}x}&\jdeq \proj1x\\
+    \transfib{B}{p}{\proj{2}x}&\jdeq \proj2x.
+  \end{align*}
+  Thus, it remains to show $x = (\proj1 x, \proj2x)$.
+  But this is the propositional uniqueness principle for product types, which, as we remarked above, follows from \PMlinkname{Theorem 2.6.2}{26cartesianproducttypes#Thmprethm1}.
+\end{proof}
+
+Finally, we consider the functoriality of $\apfunc{}$ under cartesian products.
+Suppose given types $A,B,A',B'$ and functions $g:A\to A'$ and $h:B\to B'$; then we can define a function $f:A\times B\to A'\times B'$ by $f(x) \defeq (g(\proj1x),h(\proj2x))$.
+
+\begin{thm}\label{thm:ap-prod}
+  In the above situation, given $x,y:A\times B$ and $p:\proj1x=\proj1y$ and $q:\proj2x=\proj2y$, we have
+  \[ \id[(f(x)=f(y))]{\ap{f}{\pairpath(p,q)}} {\pairpath(\ap{g}{p},\ap{h}{q})}. \]
+\end{thm}
+\begin{proof}
+  Note first that the above equation is well-typed.
+  On the one hand, since $\pairpath(p,q):x=y$ we have $\ap{f}{\pairpath(p,q)}:f(x)=f(y)$.
+  On the other hand, since $\proj1(f(x))\jdeq g(\proj1x)$ and $\proj2(f(x))\jdeq h(\proj2x)$, we also have $\pairpath(\ap{g}{p},\ap{h}{q}):f(x)=f(y)$.
+
+  Now, by induction, we may assume $x\jdeq(a,b)$ and $y\jdeq(a',b')$, in which case we have $p:a=a'$ and $q:b=b'$.
+  Thus, by path induction, we may assume $p$ and $q$ are reflexivity, in which case the desired equation holds judgmentally.
+\end{proof}
+
+\index{type!product|)}%
+
+
+\end{document}

@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SubstitutionTheoremForPropositionalLogic}
+\pmcreated{2013-03-22 19:33:08}
+\pmmodified{2013-03-22 19:33:08}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{substitution theorem for propositional logic}
+\pmrecord{17}{42534}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmrelated{AxiomSystemForPropositionalLogic}
+\pmdefines{substitution theorem}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+In this entry, we will prove the substitution theorem for propositional logic based on the axiom system found \PMlinkname{here}{AxiomSystemForPropositionalLogic}.  Besides the deduction theorem, below are some additional results we will need to prove the theorem:
+\begin{enumerate}
+\item If $\Delta \vdash A\to B$ and $\Gamma \vdash B\to C$, then $\Delta, \Gamma \vdash A\to C$.
+\item $\Delta \vdash A$ and $\Delta \vdash B$ iff $\Delta \vdash A\land B$.
+\item $\vdash A\leftrightarrow A$.
+\item $\vdash A\leftrightarrow \neg \neg A$ (law of double negation).
+\item $\perp \to A$ (ex falso quodlibet)
+\item $\Delta \vdash A$ implies $\Delta \vdash B$ iff $\Delta \vdash A\to B$.
+\end{enumerate}
+The proofs of these results can be found \PMlinkname{here}{SomeTheoremSchemasOfPropositionalLogic}.
+
+\begin{thm} (Substitution Theorem) Suppose $p_1,\ldots,p_m$ are all the propositional variables, not necessarily distinct, that occur in order in $A$, and if $B_1,\ldots,B_m, C_1, \ldots, C_m$ are wff's such that $\vdash B_i \leftrightarrow C_i$, then $$\vdash A[B_1/p_1,\ldots, B_m/p_m] \leftrightarrow A[C_1/p_1,\ldots, C_m/p_m]$$ where $A[X_1/p_1,\ldots,X_m/p_m]$ is the wff obtained from $A$ by replacing $p_i$ by the wff $X_i$ via simultaneous substitution. \end{thm}
+
+\begin{proof}  We do induction on the number $n$ of $\to$ in wff $A$.  
+
+If $n=0$, $A$ is either a propositional variable, say $p$, or $\perp$, which respectively means that $A[B/p]\leftrightarrow A[C/p]$ is either $B\leftrightarrow C$ or $\perp \leftrightarrow \perp$.  The former is the assumption and the latter is a theorem.
+
+Suppose now $A$ has $n+1$ occurrences of $\to$.  We may write $A$ as $X\to Y$ uniquely by unique readability.  Also, both $X$ and $Y$ have at most $n$ occurrences of $\to$.
+
+Let $A_1$ be $A[B_1/p_1,\ldots,B_m/p_m]$ and $A_2$ be $A[C_1/p_1,\ldots,C_m/p_m]$.  Then $A_1$ is $X_1\to Y_1$ and $X_2 \to Y_2$, where $X_1$ is $X[B_1/p_1,\ldots, B_k/p_k]$, $Y_1$ is $Y[B_{k+1}/p_{k+1},\ldots, B_m/p_m]$, $X_2$ is $X[C_1/p_1,\ldots, C_k/p_k]$, and $Y_2$ is $Y[C_{k+1}/p_{k+1},\ldots, C_m/p_m]$.
+
+Then
+\begin{alignat}{2}
+&\mbox{by induction} & \vdash X_1\leftrightarrow X_2 \\ 
+&\mbox{by 2 above} & \vdash X_1\to X_2 \mbox{ and } \vdash X_2\to X_1 \\ 
+&\mbox{by induction} & \vdash Y_1\leftrightarrow Y_2 \\ 
+&\mbox{by 2 above} & \vdash Y_1\to Y_2 \mbox{ and } \vdash Y_2\to Y_1 \\ 
+&\mbox{since } A_1\mbox{ is }X_1\to Y_1 & A_1\vdash X_1\to Y_1 \\ 
+&\mbox{by applying 1 to }\vdash X_2\to X_1 \mbox{ and } (5) \qquad\qquad\qquad\qquad & A_1\vdash X_2\to Y_1 \\ 
+&\mbox{by applying 1 to }(6) \mbox{ and } \vdash Y_1\to Y_2 & A_1\vdash X_2\to Y_2 \\ 
+&\mbox{by the deduction theorem} & \vdash A_1\to A_2 \\
+&\mbox{by a similar reasoning as above} & \vdash A_2\to A_1 \\
+&\mbox{by applying 2 to }(8)\mbox{ and }(9) & \vdash A_1\leftrightarrow A_2
+\end{alignat}
+\end{proof}
+As a corollary, we have
+\begin{cor} If $\vdash B\leftrightarrow C$, then $\vdash A[B/s(p)] \leftrightarrow A[C/s(p)]$, where $p$ is a propositional variable that occurs in $A$, $s(p)$ is a set of positions of occurrences of $p$ in $A$, and the wff $A[X/s(p)]$ is obtained by replacing all $p$ that occur in the positions in $s(p)$ in $A$ by wff $X$.
+\end{cor}
+\begin{proof} For any propositional variable $q$ not being replaced, use the corresponding theorem $\vdash q\leftrightarrow q$, and then apply the substitution theorem. \end{proof}
+
+\textbf{Remark}.  What about $\vdash B[A/p]\leftrightarrow C[A/p]$, given $\vdash B\leftrightarrow C$?  Here, $B[A/p]$ and $C[A/p]$ are wff's obtained by uniform substitution of $p$ (all occurrences of $p$) in $B$ and $C$ respectively.  Since $B[A/p] \leftrightarrow C[A/p]$ is just $(B\leftrightarrow C)[A/p]$, an instance of the schema $B\leftrightarrow C$ by assumption, the result follows directly if we assume $B\leftrightarrow C$ is a theorem schema.
+
+Using the substitution theorem, we can easily derive more theorem schemas, such as
+\begin{enumerate}
+\setcounter{enumi}{6}
+\item $(A\to B)\leftrightarrow (\neg B\to \neg A)$ (Law of Contraposition)
+\item $A \to (\neg B \to \neg (A \to B))$
+\item $((A\to B)\to A)\to A$ (Peirce's Law)
+\end{enumerate}
+
+\begin{proof}
+\begin{enumerate}
+\setcounter{enumi}{6}
+\item Since $(\neg B\to \neg A)\to (A\to B)$ is already a theorem schema, we only need to show $\vdash (A\to B) \to (\neg B \to \neg A)$.  By law of double negation (4 above) and the substitution theorem, it is enough to show that $\vdash (\neg \neg A \to \neg \neg B) \to (\neg B \to \neg A)$.  But this is just an instance of an axiom schema.  Combining the two schemas, we get $\vdash (A\to B)\leftrightarrow (\neg B\to \neg A)$.
+\item First, observe that $A,A\to B\vdash B$ by modus ponens.  Since $\vdash B\leftrightarrow \neg \neg B$, we have $A,A\to B\vdash \neg \neg B$ by the substitution theorem.  So $A,A\to B, \neg B\vdash \perp$ by the deduction theorem, and $A,\neg B\vdash (A\to B)\to \perp$ by the deduction theorem again.  Apply the deduction two more times, we get $\vdash A \to (\neg B \to \neg (A \to B))$.
+\item To show $\vdash ((A\to B)\to A)\to A$, it is enough to show $\vdash \neg A \to \neg ((A\to B)\to A)$ by $7$ and modus ponens, or $\neg A \vdash \neg ((A\to B)\to A)$ by the deduction theorem.  Now, since $\vdash X\land Y \leftrightarrow \neg (X \to \neg Y)$ (as they are the same thing, and because $C\leftrightarrow C$ is a theorem schema), by the law of double negation and the substitution theorem, $\vdash X \land \neg Y \leftrightarrow \neg (X\to Y)$, and we have $\vdash (A\to B)\land \neg A \leftrightarrow \neg ((A\to B)\to A)$.  So to show $\neg A \vdash \neg ((A\to B)\to A)$, it is enough to show $\neg A \vdash (A\to B)\land \neg A$, which is enough to show that $\neg A \vdash A\to B$ and $\neg A \vdash \neg A$, according to a meta-theorem found \PMlinkname{here}{SomeTheoremSchemasOfPropositionalLogic}.  To show $\neg A \vdash A\to B$, it is enough to show $\lbrace \neg A, A\rbrace \vdash B$, and $A, \neg A, \perp, \perp \to B, B$ is such a deduction.  The second statement $\neg A \vdash \neg A$ is clear.
+\end{enumerate}
+\end{proof}
+
+As an application, we prove the following useful meta-theorems of propositional logic:
+\begin{prop} There is a wff $A$ such that $\Delta \vdash A$ and $\Delta \vdash \neg A$ iff $\Delta \vdash \perp$ \end{prop}
+\begin{proof}  Assume the former.  Let $\mathcal{E}_1$ be a deduction of $A$ from $\Delta$ and $\mathcal{E}_2$ a deduction of $\neg A$ from $\Delta$, then $$\mathcal{E}_1, \mathcal{E}_2, \perp$$ is a deduction of $\perp$ from $\Delta$.  Conversely, assume the later.  Pick any wff $A$ (if necessary, pick $\perp$).  Then $\perp \to A$ by ex falso quodlibet.  By modus ponens, we have $\Delta \vdash A$.  Similarly, $\Delta \vdash \neg A$.
+\end{proof}
+
+\begin{prop} If $\Delta, A \vdash B$ and $\Delta, \neg A \vdash B$, then $\Delta \vdash B$ \end{prop}
+\begin{proof}  By assumption, we have $\Delta \vdash A\to B$ and $\Delta \vdash \neg A \to B$.  Using modus ponens and the theorem schema $(A\to B)\to (\neg B\to \neg A)$, we have $\Delta \vdash \neg B \to \neg A$, or $$\Delta, \neg B \vdash \neg A.$$  
+Similarly, $\Delta \vdash \neg B \to \neg \neg A$.  By the law of double negation and the substitution theorem, we have $\Delta \vdash \neg B \to A$, or $$\Delta, \neg B \vdash A.$$  
+By the previous proposition, $\Delta, \neg B \vdash \perp$, or $\Delta \vdash \neg \neg B$.  Applying the substitution theorem and the law of double negation, we have $$\Delta \vdash B.$$
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

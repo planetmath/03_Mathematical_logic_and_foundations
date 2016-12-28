@@ -1,0 +1,204 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{19TheNaturalNumbers}
+\pmcreated{2013-11-13 18:34:02}
+\pmmodified{2013-11-13 18:34:02}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.9 The natural numbers}
+\pmrecord{22}{87545}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Definition}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\add}{\mathsf{add}}
+\newcommand{\assoc}{\mathsf{assoc}}
+\newcommand{\dbl}{\ensuremath{\mathsf{double}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\dprd#1{\@dprd{#1}\@ifnextchar\bgroup{\dprd}{}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\narrowbreak}{}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\suc}{\mathsf{succ}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\nat\N
+\let\type\UU
+\makeatother
+
+\begin{document}
+\indexsee{type!of natural numbers}{natural numbers}%
+\index{natural numbers|(defstyle}%
+\indexsee{number!natural}{natural numbers}%
+The rules we have introduced so far do not allow us to construct any infinite types.
+The simplest infinite type we can think of (and one which is of course also extremely useful) is the type $\nat : \UU$ of natural numbers.
+The elements of $\nat$ are constructed using $0 : \nat$\indexdef{zero} and the successor\indexdef{successor} operation $\suc : \nat \to \nat$.
+When denoting natural numbers, we adopt the usual decimal notation $1 \defeq \suc(0)$, $2 \defeq \suc(1)$, $3 \defeq \suc(2)$, \dots.
+
+The essential property of the natural numbers is that we can define functions by recursion and perform proofs by induction --- where now the words ``recursion'' and ``induction'' have a more familiar meaning.
+\index{recursion principle!for natural numbers}%
+To construct a non-dependent function $f : \nat \to C$ out of the natural numbers by recursion, it is enough to provide a starting point $c_0 : C$ and a ``next step'' function $c_s : \nat \to C \to C$.
+This gives rise to $f$ with the defining equations\index{computation rule!for natural numbers}
+\begin{align*}
+  f(0) &\defeq c_0, \\
+  f(\suc(n)) &\defeq c_s(n,f(n)).
+\end{align*}
+We say that $f$ is defined by \define{primitive recursion}.
+\indexdef{primitive!recursion}%
+\indexdef{recursion!primitive}%
+
+As an example, we look at how to define a function on natural numbers which doubles its argument.
+In this case we have $C\defeq \nat$.
+We first need to supply the value of $\dbl(0)$, which is easy: we put $c_0 \defeq 0$.
+Next, to compute the value of $\dbl(\suc(n))$ for a natural number $n$, we first compute the value of $\dbl(n)$ and then perform the successor operation twice.
+This is captured by the recurrence\index{recurrence} $c_s(n,y) \defeq \suc(\suc(y))$.
+Note that the second argument $y$ of $c_s$ stands for the result of the \emph{recursive call}\index{recursive call} $\dbl(n)$.
+
+Defining $\dbl:\nat\to\nat$ by primitive recursion in this way, therefore, we obtain the defining equations:
+\begin{align*}
+  \dbl(0) &\defeq 0\\
+  \dbl(\suc(n)) &\defeq \suc(\suc(\dbl(n))).
+\end{align*}
+This indeed has the correct computational behavior: for example, we have 
+\begin{align*}
+  \dbl(2) &\jdeq \dbl(\suc(\suc(0)))\\
+  & \jdeq c_s(\suc(0), \dbl(\suc(0))) \\
+                 & \jdeq \suc(\suc(\dbl(\suc(0)))) \\
+                 & \jdeq \suc(\suc(c_s(0,\dbl(0)))) \\
+                 & \jdeq \suc(\suc(\suc(\suc(\dbl(0))))) \\
+                 & \jdeq \suc(\suc(\suc(\suc(c_0)))) \\
+                 & \jdeq \suc(\suc(\suc(\suc(0))))\\
+                 &\jdeq 4.
+\end{align*}
+We can define multi-variable functions by primitive recursion as well, by currying and allowing $C$ to be a function type.
+\indexdef{addition!of natural numbers}
+For example, we define addition $\add : \nat \to \nat \to \nat$ with $C \defeq \nat \to \nat$ and the following ``starting point'' and ``next step'' data:
+\begin{align*}
+  c_0 & : \nat \to \nat \\
+  c_0 (n) & \defeq n \\
+  c_s & : \nat \to (\nat \to \nat) \to (\nat \to \nat) \\
+  c_s(m,g)(n) & \defeq \suc(g(n)).
+\end{align*}
+We thus obtain $\add : \nat \to \nat \to \nat$ satisfying the definitional equalities
+\begin{align*}
+  \add(0,n) &\jdeq n \\
+  \add(\suc(m),n) &\jdeq \suc(\add(m,n)). 
+\end{align*}
+As usual, we write $\add(m,n)$ as $m+n$.
+The reader is invited to verify that $2+2\jdeq 4$.
+% ex: define multiplication and exponentiation.
+
+As in previous cases, we can package the principle of primitive recursion into a recursor:
+\[\rec{\nat}  : \dprd{C:\UU} C \to (\nat \to C \to C) \to \nat \to C \]
+with the defining equations
+\symlabel{defn:recursor-nat}%
+\begin{align*}
+\rec{\nat}(C,c_0,c_s,0)  &\defeq c_0, \\
+\rec{\nat}(C,c_0,c_s,\suc(n)) &\defeq c_s(n,\rec{\nat}(C,c_0,c_s,n)).
+\end{align*}
+%ex derive rec from it
+Using $\rec{\nat}$ we can present $\dbl$ and $\add$ as follows:
+\begin{align}
+\dbl &\defeq \rec\nat\big(\nat,\, 0,\, \lamu{n:\nat}{y:\nat} \suc(\suc(y))\big) \label{eq:dbl-as-rec}\\
+\add &\defeq \rec{\nat}\big(\nat \to \nat,\, \lamu{n:\nat} n,\, \lamu{n:\nat}{g:\nat \to \nat}{m :\nat} \suc(g(m))\big).
+\end{align}
+Of course, all functions definable only using the primitive recursion principle will be \emph{computable}.
+(The presence of higher function types --- that is, functions with other functions as arguments --- does, however, mean we can define more than the usual primitive recursive functions; see e.g.~\PMlinkexternal{Exercise 1.10}{http://planetmath.org/node/87563}.)
+This is appropriate in constructive mathematics;
+\index{mathematics!constructive}%
+in \PMlinkname{\S 3.4}{34classicalvsintuitionisticlogic},\PMlinkname{\S 3.8}{38theaxiomofchoice} we will see how to augment type theory so that we can define more general mathematical functions.
+
+\index{induction principle!for natural numbers}
+We now follow the same approach as for other types, generalizing primitive recursion to dependent functions to obtain an \emph{induction principle}.
+Thus, assume as given a family $C : \nat \to \UU$, an element $c_0 : C(0)$, and a function $c_s : \prd{n:\nat} C(n) \to C(\suc(n))$; then we can construct $f : \prd{n:\nat} C(n)$ with the defining equations:\index{computation rule!for natural numbers}
+\begin{align*}
+  f(0) &\defeq c_0, \\
+  f(\suc(n)) &\defeq c_s(n,f(n)).
+\end{align*}
+We can also package this into a single function
+\symlabel{defn:induction-nat}%
+\[\ind{\nat}  : \dprd{C:\nat\to \UU} C(0) \to \Parens{\tprd{n : \nat} C(n) \to C(\suc(n))} \to \tprd{n : \nat} C(n) \]
+with the defining equations
+\begin{align*}
+\ind{\nat}(C,c_0,c_s,0)  &\defeq c_0, \\
+\ind{\nat}(C,c_0,c_s,\suc(n)) &\defeq c_s(n,\ind{\nat}(C,c_0,c_s,n)).
+\end{align*}
+Here we finally see the connection to the classical notion of proof by induction.
+Recall that in type theory we represent propositions by types, and proving a proposition by inhabiting the corresponding type.
+In particular, a \emph{property} of natural numbers is represented by a family of types $P:\nat\to\type$.
+From this point of view, the above induction principle says that if we can prove $P(0)$, and if for any $n$ we can prove $P(\suc(n))$ assuming $P(n)$, then we have $P(n)$ for all $n$.
+This is, of course, exactly the usual principle of proof by induction on natural numbers.
+
+\index{associativity!of addition!of natural numbers}
+As an example, consider how we might represent an explicit proof that $+$ is associative.
+(We will not actually write out proofs in this style, but it serves as a useful example for understanding how induction is represented formally in type theory.)
+To derive
+\[\assoc : \prd{i,j,k:\nat} \id{i + (j + k)}{(i + j) + k}, \]
+it is sufficient to supply
+\[ \assoc_0 :  \prd{j,k:\nat} \id{0 + (j + k)}{(0+ j) + k} \]
+and
+\begin{narrowmultline*}
+  \assoc_s  : \prd{i:\nat} \left(\prd{j,k:\nat} \id{i + (j + k)}{(i + j) + k}\right)
+   \narrowbreak
+   \to \prd{j,k:\nat} \id{\suc(i) + (j + k)}{(\suc(i) + j) + k}.
+\end{narrowmultline*}
+To derive $\assoc_0$, recall that $0+n \jdeq n$, and hence  $0 + (j + k) \jdeq j+k \jdeq (0+ j) + k$.
+Hence we can just set
+\[ \assoc_0(j,k) \defeq \refl{j+k}. \]
+For $\assoc_s$, recall that the definition of $+$ gives $\suc(m)+n \jdeq \suc(m+n)$, and hence 
+\begin{align*}
+   \suc(i) + (j + k)  &\jdeq \suc(i+(j+k)) \qquad\text{and}\\
+   (\suc(i)+j)+k &\jdeq \suc((i+j)+k).
+\end{align*}
+Thus, the output type of $\assoc_s$ is equivalently $\id{\suc(i+(j+k))}{\suc((i+j)+k)}$.
+But its input (the ``inductive hypothesis'')
+\index{hypothesis!inductive}%
+\index{inductive!hypothesis}%
+yields $\id{i+(j+k)}{(i+j)+k}$, so it suffices to invoke the fact that if two natural numbers are equal, then so are their successors.
+(We will prove this obvious fact in \PMlinkname{Lemma 1}{22functionsarefunctors#Thmlem1}, using the induction principle of identity types.)
+We call this latter fact
+$\apfunc{\suc} : %\prd{m,n:\nat}
+(\id[\nat]{m}{n}) \to (\id[\nat]{\suc(m)}{\suc(n)})$, so we can define
+\[\assoc_s(i,h,j,k) \defeq \apfunc{\suc}( %n+(j+k),(n+j)+k,
+h(j,k)). \]
+Putting these together with $\ind{\nat}$, we obtain a proof of associativity.
+
+\index{natural numbers|)}%
+\end{document}

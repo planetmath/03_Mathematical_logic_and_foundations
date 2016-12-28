@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropositionalLogic}
+\pmcreated{2013-03-22 13:04:01}
+\pmmodified{2013-03-22 13:04:01}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{propositional logic}
+\pmrecord{6}{33475}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmrelated{Implication}
+\pmrelated{Biconditional}
+\pmrelated{Conjunction}
+\pmrelated{Disjunction}
+\pmrelated{PropositionalCalculus}
+\pmrelated{ExclusiveOr}
+\pmrelated{InterpretationOfPropositions}
+\pmdefines{proposition}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+A \emph{propositional logic} is a logic in which the only objects are \emph{propositions}, that is, objects which themselves have truth values.  Variables represent propositions, and there are no relations, functions, or quantifiers except for the constants $T$ and $\bot$ (representing true and false respectively).  The connectives are typically $\neg$, $\wedge$, $\vee$, and $\rightarrow$ (representing negation, conjunction, disjunction, and implication), however this set is redundant, and other choices can be used ($T$ and $\bot$ can also be considered $0$-ary connectives).
+
+A model for propositional logic is just a truth function $\nu$ on a set of variables.  Such a truth function can be easily extended to a truth function $\overline{\nu}$ on all formulas which contain only the variables $\nu$ is defined on by adding recursive clauses for the usual definitions of connectives.  For instance $\overline{\nu}(\alpha\wedge\beta)=T$ iff $\overline{\nu}(\alpha)=\overline{\nu}(\beta)=T$.
+
+Then we say $\nu\models\phi$ if $\overline{\nu}(\phi)=T$, and we say $\models\phi$ if for every $\nu$ such that $\overline{\nu}(\phi)$ is defined, $\nu\models\phi$ (and say that $\phi$ is a tautology).
+
+Propositional logic is decidable: there is an easy way to determine whether a sentence is a tautology.  It can be done using truth tables, since a truth table for a particular formula can be easily produced, and the formula is a tautology if every assignment of truth values makes it true.  It is not known whether this method is efficient: the equivalent problem of whether a formula is satisfiable (that is, whether its negation is a tautology) is a canonical example of an $\mathcal{NP}$-complete problem.
+%%%%%
+%%%%%
+\end{document}

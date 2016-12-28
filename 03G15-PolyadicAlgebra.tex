@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PolyadicAlgebra}
+\pmcreated{2013-03-22 17:50:39}
+\pmmodified{2013-03-22 17:50:39}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{polyadic algebra}
+\pmrecord{13}{40315}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G15}
+\pmrelated{QuantifierAlgebra}
+\pmrelated{MonadicAlgebra}
+\pmrelated{CylindricAlgebra}
+\pmdefines{transformation algebra}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A \emph{polyadic algebra} is a quadruple $(B,V,\exists,S)$, where $(B,V,\exists)$ is a quantifier algebra, and $S$ is a function from the set of functions on $V$ to the set of endomorphisms on the Boolean algebra $B$, in other words $$S:V^V\to \operatorname{End}(B)$$ such that
+\begin{enumerate}
+\item $S(1_V)=1_B$,
+\item $S(f\circ g)=S(f)\circ S(g)$,
+\item $S(f)\circ \exists(I)=S(g)\circ \exists(I)$ if $f(V-I)=g(V-I)$,
+\item $\exists(I)\circ S(f) = S(f)\circ \exists(f^{-1}(I))$ if $f$ is one-to-one when restricted to $f^{-1}(I)$.
+\end{enumerate}
+
+Explanation of notations: $1_V,1_B$ are identity functions on $V,B$ respectively; $f,g$ are functions on $V$, and $I$ is a subset of $V$.  The circle $\circ$ represents functional compositions.
+
+The \emph{degree} and \emph{local finiteness} of a polyadic algebra are defined as the degree and local finiteness of the underlying quantifier algebra.
+
+Heuristically, the function $S$ can be thought of as changes to propositional functions due to a ``substitution'' of variables (elements of $V$).  Let us see some examples.  Let $V=\lbrace x_0,x_1,\ldots \rbrace$ be a countably indexed set of variables.  For any propositional function $\varphi$, define $S(f)(\varphi)$ to be the propositional function $\varphi_1$ obtained by replacing each variable $x$ that occurs in it by $f(x)$.  Below are two examples illustrating how $S(f)$ changes propositional functions:
+\begin{itemize}
+\item
+Let $f:V \to V$ be the function given by $f(x_0)=f(x_1)=x_0$ and $f(x_i)=x_{i+1}$ for all $i>1$.  If $\varphi$ is the propositional function $x_0^2-x_1+x_2/x_3$, then $S(f)(\varphi)$ is the propositional function $x_0^2-x_0+x_3/x_4$.  
+\item
+Let $f:V\to V$ be the function given by $f(x_0)=x_2$, and $f(x_i)=x_i$ for all $i\ne 0$.  Then the propositional function ``$\exists x_0,x_1,x_2 (x_0\ne x_1 \wedge x_1\ne x_2 \wedge x_2\ne x_0)$'' becomes ``$\exists x_2,x_1,x_2 (x_2\ne x_1 \wedge x_1\ne x_2 \wedge x_2\ne x_2)$'' under $S(f)$.
+\end{itemize}
+It is not hard to see from the examples above that $S(f)$ respects Boolean operations $\wedge$ and $'$, which is why we want to make $S(f)$ an endomorphism on $B$.  Furthermore, the four conditions above can be interpreted as 
+\begin{enumerate}
+\item if there are no substitutions of variables, then there should be no corresponding changes to the propositional functions
+\item applying substitutions $f\circ g$ of varaibles in a propositional function $\varphi$ should have the same effect as applying substitutions $g$ of variables in $\varphi$, followed by substitutions $f$ of variables in $S(g)(\varphi)$
+\item a substitution $f$ of variables should have no effect to a propositional function beginning with $\exists$ if every variable bound by $\exists$ is fixed by $f$.  For example, if we replace $f$ in the second example above by $f(x_3)=x_2$ and $f(x_i)=x_i$ otherwise, then $$``\exists x_0,x_1,x_2 (x_0\ne x_1 \wedge x_1\ne x_2 \wedge x_2\ne x_0)"$$ is unchanged by $S(f)$, since $x_0,x_1,x_2$ are all fixed by $f$.
+\item Let $\varphi=\exists I \psi(I,J)$ be a propositional function, where $I,J$ are sets of variables with $I$ bound by $\exists$ and $J$ free.  If no two variables $I$ get mapped to the same variable, and no free variable (in $J$) becomes bound (in $f(I)$) under the substitution, then $\exists I \psi(f(I),f(J))$ and $\exists f(I) \psi(f(I),f(J))$ are semantically the same, which is exactly the statement in the condition.
+\end{enumerate}
+
+\textbf{Remarks}.  
+\begin{itemize}
+\item
+Paul Halmos first introduced the notion of polyadic algebras.  In his \emph{Algebraic Logic}, a compilation of articles on the subject, he called a function on the set $V$ of variables a transformation, and the triple $(B,V,S)$ satisfying the first two conditions above a \emph{transformation algebra}.  Therefore, a polyadic algebra is a quadruple $(B,V,\exists,S)$ where $(B,V,\exists)$ is a quantifier algebra and $(B,V,S)$ is a transformation algebra, such that conditions 3 and 4 above are satisfied.
+\item
+The notion of polyadic algebras generalizes the notion of monadic algebras.  Indeed, a monadic algebra is a polyadic algebra where $V$ is a singleton.
+\item
+Just as a Lindenbaum-Tarski algebra is the algebraic counterpart of a classical propositional logic, a polyadic algebra is the algebraic counterpart of a classical first order logic without equality.  A variant of the polyadic algebra is what is known as a cylindric algebra, which algebratizes a classical first order logic with equality.
+\end{itemize}
+
+\begin{thebibliography}{8}
+\bibitem{ph} P. Halmos, \emph{Algebraic Logic}, Chelsea Publishing Co. New York (1962).
+\bibitem{bp} B. Plotkin, \emph{Universal Algebra, Algebraic Logic, and Databases}, Kluwer Academic Publishers (1994).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AnotherProofOfPigeonholePrinciple}
+\pmcreated{2013-03-22 16:02:12}
+\pmmodified{2013-03-22 16:02:12}
+\pmowner{ratboy}{4018}
+\pmmodifier{ratboy}{4018}
+\pmtitle{another proof of pigeonhole principle}
+\pmrecord{5}{38086}
+\pmprivacy{1}
+\pmauthor{ratboy}{4018}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E05}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+By induction on $n$. It is harmless to let $n$ = $m + 1$, since
+$0$ lacks proper subsets. Suppose that $f : n \to n$ is injective.
+
+To begin, note that $m \in f[n]$. Otherwise, $f[m] \subseteq m$,
+so that by the induction hypothesis, $f[m] = m$. Then $f[n] =
+f[m]$, since $f[n] \subseteq m$. Therefore, for some $k < m$,
+$f(k) = f(m)$.
+
+Let $g : f[n] \to f[n]$ transpose $m$ and $f(m)$. Then $h \vert_m
+: m \to m$ is injective, where $h = g \circ f$. By the induction
+hypothesis, $h \vert_m[m] = m$. Therefore:
+\begin{align*}
+f[n] &= g \circ h[n]
+\\
+&= h[n]
+\\
+&= m \cup \{m\}
+\\
+&= m + 1
+\\
+&= n \text{.}
+\end{align*}
+
+%%%%%
+%%%%%
+\end{document}

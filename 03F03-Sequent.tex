@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Sequent}
+\pmcreated{2013-03-22 13:05:11}
+\pmmodified{2013-03-22 13:05:11}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{sequent}
+\pmrecord{10}{33502}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F03}
+\pmrelated{GentzenSystem}
+\pmdefines{contraction}
+\pmdefines{premise}
+\pmdefines{conclusion}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+A \emph{sequent} represents a formal step in a proof.  Typically it consists of two lists of formulas, one representing the premises and one the conclusions.  A typical sequent might be:
+$$\phi,\psi\Rightarrow\alpha,\beta$$
+where $\phi$ and $\psi$ are the premises and $\alpha$ and $\beta$ are the conclusions.
+
+This claims that, from premises $\phi$ and $\psi$ either $\alpha$ or $\beta$ must be true.  Note that $\Rightarrow$ is not a symbol in the language, rather it is a symbol in the metalanguage used to discuss proofs.  Also, notice the asymmetry: everything on the left must be true to conclude only one thing on the right.  This does create a different kind of symmetry, since adding formulas to either side results in a weaker sequent, while removing them from either side gives a stronger one.
+
+Some systems allow only one formula on the right.
+
+Most proof systems provide ways to deduce one sequent from another.  These rules are written with a list of sequents above and below a line.  This rule indicates that if everything above the line is true, so is everything under the line.  A typical rule is:
+
+$$\frac{\Gamma\Rightarrow\Sigma}{\begin{array}{cc}
+\Gamma,\alpha\Rightarrow\Sigma &
+\alpha,\Gamma\Rightarrow\Sigma
+\end{array}}$$
+
+This indicates that if we can deduce $\Sigma$ from $\Gamma$, we can also deduce it from $\Gamma$ together with $\alpha$.
+
+Note that the capital Greek letters are usually used to denote a (possibly empty) list of formulas.  $[\Gamma,\Sigma]$ is used to denote the \emph{contraction} of $\Gamma$ and $\Sigma$, that is, the list of those formulas appearing in either $\Gamma$ or $\Sigma$ but with no repeats.
+%%%%%
+%%%%%
+\end{document}

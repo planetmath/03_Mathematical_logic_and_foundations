@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CombinatoryLogic}
+\pmcreated{2013-03-22 12:32:29}
+\pmmodified{2013-03-22 12:32:29}
+\pmowner{Logan}{6}
+\pmmodifier{Logan}{6}
+\pmtitle{combinatory logic}
+\pmrecord{5}{32784}
+\pmprivacy{1}
+\pmauthor{Logan}{6}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B40}
+\pmrelated{LambdaCalculus}
+\pmrelated{Substitutability}
+\pmdefines{combinator}
+\pmdefines{combination}
+\pmdefines{free variable}
+\pmdefines{pure combinatory logic}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\begin{document}
+\emph{Combinatory logic} was invented by Moses Sch\"onfinkel in the early 1920s, and was mostly developed by Haskell Curry.  The idea was to reduce the notation of logic to the simplest terms possible.  As such, combinatory logic consists only of \emph{combinators}, \emph{combination} operations, and no \emph{free variables}.
+
+A \emph{combinator} is simply a function with no \emph{free variables}.  A \emph{free variable} is any variable referred to in a function that is not a parameter of that function.  The operation of \emph{combination} is then simply the application of a combinator to its parameters.  Combination is specified by simple juxtaposition of two terms, and is left-associative.  Parentheses may also be present to override associativity.  For example
+
+$$
+f g x y = (f g) x y = ((f g) x) y
+$$
+
+All combinators in combinatory logic can be derived from two basic combinators, $S$ and $K$.  They are defined as
+
+\begin{eqnarray*}
+S f g x & = & f x (g x) \\
+K x y & = & x
+\end{eqnarray*}
+
+Reference is sometimes made to a third basic combinator, $I$, which can be defined in terms of $S$ and $K$.
+
+$$
+I x = S K K x = x
+$$
+
+Combinatory logic where $I$ is considered to be derived from $S$ and $K$ is sometimes known as \emph{pure combinatory logic}.
+
+Combinatory logic and lambda calculus are equivalent.  However, lambda calculus is more concise than combinatory logic; an expression of size $\mathcal{O}(n)$ in lambda calculus is equivalent to an expression of size $\mathcal{O}(n^2)$ in combinatory logic.
+
+For example, $S f g x = f x (g x)$ in combinatory logic is equivalent to
+$S = (\lambda f (\lambda g (\lambda x ((f x) (g x)))))$, and $K x y = x$
+is equivalent to $K = (\lambda x (\lambda y x))$.
+%%%%%
+%%%%%
+\end{document}

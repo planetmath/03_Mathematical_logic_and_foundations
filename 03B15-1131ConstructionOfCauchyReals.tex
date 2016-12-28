@@ -1,0 +1,148 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1131ConstructionOfCauchyReals}
+\pmcreated{2013-11-06 18:04:38}
+\pmmodified{2013-11-06 18:04:38}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{11.3.1 Construction of Cauchy reals}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\close}[1]{\sim_{#1}} 
+\newcommand{\closesym}{\mathord\sim}
+\newcommand{\define}[1]{\textbf{#1}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\mentalpause}{\medskip} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+\newcommand{\Qp}{\Q_{+}}
+\newcommand{\RC}{\ensuremath{\mathbb{R}_\mathsf{c}}\xspace} 
+\newcommand{\rceq}{\mathsf{eq}_{\RC}} 
+\newcommand{\rclim}{\mathsf{lim}} 
+\newcommand{\rcrat}{\mathsf{rat}} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{11.3.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{11.3.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{11.3.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+The construction of the Cauchy reals $\RC$ as a higher inductive type is a bit more subtle than that of the free algebraic structures considered in \autoref{sec:free-algebras}.
+We intend to include a ``take the limit'' constructor whose input is a Cauchy sequence of reals, but the notion of ``Cauchy sequence of reals'' depends on having some way to measure the ``distance'' between real numbers.
+In general, of course, the distance between two real numbers will be another real number, leading to a potentially problematic circularity.
+
+However, what we actually need for the notion of Cauchy sequence of reals is not the general notion of ``distance'', but a way to say that ``the distance\index{distance} between two real numbers is less than $\epsilon$'' for any $\epsilon:\Qp$.
+This can be represented by a family of binary relations, which we will denote $\mathord{\close\epsilon} : \RC\to\RC\to \prop$.
+The intended meaning of $x \close\epsilon y$ is $|x - y| < \epsilon$, but since we do not have notions of subtraction, absolute value, or inequality available yet (we are only just defining $\RC$, after all), we will have to define these relations $\close\epsilon$ at the same time as we define $\RC$ itself.
+And since $\close\epsilon$ is a type family indexed by two copies of $\RC$, we cannot do this with an ordinary mutual (higher) inductive definition; instead we have to use a \emph{higher inductive-inductive definition}.
+\index{inductive-inductive type!higher}
+
+Recall from \autoref{sec:generalizations} that the ordinary notion of inductive-inductive definition allows us to define a type and a type family indexed by it by simultaneous induction.
+Of course, the ``higher'' version of this allows both the type and the family to have path constructors as well as point constructors.
+We will not attempt to formulate any general theory of higher inductive-inductive definitions, but hopefully the description we will give of $\RC$ and $\close\epsilon$ will make the idea transparent.
+
+\begin{rmk}
+  We might also consider a \emph{higher inductive-recursive definition}, in which $\close\epsilon$ is defined using the \emph{recursion} principle of $\RC$, simultaneously with the \emph{inductive} definition of $\RC$.
+  We choose the inductive-inductive route instead for two reasons.
+  Firstly, higher inductive-re\-cur\-sive definitions seem to be more difficult to justify in homotopical semantics.
+  Secondly, and more importantly, the inductive-inductive definition yields a more powerful induction principle, which we will need in order to develop even the basic theory of Cauchy reals.
+\end{rmk}
+
+Finally, as we did for the discussion of Cauchy completeness of the Dedekind reals in \autoref{sec:RD-cauchy-complete}, we will work with \emph{Cauchy approximations} (\autoref{defn:cauchy-approximation}) instead of Cauchy sequences.
+Of course, our Cauchy approximations will now consist of Cauchy reals, rather than Dedekind reals or rational numbers.
+
+\begin{defn}\label{defn:cauchy-reals}
+  Let $\RC$ and the relation $\closesym:\Qp \times \RC \times \RC \to \type$ be the following higher inductive-inductive type family.
+  The type $\RC$ of \define{Cauchy reals}
+  \indexdef{real numbers!Cauchy}%
+  \indexsee{Cauchy!real numbers}{real numbers, Cau\-chy}%
+  is generated by the following constructors:
+  \begin{itemize}
+  \item \emph{rational points:} 
+    for any $q : \Q$ there is a real $\rcrat(q)$.
+    \index{rational numbers!as Cauchy real numbers}%
+  \item \emph{limit points}:
+    for any $x : \Qp \to \RC$ such that
+    %
+    \begin{myeqn}
+      \label{eq:RC-cauchy}
+      \fall{\delta, \epsilon : \Qp} x_\delta \close{\delta + \epsilon} x_\epsilon
+    \end{myeqn}
+    %
+    there is a point $\rclim(x) : \RC$. We call $x$ a \define{Cauchy approximation}.
+    \indexdef{Cauchy!approximation}%
+    \index{limit!of a Cauchy approximation}%
+    %
+  \item \emph{paths:}
+    for $u, v : \RC$ such that
+    %
+    \begin{myeqn}
+      \label{eq:RC-path}
+      \fall{\epsilon : \Qp} u \close\epsilon v
+    \end{myeqn}
+    %
+    then there is a path $\rceq(u, v) : \id[\RC]{u}{v}$.
+  \end{itemize}
+  Simultaneously, the type family $\closesym:\RC\to\RC\to\Qp \to\type$ is generated by the following constructors.
+  Here $q$ and $r$ denote rational numbers; $\delta$, $\epsilon$, and $\eta$ denote positive rationals; $u$ and $v$ denote Cauchy reals; and $x$ and $y$ denote Cauchy approximations:
+  \begin{itemize}
+  \item for any $q,r,\epsilon$, if $-\epsilon < q - r < \epsilon$, then $\rcrat(q) \close\epsilon \rcrat(r)$,
+  \item for any $q,y,\epsilon,\delta$, if $\rcrat(q) \close{\epsilon - \delta} y_\delta$, then $\rcrat(q) \close{\epsilon} \rclim(y)$,
+  \item for any $x,r,\epsilon,\delta$, if $x_\delta \close{\epsilon - \delta} \rcrat(r)$, then $\rclim(x) \close\epsilon \rcrat(r)$,
+  \item for any $x,y,\epsilon,\delta,\eta$, if $x_\delta \close{\epsilon - \delta - \eta} y_\eta$, then $\rclim(x) \close\epsilon \rclim(y)$,
+  \item for any $u,v,\epsilon$, if $\xi,\zeta : u \close{\epsilon} v$, then $\xi=\zeta$ (propositional truncation).
+  \end{itemize}
+\end{defn}
+
+\mentalpause
+
+The first constructor of $\RC$ says that any rational number can be regarded as a real number.
+The second says that from any Cauchy approximation to a real number, we can obtain a new real number called its ``limit''.
+And the third expresses the idea that if two Cauchy approximations coincide, then their limits are equal.
+
+The first four constructors of $\closesym$ specify when two rational numbers are close, when a rational is close to a limit, and when two limits are close.
+In the case of two rational numbers, this is just the usual notion of $\epsilon$-closeness for rational numbers, whereas the other cases can be derived by noting that each approximant $x_\delta$ is supposed to be within $\delta$ of the limit $\rclim(x)$.
+
+We remind ourselves of proof-relevance: a real number obtained from $\rclim$ is represented not
+just by a Cauchy approximation $x$, but also a proof $p$ of~\eqref{eq:RC-cauchy}, so we
+should technically have written $\rclim(x,p)$ instead of just $\rclim(x)$.
+A similar observation also applies to $\rceq$ and~\eqref{eq:RC-path}, but we shall write just
+$\rceq : u = v$ instead of $\rceq(u, v, p) : u = v$. These abuses of notation are
+mitigated by the fact that we are omitting mere propositions and information that is
+readily guessed.
+Likewise, the last constructor of $\mathord{\close\epsilon}$ justifies our leaving the other four nameless.
+
+We are immediately able to populate $\RC$ with many real numbers. For suppose $x : \N \to
+\Q$ is a traditional Cauchy sequence\index{Cauchy!sequence} of rational numbers, and let $M : \Qp \to \N$ be its
+modulus of convergence. Then $\rcrat \circ x \circ M : \Qp \to \RC$ is a Cauchy
+approximation, using the first constructor of $\closesym$ to produce the necessary witness.
+Thus, $\rclim(\rcrat \circ x \circ m)$ is a real number. Various famous
+real numbers $\sqrt{2}$, $\pi$, $e$, \dots{} are all limits of such Cauchy sequences of
+rationals.
+
+
+\end{document}

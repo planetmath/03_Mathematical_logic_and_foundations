@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SurjectionAndAxiomOfChoice}
+\pmcreated{2013-03-22 18:44:37}
+\pmmodified{2013-03-22 18:44:37}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{surjection and axiom of choice}
+\pmrecord{9}{41517}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+In this entry, we show the statement that
+\begin{quote}
+(*) every surjection has a right inverse
+\end{quote}
+is equivalent to the axiom of choice (AC).
+
+\begin{prop}  AC implies (*). \end{prop}
+\begin{proof}
+Let $f:A\to B$ be a surjection.  Then the set $C:=\lbrace f^{-1}(y)\mid y\in B\rbrace$ partitions $A$.  By the axiom of choice, there is a function $g:C\to \bigcup C$ such that $g(f^{-1}(y))\in f^{-1}(y)$ for every $y\in B$.  Since $\bigcup C=A$, $g$ is a function from $C$ to $A$.  Define $h:B\to A$ by $h(y)=g(f^{-1}(y))$.  Then $h(y)\in f^{-1}(y)$, and therefore $(f\circ h)(y)=f(h(y))=y$, implying that $f$ has a right inverse.
+\end{proof}
+
+\textbf{Remark}.  The function $h$ is easily seen to be an injection: if $h(y_1)=h(y_2)$, then $y_1 = f(h(y_1))=f(h(y_2)) = y_2$.
+
+\begin{prop}  (*) implies AC. \end{prop}
+
+Before proving this, let us remark that, in the collection $C$ of non-empty sets of the axiom of choice, there is no assumption that the sets in $C$ be pairwise disjoint.  The statement
+\begin{quote}  (**) given a set $C$ of pairwise disjoint non-empty sets, there is a choice function $f:C\to \bigcup C$
+\end{quote}
+seemingly weaker than AC, turns out to be equivalent to AC, and we will prove this fact first.
+\begin{proof}
+Obviously AC implies (**).  Conversely, assume (**).  Let $C$ be a collection of non-empty sets.  We assume $C\ne \varnothing$.  For each $a\in C$, define a set $A_a:=\lbrace (x,a)\mid x\in a\rbrace$.  Since $a\ne \varnothing$, $A_a\ne \varnothing$.  In addition, $A_a\cap A_b= \varnothing$ iff $a\ne b$ (true since elements of $A_a$ and elements of $A_b$ have distinct second coordinates).  So the collection $D:=\lbrace A_a\mid a\in C\rbrace$ is a set consisting of pairwise disjoint non-empty sets.  By (**), there is a function $f:D\to \bigcup D$ such that $f(A_a)\in A_a$ for every $a\in C$.  Now, define two functions $g: C\to D$ and $h:\bigcup D\to \bigcup C$ by $g(a)=A_a$ and $h(x,a)=x$  Then, for any $a\in C$, we have $(h\circ f \circ g)(a)=h(f(A_a))$.  Since $f(A_a)\in A_a$, its first coordinate is an element of $a$.  Therefore $h(f(A_a))\in a$, and hence $h\circ f\circ g$ is the desired choice function.
+\end{proof}
+
+\begin{proof}[Proof of Propositon 2]  We show that (*) implies (**), and since (**) implies AC as shown above, the proof of Proposition 2 is then complete.
+
+Let $C$ be a collection of pairwise disjoint non-empty sets.  Each element of $\bigcup C$ belongs to a unique set in $C$.  Then the function $g:\bigcup C \to C$ taking each element of $\bigcup C$ to the set it belongs in $C$, is a well-defined function.  It is clearly surjective.  Hence, by assumption, there is a function $f:C\to \bigcup C$ such that $g\circ f=1_C$ (a right inverse of $g$).  For each $x\in C$, $g(f(x))=x$, which is the same as saying that $f(x)$ is an element of $x$ by the definition of $g$.
+\end{proof}
+
+\textbf{Remark}.  In the category of sets, AC is equivalent to saying that every epimorophism is a split epimorphism.  In general, a category is said to have the axiom of choice if every epimorphism is a split epimorphism.
+
+%%%%%
+%%%%%
+\end{document}

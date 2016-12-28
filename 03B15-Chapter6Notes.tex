@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chapter6Notes}
+\pmcreated{2013-11-18 17:17:55}
+\pmmodified{2013-11-18 17:17:55}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{Chapter 6 Notes}
+\pmrecord{2}{87696}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\Agda}{\textsc{Agda}\xspace}
+\newcommand{\Coq}{\textsc{Coq}\xspace}
+\newcommand{\NuPRL}{\textsc{NuPRL}\xspace}
+\newcommand{\sectionNotes}{\phantomsection\section*{Notes}\addcontentsline{toc}{section}{Notes}\markright{\textsc{\@chapapp{} \thechapter{} Notes}}}
+\let\autoref\cref
+\makeatother
+\begin{document}
+The general idea of higher inductive types was conceived in discussions between Andrej Bauer, Peter Lumsdaine, Mike Shulman, and Michael Warren at the Oberwolfach meeting in 2011, although there are some suggestions of some special cases in earlier work.  Subsequently, Guillaume Brunerie and Dan Licata contributed substantially to the general theory, especially by finding convenient ways to represent them in computer proof assistants
+\index{proof!assistant}
+and do homotopy theory with them (see \PMlinkexternal{Chapter 8}{http://planetmath.org/node/87582}).
+
+A general discussion of the syntax of higher inductive types, and their semantics in higher-categorical models, appears in~\cite{ls:hits}.
+As with ordinary inductive types, models of higher inductive types can be constructed by transfinite iterative processes; a slogan is that ordinary inductive types describe \emph{free} monads while higher inductive types describe \emph{presentations} of monads.\index{monad}% 
+The introduction of path constructors also involves the model-category-theoretic equivalence between ``right homotopies'' (defined using path spaces) and ``left homotopies'' (defined using cylinders) --- the fact that this equivalence is generally only up to homotopy provides a semantic reason to prefer propositional computation rules for path constructors.
+
+Another (temporary) reason for this preference comes from the limitations of existing computer implementations.
+Proof assistants\index{proof!assistant} like \Coq and \Agda have ordinary inductive types built in, but not yet higher inductive types.
+We can of course introduce them by assuming lots of axioms, but this results in only propositional computation rules.
+However, there is a trick due to Dan Licata which implements higher inductive types using private data types; this yields judgmental rules for point constructors but not path constructors.
+
+The type-theoretic description of higher spheres using loop spaces and suspensions in \PMlinkname{\S 6.4}{64circlesandspheres},\PMlinkname{\S 6.5}{65suspensions} is largely due to  Brunerie and  Licata; Hou has given a type-theoretic version of the alternative description that uses $n$-dimensional paths\index{path!n-@$n$-}.
+The reduction of higher paths to 1-dimensional paths with hubs and spokes (\PMlinkname{\S 6.7}{67hubsandspokes}) is due to  Lumsdaine and  Shulman.
+The description of truncation as a higher inductive type is due to  Lumsdaine; the $(-1)$-truncation is closely related to the ``bracket types'' of~\cite{ab:bracket-types}.
+The flattening lemma was first formulated in generality by  Brunerie.
+
+\index{set-quotient}
+Quotient types are unproblematic in extensional type theory, such as \NuPRL~\cite{constable+86nuprl-book}.
+They are often added by passing to an extended system of setoids.\index{setoid}
+However, quotients are a trickier issue in intensional type theory (the starting point for homotopy type theory), because one cannot simply add new propositional equalities without specifying how they are to behave. Some solutions to this problem have been studied~\cite{hofmann:thesis},\cite{Altenkirch1999},\cite{altenkirch+07ott}, and several different notions of quotient types have been considered.  The construction of set-quotients using higher-inductives provides an argument for our particular approach (which is similar to some that have previously been considered), because it arises as an instance of a general mechanism.  Our construction does not yet provide a new solution to all the computational problems related to quotients, since we still lack a good computational understanding of higher inductive types in general---but it does mean that ongoing work on the computational interpretation of higher inductives applies to the quotients as well.  The construction of quotients in terms of equivalence classes is, of
+course, a standard set-theoretic idea, and a well-known aspect of elementary topos theory; its use in type theory (which depends on the univalence axiom, at least for mere propositions) was proposed by Voevodsky.  The fact that quotient types in intensional type theory imply function extensionality was proved by~\cite{hofmann:thesis}, inspired by the work of~\cite{carboni} on exact completions; \PMlinkname{Lemma 6.3.2}{63theinterval#Thmprelem2} is an adaptation of such arguments.
+
+\begin{thebibliography}{99}
+
+\bibitem{ab:bracket-types} {Awodey,Steven and Bauer,Andrej}. {Propositions as [types]}. \emph{Journal of Logic and Computation}, {14}:{447--471} {2004},Bdsk-Url-1
+
+\bibitem{altenkirch+07ott} {Thorsten Altenkirch and Conor McBride and Wouter Swierstra}. {Observational Equality,Now!}. In emph{Proceedings of the ACM Workshop Programming Languages meets Program Verification,PLPV 2007,Freiburg,Germany,October 5,2007}, .
+
+\bibitem{Altenkirch1999} {Thorsten Altenkirch}. {Extensional Equality in Intensional Type Theory}. In emph{14th Annual IEEE Symposium on Logic in Computer Science,Trento,Italy,July 2--5,1999}, pages {412--420}.
+
+\bibitem{carboni} {Aurelio Carboni}. {Some free constructions in realizability and proof theory}. \emph{Journal of Pure and Applied Algebra}, {103}:{117--148} {1995}
+
+\bibitem{constable+86nuprl-book} {Robert L. Constable and Stuart F. Allen and H. M. Bromley and W. R. Cleaveland and J. F. Cremer and Robert W. Harper and Douglas J. Howe and T. B. Knoblock and N. P. Mendler and P. Panangaden and James T. Sasaki and Scott F. Smith}, \emph{{Implementing Mathematics with the {NuPRL} Proof Development System}}  {Prentice Hall},1986
+
+\bibitem{hofmann:thesis} {Hofmann,Martin}. \emph{Extensional concepts in intensional type theory}. PhD thesis, {University of Edinburgh}, {1995}.
+
+\bibitem{hofmann:thesis} {Hofmann,Martin}. \emph{Extensional concepts in intensional type theory}. PhD thesis, {University of Edinburgh}, {1995}.
+
+\bibitem{ls:hits} {Peter LeFanu Lumsdaine and Michael Shulman}. {Higher inductive types}. {In preparation}, 2013.
+
+\end{thebibliography}
+
+\end{document}

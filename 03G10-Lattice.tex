@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Lattice}
+\pmcreated{2013-03-22 12:27:16}
+\pmmodified{2013-03-22 12:27:16}
+\pmowner{mps}{409}
+\pmmodifier{mps}{409}
+\pmtitle{lattice}
+\pmrecord{25}{32593}
+\pmprivacy{1}
+\pmauthor{mps}{409}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G10}
+\pmclassification{msc}{06B99}
+\pmsynonym{absorptive}{Lattice}
+\pmrelated{Semilattice}
+\pmrelated{DistributiveLattice}
+\pmrelated{ASemilatticeIsACommutativeBand}
+\pmrelated{PartitionLattice}
+\pmrelated{AlgebraicCategoryOfLMnLogicAlgebras}
+\pmrelated{ClosedSublattice}
+\pmrelated{GeneralizedToposesTopoiWithManyValuedLogicSubobjectClassifiers}
+\pmrelated{HeytingAlgebra}
+\pmdefines{sublattice}
+\pmdefines{absorption}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic} 
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+\PMlinkescapeword{properties}
+\PMlinkescapeword{equivalent}
+\PMlinkescapeword{classes}
+\PMlinkescapeword{distributive}
+A \emph{lattice} is any poset $L$ in which any two elements $x$ and $y$ have a least upper bound, $x\lor y$, and a greatest lower bound, $x\land y$.  The operation $\land$ is called \emph{meet}, and the operation $\lor$ is called \emph{join}.  In some literature, $L$ is required to be non-empty.
+
+A \emph{sublattice} of $L$ is a subposet of $L$ which is a lattice, that is, which is closed under the operations $\land$ and $\lor$ as defined in $L$.
+
+The operations of meet and join are idempotent, commutative, associative, and absorptive: 
+\[x\land (y\lor x)=x\mbox{ and }x\lor (y\land x)=x. \] 
+Thus a lattice is a commutative band with either operation.  The partial order relation can be recovered from meet and join by 
+defining 
+\[x\le y \text{\ if and only if\ } x\land y = x.\]
+Once $\le$ is defined, it is not hard to see that $x\le y$ iff $x\lor y=y$ as well (one direction goes like: $x\lor y= (x\land y)\lor y=y\lor (x\land y)=y\lor (y\land x)=y$, while the other direction is the dual of the first).
+
+Conspicuously absent from the above list of properties is \PMlinkname{distributivity}{DistributiveLattice}.  While many nice lattices, such as face lattices of polytopes, are distributive, there are also important classes of lattices, such as \PMlinkname{partition lattices}{PartitionLattice}, that are usually not distributive.
+
+Lattices, like posets, can be visualized by diagrams called Hasse diagrams.  Below are two diagrams, both posets.  The one on the left is a lattice, while the one on the right is not:
+$$
+\entrymodifiers={[o]} \xymatrix @!=1pt {
+& & \bullet \ar@{-}[ld] \ar@{-}[rd] & & \\
+& \bullet \ar@{-}[ld] \ar@{-}[rd] & & \bullet \ar@{-}[ld] \ar@{-}[rd] & \\
+\bullet \ar@{-}[rd] & & \bullet \ar@{-}[ld] \ar@{-}[rd] & & \bullet \ar@{-}[ld] \\
+& \bullet \ar@{-}[rd] & & \bullet \ar@{-}[ld] & \\
+& & \bullet & & }
+\hspace{2cm}
+\entrymodifiers={[o]} \xymatrix @!=1pt {
+& & \bullet \ar@{-}[ld] \ar@{-}[rd] & & \\
+& \bullet \ar@{-}[ld] \ar@{-}[rd] \ar@{-}[d] & & \bullet \ar@{-}[ld] \ar@{-}[rd] \ar@{-}[d] & \\
+\bullet \ar@{-}[rd] & \ar@{-}[d] & \ar@{-}[ld] \ar@{-}[rd] & \ar@{-}[d] & \bullet \ar@{-}[ld] \\
+& \bullet \ar@{-}[rd] & & \bullet \ar@{-}[ld] & \\
+& & \bullet & & }
+$$
+The vertices of a lattice diagram can also be labelled, so the lattice diagram looks like
+$$
+\xymatrix @!=1pt {
+& & a \ar@{-}[ld] \ar@{-}[rd] & & \\
+& b \ar@{-}[ld] \ar@{-}[rd] & & c \ar@{-}[ld] \ar@{-}[rd] & \\
+d \ar@{-}[rd] & & e \ar@{-}[ld] \ar@{-}[rd] & & f \ar@{-}[ld] \\
+& g \ar@{-}[rd] & & h \ar@{-}[ld] & \\
+& & i & & }
+$$
+
+\textbf{Remark}.  Alternatively, a lattice can be defined as an algebraic system.  Please see the link below for details.
+%%%%%
+%%%%%
+\end{document}

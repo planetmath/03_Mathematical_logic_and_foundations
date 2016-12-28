@@ -1,0 +1,315 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{84FiberSequencesAndTheLongExactSequence}
+\pmcreated{2013-11-06 14:17:27}
+\pmmodified{2013-11-06 14:17:27}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.4 Fiber sequences and the long exact sequence}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqvsym}{\simeq}    
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\im}{\ensuremath{\mathsf{im}}} 
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\truncf}[1]{\Vert \blank \Vert_{#1}}
+\def\tsm#1{\@tsm{#1}\@ifnextchar\bgroup{\tsm}{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{8.4.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{8.4.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.4.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{8.4.\arabic{mathcount}}
+\let\ap\map
+\let\autoref\cref
+\let\rev\opp
+\let\setof\Set    
+\makeatother
+
+\begin{document}
+
+\index{fiber sequence|(}%
+\index{sequence!fiber|(}%
+
+If the codomain of a function $f:X\to Y$ is equipped with a basepoint $y_0:Y$, then we refer to the fiber $F\defeq \hfib f {y_0}$ of $f$ over $y_0$ as \define{the fiber of $f$}\index{fiber}.
+(If $Y$ is connected, then $F$ is determined up to mere equivalence; see \autoref{ex:unique-fiber}.)
+We now show that if $X$ is also pointed and $f$ preserves basepoints, then there is a relation between the homotopy groups of $F$, $X$, and $Y$ in the form of a \emph{long exact sequence}.
+We derive this by way of the \emph{fiber sequence} associated to such an $f$.
+
+\begin{defn}\label{def:pointedmap}
+  A \define{pointed map}
+  \indexdef{pointed!map}%
+  \indexsee{function!pointed}{pointed map}%
+  between pointed types $(X,x_0)$ and $(Y,y_0)$ is a
+  map $f:X\to Y$ together with a path $f_0:f(x_0)=y_0$.
+\end{defn}
+
+For any pointed types $(X,x_0)$ and $(Y,y_0)$, there is a pointed map $(\lam{x} y_0) : X\to Y$ which is constant at the basepoint.
+We call this the \define{zero map}\indexdef{zero!map}\indexdef{function!zero} and sometimes write it as $0:X\to Y$.
+
+Recall that every pointed type $(X,x_0)$ has a loop space\index{loop space} $\Omega (X,x_0)$.
+We now note that this operation is functorial on pointed maps.\index{loop space!functoriality of}\index{functor!loop space}
+
+\begin{defn}
+  Given a pointed map between pointed types $f:X \to Y$, we define a pointed
+  map $\Omega f:\Omega X
+  \to \Omega Y$ by
+  \[(\Omega f)(p) \defeq \rev{f_0}\ct\ap{f}{p}\ct f_0.\]
+  The path $(\Omega f)_0 : (\Omega f) (\refl{x_0}) = \refl{y_0}$, which exhibits $\Omega f$ as a pointed map, is the obvious path of type
+  \[\rev{f_0}\ct\ap{f}{\refl{x_0}}\ct f_0=\refl{y_0}.\]
+\end{defn}
+
+There is another functor on pointed maps, which takes $f:X\to Y$ to $\proj1 : \hfib f {y_0} \to X$.
+When $f$ is pointed, we always consider $\hfib f {y_0}$ to be pointed with basepoint $(x_0,f_0)$, in which case $\proj1$ is also a pointed map, with witness $(\proj1)_0 \defeq \refl{x_0}$.
+Thus, this operation can be iterated.
+
+\begin{defn}
+  The \define{fiber sequence}
+  \indexdef{fiber sequence}%
+  \indexdef{sequence!fiber}%
+  of a pointed map $f:X\to Y$ is the infinite sequence of pointed types and pointed maps
+  \[\xymatrix{\dots \ar[r]^{f^{(n+1)}} & X^{(n+1)} \ar[r]^{f^{(n)}} & X^{(n)} \ar^-{f^{(n-1)}}[r] & \dots \ar[r] & X^{(2)} \ar^-{f^{(1)}}[r] & X^{(1)} \ar[r]^{f^{(0)}} & X^{(0)}}\]
+  defined recursively by
+  \[ X^{(0)} \defeq Y\qquad
+    X^{(1)} \defeq X\qquad
+    f^{(0)} \defeq f\qquad
+    \]    
+  and
+  \begin{alignat*}{2}
+    X^{(n+1)} &\defeq \hfib {f^{(n-1)}}{x^{(n-1)}_0}\\
+    f^{(n)} &\defeq \proj1 &: X^{(n+1)} \to X^{(n)}.
+  \end{alignat*}
+  where $x^{(n)}_0$ denotes the basepoint of $X^{(n)}$, chosen recursively as above.
+\end{defn}
+
+Thus, any adjacent pair of maps in this fiber sequence is of the form
+\[ \xymatrix{ X^{(n+1)} \jdeq \hfib{f^{(n-1)}}{x^{(n-1)}_0} \ar[rr]^-{f^{(n)}\jdeq \proj1} && X^{(n)} \ar[r]^{f^{(n-1)}} & X^{(n-1)}. } \]
+In particular, we have $f^{(n-1)} \circ f^{(n)} = 0$.
+We now observe that the types occurring in this sequence are the iterated loop spaces\index{loop space!iterated} of the base
+space $Y$, the total space\index{total!space} $X$, and the fiber $F\defeq \hfib f {y_0}$, and similarly for the maps.
+
+\begin{lem}\label{thm:fiber-of-the-fiber}
+  Let $f:X\to Y$ be a pointed map of pointed spaces.  Then:
+  \begin{enumerate}
+  \item The fiber of $f^{(1)}\defeq \proj1 : \hfib f {y_0} \to X$ is equivalent to $\Omega Y$.\label{item:fibseq1}
+  \item Similarly, the fiber of $f^{(2)} : \Omega Y \to \hfib f {y_0}$ is equivalent to $\Omega X$.\label{item:fibseq2}
+  \item Under these equivalences, the map $f^{(3)} : \Omega X\to \Omega Y$ is identified with $\Omega f\circ\rev{(\blank)}$.\label{item:fibseq3}
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  For~\ref{item:fibseq1}, we have
+  \begin{align*}
+    \hfib{f^{(1)}}{x_0}
+    &\defeq \sm{z:\hfib{f}{y_0}} (\proj{1}(z) = x_0)\\
+    &\eqvsym \sm{x:A}{p:f(x)=y_0} (x = x_0) &\text{(by \autoref{ex:sigma-assoc})}\\
+    &\eqvsym (f(x_0) = y_0) &\text{(as $\tsm{x:A} (x=x_0)$ is contractible)}\\
+    &\eqvsym (y_0 = y_0) &\text{(by $(f_0 \ct \blank)$)}\\
+    &\jdeq \Omega Y.
+  \end{align*}
+  Tracing through, we see that this equivalence sends $((x,p),q)$ to $\opp{f_0} \ct \ap{f}{\opp q} \ct p$, while its inverse sends $r:y_0=y_0$ to $((x_0, f_0 \ct r), \refl{x_0})$.
+  In particular, the basepoint $((x_0,f_0),\refl{x_0})$ of $\hfib{f^{(1)}}{x_0}$ is sent to $\opp{f_0} \ct \ap{f}{\opp {\refl{x_0}}} \ct f_0$, which equals $\refl{y_0}$.
+  Hence this equivalence is a pointed map (see \autoref{ex:pointed-equivalences}).
+  Moreover, under this equivalence, $f^{(2)}$ is identified with $\lam{r} (x_0, f_0 \ct r): \Omega Y \to \hfib f {y_0}$.
+
+  \cref{item:fibseq2} follows immediately by applying~\ref{item:fibseq1} to $f^{(1)}$ in place of $f$.
+  % The resulting equivalence sends $(((x,p),p'),q') : \hfib{f^{(2)}}{(x_0,f_0)}$ to $\ap{f}{\opp {q'}} \ct p'$, while its inverse sends $s:x_0=x_0$ to $(((x_0,f_0), s), \refl{(x_0,f_0)})$.
+  Since $(f^{(1)})_0 \defeq \refl{x_0}$, under this equivalence $f^{(3)}$ is identified with the map $\Omega X \to \hfib {f^{(1)}}{x_0}$ defined by $s \mapsto ((x_0,f_0),s)$.
+  Thus, when we compose with the previous equivalence $\hfib {f^{(1)}}{x_0} \eqvsym \Omega Y$, we see that $s$ maps to $\opp{f_0} \ct \ap{f}{\opp s} \ct f_0$, which is by definition $(\Omega f)(\opp s)$, giving~\ref{item:fibseq3}.
+\end{proof}
+
+Thus, the fiber sequence of $f:X\to Y$ can be pictured as:
+\[\xymatrix@C=1.5pc{
+  \dots \ar[r] &
+  \Omega^2 X \ar[r]^-{\Omega^2 f} &
+  \Omega^2 Y \ar[r]^-{-\Omega \partial} &
+  \Omega F \ar[r]^-{-\Omega i} &
+  \Omega X \ar[r]^-{-\Omega f} &
+  \Omega Y \ar[r]^-{\partial} &
+  F \ar[r]^-{i} &
+  X \ar[r]^{f} & Y.}\]
+where the minus signs denote composition with path inversion $\rev{(\blank)}$.
+Note that by \autoref{ex:ap-path-inversion}, we have
+\[ \Omega\left(\Omega f\circ \opp{(\blank)}\right) \circ \opp{(\blank)}
+= \Omega^2 f \circ \opp{(\blank)} \circ \opp{(\blank)}
+= \Omega^2 f.
+\]
+Thus, there are minus signs on the $k$-fold loop maps whenever $k$ is odd.
+
+From this fiber sequence we will deduce an \emph{exact sequence of pointed sets}.
+\index{image}%
+Let $A$ and $B$ be sets and $f:A\to B$ a function, and recall from \autoref{defn:modal-image} the definition of the \emph{image} $\im(f)$, which can be regarded as a subset of $B$:
+\[\im(f) \defeq \setof{b:B | \exis{a:A} f(a)=b}. \]
+If $A$ and $B$ are moreover pointed with basepoints $a_0$ and $b_0$, and $f$ is a pointed map, we define the \define{kernel}
+\indexdef{kernel}%
+\indexdef{pointed!map!kernel of}%
+of $f$ to be the following subset of $A$:
+\symlabel{kernel}
+\[\ker(f) \defeq \setof{x:A | f(x) = b_0}. \]
+Of course, this is just the fiber of $f$ over the basepoint $b_0$; it a subset of $A$ because $B$ is a set.
+
+Note that any group is a pointed set, with its unit element as basepoint, and any group homomorphism is a pointed map.
+In this case, the kernel and image agree with the usual notions from group theory.
+
+\begin{defn}
+  An \define{exact sequence of pointed sets}
+  \indexdef{exact sequence}%
+  \indexdef{sequence!exact}%
+  is a (possibly bounded) sequence of pointed sets and pointed maps:
+  \[\xymatrix{\dots \ar[r] & A^{(n+1)} \ar[r]^-{f^{(n)}} & A^{(n)} \ar[r]^{f^{(n-1)}} & A^{(n-1)} \ar[r] &
+    \dots}\]
+  such that for every $n$, the image of $f^{(n)}$ is equal, as a subset of $A^{(n)}$, to the kernel of $f^{(n-1)}$.
+  In other words, for all $a:A^{(n)}$ we have
+  \[ (f^{(n-1)}(a) = a^{(n-1)}_0) \iff \exis{b:A^{(n+1)}} (f^{(n)}(b)=a). \]
+  where $a^{(n)}_0$ denotes the basepoint of $A^{(n)}$.
+\end{defn}
+
+Usually, most or all of the pointed sets in an exact sequence are groups, and often abelian groups.
+When we speak of an \define{exact sequence of groups}, it is assumed moreover that the maps are group homomorphisms and not just pointed maps.
+
+\index{exact sequence}
+\begin{thm}\label{thm:les}
+  Let $f:X \to Y$ be a pointed map between pointed spaces with fiber $F\defeq \hfib f {y_0}$.
+  Then we have the following long exact sequence, which consists of groups except for the last three terms, and abelian groups except for the last six.
+
+  \[
+  \xymatrix@R=1.2pc@C=3pc{
+    \vdots & \vdots & \vdots \ar[lld] \\
+    \pi_k(F) \ar[r] & \pi_k(X) \ar[r] & \pi_k(Y) \ar[lld] \\
+    \vdots & \vdots & \vdots \ar[lld] \\
+    \pi_2(F) \ar[r] & \pi_2(X) \ar[r] & \pi_2(Y) \ar[lld] \\
+    \pi_1(F) \ar[r] & \pi_1(X) \ar[r] & \pi_1(Y) \ar[lld]\\
+    \pi_0(F) \ar[r] & \pi_0(X) \ar[r] & \pi_0(Y)}
+  \]
+\end{thm}
+
+% In US trade we might want a page break here, and extra stretch, otherwise the
+% whole page looks ugly.
+\vspace*{0pt plus 10ex}
+\goodbreak
+
+\begin{proof}
+  We begin by showing that the 0-truncation of a fiber sequence is an exact sequence of pointed sets.
+  Thus, we need to show that for any adjacent pair of maps in a fiber sequence:
+  %
+  \[\xymatrix{\hfib{f}{z_0} \ar^-g[r] & W \ar^-f[r] & Z}\]
+  %
+  with $g\defeq \proj1$, the sequence
+  %
+  \[\xymatrix{\trunc{0}{\hfib{f}{z_0}} \ar^-{\trunc0g}[r] & \trunc0{W}
+    \ar^-{\trunc0{f}}[r] & \trunc0{Z}}\]
+  %
+  is exact, i.e.\ that $\im(\trunc0g)\subseteq\ker(\trunc0f)$ and $\ker(\trunc0f)\subseteq\im(\trunc0g)$.
+
+  The first inclusion is equivalent to $\trunc0g\circ\trunc0f=0$, which holds by functoriality of $\truncf0$ and the fact that $g\circ f=0$.
+  For the second, we assume $w':\trunc0W$ and $p':\trunc0f(w')=\tproj0{z_0}$ and show there merely exists ${t:\hfib{f}{z_0}}$ such that $g(t)=w'$.
+  Since our goal is a mere proposition, we can assume that $w'$ is of the
+  form $\tproj0w$ for some $w:W$.
+  Now by \autoref{thm:path-truncation}, $p' : \tproj0{f(w)}=\tproj0{z_0}$ yields $p'': \trunc{-1}{f(w)=z_0}$, so by a further truncation induction we may assume some $p:f(w)=z_0$.
+  But now we have $\tproj0{(w,p)}:\tproj0{\hfib{f}{z_0}}$ whose image under $\trunc0g$ is $\tproj0w\jdeq w'$, as desired.
+
+  Thus, applying $\truncf0$ to the fiber sequence of $f$, we obtain a long exact sequence involving the pointed sets $\pi_k(F)$, $\pi_k(X)$, and $\pi_k(Y)$ in the desired order.
+  And of course, $\pi_k$ is a group for $k\ge1$, being the 0-truncation of a loop space, and an abelian group for $k\ge 2$ by the Eckmann--Hilton argument
+  \index{Eckmann--Hilton argument} (\autoref{thm:EckmannHilton}).
+  Moreover, \autoref{thm:fiber-of-the-fiber} allows us to identify the maps $\pi_k(F) \to \pi_k(X)$ and $\pi_k(X) \to \pi_k(Y)$ in this exact sequence as $(-1)^k \pi_k(i)$ and $(-1)^k \pi_k(f)$ respectively.
+
+  More generally, every map in this long exact sequence except the last three is of the form $\trunc0{\Omega h}$ or $\trunc0{-\Omega h}$ for some $h$.
+  In the former case it is a group homomorphism, while in the latter case it is a homomorphism if the groups are abelian; otherwise it is an ``anti-homomorphism''.
+  However, the kernel and image of a group homomorphism are unchanged when we replace it by its negative, and hence so is the exactness of any sequence involving it.
+  Thus, we can modify our long exact sequence to obtain one involving $\pi_k(i)$ and $\pi_k(f)$ directly and in which all the maps are group homomorphisms (except the last three).
+\end{proof}
+
+The usual properties of exact sequences of abelian groups\index{group!abelian!exact sequence of} can be proved as
+usual. In particular we have:
+\begin{lem}\label{thm:ses}
+  Suppose given an exact sequence of abelian groups:
+  %
+  \[\xymatrix{K \ar[r]& G \ar^f[r] & H \ar[r] & Q.}\]
+  %
+  \begin{enumerate}
+  \item If $K=0$, then $f$ is injective.\label{item:sesinj}
+  \item If $Q=0$, then $f$ is surjective.\label{item:sessurj}
+  \item If $K=Q=0$, then $f$ is an isomorphism.\label{item:sesiso}
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  Since the kernel of $f$ is the image of $K\to G$, if $K=0$ then the kernel of $f$ is $\{0\}$;
+  hence $f$ is injective because it's a group morphism.
+  Similarly, since the image of $f$ is the kernel of $H\to Q$, if $Q=0$ then the image of $f$ is all of $H$, so $f$ is surjective.
+  Finally,~\ref{item:sesiso} follows from~\ref{item:sesinj} and~\ref{item:sessurj} by \autoref{thm:mono-surj-equiv}.
+\end{proof}
+
+As an immediate application, we can now quantify in what way $n$-connectedness of a map is stronger than inducing an equivalence on $n$-truncations.
+
+\begin{cor}\label{thm:conn-pik}
+  Let $f:A\to B$ be $n$-connected and $a:A$, and define $b\defeq f(a)$.  Then:
+  \begin{enumerate}
+  \item If $k\le n$, then $\pi_k(f):\pi_k(A,a) \to \pi_k(B,b)$ is an isomorphism.
+  \item If $k=n+1$, then $\pi_k(f):\pi_k(A,a) \to \pi_k(B,b)$ is surjective.
+  \end{enumerate}
+\end{cor}
+\begin{proof}
+  As part of the long exact sequence, for each $k$ we have an exact sequence
+  \[\xymatrix{\pi_k(\hfib f b) \ar[r]& \pi_k(A,a) \ar^f[r] & \pi_k(B,b) \ar[r] & \pi_{k-1}(\hfib f b).}\]
+  Now since $f$ is $n$-connected, $\trunc n{\hfib f b}$ is contractible.
+  Therefore, if $k\le n$, then $\pi_k(\hfib f b) = \trunc0{\Omega^k(\hfib f b)} = \Omega^k(\trunc k{\hfib f b})$ is also contractible.
+  Thus, $\pi_k(f)$ is an isomorphism for $k\le n$ by \autoref{thm:ses}\ref{item:sesiso}, while for $k=n+1$ it is surjective by \autoref{thm:ses}\ref{item:sessurj}.
+\end{proof}
+
+In \autoref{sec:whitehead} we will see that the converse of \autoref{thm:conn-pik} also holds.
+
+\index{fiber sequence|)}%
+\index{sequence!fiber|)}%
+
+
+\end{document}

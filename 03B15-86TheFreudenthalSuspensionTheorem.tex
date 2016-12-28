@@ -1,0 +1,419 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{86TheFreudenthalSuspensionTheorem}
+\pmcreated{2013-11-06 14:44:05}
+\pmmodified{2013-11-06 14:44:05}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.6 The Freudenthal suspension theorem}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\code}{\ensuremath{\mathsf{code}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\decode}{\ensuremath{\mathsf{decode}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\dpath}[4]{#3 =^{#1}_{#2} #4}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\encode}{\ensuremath{\mathsf{encode}}\xspace}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\happly}{\mathsf{happly}}
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\htpy}{\sim}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\mapdep}[2]{\ensuremath{\mapdepfunc{#1}\mathopen{}\left(#2\right)\mathclose{}}\xspace}
+\newcommand{\mapdepfunc}[1]{\ensuremath{\mathsf{apd}_{#1}}\xspace} 
+\newcommand{\merid}{\mathsf{merid}}
+\newcommand{\nameless}{\mathord{\hspace{1pt}\underline{\hspace{1ex}}\hspace{1pt}}}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\nminusone}{\ensuremath{(n-1)}}
+\newcommand{\north}{\mathsf{N}}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairpath}{\ensuremath{\mathsf{pair}^{\mathord{=}}}\xspace}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\newcommand{\south}{\mathsf{S}}
+\newcommand{\susp}{\Sigma}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\Transfib}[3]{\ensuremath{\mathsf{transport}^{#1}\Big(#2,\, #3\Big)\xspace}}
+\newcommand{\transfibf}[1]{\ensuremath{\mathsf{transport}^{#1}\xspace}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\tsm#1{\@tsm{#1}\@ifnextchar\bgroup{\tsm}{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\typele}[1]{\ensuremath{{#1}\text-\mathsf{Type}}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{8.6.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{8.6.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{8.6.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.6.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{8.6.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{8.6.\arabic{mathcount}}
+\let\apd\mapdep
+\let\autoref\cref
+\let\ntype\typele
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+\index{Freudenthal suspension theorem|(}%
+\index{theorem!Freudenthal suspension|(}%
+
+Before proving the Freudenthal suspension theorem, we need some auxiliary lemmas about connectedness.
+In \autoref{cha:hlevels} we proved a number of facts about $n$-connected maps and $n$-types for fixed $n$; here we are now interested in what happens when we vary $n$.
+For instance, in \autoref{prop:nconnected_tested_by_lv_n_dependent types} we showed that $n$-connected maps are characterized by an ``induction principle'' relative to families of $n$-types.
+If we want to ``induct along'' an $n$-connected map into a family of $k$-types for $k> n$, we don't immediately know that there is a function by such an induction principle, but the following lemma says that at least our ignorance can be quantified.
+
+\begin{lem}\label{thm:conn-trunc-variable-ind}
+  If $f:A\to B$ is $n$-connected and $P:B\to \ntype{k}$ is a family of $k$-types for $k\ge n$, then the induced function
+  \[ (\blank\circ f) : \Parens{\prd{b:B} P(b)} \to \Parens{\prd{a:A} P(f(a)) } \]
+  is $(k-n-2)$-truncated.
+\end{lem}
+\begin{proof}
+  We induct on the natural number $k-n$.
+  When $k=n$, this is \autoref{prop:nconnected_tested_by_lv_n_dependent types}.
+  %
+  For the inductive step, suppose $f$ is $n$-connected and $P$ is a family of $k+1$-types.
+  To show that $(\blank\circ f)$ is $(k-n-1)$-truncated, let $k:\prd{a:A} P(a)$; then we have
+  \[ \hfib{(\blank\circ f)}{k} \eqvsym \sm{g:\prd{b:B} P(b)} \prd{a:A} g(f(a)) = k(a).\]
+  Let $(g,p)$ and $(h,q)$ lie in this type, so $p:g\circ f \htpy k$ and $q:h\circ f \htpy k$; then we also have
+  \[ \big((g,p) = (h,q)\big) \eqvsym
+  \Parens{\sm{r:g\htpy h} r\circ f = p \ct \opp{q}}.
+  \]
+  However, here the right-hand side is a fiber of the map
+  \[ (\blank\circ f) : \Parens{\prd{b:B} Q(b)} \to \Parens{\prd{a:A} Q(f(a)) } \]
+  where $Q(b) \defeq (g(b)=h(b))$.
+  Since $P$ is a family of $(k+1)$-types, $Q$ is a family of $k$-types, so the inductive hypothesis implies that this fiber is a $(k-n-2)$-type.
+  Thus, all path spaces of $\hfib{(\blank\circ f)}{k}$ are $(k-n-2)$-types, so it is a $(k-n-1)$-type.
+\end{proof}
+
+Recall that if $\pairr{A,a_0}$ and $\pairr{B,b_0}$ are pointed types, then
+their \define{wedge}
+\index{wedge}%
+$A\vee B$ is defined to be the pushout of $A\xleftarrow{a_0}
+\unit\xrightarrow{b_0} B$.
+There is a canonical map $i:A\vee B \to A\times B$ defined by the two maps $\lam{a} (a,b_0)$ and $\lam{b} (a_0,b)$; the following lemma essentially says that this map is highly connected if $A$ and $B$ are so.
+It is a bit more convenient both to prove and use, however, if we use the characterization of connectedness from \autoref{prop:nconnected_tested_by_lv_n_dependent types} and substitute in the universal property of the wedge (generalized to type families).
+
+\begin{lem}[Wedge connectivity lemma]\label{thm:wedge-connectivity}
+  Suppose that $\pairr{A,a_0}$ and $\pairr{B,b_0}$ are $n$- and $m$-connected pointed types, respectively, with $n,m\geq0$, and let 
+%
+\narrowequation{P:A\to B\to \ntype{(n+m)}.}
+%
+Then for any ${f:\prd{a:A} P(a,b_0)}$ and ${g:\prd{b:B} P(a_0,b)}$ with $p:f(a_0) = g(b_0)$, there exists $h:\prd{a:A}{b:B} P(a,b)$ with homotopies
+%
+\begin{equation*}
+  q:\prd{a:A} h(a,b_0)=f(a)
+  \qquad\text{and}\qquad
+  r:\prd{b:B} h(a_0,b)=g(b)
+ \end{equation*}
+%
+such that $p = \opp{q(a_0)} \ct r(b_0)$.
+\end{lem}
+\begin{proof}
+  Define $P:A\to\type$ by
+  \[ P(a) \defeq \sm{k:\prd{b:B} P(a,b)} (f(a) = k(b_0)). \]
+  Then we have $(g,p):P(a_0)$.
+  Since $a_0:\unit\to A$ is $(n-1)$-connected, if $P$ is a family of $(n-1)$-types then we will have $\ell:\prd{a:A} P(a)$ such that $\ell(a_0) = (g,p)$, in which case we can define $h(a,b) \defeq \proj1(\ell(a))(b)$.
+  However, for fixed $a$, the type $P(a)$ is the fiber over $f(a)$ of the map
+  \[ \Parens{\prd{b:B} P(a,b) } \to P(a,b_0) \]
+  given by precomposition with $b_0:\unit\to B$.
+  Since $b_0:\unit\to B$ is $(m-1)$-connected, for this fiber to be $(n-1)$-connected, by \autoref{thm:conn-trunc-variable-ind} it suffices for each type $P(a,b)$ to be an $(n+m)$-type, which we have assumed.
+\end{proof}
+
+Let $(X,x_0)$ be a pointed type, and recall the definition of the suspension $\susp X$ from \autoref{sec:suspension}, with constructors $\north,\south:\susp X$ and $\merid:X \to (\north=\south)$.
+We regard $\susp X$ as a pointed space with basepoint $\north$, so that we have $\Omega\susp X \defeq (\id[\susp X]\north\north)$.
+Then there is a canonical map
+\begin{align*}
+  \sigma &: X \to \Omega\susp X\\
+  \sigma(x) &\defeq \merid(x) \ct \opp{\merid(x_0)}.
+\end{align*}
+
+\begin{rmk}
+  In classical algebraic topology, one considers the \emph{reduced suspension}, in which the path $\merid(x_0)$ is collapsed down to a point, identifying $\north$ and $\south$.
+  The reduced and unreduced suspensions are homotopy equivalent, so the distinction is invisible to our purely homotopy-theoretic eyes --- and higher inductive types only allow us to ``identify'' points up to a higher path anyway, there is no purpose to considering reduced suspensions in homotopy type theory.
+  However, the ``unreducedness'' of our suspension is the reason for the (possibly unexpected) appearance of $\opp{\merid(x_0)}$ in the definition of $\sigma$.
+\end{rmk}
+
+Our goal is now to prove the following.
+
+\begin{thm}[The Freudenthal suspension theorem]\label{thm:freudenthal}
+  Suppose that $X$ is $n$-connected and pointed, with $n\geq 0$.
+  Then the map $\sigma:X\to \Omega\susp(X)$ is $2n$-connected.
+\end{thm}
+
+\index{encode-decode method|(}%
+
+We will use the encode-decode method, but applied in a slightly different way.
+In most cases so far, we have used it to characterize the loop space $\Omega (A,a_0)$ of some type as equivalent to some other type $B$, by constructing a family $\code:A\to \type$ with $\code(a_0)\defeq B$ and a family of equivalences $\decode:\prd{x:A}\code(x) \eqvsym (a_0=x)$.
+% We have also generalized it to characterize truncations of loop spaces by way of a family of equivalences $\prd{x:A}\code(x) \eqvsym \trunc n{a_0=x}$.
+
+In this case, however, we want to show that $\sigma:X\to \Omega \susp X$ is $2n$-connected.
+We could use a truncated version of the previous method, such as we will see in \autoref{sec:van-kampen}, to prove that $\trunc{2n}X\to \trunc{2n}{\Omega \susp X}$ is an equivalence---but this is a slightly weaker statement than the map being $2n$-connected (see \autoref{thm:conn-pik},\autoref{thm:pik-conn}).
+However, note that in the general case, to prove that $\decode(x)$ is an equivalence, we could equivalently be proving that its fibers are contractible, and we would still be able to use induction over the base type.
+This we can generalize to prove connectedness of a map into a loop space, i.e.\ that the \emph{truncations} of its fibers are contractible.
+Moreover, instead of constructing $\code$ and $\decode$ separately, we can construct directly a family of \emph{codes for the truncations of the fibers}.
+
+\begin{defn}\label{thm:freudcode}
+  If $X$ is $n$-connected and pointed with $n\geq 0$, then there is a family
+  \begin{myeqn}
+    \code:\prd{y:\susp X} (\north=y) \to \type\label{eq:freudcode}
+  \end{myeqn}
+  such that
+  \begin{align}
+    \code(\north,p) &\defeq \trunc{2n}{\hfib{\sigma}{p}}
+    \jdeq \trunc{2n}{\tsm{x:X} (\merid(x) \ct \opp{\merid(x_0)} = p)}\label{eq:freudcodeN}\\
+    \code(\south,q) &\defeq \trunc{2n}{\hfib{\merid}{q}}
+    \jdeq \trunc{2n}{\tsm{x:X} (\merid(x) = q)}.\label{eq:freudcodeS}
+  \end{align}
+\end{defn}
+
+Our eventual goal will be to prove that $\code(y,p)$ is contractible for all $y:\susp X$ and $p:\north=y$.
+Applying this with $y\defeq \north$ will show that all fibers of $\sigma$ are $2n$-connected, and thus $\sigma$ is $2n$-connected.
+
+\begin{proof}[Proof of \autoref{thm:freudcode}]
+  We define $\code(y,p)$ by induction on $y:\susp X$, where the first two cases are~\eqref{eq:freudcodeN} and~\eqref{eq:freudcodeS}.
+  It remains to construct, for each $x_1:X$, a dependent path
+  \[ \dpath{\lam{y}(\north=y)\to\type}{\merid(x_1)}{\code(\north)}{\code(\south)}. \]
+  By \autoref{thm:dpath-arrow}, this is equivalent to giving a family of paths
+  \[ \prd{q:\north=\south} \code(\north)(\transfib{\lam{y}(\north=y)}{\opp{\merid(x_1)}}{q}) = \code(\south)(q). \]
+  And by univalence and transport in path types, this is equivalent to a family of equivalences
+  \[ \prd{q:\north=\south} \code(\north,q \ct \opp{\merid(x_1)}) \eqvsym \code(\south,q). \]
+  We will define a family of maps
+  \begin{myeqn}\label{eq:freudmap}
+    \prd{q:\north=\south} \code(\north,q \ct \opp{\merid(x_1)}) \to \code(\south,q).
+  \end{myeqn}
+  and then show that they are all equivalences.
+  Thus, let $q:\north=\south$; by the universal property of truncation and the definitions of $\code(\north,\blank)$ and $\code(\south,\blank)$, it will suffice to define for each $x_2:X$, a map
+  \begin{equation*}
+    \big(\merid(x_2)\ct \opp{\merid(x_0)} = q \ct \opp{\merid(x_1)}\big)
+    \to \trunc{2n}{\tsm{x:X} (\merid(x) = q)}.
+  \end{equation*}
+  Now for each $x_1,x_2:X$, this type is $2n$-truncated, while $X$ is $n$-connected.
+  Thus, by \autoref{thm:wedge-connectivity}, it suffices to define this map when $x_1$ is $x_0$, when $x_2$ is $x_0$, and check that they agree when both are $x_0$.
+
+  When $x_1$ is $x_0$, the hypothesis is $r:\merid(x_2)\ct \opp{\merid(x_0)} = q \ct \opp{\merid(x_0)}$.
+  Thus, by canceling $\opp{\merid(x_0)}$ from $r$ to get $r':\merid(x_2)=q$, so we can define the image to be $\tproj{2n}{(x_2,r')}$.
+
+  When $x_2$ is $x_0$, the hypothesis is $r:\merid(x_0)\ct \opp{\merid(x_0)} = q \ct \opp{\merid(x_1)}$.
+  Rearranging this, we obtain $r'':\merid(x_1)=q$, and we can define the image to be $\tproj{2n}{(x_1,r'')}$.
+
+  Finally, when both $x_1$ and $x_2$ are $x_0$, it suffices to show the resulting $r'$ and $r''$ agree; this is an easy lemma about path composition.
+  This completes the definition of~\eqref{eq:freudmap}.
+  To show that it is a family of equivalences, since being an equivalence is a mere proposition and $x_0:\unit\to X$ is (at least) $(-1)$-connected, it suffices to assume $x_1$ is $x_0$.
+  In this case, inspecting the above construction we see that it is essentially the $2n$-truncation of the function that cancels $\opp{\merid(x_0)}$, which is an equivalence.
+\end{proof}
+
+In addition to~\eqref{eq:freudcodeN} and~\eqref{eq:freudcodeS}, we will need to extract from the construction of $\code$ some information about how it acts on paths.
+For this we use the following lemma.
+
+\begin{lem}\label{thm:freudlemma}
+  Let $A:\UU$, $B:A\to \UU$, and $C:\prd{a:A} B(a)\to\UU$, and also $a_1,a_2:A$ with $m:a_1=a_2$ and $b:B(a_2)$.
+  Then the function
+  \[\transfib{\widehat{C}}{\pairpath(m,t)}{\blank} : C(a_1,\transfib{B}{\opp m}{b}) \to C(a_2,b),\]
+  where $t:\transfib{B}{m}{\transfib{B}{\opp m}{b}} = b$ is the obvious coherence path and $\widehat{C}:(\sm{a:A} B(a)) \to\type$ is the uncurried form of $C$, is equal to the equivalence obtained by univalence from the composite
+  \begin{align}
+    C(a_1,\transfib{B}{\opp m}{b})
+    &= \transfib{\lam{a} B(a)\to \UU}{m}{C(a_1)}(b)
+    \tag{by~\eqref{eq:transport-arrow}}\\
+    &= C(a_2,b). \tag{by $\happly(\apd{C}{m},b)$}
+  \end{align}
+\end{lem}
+\begin{proof}
+  By path induction, we may assume $a_2$ is $a_1$ and $m$ is $\refl{a_1}$, in which case both functions are the identity.
+\end{proof}
+
+We apply this lemma with $A\defeq\susp X$ and $B\defeq \lam{y}(\north=y)$ and $C\defeq\code$, while $a_1\defeq\north$ and $a_2\defeq\south$ and $m\defeq \merid(x_1)$ for some $x_1:X$, and finally $b\defeq q$ is some path $\north=\south$.
+The computation rule for induction over $\susp X$ identifies $\apd{C}{m}$ with a path constructed in a certain way out of univalence and function extensionality.
+The second function described in \autoref{thm:freudlemma} essentially consists of undoing these applications of univalence and function extensionality, reducing back to the particular functions~\eqref{eq:freudmap} that we defined using \autoref{thm:wedge-connectivity}.
+Therefore, \autoref{thm:freudlemma} says that transporting along $\pairpath(q,t)$ essentially recovers these functions.
+
+Finally, by construction, when $x_1$ or $x_2$ coincides with $x_0$ and the input is in the image of $\tproj{2n}{\blank}$, we know more explicitly what these functions are.
+Thus, for any $x_2:X$, we have
+\begin{myeqn}
+  \transfib{\hat{\code}}{\pairpath(\merid(x_0),t)}{\tproj{2n}{(x_2,r)}}
+  =\tproj{2n}{(x_1,r')}\label{eq:freudcompute1}
+\end{myeqn}
+where $r:\merid(x_2) \ct \opp{\merid(x_0)} = \transfib{B}{\opp{\merid(x_0)}}{q}$ is arbitrary as before, and $r':\merid(x_2)=q$ is obtained from $r$ by identifying its end point with $q \ct \opp{\merid(x_0)}$ and canceling $\opp{\merid(x_0)}$.
+Similarly, for any $x_1:X$, we have
+\begin{myeqn}
+  \transfib{\hat{\code}}{\pairpath(\merid(x_1),t)}{\tproj{2n}{(x_0,r)}}
+  = \tproj{2n}{(x_1,r'')}\label{eq:freudcompute2}
+\end{myeqn}
+where $r:\merid(x_0) \ct \opp{\merid(x_0)} = \transfib{B}{\opp{\merid(x_1)}}{q}$, and $r'':\merid(x_1)=q$ is obtained by identifying its end point and rearranging paths.
+
+\begin{proof}[Proof of \autoref{thm:freudenthal}]
+  It remains to show that $\code(y,p)$ is contractible for each $y:\susp X$ and $p:\north=y$.
+  First we must choose a center of contraction, say $c(y,p):\code(y,p)$.
+  This corresponds to the definition of the function $\encode$ in our previous proofs, so we define it by transport.
+  Note that in the special case when $y$ is $\north$ and $p$ is $\refl{\north}$, we have
+  \[\code(\north,\refl{\north}) \jdeq \trunc{2n}{\tsm{x:X} (\merid(x) \ct \opp{\merid(x_0)} = \refl{\north})}.\]
+  Thus, we can choose $c(\north,\refl{\north})\defeq \tproj{2n}{(x_0,\mathsf{rinv}_{\merid(x_0)})}$, where $\mathrm{rinv}_q$ is the obvious path $q\ct\opp q = \refl{}$ for any $q$.
+  We can now obtain $c:\prd{y:\susp X}{p:\north=y} \code(y,p)$ by path induction on $p$, but it will be important below that we can also give a concrete definition in terms of transport:
+  \[ c(y,p) \defeq \transfib{\hat{\code}}{\pairpath(p,\mathsf{tid}_p)}{c(\north,\refl{\north})}
+  \]
+  where $\hat{\code}: \big(\sm{y:\susp X} (\north=y)\big) \to \type$ is the uncurried version of \code, and $\mathsf{tid}_p:\trans{p}{\refl{}} = p$ is a standard lemma.
+
+  Next, we must show that every element of $\code(y,p)$ is equal to $c(y,p)$.
+  Again, by path induction, it suffices to assume $y$ is $\north$ and $p$ is $\refl{\north}$.
+  In fact, we will prove it more generally when $y$ is $\north$ and $p$ is arbitrary.
+  That is, we will show that for any $p:\north=\north$ and $d:\code(\north,p)$ we have $d = c(\north,p)$.
+  Since this equality is a $(2n-1)$-type, we may assume $d$ is of the form $\tproj{2n}{(x_1,r)}$ for some $x_1:X$ and $r:\merid(x_1) \ct \opp{\merid(x_0)} = p$.
+
+  Now by a further path induction, we may assume that $r$ is reflexivity, and $p$ is $\merid(x_1) \ct \opp{\merid(x_0)}$.
+  (This is why we generalized to arbitrary $p$ above.)
+  Thus, we have to prove that
+  \begin{myeqn}
+    \tproj{2n}{(x_1, \refl{\merid(x_1) \ct \opp{\merid(x_0)}})}
+    \;=\;
+    c\left(\north,\refl{\merid(x_1) \ct \opp{\merid(x_0)}}\right).\label{eq:freudgoal}
+  \end{myeqn}
+  By definition, the right-hand side of this equality is
+  \begin{multline*}
+    \Transfib{\hat{\code}}{\pairpath(\merid(x_1) \ct \opp{\merid(x_0)}, \nameless)}{\tproj{2n}{(x_0,\nameless)}} \\
+    = \transfibf{\hat{\code}}
+    \begin{aligned}[t]
+      \Big(
+      &{\pairpath(\opp{\merid(x_0)}, \nameless)},\\
+      &{\Transfib{\hat{\code}}{\pairpath(\merid(x_1), \nameless)}{\tproj{2n}{(x_0,\nameless)}}}
+      \Big)
+    \end{aligned}
+    \\
+    = \Transfib{\hat{\code}}{\pairpath(\opp{\merid(x_0)}, \nameless)}{\tproj{2n}{(x_1,\nameless)}}
+    = \tproj{2n}{(x_1,\nameless)}
+  \end{multline*}
+  where the underscore $\nameless$ ought to be filled in with suitable coherence paths.
+  Here the first step is functoriality of transport, the second invokes~\eqref{eq:freudcompute2}, and the third invokes~\eqref{eq:freudcompute1} (with transport moved to the other side).
+  Thus we have the same first component as the left-hand side of~\eqref{eq:freudgoal}.
+  We leave it to the reader to verify that the coherence paths all cancel, giving reflexivity in the second component.
+\end{proof}
+
+% As a corollary, we have the following equivalence.
+
+\begin{cor}[Freudenthal Equivalence] \label{cor:freudenthal-equiv}
+Suppose that $X$ is $n$-connected and pointed, with $n\geq 0$.
+Then $\eqv{\trunc{2n}{X}}{\trunc{2n}{\Omega\susp(X)}}$.
+\end{cor}
+\begin{proof}
+By \cref{thm:freudenthal}, $\sigma$ is $2n$-connected.  By
+\cref{lem:connected-map-equiv-truncation}, it is therefore an
+equivalence on $2n$-truncations.  
+\end{proof}
+
+\index{encode-decode method|)}%
+
+\index{Freudenthal suspension theorem|)}%
+\index{theorem!Freudenthal suspension|)}%
+
+\index{homotopy!group!of sphere}% 
+\index{stability!of homotopy groups of spheres}%
+\index{type!n-sphere@$n$-sphere}%
+One important corollary of the Freudenthal suspension theorem is that the homotopy groups of
+spheres are stable in a certain range (these are the northeast-to-southwest diagonals
+in \autoref{tab:homotopy-groups-of-spheres}):
+
+\begin{cor}[Stability for Spheres] \label{cor:stability-spheres}
+If $k \le 2n-2$, then $\pi_{k+1}(S^{n+1}) = \pi_{k}(S^{n})$.
+\end{cor}
+\begin{proof}
+Assume $k \le 2n-2$.  
+%
+By \cref{cor:sn-connected}, $\Sn ^{n}$ is $\nminusone$-connected.  Therefore,
+by \cref{cor:freudenthal-equiv}, 
+\[
+\trunc{2(n-1)}{\Omega(\susp(\Sn^{n}))} = \trunc{2(n-1)}{\Sn^{n}}.
+\]
+By \cref{lem:truncation-le}, because $k \le 2(n-1)$, applying $\trunc{k}{\blank}$
+to both sides shows that this equation holds for $k$:
+\begin{myeqn}\label{eq:freudenthal-for-spheres}
+\trunc{k}{\Omega(\susp(\Sn^{n}))} = \trunc{k}{\Sn^{n}}.
+\end{myeqn}
+%
+Then, the main idea of the proof is as follows; we omit checking that these
+equivalences act appropriately on the base points of these spaces:
+%
+\begin{align*}
+\pi_{k+1}(\Sn^{n+1}) &\jdeq \trunc{0}{\Omega^{k+1}(\Sn^{n+1})} \\
+                     &\jdeq \trunc{0}{\Omega^k(\Omega(\Sn^{n+1}))} \\
+                     &\jdeq \trunc{0}{\Omega^k(\Omega(\susp(\Sn^{n})))} \\
+                     &= \Omega^k(\trunc{k}{(\Omega(\susp(\Sn^{n})))})
+                     \tag{by \autoref{thm:path-truncation}}\\
+                     &= \Omega^k(\trunc{k}{\Sn^{n}})
+                     \tag{by \eqref{eq:freudenthal-for-spheres}}\\
+                     &= \trunc{0}{\Omega^k(\Sn^{n})}
+                     \tag{by \autoref{thm:path-truncation}}\\
+                     &\jdeq \pi_k(\Sn^{n}). \qedhere
+\end{align*}
+%
+\end{proof}
+
+This means that once we have calculated one entry in one of these stable
+diagonals, we know all of them.  For example:
+\begin{thm}
+$\pi_n(\Sn^n)=\Z$ for every $n\geq 1$. 
+\end{thm}
+
+\begin{proof}
+The proof is by induction on $n$.  We already have $\pi_1(\Sn ^1) = \Z$
+(\autoref{cor:pi1s1}) and $\pi_2(\Sn ^2) = \Z$ (\autoref{cor:pis2-hopf}).
+When $n \ge 2$, $n \le (2n - 2)$. Therefore, by
+\cref{cor:stability-spheres}, $\pi_{n+1}(S^{n+1}) = \pi_{n}(S^{n})$, and
+this equivalence, combined with the inductive hypothesis, gives the result.  
+\end{proof}
+
+\begin{cor}
+  $\Sn^{n+1}$ is not an $n$-type for any $n\ge -1$.
+\end{cor}
+
+
+\end{document}

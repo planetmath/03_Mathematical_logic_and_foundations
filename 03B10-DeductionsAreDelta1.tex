@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DeductionsAreDelta1}
+\pmcreated{2013-03-22 12:58:36}
+\pmmodified{2013-03-22 12:58:36}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{deductions are $\Delta_1$}
+\pmrecord{9}{33348}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+\pmsynonym{deductions are delta 1}{DeductionsAreDelta1}
+\pmdefines{truth assignment}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+Using the example of G\"odel numbering, we can show that $\operatorname{Proves}(a,x)$ (the statement that $a$ is a proof of $x$, which will be formally defined below) is $\Delta_1$.
+
+First, $\operatorname{Term}(x)$ should be true if and only if $x$ is the G\"odel number of a term.  Thanks to primitive recursion, we can define it by:
+\begin{align*}
+\operatorname{Term}(x)\leftrightarrow
+&\exists i< x[x=\langle 0,i\rangle]\vee\\
+&x=\langle 5\rangle \vee\\
+&\exists y<x[x=\langle 6,y\rangle \wedge \operatorname{Term}(y)]\vee\\
+&\exists y,z<x[x=\langle 8,y,z\rangle\wedge \operatorname{Term}(y)\wedge\operatorname{Term}(z)]\vee\\
+&\exists y,z<x[x=\langle 9,y,z\rangle\wedge \operatorname{Term}(y)\wedge\operatorname{Term}(z)]
+\end{align*}
+
+Then $\operatorname{AtForm}(x)$, which is true when $x$ is the G\"odel number of an atomic formula, is defined by:
+\begin{align*}
+\operatorname{AtForm}(x)\leftrightarrow
+&\exists y,z<x[x=\langle 1,y,z\rangle\wedge \operatorname{Term}(y)\wedge\operatorname{Term}(z)]\vee\\
+&\exists y,z<x[x=\langle 7,y,z\rangle\wedge \operatorname{Term}(y)\wedge\operatorname{Term}(z)] % \vee\\ % a line seems to be missing
+\end{align*}
+
+Next, $\operatorname{Form}(x)$, which is true only if $x$ is the G\"odel number of a formula, is defined recursively by:
+\begin{align*}
+\operatorname{Form}(x)\leftrightarrow
+&\operatorname{AtForm}(x)\vee\\
+&\exists i,y<x[x=\langle 2,i,y\rangle\wedge \operatorname{Form}(y)]\vee\\
+&\exists y<x[x=\langle 3,y\rangle\wedge \operatorname{Form}(y)]\vee\\
+&\exists y,z<x[x=\langle 4,y,z\rangle\wedge \operatorname{Form}(y)\wedge\operatorname{Form}(z)]
+\end{align*}
+
+The definition of $\operatorname{QFForm}(x)$, which is true when $x$ is the G\"odel number of a quantifier free formula, is defined the same way except without the second clause.
+
+Next we want to show that the set of logical tautologies is $\Delta_1$.  This will be done by formalizing the concept of truth tables, which will require some development.  First we show that $\operatorname{AtForms}(a)$, which is a sequence containing the (unique) atomic formulas of $a$ is $\Delta_1$.  Define it by:
+
+\begin{align*}
+\operatorname{AtForms}(a,t)\leftrightarrow
+&(\neg\operatorname{Form}(a)\wedge t=0)\vee\\
+&\operatorname{Form}(a)\wedge(\\
+&\exists x,y<a [a=\langle 1,x,y\rangle t=a]\vee\\
+&\exists x,y<a [a=\langle 7,x,y\rangle \wedge t=a]\vee\\
+&\exists i,x<a [a=\langle 2,i,x\rangle \wedge t=\operatorname{AtForms}(x)]\vee\\
+&\exists x<a [a=\langle 3,x\rangle \wedge t=\operatorname{AtForms}(x)]\vee\\
+&\exists x,y<a [a=\langle 4,x,y\rangle \wedge t=\operatorname{AtForms}(x)*_u\operatorname{AtForms}(y)])
+\end{align*}
+
+We say $v$ is a \emph{truth assignment} if it is a sequence of pairs with the first member of each pair being a atomic formula and the second being either $1$ or $0$:
+$$TA(v)\leftrightarrow \forall i<\operatorname{len}(v)\exists x,y<(v)_i[(v)_i=\langle x,y\rangle \wedge \operatorname{AtForm}(x)\wedge (y=1 \vee y=0)]$$
+
+Then $v$ is a truth assignment for $a$ if $v$ is a truth assignment, $a$ is quantifier free, and every atomic formula in $a$ is the first member of one of the pairs in $v$.  That is:
+
+$$TAf(v,a)\leftrightarrow TA(v)\wedge \operatorname{QFForm}(a)\wedge\forall i<\operatorname{len}(\operatorname{AtForms}(a))\exists j<\operatorname{len}(v)[((v)_j)_0=(\operatorname{AtForms}(a))_i]$$
+
+Then we can define when $v$ makes $a$ true by:
+\begin{align*}
+\operatorname{True}(v,a)\leftrightarrow &TAf(v,a)\wedge\\
+&\operatorname{AtForm}(a)\wedge \exists i<\operatorname{len}(v)[((v)_i)_0=a\wedge ((v)_i)_1=1]\vee\\
+&\exists y<x[x=\langle 3,y\rangle\wedge \operatorname{True}(v,y)]\vee\\
+&\exists y,z<x[x=\langle 4,y,z\rangle\wedge \operatorname{True}(v,y)\rightarrow\operatorname{True}(v,z)]
+\end{align*}
+
+Then $a$ is a tautology if every truth assignment makes it true:
+$$\operatorname{Taut}(a)\forall v<2^{2^{\operatorname{AtForms}(a)}}[TAf(v,a)\rightarrow \operatorname{True}(v,a)]$$
+
+We say that a number $a$ is a \emph{deduction} of $\phi$ if it encodes a proof of $\phi$ from a set of axioms $Ax$.  This means that $a$ is a sequence where for each $(a)_i$ either:
+
+\begin{itemize}
+\item $(a)_i$ is the G\"odel number of an axiom
+
+\item $(a)_i$ is a logical tautology
+
+or
+
+\item there are some $j,k<i$ such that $(a)_j=\langle 4,(a)_k,(a)_i\rangle$ (that is, $(a)_i$ is a conclusion under modus ponens from $(a)_j$ and $(a)_k$).
+\end{itemize}
+
+and the last element of $a$ is $\ulcorner\phi\urcorner$.
+
+If $Ax$ is $\Delta_1$ (almost every system of axioms, including $PA$, is $\Delta_1$) then $\operatorname{Proves}(a,x)$, which is true if $a$ is a deduction whose last value is $x$, is also $\Delta_1$.  This is fairly simple to see from the above results (let $\operatorname{Ax}(x)$ be the relation specifying that $x$ is the G\"odel number of an axiom):
+
+$$
+\operatorname{Proves}(a,x)\leftrightarrow\forall i<\operatorname{len}(a)
+\left[\operatorname{Ax}((a)_i)\vee
+\exists j,k<i [(a)_j=\langle 4,(a)_k,(a)_i\rangle]\vee
+\operatorname{Taut}((a)_i)
+\right]$$
+%%%%%
+%%%%%
+\end{document}

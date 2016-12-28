@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ArithmeticalHierarchyIsAProperHierarchy}
+\pmcreated{2013-03-22 12:55:14}
+\pmmodified{2013-03-22 12:55:14}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{arithmetical hierarchy is a proper hierarchy}
+\pmrecord{6}{33273}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+By definition, we have $\Delta_n=\Pi_n\cap \Sigma_n$.  In addition, $\Sigma_n\cup\Pi_n\subseteq \Delta_{n+1}$.
+
+This is proved by vacuous quantification.  If $R$ is equivalent to $\phi(\vec{n})$ then $R$ is equivalent to $\forall x\phi(\vec{n})$ and $\exists x\phi(\vec{n})$, where $x$ is some variable that does not occur free in $\phi$.
+
+More significant is the proof that all containments are proper.  First, let $n\geq 1$ and $U$ be universal for $2$-ary $\Sigma_n$ relations.  Then $D(x)\leftrightarrow U(x,x)$ is obviously $\Sigma_n$.  But suppose $D\in \Delta_n$.  Then $D\in Pi_n$, so $\neg D\in\Sigma_n$. Since $U$ is universal, ther is some $e$ such that $\neg D(x)\leftrightarrow U(e,x)$, and therefore $\neg D(e)\leftrightarrow U(e,e)\leftrightarrow \neg U(e,e)$.  This is clearly a contradiction, so $D\in\Sigma_n\setminus\Delta_n$ and $\neg D\in\Pi_n\setminus\Delta_n$.
+
+In addition the recursive join of $D$ and $\neg D$, defined by 
+$$D\oplus\neg D(x)\leftrightarrow (\exists y<x[x=2\cdot y]\wedge D(x)) \vee (\neg\exists y<x[x=2\cdot y]\wedge \neg D(x))$$
+
+Clearly both $D$ and $\neg D$ can be recovered from $D\oplus\neg D$, so it is contained in neither $\Sigma_n$ nor $\Pi_n$.  However the definition above has only unbounded quantifiers except for those in $D$ and $\neg D$, so $D\oplus\neg D(x)\in \Delta_{n+1}\setminus\Sigma_n\cup\Pi_n$
+%%%%%
+%%%%%
+\end{document}

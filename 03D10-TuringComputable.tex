@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TuringComputable}
+\pmcreated{2013-03-22 12:33:16}
+\pmmodified{2013-03-22 12:33:16}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{Turing computable}
+\pmrecord{9}{32800}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D10}
+\pmclassification{msc}{68Q05}
+\pmsynonym{Turing-computable}{TuringComputable}
+\pmrelated{RecursivelyEnumerable}
+\pmrelated{FormalDefinitionOfATuringMachine}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%\usepackage{psfrag}
+%\usepackage{graphicx}
+%%%\usepackage{xypic}
+\begin{document}
+A function is \emph{Turing computable} if the function's value can be
+computed with a Turing machine.
+
+More specifically, let $D$ be a set of words in a given alphabet and
+let $f$ be a function which maps elements of $D$ to words on the
+same alphabet.  We say that $f$ is \emph{Turing computable} if there
+exists a Turing machine such that
+\begin{itemize}
+\item If one starts the Turing machine with a word $w \in D$ as the
+initial content of the tape, the computation will halt.
+\item When the computation halts, the tape will read $f(w)$.
+\end{itemize}
+
+Formally, let $\Sigma$ be an alphabet and $f:\Sigma^* \to \Sigma^*$ on words over $\Sigma$.  Then $f$ is said to be Turing-computable if there is a Turing machine $T$ over $\Sigma$ (its input alphabet), as defined in this \PMlinkname{entry}{FormalDefinitionOfATuringMachine}, such that for any $w\in \Sigma^*$,
+$$(s,\tau_w,1) \rightarrow^* (h,\tau_{f(w)},m)$$
+for some $m$.  Here, $h$ is a halt state (either an accept or a reject state), and $\tau_w$ for any word $w$ is defined as the tape description such that the content of the $i$-th square is the $i$-th letter of $w$, and blank everywhere else.
+
+Because of the fact that all types of Turing machines (deterministic,
+non-deterministic, single head, multiple head, etc.) all have the same
+computational power, it does not matter which type of Turing machine
+one uses in the definition.
+
+It is not hard to find examples of Turing computable functions ---
+because Turing machines provide an idealized model for the operation
+of the digital computer, any function which can be evaluated by a
+computer provides an example.
+%%%%%
+%%%%%
+\end{document}

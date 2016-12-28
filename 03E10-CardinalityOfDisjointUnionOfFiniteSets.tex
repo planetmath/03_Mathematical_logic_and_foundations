@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CardinalityOfDisjointUnionOfFiniteSets}
+\pmcreated{2013-03-22 16:31:05}
+\pmmodified{2013-03-22 16:31:05}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{cardinality of disjoint union of finite sets}
+\pmrecord{17}{38696}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+%\pmkeywords{cardinality}
+%\pmkeywords{disjoint union}
+%\pmkeywords{composition}
+%\pmkeywords{finite set}
+\pmrelated{Cardinality}
+\pmrelated{Bijection}
+\pmrelated{DisjointUnion}
+\pmrelated{Function}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\theoremstyle{plain}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{lem}{Lemma}
+\newtheorem*{cor}{Corollary}
+
+
+\begin{document}
+To begin we will need a lemma. 
+\begin{lem}
+Suppose $A$, $B$, $C$, and $D$ are sets, with $A\cap B=C\cap D=\emptyset$, and suppose there exist bijective maps $f_1:A\rightarrow C$ and $f_2:B\rightarrow D$. Then 
+there exists a bijective map from $A\cup B$ to $C\cup D$. 
+\end{lem}
+\begin{proof}
+Define the map $g:A\cup B\rightarrow C\cup D$ by 
+\begin{equation}
+g(x)=
+\begin{cases}
+f_1(x)&\text{if }x\in A\\
+f_2(x)&\text{if }x\in B
+\end{cases}\text{.}
+\end{equation}
+To see that $g$ is injective, let $x_1,x_2\in A\cup B$, where $x_1\neq x_2$. If $x_1,x_2\in A$, then by the injectivity of $f_1$ we have
+\begin{equation}
+g(x_1)=f_1(x_1)\neq f_1(x_2)=g(x_2)\text{.}
+\end{equation}
+Similarly if $x_1,x_2\in B$, $g(x_1)\neq g(x_2)$ by the injectivity of $f_2$. If $x_1\in A$ and $x_2\in B$, then $g(x_1)=f_1(x_1)\in C$, while $g(x_2)=f_2(x_2)\in D$, whence $g(x_1)\neq g(x_2)$ because $C$ and $D$ are disjoint. If $x_1\in B$ and $x_2\in A$, then $g(x_1)\neq g(x_2)$ by the same reasoning. Thus $g$ is injective. To see that $g$ is surjective, let $y\in C\cup D$. If $y\in C$, then by the surjectivity of $f_1$ there exists some $x\in A$ such that $f_1(x)=y$, hence $g(x)=y$. Similarly if $y\in D$, by the surjectivity of $f_2$ there exists some $x\in B$ such that $f_2(x)=y$, hence $g(x)=y$. Thus $g$ is surjective. 
+\end{proof}
+\begin{thm}
+If $A$ and $B$ are finite sets with $A\cap B=\emptyset$, then $\mid A\cup B\mid=\mid A\mid +\mid B\mid$. 
+\end{thm}
+\begin{proof}
+Let $A$ and $B$ be finite, disjoint sets.
+If either $A$ or $B$ is empty, the result holds trivially, so suppose $A$ and $B$ are nonempty with $\mid A\mid=n\in\mathbb{N}$ and $\mid B\mid=m\in\mathbb{N}$. Then there exist bijections $f:\mathbb{N}_n\rightarrow A$ and $g:\mathbb{N}_m\rightarrow B$. Define $h:\mathbb{N}_n\rightarrow \mathbb{N}_{n+m}\setminus\mathbb{N}_m$ by $h(i)=m+i$ for each $i\in\mathbb{N}_n$. To see that $h$ is injective, let $i_1,i_2\in\mathbb{N}$, and suppose $h(i_1)=h(i_2)$. Then $m+i_1=m+i_2$, whence $i_1=i_2$. Thus $h$ is injective. To see that $h$ is surjective, let $k\in\mathbb{N}_{n+m}\setminus\mathbb{N}_m$. By construction, $m+1\leq k\leq m+n$, and consequently $1\leq k-m\leq n$, so $k-m\in\mathbb{N}_n$; therefore we may take $i=k-m$ to have $h(i)=k$, so $h$ is surjective. Then, again by construction, the composition $f\circ h^{-1}$ is a bijection from $\mathbb{N}_{n+m}\setminus\mathbb{N}_m$ to $A$, and as such, by the preceding lemma, the map $\phi:\mathbb{N}_{n+m}\setminus\mathbb{N}_m\cup\mathbb{N}_m\rightarrow A\cup B$ defined by 
+\begin{equation}
+\phi(i)=
+\begin{cases}
+(f\circ h^{-1})(i)&\text{if }i\in\mathbb{N}_{n+m}\setminus\mathbb{N}_m\\
+g(i)&\text{if }i\in\mathbb{N}_m
+\end{cases}\text{,}
+\end{equation}
+is a bijection. Of course, the domain of $\phi$ is simply $\mathbb{N}_{n+m}$, so $\mid A\cup B\mid=n+m$, as asserted.
+\end{proof}
+\begin{cor}
+Let $\{A_k\}_{k=1}^n$ be a family of mutually disjoint, finite sets. Then $\mid\bigcup_{k=1}^nA_k\mid=\sum_{k=1}^n\mid A_k\mid$. 
+\end{cor}
+\begin{proof}
+We proceed by induction on $n$. In the case $n=2$, the the preceding result applies, so let $n\geq 2\in\mathbb{N}$, and suppose 
+$\mid\bigcup_{k=1}^nA_k\mid=\sum_{k=1}^n\mid A_k\mid$. Then by our inductive hypothesis and the preceding result, we have
+\begin{equation}
+\bigg\vert\bigcup_{k=1}^{n+1}A_k\bigg\vert=\bigg\vert\bigcup_{k=1}^nA_k\cup A_{n+1}\bigg\vert
+=\bigg\vert\bigcup_{k=1}^nA_k\bigg\vert+\mid A_{n+1}\mid
+=\sum_{k=1}^n\mid A_k\mid+\mid A_{n+1}\mid=\sum_{k=1}^{n+1}\mid A_k\mid\text{.}
+\end{equation}
+Thus the result holds for $n+1$, and by the principle of induction, for all $n$. 
+\end{proof}
+
+
+
+
+
+
+%%%%%
+%%%%%
+\end{document}

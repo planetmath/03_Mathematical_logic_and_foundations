@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AutomaticPresentation}
+\pmcreated{2013-03-22 14:16:57}
+\pmmodified{2013-03-22 14:16:57}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{automatic presentation}
+\pmrecord{8}{35736}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{03C57}
+\pmsynonym{automatic structure}{AutomaticPresentation}
+\pmsynonym{FA presentation}{AutomaticPresentation}
+%\pmkeywords{automata}
+%\pmkeywords{structure}
+%\pmkeywords{computability}
+%\pmkeywords{decidable}
+\pmrelated{AutomaticGroup}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+Let $S$ be a relational structure (for example, a graph).
+
+$S$ has an \emph{automatic presentation} if (for some alphabet $\Sigma$) there is a language $L\subseteq \Sigma^*$ and a surjective map $f$ from $L$ onto the \PMlinkescapetext{domain (universe}) of $S$ such that
+\begin{itemize}
+\item $L$ can be checked by a \PMlinkname{finite automaton}{DeterministicFiniteAutomaton} (Membership)
+\item The language of all convolutions of $x,y\in L$ where $f(x)=f(y)$ can be checked by a \PMlinkescapetext{finite automaton} (Equality)
+\item For all $n$-ary \PMlinkname{relations}{Relation} $R_i$ in $S$, the language of all convolutions of $x_1,x_2,\ldots,x_n\in L$ where $R_i(f(x_1),f(x_2),\ldots,f(x_n))$ can be checked by a \PMlinkescapetext{finite automaton} (\PMlinkescapetext{Relations})
+\end{itemize}
+
+The class of languages accepted by finite automata, i.e. regular languages, is closed under operations like union, intersection, complementation etc, and it is decidable whether or not a finite \PMlinkescapetext{automaton} accepts the empty language.  This allows any first order sentence over the structure to be decided - using union for 'and', complementation for 'not' etc., and emptiness for dealing with 'there exists'.  As such, the first order theory of any structure with an automatic presentation is decidable.
+
+Note that wrt group \PMlinkescapetext{theory} this is inspired by, but not \PMlinkescapetext{equivalent} to, the definition of automatic groups.
+%%%%%
+%%%%%
+\end{document}

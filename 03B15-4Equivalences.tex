@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{4Equivalences}
+\pmcreated{2013-11-17 22:49:15}
+\pmmodified{2013-11-17 22:49:15}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{4. Equivalences}
+\pmrecord{2}{87662}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\htpy}{\sim}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\qinv}{\ensuremath{\mathsf{qinv}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+
+We now study in more detail the notion of \emph{equivalence of types} that was introduced briefly in \PMlinkname{\S 2.4}{24homotopiesandequivalences}.
+Specifically, we will give several different ways to define a type $\isequiv(f)$ having the properties mentioned there.
+Recall that we wanted $\isequiv(f)$ to have the following properties, which we restate here:
+\begin{enumerate}
+\item $\qinv(f) \to \isequiv (f)$.\label{item:beb1}
+\item $\isequiv (f) \to \qinv(f)$.\label{item:beb2}
+\item $\isequiv(f)$ is a mere proposition.\label{item:beb3}
+\end{enumerate}
+Here $\qinv(f)$ denotes the type of quasi-inverses to $f$:
+\begin{equation*}
+  \sm{g:B\to A} \big((f \circ g \htpy \idfunc[B]) \times (g\circ f \htpy \idfunc[A])\big).
+\end{equation*}
+By function extensionality, it follows that $\qinv(f)$ is equivalent to the type
+\begin{equation*}
+  \sm{g:B\to A} \big((f \circ g = \idfunc[B]) \times (g\circ f = \idfunc[A])\big).
+\end{equation*}
+We will define three different types having properties~\ref{item:beb1}--\ref{item:beb3}, which we call
+\begin{itemize}
+\item half adjoint equivalences,
+\item bi-invertible maps,
+  \index{function!bi-invertible}
+  and
+\item contractible functions.
+\end{itemize}
+We will also show that all these types are equivalent.
+These names are intentionally somewhat cumbersome, because after we know that they are all equivalent and have properties~\ref{item:beb1}--\ref{item:beb3}, we will revert to saying simply ``equivalence'' without needing to specify which particular definition we choose.
+But for purposes of the comparisons in this chapter, we need different names for each definition.
+
+Before we examine the different notions of equivalence, however, we give a little more explanation of why a different concept than quasi-invertibility is needed.
+
+
+\end{document}

@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{852TheHopfConstruction}
+\pmcreated{2013-11-06 14:24:49}
+\pmmodified{2013-11-06 14:24:49}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.5.2 The Hopf construction}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\susp}{\Sigma}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{8.5.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.5.\arabic{mathcount}}
+\let\autoref\cref
+
+\begin{document}
+\begin{defn}
+  An \define{H-space}
+  \indexdef{H-space}%
+  consists of
+  \begin{itemize}
+  \item a type $A$,
+  \item a base point $e:A$,
+  \item a binary operation $\mu:A\times A\to A$, and
+  \item for every $a:A$, equalities $\mu(e,a)=a$ and $\mu(a,e)=a$.
+  \end{itemize}
+\end{defn}
+
+\begin{lem}
+  Let $A$ be a connected H-space. Then for every $a:A$, the maps $\mu(a,\blank):A\to
+  A$ and $\mu(\blank,a):A\to A$ are equivalences.
+\end{lem}
+
+\begin{proof}
+  Let us prove that for every $a:A$ the map $\mu(a,\blank)$ is an equivalence. The
+  other statement is symmetric.
+  %
+  The statement that $\mu(a,\blank)$ is an equivalence corresponds to a type family
+  $P:A\to\prop$ and proving it corresponds to finding a section of this type
+  family.
+
+  The type $\prop$ is a set (\autoref{thm:hleveln-of-hlevelSn}) hence we can
+  define a new type family $P':\trunc0A\to\prop$ by $P'(\tproj0a)\defeq
+  P(a)$. But $A$ is connected by assumption, hence $\trunc0A$ is
+  contractible. This implies that in order to find a section of $P'$, it is
+  enough to find a point in the fiber of $P'$ over $\tproj0e$. But we have
+  $P'(\tproj0e)=P(e)$ which is inhabited because $\mu(e,\blank)$ is equal to the
+  identity map by definition of an H-space, hence is an equivalence.
+
+  We have proved that for every $x:\trunc0A$ the proposition $P'(x)$ is true,
+  hence in particular for every $a:A$ the proposition $P(a)$ is true because
+  $P(a)$ is $P'(\tproj0a)$.
+\end{proof}
+
+\begin{defn}
+  Let $A$ be a connected H-space. We define a fibration over $\susp A$ using
+  \autoref{lem:fibration-over-pushout}.
+
+  Given that $\susp A$ is the pushout $\unit\sqcup^A\unit$, we can define a
+  fibration over $\susp A$ by specifying
+  \begin{itemize}
+  \item two fibrations over $\unit$ (i.e. two types $F_1$ and $F_2$), and
+  \item a family $e:A\to(\eqv{F_1}{F_2})$ of equivalences between
+    $F_1$ and $F_2$, one for every element of $A$.
+  \end{itemize}
+  %
+  We take $A$ for $F_1$ and $F_2$, and for $a:A$ we take the equivalence
+  $\mu(a,\blank)$ for $e(a)$.
+\end{defn}
+
+According to \autoref{lem:fibration-over-pushout}, we have the following
+diagram:
+%
+\[\xymatrix{A \ar@{->>}[d] & A \times A \ar[l]_-{\proj2} \ar@{->>}_{\proj1}[d]
+  \ar[r]^-{\mu} & A \ar@{->>}[d] \\
+  1 & A \ar[r] \ar[l] & 1}\]
+%
+and the fibration we just constructed is a fibration over $\susp A$ whose total
+space is the pushout of the top line.
+
+Moreover, with $f(x,y)\defeq(\mu(x,y),y)$ we have the following diagram:
+%
+\[\xymatrix{A \ar_\idfunc[d] & A \times A \ar[l]_-{\proj2} \ar^f[d]
+  \ar[r]^-{\mu} & A \ar^\idfunc[d] \\
+  A & A\times A \ar^-{\proj2}[l] \ar_-{\proj1}[r] & A}\]
+%
+The diagram commutes and the three vertical maps are equivalences, the inverse
+of $f$ being the function $g$ defined by
+\[g(u,v)\defeq(\opp{\mu(\blank,v)}(u),v).\]
+%
+This shows that the two lines are equivalent (hence equal) spans, so the total
+space of the fibration we constructed is equivalent to the pushout of the bottom
+line.
+And by definition, this latter pushout is the \emph{join} of $A$ with itself (see \autoref{sec:colimits}).
+%
+We have proven:
+
+\begin{lem}\label{lem:hopf-construction}
+  Given a connected H-space $A$, there is a fibration, called the
+  \define{Hopf construction},
+  \indexdef{Hopf!construction}%
+  over $\susp A$ with fiber $A$ and total space $A*A$.
+\end{lem}
+
+
+\end{document}

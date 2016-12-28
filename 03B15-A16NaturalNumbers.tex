@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A16NaturalNumbers}
+\pmcreated{2013-11-09 5:01:22}
+\pmmodified{2013-11-09 5:01:22}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.1.6 Natural numbers}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\suc}{\mathsf{succ}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\makeatother
+
+\begin{document}
+The type of natural numbers is obtained by introducing primitive constants
+$\N$, $0$, and $\suc$ with the following rules:
+%
+\begin{itemize}
+  \item $\N : \UU_0$,
+  \item $0:\N$,
+  \item $\suc:\N\rightarrow \N$.
+\end{itemize}
+%
+Furthermore, we can define functions by primitive recursion. If we have
+$C : \N \rightarrow \UU_k $ we can introduce a defined constant $f:\tprd{x:\N}C(x)$ whenever we have
+%
+\begin{align*}
+  d & : C(0) \\
+  e & : \tprd{x:\N}(C(x)\rightarrow C(\suc (x)))
+\end{align*}
+%
+with the defining equations
+%
+\begin{equation*}
+  f(0) \defeq d
+  \qquad\text{and}\qquad
+  f(\suc (x)) \defeq e(x,f(x)).
+\end{equation*}
+
+
+\end{document}

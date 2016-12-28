@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{85TheHopfFibration}
+\pmcreated{2013-11-06 14:19:59}
+\pmmodified{2013-11-06 14:19:59}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.5 The Hopf fibration}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\Sn}{\mathbb{S}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{8.5.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{8.5.\arabic{mathcount}}
+\let\autoref\cref
+
+\begin{document}
+
+In this section we will define the \define{Hopf fibration}.
+\indexdef{Hopf!fibration}%
+
+\begin{thm}[Hopf Fibration]\label{thm:hopf-fibration}
+There is a fibration $H$ over $\Sn ^2$ whose fiber over the basepoint is $\Sn ^1$ and
+whose total space is $\Sn ^3$.
+\end{thm}
+
+The Hopf fibration will allow us to compute several homotopy groups of
+spheres.
+Indeed, it yields the following long exact sequence
+\index{homotopy!group!of sphere}
+\index{sequence!exact}
+of homotopy groups
+(see
+\autoref{sec:long-exact-sequence-homotopy-groups}):
+%
+\[
+\xymatrix@R=1.2pc{
+  \pi_k(\Sn^1) \ar[r] & \pi_k(\Sn^3) \ar[r] & \pi_k(\Sn^2) \ar[lld] \\
+  \vdots & \vdots & \vdots \ar[lld] \\
+  \pi_2(\Sn^1) \ar[r] & \pi_2(\Sn^3) \ar[r] & \pi_2(\Sn^2) \ar[lld] \\
+  \pi_1(\Sn^1) \ar[r] & \pi_1(\Sn^3) \ar[r] & \pi_1(\Sn^2)}
+\]
+%
+We've already computed all $\pi_n(\Sn^1)$, and $\pi_k(\Sn^n)$ for $k<n$, so this
+becomes the following:
+%
+\[
+\xymatrix@R=1.2pc{
+  0 \ar[r] & \pi_k(\Sn^3) \ar[r] & \pi_k(\Sn^2) \ar[lld] \\
+  \vdots & \vdots & \vdots \ar[lld] \\
+  0 \ar[r] & \pi_3(\Sn^3) \ar[r] & \pi_3(\Sn^2) \ar[lld] \\
+  0 \ar[r] & 0 \ar[r] & \pi_2(\Sn^2) \ar[lld] \\
+  \Z \ar[r] & 0 \ar[r] & 0}
+\]
+%
+In particular we get the following result:
+
+\begin{cor} \label{cor:pis2-hopf}
+  We have $\eqv{\pi_2(\Sn^2)}{\Z}$ and $\eqv{\pi_k(\Sn^3)}{\pi_k(\Sn^2)}$ for
+  every $k\ge3$ (where the map is induced by the Hopf fibration, seen as a map
+  from the total space $\Sn^3$ to the base space $\Sn^2$).
+\end{cor}
+
+In fact, we can say more: the fiber sequence of the Hopf fibration will show that $\Omega^3(\Sn^3)$ is the fiber of a map from $\Omega^3(\Sn^2)$ to $\Omega^2(\Sn^1)$.
+Since $\Omega^2(\Sn^1)$ is contractible, we have $\eqv{\Omega^3(\Sn^3)}{\Omega^3(\Sn^2)}$.
+In classical homotopy theory, this fact would be a consequence of \autoref{cor:pis2-hopf} and Whitehead's theorem, but Whitehead's theorem is not necessarily valid in homotopy type theory (see \autoref{sec:whitehead}).
+We will not use the more precise version here though.
+
+
+\end{document}

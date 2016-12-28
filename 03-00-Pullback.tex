@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Pullback}
+\pmcreated{2013-03-22 13:50:04}
+\pmmodified{2013-03-22 13:50:04}
+\pmowner{matte}{1858}
+\pmmodifier{matte}{1858}
+\pmtitle{pullback}
+\pmrecord{14}{34569}
+\pmprivacy{1}
+\pmauthor{matte}{1858}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-00}
+\pmrelated{InclusionMapping}
+\pmrelated{RestrictionOfAFunction}
+\pmrelated{PullbackOfAKForm}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+%%\usepackage{xypic}
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newcommand{\sR}[0]{\mathbb{R}}
+\newcommand{\sC}[0]{\mathbb{C}}
+\newcommand{\sN}[0]{\mathbb{N}}
+\newcommand{\sZ}[0]{\mathbb{Z}}
+
+% The below lines should work as the command
+% \renewcommand{\bibname}{References}
+% without creating havoc when rendering an entry in 
+% the page-image mode.
+\makeatletter
+\@ifundefined{bibname}{}{\renewcommand{\bibname}{References}}
+\makeatother
+
+\newcommand*{\norm}[1]{\lVert #1 \rVert}
+\newcommand*{\abs}[1]{| #1 |}
+\begin{document}
+{\bf Definition}
+Suppose $X,Y,Z$ are sets, and we have maps
+\begin{eqnarray*}
+ f\colon Y&\to& Z, \\
+ \Phi\colon X&\to& Y.
+\end{eqnarray*}
+Then the {\bf pullback} of $f$ under $\Phi$ is the mapping
+\begin{eqnarray*}
+\Phi^\ast f\colon  X &\to& Z, \\
+             x&\mapsto& (f\circ\Phi)(x).
+\end{eqnarray*}
+
+Let us denote by $M(X,Y)$ the set of all mappings $f\colon X\to Y$.
+We then see that $\Phi^\ast$ is a mapping $M(Y,Z)\to M(X,Z)$.
+In other words, $\Phi^\ast$ pulls back the set where $f$ is 
+defined on from $Y$ to $X$. This is illustrated in the below diagram.
+$$
+\xymatrix{
+ X \ar[r]^\Phi\ar[dr]_{\Phi^\ast f} & Y \ar[d]_{f} \\
+  &  Z 
+ }
+$$
+
+\subsubsection{Properties}
+\begin{enumerate}
+\item For any set $X$,
+ $(\operatorname{id}_X)^\ast = \operatorname{id}_{M(X,X)}$.
+\item Suppose we have maps
+\begin{eqnarray*}
+ \Phi\colon X&\to& Y, \\
+ \Psi\colon Y&\to& Z
+\end{eqnarray*}
+between sets $X,Y,Z$. Then
+$$ (\Psi\circ \Phi)^\ast = \Phi^\ast \circ \Psi^\ast.$$
+\item If $\Phi\colon X\to Y$ is a bijection, then
+$\Phi^\ast$ is a bijection and
+$$
+  \big(\Phi^\ast\big)^{-1} = \big(\Phi^{-1}\big)^\ast.
+$$
+\item Suppose $X,Y$ are sets with $X\subset Y$. 
+Then we have the inclusion map $\iota:X\hookrightarrow Y$, and 
+for any $f\colon Y\to Z$, we have 
+$$ 
+  \iota^\ast f = f|_X,
+$$
+where $f|_X$ is the \PMlinkname{restriction}{RestrictionOfAFunction} of $f$ to $X$. 
+\end{enumerate}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chapter4Notes}
+\pmcreated{2013-11-18 1:07:49}
+\pmmodified{2013-11-18 1:07:49}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{Chapter 4 Notes}
+\pmrecord{2}{87672}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\iscontr}{\ensuremath{\mathsf{isContr}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\qinv}{\ensuremath{\mathsf{qinv}}}
+\newcommand{\sectionNotes}{\phantomsection\section*{Notes}\addcontentsline{toc}{section}{Notes}\markright{\textsc{\@chapapp{} \thechapter{} Notes}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+The fact that the space of continuous maps equipped with quasi-inverses has the wrong homotopy type to be the ``space of homotopy equivalences'' is well-known in algebraic topology.
+In that context, the ``space of homotopy equivalences'' $(\eqv AB)$ is usually defined simply as the subspace of the function space $(A\to B)$ consisting of the functions that are homotopy equivalences.
+In type theory, this would correspond most closely to $\sm{f:A\to B} \brck{\qinv(f)}$; see \PMlinkexternal{Exercise 3.11}{http://planetmath.org/node/87824}.
+
+The first definition of equivalence given in homotopy type theory was the one that we have called $\iscontr(f)$, which was due to Voevodsky.
+The possibility of the other definitions was subsequently observed by various people.
+The basic theorems about adjoint equivalences\index{adjoint!equivalence} such as \PMlinkname{Lemma 4.2.2}{42halfadjointequivalences#Thmprelem1},\PMlinkname{Theorem 4.2.3}{42halfadjointequivalences#Thmprethm1} are adaptations of standard facts in higher category theory and homotopy theory.
+Using bi-invertibility as a definition of equivalences was suggested by Andr\'e Joyal.
+
+The properties of equivalences discussed in \PMlinkname{\S 4.6}{46surjectionsandembeddings},\PMlinkname{\S 4.7}{47closurepropertiesofequivalences} are well-known in homotopy theory.
+Most of them were first proven in type theory by Voevodsky.
+
+The fact that every function is equivalent to a fibration is a standard fact in homotopy theory.
+The notion of object classifier
+\index{object!classifier}%
+\index{classifier!object}%
+in $(\infty,1)$-category
+\index{.infinity1-category@$(\infty,1)$-category}%
+theory (the categorical analogue of \PMlinkname{Theorem 4.8.3}{48theobjectclassifier#Thmprethm1}) is due to Rezk (see~\cite{Rezk05},\cite{lurie:higher-topoi}).
+
+Finally, the fact that univalence implies function extensionality (\PMlinkname{\S 4.9}{49univalenceimpliesfunctionextensionality}) is due to Voevodsky.
+Our proof is a simplification of his.
+
+\begin{thebibliography}{99}
+
+\bibitem{lurie:higher-topoi} {Jacob Lurie}, \emph{{Higher topos theory}}  {Princeton University Press},{2009}
+
+\bibitem{Rezk05} {Charles Rezk}. {Toposes and homotopy toposes}. {\url{http://www.math.uiuc.edu/~rezk/homotopy-topos-sketch.pdf}}, 2005.
+
+\end{thebibliography}
+
+\end{document}

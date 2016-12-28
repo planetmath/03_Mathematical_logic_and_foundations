@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{IteratedForcing}
+\pmcreated{2013-03-22 12:54:47}
+\pmmodified{2013-03-22 12:54:47}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{iterated forcing}
+\pmrecord{5}{33264}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E35}
+\pmclassification{msc}{03E40}
+\pmdefines{FS}
+\pmdefines{CS}
+\pmdefines{finite support}
+\pmdefines{finite support iterated forcing}
+\pmdefines{countable support}
+\pmdefines{countable support iterated forcing}
+\pmdefines{support iterated forcing}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+We can define an \emph{iterated forcing} of length $\alpha$ by induction as follows:
+
+Let $P_0=\emptyset$.
+
+Let $\hat{Q}_0$ be a forcing notion.
+
+For $\beta\leq\alpha$, $P_\beta$ is the set of all functions $f$ such that $\operatorname{dom}(f)\subseteq\beta$ and for any $i\in\operatorname{dom}(f)$, $f(i)$ is a $P_i$-name for a member of $\hat{Q}_i$.  Order $P_\beta$ by the rule $f\leq g$ iff $\operatorname{dom}(g)\subseteq\operatorname{dom}(f)$ and for any $i\in\operatorname{dom}(f)$, $g\upharpoonright i\Vdash f(i)\leq_{\hat{Q}_i}g(i)$.  (Translated, this means that any generic subset including $g$ restricted to $i$ forces that $f(i)$, an element of $\hat{Q}_i$, be less than $g(i)$.)
+
+For $\beta<\alpha$, $\hat{Q}_\beta$ is a forcing notion in $P_\beta$ (so $\Vdash_{P_\beta} \hat{Q}_\beta$\texttt{ is a forcing notion}).
+
+Then the sequence $\langle \hat{Q}_\beta\rangle_{\beta<\alpha}$ is an iterated forcing.
+
+If $P_\beta$ is restricted to finite functions that it is called a \emph{finite support iterated forcing} (FS), if $P_\beta$ is restricted to countable functions, it is called a \emph{countable support iterated function} (CS), and in general if each function in each $P_\beta$ has size less than $\kappa$ then it is a \emph{$<\kappa$-support iterated forcing}.
+
+Typically we construct the sequence of $\hat{Q}_\beta$'s by induction, using a function $F$ such that $F(\langle \hat{Q}_\beta\rangle_{\beta<\gamma})=\hat{Q}_\gamma$.
+%%%%%
+%%%%%
+\end{document}

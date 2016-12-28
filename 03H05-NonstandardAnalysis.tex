@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{NonstandardAnalysis}
+\pmcreated{2013-03-22 16:28:26}
+\pmmodified{2013-03-22 16:28:26}
+\pmowner{PrimeFan}{13766}
+\pmmodifier{PrimeFan}{13766}
+\pmtitle{non-standard analysis}
+\pmrecord{13}{38638}
+\pmprivacy{1}
+\pmauthor{PrimeFan}{13766}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03H05}
+\pmsynonym{nonstandard analysis}{NonstandardAnalysis}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+{\em Non-standard analysis} is a branch of mathematics that formulates analysis using a rigorous notion of infinitesimal, where an element of an ordered field $F$ is infinitesimal if and only if its absolute value is smaller than any element of $F$ of the form $\frac{1}{n}$, for $n$ a natural number. Ordered fields that have infinitesimal elements are also called non-Archimedean. More generally, non-standard analysis is any form of mathematics that relies on non-standard models and the transfer principle. A field which satisfies the transfer principle for real numbers is a hyperreal field, and non-standard real analysis uses these fields as non-standard models of the real numbers.
+
+Non-standard analysis was introduced in the early 1960s by the mathematician Abraham Robinson. Robinson's original approach was based on these non-standard models of the field of real numbers. His classic foundational book on the subject {\it Non-standard Analysis} was published in 1966 and is still in print.
+
+Several technical issues must be addressed to develop a calculus of infinitesimals. For example, it is not enough to construct an ordered field with infinitesimals. See the article on hyperreal numbers for a discussion of some of the relevant ideas.
+
+Given any set $S$, the superstructure over a set $S$ is the set $V(S)$ defined by the conditions
+
+$$V_0(\mathbf{S}) = \mathbf{S}$$
+
+$$V_{n+1}(\mathbf{S}) =V_{n}(\mathbf{S}) \cup 2^{V_{n}(\mathbf{S})}$$
+
+$$V(\mathbf{S}) = \bigcup_{n \in \mathbb{N}} V_{n}(\mathbf{S})$$
+
+Thus the superstructure over $S$ is obtained by starting from $S$ and iterating the operation of adjoining the power set of $S$ and taking the union of the resulting sequence. The superstructure over the real numbers includes a wealth of mathematical structures: For instance, it contains isomorphic copies of all separable metric spaces and metrizable topological vector spaces. Virtually all of mathematics that interests an analyst goes on within $V(R)$.
+
+The working view of nonstandard analysis is a set $*R$ and a mapping 
+$$ *: V(\mathbb{R}) \rightarrow V(*\mathbb{R}) $$
+which satisfies some additional properties.  $*\mathbb{R}$ is of course embedded in $\mathbb{R}$.
+
+To formulate these principles we state first some definitions:
+A formula has bounded quantification if and only if the only
+quantifiers which occur in the formula have range restricted over sets, that is are all of the form:
+
+$$ \forall x \in A, \Phi(x, \alpha_1, \ldots, \alpha_n) $$
+$$ \exists x \in A, \Phi(x, \alpha_1, \ldots, \alpha_n) $$
+
+For example, the formula
+
+$$ \forall x \in A, \ \exists y \in 2^B, \ x \in y $$
+has bounded quantification, the universally quantified variable $x$ ranges over $A$, the existentially quantified variable $y$ ranges over the powerset of $B$. On the other hand, 
+$$ \forall x \in A, \ \exists y, \ x \in y $$
+does not have bounded quantification because the quantification of $y$ is unrestricted.
+
+A set $x$ is internal if and only if x is an element of $*A$ for some element 
+$A$ of $V(R)$. $*A$ itself is internal if $A$ belongs to $V(R)$.
+
+We now formulate the basic logical framework of nonstandard analysis:
+ Extension principle: The mapping $*$ is the identity on $R$.
+
+Transfer principle: For any formula $P(x_1, \ldots, x_n)$ with bounded quantification and with free variables $x_1, \ldots, x_n$, and for any elements $A_1, \ldots, A_n$ of $V(R)$, the following equivalence holds: 
+:$$P(A_1, \ldots, A_n) \iff P(*A_1, \ldots, *A_n) $$
+
+Countable saturation: If ${A_k}_k$ is a decreasing sequence of nonempty internal sets, with $k$ ranging over the natural numbers, then 
+:$$\bigcap_k A_k \neq \emptyset $$
+
+One can show using ultraproducts that such a map * exists. Elements of $V(R)$ are called standard. Elements of $*R$ are called hyperreal numbers.
+
+The symbol $*N$ denotes the nonstandard natural numbers. By the extension principle, this is a superset of $N$. The set $*N - N$ is not empty. To see this, apply countable saturation to the sequence of internal sets
+
+$$ A_k = \{k \in *\mathbb{N}: k \geq n\} $$
+
+The sequence ${A_k}_k$ is in $N$ has a non-empty intersection, proving the result.
+
+We begin with some definitions: Hyperreals $r$, $s$ are infinitely close if and only if 
+
+$$ r \cong s \iff \forall \theta \in \mathbb{R}^+, \ |r - s| \leq \theta$$
+
+A hyperreal $r$ is infinitesimal if and only if it is infinitely close to 0. $r$ is limited or bounded if and only if its absolute value is dominated by a standard integer.
+The bounded hyperreals form a subring of $*R$ containing the reals. In this ring, the infinitesimal hyperreals are an ideal. For example, if $n$ is an element of $*N - N$, then ${1 \over n}$ is an infinitesimal.
+
+The set of bounded hyperreals or the set of infinitesimal hyperreals are external subsets of $V(*R)$; what this means in practice is that bounded quantification, where the bound is an internal set, never ranges over these sets.
+
+{\it This entry was adapted from the Wikipedia article \PMlinkexternal{Non-standard analysis}{http://en.wikipedia.org/wiki/Nonstandard_analysis} as of December 19, 2006.}
+%%%%%
+%%%%%
+\end{document}

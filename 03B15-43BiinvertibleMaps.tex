@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{43BiinvertibleMaps}
+\pmcreated{2013-11-17 23:10:56}
+\pmmodified{2013-11-17 23:10:56}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{4.3 Bi-invertible maps}
+\pmrecord{2}{87665}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\biinv}{\ensuremath{\mathsf{biinv}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\ishae}{\ensuremath{\mathsf{ishae}}}
+\newcommand{\linv}{\ensuremath{\mathsf{linv}}}
+\newcommand{\qinv}{\ensuremath{\mathsf{qinv}}}
+\newcommand{\rinv}{\ensuremath{\mathsf{rinv}}}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{4.3.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{4.3.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{4.3.\arabic{mathcount}}
+\let\autoref\cref
+
+\begin{document}
+
+\index{function!bi-invertible|(defstyle}%
+\index{bi-invertible function|(defstyle}%
+\index{equivalence!as bi-invertible function|(defstyle}%
+
+Using the language introduced in \PMlinkname{\S 4.2}{42halfadjointequivalences}, we can restate the definition proposed in \PMlinkname{\S 2.4}{24homotopiesandequivalences} as follows.
+
+\begin{defn}\label{defn:biinv}
+  We say $f:A\to B$ is \define{bi-invertible}
+  if it has both a left inverse and a right inverse:
+  \[ \biinv (f) \defeq \linv(f) \times \rinv(f). \]
+\end{defn}
+
+In \PMlinkname{\S 2.4}{24homotopiesandequivalences} we proved that $\qinv(f)\to\biinv(f)$ and $\biinv(f)\to\qinv(f)$.
+What remains is the following.
+
+\begin{thm}\label{thm:isprop-biinv}
+  For any $f:A\to B$, the type $\biinv(f)$ is a mere proposition.
+\end{thm}
+\begin{proof}
+  We may suppose $f$ to be bi-invertible and show that $\biinv(f)$ is contractible.
+  But since $\biinv(f)\to\qinv(f)$, by \PMlinkname{Lemma 4.2.9}{42halfadjointequivalences#Thmprelem4} in this case both $\linv(f)$ and $\rinv(f)$ are contractible, and the product of contractible types is contractible.
+\end{proof}
+
+Note that this also fits the proposal made at the beginning of \PMlinkname{\S 4.2}{42halfadjointequivalences}: we combine $g$ and $\eta$ into a contractible type and add an additional datum which combines with $\epsilon$ into a contractible type.
+The difference is that instead of adding a \emph{higher} datum (a 2-dimensional path) to combine with $\epsilon$, we add a \emph{lower} one (a right inverse that is separate from the left inverse).
+
+\begin{cor}\label{thm:equiv-biinv-isequiv}
+  For any $f:A\to B$ we have $\eqv{\biinv(f)}{\ishae(f)}$.
+\end{cor}
+\begin{proof}
+  We have $\biinv(f) \to \qinv(f) \to \ishae(f)$ and $\ishae(f) \to \qinv(f) \to \biinv(f)$.
+  Since both $\ishae(f)$ and $\biinv(f)$ are mere propositions, the equivalence follows from \PMlinkname{Lemma 3.3.3}{33merepropositions#Thmprelem2}.
+\end{proof}
+
+\index{function!bi-invertible|)}%
+\index{bi-invertible function|)}%
+\index{equivalence!as bi-invertible function|)}%
+
+
+\end{document}

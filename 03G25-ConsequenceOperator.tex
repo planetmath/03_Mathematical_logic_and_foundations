@@ -1,0 +1,237 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ConsequenceOperator}
+\pmcreated{2013-03-22 16:28:48}
+\pmmodified{2013-03-22 16:28:48}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{consequence operator}
+\pmrecord{40}{38646}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G25}
+\pmclassification{msc}{03G10}
+\pmclassification{msc}{03B22}
+\pmsynonym{closure operator}{ConsequenceOperator}
+\pmdefines{finitary consequence operator}
+\pmdefines{finite consequence operator}
+\pmdefines{algebraic consequence operator}
+\pmdefines{axiomatic consequence operator}
+\pmdefines{axiomless consequence operator}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+\section{Definition}
+
+Let $L$ be a set.  A \emph{consequence operator} on $L$ is a
+mapping\footnote{Here, ``$\mathcal{P}$'' denotes the power set and 
+$\mathcal{F}$ denotes the finite power set.} $C \colon \mathcal{P}(L) \to \mathcal{P}(L)$
+which satisfies the following three properties:
+\begin{enumerate}
+\item For all $X \subseteq L$, it happens that $X \subseteq C(X)$.
+\item $C \circ C = C$
+\item For all $X, Y \subseteq L$, if $X \subseteq Y$, then $C(X) \subseteq C(Y)$
+\end{enumerate}
+
+If, in addition, the following condition is satisfied, then a consequence operator $C$ is known as \emph{finitary }.  (Synonyms are ``finite consequence operator'' and ``algebraic consequence operator''.)
+\begin{itemize}
+\item For all $X \in L$, it happens that $C(X) = \bigcup\limits_{Y \in \mathcal{F} (X)} C(Y)$.
+\end{itemize}
+It is worth noting that, if the above condition is satisfied, then the third
+condition of last paragraph becomes superfluous --- as shown in 
+\PMlinkid{an attachment}{ 8678}, it automatically follows 
+from conitions 1 and 2 of last paragraph and the condition stated above.
+
+A consequence operator $C$ such that $C(\emptyset) = \emptyset$ is called \emph{axiomless}.  A consequence operator $C$ such that $C(\emptyset) \not= \emptyset$ is called \emph{axiomatic}.
+
+\section{Motivation}
+
+Alfred Tarksi introduced consequence operators as a way of discussing the 
+notion of conclusions following from premises in a general fashion.  Suppose
+that the set $L$ consists of statements in some language.  Then, given a 
+set of statements $X$, let $C(X)$ be the set of all statements which can be
+inferred form statements of $X$.
+
+The defining properties of ``consequence operator'' given above then express
+some fundamental facts about the process of inferring conclusions from 
+premises:  Any statement can be concluded from itself.  If a statement $s$ 
+follows from a set of premises $X$ and $Y$ is a superset of $X$, then
+$s$ also follows from $Y$.  If one augments a set of premises by conclusions
+derived from those premises, then one can only draw conclusions from the 
+larger set which could have been drawn from the original set of premises.
+Note that these conditions hold for a large class of logics, not just 
+classical logic of  Aristotle, Boole, and Frege.  However, they do not hold 
+for all logics ---  in particular, there are the so-called nonmonotonic 
+logics in which it is not always the case that, if $X \subset Y$, then 
+$C(X) \subseteq C(Y)$.
+
+In terms of this usage in logic, it is easy to understand the origin of the
+terms "axiomatic" and "axiomless".   An axiom in a logical theory is a 
+statement which is assumed true without having to prove it from any other
+statement.  Hence, an axiom is a consequence of the empty set, so we call
+consequence operators which allow one to deduce conclusions from an empty
+set of premises axiomatic.
+
+The distinction of finitary consequence operators has to do with whether one
+is permitted to draw a conclusion from an infinite set of premises which
+could not be drawn from any finite subset thereof.  As for why one might
+want to do this, consider the following example.  Suppose $X$ consists of
+the following statements:
+\begin{itemize}
+\item $1 = 1^2$
+\item $2 = 1^2 + 1^2$
+\item $3 = 1^2 + 1^2 + 1^2$
+\item $4 = 2^2$
+\item $5 = 2^2 + 1^2$
+\item $6 = 2^2 + 1^2 + 1^2$
+\item $7 = 2^2 + 1^2 + 1^2 + 1^2$
+\item $8 = 2^2 + 2^2$
+\item $9 = 3^2$
+\item $10 = 3^2 + 1^2$
+\item $11 = 3^2 + 1^2 + 1^2$
+\item $12 = 2^2 + 2^2 + 2^2$
+\item $13 = 3^2 + 2^2$
+\item $14 = 3^2 + 2^2 + 1^2$
+\item $\cdots$
+\end{itemize}
+From $X$ one would like to be able to draw the conclusion ``Any positive
+integer can be expressed as the sum of at most four squares.''.  This 
+conclusion, however, cannot be inferred from any proper subset of $X$, in
+particular, from any finite subset of $X$.  To make this conclusion would
+require a consequence operator which is not finitary.
+
+\section{Examples}
+
+\begin{enumerate}
+\item
+To begin, there are two trivial consequence operators defined on any set.
+One is the identity operator $I \colon \mathcal{P}(L) \to \mathcal{P}(L)$ defined as $I(X) = X$.  The other is the constant operator $U \colon \mathcal{P}(L) \to \mathcal{P}(L)$ defined as $U(X) = L$.  It is perfectly
+straightforward to check that these two operators satisfy the defining 
+properties of consequence operator and, furthermore, that they are both
+finitary consequence operators and that $I$ is axiomless whilst $U$ is
+axiomatic.  Trivial though they may be, these operators play an important 
+role as exrtremal elements in the lattice of all consequence operators
+over a given set.
+\item
+Next, we consider some less trivial consequence operators which can be 
+defined over an arbitrary set.  Let $X$ and $Y$ be any two subsets of $L$.  
+Then we may define operators $C_\cap (X,Y) \colon \mathcal{P}(L) \to \mathcal{P}(L)$
+and $C_\cup (X,Y) \colon \mathcal{P}(L) \to \mathcal{P}(L)$ as follows:
+\begin{eqnarray*} C_\cap (X,Y)(Z) &=& \begin{cases} X \cup Z & Y \cap Z 
+\not= \emptyset \\ Z & Y \cap Z = \emptyset \end{cases} \\
+C_\cup (X,Y)(Z) &=& \begin{cases} X \cup Z & Y \cup Z = Z \\ Z & Y \cup Z 
+\not= Z \end{cases} \end{eqnarray*}
+It is shown that these are indeed consequence operators in an attachment to
+this entry.
+\item
+A much larger class of consequence operators may be defined as follows.
+Let $K$ be a subset of $\mathcal{P}(L)$ which includes $L$.  Then, as
+shown in an \PMlinkid{attachment}{8671}, the
+map $C \colon \mathcal{P}(L) \to \mathcal{P}(L)$, defined as
+\[C(X) = \cap \{ Y \in K \mid X \subseteq Y \},\]
+is a consequence operator.  As we shall see, all consequence operators
+can be obtained by this construction.  In particular, the examples discussed
+above can be obtained as follows:  To obtain $I$, set $K = \mathbf{P}(L)$; to
+obtain $U$, set $K = \{ L \}$; to obtain $C_\cap (X,Y)$, set
+\[ K = \{ Z \subseteq L \mid Y \cap Z = \emptyset \} \cup
+\{ X \cup Z \mid Z \subseteq L \,\land\, Y \cap Z \not= \emptyset \};\]
+to obtain $C_\cup (X,Y)$, set
+\[ K = \{ Z \subseteq L \mid Y \cup Z \not= \emptyset \} \cup
+\{ X \cup Z \mid Z \subseteq L \,\land\, Y \cup Z = \emptyset \}.\]
+\item
+Turning to more specific examples, we have the example which inspired the 
+definintion in the first place.  Let $L$ be a set of logical expressions
+constructed from some set of sentence letters and predicate letters and
+the usual connectives and quantifiers.  Given a subset $X \subseteq L$,
+let $C(X)$ be the set of all expressions $\psi$ for which there exists
+a finite set of expressions $\phi_1, \ldots, \phi_n$ such that
+$\ulcorner \phi_1 \land \cdots \land \phi_n \Rightarrow \psi \urcorner$
+is a tautology.  Note that this is a finitary consequence operator --- it
+does not enable one to make the sort of deductions from infinite sets
+of premises described above.
+\item
+This notion of consequence operator also applies to areas of mathematics
+other than logic.  For instance, suppose that $L$ is a vector space.  Then
+the operator which assigns to a subset of $L$ the vector subspace which it 
+spans is a consequence operator.  This particular consequence operator is
+finitary because if a vector $v$ belongs to the span of a set $X$, then
+$v$ can be expressed as a linear combination of a finite number of elements
+of $X$. 
+\item
+The closure operator in topology is a
+consequence operator.  It is worth pointing out that not every consequence
+operator can be expressed as the closure operator for some topology because
+the closure operator satisfies some extra conditions beyond those which 
+define consequence operators.  Typically, the closure operator is not 
+finitary because infinite subsets of topological spaces may have limit
+points.
+\end{enumerate}
+
+\section{Alternative Definition and Generalization}
+
+A consequence operator can be characterized by its fixed points.  Given 
+a consequence operator $C \colon \mathcal{P}(L) \to \mathcal{P}(L)$,
+set $K = \{ X \subseteq L \mid C(X) = X\}$.  By the second defining 
+property of consequence operator, we have  $K = \{ C(X) \mid X \in L\}$.
+One can show that 
+ \[C(X) = \cap \{ Y \in K \mid X \subseteq Y \}.\]
+
+Conversely, suppose that $K$ is a subset of $L$ with the following minimum property:  
+\begin{itemize} \item For every $X \in L$, there exists a $Y \in K$ such 
+that $X \subseteq Y$ and if, for any $Z \in K$, if $X \subseteq Z$, then 
+$Y \subseteq Z$. \end{itemize}
+Then the operator $C$ defined as
+ \[C(X) = \cap \{ Y \in K \mid X \subseteq Y \}\]
+is a consequence operator with $K$ as its set of fixed points.
+
+One may also define consequence operators in the more general context of
+a partially ordered set which may not be the power set of any set.  Suppose
+that $\langle S, \le \rangle$ is a partially ordered set.  Then we may define
+a consequence operator on this ordered set to be a map $C \colon S \to S$
+which satisfies the following three properties:
+\begin{enumerate}
+\item For all $X \in S$, it happens that $X \le C(X)$.
+\item $C \circ C = C$
+\item For all $X, Y \in S$, if $X \le Y$, then $C(X) \le C(Y)$
+\end{enumerate}
+
+Such more general consequence operators arise frequently when we restrict
+attention to distinguished subsets of a set.  As an example, we may consider 
+the following situation.  Let $S$ be the set of linear subspaces of a Banach
+space, ordered by inclusion.  Then the operator $C \colon S \to S$ which
+assigns to each subspace its Cauchy completion is a consequence operator.
+
+As an example which does not arise this way, let $S = \mathbb{R}$ with the
+usual order.  Then the ceiling function $\lceil \cdot \rceil \colon
+\mathbb{R} \to \mathbb{R}$ is a consequence operator.
+
+For another example, let $S$ be the set of all fields
+with a countable number of elements.  This set may be ordered as follows: 
+$E \le F$ if and only if there exists a non-trivial morphism of $E$ into $F$.  Then the operator which sends each field to its algebraic closure is a 
+consequence operator.
+%%%%%
+%%%%%
+\end{document}

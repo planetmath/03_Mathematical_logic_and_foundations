@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{GeneralizedQuantifier}
+\pmcreated{2013-03-22 12:59:57}
+\pmmodified{2013-03-22 12:59:57}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{generalized quantifier}
+\pmrecord{5}{33377}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C80}
+\pmclassification{msc}{03B15}
+\pmclassification{msc}{03B10}
+\pmrelated{quantifier}
+\pmrelated{Quantifier}
+\pmdefines{monadic}
+\pmdefines{polyadic}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+\emph{Generalized quantifiers} are an abstract way of defining quantifiers.
+
+The underlying principle is that formulas quantified by a generalized quantifier are true if the set of elements satisfying those formulas belong in some relation associated with the quantifier.
+
+Every generalized quantifier has an arity, which is the number of formulas it takes as arguments, and a type, which for an $n$-ary quantifier is a tuple of length $n$.  The tuple represents the number of quantified variables for each argument.
+
+The most common quantifiers are those of type $\langle 1\rangle$, including $\forall$ and $\exists$.  If $Q$ is a quantifier of type $\langle 1\rangle$, $M$ is the universe of a model, and $Q_M$ is the relation associated with $Q$ in that model, then $Qx\phi(x)\leftrightarrow \{x\in M\mid \phi(x)\}\in Q_M$.
+
+So $\forall_M=\{M\}$, since the quantified formula is only true when all elements satisfy it.  On the other hand $\exists_M=P(M)-\{\emptyset\}$.
+
+In general, the \emph{monadic} quantifiers are those of type $\langle 1,\ldots, 1\rangle$ and if $Q$ is an $n$-ary monadic quantifier then $Q_M\subseteq P(M)^n$.  H\"artig's quantifier, for instance, is $\langle 1,1\rangle$, and $I_M=\{\langle X,Y\rangle\mid X,Y\subseteq M\wedge |X|=|Y|\}$.
+
+A quantifier $Q$ is \emph{polyadic} if it is of type $\langle n_1,\ldots, n_n\rangle$ where each $n_i\in\mathbb{N}$.  Then:
+
+$$Q_M\subseteq \prod_{i} P(M^{n_i})$$
+
+These can get quite elaborate; $Wxy\phi(x,y)$ is a $\langle 2\rangle$ quantifier where $X\in W_M\leftrightarrow X$\texttt{ is a well-ordering}.  That is, it is true if the set of pairs making $\phi$ true is a well-ordering.
+%%%%%
+%%%%%
+\end{document}

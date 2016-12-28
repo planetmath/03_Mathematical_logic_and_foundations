@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{IntersectionStructure}
+\pmcreated{2013-03-22 17:06:28}
+\pmmodified{2013-03-22 17:06:28}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{intersection structure}
+\pmrecord{9}{39406}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G10}
+\pmclassification{msc}{06B23}
+\pmsynonym{closure system}{IntersectionStructure}
+\pmrelated{CriteriaForAPosetToBeACompleteLattice}
+\pmdefines{topped intersection structure}
+\pmdefines{algebraic intersection structure}
+\pmdefines{algebraic closure system}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+\subsubsection*{Intersection structures}
+
+An \emph{intersection structure} is a set $C$ such that 
+\begin{enumerate}
+\item $C$ is a subset of the powerset $P(A)$ of some set $A$, and
+\item intersection of a non-empty family $\mathcal{F}$ of elements of $C$ is again in $C$.
+\end{enumerate}
+
+If order $C$ by set inclusion, then $C$ becomes a poset.
+
+There are numerous examples of intersection structures.  In algebra, the set of all subgroups of a group, the set of all ideals of a ring, and the set of all subspaces of a vector space.  In topology, the set of all closed sets of a topological space is an intersection structure.  Finally, in functional analysis, the set of all convex subsets of a topological vector space is also an intersection structure.
+
+The set of all partial orderings on a set is also an intersection structure.  A final example can be found in domain theory: let $C$ be the set of all partial functions from a non-empty set $X$ to a non-empty set $Y$.  Since each partial function is a subset of $X\times Y$, $C$ is a subset of $P(X\times Y)$.  Let $\mathcal{F}:=\lbrace f_i\mid i\in I\rbrace$ be an arbitrary collection of partial functions in $C$ and $f=\bigcap \mathcal{F}$.  $f$ is clearly a relation between $X$ and $Y$.  Suppose $x$ is in the domain of $f$.  Let $E=\lbrace y\in Y\mid xfy\rbrace$.  Then $xf_i y$ for each $f_i$ where $x$ is in the domain of $f_i$.  Since $f_i$ is a partial function, $y=f_i(x)$, so that $y$ is uniquely determined.  This means that $E$ is a singleton, hence $f$ is a  partial function, so that $\bigcap \mathcal{F}\in C$, meaning that $C$ is an intersection structure.
+
+The main difference between the last two examples and the previous examples is that in the last two examples, $C$ is rarely a complete lattice.  For example, let $\le$ be a partial ordering on a set $P$.  Then its dual $\le^{\partial}$ is also a partial ordering on $P$.  But the join of $\le$ and $\le^{\partial}$ does not exist.  Here is another example: let $X=\lbrace 1\rbrace$ and $Y=\lbrace 2,3\rbrace$.  Then $C=\lbrace \varnothing, (1,2),(1,3)\rbrace$.  $(1,2)$ and $(1,3)$ are the maximal elements of $C$, but the join of these two elements does not exist.
+
+\subsubsection*{Topped intersection strucutres}
+
+If, in condition 2 above, we remove the requirement that $\mathcal{F}$ be non-empty, then we have an intersection structure called a \emph{topped intersection structure}.
+
+The reason for calling them topped is because the top element of such an intersection structure always exists; it is the intersection of the empty family.  In addition, a topped intersection structure is always a complete lattice.  For a proof of this fact, see this \PMlinkname{link}{CriteriaForAPosetToBeACompleteLattice}.
+
+As a result, for example, to show that the subgroups of a group form a complete lattice, it is enough to observe that arbitrary intersection of subgroups is again a subgroup.
+
+\textbf{Remarks}.  
+\begin{itemize}
+\item
+A topped intersection structure is also called a \emph{closure system}.  The reason for calling this is that every topped intersection structure $C\subseteq P(X)$ induces a closure operator $\operatorname{cl}$ on $P(X)$, making $X$ a closure space.  $\operatorname{cl}:P(X)\to P(X)$ given by $$\operatorname{cl}(A)=\bigcap \lbrace B\in C\mid A\subseteq B\rbrace$$ is well-defined.  
+\item
+Conversely, it is not hard to see that every closure space $(X,\operatorname{cl})$ gives rise to a closure system $C:=\lbrace \operatorname{cl}(A)\mid A\in P(X)\rbrace$.
+\item
+An intersection structure $C$ is said to be \emph{algebraic} if for every directed set $B\subseteq C$, we have that $\bigcup B\in C$.  All of the examples above, except the set of closed sets in a topological space, are algebraic intersection structures.  A topped intersection structure that is algebraic is called an \emph{algebraic closure system} if,   
+\item
+Every algebraic closure system is an algebraic lattice.
+\end{itemize}
+
+\begin{thebibliography}{6}
+\bibitem{dp} B. A. Davey, H. A. Priestley, {\it Introduction to Lattices and Order}, 2nd Edition, Cambridge (2003)
+\bibitem{gg} G. Gr\"{a}tzer: {\em Universal Algebra}, 2nd Edition, Springer, New York (1978).
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

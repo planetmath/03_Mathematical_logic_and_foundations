@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfAckermannFunction}
+\pmcreated{2013-03-22 19:07:25}
+\pmmodified{2013-03-22 19:07:25}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of Ackermann function}
+\pmrecord{9}{42018}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D75}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we derive some basic properties of the Ackermann function $A(x,y)$, defined by double recursion, as follows:
+$$ A(0,y)  = y + 1,  \quad A(x+1,0)  = A(x,1), \quad A(x+1,y+1) = A(x,A(x+1,y)). $$
+These properties will be useful in proving that $A$ is not primitive recursive.
+
+\begin{enumerate}
+\item $A$ is total ($\operatorname{dom}(A)=\mathbb{N}^2$).
+\item $A(1,y)=y+2$.
+\item $A(2,y)=2y+3$.
+\item $y<A(x,y)$.
+\item $A(x,y)<A(x,y+1)$.
+\item $A(x,y+1)\le A(x+1,y)$.
+\item $A(x,y)<A(x+1,y)$.
+\item $A(r,A(s,y))<A(r+s+2,y)$
+\item For any $r,s$, $A(r,y)+A(s,y)< A(t,y)$ for some $t$ not depending on $y$.
+\end{enumerate}
+
+Most of the proofs are done by induction.
+
+\begin{proof}
+\begin{enumerate}
+\item Induct on $x$.  First, $A(0,y)=y+1$ is well-defined, so $(0,y)\in \operatorname{dom}(A)$ for all $y$.  Next, suppose that for a given $x$, $(x,y)\in \operatorname{dom}(A)$ for all $y$.  We want to show that $(x+1,y)\in \operatorname{dom}(A)$ for all $y$.  To do this, induct on $y$.  First, $(x+1,0)\in \operatorname{dom}(A)$, since $A(x+1,0)=A(x,1)$ is well-defined.  Next, assume that $(x+1,y) \in \operatorname{dom}(A)$.  Then $A(x,A(x+1,y))=A(x+1,y+1)$ is well-defined.  so $(x+1,y+1)\in \operatorname{dom}(A)$ as well.
+\item Induct on $y$.  First, $A(1,0)=A(0,1)=2$.  Next, assume $A(1,y)=y+2$.  Then $A(1,y+1)= A(0,y+2)=y+3=(y+1)+2$.
+\item Induct on $y$.  First, $A(2,0)=A(1,1)=1+2=3$.  Next, assume $A(2,y)=2y+3$.  Then $A(2,y+1)=A(1,A(2,y))=A(2,y)+2=(2y+3)+2=2(y+1)+3$.
+\item Induct on $x$.  First, $y < y+1 = A(0,y)$.  Next, assume $y<A(x,y)$, where $x>0$.  Then $y+1 \le A(x,y) < A(x-1, A(x,y)) = A(x,y+1)$.
+\item Induct on $x$.  First, $A(0,y)=y+1<y+2=A(0,y+1)$.  Next, assume that $A(x,y)<A(x,y+1)$.  Then $A(x+1,y)< A(x,A(x+1,y)) = A(x+1,y+1)$.
+\item Induct on $y$.  First, $A(x,1)=A(x+1,0)$.  Next, assume that $A(x,y+1)\le A(x+1,y)$.  Then $A(x,y+2)\le A(x,A(x,y+1)) \le A(x,A(x+1,y))=A(x+1,y+1)$.
+\item Induct on $x$.  First, $A(0,y)=y+1 < y+2 = A(1,y)$.  Next, assume that $A(x,y) < A(x+1,y)$.  There are two cases: $y=0$.  Then $A(x+1,0)=A(x,1)< A(x+1,1)$.  Otherwise, $y=z+1$, so that $A(x+1,y) =A(x+1,z+1) = A(x,A(x+1,z)) \le A(x,A(x,z+1)) = A(x,A(x,y)) < A(x,A(x+1,y)) = A(x+1,y+1)$.
+\item $A(r,A(s,y)) < A(r+s,A(s,y)) < A(r+s,A(r+s+1,y)) = A(r+s+1,y+1) \le A(r+s+2,y)$.
+\item Let $z=\max\lbrace r,s\rbrace$.  Then $A(r,y)+A(s,y)\le 2A(z,y) < 2A(z,y)+3 = A(2,A(z,y)) < A(4+z,y)$.  The proof is completed by setting $t=4+z$.
+\end{enumerate}
+\end{proof}
+
+With respect to the recursive property of $A$, we see that $A$ is recursive, since, by Church's Thesis, $A$ can be effectively computed (in fact, a program can be easily written to compute $A(x,y)$).  We also have the following:
+\begin{prop} Define $A_n:\mathbb{N} \to \mathbb{N}$ by $A_n(m)= A(n,m)$.  Then $A_n$ is primitive recursive for each $n$.  \end{prop}
+\begin{proof}  $A_0(m)=m+1=s(m)$, so is primitive recursive.  Now, assume $A_n$ is primitive recursive, then $A_{n+1}(0)=A(n+1,0)=A(n,1)=A_n(1)=k$, and $A_{n+1}(m+1)=A(n+1,m+1)=A(n,A(n+1,m))=A_n(A(n+1,m))=A_n(A_{n+1}(m))$, so that $A_{n+1}$ is defined by primitive recursion via the constant function $\operatorname{const}_k$, and $A_n$, which is primitive recursive by the induction hypothesis.  Therefore $A_{n+1}$ is primitive recursive also.
+\end{proof}
+The most important fact about $A$ concerning recursiveness is that $A$ is not primitive recursive.  Due to the length of its proof, it is demonstrated in \PMlinkname{this entry}{AckermannFunctionIsNotPrimitiveRecursive}.
+%%%%%
+%%%%%
+\end{document}

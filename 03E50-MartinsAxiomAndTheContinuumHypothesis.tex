@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MartinsAxiomAndTheContinuumHypothesis}
+\pmcreated{2013-03-22 12:55:05}
+\pmmodified{2013-03-22 12:55:05}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{Martin's axiom and the continuum hypothesis}
+\pmrecord{4}{33270}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E50}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+\subsection*{$MA_{\aleph_0}$ always holds}
+
+Given a countable collection of dense subsets of a partial order, we can selected a set $\langle p_n\rangle_{n<\omega}$ such that $p_n$ is in the $n$-th dense subset, and $p_{n+1}\leq p_n$ for each $n$.  Therefore $CH$ implies $MA$.
+
+\subsection*{If $MA_\kappa$ then $2^{\aleph_0}>\kappa$, and in fact $2^\kappa=2^{\aleph_0}$}
+
+$\kappa\geq\aleph_0$, so $2^\kappa\geq 2^{\aleph_0}$, hence it will suffice to find an surjective function from $\operatorname{P}(\aleph_0)$ to $\operatorname{P}(\kappa)$.  
+
+Let $A=\langle A_\alpha\rangle_{\alpha<\kappa}$, a sequence of infinite subsets of $\omega$ such that for any $\alpha\neq\beta$, $A_\alpha\cap A_\beta$ is finite.
+
+Given any subset $S\subseteq\kappa$ we will construct a function $f:\omega\rightarrow\{0,1\}$ such that a unique $S$ can be recovered from each $f$.  $f$ will have the property that if $i\in S$ then $f(a)=0$ for finitely many elements $a\in A_i$, and if $i\notin S$ then $f(a)=0$ for infinitely many elements of $A_i$.
+
+Let $P$ be the partial order (under inclusion) such that each element $p\in P$ satisfies:
+\begin{itemize}
+
+\item $p$ is a partial function from $\omega$ to $\{0,1\}$
+
+\item There exist $i_1,\ldots,i_n\in S$ such that for each $j<n$, $A_{i_j}\subseteq \operatorname{dom}(p)$
+
+\item There is a finite subset of $\omega$, $w_p$, such that $w_p=\operatorname{dom}(p)-\bigcup_{j<n} A_{i_j}$
+
+\item For each $j<n$, $p(a)=0$ for finitely many elements of $A_{i_j}$
+\end{itemize}
+
+This satisfies ccc.  To see this, consider any uncountable sequence $S=\langle p_\alpha\rangle_{\alpha<\omega_1}$ of elements of $P$.  There are only countably many finite subsets of $\omega$, so there is some $w\subseteq\omega$ such that $w=w_p$ for uncountably many $p\in S$ and $p\upharpoonright w$ is the same for each such element.  Since each of these function's domain covers only a finite number of the $A_\alpha$, and is $1$ on all but a finite number of elements in each, there are only a countable number of different combinations available, and therefore two of them are compatible.
+
+Consider the following groups of dense subsets:
+
+\begin{itemize}
+\item $D_n=\{p\in P\mid n\in\operatorname{dom}(p)\}$ for $n<\omega$.  This is obviously dense since any $p$ not already in $D_n$ can be extended to one which is by adding $\langle n,1\rangle$
+
+\item $D_\alpha=\{p\in P\mid \operatorname{dom}(p)\supseteq A_\alpha\}$ for $\alpha\in S$.  This is dense since if $p\notin D_\alpha$ then $p\cup\{\langle a,1\rangle\mid a\in A_\alpha\setminus\operatorname{dom}(p)\}$ is.
+
+\item For each $\alpha\notin S$, $n<\omega$, $D_{n,\alpha}=\{p\in P\mid m\geq n \wedge p(m)=0\}$ for some $m<\omega$.  This is dense since if $p\notin D_{n,\alpha}$ then $\operatorname{dom}(p)\cap A_\alpha=A_\alpha\cap\left(w_p\cup \bigcup_{j} A_{i_j}\right)$.  But $w_p$ is finite, and the intersection of $A_\alpha$ with any other $A_i$ is finite, so this intersection is finite, and hence bounded by some $m$.  $A_\alpha$ is infinite, so there is some $m\leq x\in A_\alpha$.  So $p\cup\{\langle x,0\rangle\}\in D_{n,\alpha}$.
+\end{itemize}
+
+By $MA_\kappa$, given any set of $\kappa$ dense subsets of $P$, there is a generic $G$ which intersects all of them.  There are a total of $\aleph_0+|S|+(\kappa-|S|)\cdot\aleph_0=\kappa$ dense subsets in these three groups, and hence some generic $G$ intersecting all of them.  Since $G$ is directed, $g=\bigcup G$ is a partial function from $\omega$ to $\{0,1\}$.  Since for each $n<\omega$, $G\cap D_n$ is non-empty, $n\in\operatorname{dom}(g)$, so $g$ is a total function.  Since $G\cap D_\alpha$ for $\alpha\in S$ is non-empty, there is some element of $G$ whose domain contains all of $A_\alpha$ and is $0$ on a finite number of them, hence $g(a)=0$ for a finite number of $a\in A_\alpha$.  Finally, since $G\cap D_{n,\alpha}$ for each $n<\omega$, $\alpha\notin S$, the set of $n\in A_\alpha$ such that $g(n)=0$ is unbounded, and hence infinite.  So $g$ is as promised, and $2^\kappa=2^{\aleph_0}$.
+%%%%%
+%%%%%
+\end{document}

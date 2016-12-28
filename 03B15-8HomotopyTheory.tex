@@ -1,0 +1,355 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{8HomotopyTheory}
+\pmcreated{2013-11-06 2:10:39}
+\pmmodified{2013-11-06 2:10:39}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8. Homotopy theory}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\Agda}{\textsc{Agda}\xspace}
+\newcommand{\bfalse}{{0_{\bool}}}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\btrue}{{1_{\bool}}}
+\newcommand{\Coq}{\textsc{Coq}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\lloop}{\ensuremath{\mathsf{loop}}\xspace}
+\newcommand{\mentalpause}{\medskip} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\newcommand{\Sn}{\mathbb{S}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\Trunc}[2]{\Bigl\Vert #2\Bigr\Vert_{#1}}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{8.0.\arabic{mathcount}}
+\let\autoref\cref
+
+\begin{document}
+
+\index{acceptance|(}
+
+In this chapter, we develop some homotopy theory within type theory.  We
+use the \emph{synthetic approach} to homotopy theory introduced in
+\cref{cha:basics}: Spaces, points, paths, and homotopies are basic
+notions, which are represented by types and elements of types, particularly
+the identity type.  The algebraic structure of paths and homotopies is
+represented by the natural $\infty$-groupoid
+\index{.infinity-groupoid@$\infty$-groupoid}%
+structure on types, which is generated
+by the rules for the identity type.  Using higher inductive types, as
+introduced in \cref{cha:hits}, we can describe spaces directly by their
+universal properties.  
+
+\index{synthetic mathematics}%
+There are several interesting aspects of this synthetic approach.
+First, it combines advantages of concrete models (such as topological
+spaces\index{topological!space}
+or simplicial sets)\index{simplicial!sets}
+with advantages of abstract categorical frameworks
+for homotopy theory (such as Quillen model categories).\index{Quillen model category} 
+ On the one hand,
+our proofs feel elementary, and refer concretely to
+points, paths, and homotopies in types.  On the other hand, our approach nevertheless abstracts away from
+any concrete presentation of these objects --- for example,
+associativity of path concatenation is proved by path induction, rather
+than by reparametrization of maps $[0,1] \to X$ or by horn-filling conditions.
+Type theory seems to be a very convenient way to study the abstract homotopy theory
+of $\infty$-groupoids: by using the rules for the identity type, we
+can avoid the complicated combinatorics involved in many definitions of
+$\infty$-groupoids, and explicate only as much of the
+structure as is needed in any particular proof.  
+
+The abstract nature of type theory means that our proofs apply automatically in a variety of settings.
+In particular, as mentioned previously, homotopy type theory has one interpretation in
+Kan\index{Kan complex} simplicial sets\index{simplicial!sets},
+which is one model for the homotopy theory of $\infty$-groupoids.  Thus,
+our proofs apply to this model, and transferring them along the geometric
+realization\index{geometric realization} functor from simplicial sets to topological spaces gives
+proofs of corresponding theorems in classical homotopy theory.
+However, though the details are work in progress, we can also
+interpret type theory in a wide variety of other categories
+that look like the category of $\infty$-groupoids, such as
+$(\infty,1)$-toposes\index{.infinity1-topos@$(\infty,1)$-topos}.
+Thus, proving a result in type theory will show
+that it holds in these settings as well.
+This sort of extra generality is well-known as a property of ordinary categorical logic:
+univalent foundations extends it to homotopy theory as well.
+
+Second, our synthetic approach has suggested new type-theoretic
+methods and proofs.  Some of our proofs are fairly
+direct transcriptions of classical proofs.  Others have a more
+type-theoretic feel, and consist mainly of calculations with
+$\infty$-groupoid operations, in a style that is very similar to how
+computer scientists use type theory to reason about computer programs.
+One thing that seems to have permitted these new proofs is the fact that type theory
+emphasizes different aspects of homotopy theory than other approaches:
+while tools like path induction and the universal properties of higher
+inductives are available in a setting like Kan\index{Kan complex} simplicial sets, type
+theory elevates their importance, because they are the \emph{only}
+primitive tools available for working with these types.  Focusing on
+these tools had led to new descriptions of familiar constructions such
+as the universal cover of the circle and the Hopf fibration, using just the
+recursion principles for higher inductive types.  These descriptions are
+very direct, and many of the proofs in this chapter involve
+computational calculations with such fibrations.
+\index{mathematics!constructive}%
+Another new aspect of our proofs is that they are constructive (assuming
+univalence and higher inductives types are constructive); we describe an
+application of this to homotopy groups of spheres in
+\cref{sec:moreresults}.    
+
+\index{mathematics!formalized}%
+\indexsee{formalization of mathematics}{mathematics, formalized}%
+Third, our synthetic approach is very amenable to computer-checked
+proofs in proof assistants\index{proof!assistant} such as \Coq and \Agda.
+Almost all of the proofs
+described in this chapter have been computer-checked, and many of these
+proofs were first given in a proof assistant, and then ``unformalized''
+for this book.  The computer-checked proofs are comparable in length and
+effort to the informal proofs presented here, and in some cases they are
+even shorter and easier to do.  
+
+\mentalpause
+
+Before turning to the presentation of our results, we briefly review some
+ basic concepts and theorems from homotopy theory for the benefit of the reader who is not familiar with them.
+ We also give an overview of the
+results proved in this chapter.  
+
+\index{classical!homotopy theory|(}%
+Homotopy theory is a branch of algebraic topology, and uses tools from abstract algebra,
+such as group theory, to investigate properties of spaces.  One question
+homotopy theorists investigate is how to tell whether two spaces are the
+same, where ``the same'' means \emph{homotopy equivalence}
+\index{homotopy!equivalence!topological}%
+(continuous
+maps back and forth that compose to the identity up to homotopy---this
+gives the opportunity to ``correct'' maps that don't exactly compose to
+the identity).  One common way to tell whether two spaces are the same
+is to calculate \emph{algebraic invariants} associated with a space,
+which include its \emph{homotopy groups} and \emph{homology} and
+\emph{cohomology groups}.
+\index{homology}%
+\index{cohomology}%
+Equivalent spaces have isomorphic
+homotopy/(co)homology groups, so if two spaces have different groups,
+then they are not equivalent.  Thus, these algebraic invariants provide
+global information about a space, which can be used to tell spaces
+apart, and complements the local information provided by notions such as
+continuity.  For example, the torus locally looks like the $2$-sphere, but it
+has a global difference, because it as a hole in it, and this difference
+is visible in the homotopy groups of these two spaces.
+
+The simplest example of a homotopy group is the \emph{fundamental group}
+\index{fundamental!group}%
+of a space, which is written $\pi_1(X,x_0$): Given a space $X$ and a
+point $x_0$ in it, one can make a group whose elements are loops at
+$x_0$ (continuous paths from $x_0$ to $x_0$), considered up to homotopy, with the
+group operations given by the identity path (standing still), path
+concatenation, and path reversal.  For example, the fundamental group of
+the $2$-sphere is trivial, but the fundamental group of the torus is not,
+which shows that the sphere and the torus are not homotopy equivalent.
+The intuition is that every loop on the sphere is homotopic to the
+identity, because its inside can be filled in.  In contrast, a loop on
+the torus that goes through the donut's hole is not homotopic to the
+identity, so there are non-trivial elements in the fundamental group.
+
+\index{homotopy!group}
+The \emph{higher homotopy groups} provide additional information about a
+space.  Fix a point $x_0$ in $X$, and consider the constant path
+$\refl{x_0}$.  Then the homotopy classes of homotopies between $\refl{x_0}$
+and itself form a group $\pi_2(X,x_0)$, which tells us something about
+the two-dimensional structure of the space.  Then $\pi_3(X,x_0$) is the
+group of homotopy classes of homotopies between homotopies, and so on.
+One of the basic problems of algebraic topology  is
+\emph{calculating the homotopy groups of a space $X$}, which means
+giving a group isomorphism between $\pi_k(X,x_0)$ and some more direct
+description of a group (e.g., by a multiplication table or
+presentation).  Somewhat surprisingly, this is a very difficult
+question, even for spaces as simple as the spheres.  As can be seen from
+\cref{tab:homotopy-groups-of-spheres}, some patterns emerge in the
+higher homotopy groups of spheres, but there is no general formula, and
+many homotopy groups of spheres are currently still unknown.
+
+\bgroup
+% Colors for the table of homotopy groups of spheres
+\definecolor{xA}{\OPTcolormodel}{\OPTcolxA}
+\definecolor{xB}{\OPTcolormodel}{\OPTcolxB}
+\definecolor{xC}{\OPTcolormodel}{\OPTcolxC}
+\definecolor{xD}{\OPTcolormodel}{\OPTcolxD}
+\definecolor{xE}{\OPTcolormodel}{\OPTcolxE}
+\definecolor{xF}{\OPTcolormodel}{\OPTcolxF}
+\definecolor{xG}{\OPTcolormodel}{\OPTcolxG}
+\definecolor{xH}{\OPTcolormodel}{\OPTcolxH}
+\definecolor{xI}{\OPTcolormodel}{\OPTcolxI}
+\definecolor{xJ}{\OPTcolormodel}{\OPTcolxJ}
+\definecolor{xK}{\OPTcolormodel}{\OPTcolxK}
+\definecolor{xL}{\OPTcolormodel}{\OPTcolxL}
+\definecolor{xM}{\OPTcolormodel}{\OPTcolxM}
+
+\newcommand{\cA}{\colorbox{xG}{\hbox to 20pt {\hfil$0$\hfil}}}
+\newcommand{\cB}{\colorbox{xH}{\hbox to 20pt {\hfil$\Z$\hfil}}}
+\newcommand{\cC}{\colorbox{xI}{\hbox to 20pt {\hfil$\Z_{2}$\hfil}}}
+\newcommand{\cD}{\colorbox{xJ}{\hbox to 20pt {\hfil$\Z_{2}$\hfil}}}
+\newcommand{\cE}{\colorbox{xK}{\hbox to 20pt {\hfil$\Z_{24}$\hfil}}}
+\newcommand{\cF}{\colorbox{xL}{\hbox to 20pt {\hfil$0$\hfil}}}
+\newcommand{\cG}{\colorbox{xM}{\hbox to 20pt {\hfil$0$\hfil}}}
+\newcommand{\cH}{\colorbox{xF}{\hbox to 20pt {\hfil$0$\hfil}}}
+\newcommand{\cI}{\colorbox{xE}{\hbox to 20pt {\hfil$0$\hfil}}}
+\newcommand{\cJ}{\colorbox{xD}{\hbox to 20pt {\hfil$0$\hfil}}}
+\newcommand{\cK}{\colorbox{xC}{\hbox to 20pt {\hfil$0$\hfil}}}
+\newcommand{\cL}{\colorbox{xB}{\hbox to 20pt {\hfil$0$\hfil}}}
+\newcommand{\cM}{\colorbox{xA}{\hbox to 20pt {\hfil$0$\hfil}}}
+
+\begin{table}[htb]
+\centering\small
+\begin{tabular}{p{15pt}>{\centering\arraybackslash}p{\OPTspherescolwidth}>{\centering\arraybackslash}p{\OPTspherescolwidth}>{\centering\arraybackslash}p{\OPTspherescolwidth}>{\centering\arraybackslash}p{\OPTspherescolwidth}>{\centering\arraybackslash}p{\OPTspherescolwidth}>{\centering\arraybackslash}p{\OPTspherescolwidth}>{\centering\arraybackslash}p{\OPTspherescolwidth}>{\centering\arraybackslash}p{\OPTspherescolwidth}>{\centering\arraybackslash}p{\OPTspherescolwidth}}
+\toprule
+           & $\Sn^0$ & $\Sn^1$ & $\Sn^{2}$ & $\Sn^{3}$ & $\Sn^{4}$ & $\Sn^{5}$ & $\Sn^{6}$ & $\Sn^{7}$ & $\Sn^{8}$ \\ \addlinespace[3pt] \midrule
+$\pi_{1}$  & $0$     & $\Z$    & \cA       & \cH       & \cI       & \cJ       & \cK       & \cL       & \cM       \\ \addlinespace[3pt]
+$\pi_{2}$  & $0$     & $0$     & \cB       & \cA       & \cH       & \cI       & \cJ       & \cK       & \cL       \\ \addlinespace[3pt]
+$\pi_{3}$  & $0$     & $0$     & $\Z$      & \cB       & \cA       & \cH       & \cI       & \cJ       & \cK       \\ \addlinespace[3pt]
+$\pi_{4}$  & $0$     & $0$     & $\Z_{2}$  & \cC       & \cB       & \cA       & \cH       & \cI       & \cJ       \\ \addlinespace[3pt]
+$\pi_{5}$  & $0$     & $0$     & $\Z_{2}$  & $\Z_{2}$  & \cC       & \cB       & \cA       & \cH       & \cI       \\ \addlinespace[3pt]
+$\pi_{6}$  & $0$     & $0$     & $\Z_{12}$ & $\Z_{12}$ & \cD       & \cC       & \cB       & \cA       & \cH       \\ \addlinespace[3pt]
+$\pi_{7}$  & $0$     & $0$     & $\Z_{2}$  & $\Z_{2}$  & {\footnotesize $\Z {\times} \Z_{12}$} & \cD & \cC & \cB     & \cA    \\ \addlinespace[3pt]
+$\pi_{8}$  & $0$     & $0$     & $\Z_{2}$  & $\Z_{2}$  & $\Z_{2}^{2}$ & \cE & \cD & \cC & \cB \\ \addlinespace[3pt]
+$\pi_{9}$  & $0$     & $0$     & $\Z_{3}$  & $\Z_{3}$  & $\Z_{2}^{2}$ & $\Z_{2}$ & \cE & \cD & \cC \\ \addlinespace[3pt]
+$\pi_{10}$ & $0$     & $0$     & $\Z_{15}$ & $\Z_{15}$ & \footnotesize{$\Z_{24} {\times} \Z_{3}$} & $\Z_{2}$ & \cF & \cE & \cD \\ \addlinespace[3pt]
+$\pi_{11}$ & $0$     & $0$     & $\Z_{2}$  & $\Z_{2}$  & $\Z_{15}$ & $\Z_{2}$ & $\Z$ & \cF & \cE \\ \addlinespace[3pt]
+$\pi_{12}$ & $0$     & $0$     & $\Z_{2}^{2}$ & $\Z_{2}^{2}$ & $\Z_{2}$ & $\Z_{30}$ & $\Z_{2}$ & \cG & \cF \\ \addlinespace[3pt]
+$\pi_{13}$ & $0$     & $0$     & {\footnotesize $\Z_{12} {\times} \Z_{2}$} & {\footnotesize $\Z_{12} {\times} \Z_{2}$} & $\Z_{2}^{3}$ & $\Z_{2}$ & $\Z_{60}$ & $\Z_{2}$ & \cG \\ \addlinespace[3pt]
+%$\pi_{14}$ & $0$     & $0$     & $\Z_{84} {\times} \Z_{2}^{2}$ & $\Z_{84} {\times} \Z_{2}^{2}$ & {\footnotesize $\Z_{120} {\times} \Z_{12} {\times} \Z_{2}$} & $\Z_{2}^{3}$ & $\Z_{24} {\times} \Z_{2}$ & $\Z_{120}$ & $\Z_{2}$ \\ \addlinespace[3pt]
+%$\pi_{15}$ & $0$     & $0$     & $\Z_{2}^{2}$ & $\Z_{2}^{2}$ & $\Z_{84} {\times} \Z_{2}^{5}$ & $\Z_{72} {\times} \Z_{2}$ & $\Z_{2}^{3}$ & $\Z_{2}^{3}$ & $\Z {\times} \Z_{120}$ \\ \addlinespace[3pt]
+\bottomrule
+\end{tabular}
+
+\caption{Homotopy groups of spheres~\cite{wikipedia-groups}.\index{homotopy!group!of sphere}
+The $k^{\textrm{th}}$ homotopy group $\pi_k$ of the $n$-dimensional sphere
+$\Sn^n$ is isomorphic to the group listed in each entry, where $\Z$ is
+the additive group of integers,\index{integers} and $\Z_{m}$ is the cyclic group\index{group!cyclic}\index{cyclic group} of order~$m$.
+}
+\label{tab:homotopy-groups-of-spheres}
+\end{table}
+\egroup
+
+
+One way of understanding this complexity is through the correspondence
+between spaces and $\infty$-groupoids
+\index{.infinity-groupoid@$\infty$-groupoid}%
+introduced in \cref{cha:basics}.
+As discussed in \cref{sec:circle}, the 2-sphere is presented by a higher
+inductive type with one point and one 2-dimensional loop.  Thus, one
+might wonder why $\pi_3(\Sn ^2)$ is $\Z$, when the type $\Sn ^2$ has no
+generators creating 3-dimensional cells.  It turns out that the
+generating element of $\pi_3(\Sn ^2)$ is constructed using the
+interchange law described in the proof of \cref{thm:EckmannHilton}: the
+algebraic structure of an $\infty$-groupoid includes non-trivial
+interactions between levels, and these interactions create elements of
+higher homotopy groups.
+
+\index{classical!homotopy theory|)}%
+
+Type theory provides a natural setting for investigating this structure, as
+we can easily define the higher homotopy groups.  Recall from \cref{def:loopspace} that for $n:\N$, the
+$n$-fold iterated loop space\index{loop space!iterated} of a pointed type $(A,a)$ is defined
+recursively by:
+\begin{align*}
+  \Omega^0(A,a)&=(A,a)\\
+  \Omega^{n+1}(A,a)&=\Omega^n(\Omega(A,a)).
+\end{align*}
+%
+This gives a \emph{space} (i.e.\ a type) of $n$-dimensional loops\index{loop!n-@$n$-}, which itself has
+higher homotopies.  We obtain the set of $n$-dimensional loops by
+truncation (this was also defined as an example in
+\autoref{sec:free-algebras}):
+
+\begin{defn}[Homotopy Groups]\label{def-of-homotopy-groups}
+  Given $n\ge 1$ and $(A,a)$ a pointed type, we define the \define{homotopy groups} of $A$
+  \indexdef{homotopy!group}%
+  at $a$ by
+  \[\pi_n(A,a)\defeq \Trunc0{\Omega^n(A,a)}\]
+\end{defn}
+
+\noindent
+Since $n\ge 1$, the path concatenation and inversion operations on
+$\Omega^n(A)$ induce operations on $\pi_n(A)$ making it into a group in
+a straightforward way.  If $n\ge 2$, then the group $\pi_n(A)$ is
+abelian\index{group!abelian}, by the Eckmann--Hilton argument \index{Eckmann--Hilton argument} (\autoref{thm:EckmannHilton}).
+It is convenient to also write $\pi_0(A) \defeq \trunc0 A$,
+but this case behaves somewhat differently: not only is it not a group,
+it is defined without reference to any basepoint in $A$.
+
+\index{presentation!of an infinity-groupoid@of an $\infty$-groupoid}%
+This definition is a suitable one for investigating homotopy groups
+because the (higher) inductive definition of a type $X$ presents $X$ as
+a free type, analogous to a free $\infty$-groupoid,
+\index{.infinity-groupoid@$\infty$-groupoid}%
+and this
+presentation \emph{determines} but does not \emph{explicitly describe}
+the higher identity types of $X$.  The identity types are populated by
+both the generators ($\lloop$, for the circle) and the results of applying to them all of the groupoid
+operations (identity, composition, inverses, associativity, interchange,
+\ldots).  Thus, the higher-inductive presentation of a space allows us
+to pose the question ``what does the identity type of $X$ really turn out
+to be?'' though it can take some significant mathematics to answer it.
+This is a higher-dimensional generalization of a familiar fact in type
+theory: characterizing the identity type of $X$ can take some work,
+even if $X$ is an ordinary inductive type, such as the natural numbers
+or booleans.  For example, the theorem that $\bfalse$ is different
+from $\btrue$ does not follow immediately from the definition;
+see \autoref{sec:compute-coprod}.
+
+\index{univalence axiom}%
+The univalence axiom plays an essential role in calculating homotopy
+groups (without univalence, type theory is compatible with an
+interpretation where all paths, including, for example, the loop on the
+circle, are reflexivity).  We will see this in the calculation of the
+fundamental group of the circle below: the map from $\Omega(\Sn^1)$ to $\Z$ is defined by mapping a loop on the circle to an
+automorphism\index{automorphism!of Z, successor@of $\Z$, successor} of the set $\Z$, so that, for example, $\lloop \ct \opp
+\lloop$ is sent to $\mathsf{successor} \ct \mathsf{predecessor}$ (where
+$\mathsf{successor}$ and $\mathsf{predecessor}$ are automorphisms of
+$\Z$ viewed, by univalence, as paths in the universe), and then applying
+the automorphism to 0. Univalence produces non-trivial paths in the
+universe, and this is used to extract information from paths in higher
+inductive types.
+
+In this chapter, we first calculate some homotopy groups of spheres,
+including $\pi_k(\Sn ^1)$ (\autoref{sec:pi1-s1-intro}), $\pi_{k}(\Sn
+^n)$ for $k<n$ (\autoref{sec:conn-susp},\autoref{sec:pik-le-n}), $\pi_2(\Sn ^2)$ and $\pi_3(\Sn ^2)$ by
+way of the Hopf fibration (\autoref{sec:hopf}) and a long-exact-sequence
+argument (\autoref{sec:long-exact-sequence-homotopy-groups}), and
+$\pi_n(\Sn ^n)$ by way of the Freudenthal suspension theorem
+(\autoref{sec:freudenthal}).  Next, we discuss the van Kampen theorem
+(\autoref{sec:van-kampen}), which characterizes the fundamental group of
+a pushout, and the status of Whitehead's principle (when is a map that
+induces an equivalence on all homotopy groups an equivalence?)
+(\autoref{sec:whitehead}).  Finally, we include brief summaries of
+additional results that are not included in the book, such as
+$\pi_{n+1}(\Sn ^n)$ for $n\ge 3$, the Blakers--Massey theorem, and a
+construction of Eilenberg--Mac Lane spaces (\autoref{sec:moreresults}).
+Prerequisites for this chapter include \autoref{cha:typetheory},\autoref{cha:basics},\autoref{cha:hits},\autoref{cha:hlevels} as well as parts of \autoref{cha:logic}.
+
+\index{fundamental!group!of circle|(}
+
+\end{document}

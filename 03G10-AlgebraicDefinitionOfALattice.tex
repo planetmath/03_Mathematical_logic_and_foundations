@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AlgebraicDefinitionOfALattice}
+\pmcreated{2013-03-22 17:39:29}
+\pmmodified{2013-03-22 17:39:29}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{algebraic definition of a lattice}
+\pmrecord{12}{40091}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G10}
+\pmclassification{msc}{06B99}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\PMlinkescapeword{lattice}
+\PMlinkescapeword{parent}
+
+The \PMlinkname{parent entry}{Lattice} defines a lattice as a relational structure (a poset) satisfying the condition that every pair of elements has a supremum and an infimum.  Alternatively and equivalently, a lattice $L$ can be a defined directly as an algebraic structure with two binary operations called meet $\wedge$ and join $\vee$ satisfying the following conditions:
+\begin{itemize}
+\item (idempotency of $\vee$ and $\wedge$): for each $a\in L$, $a\vee a=a\wedge a=a$;
+\item (commutativity of $\vee$ and $\wedge$): for every $a,b\in L$, $a\vee b=b\vee a$ and $a\wedge b=b\wedge a$;
+\item (associativity of $\vee$ and $\wedge$): for every $a,b,c\in L$, $a\vee(b\vee c)=(a\vee b)\vee c$ and $a\wedge (b\wedge c)=(a\wedge b)\wedge c$; and
+\item (absorption): for every $a,b\in L$, $a\wedge (a\vee b)=a$ and $a\vee (a\wedge b)=a$.
+\end{itemize}
+
+It is easy to see that this definition is equivalent to the one given in the parent, as follows: define a binary relation $\le$ on $L$ such that $$a\le b\quad\mbox{ iff }\quad a\vee b=b.$$  Then $\le$ is reflexive by the idempotency of $\vee$.  Next, if $a\le b$ and $b\le a$, then $a=a\vee b=b$, so $\le$ is anti-symmetric.  Finally, if $a\le b$ and $b\le c$, then $a\vee c= a\vee (b\vee c)=(a\vee b)\vee c=b\vee c=c$, and therefore $a\le c$.  So $\le$ is transitive.  This shows that $\le$ is a partial order on $L$.  For any $a,b\in L$, $a\vee (a\vee b)=(a\vee a)\vee b=a\vee b$ so that $a\le a\vee b$.  Similarly, $b\le a\vee b$.  If $a\le c$ and $b\le c$, then $(a\vee b)\vee c = a\vee (b\vee c)=a\vee c=c$.  This shows that $a\vee b$ is the supremum of $a$ and $b$.  Similarly, $a\wedge b$ is the infimum of $a$ and $b$.
+
+Conversely, if $(L,\le)$ is defined as in the parent entry, then by defining $$a\vee b = \sup\lbrace a,b\rbrace \quad \mbox{ and } \quad a\wedge b=\inf\lbrace a,b\rbrace,$$
+the four conditions above are satisfied.  For example, let us show one of the absorption laws: $a\vee (a\wedge b)=a$.  Let $c=\inf\lbrace a,b\rbrace \le a=a\wedge b$.  Then $c\le a$ so that $\sup\lbrace a,c\rbrace=a$, which precisely translates to $a=a\vee c=a\vee(a\wedge b)$.  The remainder of the proof is left for the reader to try.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EveryPropositionIsEquivalentToAPropositionInDNF}
+\pmcreated{2013-03-22 15:06:58}
+\pmmodified{2013-03-22 15:06:58}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{every proposition is equivalent to a proposition in DNF}
+\pmrecord{10}{36853}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\theoremstyle{theorem}
+\newtheorem*{thm}{Theorem}
+\begin{document}
+\begin{thm}
+Given any proposition, there exists a proposition in disjunctive normal form which is equivalent to that proposition.
+\end{thm}
+
+\begin{proof}
+Any two propositions are equivalent if and only if they determine the same truth function.  Therefore, if one can exhibit a mapping which assigns to a given truth function $f$ a proposition in disjunctive normal form such that the truth function of this proposition is $f$, the theorem follows immediately.  
+
+Let $n$ denote the number of arguments $f$ takes.  Define
+\[ V(f) = \{ X \in \{T,F\}^n | f(X) = T \} \]
+For every $X \in \{T,F\}^n$, define $L_i (X) \colon \{T,F\}^n \to  \{T,F\}$ as follows:
+\[ L_i (X)(Y) = \left\{ \begin{matrix} Y_i & X_i = T \cr \neg Y_i & X_i = F \end{matrix} \right. \]
+
+Then, we claim that
+ \[ f(Y) = \bigwedge_{X \in V(f)} \bigvee_{i=1}^n L_i (X)(Y) \]
+
+On the one hand, suppose that $f(Y) = T$ for a certain $Y \in \{T,F\}^n$. By definition of $V(f)$, we have $Y \in V(f)$.  By definition of $L_i$, we have 
+ \[L_i (Y) (Y) = \left\{ \begin{matrix} Y_i & Y_i = T \cr \neg Y_i & Y_i = F \end{matrix} \right. \]
+In either case, $L_i (Y) (Y) = T$.  Since a conjunction equals $T$ if and only if each term of the conjunction equals $T$, it follows that  $\bigvee_{i=1}^n L_i (Y) (Y) = T$.  Finally, since a disjunction equals $T$ if and only if there exists a term which equals $T$, it follows the right hand side equals equals $T$ when the left-hand side equals $T$.
+
+On the one hand, suppose that $f(Y) = F$ for a certain $Y \in \{T,F\}^n$.  Let $X$ be any element of $V(f)$.  Since $Y \notin V(f)$, there must exist an index $i$ such that $X_i \neq Y_i$.  For this choice of $i$, $Y_i = \neg X_i$ Then we have
+  \[L_i (X) (Y) = \left\{ \begin{matrix} \neg X_i & X_i = T \cr \neg \neg X_i & X_i = F \end{matrix} \right. \]
+In either case, $L_i (X) (Y) = F$.  Since a conjunction equals $F$ if and only if there exists a term which evaluates to $F$, it follows that $\bigvee_{i=1}^n L_i (X) (Y) = F$ for all $X \in V(f)$.  Since a disjunction equals $F$ if and only if each term of the conjunction equals $F$, it follows that the right hand side equals equals $F$ when the left-hand side equals $F$.
+
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

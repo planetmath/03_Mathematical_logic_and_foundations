@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfComplement}
+\pmcreated{2013-03-22 17:55:32}
+\pmmodified{2013-03-22 17:55:32}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of complement}
+\pmrecord{5}{40419}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E99}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $X$ be a set and $A,B$ are subsets of $X$.
+
+\begin{enumerate}
+\item $(A^{\complement})^\complement=A$.
+\begin{proof}  $a\in (A^{\complement})^\complement$ iff $a\notin A^{\complement}$ iff $a\in A$.
+\end{proof}
+\item $\emptyset^\complement = X$.
+\begin{proof}
+$a\in \emptyset^\complement$ iff $a\notin \emptyset$ iff $a\in X$.
+\end{proof}
+\item $X^\complement = \emptyset$.
+\begin{proof}
+$a\in X^\complement$ iff $a\notin X$ iff $a\in \emptyset$.
+\end{proof}
+\item $A\cup A^\complement = X$.
+\begin{proof}
+$a\in A\cup A^\complement$ iff $a\in A$ or $a\in A^\complement$ iff $a\in A$ or $a\notin A$ iff $a\in X$.
+\end{proof}
+\item $A\cap A^\complement =\emptyset$.
+\begin{proof}
+$a\in A\cap A^\complement$ iff $a\in A$ and $a\in A^\complement$ iff $a\in A$ and $a\notin A$ iff $a\in \emptyset$.
+\end{proof}
+\item $A\subseteq B$ iff $B^\complement\subseteq A^\complement$.
+\begin{proof}
+Suppose $A\subseteq B$.  If $a\in B^\complement$, then $a\notin B$, so $a\notin A$, or $a\in A^\complement$.  This shows that $B^\complement\subseteq A^\complement$.  On the other hand, if $B^\complement\subseteq A^\complement$, then by applying what's just been proved, $A=(A^\complement)^\complement \subseteq (B^\complement)^\complement =B$.
+\end{proof}
+\item $A\cap B=\emptyset$ iff $A\subseteq B^\complement$.
+\begin{proof}  Suppose $A\cap B=\emptyset$.  If $a\in A$, then $a\in B^\complement$, or $a\notin B$, which implies that $A\cap B=\emptyset$.  Suppose next that $A\subseteq B^\complement$.  If there is $a\in A\cap B$, then $a\in B$ and $a\in A$.  But the second containment implies that $a\in B^\complement$, which contradicts the first containment.
+\end{proof}
+\item $A\setminus B = A\cap B^\complement$, where the complement is taken in $X$.
+\begin{proof}  $a\in A\setminus B$ iff $a\in A$ and $a\notin B$ iff $a\in A$ and $a\in B^\complement$ iff $a\in A\cap B^\complement$.
+\end{proof}
+\item (de Morgan's laws) $(A \cup B)^\complement = A^\complement \cap B^\complement$ and $(A \cap B)^\complement = A^\complement \cup B^\complement$.
+\begin{proof}  See \PMlinkname{here}{DeMorgansLawsProof}.
+\end{proof}
+\end{enumerate}
+%%%%%
+%%%%%
+\end{document}

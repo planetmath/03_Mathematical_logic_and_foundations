@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfOrdinalArithmetic}
+\pmcreated{2013-03-22 17:51:05}
+\pmmodified{2013-03-22 17:51:05}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of ordinal arithmetic}
+\pmrecord{8}{40326}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmrelated{OrdinalExponentiation}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $\textbf{On}$ be the class of ordinals, and $\alpha,\beta,\gamma,\delta\in \textbf{On}$.  Then the following properties are satisfied:
+\begin{enumerate}
+\item (additive identity): $\alpha+0=0+\alpha=\alpha$ (\PMlinkname{proof}{ExampleOfTransfiniteInduction})
+\item (associativity of addition): $\alpha+(\beta+\gamma)=(\alpha+\beta)+\gamma$
+\item (multiplicative identity): $\alpha\cdot 1=1\cdot \alpha=\alpha$
+\item (multiplicative zero): $\alpha\cdot 0 = 0\cdot \alpha=0$
+\item (associativity of multiplication): $\alpha\cdot (\beta\cdot \gamma)=(\alpha\cdot \beta)\cdot \gamma$
+\item (left distributivity): $\alpha\cdot(\beta+\gamma)=\alpha\cdot \beta+\alpha\cdot \gamma$
+\item (existence and uniqueness of subtraction): if $\alpha\le \beta$, then there is a unique $\gamma$ such that $\alpha+\gamma=\beta$
+\item (existence and uniqueness of division): for any $\alpha,\beta$ with $\beta\ne 0$, there exists a unique pair of ordinals $\gamma,\delta$ such that $\alpha=\beta\cdot \delta+\gamma$ and $\gamma<\beta$.
+\end{enumerate}
+
+Conspicuously absent from the above list of properties are the commutativity laws, as well as right distributivity of multiplication over addition.  Below are some \PMlinkescapetext{simple} counterexamples:
+\begin{itemize}
+\item $\omega+1\ne 1+\omega=\omega$, for the former has a top element and the latter does not.
+\item $\omega\cdot 2\ne 2\cdot \omega$, for the former is $\omega+\omega$, which consists an element $\alpha$ such that $\beta<\alpha$ for all $\beta<\omega$, and the latter is $2\cdot \sup \lbrace n\mid n<\omega\rbrace = \sup \lbrace 2\cdot n\mid n<\omega \rbrace =\sup \lbrace n\mid n<\omega\rbrace$, which is just $\omega$, and which does not consist such an element $\alpha$
+\item $(1+1)\cdot \omega\ne 1\cdot \omega+1\cdot \omega$, for the former is $2\cdot \omega$ and the latter is $\omega\cdot 2$, and the rest of the \PMlinkescapetext{argument} follows from the previous counterexample.
+\end{itemize}
+
+All of the properties above can be proved using transfinite induction.  For a proof of the first property, please see \PMlinkname{this link}{ExampleOfTransfiniteInduction}.
+
+For properties of the arithmetic regarding exponentiation of ordinals, please refer to \PMlinkname{this link}{OrdinalExponentiation}.
+%%%%%
+%%%%%
+\end{document}

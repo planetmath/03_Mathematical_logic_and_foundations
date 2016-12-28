@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AckermannFunction}
+\pmcreated{2013-03-22 12:33:13}
+\pmmodified{2013-03-22 12:33:13}
+\pmowner{akrowne}{2}
+\pmmodifier{akrowne}{2}
+\pmtitle{Ackermann function}
+\pmrecord{9}{32799}
+\pmprivacy{1}
+\pmauthor{akrowne}{2}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D75}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%\usepackage{psfrag}
+%\usepackage{graphicx}
+%%%\usepackage{xypic}
+\begin{document}
+Ackermann's function $A(x,y)$ is defined by the recurrence relations
+
+\begin{eqnarray*}
+& A(0,y) & = y + 1  \\
+& A(x+1,0) & = A(x,1)  \\
+& A(x+1,y+1) & = A(x,A(x+1,y)) 
+\end{eqnarray*}
+
+Ackermann's function is an example of a recursive function that is not primitive recursive, but is instead $\mu$-recursive (that is, Turing-computable).
+
+Ackermann's function grows extremely fast.  In fact, we find that
+
+\begin{eqnarray*}
+A(0,y) & = & y + 1 \\
+A(1,y) & = & 2+(y+3) -3 \\
+A(2,y) & = & 2\cdot (y+3) - 3 \\
+A(3,y) & = & 2^{y+3} - 3 \\
+A(4,y) & = & 2^{2^{{\ldotp\cdotp}^2}} - 3  \;\;\;\; (y + 3 \text{ exponentiations})\\
+\cdots
+\end{eqnarray*}
+
+... and at this point conventional notation breaks down, and we need to employ something like Conway notation or Knuth notation for large numbers.
+
+Ackermann's function wasn't actually written in this form by its namesake, Wilhelm Ackermann.  Instead, Ackermann found that the $z$-fold exponentiation of $x$ with $y$ was an example of a recursive function which was not primitive recursive.  Later this was simplified by Rosza Peter to a function of two variables, similar to the one given above.
+%%%%%
+%%%%%
+\end{document}

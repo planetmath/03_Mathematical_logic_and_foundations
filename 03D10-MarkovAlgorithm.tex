@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MarkovAlgorithm}
+\pmcreated{2013-03-22 18:57:50}
+\pmmodified{2013-03-22 18:57:50}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Markov algorithm}
+\pmrecord{13}{41822}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D10}
+\pmdefines{Markov-computable}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\subsubsection*{Definition}
+
+A \emph{Markov algorithm} is a variant of a rewriting system, invented by mathematician Andrey Andreevich Markov Jr. in 1960.  Like a rewriting system, a Markov algorithm consists of an alphabet and a set of productions.  Furthermore, rewriting is done by applying productions one at a time, if any.  However, unlike a rewriting system, applications of productions are regulated, in the following sense:
+\begin{itemize}
+\item $P$ is ordered so that, among all applicable productions in a single rewriting step, the first applicable one $x\to y$ must be used;
+\item among all occurrences where rewriting can take place with respect to $x\to y$, the leftmost occurrence must be applied.
+\end{itemize}
+Formally, a \emph{Markov algorithm} is a quadruple $\mathscr{M}=(\Sigma,P,F,T)$, where 
+\begin{enumerate}
+\item $\Sigma$ is an alphabet;
+\item $P$ is a non-empty finite ordered set (ordered by, say, $\le$) of pairs of words over $\Sigma$, whose elements are called \emph{productions}, and are usually written $x\to y$ rather than $(x,y)$;
+\item $F$ is a subset of $P$, whose elements are called the \emph{final productions}; and
+\item $T$ is a subset of $\Sigma$, called the terminal alphabet.
+\end{enumerate}
+
+\subsubsection*{Rewriting Process}
+
+Next, we describe the rewriting process for $\mathscr{M}$.  A production $x\to y$ is \emph{applicable} to a pair $(u,v)$ of words over $\Sigma$, if there are two words $p,q$ such that $u=pxq$ and $v=pyq$.
+
+A binary relation $\Rightarrow$ on $\Sigma^*$ called the \emph{rewriting step relation}, is defined as follows: $u\Rightarrow v$ iff there is a production $x\to y$ such that
+\begin{enumerate}
+\item $u=pxq$ and $v=pyq$ for some words $p,q$ over $\Sigma$,
+\item if $(r,s)< (x,y)$, then $r\to s$ is not applicable to $(u,v)$,
+\item if $u=p'xq'$ and $v=p'yq'$, then $px$ is a prefix of $p'x$.
+\end{enumerate}
+The first condition ensures that there is a production ($x\to y$ in this case) applicable to $(u,v)$, the second condition says that $x\to y$ is the first available production that can be applied, and the last condition says that the occurrence of $x$ in $u$ is the leftmost.
+
+By the definition above, every rewriting step $u\Rightarrow v$ determines a unique production $x\to y$, called the \emph{associated production} of $u\Rightarrow v$.  
+
+A word $u$ over $\Sigma$ is said to be \emph{terminal} if there are no words $v$ such that $u\Rightarrow v$.
+
+A rewriting step is called \emph{final} if its associated production is final (in $F$).
+
+\subsubsection*{Computation}
+
+Take the reflexive transitive closure $\Rightarrow^*$ of $\Rightarrow$.  If $u\Rightarrow^* v$, we say that $v$ can be \emph{computed} from $u$, or that $v$ is a \emph{computation} from $u$.
+
+Given any word $u$ over $\Sigma$, we may iteratively apply rewriting steps to $u$ using the methods described above.  Three scenarios may emerge:
+\begin{itemize}
+\item The process terminates: $u\Rightarrow^* v$, where $v$ is a terminal word;
+\item The process reaches a final rewriting step: $u\Rightarrow^* v$, where the last rewriting step $u_{n-1} \Rightarrow u_n = v$ is final; or
+\item The process never reaches any final rewriting step, and goes on indefinitely.
+\end{itemize}
+
+If the third scenario occurs, we say that $\mathscr{M}$ \emph{loops} on $u$.  Otherwise, $\mathscr{M}$ \emph{halts} on $u$.  In any case, we get a unique sequence 
+$$u=u_0 \Rightarrow u_1 \Rightarrow \cdots \Rightarrow u_n \Rightarrow \cdots$$
+of rewriting steps $u_i\to u_{i+1}$.  In the first scenario, the sequence is finite, and in the third scenario, the sequence is infinite.  In the second scenario, the sequence may be finite or infinite, depending if the rewriting is to be continued after a final rewriting step is reached (if $v$ is not a terminal word, then rewriting can continue).  Let us make the rule:
+\begin{quote}
+when a final rewriting is reached, no further rewriting is to be done.  
+\end{quote}
+Thus, the sequence is finite iff $\mathscr{M}$ halts on $u$.  When $\mathscr{M}$ halts on $u$, the finite sequence 
+$$u=u_0 \Rightarrow u_1 \Rightarrow \cdots \Rightarrow u_n = v$$
+produces a unique word $v$.  The word $v$ is said to be \emph{the word computed by} $\mathscr{M}$ from $u$.  Notice that $v$ is either a terminal word, or is computed from a final production $u_{n-1} \to v$.  In either case, no earlier productions $u_i\to u_{i+1}$ are final.
+
+Thus, one can think of a computation by a Markov algorithm as a partial function $$m_{\mathscr{M}}:\Sigma^* \to \Sigma^*,$$ where $m_{\mathscr{M}}(u)$ is defined iff $\mathscr{M}$ halts on $u$, and the value $m_{\mathscr{M}}(u)$ is set to \emph{the unique word} $v$ computed by $\mathscr{M}$ from $u$.
+
+\subsubsection*{Language Acceptor}
+
+$\mathscr{M}$ can be thought of as a language acceptor, which is the purpose of the terminal alphabet $T$: the set $$L(\mathscr{M}):=\lbrace u\in T^* \mid m_{\mathscr{M}}(u)= \lambda \rbrace$$ is called the \emph{language accepted by} $\mathscr{M}$.  The partial function $m_{\mathscr{M}}$ is defined in the previous section.
+
+\textbf{Remark}.  It turns out that a Markov algorithm is just another form of Turing Machine.  One can show that a language is recursively enumerable iff it can be accepted by a Markov algorithm.
+
+Equivalence to a Turing machine can be restated in terms of functional computability.  Before formalizing this notion, we need to first encode tuples of natural numbers by words.  Suppose $(n_1,\ldots,n_m)$ is an $m$-tuple of natural numbers.  Set $$E(n_1,\ldots,n_m):=ab^{n_1}a b^{n_2} a\cdots ab^{n_m}a,$$ a word over the alphabet $\lbrace a,b\rbrace$.  If non-negative integers are allowed instead, we may use the word $E(n_1+1,\ldots,n_m+1)$ instead.  
+
+We say an $m$-ary number-theoretic partial function $f:\mathbb{N}^m \to \mathbb{N}$ is \emph{Markov-computable} if there is a Markov algorithm $\mathscr{M}$ such that $f(n_1,\ldots,n_m)$ is defined iff $m_{\mathscr{M}}(E(n_1,\ldots,n_m))$ is defined, and is equal to $E(f(n_1,\ldots,n_m))$.
+
+It can be shown that a partial function is Turing-computable iff it is Markov-computable.
+
+\begin{thebibliography}{9}
+\bibitem{as} A. Salomaa {\em Computation and Automata, Encyclopedia of Mathematics and Its Applications, Vol. 25}. Cambridge (1985).
+\bibitem{nc} N. Cutland, {\em Computability: An Introduction to Recursive Function Theory}. Cambridge University Press, (1980).
+\bibitem{dm} J. D. Monk, \emph{Mathematical Logic}, Springer, New York (1976).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,239 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1015TheAxiomOfChoiceImpliesExcludedMiddle}
+\pmcreated{2013-11-06 17:12:29}
+\pmmodified{2013-11-06 17:12:29}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{10.1.5 The axiom of choice implies excluded middle}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bbrck}[1]{\ttrunc{}{#1}}
+\newcommand{\bfalse}{{0_{\bool}}}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\newcommand{\btrue}{{1_{\bool}}}
+\newcommand{\choice}[1]{\ensuremath{\mathsf{AC}_{#1}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\epi}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idtypevar}[1]{\ensuremath{\mathsf{Id}_{#1}}\xspace}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\LEM}[1]{\ensuremath{\mathsf{LEM}_{#1}}\xspace}
+\newcommand{\merid}{\mathsf{merid}}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\north}{\mathsf{N}}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\south}{\mathsf{S}}
+\newcommand{\susp}{\Sigma}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttrunc}[2]{\bigl\Vert #2\bigr\Vert_{#1}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\uset}{\ensuremath{\mathcal{S}et}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{10.1.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{10.1.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{10.1.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{10.1.\arabic{mathcount}}
+\let\autoref\cref
+\let\hfiber\hfib
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+% In this section we prove a classic result that the axiom of choice implies excluded
+% middle.
+
+We begin with the following lemma.
+
+\begin{lem}\label{prop:trunc_of_prop_is_set}
+If $A$ is a mere proposition then its suspension $\susp(A)$ is a set,
+and $A$ is equivalent to $\id[\susp(A)]{\north}{\south}$.
+\end{lem}
+
+\begin{proof}
+To show that $\susp(A)$ is a set, we define a
+family $P:\susp(A)\to\susp(A)\to\type$ with the 
+property that $P(x,y)$ is a mere proposition for each $x,y:\susp(A)$,
+and which is equivalent to its identity type $\idtypevar{\susp(A)}$.
+%
+We make the following definitions:
+\begin{align*}
+P(\north,\north) & \defeq \unit &
+P(\south,\north) & \defeq A\\
+P(\north,\south) & \defeq A &
+P(\south,\south) & \defeq \unit.
+\end{align*}
+We have to check that the definition preserves paths.
+Given any $a : A$, there is a meridian $\merid(a) : \north = \south$,
+so we should also have
+%
+\begin{equation*}
+  P(\north, \north) = P(\north, \south) = P(\south, \north) = P(\south, \south).
+\end{equation*}
+%
+But since $A$ is inhabited by $a$, it is equivalent to $\unit$, so we have
+%
+\begin{equation*}
+  P(\north, \north) \eqvsym P(\north, \south) \eqvsym P(\south, \north) \eqvsym P(\south, \south).
+\end{equation*}
+%
+The univalence axiom turns these into the desired equalities. Also, $P(x,y)$ is a mere
+proposition for all $x, y : \susp(A)$, which is proved by induction on $x$ and $y$, and
+using the fact that being a mere proposition is a mere proposition.
+
+Note that $P$ is a reflexive relation.
+Therefore we may apply \autoref{thm:h-set-refrel-in-paths-sets}, so it suffices to
+construct $\tau : \prd{x,y:\susp(A)}P(x,y)\to(x=y)$. We do this by a double induction.
+When $x$ is $\north$, we define $\tau(\north)$ by
+%
+\begin{equation*}
+  \tau(\north,\north,u) \defeq \refl{\north}
+  \qquad\text{and}\qquad
+  \tau(\north,\south,a) \defeq \merid(a).
+\end{equation*}
+%
+If $A$ is inhabited by $a$ then $\merid(a) : \north = \south$ so we also need
+\narrowequation{
+  \trans{\merid(a)}{\tau(\north, \north)} = \tau(\north, \south).
+}
+This we get by function extensionality using the fact that, for all $x : A$,
+%
+\begin{multline*}
+  \trans{\merid(a)}{\tau(\north,\north,x)} =
+  \tau(\north,\north,x) \ct \opp{\merid(a)} \jdeq \\
+  \refl{\north} \ct \merid(a) =
+  \merid(a) =
+  \merid(x) \jdeq
+  \tau(\north, \south, x).
+\end{multline*}
+In a symmetric fashion we may define $\tau(\south)$ by
+%
+\begin{equation*}
+  \tau(\south,\north, a) \defeq \opp{\merid(a)}
+  \qquad\text{and}\qquad
+  \tau(\south,\south, u) \defeq \refl{\south}.
+\end{equation*}
+%
+To complete the construction of $\tau$, we need to check $\trans{\merid(a)}{\tau(\north)} = \tau(\south)$,
+given any $a : A$. The verification proceeds much along the same lines by induction on the
+second argument of $\tau$.
+
+Thus, by \autoref{thm:h-set-refrel-in-paths-sets} we have that $\susp(A)$ is a set and that $P(x,y) \eqvsym (\id{x}{y})$ for all $x,y:\susp(A)$.
+Taking $x\defeq \north$ and $y\defeq \south$ yields $\eqv{A}{(\id[\susp(A)]\north\south)}$ as desired.
+\end{proof}
+
+\begin{thm}[Diaconescu]\label{thm:1surj_to_surj_to_pem}
+  \index{axiom!of choice}%
+  \index{excluded middle}%
+  \index{Diaconescu's theorem}\index{theorem!Diaconescu's}%
+  The axiom of choice implies the law of excluded middle.
+\end{thm}
+
+\begin{proof}
+We use the equivalent form of choice given in \autoref{thm:ac-epis-split}.
+Consider a mere proposition $A$.
+The function $f:\bool\to\susp(A)$ defined by
+$f(\bfalse) \defeq \north$ and $f(\btrue) \defeq \south$
+is surjective.
+Indeed, we have
+$\pairr{\bfalse,\refl{\north}} : \hfiber{f}{\north}$
+and $\pairr{\btrue,\refl{\south}} :\hfiber{f}{\south}$.
+Since $\bbrck{\hfiber{f}{x}}$ is a mere proposition, by induction the claimed surjectivity follows.
+
+By \autoref{prop:trunc_of_prop_is_set} the suspension $\susp(A)$
+is a set, so by the axiom of choice there merely exists a
+section $g: \susp(A) \to \bool$ of $f$.
+As equality on $\bool$ is decidable we get
+\begin{equation*}
+ (g(f(\bfalse))= g(f(\btrue))) +
+ \lnot (g(f(\bfalse))= g(f(\btrue))),
+\end{equation*}
+and, since $g$ is a section of $f$, hence injective,
+\begin{equation*}
+(f(\bfalse) = f(\btrue)) +
+\lnot (f(\bfalse) = f(\btrue)).
+\end{equation*}
+Finally, since $(f(\bfalse)=f(\btrue)) = (\north=\south) = A$ by \autoref{prop:trunc_of_prop_is_set}, we have $A+\neg A$.
+\end{proof}
+
+% This conclusion needs only \LEM{}, see \autoref{ex:lemnm}.
+
+% \begin{cor}\label{cor:ACtoLEM0}
+%   If the axiom of choice \choice{} holds then $\brck{A + \neg A}$ for every set $A$.
+% \end{cor}
+
+% \begin{proof}
+%   There is a surjection
+%   \[
+%   A + \neg A \epi \brck{A} + \brck{\neg A} \epi
+%   \brck{(\brck{A} + \brck{\neg A})} = \brck{A} \vee \brck{\neg A} = \brck{A} \vee \neg \brck{A} = \unit,
+%   \]
+%   %
+%   where in the last step excluded middle is available as a consequence of the axiom of choice.
+%   Again by the axiom of choice there merely exists a section of the surjection, but this
+%   is none other than an inhabitant of $A + \neg A$. Therefore $\brck{A+\neg A}$.
+% \end{proof}
+
+\index{denial}
+\begin{thm}\label{thm:ETCS}
+  \index{Elementary Theory of the Category of Sets}%
+  \index{category!well-pointed}%
+  If the axiom of choice holds then the category $\uset$ is a well-pointed boolean\index{topos!boolean}\index{boolean!topos} elementary topos\index{topos} with choice.  
+\end{thm}
+
+\begin{proof}
+  Since \choice{} implies \LEM{}, we have a boolean elementary topos with choice by \autoref{thm:settopos} and the remark following it.  We leave the proof of well-pointedness as
+an exercise for the reader (\autoref{ex:well-pointed}).
+\end{proof}
+
+\begin{rmk}
+  The conditions on a category mentioned in the theorem are known as Lawvere's\index{Lawvere}
+  axioms for the \emph{Elementary Theory of the Category of Sets}~\cite{lawvere:etcs-long}.
+\end{rmk}
+
+
+\end{document}

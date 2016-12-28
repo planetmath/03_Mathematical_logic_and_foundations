@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A210IdentityTypes}
+\pmcreated{2013-11-09 5:42:35}
+\pmmodified{2013-11-09 5:42:35}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.10 Identity types}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\comp}{\textsc{comp}}
+\newcommand{\elim}{\textsc{elim}}
+\newcommand{\form}{\textsc{form}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idsym}{{=}}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indidb}[1]{\ind{=_{#1}}'} 
+\newcommand{\intro}{\textsc{intro}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\let\autoref\cref
+
+\begin{document}
+\index{type!identity|(}%
+
+The presentation here corresponds to the (unbased) path induction principle for identity types in
+\PMlinkname{\S 1.12}{112identitytypes}.
+
+\begin{mathparpagebreakable}
+  \inferrule*[right=$\idsym$-\form]
+  {\oftp\Gamma{A}{\UU_i} \\ \oftp\Gamma{a}{A} \\ \oftp\Gamma{b}{A}}
+  {\oftp\Gamma{\id[A]{a}{b}}{\UU_i}}
+\and
+  \inferrule*[right=$\idsym$-\intro]
+  {\oftp\Gamma{A}{\UU_i} \\ \oftp\Gamma{a}{A}}
+  {\oftp\Gamma{\refl a}{\id[A]aa}}
+\and
+  \inferrule*[right=$\idsym$-\elim]
+  {\oftp{\Gamma,\tmtp xA,\tmtp yA,\tmtp p{\id[A]xy}}{C}{\UU_i} \\
+   \oftp{\Gamma,\tmtp zA}{c}{C[z,z,\refl z/x,y,p]} \\
+   \oftp\Gamma{a}{A} \\ \oftp\Gamma{b}{A} \\ \oftp\Gamma{p'}{\id[A]ab}}
+  {\oftp\Gamma{\indidb{A}(x.y.p.C,z.c,a,b,p')}{C[a,b,p'/x,y,p]}}
+\and
+  \inferrule*[right=$\idsym$-\comp]
+  {\oftp{\Gamma,\tmtp xA,\tmtp yA,\tmtp p{\id[A]xy}}{C}{\UU_i} \\
+   \oftp{\Gamma,\tmtp zA}{c}{C[z,z,\refl z/x,y,p]} \\
+   \oftp\Gamma{a}{A}}
+  {\jdeqtp\Gamma{\indidb{A}(x.y.p.C,z.c,a,a,\refl a)}{c[a/z]}{C[a,a,\refl a/x,y,p]}}
+\end{mathparpagebreakable}
+%
+In $\indidb{A}$, $x$, $y$, and $p$ are bound in $C$, and $z$ is bound in
+$c$.
+
+\index{type!identity|)}%
+
+
+\end{document}

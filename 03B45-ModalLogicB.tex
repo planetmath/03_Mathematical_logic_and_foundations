@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ModalLogicB}
+\pmcreated{2013-03-22 19:34:11}
+\pmmodified{2013-03-22 19:34:11}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{modal logic B}
+\pmrecord{8}{42556}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmdefines{B}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The modal logic \textbf{B} (for Brouwerian) is the smallest normal modal logic containing the following schemas:
+\begin{itemize}
+\item (T) $\square A \to A$, and
+\item (B) $A \to \square \diamond A$.
+\end{itemize}
+In \PMlinkname{this entry}{ModalLogicT}, we show that T is valid in a frame iff the frame is reflexive.
+
+\begin{prop} B is valid in a frame $\mathcal{F}$ iff $\mathcal{F}$ is symmetric. \end{prop}
+\begin{proof}  First, suppose B is valid in a frame $\mathcal{F}$, and $w R u$.  Let $M$ be a model based on $\mathcal{F}$, with $V(p)=\lbrace w\rbrace$, $p$ a propositional variable.  Since $w\in V(p)$, $\models_w p$, and $\models_w p \to \square \diamond p$ by assumption, $\models_v \diamond p$ for all $v$ such that $w R v$.  In particular, $\models_u \diamond p$, which means there is a $t$ such that $u R t$ and $\models_t p$.  But this means that $t\in V(p)$, so $t=w$, whence $u R w$, and $R$ is symmetric.
+
+Conversely, let $\mathcal{F}$ be a symmetric frame, $M$ a model based on $\mathcal{F}$, and $w$ a world in $M$.  Suppose $\models_w A$.  If $\not \models_w \square \diamond A$, then there is a $u$ such that $w R u$, with $\not \models_u \diamond A$.  This mean for no $t$ with $u R t$, we have $\models_t A$.  Since $R$ is symmetric, $u R w$, so $\not \models_w A$, a contradiction.  Therefore, $\models_w \square \diamond A$, and $\models_w A \to \square \diamond A$ as a result.
+\end{proof}
+
+As a result,
+\begin{prop} \textbf{B} is sound in the class of symmetric frames. \end{prop}
+\begin{proof}  Since any theorem in \textbf{B} is deducible from a finite sequence consisting of tautologies, which are valid in any frame, instances of B, which are valid in symmetric frames by the proposition above, and applications of modus ponens and necessitation, both of which preserve validity in any frame, whence the result.
+\end{proof}
+
+In addition, using the canonical model of \textbf{B}, we have
+\begin{prop} \textbf{B} is complete in the class of reflexive, symmetric frames. \end{prop}
+\begin{proof}  Since \textbf{B} contains T, its canonical frame $\mathcal{F}_{\textbf{B}}$ is reflexive.  We next show that any consistent normal logic $\Lambda$ containing the schema B is symmetric.  Suppose $w R_{\Lambda} u$.  We want to show that $u R_{\Lambda} w$, or that $\Delta_u:=\lbrace B \mid \square B\in u\rbrace \subseteq w$.  It is then enough to show that if $A \notin w$, then $A\notin \Delta_u$.  If $A\notin w$, $\neg A \in w$ because $w$ is maximal, or $\square \diamond \neg A \in w$ by modus ponens on B, or $\square \neg \square A \in w$ by the substitution theorem on $A\leftrightarrow \neg \neg A$, or $\neg \square A \in \Delta_w$ by the definition of $\Delta_w$, or $\neg \square A \in u$ since $w R_{\Lambda} u$, or $\square A \notin u$, since $u$ is maximal, or $A\notin \Delta_u$ by the definition of $\Delta_u$.  So $R_{\Lambda}$ is symmetric, and $R_{\textbf{B}}$ is both reflexive and symmetric.
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

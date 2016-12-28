@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{WellfoundedRecursion}
+\pmcreated{2013-03-22 17:54:52}
+\pmmodified{2013-03-22 17:54:52}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{well-founded recursion}
+\pmrecord{8}{40409}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmclassification{msc}{03E45}
+\pmrelated{TransfiniteRecursion}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\begin{thm} Let $G$ be a binary (class) function on $V$, the class of all sets.  Let $A$ be a well-founded set (with $R$ the well-founded relation).  Then there is a unique function $F$ such that $$F(x)=G(x,F|\operatorname{seg}(x)),$$
+where $\operatorname{seg}(x):=\lbrace y\in A\mid yRx\rbrace$, the initial segment of $x$.
+\end{thm}
+
+\textbf{Remark}.  Since every well-ordered set is well-founded, the well-founded recursion theorem is a generalization of the transfinite recursion theorem.  Notice that the $G$ here is a function in two arguments, and that it is necessary to specify the element $x$ in the first argument (in contrast with the $G$ in the transfinite recursion theorem), since it is possible that $\operatorname{seg}(a)=\operatorname{seg}(b)$ for $a\ne b$ in a well-founded set. 
+
+By converting $G$ into a formula ($\varphi(x,y,z)$ such that for all $x,y$, there is a unique $z$ such that $\varphi(x,y,z)$), then the above theorem can be proved in ZF (with the aid of the well-founded induction).  The proof is similar to the proof of the transfinite recursion theorem.
+%%%%%
+%%%%%
+\end{document}

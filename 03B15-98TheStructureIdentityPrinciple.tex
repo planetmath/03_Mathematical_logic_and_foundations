@@ -1,0 +1,229 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{98TheStructureIdentityPrinciple}
+\pmcreated{2013-11-06 16:43:12}
+\pmmodified{2013-11-06 16:43:12}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{9.8 The structure identity principle}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\idtoiso}{\ensuremath{\mathsf{idtoiso}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inv}[1]{{#1}^{-1}}
+\newcommand{\jdeq}{\equiv}      
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\propU}{\ensuremath{\mathsf{Prop}_\UU}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\uset}{\ensuremath{\mathcal{S}et}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{9.8.\arabic{mathcount}}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{9.8.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{9.8.\arabic{mathcount}}
+\let\autoref\cref
+\let\bbU\UU
+\let\setof\Set    
+\let\type\UU
+\makeatother
+
+\begin{document}
+ \index{structure!identity principle|(}
+
+The \emph{structure identity principle} is an informal principle
+that expresses that isomorphic structures are identical.  We aim to
+prove a general abstract result which can be applied to a wide family
+of notions of structure, where structures may be many-sorted or even
+dependently-sorted, infinitary, or even higher order.
+
+The simplest kind of single-sorted structure consists of a type with
+no additional structure.  The univalence axiom expresses the structure identity principle for that
+notion of structure in a strong form: for types $A,B$, the
+canonical function $(A=B)\to (\eqv A B)$ is an equivalence.
+
+We start with a precategory $X$.  In our application to
+single-sorted first order structures, $X$ will be the category %\uset%
+of $\bbU$-small sets, where $\bbU$ is a univalent type universe.
+
+\begin{defn}\label{ct:sig}
+  A \define{notion of structure} 
+  \indexdef{structure!notion of}%
+  $(P,H)$ over $X$ consists of the following.
+  \begin{enumerate}
+  \item A type family $P:X_0 \to \type$.
+    For each $x:X_0$ the elements of $Px$ are called \define{$(P,H)$-structures}
+    \indexsee{PH-structure@$(P,H)$-structure}{structure}%
+    \indexdef{structure!PH@$(P,H)$-}%
+    on $x$.
+  \item For $x,y:X_0$ and $\alpha:Px$, $\;\beta:Py$, to each $f:\hom_X(x,y)$ a mere proposition 
+  \[ H_{\alpha\beta}(f).\]
+    If $H_{\alpha\beta}(f)$ is true, we say that $f$ is a \define{$(P,H)$-homomorphism}
+    \indexdef{homomorphism!of structures}%
+    \indexdef{structure!homomorphism of}%
+    from $\alpha$ to $\beta$.
+  \item For $x:X_0$ and $\alpha:Px$, we have $H_{\alpha\alpha}(1_x)$.\label{item:sigid}
+  \item For $x,y,z:X_0$ and $\alpha:Px$, $\;\beta:Py$, $\;\gamma:Pz$, 
+if $f:\hom_X(x,y)$, we have\label{item:sigcmp}
+  \[ H_{\alpha\beta}(f)\to H_{\beta\gamma}(g)\to H_{\alpha\gamma}(g\circ   f).\]
+   \end{enumerate}
+  When $(P,H)$ is a notion of structure, for $\alpha,\beta:Px$ we define
+  \[ (\alpha\leq_x\beta) \defeq H_{\alpha\beta}(1_x).\]
+  By~\ref{item:sigid} and~\ref{item:sigcmp}, this is a preorder (\autoref{ct:orders}) with $Px$ its type of objects.
+  We say that $(P,H)$ is a \define{standard notion of structure}
+  \indexdef{structure!standard notion of}%
+  if this preorder is in fact a partial order, for all $x:X$.
+\end{defn}
+
+Note that for a standard notion of structure, each type $Px$ must actually be a set.
+We now define, for any notion of structure $(P,H)$, a \define{precategory of $(P,H)$-structures},
+\indexdef{precategory!of PH-structures@of $(P,H)$-structures}%
+\indexdef{structure!precategory of PH@precategory of $(P,H)$-}%
+$A = \mathsf{Str}_{(P,H)}(X)$.
+\begin{itemize}
+\item The type of objects of $A$ is the type $A_0 \defeq \sm{x:X} Px$.
+  If $a\jdeq (x,\alpha):A_0$, we may write $|a| \defeq x$.
+\item For $(x,\alpha):A_0$ and $(y,\beta):A_0$, we define
+  \[\hom_A((x,\alpha),(y,\beta)) \defeq \setof{ f:x \to y | H_{\alpha\beta}(f)}.\]
+\end{itemize}
+The composition and identities are inherited from $X$; conditions~\ref{item:sigid} and \ref{item:sigcmp} ensure that these lift to $A$.
+
+\begin{thm}[Structure identity principle]\label{thm:sip}
+  \indexdef{structure!identity principle}%
+  If $X$ is a category and $(P,H)$ is a standard notion of structure over $X$, then the precategory $\mathsf{Str}_{(P,H)}(X)$ is a category.
+\end{thm}
+\begin{proof}
+  By the definition of equality in dependent pair types, to give an equality $(x,\alpha)=(y,\beta)$ consists of
+  \begin{itemize}
+  \item An equality $p:x=y$, and
+  \item An equality $\trans{p}{\alpha}=\beta$.
+  \end{itemize}
+  Since $P$ is set-valued, the latter is a mere proposition.
+  On the other hand, it is easy to see that an isomorphism $(x,\alpha)\cong (y,\beta)$ in $\mathsf{Str}_{(P,H)}(X)$ consists of
+  \begin{itemize}
+  \item An isomorphism $f:x\cong y$ in $X$, such that
+  \item $H_{\alpha\beta}(f)$ and $H_{\beta\alpha}(\inv f)$.
+  \end{itemize}
+  Of course, the second of these is also a mere proposition.
+  And since $X$ is a category, the function $(x=y) \to (x\cong y)$ is an equivalence.
+  Thus, it will suffice to show that for any $p:x=y$ and for any $(\alpha:Px)$, $(\beta:Py)$, we have $\trans{p}{\alpha}=\beta$ if and only if both  $H_{\alpha\beta}(\idtoiso (p))$ and $H_{\beta\alpha}(\inv{\idtoiso(p)})$.
+
+  The ``only if'' direction is just the existence of the function $\idtoiso$ for the category $\mathsf{Str}_{(P,H)}(X)$.
+  For the ``if'' direction, by induction on $p$ we may assume that $y\jdeq x$ and $p\jdeq\refl x$.
+  However, in this case $\idtoiso (p)\jdeq 1_x$ and therefore $\inv{\idtoiso(p)}=1_x$.
+  Thus, $\alpha\leq_x \beta$ and $\beta\leq_x \alpha$, which implies $\alpha=\beta$ since $(P,H)$ is a standard notion of structure.
+\end{proof}
+
+As an example, this methodology gives an alternative way to express the proof of \autoref{ct:functor-cat}.
+
+\begin{eg}\label{ct:sip-functor-cat}
+  Let $A$ be a precategory and $B$ a category.
+  There is a precategory $B^{A_0}$ whose objects are functions $A_0 \to B_0$, and whose set of morphisms from $F_0:A_0 \to B_0$ to $G_0:A_0 \to B_0$ is $\prd{a:A_0} \hom_B(F_0 a, G_0 a)$.
+  Composition and identities are inherited directly from those in $B$.
+  It is easy to show that $\gamma:\hom_{B^{A_0}}(F_0, G_0)$ is an isomorphism exactly when each component $\gamma_a$ is an isomorphism, so that we have $\eqv{(F_0 \cong G_0)}{\prd{a:A_0} (F_0 a \cong G_0 a)}$.
+  Moreover, the map $\idtoiso : (F_0 = G_0) \to (F_0 \cong G_0)$ of $B^{A_0}$ is equal to the composite
+  \[ (F_0 = G_0) \longrightarrow \prd{a:A_0} (F_0 a  = G_0 a) \longrightarrow \prd{a:A_0} (F_0 a \cong G_0 a) \longrightarrow (F_0 \cong G_0) \]
+  in which the first map is an equivalence by function extensionality, the second because it is a dependent product of equivalences (since $B$ is a category), and the third as remarked above.
+  Thus, $B^{A_0}$ is a category.
+
+  Now we define a notion of structure on $B^{A_0}$ for which $P(F_0)$ is the type of operations $F:\prd{a,a':A_0} \hom_A(a,a') \to \hom_B(F_0 a,F_0 a')$ which extend $F_0$ to a functor (i.e.\ preserve composition and identities).
+  This is a set since each $\hom_B(\blank,\blank)$ is so.
+  Given such $F$ and $G$, we define $\gamma:\hom_{B^{A_0}}(F_0, G_0)$ to be a homomorphism if it forms a natural transformation.\index{natural!transformation}
+  In \autoref{ct:functor-precat} we essentially verified that this is a notion of structure.
+  Moreover, if $F$ and $F'$ are both structures on $F_0$ and the identity is a natural transformation from $F$ to $F'$, then for any $f:\hom_A(a,a')$ we have $F'f = F'f \circ 1_{F_0 a} = 1_{F_0 a}\circ F f = F f$.
+  Applying function extensionality, we conclude $F = F'$.
+  Thus, we have a \emph{standard} notion of structure, and so by \autoref{thm:sip}, the precategory $B^A$ is a category.
+\end{eg}
+
+As another example, we consider categories of structures for a first-order signature.
+We define a \define{first-order signature},
+\indexdef{first-order!signature}%
+\indexdef{signature!first-order}%
+$\Omega$, to consist of sets $\Omega_0$ and $\Omega_1$ of function symbols, $\omega:\Omega_0$, and relation symbols, $\omega:\Omega_1$, each having an arity\index{arity} $|\omega|$ that is a set.
+An \define{$\Omega$-structure}
+\indexdef{structure!Omega@$\Omega$-}%
+\indexsee{omega-structure@$\Omega$-structure}{structure}%
+$a$ consists of a set $|a|$ together with an assignment of an $|\omega|$-ary function $\omega^a:|a|^{|\omega|}\to |a|$ on $|a|$ to each function symbol, $\omega$, and an assignment of an $|\omega|$-ary relation $\omega^a$ on $|a|$, assigning a mere proposition $\omega^ax$ to each $x:|a|^{|\omega|}$, to each relation symbol.
+And given $\Omega$-structures $a,b$, a function $f:|a|\to |b|$ is a \define{homomorphism $a\to b$}
+\indexdef{homomorphism!of Omega-structures@of $\Omega$-structures}%
+\indexdef{structure!homomorphism of Omega@homomorphism of $\Omega$-}%
+if it preserves the structure; i.e.\ if for each symbol $\omega$ of the signature and each $x:|a|^{|\omega|}$,
+\begin{enumerate}
+\item $f(\omega^ax) = \omega^b(f\circ x)$ if $\omega:\Omega_0$, and
+\item $\omega^ax\to\omega^b(f\circ x)$ if $\omega:\Omega_1$.
+\end{enumerate}
+Note that each $x:|a|^{|\omega|}$ is a function $x:|\omega|\to |a|$ so that $f\circ x : b^\omega$.
+
+Now we assume given a (univalent) universe $\bbU$ and a $\bbU$-small signature $\Omega$; i.e. $|\Omega|$ is a $\bbU$-small set and, for each $\omega:|\Omega|$, the set $|\omega|$ is $\bbU$-small.
+Then we have the category $\uset_\bbU$ of $\bbU$-small sets.  We want to define the precategory of $\bbU$-small $\Omega$-structures over $\uset_\bbU$ and use \autoref{thm:sip} to show that it is a category.
+
+We use the first order signature $\Omega$ to give us a standard notion of structure $(P,H)$ over $\uset_\bbU$.  
+
+\begin{defn}\label{defn:fo-notion-of-structure}
+\mbox{}
+\begin{enumerate}
+\item For each $\bbU$-small set $x$ define 
+  \[ Px \defeq P_0x\times P_1x.\]
+  Here
+  % 
+  \begin{align*}
+    P_0x &\defeq \prd{\omega:\Omega_0} x^{|\omega|}\to x, \mbox{ and } \\
+    P_1x &\defeq \prd{\omega:\Omega_1} x^{|\omega|}\to \propU,
+  \end{align*}
+\item For $\bbU$-small sets $x,y$ and 
+  $\alpha:P^\omega x,\;\beta:P^\omega y,\; f:x\to y$, define
+  \[ H_{\alpha\beta}(f) \defeq H_{0,\alpha\beta}(f)\wedge H_{1,\alpha\beta}(f).\]
+  Here
+  \begin{align*}
+    H_{0,\alpha\beta}(f) &\defeq
+    \fall{\omega:\Omega_0}{u:x^{|\omega|}} f(\alpha u)=\;\beta(f\circ u),
+    \mbox{ and }\\
+    H_{1,\alpha\beta}(f) &\defeq
+    \fall{\omega:\Omega_1}{u:x^{|\omega|}} \alpha u\to\beta(f\circ u).
+  \end{align*}
+\end{enumerate}
+\end{defn}
+
+It is now routine to check that $(P,H)$ is a standard notion of structure over $\uset_\bbU$ and hence we may use \autoref{thm:sip} to get that the precategory $Str_{(P,H)}(\uset_\bbU)$ is a category.  It only remains to observe that this is essentially the same as the precategory of $\bbU$-small $\Omega$-structures over $\uset_\bbU$.
+ \index{structure!identity principle|)}
+
+
+
+\end{document}

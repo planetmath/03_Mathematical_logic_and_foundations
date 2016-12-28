@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ApartnessRelation}
+\pmcreated{2013-03-22 19:35:45}
+\pmmodified{2013-03-22 19:35:45}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{apartness relation}
+\pmrecord{13}{42586}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F99}
+\pmclassification{msc}{03F65}
+\pmclassification{msc}{03F60}
+\pmdefines{tight}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+Given two arbitrary real numbers $r,s$, how does one (better yet, a computer) prove $r=s$?  Given decimal representations of $r$ and $s$: $$r=r_0.r_1 r_2 r_3 \ldots\qquad s=s_0.s_1 s_2 s_3 \ldots$$
+one needs to show that $r_0 =s_0$, $r_1=s_1$, $r_2=s_2$, etc... which involves demonstrating an infinite number of equalities.  On the other hand, showing that $r\ne s$ is a finitary process, in that one proceeds as above, and then stops when he/she finds a decimal place $n$ where the two corresponding digits differ: $r_n \ne s_n$.  Therefore, in constructive mathematics, inequality is a more appropriate choice of study than equality.  The formal notion of inequality in constructive mathematics is that of an apartness relation.
+
+An \emph{apartness relation} on a set $X$ is a binary relation $\#$ on $X$ satisfying the following conditions:
+\begin{enumerate}
+\item $\forall x (\neg x \#x) $,
+\item $\forall x \forall y (x \#y  \to y \#x )$, and
+\item $\forall x \forall y \forall z (x \# y \to (x \# z \lor y \#z))$.
+\end{enumerate}
+And if in addition, we have the following
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item $\forall x \forall y(\neg x \# y \leftrightarrow x=y) $
+\end{enumerate}
+Then $\#$ is said to be \emph{tight}.
+
+In classical mathematics where the law of the excluded middle is accepted, the following are true:
+\begin{enumerate}
+\item the first condition is redundant if $\#$ is assumed to be tight.
+\item the second condition above is redundant, for if $x\# y$, then $x\# x$ or $y\# x$ by condition 3, but then by condition 1, $x \# x$ is false, therefore $y\# x$.  
+\item the converse of an apartness relation is an equivalence relation: define $x R y$ iff not $x \# y$.  Since $x \# x$ is false for all $x \in X$, $x R x$ for all $x\in X$.  Also, the contrapositive of the second condition above shows that $R$ is symmetric.  Now, suppose $x R y$ and $y R z$.  Then not $x \# y$ and not $y \# z$, or not $(x \# y \lor z \# y)$.  Applying the contrapositive of the third condition, we have not $x \# z$, or $x R z$.  So $R$ is transitive.
+\item Conversely, the converse of an equivalence relation is an apartness relation: suppose $R$ is an equivalence relation, and define $x \# y$ iff not $x R y$.  Then irreflexivity and symmetry of $\#$ are clear from the reflexivity and symmetry of $R$.  Now, suppose $x \# y$.  Pick any $z\in X$.  If not $x \# z$ and not $y \# z$, then $x R z$ and $y R z$, or $z R y$, which means $x R y$ since $R$ is transitive.  But this contradicts the assumption $x \# y$, or not $x R y$.
+\end{enumerate}
+Based on the last two observations, we see that the notion of apartness is not a very useful in mathematics based on classical logic, as the study of equivalence relation suffices.
+
+On the other hand, arguing constructively, the second and the last statements above no longer hold, because the law of the excluded middle (and proof by contradiction) is used to derive both results.  In other words, the apartness relation is a distinct concept in constructive mathematics.  Below are some examples (and non-examples) of tight apartness relations:
+\begin{itemize}
+\item $\ne$ is a tight apartness relation on the set of rationals $\mathbb{Q}$.
+\item more generally, $\ne$ is a tight apartness relation on a set $X$ if ``$=$'' on $X$ is a deciable predicate, that is, for any pair $x,y \in X$, either $x=y$ or $x\ne y$.
+\item However, $\ne$ is not a tight apartness relation on the set of reals $\mathbb{R}$, since if $x\ne y$, it may not be possible to prove constructively that, for any given real number $z$, $x\ne z$ or $y\ne z$ (because such a proof may be infinite in length).  
+\item However, if we define $x\# y$ iff there is a rational number $r$ such that $$(x<r<y)\lor (y<r<x),$$ then $\#$ is a tight apartness relation.  To see this, first note that $\#$ is irreflexive and symmetric.  Also, it is not hard to see that the converse of $\#$ is $=$.  Now, suppose $x\#y$.  Pick any real number $z$.  If not $x\#z$, then $x=z$, which means $y\#z$.  Similarly, if not $y\#z$, then $x\#z$.
+\end{itemize}
+
+%%%%%
+%%%%%
+\end{document}

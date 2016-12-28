@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TheInverseImageCommutesWithSetOperations}
+\pmcreated{2013-03-22 13:35:24}
+\pmmodified{2013-03-22 13:35:24}
+\pmowner{matte}{1858}
+\pmmodifier{matte}{1858}
+\pmtitle{the inverse image commutes with set operations}
+\pmrecord{11}{34213}
+\pmprivacy{1}
+\pmauthor{matte}{1858}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmrelated{SetDifference}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+{\bf Theorem.} 
+Let $f$ be a mapping from $X$ to $Y$. If $\{B_i\}_{i\in I}$ is
+a (possibly uncountable) collection of subsets in  $Y$, then 
+the following relations hold for the inverse image:
+\begin{enumerate}
+\item[(1)] $ \displaystyle f^{-1}\big(\bigcup_{i\in I} B_i\big) = \bigcup_{i\in I} f^{-1}\big(B_i\big) $
+\item[(2)] $ \displaystyle f^{-1}\big(\bigcap_{i\in I} B_i\big) = \bigcap_{i\in I} f^{-1}\big(B_i\big) $
+\end{enumerate}
+If $A$ and $B$ are subsets in $Y$, then we also have:
+\begin{enumerate}
+\item[(3)] For the set complement, 
+$$\big(f^{-1}(A)\big)^\complement=f^{-1}(A^\complement).$$
+\item[(4)] For the set difference, 
+$$f^{-1}(A\setminus B) = f^{-1}(A)\setminus f^{-1}(B).$$
+\item[(5)] For the symmetric difference, 
+$$f^{-1}(A \bigtriangleup B)=f^{-1}(A) \bigtriangleup f^{-1}(B).$$
+\end{enumerate}
+ 
+\emph{Proof.} 
+For part (1), we have
+\begin{eqnarray*}
+f^{-1}\big(\bigcup_{i\in I} B_i\big) &=& \Big\{ x\in X\mid f(x) \in \bigcup_{i\in I} B_i\Big\} \\
+&=& \left\{ x\in X \mid  f(x) \in B_i\ \mbox{for some}\ i\in I\right\} \\
+&=& \bigcup_{i\in I}\left\{ x\in X \mid  f(x) \in B_i \right\} \\
+&=& \bigcup_{i\in I} f^{-1}\big(B_i\big).
+\end{eqnarray*}
+Similarly, for part (2), we have
+\begin{eqnarray*}
+f^{-1}\big(\bigcap_{i\in I} B_i\big) &=& \big\{ x\in X \mid f(x) \in \bigcap_{i\in I} B_i\big\} \\
+&=& \left\{ x\in X \mid f(x) \in B_i\ \mbox{for all}\ i\in I\right\} \\
+&=& \bigcap_{i\in I}\left\{ x\in X \mid  f(x) \in B_i \right\} \\
+&=& \bigcap_{i\in I} f^{-1}\big(B_i\big).
+\end{eqnarray*}
+For the set complement, suppose $x\notin f^{-1}(A)$. This is equivalent to
+$f(x)\notin A$, or $f(x)\in A^\complement$, which is equivalent to 
+$x\in f^{-1}(A^\complement)$. Since the set difference  $A\setminus B$ can be
+written as $A\cap B^c$, part (4) follows from parts (2) and 
+(3). Similarly, since $A\bigtriangleup B=(A\setminus B) \cup (B\setminus A)$,
+part (5) follows from parts (1) and 
+(4). $\Box$
+%%%%%
+%%%%%
+\end{document}

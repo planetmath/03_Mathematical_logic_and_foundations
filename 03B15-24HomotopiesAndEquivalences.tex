@@ -1,0 +1,301 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{24HomotopiesAndEquivalences}
+\pmcreated{2013-11-19 14:42:23}
+\pmmodified{2013-11-19 14:42:23}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2.4 Homotopies and Equivalences}
+\pmrecord{31}{87601}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\com}[3]{\mathsf{swap}_{#1,#2}(#3)}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\htpy}{\sim}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\qinv}{\ensuremath{\mathsf{qinv}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{2.4.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{2.4.\arabic{mathcount}}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{2.4.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{2.4.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{2.4.\arabic{mathcount}}
+\let\ap\map
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{homotopy|(defstyle}%
+
+So far, we have seen how the identity type $\id[A]xy$ can be regarded as a type of \emph{identifications}, \emph{paths}, or \emph{equivalences} between two elements $x$ and $y$ of a type $A$.
+Now we investigate the appropriate notions of ``identification'' or ``sameness'' between \emph{functions} and between \emph{types}.
+In \PMlinkname{\S 2.9}{29pitypesandthefunctionextensionalityaxiom},\PMlinkname{\S 2.10}{210universesandtheunivalenceaxiom}, we will see that homotopy type theory allows us to identify these with instances of the identity type, but before we can do that we need to understand them in their own right.
+
+Traditionally, we regard two functions as the same if they take equal values on all inputs.
+Under the propositions-as-types interpretation, this suggests that two functions $f$ and $g$ (perhaps dependently typed) should be the same if the type $\prd{x:A} (f(x)=g(x))$ is inhabited.
+Under the homotopical interpretation, this dependent function type consists of \emph{continuous} paths or \emph{functorial} equivalences, and thus may be regarded as the type of \emph{homotopies} or of \emph{natural isomorphisms}.\index{isomorphism!natural}%
+We will adopt the topological terminology for this.
+
+\begin{defn} \label{defn:homotopy}
+  Let $f,g:\prd{x:A} P(x)$ be two sections of a type family $P:A\to\type$.
+  A \define{homotopy}
+  from $f$ to $g$ is a dependent function of type
+  \begin{equation*}
+    (f\htpy g) \defeq \prd{x:A} (f(x)=g(x)).
+  \end{equation*}
+\end{defn}
+
+Note that a homotopy is not the same as an identification $(f=g)$.
+However, in \PMlinkname{\S 2.9}{29pitypesandthefunctionextensionalityaxiom} we will introduce an axiom making homotopies and identifications ``equivalent''.
+
+The following proofs are left to the reader.
+
+\begin{lem}\label{lem:homotopy-props}
+  Homotopy is an equivalence relation on each function type $A\to B$.
+  That is, we have elements of the types
+  \begin{gather*}
+    \prd{f:A\to B} (f\htpy f)\\
+    \prd{f,g:A\to B} (f\htpy g) \to (g\htpy f)\\
+    \prd{f,g,h:A\to B} (f\htpy g) \to (g\htpy h) \to (f\htpy h).
+  \end{gather*}
+\end{lem}
+
+% This is judgmental and is \PMlinkexternal{Exercise 1.1}{http://planetmath.org/node/87554}.
+% \begin{lem}
+%   Composition is associative and unital up to homotopy.
+%   That is:
+%   \begin{enumerate}
+%   \item If $f:A\to B$ then $f\circ \idfunc[A]\htpy f\htpy \idfunc[B]\circ f$.
+%   \item If $f:A\to B, g:B\to C$ and $h:C\to D$ then $h\circ (g\circ f) \htpy (h\circ g)\circ f$.
+%   \end{enumerate}
+% \end{lem}
+
+\index{functoriality of functions in type theory@``functoriality'' of functions in type theory}%
+\index{continuity of functions in type theory@``continuity'' of functions in type theory}%
+Just as functions in type theory are automatically ``functors'', homotopies are automatically
+\index{naturality of homotopies@``naturality'' of homotopies}%
+``natural transformations'', in the following sense.
+Recall that for $f:A\to B$ and $p:\id[A]xy$, we may write $\ap f p$ to mean $\apfunc{f} (p)$.
+
+
+\begin{lem}\label{lem:htpy-natural}
+  Suppose $H:f\htpy g$ is a homotopy between functions $f,g:A\to B$ and let $p:\id[A]xy$.  Then we have
+  \begin{equation*}
+    H(x)\ct\ap{g}{p}=\ap{f}{p}\ct H(y).
+  \end{equation*}
+  We may also draw this as a commutative diagram:\index{diagram}
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_2.4.1.png}
+\end{figure}
+ % \begin{align*}
+ %   \xymatrix{
+ %     f(x) \ar@{=}[r]^{\ap fp} \ar@{=}[d]_{H(x)} & f(y) \ar@{=}[d]^{H(y)} \\
+ %     g(x) \ar@{=}[r]_{\ap gp} & g(y)
+ %   }
+ % \end{align*}
+\end{lem}
+\begin{proof}
+  By induction, we may assume $p$ is $\refl x$.
+  Since $\apfunc{f}$ and $\apfunc g$ compute on reflexivity, in this case what we must show is
+  \[ H(x) \ct \refl{g(x)} = \refl{f(x)} \ct H(x). \]
+  But this follows since both sides are equal to $H(x)$.
+\end{proof}
+
+\begin{cor}\label{cor:hom-fg}
+  Let $H : f \htpy \idfunc[A]$ be a homotopy, with $f : A \to A$. Then for any $x : A$ we have \[ H(f(x)) = \ap f{H(x)}. \]
+  % The above path will be denoted by $\com{H}{f}{x}$.
+\end{cor}
+\noindent
+Here $f(x)$ denotes the ordinary application of $f$ to $x$, while $\ap f{H(x)}$ denotes $\apfunc{f}(H(x))$.
+\begin{proof}
+By naturality of $H$, the following diagram of paths commutes:
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_2.4.2.png}
+\end{figure}
+%\begin{align*}
+%\xymatrix@C=3pc{
+%ffx \ar@{=}[r]^-{\ap f{Hx}} \ar@{=}[d]_{H(fx)} & fx \ar@{=}[d]^{Hx} \\
+%fx \ar@{=}[r]_-{Hx} & x
+%}
+%\end{align*}
+That is, $\ap f{H x} \ct H x = H(f x) \ct H x$.
+We can now whisker by $\opp{(H x)}$ to cancel $H x$, obtaining
+\[ \ap f{H x}
+= \ap f{H x} \ct H x \ct \opp{(H x)}
+= H(f x) \ct H x \ct \opp{(H x)}
+= H(f x)
+\]
+as desired (with some associativity paths suppressed).
+\end{proof}
+
+Of course, like the functoriality of functions (\PMlinkname{Lemma 2.2.2}{22functionsarefunctors#Thmprelem2}), the equality in \PMlinkname{Lemma 2.4.3}{24homotopiesandequivalences#Thmprelem2} is a path which satisfies its own coherence laws, and so on.
+
+\index{homotopy|)}%
+
+\index{equivalence|(}%
+Moving on to types, from a traditional perspective one may say that a function $f:A\to B$ is an \emph{isomorphism} if there is a function $g:B\to A$ such that both composites $f\circ g$ and $g\circ f$ are pointwise equal to the identity, i.e.\ such that $f \circ g \htpy \idfunc[B]$ and $g\circ f \htpy \idfunc[A]$.
+\indexsee{homotopy!equivalence}{equivalence}%
+A homotopical perspective suggests that this should be called a \emph{homotopy equivalence}, and from a categorical one, it should be called an \emph{equivalence of (higher) groupoids}.
+However, when doing proof-relevant mathematics,
+\index{mathematics!proof-relevant}%
+the corresponding type
+\begin{myeqn}
+  \sm{g:B\to A} \big((f \circ g \htpy \idfunc[B]) \times (g\circ f \htpy \idfunc[A])\big)\label{eq:qinvtype}
+\end{myeqn}
+is poorly behaved.
+For instance, for a single function $f:A\to B$ there may be multiple unequal inhabitants of~\eqref{eq:qinvtype}.
+(This is closely related to the observation in higher category theory that often one needs to consider \emph{adjoint} equivalences\index{adjoint!equivalence} rather than plain equivalences.)
+For this reason, we give~\eqref{eq:qinvtype} the following historically accurate, but slightly de\-rog\-a\-to\-ry-sounding name instead.
+
+\begin{defn}
+  For a function $f:A\to B$, a \define{quasi-inverse}
+  \indexdef{quasi-inverse}%
+  \indexsee{function!quasi-inverse of}{quasi-inverse}%
+  of $f$ is a triple $(g,\alpha,\beta)$ consisting of a function $g:B\to A$ and homotopies
+$\alpha:f\circ g\htpy \idfunc[B]$ and $\beta:g\circ f\htpy \idfunc[A]$.
+\end{defn}
+
+\symlabel{qinv}
+Thus,~\eqref{eq:qinvtype} is \emph{the type of quasi-inverses of $f$}; we may denote it by $\qinv(f)$.
+
+\begin{eg}\label{eg:idequiv}
+  \index{identity!function}%
+  \index{function!identity}%
+  The identity function $\idfunc[A]:A\to A$ has a quasi-inverse given by $\idfunc[A]$ itself, together with homotopies defined by $\alpha(y) \defeq \refl{y}$ and $\beta(x) \defeq \refl{x}$.
+\end{eg}
+
+\begin{eg}\label{eg:concatequiv}
+  For any $p:\id[A]xy$ and $z:A$, the functions
+  \begin{align*}
+    (p\ct \blank)&:(\id[A]yz) \to (\id[A]xz) \qquad\text{and}\\
+    (\blank \ct p)&:(\id[A]zx) \to (\id[A]zy)
+  \end{align*}
+  have quasi-inverses given by $(\opp p \ct \blank)$ and $(\blank \ct \opp p)$, respectively; see \PMlinkexternal{Exercise 2.6}{http://planetmath.org/node/87637}.
+\end{eg}
+
+\begin{eg}\label{thm:transportequiv}
+  For any $p:\id[A]xy$ and $P:A\to\type$, the function
+  \[\transfib{P}{p}{\blank}:P(x) \to P(y)\]
+  has a quasi-inverse given by $\transfib{P}{\opp p}{\blank}$; this follows from \PMlinkname{Lemma 2.3.9}{23typefamiliesarefibrations#Thmprelem6}.
+\end{eg}
+
+\symlabel{basics-isequiv}
+In general, we will only use the word \emph{isomorphism}
+\index{isomorphism!of sets}
+(and similar words such as \emph{bijection})
+\index{bijection}
+in the special case when the types $A$ and $B$ ``behave like sets'' (see \PMlinkname{\S 3.1}{31setsandntypes}).
+In this case, the type~\eqref{eq:qinvtype} is unproblematic.
+We will reserve the word \emph{equivalence} for an improved notion $\isequiv (f)$ with the following properties:%
+\begin{enumerate}
+\item For each $f:A\to B$ there is a function $\qinv(f) \to \isequiv (f)$.\label{item:be1}
+\item Similarly, for each $f$ we have $\isequiv (f) \to \qinv(f)$; thus the two are logically equivalent (see \PMlinkname{\S 1.11}{111propositionsastypes}).\label{item:be2}
+\item For any two inhabitants $e_1,e_2:\isequiv(f)$ we have $e_1=e_2$.\label{item:be3}
+\end{enumerate}
+In \PMlinkexternal{Chapter 4}{http://planetmath.org/node/87577} we will see that there are many different definitions of $\isequiv(f)$ which satisfy these three properties, but that all of them are equivalent.
+For now, to convince the reader that such things exist, we mention only the easiest such definition:
+\begin{myeqn}\label{eq:isequiv-invertible}
+  \isequiv(f) \;\defeq\;
+  \Parens{\sm{g:B\to A} (f\circ g \htpy \idfunc[B])}
+  \times
+  \Parens{\sm{h:B\to A} (h\circ f \htpy \idfunc[A])}.
+\end{myeqn}
+We can show~\ref{item:be1} and~\ref{item:be2} for this definition now.
+A function $\qinv(f) \to \isequiv (f)$ is easy to define by taking $(g,\alpha,\beta)$ to $(g,\alpha,g,\beta)$.
+In the other direction, given $(g,\alpha,h,\beta)$, let $\gamma$ be the composite homotopy
+\[ g \overset{\beta}{\htpy} h\circ f\circ g \overset{\alpha}{\htpy} h \]
+and let $\beta':g\circ f\htpy \idfunc[A]$ be obtained from $\gamma$ and $\beta$.
+Then $(g,\alpha,\beta'):\qinv(f)$.
+
+Property~\ref{item:be3} for this definition is not too hard to prove either, but it requires identifying the identity types of cartesian products and dependent pair types, which we will discuss in \PMlinkname{\S 2.6}{26cartesianproducttypes},\PMlinkname{\S 2.7}{27sigmatypes}.
+Thus, we postpone it as well; see \PMlinkname{\S 4.3}{43biinvertiblemaps}.
+At this point, the main thing to take away is that there is a well-behaved type which we can pronounce as ``$f$ is an equivalence'', and that we can prove $f$ to be an equivalence by exhibiting a quasi-inverse to it.
+In practice, this is the most common way to prove that a function is an equivalence.
+
+In accord with the proof-relevant philosophy,
+\index{mathematics!proof-relevant}%
+\emph{an equivalence} from $A$ to $B$ is defined to be a function $f:A\to B$ together with an inhabitant of $\isequiv (f)$, i.e.\ a proof that it is an equivalence.
+We write $(\eqv A B)$ for the type of equivalences from $A$ to $B$, i.e.\ the type
+\begin{myeqn}\label{eq:eqv}
+  (\eqv A B) \defeq \sm{f:A\to B} \isequiv(f).
+\end{myeqn}
+Property~\ref{item:be3} above will ensure that if two equivalences are equal as functions (that is, the underlying elements of $A\to B$ are equal), then they are also equal as equivalences (see \PMlinkname{\S 2.7}{27sigmatypes}).
+Thus, we often abuse notation by denoting an equivalence by the same letter as its underlying function.
+
+We conclude by observing:
+
+\begin{lem}\label{thm:equiv-eqrel}
+  Type equivalence is an equivalence relation on \type.
+  More specifically:
+  \begin{enumerate}
+  \item For any $A$, the identity function $\idfunc[A]$ is an equivalence; hence $\eqv A A$.
+  \item For any $f:\eqv A B$, we have an equivalence $f^{-1} : \eqv B A$.
+  \item For any $f:\eqv A B$ and $g:\eqv B C$, we have $g\circ f : \eqv A C$.
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  The identity function is clearly its own quasi-inverse; hence it is an equivalence.
+
+  If $f:A\to B$ is an equivalence, then it has a quasi-inverse, say $f^{-1}:B\to A$.
+  Then $f$ is also a quasi-inverse of $f^{-1}$, so $f^{-1}$ is an equivalence $B\to A$.
+
+  Finally, given $f:\eqv A B$ and $g:\eqv B C$ with quasi-inverses $f^{-1}$ and $g^{-1}$, say, then for any $a:A$ we have $f^{-1} g^{-1} g f a = f^{-1} f a = a$, and for any $c:C$ we have $g f f^{-1} g^{-1} c = g g^{-1} c = c$.
+  Thus $f^{-1} \circ g^{-1}$ is a quasi-inverse to $g\circ f$, hence the latter is an equivalence.
+\end{proof}
+
+\index{equivalence|)}%
+\end{document}

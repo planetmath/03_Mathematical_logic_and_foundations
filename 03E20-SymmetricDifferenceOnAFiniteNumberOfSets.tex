@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SymmetricDifferenceOnAFiniteNumberOfSets}
+\pmcreated{2013-03-22 18:02:24}
+\pmmodified{2013-03-22 18:02:24}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{symmetric difference on a finite number of sets}
+\pmrecord{8}{40562}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\newcommand{\symsum}[2]{\substack{ {#2} \\ \displaystyle{\Delta} \\ {#1} }}
+\begin{document}
+Recall that the symmetric difference operation on sets is commutative and associative.  Therefore, one can speak of the symmetric difference of a finite collection of sets.  More precisely, let $A_1,A_2,\ldots, A_n$ be sets, not necessarily pairwise distinct.  The set $$A:=\displaystyle{\symsum{i=1}{n} A_i},$$ the symmetric difference of the sets $A_i$, is well-defined.  
+
+Let $A,A_1,\ldots,A_n$ be defined as above.  There is a curious property on $A$: 
+\begin{prop} $x\in A$ iff $x$ belongs to an odd number of the sets $A_i$. \end{prop}
+Before proving this fact, let us make some quick observations.  If there are two sets $A_1,A_2$, then $A=A_1\Delta A_2 = (A_1\cap A_2')\cup (A_1'\cap A_2)$ (here we are assuming that $A_1$ and $A_2$ are subsets of some universe $U$, so the the complement makes sense).  So $x\in A$ iff $x\in A_1\cap A_2'$ or $x\in A_1'\cap A_2$ iff $x\in A_1$ or $x\in A_2$, which conforms with the statement of the proposition above.  If $n=3$, then $A$ has conjunctive normal form $$A_1\Delta A_2\Delta A_3 = (A_1\cap A_2\cap A_3)\cup (A_1\cap A_2'\cap A_3')\cup (A_1'\cap A_2\cap A_3')\cup (A_1'\cap A_2'\cap A_3),$$ (for a proof of this, see \PMlinkname{here}{ProofOfTheAssociativityOfTheSymmetricDifferenceOperator}).  Then $x\in A$ iff $x$ belongs any one of the four intersections in the CNF above.  In each of the four cases, $x$ belongs to an odd number of sets.  For example, if $x\in A_1\cap A_2'\cap A_3'$, then $x\in A_1$.
+
+From the two examples above, it seems that the approach to proving the proposition is to express the symmetric difference in CNF, and this is indeed the case.  
+
+To facilitate with the proof, let us introduce some notations.  Start with sets $A_1,\ldots, A_n$, which are assumed to be subsets of some set $U$.  Let $I$ and $C$ be the identity and complementation operations taking $A\subseteq U$ to $A$ and $A'$ respectively.  Let $\mathbf{n}$ be the set $\lbrace 1,\ldots, n\rbrace$.    Let $F_n$ be the set of all functions from $\mathbf{n}$ into $\lbrace I,C\rbrace$.  For every $f\in F_n$, we write $f_i$ for $f(i)$.  Finally, we partition $F_n$ into two sets $E_n$ and $O_n$, where $E_n$ ($O_n$) consists of all functions $f$ such that $|f^{-1}(I)|$ is even (odd), respectively.
+
+The proposition can now be restated as a single equation:
+
+$$\displaystyle{\symsum{i=1}{n} A_i} = \bigcup_{f\in O_n} \bigcap_{i=1}^n f_i(A_i)$$
+
+\begin{proof}  We prove this equation by induction on $n$, for $n\ge 2$.  The case when $n=2$ is already discussed above.  Now, $$\displaystyle{\symsum{i=1}{n+1} A_i} = \left(\displaystyle{\symsum{i=1}{n} A_i}\right) \Delta A_{n+1} =  X\cup Y,$$ where $$X = \left(\displaystyle{\symsum{i=1}{n} A_i}\right)\cap A'_{n+1} \qquad \mbox{and} \qquad Y=   A_{n+1} \cap \left( \displaystyle{\symsum{i=1}{n} A_i}\right)'.$$
+By the induction hypothesis, $$\displaystyle{\symsum{i=1}{n} A_i} = \bigcup_{f\in O_n} \bigcap_{i=1}^n f_i(A_i),$$ so that $$X = \bigg( \bigcup_{f\in O_n} \bigcap_{i=1}^n f_i(A_i) \bigg) \cap A'_{n+1} = \bigcup_{f\in O_n} \bigcap_{i=1}^{n+1} \hat{f}_i(A_i), $$ where $\hat{f}:\mathbf{(n+1)}\to \lbrace I,C\rbrace$ is given by $\hat{f}_i=f_i$ if $i\in \mathbf{n}$, and $\hat{f}_{n+1}=C$.
+
+Now, for any $x\in U$, $x$ is either in an even number of $A_i$'s, or an odd number of $A_i$'s.  This means that $$x\in \bigcup_{f\in E_n} \bigcap_{i=1}^n f_i(A_i) \qquad \mbox{or} \qquad x\in \bigcup_{f\in O_n} \bigcap_{i=1}^n f_i(A_i)$$
+and never both.  This shows that $U$ can be partitioned into the two sets above.  In other words, $$\left( \bigcup_{f\in O_n} \bigcap_{i=1}^n f_i(A_i) \right)' = \bigcup_{f\in E_n} \bigcap_{i=1}^n f_i(A_i).$$
+As a result,
+$$Y = A_{n+1} \cap \left( \bigcup_{f\in E_n} \bigcap_{i=1}^n f_i(A_i) \right)= \bigcup_{f\in E_n} \bigcap_{i=1}^{n+1} \overline{f}_i(A_i), $$ where $\overline{f}:\mathbf{(n+1)}\to \lbrace I,C\rbrace$ is given by $\overline{f}_i=f_i$ if $i\in \mathbf{n}$, and $\hat{f}_{n+1}=I$.
+
+Every function $g\in O_{n+1}$ can be obtained from a function in $f\in F_n$ so that $g_i=f_i$ for $i\in \mathbf{n}$.  If $f\in O_n$, then $g_{n+1}=C$, and if $f\in E_n$, then $g_{n+1}=I$.  This means that $O_{n+1}$ can be partitioned into two sets $O$ and $E$, where $O$ (or $E$) contains all functions whose restriction to $\mathbf{n}$ are in $O_n$ (or $E_n$).
+
+Therefore, 
+\begin{eqnarray*}
+\bigcup_{g\in O_{n+1}} \bigcap_{i=1}^{n+1} g_i(A_i) &=&  \bigg(\bigcup_{g\in O} \bigcap_{i=1}^{n+1} g_i(A_i)\bigg) \cup \bigg( \bigcup_{g\in E} \bigcap_{i=1}^{n+1} g_i(A_i)\bigg) \\ &=&  \bigg(\bigcup_{f\in O_n} \bigcap_{i=1}^{n+1} \hat{f}_i(A_i)\bigg) \cup \bigg( \bigcup_{f\in E_n} \bigcap_{i=1}^{n+1} \overline{f}_i(A_i)\bigg) \\ &=& X\cup Y = \displaystyle{\symsum{i=1}{n+1} A_i}.
+\end{eqnarray*}
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

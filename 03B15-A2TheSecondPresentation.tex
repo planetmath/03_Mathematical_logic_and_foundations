@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A2TheSecondPresentation}
+\pmcreated{2013-11-09 5:07:04}
+\pmmodified{2013-11-09 5:07:04}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2 The second presentation}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Application}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\ctx}{\ensuremath{\mathsf{ctx}}}
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\emptyctx}{\ensuremath{\cdot}}
+\newcommand{\form}{\textsc{form}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\intro}{\textsc{intro}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Vble}{\mathsf{Vble}}
+\newcommand{\wfctx}[1]{#1\ \ctx}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+
+In this section, there are three kinds of judgments 
+\begin{mathpar}
+\wfctx\Gamma
+\and
+\oftp\Gamma{a}{A}
+\and
+\jdeqtp\Gamma{a}{a'}{A}
+\end{mathpar}
+which we specify by providing inference rules for deriving them. A typical \define{inference rule}
+\indexsee{inference rule}{rule}%
+\indexdef{rule}%
+has the form
+%
+\begin{equation*}
+  \inferrule*[right=\textsc{Name}]
+  {\mathcal{J}_1 \\ \cdots \\ \mathcal{J}_k}
+  {\mathcal{J}}
+\end{equation*}
+%
+It says that we may derive the \define{conclusion} $\mathcal{J}$, provided that we have
+already derived the \define{hypotheses} $\mathcal{J}_1, \ldots, \mathcal{J}_k$.
+(Note that, being judgments rather than types, these are not hypotheses \emph{internal} to the type theory in the sense of \PMlinkname{\S 1.1}{11typetheoryversussettheory}; they are instead hypotheses in the deductive system, i.e.\ the metatheory.)
+On the
+right we write the \textsc{Name} of the rule, and there may be extra side conditions that
+need to be checked before the rule is applicable.
+
+A \define{derivation}
+\index{derivation}%
+of a judgment is a tree constructed from such inference
+rules, with the judgment at the root of the tree. For example, with the rules given below, the following is a derivation of
+$\oftp{\emptyctx}{\lamu{x:\unit} x}{\unit\to\unit}$.
+%
+\begin{mathpar}
+\inferrule*[right=$\Pi$-\intro]
+  {\inferrule*[right=$\Vble$]
+    {\inferrule*[right=\ctx-\textsc{ext}]
+      {\inferrule*[right=$\unit$-\form]
+        {\inferrule*[right=\ctx-\textsc{emp}]
+          {\ }
+          {\wfctx {\emptyctx}}}
+        {\oftp{}{\unit}{\UU_0}}}
+      {\wfctx {\tmtp x\unit}}}
+   {\oftp{\tmtp x\unit}{x}{\unit}}}
+ {\oftp{\emptyctx}{\lamu{x:\unit} x}{\unit\to\unit}}
+\end{mathpar}
+
+
+\end{document}

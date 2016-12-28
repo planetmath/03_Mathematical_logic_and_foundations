@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfSymmetricDifference}
+\pmcreated{2013-03-22 14:36:56}
+\pmmodified{2013-03-22 14:36:56}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of symmetric difference}
+\pmrecord{14}{36192}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newcommand{\mc}{\mathcal}
+\newcommand{\mb}{\mathbb}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\ol}{\overline}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\nor}{\vartriangleleft}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\GL}{\text{GL}}
+\newcommand{\Z}{\mb{Z}}
+\newcommand{\R}{\mb{R}}
+\newcommand{\Q}{\mb{Q}}
+\newcommand{\C}{\mb{C}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\newcommand{\symd}{\triangle}
+\begin{document}
+Recall that the symmetric difference of two sets $A,B$ is the set $A\cup B-(A\cap B)$.  In this entry, we list and prove some of the basic properties of $\symd$.
+
+\begin{enumerate}
+\item (commutativity of $\symd$) $A\symd B=B\symd A$, because $\cup$ and $\cap$ are commutative.
+\item If $A\subseteq B$, then $A\symd B=B-A$, because $A\cup B= B$ and $A\cap B =A$.
+\item $A\symd \varnothing = A$, because $\varnothing \subseteq A$, and $A-\varnothing=A$.
+\item $A\symd A=\varnothing$, because $A\subseteq A$ and $A-A=\varnothing$.
+\item $A\symd B=(A-B)\cup (B-A)$ (hence the name symmetric difference).
+\begin{proof}
+$A\symd B= (A\cup B)-(A\cap B)= (A\cup B)\cap (A\cap B)'= (A\cup B)\cap (A'\cup B')= ((A\cup B)\cap A')\cup ((A\cup B)\cap B')= (B\cap A')\cup (A\cap B')= (B-A)\cup (A-B)$.
+\end{proof}
+\item $A'\symd B'=A\symd B$, because $A'\symd B'=(A'-B')\cup (B'-A')=(A'\cap B)\cup (B'\cap A)=(B-A)\cap (A-B)=A\symd B$.
+\item (distributivity of $\cap$ over $\symd$) $A\cap (B\symd C)=(A\cap B)\symd (A\cap C)$.
+\begin{proof}
+$A\cap (B\symd C) = A\cap ((B\cup C)-(B\cap C))$, which is $(A\cap (B\cup C))-(A\cap (B\cap C))$, one of the properties of set difference (see proof \PMlinkname{here}{PropertiesOfSetDifference}).  This in turns is equal to $((A\cap B)\cup (A\cap C))-((A\cap B)\cap (A\cap C)) = (A\cap B)\symd (A\cap C)$.
+\end{proof}
+\item (associativity of $\symd$) $(A \symd B) \symd C = A \symd (B \symd C)$.
+\begin{proof}
+Let $U$ be a set containing $A,B,C$ as subsets (take $U=A\cup B\cup C$ if necessary).  For a given $B$, let $f:P(U)\times P(U)\to P(U)$ be a function defined by $f(A,C)= (A\symd B)\symd C$.  Associativity of $\symd$ is then then same as showing that $f(A,C)=f(C,A)$, since $A\symd (B\symd C)= (B\symd C)\symd A = (C\symd B)\symd A$.
+
+By expanding $f(A,C)$, we have
+\begin{eqnarray*} (A\symd B)\symd C &=& ((A\symd B)-C)\cup (C-(A\symd B)) \\ 
+&=& (((A-B)\cup (B-A))\cap C')\cup (C- ((A\cup B)-(A\cap B))) \\
+&=& (((A\cap B')\cup (B\cap A'))\cap C')\cup ((C\cap A\cap B)\cup (C-(A\cup B)) \\
+&=& ((A\cap B'\cap C')\cup (B\cap A'\cap C'))\cup ((C\cap A\cap B)\cup (C\cap A'\cap B')) \\
+&=& (B\cap A'\cap C')\cup (B\cap A\cap C)\cup (B'\cap A\cap C')\cup (B'\cap A'\cap C).
+\end{eqnarray*}
+It is now easy to see that the last expression does not change if one exchanges $A$ and $C$.  Hence, $f(A,C)=f(C,A)$ and this shows that $\symd$ is associative.
+\end{proof}
+\end{enumerate}
+
+\textbf{Remark}.  All of the properties of $\symd$ on sets can be generalized to \PMlinkname{$\symd$}{DerivedBooleanOperations} on Boolean algebras.
+%%%%%
+%%%%%
+\end{document}

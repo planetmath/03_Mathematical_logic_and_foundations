@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{39ThePrincipleOfUniqueChoice}
+\pmcreated{2013-11-17 20:15:32}
+\pmmodified{2013-11-17 20:15:32}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{3.9 The principle of unique choice}
+\pmrecord{3}{87657}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{3.9.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{3.9.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{unique!choice|(defstyle}%
+\indexsee{axiom!of choice!unique}{unique choice}%
+
+The following observation is trivial, but very useful.
+
+\begin{lem}
+  If $P$ is a mere proposition, then $\eqv P {\brck P}$.
+\end{lem}
+\begin{proof}
+  Of course, we have $P\to \brck{P}$ by definition.
+  And since $P$ is a mere proposition, the universal property of $\brck P$ applied to $\idfunc[P] :P\to P$ yields $\brck P \to P$.
+  These functions are quasi-inverses by \PMlinkname{Lemma 3.3.3}{33merepropositions#Thmprelem2}.
+\end{proof}
+
+Among its important consequences is the following.
+
+\begin{cor}[The principle of unique choice]\label{cor:UC}
+  Suppose a type family $P:A\to \type$ such that
+  \begin{enumerate}
+  \item For each $x$, the type $P(x)$ is a mere proposition, and
+  \item For each $x$ we have $\brck {P(x)}$.
+  \end{enumerate}
+  Then we have $\prd{x:A} P(x)$.
+\end{cor}
+\begin{proof}
+  Immediate from the two assumptions and the previous lemma.
+\end{proof}
+
+The corollary also encapsulates a very useful technique of reasoning.
+Namely, suppose we know that $\brck A$, and we want to use this to construct an element of some other type $B$.
+We would like to use an element of $A$ in our construction of an element of $B$, but this is allowed only if $B$ is a mere proposition, so that we can apply the induction principle for the propositional truncation $\brck A$; the most we could hope to do in general is to show $\brck B$.
+%
+Instead, we can extend $B$ with additional data which characterizes \emph{uniquely} the object we wish to construct.
+Specifically, we define a predicate $Q:B\to\type$ such that $\sm{x:B} Q(x)$ is a mere proposition.
+Then from an element of $A$ we construct an element $b:B$ such that $Q(b)$, hence from $\brck A$ we can construct $\brck{\sm{x:B} Q(x)}$, and because $\brck{\sm{x:B} Q(x)}$ is equivalent to $\sm{x:B} Q(x)$ an element of $B$ may be projected from it.
+An example can be found in \PMlinkexternal{Exercise 3.19}{http://planetmath.org/node/87853}.
+
+A similar issue arises in set-theoretic mathematics, although it manifests slightly
+differently. If we are trying to define a function $f: A \to B$, and depending on an
+element $a : A$ we are able to prove mere existence of some $b : B$, we are not done yet
+because we need to actually pinpoint an element of~$B$, not just prove its existence.
+One option is of course to refine the argument to unique existence of $b : B$, as we did in type theory. But in set theory the problem can often be avoided more simply by an application of the axiom of choice, which picks the required elements for us.
+In homotopy type theory, however, quite apart from any desire to avoid choice, the available forms of choice are simply less applicable, since they require that the domain of choice be a \emph{set}.
+Thus, if $A$ is not a set (such as perhaps a universe $\UU$), there is no consistent form of choice that will allow us to simply pick an element of $B$ for each $a : A$ to use in defining $f(a)$.
+
+\index{unique!choice|)}%
+
+
+\end{document}

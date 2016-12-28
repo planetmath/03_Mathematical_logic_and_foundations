@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A28TheUnitType1}
+\pmcreated{2013-11-09 5:39:23}
+\pmmodified{2013-11-09 5:39:23}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.8 The unit type 1}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\comp}{\textsc{comp}}
+\newcommand{\ctx}{\ensuremath{\mathsf{ctx}}}
+\newcommand{\elim}{\textsc{elim}}
+\newcommand{\form}{\textsc{form}}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\intro}{\textsc{intro}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\wfctx}[1]{#1\ \ctx}
+\let\autoref\cref
+
+\begin{document}
+\index{type!unit|(}%
+
+\begin{mathparpagebreakable}
+  \inferrule*[right=$\unit$-\form]
+  {\wfctx\Gamma}
+  {\oftp\Gamma\unit{\UU_i}}
+\and
+  \inferrule*[right=$\unit$-\intro]
+  {\wfctx\Gamma}
+  {\oftp\Gamma{\ttt}{\unit}}
+\and
+  \inferrule*[right=$\unit$-\elim]
+  {\oftp{\Gamma,\tmtp x\unit}{C}{\UU_i} \\
+   \oftp{\Gamma,\tmtp y\unit}{c}{C[y/x]} \\
+   \oftp\Gamma{a}{\unit}}
+  {\oftp\Gamma{\ind{\unit}(x.C,y.c,a)}{C[a/x]}}
+\and
+  \inferrule*[right=$\unit$-\comp]
+  {\oftp{\Gamma,\tmtp x\unit}{C}{\UU_i} \\
+   \oftp{\Gamma,\tmtp y\unit}{c}{C[y/x]}}
+  {\jdeqtp\Gamma{\ind{\unit}(x.C,y.c,\ttt)}{c[\ttt/y]}{C[\ttt/x]}}
+\end{mathparpagebreakable}
+%
+In $\ind{\unit}$, $x$ is bound in $C$, and $y$ is bound in $c$.
+
+Notice that we don't postulate a judgmental uniqueness principle for the unit
+type; see \PMlinkname{\S 1.5}{15producttypes} for a proof of the corresponding
+propositional uniqueness statement.
+
+\index{type!unit|)}%
+
+
+\end{document}

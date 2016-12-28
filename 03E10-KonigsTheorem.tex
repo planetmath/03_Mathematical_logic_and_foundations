@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{KonigsTheorem}
+\pmcreated{2013-03-22 14:10:21}
+\pmmodified{2013-03-22 14:10:21}
+\pmowner{yark}{2760}
+\pmmodifier{yark}{2760}
+\pmtitle{K\"onig's theorem}
+\pmrecord{15}{35598}
+\pmprivacy{1}
+\pmauthor{yark}{2760}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmsynonym{Koenig's theorem}{KonigsTheorem}
+\pmsynonym{Konig's theorem}{KonigsTheorem}
+\pmsynonym{K\"onig-Zermelo theorem}{KonigsTheorem}
+\pmsynonym{Koenig-Zermelo theorem}{KonigsTheorem}
+\pmsynonym{Konig-Zermelo theorem}{KonigsTheorem}
+%\pmkeywords{inequality}
+%\pmkeywords{cardinal}
+\pmrelated{CantorsTheorem}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\PMlinkescapeword{argument}
+\PMlinkescapeword{case}
+\PMlinkescapeword{cases}
+\PMlinkescapeword{completes}
+\PMlinkescapeword{equivalent}
+\PMlinkescapeword{image}
+\PMlinkescapeword{index}
+\PMlinkescapeword{onto}
+\PMlinkescapeword{similar}
+
+\emph{K\"onig's Theorem} is a theorem of cardinal arithmetic.
+
+\begin{theorem}
+Let $\kappa_i$ and $\lambda_i$ be cardinals, for all $i$ in some index set $I$.
+If $\kappa_i<\lambda_i$ for all $i\in I$, then
+$$\sum_{i\in I}\kappa_i<\,\prod_{i\in I}\lambda_i.$$
+\end{theorem}
+
+The theorem can also be stated for arbitrary sets, as follows.
+\begin{theorem}
+Let $A_i$ and $B_i$ be sets, for all $i$ in some index set $I$.
+If $|A_i|<|B_i|$ for all $i\in I$, then
+$$\left|\,\bigcup_{i\in I}A_i\right|<\left|\,\prod_{i\in I}B_i\right|.$$
+\end{theorem}
+\begin{proof}
+Let $\varphi\colon\bigcup_{i\in I}A_i\to\prod_{i\in I}B_i$ be a function.
+For each $i\in I$ we have $|\varphi(A_i)|\le|A_i|<|B_i|$,
+so there is some $x_i\in B_i$ 
+that is not equal to $(\varphi(a))(i)$  for any $a\in A_i$.
+Define $f\colon I\to\bigcup_{i\in I}B_i$ 
+by $f(i)=x_i$ for all $i\in I$.
+For any $i\in I$ and any $a\in A_i$,
+we have $f(i)\ne(\varphi(a))(i)$, so $f\ne\varphi(a)$.
+Therefore $f$ is not in the image of $\varphi$.
+This shows that there is 
+no surjection from $\bigcup_{i\in I}A_i$ onto $\prod_{i\in I}B_i$.
+As $\prod_{i\in I}B_i$ is nonempty,
+this also means that
+there is no injection from $\prod_{i\in I}B_i$ into $\bigcup_{i\in I}A_i$.
+This completes the proof of Theorem 2. 
+Theorem 1 follows as an immediate corollary.
+\end{proof}
+
+Note that the above proof is a diagonal argument, 
+similar to the proof of Cantor's Theorem.
+In fact, Cantor's Theorem can be considered as a special case of K\"onig's Theorem, taking $\kappa_i=1$ and $\lambda_i=2$ for all $i$.
+
+Also note that Theorem 2 is equivalent (in ZF) to the Axiom of Choice, as it implies that \PMlinkname{products}{GeneralizedCartesianProduct} of nonempty sets are nonempty. (Theorem 1, on the other hand, is not meaningful without the Axiom of Choice.)
+%%%%%
+%%%%%
+\end{document}

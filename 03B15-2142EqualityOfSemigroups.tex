@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{2142EqualityOfSemigroups}
+\pmcreated{2013-11-16 3:57:26}
+\pmmodified{2013-11-16 3:57:26}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2.14.2 Equality of semigroups}
+\pmrecord{6}{87622}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\semigroup}[0]{\ensuremath{\mathsf{Semigroup}}}
+\newcommand{\semigroupstrsym}{\ensuremath{\mathsf{SemigroupStr}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ua}{\ensuremath{\mathsf{ua}}\xspace} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+Using the equations for path spaces discussed in the previous sections,
+we can investigate when two semigroups are equal. Given semigroups
+$(A,m,a)$ and $(B,m',a')$, by \PMlinkname{Theorem 2.7.2}{27sigmatypes#Thmprethm1}, the type of paths
+\narrowequation{
+  (A,m,a) =_\semigroup (B,m',a')
+}
+is equal to the type of pairs
+\begin{align*}
+p_1 &: A =_{\type} B \qquad\text{and}\\
+p_2 &: \transfib{\semigroupstrsym}{p_1}{(m,a)} = {(m',a')}.
+\end{align*}
+By univalence, $p_1$ is $\ua(e)$ for some equivalence $e$. By
+\PMlinkname{Theorem 2.7.2}{27sigmatypes#Thmprethm1}, function extensionality, and the above analysis of
+transport in the type family $\semigroupstrsym$, $p_2$ is equivalent to a pair
+of proofs, the first of which shows that
+\begin{equation*} \label{eq:equality-semigroup-mult}
+\prd{y_1,y_2:B} e(m(\opp{e}(y_1), \opp{e}(y_2))) = m'(y_1,y_2)
+\end{equation*}
+and the second of which shows that $a'$ is equal to the induced
+associativity proof constructed from $a$ in
+\PMlinkname{2.14.3}{2141liftingequivalences#S0.E1}.  But by cancellation of inverses
+\PMlinkname{2.14.2}{2141liftingequivalences#S0.E2X} is equivalent to
+\[
+\prd{x_1,x_2:A} e(m(x_1, x_2)) = m'(e(x_2),e(x_2)).
+\]
+This says that $e$ commutes with the binary operation, in the sense
+that it takes multiplication in $A$ (i.e.\ $m$) to multiplication in $B$
+(i.e.\ $m'$).  A similar rearrangement is possible for the equation relating
+$a$ and $a'$.  Thus, an equality of semigroups consists exactly of an
+equivalence on the carrier types that commutes with the semigroup
+structure.  
+
+For general types, the proof of associativity is thought of as part of
+the structure of a semigroup.  However, if we restrict to set-like types
+(again, see \PMlinkexternal{Chapter 3}{http://planetmath.org/node/87576}), the
+equation relating $a$ and $a'$ is trivially true.  Moreover, in this
+case, an equivalence between sets is exactly a bijection.  Thus, we have
+arrived at a standard definition of a \emph{semigroup isomorphism}:\index{isomorphism!semigroup} a
+bijection on the carrier sets that preserves the multiplication
+operation.  It is also possible to use the category-theoretic definition
+of isomorphism, by defining a \emph{semigroup homomorphism}\index{homomorphism!semigroup} to be a map
+that preserves the multiplication, and arrive at the conclusion that equality of
+semigroups is the same as two mutually inverse homomorphisms; but we
+will not show the details here; see \PMlinkname{\S 9.8}{98thestructureidentityprinciple}.
+
+The conclusion is that, thanks to univalence, semigroups are equal
+precisely when they are isomorphic as algebraic structures. As we will see in \PMlinkname{\S 9.8}{98thestructureidentityprinciple}, the
+conclusion applies more generally: in homotopy type theory, all constructions of
+mathematical structures automatically respect isomorphisms, without any
+tedious proofs or abuse of notation.
+
+
+\end{document}

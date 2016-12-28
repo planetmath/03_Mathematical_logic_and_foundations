@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AlternativeCharacterizationOfPrimitiveRecursiveness}
+\pmcreated{2013-03-22 19:06:44}
+\pmmodified{2013-03-22 19:06:44}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{alternative characterization of primitive recursiveness}
+\pmrecord{5}{42005}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+One useful feature regarding the extended notion of primitive recursiveness described in the parent entry is that it can be used to characterize the original notion of primitive recursiveness.  As in the parent entry, we use the notation $$\mathcal{S}:=\lbrace f:\mathbb{N}^m \to \mathbb{N} \mid \mbox{any }m\ge 1\rbrace, \qquad \mathcal{V}:=\lbrace f:\mathbb{N}^m \to \mathbb{N}^n \mid \mbox{any }m,n \ge 1\rbrace.$$  In addition, let $$\mathcal{V}(m,n):=\lbrace f \in \mathcal{V}\mid f:\mathbb{N}^m \to \mathbb{N}^n \rbrace.$$  Finally, denote $\mathcal{PR}$ the set of primitive recursive functions in the traditional sense (as a subset of $\mathcal{S}$), and $\mathcal{PR}'$ the set of primitive recursive vector-valued functions (a subset of $\mathcal{V}$).  It is clear that $\mathcal{PR}=\mathcal{PR}'\cap \mathcal{S}$.
+
+Let $\mathcal{D}$ be the smallest subset of $\mathcal{V}$ such that
+\begin{enumerate}
+\item $\mathcal{D}$ contains the zero function $z$, the successor function $s$, and the projection functions $p_m^k$ (see the definition of primitive recursive functions for more detail),
+\item $\mathcal{D}$ is closed under functional composition in $\mathcal{V}$,
+\item $\mathcal{D}$ is closed under extension of coordinates: that is, if $f_1,\ldots, f_n\in \mathcal{V}(m,1)$ are in $\mathcal{D}$, so is $f:=(f_1,\ldots,f_n)\in \mathcal{V}(m,n)$, given by $f(\boldsymbol{x})=(f_1(\boldsymbol{x}),\ldots, f_n(\boldsymbol{x}))$, 
+\item $\mathcal{D}$ is closed under iterated composition: if $f\in \mathcal{V}(m,m)$ is in $\mathcal{D}$, and so is $g\in \mathcal{V}(m+1,n)$, given by $g(\boldsymbol{x},n)=f^n(\boldsymbol{x})$ (where $f^0$ is the identity function).
+\end{enumerate}
+
+We now state the characterization.
+
+\begin{prop} $\mathcal{PR}'=\mathcal{D}$. \end{prop}
+\begin{proof}  First, observe that condition 1 is satisfied by both $\mathcal{PR}'$ and $\mathcal{D}$.  To see that $\mathcal{D}\subseteq \mathcal{PR}'$, note that condition 3 is just the definition in the parent entry, and conditions 2 and 4 are discussed and proved, also in the parent entry.  So we have one inclusion.  To see the other inclusion $\mathcal{PR}'\subseteq \mathcal{D}$, we need to verify the two closure properties:
+\begin{enumerate}
+\item functional composition (in $\mathcal{S}$): suppose $g_1,\ldots,g_m\in \mathcal{V}(k,1)$ and $h\in \mathcal{V}(m,1)$ are in $\mathcal{D}$, we want to show that $f:=h(g_1,\ldots, g_m) \in \mathcal{V}(k,1)$ is in $\mathcal{D}$ too.  First, form $g=(g_1,\ldots, g_m)$.  Then $g\in \mathcal{D}$ by extension of coordinates.  Then $f=h\circ g \in \mathcal{D}$ by functional composition (in $\mathcal{V}$).
+\item primitive recursion: suppose $g\in \mathcal{V}(k,1)$ and $h\in \mathcal{V}(k+2,1)$ are both in $\mathcal{D}$, we want to show that $f\in \mathcal{V}(k+1,1)$ given by $f(\boldsymbol{x},0)=g(\boldsymbol{x})$ and $f(\boldsymbol{x},n+1) = h(\boldsymbol{x},n,f(\boldsymbol{x},n))$ is in $\mathcal{D}$ too.  First, define a function $H \in \mathcal{V}(k+2,k+2)$ by $$H(\boldsymbol{x},y,z):=(\boldsymbol{x},s(y),h(\boldsymbol{x},y,z)).$$
+Then $H$ is formed by extension of coordinates via the projection functions $p_i^{k+2}$ (with $i=1,\ldots, k$) producing the first $k$ coordinates (the coordinates of $\boldsymbol{x}$), the function $s\circ p_{k+1}^{k+2}$ producing the $k+1$st coordinate $s(y)$, and $h$ producing the last coordinate.  Since each of the coordinate functions is in $D$, so is $H$.  
+
+Next, the function $F\in\mathcal{V}(k+3,k+2)$ given by $F(\boldsymbol{x},y,z,m)=H^m(\boldsymbol{x},y,z)$ is in $D$ by iterated composition.  We now verify by induction on $n$ that $$F(\boldsymbol{x},0,g(\boldsymbol{x}),n)=(\boldsymbol{x},n,f(\boldsymbol{x},n)).$$
+\begin{itemize}
+\item $F(\boldsymbol{x},0,g(\boldsymbol{x}),0)=(\boldsymbol{x},0,g(\boldsymbol{x})$, and its third coordinate is $f(\boldsymbol{x},0)$, as desired.
+\item Suppose now that $F(\boldsymbol{x},0,g(\boldsymbol{x}),n)=(\boldsymbol{x},n,f(\boldsymbol{x},n))$.  Then 
+\begin{eqnarray*}
+F(\boldsymbol{x},0,g(\boldsymbol{x}),n+1) &=& H(\boldsymbol{x},n,f(\boldsymbol{x},n)) \\ &=& (\boldsymbol{x},s(n),h(\boldsymbol{x},n,f(\boldsymbol{x},n))) \\ &=& (\boldsymbol{x},n+1,f(\boldsymbol{x},n+1)).
+\end{eqnarray*}
+\end{itemize}
+As a result, $f(\boldsymbol{x},n)=p_{k+2}^{k+2}\circ F(\boldsymbol{x},0,g(\boldsymbol{x}),n)$ is in $\mathcal{D}$ also.
+\end{enumerate} 
+Therefore, $\mathcal{PR}'\subseteq \mathcal{D}$, and the proof is complete.
+\end{proof}
+
+\textbf{Remark}.  According to the characterization above, one sees that primitive recursion is in a sense a special form of iterated composition.  The above characterization is helpful in proving, among other things, that every URM-computable function is recursive, and that the Ackermann function is not primitive recursive.
+%%%%%
+%%%%%
+\end{document}

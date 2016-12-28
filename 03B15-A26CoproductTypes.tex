@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A26CoproductTypes}
+\pmcreated{2013-11-09 5:34:17}
+\pmmodified{2013-11-09 5:34:17}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.6 Coproduct types}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\comp}{\textsc{comp}}
+\newcommand{\elim}{\textsc{elim}}
+\newcommand{\form}{\textsc{form}}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\inr}{\ensuremath\inrsym\xspace}
+\newcommand{\inrsym}{{\mathsf{inr}}}
+\newcommand{\intro}{\textsc{intro}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+
+\begin{document}
+\index{type!coproduct}%
+
+\begin{mathparpagebreakable}
+  \inferrule*[right=$+$-\form]
+  {\oftp\Gamma{A}{\UU_i} \\ \oftp\Gamma{B}{\UU_i}}
+  {\oftp\Gamma{A+B}{\UU_i}}
+\\
+  \inferrule*[right=$+$-\intro${}_1$]
+  {\oftp\Gamma{A}{\UU_i} \\ \oftp\Gamma{B}{\UU_i} \\\\ \oftp\Gamma{a}{A}}
+  {\oftp\Gamma{\inl(a)}{A+B}}
+\and
+  \inferrule*[right=$+$-\intro${}_2$]
+  {\oftp\Gamma{A}{\UU_i} \\ \oftp\Gamma{B}{\UU_i} \\\\ \oftp\Gamma{b}{B}}
+  {\oftp\Gamma{\inr(b)}{A+B}}
+\\
+  \inferrule*[right=$+$-\elim]
+  {\oftp{\Gamma,\tmtp z{(A+B)}}{C}{\UU_i} \\\\
+   \oftp{\Gamma,\tmtp xA}{c}{C[\inl(x)/z]} \\
+   \oftp{\Gamma,\tmtp yB}{d}{C[\inr(y)/z]} \\\\
+   \oftp\Gamma{e}{A+B}}
+  {\oftp\Gamma{\ind{A+B}(z.C,x.c,y.d,e)}{C[e/z]}}
+\and
+  \inferrule*[right=$+$-\comp${}_1$]
+  {\oftp{\Gamma,\tmtp z{(A+B)}}{C}{\UU_i} \\
+   \oftp{\Gamma,\tmtp xA}{c}{C[\inl(x)/z]} \\
+   \oftp{\Gamma,\tmtp yB}{d}{C[\inr(y)/z]} \\\\
+   \oftp\Gamma{a}{A}}
+  {\jdeqtp\Gamma{\ind{A+B}(z.C,x.c,y.d,\inl(a))}{c[a/x]}{C[\inl(a)/z]}}
+\and
+  \inferrule*[right=$+$-\comp${}_2$]
+  {\oftp{\Gamma,\tmtp z{(A+B)}}{C}{\UU_i} \\
+   \oftp{\Gamma,\tmtp xA}{c}{C[\inl(x)/z]} \\
+   \oftp{\Gamma,\tmtp yB}{d}{C[\inr(y)/z]} \\\\
+   \oftp\Gamma{b}{B}}
+  {\jdeqtp\Gamma{\ind{A+B}(z.C,x.c,y.d,\inr(b))}{d[b/y]}{C[\inr(b)/z]}}
+\end{mathparpagebreakable}
+%
+In $\ind{A+B}$, $z$ is bound in $C$, $x$ is bound in $c$, and $y$ is bound in
+$d$.
+
+
+\end{document}

@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Deduction}
+\pmcreated{2013-03-22 19:12:53}
+\pmmodified{2013-03-22 19:12:53}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{deduction}
+\pmrecord{12}{42134}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F03}
+\pmclassification{msc}{03B99}
+\pmclassification{msc}{03B22}
+\pmsynonym{proof tree}{Deduction}
+\pmsynonym{proof sequence}{Deduction}
+\pmsynonym{hypothesis}{Deduction}
+\pmdefines{deduction tree}
+\pmdefines{deduction sequence}
+\pmdefines{deducible}
+\pmdefines{deducibility relation}
+\pmdefines{assumption}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pstricks,pst-tree}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Deductions are formalizations of proofs.  Informally, they can be viewed as arriving at a conclusion from a set of assumptions, via applications of some prescribed rules in a finite number of steps.
+
+There are several ways to formally define what a deduction is, given a deductive system.  We will explore some of them here.
+
+\subsubsection*{Deduction as a Sequence}
+
+Given a deductive system, a deduction from a set $\Delta$ of (well-formed) formulas can be thought of as a finite sequence of wff's $$A_1, A_2, \cdots, A_n$$
+such that $A_i$ is either an axiom, an element of $\Delta$, or as the result of an application of an inference rule $R$ to earlier wff's $A_{i_1},\ldots, A_{i_k}$, where $i_1,\ldots,i_k < i$.  If $A_i$ is an element of $\Delta$, we call $A_i$ an \emph{assumption} or a \emph{hypothesis}.  This way of presenting a deduction is said to be \emph{linear}.  
+
+Deductions presented this way are also called \emph{deduction sequences} or \emph{proof sequences}.  Deductions in Hilbert-style axiom systems are presented this way.
+
+\subsubsection*{Deduction as a Tree}
+
+Alternatively, a deduction can be thought of as a labeled rooted tree.  The nodes are labeled by formulas, and for each node with label, say $Y$, its immediate predecessors (children) are nodes whose labels are, say $X_1,\ldots, X_n$ which are premises of some inference rule $R$.  Deductions presented this way are also called \emph{deduction trees} or \emph{proof trees}.  In a deduction tree, the labels of the leaves are either the axioms, or assumptions (from some set $\Delta$), and the label of the root of the tree is the conclusion of the deduction.  Below is an example of a deduction tree:
+$$
+\pstree[treemode=U,levelsep=1cm,nodesep=2pt]
+{\Tr{Z}}{
+\pstree{\Tr{Y}}
+{\Tr{X_1}\Tr{X_2}}
+}
+$$
+Here, $X_1$ and $X_2$ are assumptions and $Y$ the corresponding conclusion of some (binary) rule $R$, and $Y$ is the assumption and $Z$ is the conclusion of some (unary) rule $S$.  Inference rules may be specified as labels of the edges.  
+
+Deductions in deduction systems such as natural deduction or sequent calculus are presented this way.  In those systems,  the edges of the trees are replaced by horizontal lines, dividing premises and conclusions, and rules are sometimes specified next to the lines, in the following fashion:
+\begin{prooftree}
+\AxiomC{$X_1$}
+\AxiomC{$X_2$}
+\RightLabel{\scriptsize $R$}
+\BinaryInfC{$Y$}
+\RightLabel{\scriptsize $S$}
+\UnaryInfC{$Z$}
+\end{prooftree}
+
+\subsubsection*{Deducibility Relation}
+
+Given a deductive system $D$, if $B$ is the conclusion of a deduction from a set $\Delta$, we write $$\Delta \vdash_D B.$$
+If $\Gamma$ is another set of wff's, we also write $\Delta, \Gamma \vdash_D B$ to mean $\Delta\cup\Gamma \vdash_D B$.  In addition, if $\Gamma =\lbrace A_1,\ldots, A_n\rbrace$, we write 
+$$A_1,\ldots, A_n \vdash_D B \qquad \mbox{and} \qquad \Delta, A_1,\ldots, A_n \vdash_D B$$ 
+to mean $\Gamma \vdash_D B$ and $\Delta\cup \Gamma \vdash_D B$ respectively.  Furthermore, we may also remove the subscript $D$ and write $$\Delta \vdash B$$ if no confusion arises.  When $\Delta \vdash B$, we also say that $B$ is \emph{deducible} from $\Delta$.  The turnstile symbol $\vdash$ is also called the 
+\emph{deducibility relation}.
+
+If a formula $A$ is deducible from $\varnothing$, we say that $A$ is a theorem (of the corresponding deductive system).  In symbol, we write $$\vdash_D A \qquad \mbox{or} \qquad \vdash A.$$
+
+A property of $\vdash$ is the following: 
+\begin{quote}\begin{center}
+if $\vdash A$ and $A \vdash B$, then $\vdash B$.  
+\end{center}\end{quote}
+In other words, if $A$ is a theorem, and $B$ can be deduced from $A$, then $B$ is also a theorem, which conforms with our intuition.  More generally, we have
+\begin{quote}\begin{center}
+if $\Delta \vdash A$ and $\Gamma, A \vdash B$, then $\Delta, \Gamma \vdash B$.  
+\end{center}\end{quote}
+
+\textbf{Remark}.  We refrain from calling a deduction a proof.  As we have seen earlier, deductions are mathematical abstractions of proofs.  So they are mathematical constructed, viewed either as sequences or trees (of formulas).  On the other hand, in the literature, ``proof'' is usually reserved to be used in the meta-language, as in the ``proof'' of Fermat's Last Theorem, etc...
+
+\begin{thebibliography}{0}
+\bibitem{TS}
+A. S. Troelstra, H. Schwichtenberg, 
+{\it Basic Proof Theory}, 2nd Edition, Cambridge University Press, 2000
+\bibitem{DD}
+D. Dalen,
+{\it Logic and Structure}, 4th Edition, Springer, 2008
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

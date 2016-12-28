@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EquivalenceOfHausdorffsMaximumPrincipleZornsLemmaAndTheWellorderingTheorem}
+\pmcreated{2013-03-22 13:04:45}
+\pmmodified{2013-03-22 13:04:45}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{equivalence of Hausdorff's maximum principle, Zorn's lemma and the well-ordering theorem}
+\pmrecord{9}{33493}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+\pmsynonym{proof ofZorn's lemma}{EquivalenceOfHausdorffsMaximumPrincipleZornsLemmaAndTheWellorderingTheorem}
+\pmsynonym{proof of Hausdorff's maximum principle}{EquivalenceOfHausdorffsMaximumPrincipleZornsLemmaAndTheWellorderingTheorem}
+\pmsynonym{proof of the maximum principle}{EquivalenceOfHausdorffsMaximumPrincipleZornsLemmaAndTheWellorderingTheorem}
+\pmrelated{ZornsLemma}
+\pmrelated{AxiomOfChoice}
+\pmrelated{ZermelosWellOrderingTheorem}
+\pmrelated{HaudorffsMaximumPrinciple}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\begin{document}
+\paragraph{Hausdorff's maximum principle implies Zorn's lemma.}
+Consider
+a partially ordered set $X$, where every chain has an upper bound. According to the maximum principle
+there exists a maximal totally ordered subset $Y\subseteq X$. This then has an upper bound, $x$. If
+$x$ is not the largest element in $Y$ then $\{x\}\cup Y$ would be a totally ordered set in which $Y$
+would be properly contained, contradicting the definition. Thus $x$ is a maximal element in $X$.
+
+\paragraph{Zorn's lemma implies the well-ordering theorem.}
+Let $X$ be any non-empty set, and let $\A$ be the collection of pairs $(A,\leq)$, where $A\subseteq X$
+and $\leq$ is a well-ordering on $A$. Define a relation $\preceq$, on $\A$ so that for all $x,y\in\A: x\preceq y$
+iff $x$ equals an initial of $y$. It is easy to see that this defines a partial order relation on $\A$
+(it inherits reflexibility, anti symmetry and transitivity from one set being an initial and thus a subset of
+the other).
+
+For each chain $C\subseteq\A$, define $C'=(R,\leq')$ where R is the union of all the sets $A$
+for all $(A,\leq)\in C$, and $\leq'$ is the union of all the relations $\leq$ for all $(A,\leq)\in C$.
+It follows that $C'$ is an upper bound for $C$ in $\A$.
+
+According to Zorn's lemma, $\A$ now has a maximal element, $(M,\leq_M)$. We postulate that $M$ contains all
+members of $X$, for if this were not true we could for any $a\in X-M$ construct $(M_*,\leq_*)$ where
+$M_*=M\cup\{a\}$ and $\leq_*$ is extended so $S_a(M_*)=M$. Clearly $\leq_*$ then defines a well-order on
+$M_*$, and $(M_*,\leq_*)$ would be larger than $(M,\leq_M)$ contrary to the definition.
+
+Since $M$ contains all the members of $X$ and $\leq_M$ is a well-ordering of $M$, it is also a
+well-ordering on $X$ as required.
+
+\paragraph{The well-ordering theorem implies Hausdorff's maximum principle.}
+Let $(X,\preceq)$ be a partially ordered set, and let $\leq$ be a well-ordering on $X$. We define
+the function $\phi$ by transfinite recursion over $(X,\leq)$ so that
+$$\phi(a) = \begin{cases}
+\{a\}         &\text{if }\{a\}\cup\bigcup_{b<a}\phi(b)\text{ is totally ordered under }\preceq.\\
+\emptyset &\text{otherwise}.
+\end{cases}.$$
+It follows that $\bigcup_{x\in X}\phi(x)$ is a maximal totally ordered subset of $X$ as required.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{InverseOfCompositionOfFunctions}
+\pmcreated{2013-03-22 17:47:47}
+\pmmodified{2013-03-22 17:47:47}
+\pmowner{Wkbj79}{1863}
+\pmmodifier{Wkbj79}{1863}
+\pmtitle{inverse of composition of functions}
+\pmrecord{8}{40258}
+\pmprivacy{1}
+\pmauthor{Wkbj79}{1863}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-00}
+\pmclassification{msc}{03E20}
+\pmclassification{msc}{97D40}
+\pmsynonym{socks and shoes rule}{InverseOfCompositionOfFunctions}
+\pmrelated{Function}
+\pmrelated{InverseFormingInProportionToGroupOperation}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{pstricks}
+\usepackage{psfrag}
+\usepackage{graphicx}
+\usepackage{amsthm}
+%%\usepackage{xypic}
+
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{cor*}{Corollary}
+
+\begin{document}
+\PMlinkescapeword{argument}
+\PMlinkescapeword{opposite}
+\PMlinkescapeword{order}
+\PMlinkescapeword{right}
+\PMlinkescapeword{way}
+
+\begin{thm*}
+Let $f$ and $g$ be invertible functions such that their composition $f \circ g$ is well defined.  Then $f \circ g$ is invertible and
+\[
+(f \circ g)^{-1}=g^{-1} \circ f^{-1}.
+\]
+\end{thm*}
+
+Before proving this theorem, it should be noted that some students encounter this result long before they are introduced to formal proof.  Fortunately, there is an intuitive way to think about this theorem:  Think of the function $g$ as putting on one's socks and the function $f$ as putting on one's shoes.  Then $f \circ g$ denotes the process of putting one one's socks, then putting on one's shoes.  (Recall that function composition works from right to left.)  Note that $(f \circ g)^{-1}$ refers to the reverse process of $f \circ g$, which is taking off one's shoes (which is $f^{-1}$) followed by taking off one's socks (which is $g^{-1}$).
+
+Due to the intuitive argument given above, the theorem is referred to as the \emph{socks and shoes rule}.  This name is a mnemonic device which reminds people that, in order to obtain the inverse of a composition of functions, the original functions have to be undone in the opposite order.
+
+Now for the formal proof.
+
+\begin{proof}
+Let $A$, $B$, and $C$ be sets such that $g \colon A \to B$ and $f \colon B \to C$.  Then the following two equations must be shown to hold:
+
+\begin{align}
+(g^{-1} \circ f^{-1}) \circ (f \circ g)=\hbox{id}_A
+\end{align}
+
+\begin{align}
+(f \circ g) \circ (g^{-1} \circ f^{-1})=\hbox{id}_C
+\end{align}
+
+Note that $\hbox{id}_X$ denotes the identity function on the set $X$.
+
+The two equations given above follow easily from the fact that function composition is associative.
+
+\begin{align*}
+(g^{-1} \circ f^{-1}) \circ (f \circ g) & =g^{-1} \circ ((f^{-1} \circ f) \circ g) \\
+                                        & =g^{-1} \circ (\hbox{id}_B \circ g) \\
+                                        & =g^{-1} \circ g \\
+                                        & =\hbox{id}_A
+\end{align*}
+
+\begin{align*}
+(f \circ g) \circ (g^{-1} \circ f^{-1}) & =f \circ ((g \circ g^{-1}) \circ f^{-1}) \\
+                                        & =f \circ (\hbox{id}_B \circ f^{-1}) \\
+                                        & =f \circ f^{-1} \\
+                                        & =\hbox{id}_C \qedhere
+\end{align*}
+
+\end{proof}
+
+The socks and shoes rule has a natural generalization:
+
+\begin{cor*}
+Let $n$ be a positive integer and $f_1,\dots,f_n$ be invertible functions such that their composition $f_1\circ\dots\circ f_n$ is well defined.  Then $f_1\circ\dots\circ f_n$ is invertible and
+\[
+(f_1\circ\dots\circ f_n)^{-1}={f_n}^{-1}\circ\dots\circ{f_1}^{-1}.
+\]
+\end{cor*}
+
+A sketch of a proof is as follows:  Using induction on $n$, the socks and shoes rule can be applied with $f=f_1\circ\dots\circ f_{n-1}$ and $g=f_n$.
+%%%%%
+%%%%%
+\end{document}

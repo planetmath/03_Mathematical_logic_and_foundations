@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{36TheLogicOfMerePropositions}
+\pmcreated{2013-11-17 19:45:59}
+\pmmodified{2013-11-17 19:45:59}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{3.6 The logic of mere propositions}
+\pmrecord{2}{87653}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\jdeq}{\equiv}      
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{3.6.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+\index{logic!of mere propositions|(}%
+We mentioned in \PMlinkname{\S 1.1}{11typetheoryversussettheory} that in contrast to type theory, which has only one basic notion (types), set-theoretic foundations have two basic notions: sets and propositions.
+Thus, a classical\index{mathematics!classical} mathematician is accustomed to manipulating these two kinds of objects separately.
+
+It is possible to recover a similar dichotomy in type theory, with the role of the set-theoretic propositions being played by the types (and type families) that are \emph{mere} propositions.
+In many cases, the logical connectives and quantifiers can be represented in this logic by simply restricting the corresponding type-former to the mere propositions.
+Of course, this requires knowing that the type-former in question preserves mere propositions.
+
+\begin{eg}
+  If $A$ and $B$ are mere propositions, so is $A\times B$.
+  This is easy to show using the characterization of paths in products, just like \PMlinkname{Example 3.1.5}{31setsandntypes#Thmpreeg4} but simpler.
+  Thus, the connective ``and'' preserves mere propositions.
+\end{eg}
+
+\begin{eg}\label{thm:isprop-forall}
+  If $A$ is any type and $B:A\to \type$ is such that for all $x:A$, the type $B(x)$ is a mere proposition, then $\prd{x:A} B(x)$ is a mere proposition.
+  The proof is just like \PMlinkname{Example 3.1.6}{31setsandntypes#Thmpreeg5} but simpler: given $f,g:\prd{x:A} B(x)$, for any $x:A$ we have $f(x)=g(x)$ since $B(x)$ is a mere proposition.
+  But then by function extensionality, we have $f=g$.
+
+  In particular, if $B$ is a mere proposition, then so is $A\to B$ regardless of what $A$ is.
+  In even more particular, since \emptyt is a mere proposition, so is $\neg A \jdeq (A\to\emptyt)$.
+  \index{quantifier!universal}%
+  Thus, the connectives ``implies'' and ``not'' preserve mere propositions, as does the quantifier ``for all''.
+\end{eg}
+
+On the other hand, some type formers do not preserve mere propositions.
+Even if $A$ and $B$ are mere propositions, $A+B$ will not in general be.
+For instance, \unit is a mere proposition, but $\bool=\unit+\unit$ is not.
+Logically speaking, $A+B$ is a ``purely constructive'' sort of ``or'': a witness of it contains the additional information of \emph{which} disjunct is true.
+Sometimes this is very useful, but if we want a more classical sort of ``or'' that preserves mere propositions, we need a way to ``truncate'' this type into a mere proposition by forgetting this additional information.
+
+\index{quantifier!existential}%
+The same issue arises with the $\Sigma$-type $\sm{x:A} P(x)$.
+This is a purely constructive interpretation of ``there exists an $x:A$ such that $P(x)$'' which remembers the witness $x$, and hence is not generally a mere proposition even if each type $P(x)$ is.
+(Recall that we observed in \PMlinkname{\S 3.5}{35subsetsandpropositionalresizing} that $\sm{x:A} P(x)$ can also be regarded as ``the subset of those $x:A$ such that $P(x)$''.)
+
+
+
+\end{document}

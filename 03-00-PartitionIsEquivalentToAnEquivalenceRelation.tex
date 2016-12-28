@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PartitionIsEquivalentToAnEquivalenceRelation}
+\pmcreated{2013-03-22 16:44:55}
+\pmmodified{2013-03-22 16:44:55}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{partition is equivalent to an equivalence relation}
+\pmrecord{7}{38973}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-00}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\begin{document}
+\begin{prop}  There is a one-to-one correspondence between the set $\operatorname{Part}(S)$ of partitions of $S$ and the set $\operatorname{Equiv}(S)$ of equivalence relations on $S$.
+\end{prop}
+
+\begin{proof}
+Let $S$ be a set.
+
+Suppose $P=\lbrace P_i\mid i\in I\rbrace$ is a partition of $S$.  Form $E=\bigcup \lbrace P_i\times P_i\mid i\in I\rbrace$.  Given any $a\in S$, $a\in P_i$ for some $i\in I$.  Then $(a,a)\in P_i\times P_i\in E$.  If $(a,b)\in E$, then $(a,b)\in P_i\times P_i$ for some $i\in I$, so $a,b\in P_i$, whence $(b,a)\in P_i\times P_i\subseteq E$.  Finally, suppose $(a,b),(b,c)\in E$.  Then $(a,b)\in P_i\times P_i$ and $(b,c)\in P_j\times P_j$, or $a,b\in P_i$ and $b,c\in P_j$.  Since $b\in P_i\cap P_j$, $P_i=P_j$ since $P$ is a partition.  So $a,c\in P_i=P_j$, or $(a,c)\in P_i\times P_i\subseteq E$.
+
+Conversely, suppose $E$ is an equivalence relation on $S$.  For each $a\in S$, define $$[a]=\lbrace b\in S\mid (a,b)\in E\rbrace.$$  Then each $a\in [a]$ since $E$ is reflexive.  If $b\in [a]$, then $(a,b)\in E$ or $(b,a)\in E$ as $E$ is symmetric.  So $a\in [b]$ as well.  Next, pick any $c\in [b]$.  Then $(b,c)\in E$.  But $(a,b)\in E$.  So $(a,c)\in E$ since $E$ is transitive.  Therefore $c\in [a]$, which implies $[b]\subseteq [a]$.  Collect all the information we have so far, this implies $[a]=[b]$.  Therefore $P=\lbrace [a]\mid a\in S\rbrace$ forms a partitition of $S$ ($P$ is being interpreted as a set, not a multiset).  In fact, $E=\bigcup \lbrace [a]\times [a]\mid a\in S\rbrace$.
+\end{proof}
+
+From the above proof, we also have
+
+\begin{cor}  For every partition $P=\lbrace P_i\mid i\in I\rbrace$ of $S$, $E= \bigcup \lbrace P_i^2\mid i\in I\rbrace$ is an equivalence relation.  Conversely, every equivalence relation on $S$ can be formed this way.
+\end{cor}
+%%%%%
+%%%%%
+\end{document}

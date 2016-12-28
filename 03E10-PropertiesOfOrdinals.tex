@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfOrdinals}
+\pmcreated{2013-03-22 18:48:58}
+\pmmodified{2013-03-22 18:48:58}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of ordinals}
+\pmrecord{15}{41618}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Recall that an ordinal is a transitive set well-ordered by the membership relation $\in$.  Below we list and prove some basic properties of ordinals.
+
+\begin{enumerate}
+\item $\varnothing$ is an ordinal.  This is vacuously true.
+\item If $\alpha$ is an ordinal, then $\alpha\notin \alpha$, for otherwise $\alpha\in \alpha\in \alpha$, contradicting the fact that $\in$ is irreflexive on $\alpha$.  Notice that by the axiom of foundation, this statement is true even if $\alpha$ is not an ordinal.  But in this case, there is no need to resort to the axiom.
+\item If $\alpha$ is an ordinal, and $\beta  \in \alpha$, then $\beta$ is an ordinal.
+\begin{proof} Since $\alpha$ is transitive, $\beta\in \alpha$ implies that $\beta \subseteq \alpha$, and hence $\beta$ is well-ordered by $\in$ (inherited from $\alpha$).  Now, suppose $\delta \in \gamma\in \beta$.  Then $\gamma\in \alpha$ and $\delta\in \alpha$.  Since $\in$ is a linear ordering in $\alpha$, $\delta \in \beta$, as desired.
+\end{proof}
+\item If $\alpha$ is an ordinal, so is $\alpha^+:=\alpha \cup \lbrace \alpha\rbrace$ ($\alpha^+$ is the successor of $\alpha$).
+\begin{proof}  If $\gamma\in \alpha^+$, then either $\gamma=\alpha$ or $\gamma \in \alpha$, and in the latter case, $\gamma\subseteq \alpha$, since $\alpha$ is transitive.  In either case, $\gamma \subseteq \alpha^+$ so that $\alpha^+$ is transitive.  Now, suppose $\delta\subseteq \alpha^+$.  Then $\delta - \lbrace \alpha\rbrace \subseteq\alpha$, so has a least element $\eta$.  Since $\eta\in \alpha$, $\eta$ is also the least element of $\delta$.  This shows that $\alpha^+$ is well-ordered by $\in$, and therefore $\alpha^+$ is an ordinal.
+\end{proof}
+\item If $\alpha$ is an ordinal and $\beta \subset \alpha$ is transitive, then $\beta \in \alpha$.  As a result, if $\alpha \ne \beta$ are ordinals such that $\beta\subset \alpha$, then $\beta\in \alpha$.
+\begin{proof}  $\beta$ is well-ordered since $\alpha$ is, and since $\beta$ is transitive by assumption, $\beta$ is an ordinal.  Let $\gamma$ be the least element of $\alpha-\beta$, and suppose $\delta\in \beta$.  Since $\in$ is a linear ordering on $\alpha$, either $\delta\in \gamma$ or $\gamma\in \delta$.  If the latter is true, then $\gamma\in \delta\in \beta$, and therefore $\gamma\in \beta$ since $\beta$ is transitive, contradicting $\gamma \in \alpha - \beta$.  So $\delta\in \gamma$, and therefore $\beta \subseteq \gamma$.  Moreover, if $\delta\in \gamma$, then $\delta \notin \alpha-\beta$ since $\gamma$ is the least element in $\alpha-\beta$.  Therefore $\delta\in \beta$, so $\gamma\subseteq \beta$, and hence $\beta=\gamma\in \alpha$.
+\end{proof}
+\item (Law of Trichotomy) For any ordinals $\alpha,\beta$, exactly one of the following is true: $$\alpha=\beta,\qquad \alpha \in \beta,\qquad \mbox{and}\qquad \beta \in \alpha.$$
+\begin{proof}  If $\theta\in \delta\in \alpha\cap \beta$, then $\theta\in \alpha\cap \beta$ since both $\alpha$ and $\beta$ are transitive.  So $\alpha\cap\beta$ is transitive, and hence an ordinal.  If $\alpha\cap \beta \subset \alpha$ and $\alpha\cap \beta \subset \beta$, then $\alpha\cap \beta \in \alpha\cap \beta$ by 5, which is impossible by 2.  This means that either $\alpha\cap \beta=\alpha$ or $\alpha\cap \beta=\beta$.  If $\alpha\ne \beta$, then $\alpha \subset \beta$, and hence by 5, $\alpha\in\beta$ in the former case, and $\beta \in \alpha$ in the latter.
+\end{proof}
+\item If $A$ is a non-empty class of ordinals, then $\bigcap A$ is the least element of $A$.  Furthermore, $A$ is well-ordered.
+\begin{proof}  Set $\alpha:=\bigcap A$.  There are three steps: 
+\begin{itemize}
+\item $\alpha$ is an ordinal:  First, notice that $\alpha$ is well-ordered, as the ordering is inherited from members of $A$.  Next, if $\beta\in \alpha$, then $\beta\in \gamma$ for every $\gamma \in A$.  Since each $\gamma$ is transitive, $\beta\subseteq \gamma$, and $\beta\subseteq \alpha$ as a result, showing that $\alpha$ is transitive.  Finally, $\alpha$ is a set, since it is a subclass of each element (which is a set) of $A$.  This shows that $\alpha$ is an ordinal.
+\item $\alpha \in A$:  By definition, $\alpha\subseteq \gamma$ for each $\gamma\in A$.  Suppose in addition that $\alpha\subset \gamma$.  Since $\alpha$ is an ordinal, then $\alpha\in \gamma$ by 5.  This shows that $\alpha \in \bigcap\lbrace \gamma\mid \gamma\in A\rbrace = \alpha$, which is impossible by 2.  Therefore $\alpha=\gamma$ for some $\gamma \in A$, as desired.
+\item $\alpha$ is the least element in $A$:  If there is some $\delta \in A$ such that $\delta \in \alpha$.  But $\alpha = \bigcap \lbrace \gamma \mid \gamma \in A\rbrace \subseteq \delta$, implying that $\delta\in \delta$, a contradiction.
+\end{itemize}
+If $B$ is any non-empty subclass of $A$, then $\bigcap B$ is the least element of $B$ by the result above.  Hence $A$ is well-ordered.
+\end{proof}
+\item \textbf{On}, the class of all ordinals is transitive, well-ordered (by $\in$), and proper (not a set).
+\begin{proof}  If $\alpha \in \beta\in $ \textbf{On}, then $\alpha \in $ \textbf{On} by 3, so \textbf{On} is transitive.  It is well-ordered by 7.  Finally, if \textbf{On} were a set, then \textbf{On} is an ordinal since it is transitive and well-ordered.  This means that \textbf{On} $\in$ \textbf{On}, contradicts 2 above.
+\end{proof}
+\item If $A$ is a non-empty set of ordinals, then $\bigcup A$ is an ordinal, and $\bigcup A = \sup A$.
+\begin{proof}  Set $\alpha:=\bigcup A$.  First, $\alpha$ is a set because $A$ is.  If $\gamma \in \beta\in \alpha$, then $\gamma \in \beta \in \delta$ for some $\delta \in A$, and therefore $\gamma\in \delta \subseteq \alpha$, showing that $\alpha$ is transitive.  If $x\subseteq \alpha$, then every element of $x$ is an element of some $\delta\in A$.  Hence $x$ is a set of ordinals, and therefore well-ordered by 7.  This shows that $\alpha$ is an ordinal.
+
+Now, pick any $\delta\in A$.  Then $\delta\subseteq \bigcup A=\alpha$, so either $\delta=\alpha$ or $\delta\subset \alpha$.  In the latter case, we get $\delta\in \alpha$ by 5.  This shows that $\alpha$ is an upper bound of $A$.  If $\theta$ is an ordinal such that $\delta\in \theta$ for every $\delta \in A$, then $\delta \subset \theta$, which implies $\alpha \subset \theta$, so that $\alpha \in \theta$ by 5, showing that $\alpha$ is the least upper bound of $A$.
+\end{proof}
+\item A transitive set of ordinals is an ordinal, true since the set is well-ordered by 7.  This is a partial converse of 3.  In particular, this provides an alternative proof of 4.  Another corollary is that an initial segment of an ordinal is an ordinal.
+\item Two ordinals are isomorphic iff they are the same.
+\begin{proof}  One direction is obvious.  Suppose now that $\phi: \alpha\to \beta$ is an order isomorphism between ordinals $\alpha$ and $\beta$.  Suppose $\alpha\ne \beta$.  Then either $\alpha\in \beta$ or $\beta\in \alpha$, which means that $\alpha\subset \beta$ or $\beta\subset \alpha$.  In either case, we get a contradiction since $\phi$ is a bijection.
+\end{proof}
+\item Every well-ordered set is order isomorphic to exactly one ordinal.
+\begin{proof}  Uniqueness is provided by 12.  Now, let us prove the existence of such an ordinal.  First, notice that if there is an order preserving injection $W$ into an ordinal $\alpha$, then the image of $W$ is an initial segment of $\alpha$, which is an ordinal, and we are done.  Now, assume the contrary.  Since ordinals are well-ordered, the assumption implies that every $\alpha \in $ \textbf{On} has a strict injection into $W$ (this is an important property on well-ordered sets, see a \PMlinkname{proof here}{PropertiesOfWellOrderedSets}).  We shall derive a contradiction by showing that \textbf{On} is a set.  First, for each ordinal, there is a unique order-preserving injection into $W$.  In addition, if two ordinals are such that their corresponding injections into $W$ agree, then they are isomorphic and hence identical.  Thus, elements of \textbf{On} are completely determined by subsets (in fact, initial segments) of $W$.  Since $W$ is a set, so is \textbf{On}, a contradiction!
+\end{proof}
+\item An ordinal has exactly one of the following forms: $\varnothing$, $\bigcup \alpha$, or $\beta^+$ for some ordinals $\alpha,\beta$.
+\begin{proof}  Suppose an ordinal $\alpha\ne \varnothing$.  Being a transitive set of ordinals (by 3), $\beta:=\bigcup \alpha$ is also an ordinal by 9. So $\beta\subseteq \alpha$.  Then either $\beta=\alpha$ or $\beta\subset \alpha$.  In the former case, $\alpha=\bigcup \alpha$.  In the latter case, $\beta\in \alpha$.  On the one hand, since $\beta = \sup \alpha$, any $\gamma \in \alpha$, either $\gamma=\beta$ or $\gamma \in \beta$, so that $\gamma\in \beta^+$ in any case.  This means that $\alpha\subseteq \beta^+$.  On the other hand, $\beta\in \alpha$ combined with $\beta \subset \alpha$ give us the other inclusion $\beta^+\subseteq \alpha$.  As a result, $\alpha=\beta^+$.
+\end{proof}
+\item A set is an ordinal iff it is a von Neumann ordinal.  Every von Neumann ordinal is clearly an ordinal by 1, 4, and 9.  The converse is true by 13.
+\end{enumerate}
+
+\textbf{Remark}.  Property 8 above also resolves one of the set theory paradoxes called the \emph{Burali-Forti paradox}: the collection of all ordinals is an ordinal, which is not true because the collection is not a set.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{OrthocomplementedLattice}
+\pmcreated{2013-03-22 15:50:36}
+\pmmodified{2013-03-22 15:50:36}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{orthocomplemented lattice}
+\pmrecord{20}{37822}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G12}
+\pmclassification{msc}{06C15}
+\pmsynonym{ortholattice}{OrthocomplementedLattice}
+\pmsynonym{uniquely orthocomplemented}{OrthocomplementedLattice}
+\pmrelated{ComplementedLattice}
+\pmrelated{OrthomodularLattice}
+\pmdefines{orthocomplement}
+\pmdefines{orthocomplemented}
+\pmdefines{orthocomplementation}
+\pmdefines{orthocomplemented poset}
+\pmdefines{uniquely orthocomplemented lattice}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+
+% define commands here
+\begin{document}
+An \emph{orthocomplemented lattice} is a complemented lattice in which every element has a distinguished complement, called an \emph{orthocomplement}, that behaves like 
+the complementary subspace of a subspace in a vector space.
+
+Formally, let $L$ be a complemented lattice and denote $M$ the set of complements of elements of $L$.  $M$ is clearly a subposet of $L$, with $\le$ inherited from $L$.  For each $a\in L$, let $M_a\subseteq M$ be the set of complements of $a$.  $L$ is said to be \emph{orthocomplemented} if there is a function $^{\perp}:L \to M$, called an \emph{orthocomplementation}, whose image is written $a^{\perp}$ for any $a\in L$, such that
+
+\begin{enumerate}
+\item $a^{\perp}\in M_a$,
+\item $(a^{\perp})^{\perp}=a$, and
+\item $\perp$ is order-reversing; that is, for any $a,b\in L$, $a\le b$ implies
+$b^{\perp}\le a^{\perp}$.
+\end{enumerate}
+
+The element $a^{\perp}$ is called an \emph{orthocomplement} of $a$ (via $^{\perp}$).
+
+\textbf{Examples}.  In addition to the example of the lattice of vector subspaces of a vector space cited above, let's look at the Hasse diagrams of the two finite complemented lattices below,
+\begin{equation*}
+\xymatrix{
+& 1 \ar@{-}[ld] \ar@{-}[d] \ar@{-}[rd] & \\
+a \ar@{-}[rd] & b \ar@{-}[d] & c \ar@{-}[ld] \\
+& 0 &
+}
+\hspace{2cm}
+\xymatrix{
+& & 1 \ar@{-}[lld] \ar@{-}[ld] \ar@{-}[rd] \ar@{-}[rrd] & & \\
+a \ar@{-}[rrd] & b \ar@{-}[rd] & & c \ar@{-}[ld] & d \ar@{-}[lld] \\
+& & 0 & &
+}
+\end{equation*}
+the one on the right is orthocomplemented, while the one on the left is not.  From this one deduces that orthcomplementation is not unique, and that the cardinality of any finite orthocomplemented lattice is even.
+
+\textbf{Remarks}.
+\begin{itemize}
+\item From the first condition above, we see that an orthocomplementation $\perp$ is a bijection.  It is one-to-one: if $a^{\perp}=b^{\perp}$, then
+$a=(a^{\perp})^{\perp}=(b^{\perp})^{\perp}=b$.  And it is onto: if we pick $a\in
+M\subseteq L$, then $(a^{\perp})^{\perp}=a$.  As a result, $M=L$, every element of $L$ is an orthocomplement.  Furthermore, we have $0^{\perp}=1$ and $1^{\perp}=0$.
+\item Let $L^{\prime}$ be the dual lattice of $L$ (a lattice having the same underlying set, but with meet and join operations switched).  Then any orthocomplementation $\perp$ can be viewed as a lattice isomorphism between $L$ and $L^{\prime}$.
+\item From the above conditions, it follows that elements of $L$ satisfy the de Morgan's laws: for $a,b\in L$, we have
+\begin{align}
+& a^{\perp}\wedge b^{\perp}=(a\vee b)^{\perp},\\
+& a^{\perp}\vee b^{\perp}=(a\wedge b)^{\perp}.
+\end{align}
+
+To derive the first equation, first note $a\le a\vee b$.  Then $(a\vee b)^{\perp}\le a^{\perp}$. 
+Similarly, $(a\vee b)^{\perp}\le b^{\perp}$.  So $(a\vee b)^{\perp}\le
+a^{\perp}\wedge b^{\perp}$.  For the other inequality, we start with
+$a^{\perp}\wedge b^{\perp}\le a^{\perp}$.  Then $a\le (a^{\perp}\wedge
+b^{\perp})^{\perp}$.  Similarly, $b\le (a^{\perp}\wedge b^{\perp})^{\perp}$. 
+Therefore, $a\vee b\le (a^{\perp}\wedge b^{\perp})^{\perp}$, which implies that
+$a^{\perp}\wedge b^{\perp}\le (a\vee b)^{\perp}$.
+\item Conversely, any of two equations in the previous remark can replace the third condition in the definition above.  For example, suppose we have the second equation $a^{\perp}\vee b^{\perp}=(a\wedge b)^{\perp}$.  If $a\le b$, then $a=a\wedge b$, so $a^{\perp}=(a\wedge b)^{\perp}=a^{\perp}\vee b^{\perp}$, which shows that $b^{\perp}\le a^{\perp}$.
+\item From the example above, one sees that orthocomplementation need not be unique.  An orthocomplemented lattice with a unique orthocomplementation is said to be \emph{uniquely orthocomplemented}.  A uniquely complemented lattice that is also orthocomplemented is uniquely orthocomplemented.
+\item Orthocomplementation can be more generally defined over a bounded poset $P$ by requiring the orthocomplentation operator $^{\perp}$ to satisfy conditions 2 and 3 above, and a weaker version of condition 1: $a\wedge a^{\perp}$ exists and $=0$.  Since $^{\perp}$ is an order reversing bijection on $P$, $0^{\perp}=1$ and $1^{\perp}=0$.  From this, one deduces that $a\wedge a^{\perp}=0$ iff $a\vee a^{\perp}=1$.  A bounded poset in which an orthocomplementation is defined is called an \emph{orthocomplemented poset}.
+\item In the category of orthocomplemented lattices, the morphism between a pair of objects is a $\lbrace 0,1\rbrace$-\PMlinkname{lattice homomorphism}{LatticeHomomorphism} $f$ that preserves orthocomplementation: $$f(a^{\perp})=f(a)^{\perp}.$$
+\end{itemize}
+
+\begin{thebibliography}{8}
+\bibitem{gb} G. Birkhoff, {\em Lattice Theory}, AMS Colloquium Publications, Vol. XXV, 3rd Ed. (1967).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

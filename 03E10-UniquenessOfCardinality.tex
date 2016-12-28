@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{UniquenessOfCardinality}
+\pmcreated{2013-03-22 16:26:52}
+\pmmodified{2013-03-22 16:26:52}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{uniqueness of cardinality}
+\pmrecord{27}{38603}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+%\pmkeywords{cardinality}
+%\pmkeywords{bijection}
+%\pmkeywords{one-to-one}
+%\pmkeywords{onto}
+%\pmkeywords{finite set}
+\pmrelated{cardinality}
+\pmrelated{bijection}
+\pmrelated{function}
+\pmrelated{set}
+\pmrelated{subset}
+\pmrelated{Subset}
+\pmrelated{Bijection}
+\pmrelated{Set}
+\pmrelated{PigeonholePrinciple}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\theoremstyle{plain}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{cor}{Corollary}
+
+\begin{document}
+\begin{thm}
+The cardinality of a set is unique.
+\end{thm}
+\begin{proof}
+We will verify the result for finite sets only. 
+Suppose $A$ is a finite set with cardinality $\mid A\mid=n$ and $\mid A\mid=m$. Then there exist bijections $f:\mathbb{N}_n\rightarrow A$ and $g:\mathbb{N}_m\rightarrow A$. Since $g$ is a bijection, it is invertible, and $g^{-1}:A\rightarrow\mathbb{N}_m$ is a bijection. Then the composition $g^{-1}\circ f$ is a bijection from $\mathbb{N}_n$ to $\mathbb{N}_m$. We will show by induction on $n$ that $m=n$. In the case $n=1$ we have $\mathbb{N}_n=\mathbb{N}_1=\{1\}$, and it must be that $\mathbb{N}_m=\{1\}$ as well, whence $m=1=n$. Now let $n\geq 1\in\mathbb{N}$, and suppose that, for all $m\in\mathbb{N}$, the existence of a bijection $f:\mathbb{N}_n\rightarrow\mathbb{N}_m$ implies $n=m$. Let $m\in\mathbb{N}$ and suppose $h:\mathbb{N}_{n+1}\rightarrow\mathbb{N}_m$ is a bijection. Let $k=h(n+1)$, and notice that $1\leq k\leq m$. Since $h$ is onto there exists some $j\in\mathbb{N}_{n+1}$ such that $f(j)=m$. There are two cases to consider. If $j=n+1$, then we may define $\phi:\mathbb{N}_n\rightarrow\mathbb{N}_{m-1}$ by $\phi(i)=h(i)$ for all $i\in\mathbb{N}_n$, which is clearly a bijection, so by the inductive hypothesis $n=m-1$, and thus $n+1=m$. Now suppose $j\neq n+1$, and define $\phi:\mathbb{N}_n\rightarrow\mathbb{N}_{m-1}$ by
+\begin{equation*}
+\phi(i)=
+\begin{cases}
+h(i)&\text{if }i\neq j\\
+k&\text{if }i=j\\
+\end{cases}\text{.}
+\end{equation*}
+We first show that $\phi$ is one-to-one. Let $i_1,i_2\in\mathbb{N}_n$, where $i_1\neq i_2$. First consider the case where neither $i_1$ nor $i_2$ is equal to $j$. Then, since $h$ is one-to-one, we have
+\begin{equation*}
+\phi(i_1)=h(i_1)\neq h(i_2)=\phi(i_2)\text{.}
+\end{equation*}
+In the case $i_1=j$, again because $h$ is one-to-one, we have
+\begin{equation*}
+\phi(i_1)=k=h(n+1)\neq h(i_2)=\phi(i_2)\text{.}
+\end{equation*}
+Similarly it can be shown that, if $i_2=j$, $\phi(i_1)\neq \phi(i_2)$, so $\phi$ is one-to-one. We now show that $\phi$ is onto. Let $l\in\mathbb{N}_{m-1}$. If $l=k$, then we may take $i=j$ to have $\phi(i)=\phi(j)=k=l$. If $l\neq k$, then, because $h$ is onto, there exists some $i\in\mathbb{N}_{n}$ such that $h(i)=l$, so $g(i)=h(i)=l$. Thus $g$ is onto, and our inductive hypothesis again gives $n=m-1$, hence $n+1=m$. So by the principle of induction, the result holds for all $n$. Returning now to our set $A$ and our bijection $g^{-1}\circ f:\mathbb{N}_n\rightarrow\mathbb{N}_m$, we may conclude that $m=n$, and consequently that the cardinality of $A$ is unique, as desired.    
+\end{proof}
+\begin{cor}
+There does not exist a bijection from a finite set to a proper subset of itself. 
+\end{cor}
+\begin{proof}
+Without a loss of generality we may assume the proper subset is nonempty, for if the set is empty then the corollary holds vacuously. So let $A$ be as above with cardinality $n\in\mathbb{N}$, $B$ a proper subset of $A$ with cardinality $m<n\in\mathbb{N}$, and suppose $f:A\rightarrow B$ is a bijection. By hypothesis there exist bijections $g:\mathbb{N}_n\rightarrow A$ and $h:\mathbb{N}_m\rightarrow B$; but then $h^{-1}\circ(f\circ g)$ is a bijection from $\mathbb{N}_n$ to $\mathbb{N}_m$, whence by the preceding result $n=m$, contrary to assumption.  
+\end{proof}
+
+The corollary is also known more popularly as the pigeonhole principle.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,202 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{IntersectionOfSets}
+\pmcreated{2013-03-22 14:01:50}
+\pmmodified{2013-03-22 14:01:50}
+\pmowner{drini}{3}
+\pmmodifier{drini}{3}
+\pmtitle{intersection of sets}
+\pmrecord{6}{35085}
+\pmprivacy{1}
+\pmauthor{drini}{3}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03Exx}
+
+%fancy typeface/symbols
+%\usepackage{beton}
+%\usepackage{concmath}
+%\usepackage{stmaryrd}
+%margins
+%\usepackage{simplemargins}
+%\usepackage{multicol}
+%\setleftmargin{1in}
+%\setrightmargin{1in}
+%\settopmargin{1in}
+%\setbottommargin{1in}
+% symbols
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[mathscr]{euscript}
+\usepackage[T1]{fontenc}
+% graphics
+%\usepackage{pstricks}
+% math
+\usepackage{amsmath}
+\usepackage{amsopn}
+\usepackage{amstext}
+\usepackage{amsthm}
+% only one theoremstyle 
+%\theoremstyle{definition}   		
+%\newtheorem{exercise}{}[subsection]
+% math operators
+\DeclareMathOperator{\pipe}{{\big |} \hspace{-2.85pt} {\big |}} 
+\DeclareMathOperator{\et}{\&}
+% misc math stuff
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\domain}{\mathrm{domain}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\diam}{\mathrm{diameter}}
+\newcommand{\incl}{\mathrm{incl}}
+\newcommand{\interior}{\mathrm{interior}}
+\newcommand{\triv}{\mathrm{triv}}
+\newcommand{\image}{\mathrm{image}}
+\newcommand{\closure}{\mathrm{closure}}
+\newcommand{\degree}{\mathrm{degree}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\esssup}{\mathrm{ess\ sup}}
+\newcommand{\openset}{\mathrel{{\mathchoice{\rlap{$\subset$}{\;\circ}}%
+   {\rlap{$\subset$}{\;\circ}}%
+   {\rlap{$\scriptstyle\subset$}{\;\circ}}%
+   {\rlap{$\scriptscriptstyle\subset$}{\;\circ}}}}}
+
+% foreignisms
+\newcommand{\ie}{\emph{i.e.},}
+\newcommand{\Ie}{\emph{I.e.},}
+\newcommand{\cf}{\emph{cf.}}
+\newcommand{\eg}{\emph{e.g.},}
+\newcommand{\Eg}{\emph{E.g.},}
+\newcommand{\ala}{\emph{\'a la}}
+% labels for spaces
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\CP}{\mathbf{CP}}
+\newcommand{\RP}{\mathbf{RP}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Rtw}{\mathbf{R}^2}
+\newcommand{\Rth}{\mathbf{R}^3}
+\newcommand{\Rfo}{\mathbf{R}^4}
+\newcommand{\Rfi}{\mathbf{R}^5}
+\newcommand{\Rp}{\mathbf{R}^p}
+\newcommand{\Rn}{\mathbf{R}^n}
+\newcommand{\Rnmon}{\mathbf{R}^{n-1}}
+\newcommand{\Rnpon}{\mathbf{R}^{n+1}}
+\newcommand{\Rmpon}{\mathbf{R}^{m+1}}
+\newcommand{\RNpon}{\mathbf{R}^{N+1}}
+\newcommand{\Rtwn}{\mathbf{R}^{2n}}
+\newcommand{\RN}{\mathbf{R}^N}
+\newcommand{\Rm}{\mathbf{R}^m}
+\newcommand{\Hon}{\mathbf{H}^1}
+\newcommand{\Htw}{\mathbf{H}^2}
+\newcommand{\Hth}{\mathbf{H}^3}
+\newcommand{\Hn}{\mathbf{H}^n}
+\newcommand{\Torus}{\mathbf{T}}
+\newcommand{\Ttw}{\mathbf{T}^2}
+\newcommand{\Tth}{\mathbf{T}^3}
+\newcommand{\Tn}{\mathbf{T}^n}
+\newcommand{\Son}{\mathbf{S}^1}
+\newcommand{\Stw}{\mathbf{S}^2}
+\newcommand{\Sth}{\mathbf{S}^3}
+\newcommand{\Sfo}{\mathbf{S}^4}
+\newcommand{\Sfi}{\mathbf{S}^5}
+\newcommand{\SN}{\mathbf{S}^N}
+\newcommand{\Sn}{\mathbf{S}^n}
+\newcommand{\Sm}{\mathbf{S}^m}
+\newcommand{\Smmon}{\mathbf{S}^{m-1}}
+\newcommand{\Snmon}{\mathbf{S}^{n-1}}
+\newcommand{\Snmtw}{\mathbf{S}^{n-2}}
+\newcommand{\Hnmon}{\mathbf{H}^{n-1}}
+\newcommand{\Ton}{\mathbf{T}^1}
+\newcommand{\T}{\mathbf{T}}
+% differential operators
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pkd}[3]{\frac{\partial^{#3} #1}{\partial #2^{#3}}}
+\newcommand{\dkd}[3]{\frac{d^{#3} #1}{d#2^{#3}}}
+\newcommand{\td}[2]{\frac{d #1}{d #2}}
+\newcommand{\pdat}[3]{\left . \frac{\partial #1}{\partial #2}\right|_{#3}}
+\newcommand{\dbyd}[1]{ \frac{d}{d #1}}
+
+% Fri Oct  3 11:00:53 2003 -- should check at some point to see whether the replaced versions are actually used at all, I don't think so
+\newcommand{\ddk}[3]{\frac{d^{#3} #1}{d#2^{#3}}}
+% replaces...
+\newcommand{\dbydk}[2]{ \frac{d^{#2}}{d #1^{#2}}}
+
+\newcommand{\ppk}[3]{\frac{\partial^{#3} #1}{\partial #2^{#3}}}
+% replaces...
+\newcommand{\pbypk}[2]{ \frac{\partial^{#2}}{\partial #1^{#2}}}
+
+\newcommand{\pp}[2]{\frac{\partial #1}{\partial #2}}
+% replaces...
+\newcommand{\pbyp}[1]{ \frac{\partial}{\partial #1}}
+
+\newcommand{\ddat}[3]{\left .\frac{d #1}{d #2}\right|_{#3}}
+% replaces...
+\newcommand{\dbydat}[2]{\left . \frac{d}{d #1} \right|_{#2}}
+
+\newcommand{\ppkat}[4]{\left .\frac{\partial^{#3} #1}{\partial #2^{#3}}\right|_{#4}}
+
+\newcommand{\ddkat}[4]{\left .\frac{d^{#3} #1}{d#2^{#3}}\right|_{#4}}
+
+% counters for new lists
+%\newcounter{alistctr}
+%\newcounter{Alistctr}
+\newcounter{rlistctr}
+\newcounter{Rlistctr}
+\newcounter{123listctr}
+\newcounter{123listcolonstylectr}
+
+% a,b,c    - small latin letter list
+\newenvironment{alist}{
+\indent \begin{list}{(\alph{alistctr})}{\usecounter{alistctr}}}
+                      {\end{list}\setcounter{alistctr}{0}} 
+% A,B,C    - LARGE LATIN LETTER LIST
+\newenvironment{Alist}{
+\indent \begin{list}{(\Alph{Alistctr})}{\usecounter{Alistctr}}
+                      }
+                      {\end{list}\setcounter{Alistctr}{0}}
+% i,ii,iii - small roman numeral list
+\newenvironment{rlist}{
+\indent \begin{list}{(\roman{rlistctr})}{\usecounter{rlistctr}}
+                      }
+                      {\end{list}\setcounter{rlistctr}{0}} 
+% I,II,III - large roman numeral list
+\newenvironment{Rlist}{
+\indent \begin{list}{(\Roman{Rlistctr})}{\usecounter{Rlistctr}}
+                      }
+                      {\end{list}\setcounter{Rlistctr}{0}}
+%1,2,3 - arabic numeral list
+\newenvironment{123list}{
+\indent \begin{list}{(\arabic{123listctr})}{\usecounter{123listctr}}
+                      }
+                      {\end{list}\setcounter{123listctr}{0}} 
+
+%1:,2:,3: - arabic numeral list with colon decoration
+\newenvironment{123listcolonstyle}{\indent \begin{list}{\arabic{123listcolonstylectr}:}{\usecounter{123listcolonstylectr}}}
+                      {\end{list}\setcounter{123listcolonstylectr}{0}}
+
+% environment for definitions
+\def\defn#1{\addcontentsline{toc}{subsection}{$\ast$} {\footnotesize \noindent \begin{123listcolonstyle} \setlength{\itemsep}{0em} \setlength{\topsep}{0em} \setlength{\parsep}{0em} #1 \end{123listcolonstyle}}}
+
+%environment for proofs
+\def\proof#1{\par {\footnotesize \indent \begin{tabular}{ll} #1  \end{tabular}}}
+
+%% \include{packages}
+%% \include{renewed_commands}
+%% \include{simple_theorems}
+%% \include{abbreviations}
+%% \include{spaces}
+%% \include{new_environments}
+%% \include{margins}
+%% \include{mathoperators}
+%% \include{differentiation}
+%% \include{limited_things}
+%% \include{argawarga}
+\begin{document}
+Let $X,Y$ be sets. The intersection of $X$ and $Y$, denoted $X\cap Y$ is the set
+\[X\cap Y=\{z : z\in X, z\in Y\}\]
+%%%%%
+%%%%%
+\end{document}

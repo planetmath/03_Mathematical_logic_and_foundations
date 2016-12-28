@@ -1,0 +1,146 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FirstIsomorphismTheorem1}
+\pmcreated{2013-03-22 13:50:42}
+\pmmodified{2013-03-22 13:50:42}
+\pmowner{almann}{2526}
+\pmmodifier{almann}{2526}
+\pmtitle{first isomorphism theorem}
+\pmrecord{10}{34582}
+\pmprivacy{1}
+\pmauthor{almann}{2526}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\let	\proves	=	\vdash
+\let	\implies	=	\rightarrow
+\let	\Implies	=	\Rightarrow
+\let	\iff		=	\leftrightarrow
+\let	\Iff		=	\Leftrightarrow
+\let	\n		=	\overline
+\let 	\cl 		=	\overline
+\let	\iso		=	\cong
+\let	\embeds	=	\hookrightarrow
+\let	\normal	=	\lhd
+\let	\normaleq		=	\unlhd
+\let	\ideal	=	\lhd
+\let	\idealeq	=	\unlhd
+\let	\divides	=	\mid
+\let	\submodel	=	\subset
+\let	\submodeleq	=	\subseteq
+
+\newcommand{\eqclass}[1]{[\![#1]\!]}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\setof}[2]{\{\,#1 \mid #2\,\}}
+\newcommand{\indexof}[2]{\abs{#1 : #2}}
+\newcommand{\tuple}[1]{\langle#1\rangle}
+\newcommand{\gen}[1]{\langle\!\langle #1 \rangle\!\rangle}
+\newcommand{\genrel}[2]{\langle\!\langle\, #1 \mid #2 \,\rangle\!\rangle}
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+\newcommand{\restrict}[1]{\upharpoonright{#1}}
+\newcommand{\qapprox}{/\!\!\approx}
+\newcommand{\qsim}{/\!\!\sim}
+
+% Math operators
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Sub}{Sub}
+\DeclareMathOperator{\Con}{Con}
+\DeclareMathOperator{\Cong}{Cong}
+\DeclareMathOperator{\Syl}{Syl}
+
+
+%Axiom systems
+\newcommand{\PA}{\mathrm{PA}}
+\newcommand{\ZFC}{\mathrm{ZFC}}
+
+% Math script
+\newcommand{\powerset}{\mathscr P}
+
+% Fraktur
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\C}{\mathfrak{C}}
+\newcommand{\D}{\mathfrak{D}}
+\newcommand{\X}{\mathfrak{X}}
+
+% Mathbb
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+% Typography
+\newcommand{\AM}{\textsc{a.m.}}
+\newcommand{\PM}{\textsc{p.m.}}
+\newcommand{\latin}[1]{\textit{#1}} 
+\newcommand{\book}[1]{\textit{#1}} 
+\begin{document}
+Let $\Sigma$ be a fixed signature, and $\A$ and $\B$ structures for $\Sigma$. If $f \colon \A \to \B$ is a homomorphism, then there is a unique bimorphism $\phi\colon\A/\!\ker(f) \to \im(f)$ such that for all \(a \in \A\), \(\phi(\eqclass{a}) = f(a)\). Furthermore, if $f$ has the additional property that for each \(n \in \NN\) and each $n$-ary relation symbol $R$  of $\Sigma$, 
+\[
+R^\B(f(a_1), \ldots, f(a_n)) \Implies \exists a_i'[ f(a_i) = f(a_i') \land R^\A(a_1', \ldots, a_n')],
+\]
+then $\phi$ is an isomorphism.
+
+\begin{proof}
+Since the homomorphic image of a $\Sigma$-structure is also a $\Sigma$-structure, we may assume that \(\im(f) = \B\).
+
+Let \(\sim\ = \ker(f)\). Define a bimorphism $\phi \colon \A\qsim\to \B : \eqclass{a} \mapsto f(a)$. To verify that $\phi$ is well defined, let \(a \sim a'\). Then \(\phi(\eqclass{a}) = f(a) = f(a') = \phi(\eqclass{a'})\). To show that $\phi$ is injective, suppose \(\phi(\eqclass{a}) = \phi(\eqclass{a'})\). Then \(f(a) = f(a')\), so \(a \sim a'\). Hence \(\eqclass{a} = \eqclass{a'}\). To show that $\phi$ is a homomorphism, observe that for any constant symbol $c$ of $\Sigma$ we have \(\phi(\eqclass{c^\A}) = f(c^\A) = c^\B\). For each \(n \in \NN\) and each $n$-ary function symbol $F$ of $\Sigma$,
+\begin{align*}
+\phi(F^{\A/\!\sim}(\eqclass{a_1}, \ldots, \eqclass{a_n})) &= \phi(\eqclass{F^\A(a_1, \ldots, a_n)}) \\
+&= f(F^\A(a_1, \ldots, a_n)) \\
+&= F^\B(f(a_1), \ldots, f(a_n)) \\
+&= F^\B(\phi(\eqclass{a_1}, \ldots, \phi(\eqclass{a_n})).
+\end{align*}
+For each \(n \in \NN\) and each $n$-ary relation symbol $R$ of $\Sigma$,
+\begin{align*}
+R^{\A/\!\sim}(\eqclass{a_1}, \ldots, \eqclass{a_n}) &\Implies R^\A(a_1, \ldots, a_n) \\
+&\Implies R^\B(f(a_1), \ldots, f(a_n)) \\
+&\Implies R^\B(\phi(\eqclass{a_1}, \ldots, \phi(\eqclass{a_n})).
+\end{align*}
+Thus $\phi$ is a bimorphism.
+
+Now suppose $f$ has the additional property mentioned in the statement of the theorem. Then 
+\begin{align*}
+R^\B(\phi(\eqclass{a_1}), \ldots, \phi(\eqclass{a_n})) 
+&\Implies R^\B(f(a_1), \ldots, f(a_n)) \\
+&\Implies  \exists a_i'[ a_i \sim a_i' \land R^\A(a_1', \ldots, a_n')] \\
+&\Implies R^{\A/\!\sim}(\eqclass{a_1}, \ldots, \eqclass{a_n}) .
+\end{align*}
+Thus $\phi$ is an isomorphism.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

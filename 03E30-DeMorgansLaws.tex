@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DeMorgansLaws}
+\pmcreated{2013-03-22 12:24:49}
+\pmmodified{2013-03-22 12:24:49}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{de Morgan's laws}
+\pmrecord{15}{32308}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E30}
+\pmrelated{Set}
+\pmrelated{Complement}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic} 
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+In set theory, \emph{de Morgan's laws}
+relate the three basic set operations to each other; 
+the union, the intersection, and the complement. 
+de Morgan's laws are named after the 
+Indian-born British mathematician and logician
+Augustus De Morgan (1806-1871) \cite{wikidemorgan}.
+
+
+If $A$ and $B$  are subsets of a set $X$, de Morgan's laws state that 
+\begin{eqnarray*}
+(A \cup B)^\complement &=& A^\complement \cap B^\complement, \\ 
+(A \cap B)^\complement &=& A^\complement \cup B^\complement.
+\end{eqnarray*}
+Here, $\cup$ denotes the union, $\cap$ denotes the intersection, 
+and $A^\complement$ denotes the set complement of $A$ in $X$, i.e., 
+$A^\complement= X\setminus A$.
+
+Above, de Morgan's laws are written for two sets. 
+In this form, they are intuitively quite clear. 
+For instance, the first claim states  that an element
+that is not in $A\cup B$ is not in $A$
+and not in $B$. It also states that an elements not in $A$
+and not in $B$ is not in  $A\cup B$. 
+
+For an arbitrary collection of subsets, de Morgan's laws are
+as follows:
+
+{\bf Theorem.}
+ Let $X$ be a set with subsets $A_i \subset X$ for $i\in I$, where
+ $I$ is an arbitrary index-set. In other words, $I$ can be finite,
+ countable, or uncountable. Then
+ \begin{eqnarray*}
+ \Big( \bigcup_{i\in I} A_i \Big)^\complement &=& \bigcap_{i\in I} A_i^\complement, \\
+ \Big( \bigcap_{i\in I} A_i \Big)^\complement &=& \bigcup_{i\in I} A_i^\complement.
+ \end{eqnarray*}
+(\PMlinkname{proof}{DeMorgansLawsProof})
+
+{\bf de Morgan's laws in a \PMlinkescapetext{Boolean algebra} }\\
+For Boolean variables $x$ and $y$ in a Boolean algebra, 
+de Morgan's laws state that
+\begin{eqnarray*}
+(x \land y)' &=& x' \lor y', \\
+(x \lor y)' &=& x' \land y'.
+\end{eqnarray*}
+Not surprisingly, de Morgan's laws form an indispensable tool
+when simplifying digital circuits involving and, or, and not
+gates \cite{mano}. 
+
+\begin{thebibliography}{9}
+\bibitem{wikidemorgan}
+Wikipedia's \PMlinkexternal{entry on de Morgan}{http://www.wikipedia.org/wiki/Augustus_De_Morgan}, 4/2003.
+\bibitem{mano}
+M.M. Mano, 
+\emph{Computer Engineering: Hardware Design},
+Prentice Hall, 1988.
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

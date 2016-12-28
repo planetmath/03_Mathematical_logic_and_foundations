@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{RecursiveFunction}
+\pmcreated{2013-03-22 14:34:35}
+\pmmodified{2013-03-22 14:34:35}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{recursive function}
+\pmrecord{27}{36135}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmsynonym{unbounded minimization}{RecursiveFunction}
+\pmrelated{PrimitiveRecursive}
+\pmrelated{RecursiveFunctionIsURMComputable}
+\pmrelated{BoundedMinimization}
+\pmdefines{primitive recursion}
+\pmdefines{minimization}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+Intuitively, a recursive function is a positive integer valued function of one or more positive integer arguments which may be computed by a definite algorithm.
+
+Recursive functions may be defined more rigorously as the smallest class of partial functions from $\mathbb{Z}_+^n \to \mathbb{Z}_+$ satisfying the following six criteria:
+
+\begin{enumerate}
+\item The constant function $c: \mathbb{Z}_+ \to \mathbb{Z}_+$ defined by $c(x) = 1$ for all $x \in \mathbb{Z}_+$ is a recursive function.
+\item The addition function $+: \mathbb{Z}_+^2 \to \mathbb{Z}_+$ and the multiplication function $\times: \mathbb{Z}_+^2 \to \mathbb{Z}_+$  are recursive function.
+\item The projection functions $I^n_m \colon \mathbb{Z}_+^n \to \mathbb{Z}_+$ with $1 \le m \le n$ defined as $I^n_m (x_1, \ldots, x_n) = x_m$ are recursive functions.
+\item {\it (Closure under composition)} If $f \colon \mathbb{Z}_+^n \to \mathbb{Z}_+$ is a recursive function and $g_i \colon \mathbb{Z}_+^m \to \mathbb{Z}_+$ with $i = 1, \ldots n$ are recursive functions, then $h \colon \mathbb{Z}_+^n \to \mathbb{Z}_+$, defined by $h(x_1, \ldots, x_n) = f(g_1(x_1, \ldots, x_m), \ldots, g_n(x_1, \ldots, x_m))$ is a recursive function.
+\item {\it (Closure under primitive recursion)} If $f \colon \mathbb{Z}_+^n \to \mathbb{Z}_+$ and $g \colon \mathbb{Z}_+^{n+2} \to \mathbb{Z}_+$ are recursive function, then $h \colon \mathbb{Z}_+^{n+1} \to \mathbb{Z}_+$, defined by the recursion
+ $$h(n+1,x_1,\ldots,x_{k}) = g(h(n,x_1,\ldots,x_k),n,x_1,\ldots, x_k)$$
+with the initial condition
+ $$h(0,x_1,\ldots,x_k) = f(x_1,\ldots,x_k)$$
+is a recursive function.
+\item {\it (Closure under minimization)} If $f \colon \mathbb{Z}_+^{n+1} \to \mathbb{Z}_+$ is a recursive function then $g \colon \mathbb{Z}_+^n \to \mathbb{Z}_+$ is a recursive function, where
+\begin{itemize}
+\item $g(x_1, \ldots, x_n)$ is defined to be $y$, if there exists a $y \in \mathbb{Z}_+$ such that 
+\begin{enumerate}
+\item $f(0, x_1, \ldots, x_n), f(1, x_1, \ldots, x_n), \ldots, f(y, x_1, \ldots, x_n)$ are all defined, 
+\item $f(z, x_1, \ldots, x_n) \ne 0$ when $1 \le z <y$, and 
+\item $f(y, x_1, \ldots, x_n) = 0$.
+\end{enumerate}
+\item $g(x_1, \ldots, x_n)$ is undefined otherwise.
+\end{itemize}
+\end{enumerate}
+
+The operation whereby $h$ was constructed from $f$ and $g$ in criterion 5 is known as primitive recursion.  The operation described in criterion 6 is known as minimization.  That is to say, for any given function $f\colon \mathbb{Z}_+^{n+1} \to \mathbb{Z}_+$, the partial function $g \colon \mathbb{Z}_+^n \to \mathbb{Z}_+$ constructed as in criterion 6 is known as the minimization of $f$ and is denoted by $g = \mu f$.
+
+The smallest set of functions satisfying criteria 1-5, but not criterion 6, is known as the set of primitive recursive functions.  Therefore, the set $\mathcal{R}$ of all recursive function is the closure of the set $\mathcal{PR}$ of primitive recursive function with respect to minimization.  It can be shown that $\mathcal{R}$ is exactly the set of Turing-computable functions.  In terms of programming languages, a function is recursive iff it can be computed by a program involving the DO WHILE loops (minimization).
+
+With some work, it can be shown that the class of recursive functions can be characterized by considerably weaker sets of criteria than those given above.  See the entry ``\PMlinkname{alternative characterizations of recursive functions}{AlternativeCharacterizationsOfRecursiveFunctions}'' for several such characterizations.
+%%%%%
+%%%%%
+\end{document}

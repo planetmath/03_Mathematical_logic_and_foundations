@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MonadicAlgebra}
+\pmcreated{2013-03-22 17:48:57}
+\pmmodified{2013-03-22 17:48:57}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{monadic algebra}
+\pmrecord{9}{40279}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G15}
+\pmclassification{msc}{06E25}
+\pmrelated{QuantifierAlgebra}
+\pmrelated{PolyadicAlgebra}
+\pmdefines{existential quantifier operator}
+\pmdefines{universal quantifier operator}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $B$ be a Boolean algebra.  An \emph{existential quantifier operator} on $B$ is a function $\exists: B\to B$ such that
+\begin{enumerate}
+\item $\exists(0)=0$,
+\item $a\le \exists(a)$, where $a\in B$, and
+\item $\exists(a\wedge \exists(b))=\exists(a)\wedge \exists(b)$, where $a,b\in B$.
+\end{enumerate}
+A \emph{monadic algebra} is a pair $(B,\exists)$, where $B$ is a Boolean algebra and $\exists$ is an existential quantifier operator.
+
+There is an obvious connection between an existential quantifier operator on a Boolean algebra and an existential quantifier in a first order logic:
+\begin{enumerate}
+\item A statement $\varphi(x)$ is false iff $\exists x \varphi(x)$ is false.  For example, suppose $x$ is a real number.  Let $\varphi(x)$ be the statement $x=x+1$.  Then $\varphi(x)$ is false no matter what $x$ is.  Likewise, $\exists \varphi(x)$ is always false too.
+\item $\varphi(x)$ implies $\exists x\varphi(x)$; in other words, if $\exists x\varphi(x)$ is false, then so is $\varphi(x)$.  For example, let $\varphi(x)$ be the statement $1<x$, where $x\in \mathbb{R}$.  By itself, $\varphi(x)$ is neither true nor false.  However $\exists x\varphi(x)$ is always true.
+\item $\exists x (\varphi(x) \wedge \exists x \psi(x))$ iff $\exists x \varphi(x) \wedge \exists x \psi(x)$.  For example, suppose again $x$ is real.  Let $\varphi(x)$ be the statement $x<1$ and $\psi(x)$ the statement $x>1$.  Then both $\exists x \psi(x)$ and $\exists x \varphi(x)$ are true.  It is easy to verify the equivalence of the two sentences in this example.  Notice that, however, $\exists x (\varphi(x) \wedge \psi(x))$ is false.
+\end{enumerate}
+
+\textbf{Remarks}
+\begin{itemize}
+\item One may replace condition 3. above with the following three conditions to get an equivalent definition of an existential quantifier operator:
+\begin{enumerate}
+\item $\exists(\exists(a)) = \exists(a)$
+\item $\exists (a\vee b)=\exists(a) \vee \exists(b)$
+\item $\exists ((\exists a)')=(\exists a)'$
+\end{enumerate}
+From this, it is easy to see that $\exists$ is a closure operator on $B$, and that $\exists a$ and $(\exists a)'$ are both closed under $\exists$.
+\item Like the Lindenbaum algebra of propositional logic, monadic algebra is an attempt at converting first order logic into an algebra so that a logical question may be turned into an algebraic one.  However, the existential quantifier operator in a monadic algebra corresponds to existential quantifier applied to formulas with only one variable (hence the name monadic).  Formulas with multiple variables, such as $x^2+y^2=1$, $x\le y+z$, or $x_i=x_{i+1}+x_{i+2}$ where $i=0,1,2,\ldots$ require further generalizations to what is known as a \emph{polyadic algebra}.  The notions of monadic and polyadic algebras were introduced by Paul Halmos.
+\end{itemize}
+
+Dual to the notion of an existential quantifier is that of a universal quantifier.  Likewise, there is a dual of an existential quantifier operator on a Boolean algebra, a \emph{universal quantifier operator}.  Formally, a \emph{universal quantifier operator} on a Boolean algebra $B$ is a function $\forall : B\to B$ such that
+\begin{enumerate}
+\item $\forall (1) = 1$,
+\item $\forall (a) \le a$, where $a\in B$, and
+\item $\forall(a \vee \forall(b)) = \forall(a) \vee \forall(b)$, where $a,b\in B$.
+\end{enumerate}
+
+Every existential quantifier operator $\exists$ on a Boolean algebra $B$ induces a universal quantifier operator $\forall$, given by $$\forall (a) := (\exists (a'))'.$$  Conversely, every universal quantifier operator induces an existential quantifier by exchanging $\forall$ and $\exists$ in the definition above.  This shows that the two operations are dual to one another.
+
+\begin{thebibliography}{8}
+\bibitem{hg} P. Halmos, S. Givant, \emph{Logic as Algebra}, The Mathematical Association of America (1998).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

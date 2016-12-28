@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AxiomSchemaOfSeparation}
+\pmcreated{2013-03-22 13:42:46}
+\pmmodified{2013-03-22 13:42:46}
+\pmowner{Sabean}{2546}
+\pmmodifier{Sabean}{2546}
+\pmtitle{axiom schema of separation}
+\pmrecord{18}{34393}
+\pmprivacy{1}
+\pmauthor{Sabean}{2546}
+\pmtype{Axiom}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E30}
+\pmsynonym{separation schema}{AxiomSchemaOfSeparation}
+\pmsynonym{separation}{AxiomSchemaOfSeparation}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+Let $\phi(u, p)$ be a formula.  For any $X$ and $p$, there exists a set $Y = \{ u \in X : \phi(u, p) \}$.
+
+The Axiom Schema of Separation is an axiom schema of Zermelo-Fraenkel set theory.  Note that it represents infinitely many individual axioms, one for each formula $\phi$.  In symbols, it reads:
+\[
+\forall X \forall p \exists Y \forall u(u \in Y \leftrightarrow u \in X \land \phi(u, p)).
+\]
+By Extensionality, the set $Y$ is unique.
+
+The Axiom Schema of Separation implies that $\phi$ may depend on more than one parameter $p$.
+
+We may show by induction that if $\phi(u, p_1, \ldots, p_n)$ is a formula, then
+\[
+\forall X \forall p_1 \cdots \forall p_n \exists Y \forall u(u \in Y \leftrightarrow u \in X \land \phi(u, p_1, \ldots, p_n))
+\]
+holds, using the Axiom Schema of Separation and the Axiom of Pairing.
+
+Another consequence of the Axiom Schema of Separation is that a subclass of any set is a set.  To see this, let $\mathbf{C}$ be the class $\mathbf{C} = \{ u : \phi(u, p_1, \ldots, p_n) \}$.  Then
+\[
+\forall X \exists Y (\mathbf{C} \cap X = Y)
+\]
+holds, which means that the intersection of $\mathbf{C}$ with any set is a set.  Therefore, in particular, the intersection of two sets $X \cap Y = \{ x \in X : x \in Y \}$ is a set.  Furthermore the difference of two sets $X - Y = \{ x \in X : x \notin Y \}$ is a set and, provided there exists at least one set, which is guaranteed by the Axiom of Infinity, the empty set is a set.  For if $X$ is a set, then $\emptyset = \{ x \in X : x \neq x \}$ is a set.
+
+Moreover, if $\mathbf{C}$ is a nonempty class, then $\bigcap \mathbf{C}$ is a set, by Separation.  $\bigcap \mathbf{C}$ is a subset of every $X \in \mathbf{C}$.
+
+Lastly, we may use Separation to show that the class of all sets, $V$, is not a set, i.e., $V$ is a proper class.  For example, suppose $V$ is a set.  Then by Separation
+\[
+V' = \{ x \in V : x \notin x \}
+\]
+is a set and we have reached a Russell paradox.
+%%%%%
+%%%%%
+\end{document}

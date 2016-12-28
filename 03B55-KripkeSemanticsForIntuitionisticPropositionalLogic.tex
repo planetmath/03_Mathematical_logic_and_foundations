@@ -1,0 +1,130 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{KripkeSemanticsForIntuitionisticPropositionalLogic}
+\pmcreated{2013-03-22 19:33:19}
+\pmmodified{2013-03-22 19:33:19}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Kripke semantics for intuitionistic propositional logic}
+\pmrecord{35}{42540}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B55}
+\pmclassification{msc}{03B20}
+\pmrelated{AxiomSystemForIntuitionisticLogic}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+A \emph{Kripe model} for intuitionistic propositional logic PL$_i$ is a triple $M:=(W,\le,V)$, where 
+\begin{enumerate}
+\item $W$ is a set, whose elements are called \emph{possible worlds},
+\item $\le$ is a preorder on $W$, 
+\item $V$ is a function that takes each wff (well-formed formula) $A$ in PL$_i$ to a subset $V(A)$ of $W$, such that
+\begin{itemize}
+\item if $p$ is a propositional variable, $V(p)$ is upper closed,
+\item $V(A\land B)=V(A)\cap V(B)$,
+\item $V(A\lor B)=V(A)\cup V(B)$,
+\item $V(\neg A)=V(A)^{\#}$,
+\item $V(A\to B)=(V(A)- V(B))^{\#}$,
+\end{itemize}
+where $S^{\#}:=(\downarrow\!\! S)^c$, the complement of the lower closure of any $S \subseteq W$.
+\end{enumerate}
+
+\textbf{Remarks}.  
+\begin{itemize}
+\item
+If $\perp$ were used as a primitive symbol instead of $\neg$, then we require that $V(\perp)=\varnothing$.  Then introducing $\neg$ by $\neg A := A\to \perp$, we get $V(\neg A)=V(A)^{\#}$.
+\item
+Some simple properties of $\#$: for any subset $S$ of $W$, $S^{\#}$ is upper closed.  This means that for any wff $A$, $V(A)$ is upper closed.  Also, $S$ and $S^{\#}$ are disjoint, which means that $V(A\land \neg A)=\varnothing$ for any $A$.
+\end{itemize}
+
+One can also define a \emph{satisfaction relation} $\models$ between $W$ and the set $L$ of wff's so that 
+$$\models_w A \qquad \mbox{iff} \qquad w\in V(A)$$
+for any $w\in W$ and $A\in L$.  It's easy to see that
+\begin{itemize}
+\item for any propositional variable $p$, if $\models_w p$ and $w\le u$, then $\models_u p$,
+\item $\models_w A\land B$ iff $\models_w A$ and $\models_w B$,
+\item $\models_w A\lor B$ iff $\models_w A$ or $\models_w B$,
+\item $\models_w \neg A$ iff for all $u$ such that $w\le u$, we have $\not \models_u A$
+\item $\models_w A\to B$ iff for all $u$ such that $w\le u$, we have $\models_u A$ implies $\models_u B$.
+\end{itemize}
+When $\models_w A$, we say that $A$ is true at world $w$.
+
+\textbf{Remark}.  Since $V(A)$ is upper closed, $\models_w A$ implies $\models_u A$ for any $u$ such that $w\le u$.  Now suppose $w\le u$ and $u\le w$, then $\models_w A$ iff $\models_u A$.  This shows that, as far as validity of formulas is concerned, we can take $\le$ to be a partial order in the definition above.
+
+Some examples of Kripke models:
+\begin{enumerate}
+\item Let $M_1$ be the model consisting of $W=\lbrace w,u\rbrace$, $\le = \lbrace (w,w),(u,u),(w,u)\rbrace$, with $V(p)=\lbrace u \rbrace$ and $V(q)=W$.  Then $V(p)^{\#}=V(q)^{\#}=\varnothing$, and we have the following:
+\begin{itemize}
+\item $V(p\lor \neg p)=\lbrace u\rbrace$.
+\item $V(q\to p)=V(p)$, and $V(\neg p \to \neg q)= W$, so $$V((\neg p \to \neg q) \to (q\to p))= \lbrace w \rbrace ^{\#} = \lbrace u \rbrace.$$
+\item $V(p\to q)= V(\neg q \to \neg p)= W$, so $$V((\neg q \to \neg p) \to (p\to q))= \varnothing ^{\#} = W.$$
+\item $V((p\to q)\lor (q\to p))=W$.
+\item In fact, for any wff's $A,B$, either $V(A)\subseteq V(B)$ or $V(B)\subseteq V(A)$, since $\le$ is linearly ordered, so that $$V((A\to B)\lor (B\to A))=V(A\to B)\cup V(B\to A) = W, $$
+assuming $V(A)\subseteq V(B)$.
+\end{itemize}
+\item Let $M_2$ be the model consisting of $W=\lbrace w,u,v\rbrace$, $\le = \lbrace (w,w),(u,u),(v,v),(w,u),(w,v)\rbrace$, with $V(p)=\lbrace u \rbrace$ and $V(q)=\lbrace v \rbrace$.  Then
+\begin{itemize}
+\item $V(\neg p)=V(p)^{\#} = \lbrace v\rbrace$,
+\item $V(\neg \neg p)=V(\neg p)^{\#} = \lbrace u\rbrace$,
+\item so $V(\neg p \lor \neg \neg p)=\lbrace u,v\rbrace$.
+\item $V(p \to q)= V(p)^{\#} = \lbrace v\rbrace$, 
+\item $V(q \to p)=V(q)^{\#} = \lbrace u \rbrace$, 
+\item so $V((p\to q)\lor (q\to p))=\lbrace u,v\rbrace$.
+\end{itemize}
+\item Let $M$ be an arbitrary model.  Then
+\begin{itemize}
+\item $V(A\land B \to A) = (V(A\land B)-V(A))^{\#} = W$,
+\item $V(A \to A\lor B) = (V(A) - V(A\lor B))^{\#} = W$,
+\item $V(A\to (B\to A)) = (V(A)-V(B\to A))^{\#} = (V(A) - (V(B)-V(A))^{\#})^{\#}=W$.  The last equation comes from the fact that for any upper set $S$, $S\subseteq S^{c\#}$.
+\item Suppose $V(A)=V(A\to B)=W$.  Then $\varnothing = \downarrow\!\! (V(A)-V(B))= \downarrow\!\! (V(B)^c)$.  Since $V(B)$ is upper, $V(B)^c$ is lower, so $\varnothing = \downarrow\!\! (V(B)^c) = V(B)^c$, or $W=V(B)$.  This shows that modus ponens preserves validity.
+\end{itemize}
+\item Let $W$ be any set and $\le = W^2$.  Then for any wff $A$, either $V(A)=W$ or $V(A)=\varnothing$.  Therefore, $V(\neg \neg A)=V(A)$, and $V(\neg \neg A\to A)=W$.
+\end{enumerate}
+
+The pair $\mathcal{F}:=(W,\le)$ in a Kripke model $M:=(W,\le,V)$ is also called a (Kripke) frame, and $M$ is said to be a model based on the frame $\mathcal{F}$.  The validity of a wff $A$ at various levels can be found in the parent entry.   Furthermore, $A$ is valid (with respect to Krikpe semantics) for PL$_i$ if it is valid in the class of all frames.
+
+Based on the examples above, we see that 
+\begin{enumerate}
+\item
+$(\neg q \to \neg p) \to (p\to q)$ is valid in $M_1$, while $(\neg p \to \neg q) \to (q\to p)$ is not.  
+\item
+$(p\to q)\lor (q\to p)$ is valid in the class of linearly ordered frames, while it is not valid in $M_2$, and neither is $\neg p \lor \neg \neg p$.  
+\item 
+It is not hard to see that $\neg A \lor \neg \neg A$ is valid in any weakly connected frame, that is, for any $w\in W$, the set $\lbrace u \mid w\le u\rbrace$ is linear.  
+\item
+Any wff in any of the schemas $A\land B\to A$, $A\to A\lor B$, or $A\to (B\to A)$ is valid in PL$_i$.  See remark below for more detail.
+\item
+Any theorem in the classical propositional logic is valid in any universal frame, that is, a frame with a universal relation.
+\end{enumerate}
+
+\textbf{Remark}.  It can be shown that every theorem of PL$_i$ is valid.  This is the soundness theorem of PL$_i$.  Conversely, every valid wff is a theorem.  This is known as the completeness theorem of PL$_i$.  Furthermore, a wff valid in the class of finite frames is a theorem.  This is the finite model property of PL$_i$.
+
+%%%%%
+%%%%%
+\end{document}

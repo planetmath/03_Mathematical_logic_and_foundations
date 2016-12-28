@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A22StructuralRules}
+\pmcreated{2013-11-09 5:20:59}
+\pmmodified{2013-11-09 5:20:59}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.2 Structural rules}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\ctx}{\ensuremath{\mathsf{ctx}}}
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\intro}{\textsc{intro}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\Subst}{\mathsf{Subst}}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Vble}{\mathsf{Vble}}
+\newcommand{\Weak}{\mathsf{Wkg}}
+\newcommand{\wfctx}[1]{#1\ \ctx}
+\makeatother
+
+\begin{document}
+\index{structural!rules|(}%
+\index{rule!structural|(}%
+
+The fact that the context holds assumptions is expressed by the rule which says that we may derive those typing judgments which are listed in the context:
+%
+\begin{mathpar}
+  \inferrule*[right=$\Vble$]
+  {\wfctx {(\tmtp{x_1}{A_1}, \ldots, \tmtp{x_n}{A_n})} }
+  {\oftp{\tmtp{x_1}{A_1}, \ldots, \tmtp{x_n}{A_n}}{x_i}{A_i}}
+\end{mathpar}
+%
+As with $\ctx$-\textsc{ext}, the hypothesis and conclusion of the rule $\Vble$ are judgments of different forms, only now they are reversed: we start with a well-formed context and derive a typing judgment.
+
+The following important principles, called \define{substitution}
+\indexdef{rule!of substitution}%
+and
+\define{weakening},
+\indexdef{rule!of weakening}%
+need not be explicitly assumed. Rather, it is possible to
+show, by induction on the structure of all possible derivations, that whenever
+the hypotheses of these rules are derivable, their conclusion is also
+derivable.\footnote{Such rules are called \define{admissible}\indexdef{rule!admissible}\indexsee{admissible!rule}{rule, admissible}.}
+For the typing judgments these principles are manifested as
+%
+\begin{mathpar}
+  \inferrule*[right=$\Subst_1$]
+  {\oftp\Gamma{a}{A} \\ \oftp{\Gamma,\tmtp xA,\Delta}{b}{B}}
+  {\oftp{\Gamma,\Delta[a/x]}{b[a/x]}{B[a/x]}}
+\and
+  \inferrule*[right=$\Weak_1$]
+  {\oftp\Gamma{A}{\UU_i} \\ \oftp{\Gamma,\Delta}{b}{B}}
+  {\oftp{\Gamma,\tmtp xA,\Delta}{b}{B}}
+\end{mathpar}
+and for judgmental equalities they become
+\begin{mathpar}
+  \inferrule*[right=$\Subst_2$]
+  {\oftp\Gamma{a}{A} \\ \jdeqtp{\Gamma,\tmtp xA,\Delta}{b}{c}{B}}
+  {\jdeqtp{\Gamma,\Delta[a/x]}{b[a/x]}{c[a/x]}{B[a/x]}}
+\and
+  \inferrule*[right=$\Weak_2$]
+  {\oftp\Gamma{A}{\UU_i} \\ \jdeqtp{\Gamma,\Delta}{b}{c}{B}}
+  {\jdeqtp{\Gamma,\tmtp xA,\Delta}{b}{c}{B}}
+\end{mathpar}
+%
+In addition to the judgmental equality rules given for each type former, we also
+assume that judgmental equality is an equivalence relation respected by typing.
+\begin{mathparpagebreakable}
+  \inferrule*{\oftp\Gamma{a}{A}}{\jdeqtp\Gamma{a}{a}{A}}
+\and
+  \inferrule*{\jdeqtp\Gamma{a}{b}{A}}{\jdeqtp\Gamma{b}{a}{A}}
+\and
+  \inferrule*{\jdeqtp\Gamma{a}{b}{A} \\ \jdeqtp\Gamma{b}{c}{A}}{\jdeqtp\Gamma{a}{c}{A}}
+\and
+  \inferrule*{\oftp\Gamma{a}{A} \\ \jdeqtp\Gamma{A}{B}{\UU_i}}{\oftp\Gamma{a}{B}}
+\and
+  \inferrule*{\jdeqtp\Gamma{a}{b}{A} \\ \jdeqtp\Gamma{A}{B}{\UU_i}}{\jdeqtp\Gamma{a}{b}{B}}
+\end{mathparpagebreakable}
+%
+Additionally, for all the type formers below, we assume rules stating that each constructor preserves definitional equality in each of its arguments; for instance, along with the $\Pi$-\intro\ rule, we assume the rule
+\[
+  \inferrule*[right=$\Pi$-\intro-eq]
+  {\jdeqtp\Gamma{A}{A'}{\UU_i} \\
+   \jdeqtp{\Gamma,\tmtp xA}{B}{B'}{\UU_i} \\
+   \jdeqtp{\Gamma,\tmtp xA}{b}{b'}{B}}
+  {\jdeqtp\Gamma{\lamu{x:A} b}{\lamu{x:A'} b'}{\tprd{x:A} B}}
+\]
+However, we omit these rules for brevity.
+
+\index{rule!structural|)}%
+\index{structural!rules|)}%
+
+\end{document}

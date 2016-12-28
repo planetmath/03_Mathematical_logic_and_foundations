@@ -1,0 +1,161 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{StructureHomomorphism}
+\pmcreated{2013-03-22 12:43:22}
+\pmmodified{2013-03-22 12:43:22}
+\pmowner{almann}{2526}
+\pmmodifier{almann}{2526}
+\pmtitle{structure homomorphism}
+\pmrecord{14}{33021}
+\pmprivacy{1}
+\pmauthor{almann}{2526}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+\pmsynonym{homomorphism}{StructureHomomorphism}
+\pmsynonym{morphism}{StructureHomomorphism}
+\pmsynonym{monomorphism}{StructureHomomorphism}
+\pmsynonym{epimorphism}{StructureHomomorphism}
+\pmsynonym{bimorphism}{StructureHomomorphism}
+\pmsynonym{embedding}{StructureHomomorphism}
+\pmsynonym{isomorphism}{StructureHomomorphism}
+\pmsynonym{endomorphism}{StructureHomomorphism}
+\pmsynonym{automorphism}{StructureHomomorphism}
+\pmrelated{AxiomaticTheoryOfSupercategories}
+\pmdefines{structure morphism}
+\pmdefines{structure monomorphism}
+\pmdefines{structure epimorphism}
+\pmdefines{structure bimorphism}
+\pmdefines{structure embedding}
+\pmdefines{structure isomorphism}
+\pmdefines{structure endomorphism}
+\pmdefines{structure automorphism}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+\usepackage[arrow,curve,poly,arc,2cell,frame,web]{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newcommand{\br}{[\![}
+\newcommand{\rb}{]\!]}
+\newcommand{\oq}{\text{``}}
+\newcommand{\cq}{\text{''}}
+
+
+\newcommand{\im}{\mathbf{Im}}
+\newcommand{\dom}{\mathbf{Dom}}
+
+
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\proves}{\vdash}
+\renewcommand{\And}{\wedge}
+\newcommand{\Sup}{\bigwedge}
+\newcommand{\Inf}{\bigvee}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\N}{\mathfrak{N}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\K}{\mathfrak{K}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Def}{\overset{\operatorname{def}}{:=}}
+
+
+
+\newcommand{\spec}{\text{{\bf Spec}}}
+\newcommand{\stab}{\text{{\bf Stab}}}
+\newcommand{\ann}{\text{{\bf Ann}}}
+\newcommand{\irr}{\text{{\bf Irr}}}
+\newcommand{\qt}{\text{{\bf Qt}}}
+\newcommand{\st}{\mathcal{Qt}}
+\newcommand{\ro}{\mathbf{r.o.}}
+
+
+\newcommand{\Endo}{\text{{\bf End}}}
+\newcommand{\mat}{\text{{\bf Mat}}}
+\newcommand{\der}{\text{{\bf Der}}}
+\newcommand{\rad}{\text{{\bf Rad}}}
+\newcommand{\trd}{\text{{\bf tr.d.}}}
+\newcommand{\cl}{\text{{\bf acl}}}
+\newcommand{\Int}{\text{{\bf int}}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\D}{\mathbf{D}}
+
+\newcommand{\del}{\partial}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\aut}{\mathbf{Aut}}
+\newcommand{\height}{\text{\bf Height}}
+\newcommand{\coheight}{\text{\bf Co-height}}
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\inner}[2]{\langle #1|#2\rangle}
+\renewcommand{\r}{{r}}
+\renewcommand{\t}{{t}}
+
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\Matrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 
+\end{array}\right)}
+\begin{document}
+\PMlinkescapeword{embedding}
+
+Let $\Sigma$ be a fixed signature, and $\A$ and $\B$ be two structures for $\Sigma$.  The interesting functions from $\A$ to $\B$ are the ones that preserve the structure.
+
+A function $f\colon \A \to \B$ is said to be a \emph{homomorphism} (or simply \emph{morphism}) if and only if:
+\begin{enumerate}
+ \item For every constant symbol $c$ of $\Sigma$, $f(c^\A)=c^\B$.
+ \item For every natural number $n$ and every $n$-ary function symbol $F$ of
+ $\Sigma$,
+\[
+f(F^\A(a_1,...,a_n))=F^\B(f(a_1),...,f(a_n)).
+\]
+ \item For every natural number $n$ and every $n$-ary relation symbol $R$
+ of $\Sigma$,
+\[
+R^\A(a_1, \ldots ,a_n) \Implies R^\B(f(a_1), \ldots,f(a_n)).
+\]
+\end{enumerate}
+
+Homomorphisms with various additional properties have special names:
+\begin{itemize}
+  \item An \PMlinkname{injective}{Injective} homomorphism is called a \emph{monomorphism}.
+  \item A surjective homomorphism is called an \emph{epimorphism}.
+  \item A bijective homomorphism is called a \emph{bimorphism}.
+  \item An injective homomorphism $f$ is called an \emph{embedding} if, for every natural number $n$ and every $n$-ary relation symbol $R$ of $\Sigma$,
+\[
+R^\B(f(a_1), \ldots,f(a_n)) \Implies R^\A(a_1, \ldots ,a_n),
+\]
+the converse of condition 3 above, holds.
+  \item A surjective embedding is called an \emph{isomorphism}.
+  \item A homomorphism from a structure to itself (\PMlinkname{e.g.}{Eg}, $f\colon \A \to \A$) is called an \emph{\PMlinkescapetext{endomorphism}}.
+  \item An isomorphism from a structure to itself is called an \emph{automorphism}.
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

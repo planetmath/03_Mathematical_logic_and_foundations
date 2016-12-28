@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{LindenbaumsLemma}
+\pmcreated{2013-03-22 19:35:16}
+\pmmodified{2013-03-22 19:35:16}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Lindenbaum's lemma}
+\pmrecord{10}{42577}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03B05}
+\pmclassification{msc}{03B99}
+\pmrelated{EveryFilterIsContainedInAnUltrafilter}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+In this entry, we prove the following assertion known as Lindenbaum's lemma:  every consistent set is a subset of a maximally consistent set.  From this, we automatically conclude the existence of a maximally consistent set based on the fact that the empty set is consistent (vacuously).
+
+\begin{prop} (Lindenbaum's lemma)  Every consistent set can be extended to a maximally consistent set. \end{prop}
+We give two proofs of this, one uses Zorn's lemma, and the other does not, and is based on the countability of the set of wff's in the logic.  Both proofs require the following:
+
+\begin{lem} The union of a chain of consistent sets, ordered by $\subseteq$, is consistent. \end{lem}
+\begin{proof}  Let $\mathcal{C}:=\lbrace \Gamma_i \mid i\in I\rbrace$ be a chain of consistent sets ordered by $\subseteq$ and indexed by some set $I$.  We want to show that $\Gamma:=\bigcup \mathcal{C}$ is also consistent.  Suppose not.  Then $\Gamma \vdash \perp$.  Let $A_1,\ldots, A_n$ be a deduction of $\perp$ (which is $A_n$) from $\Gamma$.  Then for each $j=1,\ldots,n-1$, there is some $\Gamma_{i(j)} \in \mathcal{C}$ such that $\Gamma_{i(j)} \vdash A_i$.  Since $\mathcal{C}$ is a chain, take the largest of the $\Gamma_{i(j)}$'s, say $\Gamma_k$, so that $\Gamma_k \vdash A_i$ for all $i=1,\ldots,n-1$.  This implies that $\Gamma_k \vdash A_n$, or $\Gamma_k \vdash \perp$, contradicting the assumption that $\Gamma_k$ is consistent.  As a result, $\Gamma$ is consistent.
+\end{proof}
+
+\textit{First Proof}.  Suppose $\Delta$ is consistent.  Let $P$ be the partially ordered set of all consistent supersets of $\Delta$, ordered by inclusion $\subseteq$.  If $\mathcal{C}$ is a chain of elements in $P$, then $\bigcup \mathcal{C}$ is consistent by the lemma above, so $\bigcup \mathcal{C} \in P$ as each element of $\mathcal{C}$ is a superset of $\Delta$.  By Zorn's lemma, $P$ has a maximal element, call it $\Gamma$.  To see that $\Gamma$ is maximally consistent, suppose $\Gamma$ is not maximal.  Then there is a wff $A$ such that $\Gamma \not\vdash A$ and $\Gamma \not\vdash \neg A$, the first of which implies that $A\notin \Gamma$, and the second of which implies that $\Gamma\cup \lbrace A\rbrace$ is consistent, and therefore in $P$.  The two imply that $\Gamma\cup\lbrace A\rbrace$ is a consistent proper superset of $\Gamma$, contradicting the maximality of $\Gamma$ in $P$. Therefore, $\Gamma$ is maximally consistent.  \hfill $\square$
+
+\textit{Second Proof}.  Let $A_1,\ldots, A_n, \ldots$ be an enumeration of all wff's of the logic in question (this can be achieved if the set of propositional variables can be enumerated).  Let $\Delta$ be a consistent set of wff's.  Define sets $\Gamma_1, \Gamma_2, \ldots, \Gamma$ of wff's inductively as follows:
+\begin{eqnarray*}
+\Gamma_1 &:=& \Delta \\
+\Gamma_{n+1} &:=&
+\begin{cases}
+\Gamma_n \cup \lbrace A_n \rbrace & \textrm{if }\Gamma_n \vdash A_n \\
+\Gamma_n \cup \lbrace \neg A_n \rbrace & \textrm{otherwise}
+\end{cases} \\
+\Gamma &:=& \bigcup_{i=1}^{\infty} \Gamma_i.
+\end{eqnarray*}
+First, notice that each $\Gamma_i$ is consistent.  This is done by induction on $i$.  By assumption, the case is true when $i=1$.  Now, suppose $\Gamma_n$ is consistent.  Then its deductive closure Ded$(\Gamma_n)$ is also consistent.  If $\Gamma_n \vdash A_n$, then clearly $\Gamma_n \cup \lbrace A_n \rbrace$ is consistent since it is a subset of Ded$(\Gamma)$.  Otherwise, $\Gamma_n \not\vdash A_n$, or $\Gamma_n \not\vdash \neg \neg A_n$ by the substitution theorem, and therefore $\Gamma_n \cup \lbrace \neg A_n \rbrace$ by one of the properties of consistency (see \PMlinkname{here}{PropertiesOfConsistency}).  In either case, $\Gamma_{n+1}$ is consistent.
+
+Next, $\Gamma$ is maximally consistent.  $\Gamma$ is consistent because, by the lemma above, it is the union of a chain of consistent sets.  To see that $\Gamma$ is maximal, pick any wff $A$.  Then $A$ is some $A_n$ in the enumerated list of all wff's.  Therefore, either $A\in \Gamma_{n+1}$ or $\neg A\in \Gamma_{n+1}$.  Since $\Gamma_{n+1}\subseteq \Gamma$, we have $A\in \Gamma$ or $\neg A\in \Gamma$, which implies that $\Gamma$ is maximal (see \PMlinkname{here}{MaximallyConsistent}). \hfill $\square$.
+
+Given a logic $L$, let $W_L$ be the set of all maximally $L$-consistent sets.  By Lindebaum's lemma, $W_L\ne \varnothing$.  We record two useful corollaries:
+\begin{itemize}
+\item For any consistent set $\Delta$, Ded$(\Delta)= \bigcap \lbrace \Gamma \in W_L \mid \Delta \subseteq \Gamma \rbrace$.
+\item $L=\bigcap W_L$.
+\end{itemize}
+\begin{proof}  The second statement is a corollary of the first, for $L= \mbox{Ded}(\varnothing)$.  To see the first, let $\mathcal{D}:= \lbrace \Gamma \in W_L \mid \Delta \subseteq \Gamma \rbrace$.  Then $\mathcal{D} \ne \varnothing$ by Lindebaum's lemma.  Also, for any $\Gamma \in \mathcal{D}$, Ded$(\Delta) \subseteq \Gamma$ since $\Gamma$ is deductively closed.  On the other hand if $A \notin \mbox{Ded}(\Delta)$, then $\Delta\not\vdash A$, so $\Delta\cup \lbrace \neg A\rbrace$ is consistent, and therefore is contained in a maximally consistent set $\Gamma' \in \mathcal{D}$ by Lindenbaum's lemma.  Since $\neg A \in \Gamma'$, $A\notin \Gamma'$, so that $A\notin \bigcap \mathcal{D}$.
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

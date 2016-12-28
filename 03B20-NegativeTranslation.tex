@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{NegativeTranslation}
+\pmcreated{2013-03-22 19:35:48}
+\pmmodified{2013-03-22 19:35:48}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{negative translation}
+\pmrecord{9}{42587}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B20}
+\pmclassification{msc}{03F55}
+\pmsynonym{double negative translation}{NegativeTranslation}
+\pmdefines{Kolmogorov negative translation}
+\pmdefines{Godel negative translation}
+\pmdefines{Kuroda negative translation}
+\pmdefines{Krivine negative translation}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+It is well-known that classical propositional logic PL$_c$ can be considered as a subsystem of intuitionistic propositional logic PL$_i$ by translating any wff $A$ in PL$_c$ into $\neg \neg A$ in PL$_i$.  According to Glivenko's theorem, $A$ is a theorem of PL$_c$ iff $\neg \neg A$ is a theorem of PL$_i$.  This translation, however, fails to preserve theoremhood in the corresponding predicate logics.  For example, if $A$ is of the form $\exists x B$, then $\vdash_c A$ no longer implies $\vdash_i \neg \neg A$.  A number of translations have been devised to overcome this defect.  They are collective known as \emph{negative translations} or \emph{double negative translations} of classical logic into intuitionistic logic.  Below is a list of the most commonly mentioned negative translations:
+\begin{itemize}
+\item \emph{Kolmogorov negative translation}:
+\begin{multicols}{2}
+\begin{enumerate}
+\item $p^{\circ}:= \neg \neg p$ with $p$ atomic and $\perp^{\circ}:=\perp$
+\item $(A\land  B)^{\circ}:=\neg \neg (A^{\circ}\land B^{\circ})$
+\item $(A\lor B)^{\circ}:=\neg \neg (A^{\circ} \lor B^{\circ})$
+\item $(A\to B)^{\circ}:=\neg \neg (A^{\circ}\to B^{\circ})$
+\item $(\forall x A)^{\circ}:=\neg\neg \forall x A^{\circ}$
+\item $(\exists x A)^{\circ}:=\neg\neg \exists x A^{\circ}$
+\end{enumerate}
+\end{multicols}
+\item \emph{God\"el negative translation}:
+\begin{multicols}{2}
+\begin{enumerate}
+\item $p^-:= \neg \neg p$ with $p$ atomic and $\perp^-:=\perp$
+\item $(A\land  B)^-:=A^-\land B^-$
+\item $(A\lor B)^-:=\neg \neg (A^- \lor B^-)$
+\item $(A\to B)^-:=A^-\to B^-$
+\item $(\forall x A)^-:=\forall x A^-$
+\item $(\exists x A)^-:=\neg\neg \exists x A^-$
+\end{enumerate}
+\end{multicols}
+\item \emph{Kuroda negative translation}:
+\begin{multicols}{2}
+\begin{enumerate}
+\item $p_u:= p$ with $p$ atomic and $\perp_u:=\perp$
+\item $(A\land  B)_u:=A_u\land B_u$
+\item $(A\lor B)_u:=A_u \lor B_u$
+\item $(A\to B)_u:=A_u\to B_u$
+\item $(\forall x A)_u:=\forall x \neg\neg A_u$
+\item $(\exists x A)_u:=\exists x A_u$
+\end{enumerate}
+\end{multicols}
+And then $A^u:=\neg \neg A_u$.
+\item \emph{Krivine negative translation}:
+\begin{multicols}{2}
+\begin{enumerate}
+\item $p_r:= \neg p$ with $p$ atomic and $\perp_r:=\neg \perp$
+\item $(A\land  B)_r:=A_r\lor B_r$
+\item $(A\lor B)_r:=A_r \land B_r$
+\item $(A\to B)_r:=\neg A_r\land B_r$
+\item $(\forall x A)_r:=\exists x A_r$
+\item $(\exists x A)_r:=\neg \exists x \neg A_r$
+\end{enumerate}
+\end{multicols}
+And then $A^r:=\neg A_r$.
+\end{itemize}
+
+\textbf{Remark}.  It can be shown that for any wff $A$: $$\vdash_i A^* \leftrightarrow A^{\#}\qquad\qquad \mbox{and} \qquad\qquad \vdash_c A \quad \mbox{iff} \quad \vdash_i A^*$$ where $*,\# \in \lbrace \circ, -, u, r\rbrace$.
+
+%%%%%
+%%%%%
+\end{document}

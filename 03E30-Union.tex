@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Union}
+\pmcreated{2013-03-22 12:14:19}
+\pmmodified{2013-03-22 12:14:19}
+\pmowner{rm50}{10146}
+\pmmodifier{rm50}{10146}
+\pmtitle{union}
+\pmrecord{13}{31619}
+\pmprivacy{1}
+\pmauthor{rm50}{10146}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E30}
+\pmrelated{Intersection}
+
+% This is Cosmin's preamble.
+
+% Packages
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{amsfonts}
+  \usepackage{amsthm}
+  \usepackage{mathrsfs}
+  %\usepackage{graphicx}
+  %%%%\usepackage{xypic}
+  %\usepackage{babel}
+  \usepackage{pstricks}
+
+% Theorem Environments
+  \newtheorem*{thm}{Theorem}
+  \newtheorem{thmn}{Theorem}
+  \newtheorem*{lem}{Lemma}
+  \newtheorem{lemn}{Lemma}
+  \newtheorem*{cor}{Corollary}
+  \newtheorem{corn}{Corollary}
+  \newtheorem*{prop}{Proposition}
+  \newtheorem{propn}{Proposition}
+  
+% Other Commands
+    \renewcommand{\geq}{\geqslant}
+    \renewcommand{\leq}{\leqslant}
+    \newcommand{\vect}[1]{\boldsymbol{#1}}
+    \newcommand{\mat}[1]{\mathsf{#1}}
+    \renewcommand{\div}{\!\mid\!}
+\newcommand{\Ints}{\mathbb{Z}}
+\newcommand{\Rats}{\mathbb{Q}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\suchthat}{\ \mid\ }
+\begin{document}
+\PMlinkescapeword{entire}
+\PMlinkescapeword{area}
+The \emph{union} of two sets $A$ and $B$ is the set which contains all $x \in A$ and all $x \in B$, denoted $A \cup B$. In the Venn diagram below, $A\cup B$ is the entire area shaded in blue.
+\begin{center}
+\begin{pspicture*}(0,0)(6,4)
+\pscircle[fillstyle=vlines,hatchcolor=blue,hatchwidth=0.1\pslinewidth,hatchsep=1\pslinewidth](2,2){2}
+\pscircle[fillstyle=vlines,hatchcolor=blue,hatchwidth=0.1\pslinewidth,hatchsep=1\pslinewidth](4,2){2}
+\rput(1,2){$A$}
+\rput(5,2){$B$}
+\rput(-1,0){$.$}
+\rput(7,4){$.$}
+\end{pspicture*}
+\end{center}
+
+We can extend this to any (finite or infinite) family $(A_i)_{i\in I}$, writing $\bigcup_{i\in I}A_i$ for the union of this family. Formally, for a family $(A_i)_{i\in I}$ of sets:
+\[ x \in \bigcup_{i\in I}A_i\; \Leftrightarrow \;\bigvee_{i\in I}\, (x\in A_i) \]
+Alternatively, and equivalently,
+\[x \in \bigcup_{i\in I}A_i\; \Leftrightarrow \;\exists i\in I\text{ such that } x\in A_i\]
+This characterization makes it much clearer that if $I$ is itself the empty set (that is, if we are taking the union of an empty family), then the union is empty; that is,
+\[\bigcup_{i\in\emptyset}A_i=\emptyset\]
+
+Often elements of sets are taken from some universe $U$ of elements under consideration (for example, the real numbers $\Reals$, or living things on the planet, or words in a particular book). When this is the case, it is meaningful to discuss the \emph{complement} of a set: if $A$ is a set of elements from some universe $U$, then the complement of $A$ is the set
+\[A^C = U\backslash A= \{x\in U\suchthat x\notin A\}\]
+
+From an axiomatic point of view, the existence of the union is guaranteed by the axiom of union.
+
+Note that the sets $A_i$ may be, but need not be, disjoint. Unions satisfy some basic properties that are obvious from the definitions:
+\begin{itemize}
+\item Idempotency: $A \cup A = A$
+\item $A \cup A^C = U$ where $U$ is the \emph{universe} of $A$
+\item Commutativity: $A \cup B = B \cup A$
+\item Associativity: $(A \cup B) \cup C = A \cup (B \cup C)$
+\end{itemize}
+
+Here are some examples of set unions:
+\begin{gather*}
+\{1,2\}\cup\{3,4\} = \{1,2,3,4\}\\
+\{blue, green\}\cup\emptyset = \{blue, green\}\\
+\{x\in\Ints\ \mid\ x\geq 1\}\cup\{x\in\Ints\ \mid\ x\leq -1\} = \{x\in\Ints\ \mid\ x\neq 0\}\\
+\{1,2\}\cup\{1,4\} = \{1,2,4\}\\
+\{x\in\Reals\ \mid\ x\geq 2\}\cup\{x\in\Reals\ \mid\ x\leq 2\} = \Reals\\
+\bigcup_{\substack{n\in\Ints\\n>0}} \left\{\frac{p}{n}\,\mid\,p\in\Ints\right\} = \Rats
+\end{gather*}
+The first three of these are the union of disjoint sets, while the latter three are not - in those cases, the sets overlap each other.
+%%%%%
+%%%%%
+%%%%%
+\end{document}

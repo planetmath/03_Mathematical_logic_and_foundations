@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{KripkeSemantics}
+\pmcreated{2013-03-22 19:31:15}
+\pmmodified{2013-03-22 19:31:15}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Kripke semantics}
+\pmrecord{25}{42496}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B48}
+\pmclassification{msc}{03B20}
+\pmclassification{msc}{03B45}
+\pmdefines{Kripke frame}
+\pmdefines{possible world}
+\pmdefines{accessibility relation}
+\pmdefines{accessible}
+\pmdefines{valid}
+\pmdefines{sound}
+\pmdefines{complete}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+A \emph{Kripke frame} (or simply a frame) $\mathcal{F}$ is a pair $(W,R)$ where $W$ is a non-empty set whose elements are called \emph{worlds} or \emph{possible worlds}, $R$ is a binary relation on $W$ called the \emph{accessibility relation}.  When $v R w$, we say that $w$ is \emph{accessible} from $v$.  A Kripke frame is said to have property $P$ if $R$ has the property $P$.  For example, a symmetric frame is a frame whose accessibility relation is symmetric.
+
+A \emph{Kripke model} (or simply a model) $M$ for a propositional logical system (classical, intuitionistic, or modal) $\Lambda$ is a pair $(\mathcal{F},V)$, where $\mathcal{F}:=(W,R)$ is a Kripke frame, and $V$ is a function that takes each atomic formula of $\Lambda$ to a subset of $W$.  If $w\in V(p)$, we say that $p$ is \emph{true} at world $w$.  We say that $M$ is a $\Lambda$-model \emph{based on} the frame $\mathcal{F}$ if $M=(\mathcal{F},V)$ is a model for the logic $\Lambda$.
+
+\textbf{Remark}.  Associated with each world $w$, we may also define a Boolean-valued valuation $V_w$ on the set of all wff's of $\Lambda$, so that $V_w(p)=1$ iff $w \in V(p)$.  In this sense, the Kripke semantics can be thought of as a generalization of the truth-value semantics for classical propositional logic.  The truth-value semantics is just a Kripke model based on a frame with one world.  Conversely, given a collection of valuations $\lbrace V_w\mid w\in W\rbrace$, we have model $(\mathcal{F},V)$ where $w\in V(p)$ iff $V_w(p)=1$.
+
+Since the well-formed formulas (wff's) of $\Lambda$ are uniquely readable, $V$ may be inductively extended so it is defined on all wff's.  The following are some examples:
+\begin{itemize}
+\item in classical propositional logic PL$_c$, $V(A\to B):=V(A)^c\cup V(B)$, where $S^c:=W-S$,
+\item in the modal propositional logic $K$, $V(\square A):= V(A)^{\square}$, where $S^{\square}:=\lbrace u \mid\; \uparrow\!\! u \subseteq S \rbrace$, and $\uparrow\!\! u: =\lbrace w \mid u R w\rbrace$, and
+\item in intuitionistic propositional logic PL$_i$, $V(A\to B):=(V(A)- V(B))^{\#}$, where $S^{\#}:=(\downarrow\!\! S)^c$, and $\downarrow\!\!S: = \lbrace u \mid u R w, w\in S\rbrace$.
+\end{itemize}
+
+Truth at a world can now be defined for wff's: a wff $A$ is \emph{true} at world $w$ if $w\in V(A)$, and we write $$M \models_w A\qquad\mbox{or}\qquad \models_w A$$
+if no confusion arises.  If $w\notin V(A)$, we write $M \not\models_w A$.  The three examples above can be now interpreted as:
+\begin{itemize}
+\item $\models_w A\to B$ means $\models_w A$ implies $\models_w B$ in PL$_c$, 
+\item $\models_w \square A$ means for all worlds $v$ with $wRv$, we have $\models_v A$ in $K$, and
+\item $\models_w A\to B$ means for all worlds $v$ with $wRv$, $\models_v A$ implies $\models_v B$ in PL$_i$.
+\end{itemize}
+
+A wff $A$ is said to be \emph{valid} 
+\begin{itemize}
+\item in a model $M$ if $A$ in true at all possible worlds $w$ in $M$,
+\item in a frame if $A$ is valid in all models $M$ based on $\mathcal{F}$,
+\item in a collection $\mathcal{C}$ of frames if $A$ is valid in all frames in $\mathcal{C}$.
+\end{itemize}
+We denote
+$$M\models A, \qquad \mathcal{F} \models A, \qquad \mbox{or} \qquad \mathcal{C} \models A$$
+if $A$ is valid in $M,\mathcal{F}$, or $\mathcal{C}$ respectively.
+
+A logic $\Lambda$, equipped with a deductive system, is \emph{sound} in $\mathcal{C}$ if $$\vdash A \qquad \mbox{implies}\qquad \mathcal{C} \models A.$$  Here, $\vdash A$ means that wff $A$ is a theorem deducible from the deductive system of $\Lambda$.   Conversely, if $$\mathcal{C} \models A\qquad \mbox{implies} \qquad \vdash A,$$ we say that $\Lambda$ is \emph{complete} in $\mathcal{C}$.
+
+%%%%%
+%%%%%
+\end{document}

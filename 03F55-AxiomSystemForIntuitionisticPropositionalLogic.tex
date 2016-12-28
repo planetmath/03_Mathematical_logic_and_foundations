@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AxiomSystemForIntuitionisticPropositionalLogic}
+\pmcreated{2013-03-22 19:30:58}
+\pmmodified{2013-03-22 19:30:58}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{axiom system for intuitionistic propositional logic}
+\pmrecord{38}{42491}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Axiom}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F55}
+\pmclassification{msc}{03B20}
+\pmclassification{msc}{03B55}
+\pmrelated{TruthValueSemanticsForIntuitionisticPropositionalLogic}
+\pmrelated{SomeTheoremSchemasOfIntuitionisticPropositionalLogic}
+\pmrelated{KripkeSemanticsForIntuitionisticPropositionalLogic}
+\pmrelated{DeductionTheoremForIntuitionisticPropositionalLogic}
+\pmrelated{DisjunctionProperty}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+There are several Hilbert-style axiom systems for intuitionistic propositional logic, or PL$_i$ for short.  One such a system is by Heyting, and is presented in \PMlinkname{this entry}{IntuitionisticLogic}.  Here, we describe another, based on the one by Kleene.  The language of the logic consists of a countably infinite set of propositional letters $p,q,r,\ldots$, and symbols for logical connectives $\to$, $\land$, $\lor$.  Well-formed formulas (wff) are defined recursively as follows:
+\begin{itemize}
+\item propositional letters are wff
+\item if $A,B$ are wff, so are $A\to B$, $A\land B$, $A\lor B$, and $\neg A$.
+\end{itemize}
+In addition, $A\leftrightarrow B$ (biconditional) is the abbreviation for $(A\to B) \land (B\to A)$, like PL$_c$ (classical propositional logic), 
+
+We also use parentheses to avoid ambiguity.  The axiom schemas for PL$_i$ are
+\begin{enumerate}
+\item $A \to (B \to A)$.
+\item $A \to (B \to A \land B)$.
+\item $A \land B \to A$.
+\item $A \land B \to B$.
+\item $A \to A \lor B$.
+\item $B \to A \lor B$.
+\item $(A \to C) \to ((B \to C) \to (A \lor B \to C))$.
+\item $(A \to B) \to ((A \to (B \to C)) \to (A \to C))$.
+\item $(A \to B) \to ((A \to \neg B) \to \neg A)$.
+\item $\neg A \to  (A \to B)$.
+\end{enumerate}
+where $A$, $B$, and $C$ are wff's.  In addition, modus ponens is the only rule of inference for PL$_i$.
+
+As usual, given a set $\Sigma$ of wff's, a deduction of a wff $A$ from $\Sigma$ is a finite sequence of wff's $A_1,\ldots, A_n$ such that $A_n$ is $A$, and $A_i$ is either an axiom, a wff in $\Sigma$, or is obtained by an application of modus ponens on $A_j$ to $A_k$ where $j,k < i$.  In other words, $A_k$ is the wff $A_j \to A_i$.  We write $$\Sigma \vdash_i A$$ to mean that $A$ is a deduction from $\Sigma$.  When $\Sigma$ is the empty set, we say that $A$ is a theorem  (of PL$_i$), and simply write $\vdash_i A$ to mean that $A$ is a theorem.
+
+As with PL$_c$, the deduction theorem holds for PL$_i$.  Using the deduction theorem, one can derive the well-known theorem schemas listed below:
+\begin{enumerate}
+\item $A\land B\to B\land A$.
+\item $(A \to (B\to C)) \to ((A\to B)\to (A\to C))$
+\item $A \land \neg A \to B$
+\item $A \to \neg \neg A$
+\item $\neg \neg \neg A \to \neg A$
+\item $(A\to B) \to (\neg B \to \neg A)$
+\item $\neg A \land \neg A$
+\item $\neg \neg (A \lor \neg A)$
+\end{enumerate}
+For example, the first schema can be proved as follows:
+\begin{proof} From the deduction, 
+\begin{multicols}{3}
+\begin{enumerate}
+\item $A\land B\to A$, 
+\item $A\land B\to B$, 
+\item $A\land B$, 
+\item $A$, 
+\item $B$, 
+\item $B \to (A \to B\land A)$, 
+\item $A \to B\land A$, 
+\item $B\land A$,
+\end{enumerate}
+\end{multicols}
+we have $A \land B \vdash_i B\land A$, and therefore $\vdash_i (A\land B)\to (B\land A)$ by the deduction theorem.
+\end{proof}
+Deductions of the other theorem schemas can be found \PMlinkname{here}{SomeTheoremSchemasOfIntuitionisticPropositionalLogic}.  In fact, it is not hard to see that $\vdash_i X$ implies $\vdash_c X$ (that $X$ is a theorem of PL$_c$).  The converse is false.  The following are theorems of PL$_c$, not PL$_i$:
+\begin{multicols}{2}
+\begin{enumerate}
+\item $A\lor \neg A$.
+\item $\neg \neg A \to A$
+\item $(\neg A \to \neg B) \to (B\to A)$
+\item $((A\to B)\to A) \to A$
+\item $(\neg A \to B) \to ((\neg A \to \neg B) \to A)$
+\end{enumerate}
+\end{multicols}
+\textbf{Remark}.  It is interesting to note, however, if any one of the above schemas were added to the list of axioms for PL$_i$, then the resulting system is an axiom system for PL$_c$.  In notation, 
+\begin{center}
+PL$_i + X = $ PL$_c$,
+\end{center}
+where $X$ is one of the schemas above.  When this equation holds for some $X$, it is necessary that $\vdash_c X$ and $\not \vdash_i X$.  However, this condition is not sufficient to imply the equation, even if PL$_i +X$ is consistent (that is, the schema $C\land \neg C$ of wff's are not theorems).  One such schema is $\neg \neg A \lor \neg A$.  A logical system PL such that PL$_i \le $ PL $\le$ PL$_c$ is called an \emph{intermediate logic}.  It can be shown that there are infinitely many such intermediate logics.
+
+\textbf{Remark}.  Yet another popular axiom system for PL$_i$ uses the symbol $\perp$ (for falsity) instead of $\neg$.  The wff's in this language consists of all propositional letters, the symbol $\perp$, and $A\land B$, $A\lor B$, and $A \to B$, whenever $A$ and $B$ are wff's.  The axiom schemas consist of the first seven axiom schemas in the first system above, as well as
+\begin{enumerate}
+\item $(A \to (B\to C)) \to ((A\to B)\to (A\to C))$ (the second theorem schema above)
+\item $\perp \to A$.
+\end{enumerate}
+$\neg A$ is the abbreviation for $A \to \perp$.  The only rule of inference is modus ponens.  Deductions and theorems are defined in the exact same way as above.  Let us write $\vdash_{i1} A$ to mean wff $A$ is a theorem in this axiom system.  As mentioned, both axiom systems are equivalent, in that $\vdash_{i1} A$ implies $\vdash_i A$, and $\vdash_i A$ implies $\vdash_{i1} A^*$, where $A^*$ is the wff obtained from $A$ by replacing every occurrence of $\perp$ by the wff $(p\land \neg p)$, where $p$ is a propositional letter not occurring in $A$.
+
+%%%%%
+%%%%%
+\end{document}

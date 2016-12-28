@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExamplesOfCountableSets}
+\pmcreated{2013-03-22 19:02:59}
+\pmmodified{2013-03-22 19:02:59}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{examples of countable sets}
+\pmrecord{10}{41928}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmrelated{AlgebraicNumbersAreCountable}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+This entry lists some common examples of countable sets.
+
+\textbf{Derived Examples}
+\begin{enumerate}
+\item any finite set, including the empty set $\varnothing$ (\PMlinkname{proof}{AlternativeDefinitionsOfCountable}).
+\item any subset of a countable set (\PMlinkname{proof}{SubsetsOfCountableSets}).
+\item any finite product of countable sets (\PMlinkname{proof}{UnionOfCountableSets}).
+\item any countable union of countable sets (\PMlinkname{proof}{ProductOfCountableSets}).
+\item the set of all finite subsets of a countable set.
+\begin{proof}  Let $A$ be a countable set, and $F(A)$ the set of all finite subsets of $A$.  Let $A_n$ be the set of all subsets of $A$ of cardinality at most $n$.  Then $A_1$ is countable, since $A$ is.  Suppose now that $A_n$ is countable.  The function $f: A_n \times A_1 \to A_{n+1}$ where $f(X,Y)=X\cup Y$ is easily seen to be onto.  Since $A_n\times A_1$ is countable, so is $A_{n+1}$.  Now, $F(A)$ is just the union of all the countable sets $A_i$, and this union is a countable union, we see that $F(A)$ is countable too.
+\end{proof}
+\item the set of all cofinite subsets of a countable set.  This is true, because there is a one-to-one correspondence between the set $F(A)$ of finite sets and the set $\operatorname{co-}F(A)$ of cofinite sets: $X\mapsto A-X$.
+\item the set of all finite sequences over a countable set.
+\begin{proof}
+Let $A$ be a countable set, and $A_F$ the set of all finite sequences over $A$.  An element of $A_F$ can be identified with an element of $A^n$, and vice versa (the bijection is clear).  Therefore, $A_F$ can be identified with the union of $A^i$, for $i=0,1,2,\ldots$.  Since each $A^i$ is countable (because $A$ is), and we are taking a countable union, $A_F$ is countable as a result.
+\end{proof}
+\item fix countable sets $A,B$.  The set $X$ of all functions from finite subsets of $B$ into $A$ is countable.
+\begin{proof}
+For each finite subset $C$ of $B$, the set of all functions from $C$ to $A$ is just $A^C$, which has cardinality $|A|^{|C|}$, and thus is countable since $A$ is. Since $X$ is just the union of all $A^C$, where $C$ ranges over the finite subsets of $B$, and there are countably many of them (as $B$ is countable), $X$ is also countable.
+\end{proof}
+\item fix countable sets $A,B$ and an element $a\in A$.  The set $Y$ of all functions from $B$ to $A$ such that $f(b)=a$ for all but a finite number of $b\in B$ is countable.
+\begin{proof}  For any $f: B\to A$, call the \emph{support} of $f$ the set $\lbrace b \in B\mid f(b)\ne a\rbrace$, and denote it by $\operatorname{supp}(f)$.  Then every $f\in Y$ has finite support.  The map $G:Y\to X$ (where $X$ is defined in the last example) given by $G(f)=f|\operatorname{supp}(f)$ is an injection: if $G(f)=G(h)$, then $f(b)=h(b)$ for any $b\in \operatorname{supp}(f)=\operatorname{supp}(h)$, and $f(b)=a=h(b)$ otherwise, whence $f=g$.  But since $X$ is countable, so is $Y$.
+\end{proof}
+\end{enumerate}
+
+\textbf{Concrete Examples}
+\begin{enumerate}
+\item the sets $\mathbb{N}$ (natural numbers), $\mathbb{Z}$ (integers), and $\mathbb{Q}$ (rational numbers)
+\item the set of all algebraic numbers
+\begin{proof}  Let $\mathbb{A}$ be the set of all algebraic numbers over $\mathbb{Q}$.  For each polynomial $p$ (in one variable $X$) over $\mathbb{Q}$, let $R_p$ be the set of roots of $p$ over $\mathbb{Q}$.  By definition, $\mathbb{A}$ is the union of all $R_p$, where $p$ ranges over the set $P$ of all polynomials over $\mathbb{Q}$.  For any $p \in P$ of degree $n$, we may associate a vector $v_p \in \mathbb{Q}^{n+1}$ : $$p=a_0 + a_1X + \cdots + a_n X^n \qquad \Longleftrightarrow \qquad v_p=(a_0,a_1,\ldots, a_n).$$  The association can be reversed.  So the set $P_n \subset P$ of all polynomials of degree $n$ is equinumerous to $\mathbb{Q}^{n+1}$, and therefore countable.  As $P$ is just the countable union of all $P_n$, $P$ is countable, which means $\mathbb{A} = \bigcup \lbrace R_p \mid p \in P\rbrace$ is countable also.
+\end{proof}
+\item the set of all algebraic integers, because every algebraic integer is an algebraic number.
+\item the set of all words over an alphabet, because ever word can be thought of as a finite sequence over the alphabet, which is finite.
+\end{enumerate}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfConsistency}
+\pmcreated{2013-03-22 19:35:07}
+\pmmodified{2013-03-22 19:35:07}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of consistency}
+\pmrecord{18}{42574}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Feature}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03B05}
+\pmclassification{msc}{03B99}
+\pmrelated{FirstOrderTheories}
+\pmdefines{deductive closure}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+Fix a (classical) propositional logic $L$.  Recall that a set $\Delta$ of wff's is said to be \emph{$L$-consistent}, or \emph{consistent} for short, if $\Delta \not \vdash \perp$.  In other words, $\perp$ can not be derived from axioms of $L$ and elements of $\Delta$ via finite applications of modus ponens.  There are other equivalent formulations of consistency:
+\begin{enumerate}
+\item $\Delta$ is consistent
+\item Ded$(\Delta):=\lbrace A \mid \Delta \vdash A \rbrace$ is not the set of all wff's
+\item there is a formula $A$ such that $\Delta \not \vdash A$.
+\item there are no formulas $A$ such that $\Delta\vdash A$ and $\Delta \vdash \neg A$.
+\end{enumerate}
+\begin{proof}  We shall prove $1. \Rightarrow 2. \Rightarrow 3. \Rightarrow 4. \Rightarrow 1.$
+\begin{enumerate}
+\item[$1. \Rightarrow 2$.]  Since $\perp \notin \lbrace A \mid \Delta \vdash A \rbrace$.
+\item[$2. \Rightarrow 3$.]  Any formula not in $\lbrace A \mid \Delta \vdash A \rbrace$ will do.
+\item[$3. \Rightarrow 4$.]  If $\Delta\vdash A$ and $\Delta \vdash \neg A$, then $A, A\to \perp, \perp, \perp \to B, B$ is a deduction of $B$ from $A$ and $\neg A$, but this means that $\Delta \vdash B$ for any wff $B$.
+\item[$4. \Rightarrow 1$.]  Since $\Delta \vdash \neg \perp$, $\Delta \not \vdash \perp$ as a result.
+\end{enumerate}
+\end{proof}
+
+Below are some properties of consistency:
+\begin{enumerate}
+\item $\Delta \cup \lbrace A \rbrace$ is consistent iff $\Delta \not \vdash \neg A$.
+\item $\Delta \cup \lbrace \neg A \rbrace$ is not consistent iff $\Delta \vdash A$.
+\item Any subset of a consistent set is consistent.
+\item If $\Delta$ is consistent, so is Ded$(\Delta)$.
+\item If $\Delta$ is consistent, then at least one of $\Delta \cup \lbrace A\rbrace$ or $\Delta\cup \lbrace \neg A \rbrace$ is consistent for any wff $A$.
+\item If there is a truth-valuation $v$ such that $v(A)=1$ for all $A \in \Delta$, then $\Delta$ is consistent.
+\item If $\not \vdash A$, and $\Delta$ contains the schema based on $A$, then $\Delta$ is not consistent.
+\end{enumerate}
+\textbf{Remark}.  The converse of 6 is also true; it is essentially the compactness theorem for propositional logic (see \PMlinkname{here}{CompactnessTheoremForClassicalPropositionalLogic}).
+
+\begin{proof}  The first two are contrapositive of one another via the theorem $A \leftrightarrow \neg \neg A$, so we will just prove one of them.
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item $\Delta, \neg A \vdash \perp$ iff $\Delta \vdash \neg \neg A$ by the deduction theorem iff $\Delta \vdash A$ by the substitution theorem.
+\item If $\Gamma$ is not consistent, $\Gamma\vdash \perp$. If $\Gamma\subseteq \Delta$, then $\Delta \vdash \perp$ as well, so $\Delta$ is not consistent.
+\item Since $\Delta$ is consistent, $\perp \notin $ Ded$(\Delta)$.  Now, if Ded$(\Delta) \vdash \perp$, but by the remark below, $\perp \in \mbox{Ded}(\Delta)$, a contradiction.
+\item Suppose $\Delta$ is consistent and $A$ any wff.  If neither $\Delta \cup \lbrace A \rbrace$ and $\Delta \cup \lbrace \neg A \rbrace$ are consistent, then $\Delta,A\vdash \perp$ and $\Delta,\neg A\vdash \perp$, or $\Delta \vdash \neg A$ and $\Delta \vdash \neg \neg A$, or $\Delta \vdash \neg A$ and $\Delta \vdash A$ by the substitution theorem on $A\leftrightarrow \neg \neg A$, but this means $\Delta$ is not consistent, a contradiction.
+\item If $v(A)=1$ for all $A\in \Delta$, $v(B)=1$ for all $B$ such that $\Delta \vdash B$.  Since $v(\perp)=0$, $\Delta$ is consistent.
+\item Suppose $v(A)$ for some valuation $v$.  Let $p_1,\ldots, p_m$ be the propositional variables in $A$ such that $v(p_i)=0$ and $q_1,\ldots, q_n$ be the variables in $A$ such that $v(q_j)=1$.  Let $A'$ be the instance of the schema $A$ where each $p_i$ is replaced by $\perp$ and each $q_j$ replaced by $\top$ (which is $\neg \perp$).  Then $A'\in \Delta$.  Furthermore, $v(A')=v(A)=0$.  Now, for any valuation $u$, since $u(\perp)=0$ and $u(\top)=1$, we get $u(A')=v(A')=0$.  In other words, $u(\neg A')=1$ for all valuations $u$, so $\neg A'$ is valid, and hence a theorem of $L$ by the completeness theorem.  But this means that $A'\leftrightarrow \perp$, which implies that $\Delta \vdash \perp$.
+\end{enumerate}
+\end{proof}
+
+\textbf{Remark}.  The set Ded$(\Delta)$ is called the \emph{deductive closure} of $\Delta$.  It is so called because it is deductively closed: $A\in \mbox{Ded}(\Delta)$ iff Ded$(\Delta) \vdash A$.
+\begin{proof}  If $A\in \mbox{Ded}(\Delta)$, then $\Delta \vdash A$, so certainly Ded$(\Delta) \vdash A$, as Ded$(\Delta)$ is a superset of $\Delta$.  
+
+Before proving the converse, note first that if $\Delta \vdash B$ and $\Delta\vdash B\to A$, $\Delta\vdash A$ by modus ponens.  This implies that Ded$(\Delta)$ is closed under modus ponens: if $B$ and $B\to A$ are both in Ded$(\Delta)$, so is $A$.
+
+Now, suppose Ded$(\Delta) \vdash A$.  We induct on the length of the deduction sequence of $A$.  If $n=1$, then $A\in \mbox{Ded}(\Delta)$ and we are done.  Now, suppose the length of is $n+1$.  If $A$ is either a theorem or in Ded$(\Delta)$, we are done.  Now, suppose $A$ is the result of applying modus ponens to two earlier members, say $A_i$ and $A_j$.  Since $A_1,\ldots, A_i$ is a deduction of $A_i$ from Ded$(\Delta)$, and it has length $i\le n$, by the induction step, $A_i\in \mbox{Ded}(\Delta)$.  Similarly, $A_j \in \mbox{Ded}(\Delta)$.  But this means that $A\in \mbox{Ded}(\Delta)$ by the last paragraph.
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

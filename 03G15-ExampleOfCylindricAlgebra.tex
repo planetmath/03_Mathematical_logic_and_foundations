@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExampleOfCylindricAlgebra}
+\pmcreated{2013-03-22 17:52:26}
+\pmmodified{2013-03-22 17:52:26}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{example of cylindric algebra}
+\pmrecord{10}{40354}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G15}
+\pmdefines{cylindrification}
+\pmdefines{cylindric set algebra}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this example, we give two examples of a cylindric algebra, in which the first is a special case of the second.  The first example also explains why the algebra is termed \emph{cylindric}.
+
+\subsubsection*{Example 1.}
+
+Consider $\mathbb{R}^3$, the three-dimensional Euclidean space, and $$R:=\lbrace (x,y,z)\in \mathbb{R}^3\mid x^2+y^2+z^2\le 1\rbrace.$$  Thus $R$ is the closed unit ball, centered at the origin $(0,0,0)$.  Project $R$ onto the $x$-$y$ plane, so its image is $$p_z(R)=\lbrace (x,y)\in \mathbb{R}^2\mid x^2+y^2\le 1\rbrace.$$  Taking its preimage, we get a \emph{cylinder} $$C_z(R):=p_z^{-1}p_z(R)=\lbrace (x,y,z)\in \mathbb{R}^3\mid x^2+y^2\le 1\rbrace.$$  $C_z(R)$ has the following properties:
+\begin{eqnarray}
+R&\subseteq& C_z(R).
+\end{eqnarray}
+Furthermore, it can be characterized as follows
+$$C_z(R)=\lbrace (x,y,z)\in \mathbb{R}^3\mid \exists r\in \mathbb{R}\mbox{ such that }(x,y,r)\in R\rbrace.$$
+$C_z(R)$ is called the \emph{cylindrification} of $R$ with respect to the variable $z$.
+It is easy to see that the characterization above permits us to generalize the notion of cylindrification to any subset of $\mathbb{R}$, with respect to any of the three variables $x,y,z$.  We have in addition to (1) above the following properties:
+\begin{eqnarray}
+C_u(\varnothing)&=&\varnothing, \\
+C_u(R\cap C_u(S))&=&C_u(R)\cap C_u(S), \\
+C_u(C_v(R))&=&C_v(C_u(R)),
+\end{eqnarray}
+where $u,v\in \lbrace x,y,z\rbrace$ and $R,S\subseteq \mathbb{R}^3$.
+
+Property (2) is obvious.  To see Property (3), it is enough to assume $u=z$ (for the other cases follow similarly).  First let $(a,b,c)\in C_z(R\cap C_z(S))$.  Then there is an $r\in \mathbb{R}$ such that $(a,b,r)\in R$ and $(a,b,r)\in C_z(S)$, which means there is an $s\in \mathbb{R}$ such that $(a,b,s)\in S$.  Since $(a,b,r)\in R$, we have that $(a,b,c)\in C_z(R)$, and since $(a,b,s)\in S$, we have that $(a,b,c)\in C_z(S)$ as well.  This shows one inclusion.  Now let $(a,b,c)\in C_z(R)\cap C_z(S)$, then there is an $r\in \mathbb{R}$ such that $(a,b,r)\in R$.  But $(a,b,r)\in C_z(S)$ also, so $(a,b,c)\in C_z(R\cap C_z(S))$.  To see Property (4), it is enough to assume $u=x$ and $v=y$.  Let $(a,b,c)\in C_x(C_y(R))$.  Then there is an $r\in \mathbb{R}$ such that $(r,b,c)\in C_y(R)$, and so there is an $s\in \mathbb{R}$ such that $(r,s,c)\in R$.  This implies that $(a,s,c)\in C_x(R)$, which implies that $(a,b,c)\in C_y(C_x(R))$.  So $C_x(C_y(R))\subseteq C_y(C_x(R))$.  The other inclusion then follows immediately.
+
+Next, we define the diagonal set $$D_{xy}:=\lbrace (x,y,z)\in \mathbb{R}^3\mid x=y\rbrace$$ with respect to $x$ and $y$.  This is just the plane whose projection onto the $x$-$y$ plane is the line $x=y$.  We may define a total of nine possible diagonal sets $D_{vw}$ where $v,w\in \lbrace x,y,z\rbrace$.  However, there are in fact four distinct diagonal sets, since
+\begin{eqnarray}
+D_{uu}&=&\lbrace p\in \mathbb{R}^3\mid u=u\rbrace = \mathbb{R}^3, \\
+D_{uv}&=&D_{vu},
+\end{eqnarray}
+where $u,v\in \lbrace x,y,z\rbrace$.  For any subset $R\subseteq \mathbb{R}^3$, set $R_{uv}:=R\cap D_{uv}$.  For instance, $R_{xy}=\lbrace (a,b,c)\in R\mid a=b\rbrace$.
+
+We may consider $C_x,C_y,C_z$ as unary operations on $\mathbb{R}^3$, and the diagonal sets as constants (nullary operations) on $\mathbb{R}^3$.  Two additional noteworthy properties are
+\begin{eqnarray}
+C_u(R_{uv})\cap C_u(R'_{uv})=\varnothing&\mbox{ if }&u\ne v, \\
+C_u(D_{uv}\cap D_{uw})=D_{vw}&\mbox{ if }&u\notin \lbrace v,w\rbrace,
+\end{eqnarray}
+where $u,v,w\in \lbrace x,y,z\rbrace$.
+
+To see Property (7), we may assume $u=x$ and $v=y$.  Suppose $(a,b,c)\in C_x(R_{xy})\cap C_x(R'_{xy})$.  Then there is $r\in \mathbb{R}$ such that $(r,b,c)\in R_{xy}$, which implies that $r=b$, or that $(b,b,c)\in R$.  On the other hand, there is $s\in \mathbb{R}$ such that $(s,b,c)\in R'_{xy}$, which implies $s=b$, or that $(b,b,c)\in R'$, a contradiction.  To see Property (8), we may assume $u=x,v=w,w=z$.  If $(a,b,c)\in C_x(D_{xy}\cap D_{xz})$, then there is $r\in \mathbb{R}$ such that $(r,b,c)\in D_{xy}\cap D_{xz}$.  So $r=b$ and $r=c$.  Therefore, $(a,b,c)=(a,r,r)\in D_{yz}$.  On the other hand, for any $(a,r,r)\in D_{yz}$, $(r,r,r)\in D_{xy}\cap D_{xz}$, and so $(a,r,r)\in C_x(D_{xy}\cap D_{xz})$ as well.
+
+Finally, we note that a subset of $\mathbb{R}^3$ is just a ternary relation on $\mathbb{R}$, and the collection of all ternary relations on $R$ is just $P(\mathbb{R}^3)$.
+
+\begin{prop}  $P(\mathbb{R}^3)$ is a Boolean algebra with the usual set-theoretic operations, and together with cylindrification operators and the diagonal sets, on the set $V=\lbrace x,y,z\rbrace$, is a cylindric algebra.
+\end{prop}
+\begin{proof}
+Write $A=P(\mathbb{R}^3)$.  It is easy to see that $A$ is a Boolean algebra with operations $\cup,\cap,',\varnothing$.  Next define $\exists: V\to A^A$ by $\exists v:=C_v$ where $v\in \lbrace x,y,z\rbrace$, and $d:V\times V\to A$ by $d_{xy}:=D_{xy}$.  Then Properties (1), (2), and (3) show that $(A,\exists_v)$ is a monadic algebra, and Properties (4), (5), (7), and (8) show that $(A,V,\exists,d)$ is cylindric.
+\end{proof}
+
+\subsubsection*{Example 2 (Cylindric Set Algebras).}
+
+Example 1 above may be generalized.  Let $A,V$ be sets, and set $B=P(A^V)$.  For any subset $R\subseteq B$ and any $x,y \in V$, define the \emph{cylindrification} of $R$ by $$C_x(R):=\lbrace p\in A^V\mid \exists r \in R \mbox{ such that } r(y)=p(y) \mbox{ for any }y\ne x\rbrace, $$ and the \emph{diagonal set} by $$D_{xy}=\lbrace p\in A^V\mid p(x)=p(y)\rbrace.$$
+
+Now, define $\exists: V\to B^B$ and $d:V\times V\to B$ by $\exists x=C_x$ and $d_{xy}=D_{xy}$.
+
+\begin{prop} $(B,V,\exists,d)$ is a cylindric algebra, called a \emph{cylindric set algebra}. \end{prop}
+
+The proof of this can be easily derived based on the discussion in Example 1, and is left for the reader as an exercise.
+
+\textbf{Remark}.  For more examples of cylindric algebras, see the second reference below.
+
+\begin{thebibliography}{8}
+\bibitem{hmt} L. Henkin, J. D. Monk, A. Tarski, \emph{Cylindric Algebras, Part I.}, North-Holland, Amsterdam (1971).
+\bibitem{dm1} J. D. Monk, {\em Connections Between Combinatorial Theory and Algebraic Logic, Studies in Algebraic Logic}, The Mathematical Association of America, (1974).
+\bibitem{dm2} J. D. Monk, \emph{Mathematical Logic}, Springer, New York (1976).
+\bibitem{bp} B. Plotkin, \emph{Universal Algebra, Algebraic Logic, and Databases}, Kluwer Academic Publishers (1994).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

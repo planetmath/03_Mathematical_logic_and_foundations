@@ -1,0 +1,236 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{311Contractibility}
+\pmcreated{2013-11-17 20:26:01}
+\pmmodified{2013-11-17 20:26:01}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{3.11 Contractibility}
+\pmrecord{3}{87660}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\newcommand{\contr}{\ensuremath{\mathsf{contr}}} 
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\iscontr}{\ensuremath{\mathsf{isContr}}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{3.11.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{3.11.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{3.11.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{3.11.\arabic{mathcount}}
+\let\ap\map
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{type!contractible|(defstyle}%
+\index{contractible!type|(defstyle}%
+
+In \PMlinkname{Lemma 3.3.2}{33merepropositions#Thmprelem1} we observed that a mere proposition which is inhabited must be equivalent to $\unit$,
+\index{type!unit}%
+and it is not hard to see that the converse also holds.
+A type with this property is called \emph{contractible}.
+Another equivalent definition of contractibility, which is also sometimes convenient, is the following.
+
+\begin{defn}\label{defn:contractible}
+  A type $A$ is \define{contractible},
+  or a \define{singleton},
+  \indexdef{type!singleton}%
+  \indexsee{singleton type}{type, singleton}%
+  if there is $a:A$, called the \define{center of contraction},
+  \indexdef{center!of contraction}%
+  such that $a=x$ for all $x:A$.
+  We denote the specified path $a=x$ by $\contr_x$.
+\end{defn}
+
+In other words, the type $\iscontr(A)$ is defined to be
+\[ \iscontr(A) \defeq \sm{a:A} \prd{x:A}(a=x). \]
+Note that under the usual propositions-as-types reading, we can pronounce $\iscontr(A)$ as ``$A$ contains exactly one element'', or more precisely ``$A$ contains an element, and every element of $A$ is equal to that element''.
+
+\begin{rmk}
+  We can also pronounce $\iscontr(A)$ more topologically as ``there is a point $a:A$ such that for all $x:A$ there exists a path from $a$ to $x$''.
+  Note that to a classical ear, this sounds like a definition of \emph{connectedness} rather than contractibility.
+  \index{continuity of functions in type theory@``continuity'' of functions in type theory}%
+  \index{functoriality of functions in type theory@``functoriality'' of functions in type theory}%
+  The point is that the meaning of ``there exists'' in this sentence is a continuous/natural one.
+  A more correct way to express connectedness would be $\sm{a:A}\prd{x:A} \brck{a=x}$; see \PMlinkname{Lemma 7.5.11}{75connectedness#Thmprelem6}.
+\end{rmk}
+
+\begin{lem}\label{thm:contr-unit}
+  For a type $A$, the following are logically equivalent.
+  \begin{enumerate}
+  \item $A$ is contractible in the sense of \PMlinkname{Definition 3.11.1}{311contractibility#Thmpredefn1}.\label{item:contr}
+  \item $A$ is a mere proposition, and there is a point $a:A$.\label{item:contr-inhabited-prop}
+  \item $A$ is equivalent to \unit.\label{item:contr-eqv-unit}
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  If $A$ is contractible, then it certainly has a point $a:A$ (the center of contraction), while for any $x,y:A$ we have $x=a=y$; thus $A$ is a mere proposition.
+  Conversely, if we have $a:A$ and $A$ is a mere proposition, then for any $x:A$ we have $x=a$; thus $A$ is contractible.
+  And we showed~\ref{item:contr-inhabited-prop}$\Rightarrow$\ref{item:contr-eqv-unit} in \PMlinkname{Lemma 3.3.2}{33merepropositions#Thmprelem1}, while the converse follows since \unit easily has property~\ref{item:contr-inhabited-prop}.
+\end{proof}
+
+\begin{lem}\label{thm:isprop-iscontr}
+  For any type $A$, the type $\iscontr(A)$ is a mere proposition.
+\end{lem}
+\begin{proof}
+  Suppose given $c,c':\iscontr(A)$.
+  We may assume $c\jdeq(a,p)$ and $c'\jdeq(a',p')$ for $a,a':A$ and $p:\prd{x:A} (a=x)$ and $p':\prd{x:A} (a'=x)$.
+  By the characterization of paths in $\Sigma$-types, to show $c=c'$ it suffices to exhibit $q:a=a'$ such that $\trans{q}{p}=p'$.
+
+  We choose $q\defeq p(a')$.
+  For the other equality, by function extensionality we must show that $(\trans q p)(x)=p'(x)$ for any $x:A$.
+  For this, it will suffice to show that for any $x,y:A$ and $u:x=y$ we have $u= \opp{p(x)} \ct p(y)$, since then we would have $(\trans q p)(x) = \opp{p(a')} \ct p(x) = p'(x)$.
+  But now we can invoke path induction to assume that $x\jdeq y$ and $u\jdeq \refl{x}$.
+  In this case our goal is to show that $\refl x = \opp{p(x)} \ct p(x)$, which is just the inversion law for paths.
+\end{proof}
+
+\begin{cor}\label{thm:contr-contr}
+  If $A$ is contractible, then so is $\iscontr(A)$.
+\end{cor}
+\begin{proof}
+  By \PMlinkname{Lemma 3.11.4}{311contractibility#Thmprelem2} and \PMlinkname{Lemma 3.11.3}{311contractibility#Thmprelem1}\ref{item:contr-inhabited-prop}.
+\end{proof}
+
+Like mere propositions, contractible types are preserved by many type constructors.
+For instance, we have:
+
+\begin{lem}\label{thm:contr-forall}
+  If $P:A\to\type$ is a type family such that each $P(a)$ is contractible, then $\prd{x:A} P(x)$ is contractible.
+\end{lem}
+\begin{proof}
+  By \PMlinkname{Example 3.6.2}{36thelogicofmerepropositions#Thmpreeg2}, $\prd{x:A} P(x)$ is a mere proposition since each $P(x)$ is.
+  But it also has an element, namely the function sending each $x:A$ to the center of contraction of $P(x)$.
+  Thus by \PMlinkname{Lemma 3.11.3}{311contractibility#Thmprelem1}\ref{item:contr-inhabited-prop}, $\prd{x:A} P(x)$ is contractible.
+\end{proof}
+
+\index{function extensionality}%
+(In fact, the statement of \PMlinkname{Lemma 3.11.6}{311contractibility#Thmprelem3} is equivalent to the function extensionality axiom.
+See~\PMlinkname{\S 4.9}{49univalenceimpliesfunctionextensionality}.)
+
+Of course, if $A$ is equivalent to $B$ and $A$ is contractible, then so is $B$.
+More generally, it suffices for $B$ to be a \emph{retract} of $A$.
+By definition, a \define{retraction}
+\indexdef{retraction}%
+\indexdef{function!retraction}%
+is a function $r : A \to B$ such that there exists a function $s : B \to A$, called its \define{section},
+\indexdef{section}%
+\indexdef{function!section}%
+and a homotopy $\epsilon:\prd{y:B} (r(s(y))=y)$; then we say that $B$ is a \define{retract}%
+\indexdef{retract!of a type}
+of $A$.
+
+\begin{lem}\label{thm:retract-contr}
+  If $B$ is a retract of $A$, and $A$ is contractible, then so is $B$.
+\end{lem}
+\begin{proof}
+  Let $a_0 : A$ be the center of contraction.
+  We claim that $b_0 \defeq r(a_0) : B$ is a center of contraction for $B$.
+  Let $b : B$; we need a path $b = b_0$.
+  But we have $\epsilon_b : r(s(b)) = b$ and $\contr_{s(b)} : s(b) = a_0$, so by composition
+  \[ \opp{\epsilon_b} \ct \ap{r}{\contr_{s(b)}} : b = r(a_0) \jdeq b_0. \qedhere\]
+\end{proof}
+
+Contractible types may not seem very interesting, since they are all equivalent to \unit.
+One reason the notion is useful is that sometimes a collection of individually nontrivial data will collectively form a contractible type.
+An important example is the space of paths with one free endpoint.
+As we will see in \PMlinkname{\S 5.8}{58identitytypesandidentitysystems}, this fact essentially
+encapsulates the based path induction principle for identity types.
+
+
+\begin{lem}\label{thm:contr-paths}
+  For any $A$ and any $a:A$, the type $\sm{x:A} (a=x)$ is contractible.
+\end{lem}
+\begin{proof}
+  We choose as center the point $(a,\refl a)$.
+  Now suppose $(x,p):\sm{x:A}(a=x)$; we must show $(a,\refl a) = (x,p)$.
+  By the characterization of paths in $\Sigma$-types, it suffices to exhibit $q:a=x$ such that $\trans{q}{\refl a} = p$.
+  But we can take $q\defeq p$, in which case $\trans{q}{\refl a} = p$ follows from the characterization of transport in path types.
+\end{proof}
+
+When this happens, it can allow us to simplify a complicated construction up to equivalence, using the informal principle that contractible data can be freely ignored.
+This principle consists of many lemmas, most of which we leave to the reader; the following is an example.
+
+\begin{lem}\label{thm:omit-contr}
+  Let $P:A\to\type$ be a type family.
+  \begin{enumerate}
+  \item If each $P(x)$ is contractible, then $\sm{x:A} P(x)$ is equivalent to $A$.\label{item:omitcontr1}
+  \item If $A$ is contractible with center $a$, then $\sm{x:A} P(x)$ is equivalent to $P(a)$.\label{item:omitcontr2}
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  In the situation of~\ref{item:omitcontr1}, we show that $\proj1:\sm{x:A} P(x) \to A$ is an equivalence.
+  For quasi-inverse we define $g(x)\defeq (x,c_x)$ where $c_x$ is the center of $P(x)$.
+  The composite $\proj1 \circ g$ is obviously $\idfunc[A]$, whereas the opposite composite is homotopic to the identity by using the contractions of each $P(x)$.
+
+  We leave the proof of~\ref{item:omitcontr2} to the reader (see \PMlinkexternal{Exercise 3.20}{http://planetmath.org/node/87806}).
+\end{proof}
+
+Another reason contractible types are interesting is that they extend the ladder of $n$-types mentioned in \PMlinkname{\S 3.1}{31setsandntypes} downwards one more step.
+
+\begin{lem}\label{thm:prop-minusonetype}
+  A type $A$ is a mere proposition if and only if for all $x,y:A$, the type $\id[A]xy$ is contractible.
+\end{lem}
+\begin{proof}
+  For ``if'', we simply observe that any contractible type is inhabited.
+  For ``only if'', we observed in \PMlinkname{\S 3.3}{33merepropositions} that every mere proposition is a set, so that each type $\id[A]xy$ is a mere proposition.
+  But it is also inhabited (since $A$ is a mere proposition), and hence by \PMlinkname{Lemma 3.11.3}{311contractibility#Thmprelem1}\ref{item:contr-inhabited-prop} it is contractible.
+\end{proof}
+
+Thus, contractible types may also be called \define{$(-2)$-types}.
+They are the bottom rung of the ladder of $n$-types, and will be the base case of the recursive definition of $n$-types in \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580}.
+
+\index{type!contractible|)}%
+\index{contractible!type|)}%
+
+
+\end{document}

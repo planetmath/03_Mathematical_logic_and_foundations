@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ComputableSequence}
+\pmcreated{2013-03-22 14:39:20}
+\pmmodified{2013-03-22 14:39:20}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{computable sequence}
+\pmrecord{13}{36247}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F60}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+\PMlinkescapeword{computable}
+
+A sequence $\{r_i\}_{i=0}^\infty$ of rational numbers is called \emph{computable} if there exist recursive functions $F \colon \mathbb{N} \to \mathbb{Z}$ and $G \colon \mathbb{N} \to \mathbb{N} \setminus \{0\}$ such that
+ $$\quad r_i = {F(i) \over G(i)}.$$
+
+A sequence $\{r_i\}_{i=0}^\infty$ of real numbers is called \emph{computable} if there exists a recursive functions $F \colon \mathbb{N}^2 \to \mathbb{Z}$ such that
+ $$(\forall m > 0) (\forall n) \qquad {F(m,n) - 1 \over n} < r_m < {F(m,n) + 1 \over n}.$$
+
+Note that, although every computable sequence of real numbers is a sequence of computable real numbers, not every sequence of computable real numbers is a computable sequence of real numbers.  Formally, this is the case because the set of computable sequences of real numbers is countable (its cardinality cannot be greater than that of the set of recursive functions) whilst the set of sequences of computable real numbers is uncountable (by Cantor's diagonal argument).
+
+An explanation of this fact which, if somewhat less rigorous, is more satisfying to the intuition is the following:  Imagine a sequence of computable real numbers such that the shortest FORTRAN program which could calculate the first number to arbitrarily specified precision is at least 1 kilobyte long, the shortest FORTRAN program which which could calculate the second number to arbitrarily specified precision is at least 2 kilobytes long, the shortest FORTRAN program which could calculate the third number to arbitrarily specified precision is at least 3 kilobytes long, and so on.  If this sequence were computable, there would exist a finite FORTRAN program that would compute the recursive function $F$ that appears in the definition of computable sequence.  By adding a few more lines of \PMlinkescapetext{code} to such a program, one would have a program that could compute any element of the sequence to arbitrary precision.  However, no such program could possibly exist because of the way that the sequence was defined, and hence this sequence is not a computable sequence even though each of its elements is a computable real number.
+%%%%%
+%%%%%
+\end{document}

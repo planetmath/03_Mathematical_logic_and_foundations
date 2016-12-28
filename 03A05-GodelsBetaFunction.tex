@@ -1,0 +1,219 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{GodelsBetaFunction}
+\pmcreated{2013-03-22 18:34:57}
+\pmmodified{2013-03-22 18:34:57}
+\pmowner{gribskoff}{21395}
+\pmmodifier{gribskoff}{21395}
+\pmtitle{G\"{o}del's beta function}
+\pmrecord{18}{41307}
+\pmprivacy{1}
+\pmauthor{gribskoff}{21395}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03A05}
+\pmclassification{msc}{03-01}
+\pmclassification{msc}{11A07}
+\pmsynonym{representation of sequences in formal systems}{GodelsBetaFunction}
+%\pmkeywords{G\"{o}del's gamma sequence}
+%\pmkeywords{congruence}
+%\pmkeywords{G\"{o}del's beta sequence}
+%\pmkeywords{representation}
+%\pmkeywords{chinese remainder theorem}
+%\pmkeywords{primitive recursive}
+\pmrelated{ChineseRemainderTheorem}
+\pmrelated{BeyondFormalism}
+\pmrelated{FromHilbertsTenthProblemToGodelsTrichotomy}
+\pmrelated{LinearCongruence}
+\pmdefines{gamma sequence}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+%%\usepackage{xypic}
+\usepackage{psfrag}
+\usepackage{amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{yfonts}
+
+% define commands here
+\begin{document}
+G\"{o}del's $\beta$ function is the tool needed to express in a formal theory \textbf{Z} assertions  about finite sequences of natural  numbers. (For a description of \textbf{Z} see the PM entry \PMlinkname{"beyond formalism: G\"{o}del's incompleteness"}{BeyondFormalism}). 
+
+Let 
+
+$$1, \ldots, n.$$
+
+be a sequence of natural numbers. Then there is the factorial $n!$ such that
+
+$$n \cdot (n - 1) \cdot \ldots \cdot 1 = n!.$$
+
+This means that the factorial $n!$ is divided by each of the elements of
+ 
+$$1, \ldots, n$$
+
+so that we can build the derived sequence
+
+$$ {1}\mid{n!}, {2}\mid{n!}, \ldots, {n}\mid{n!}.$$
+
+\textbf{Definition 1} \quad [\textbf{G\"{o}del's $\Gamma$ sequence}] 
+         
+\begin{center}
+\emph{If we denote $n!$ by $l$ then the elements of G\"{o}del's $\Gamma$ sequence are the numbers of the form}
+
+$(k + 1) \cdot l + 1.$
+\end{center}
+
+Its general representation is
+ 
+$$\Gamma = 1 \cdot l + 1, 2 \cdot l + 1, \ldots, n \cdot l + 1, (n + 1) \cdot l + 1.$$ 
+
+\textbf{Theorem 1}:
+
+\begin{center}
+\emph{The elements of $\Gamma$ are pairwise relatively prime}.
+\end{center}
+
+\textbf{Proof}: (\emph{Reductio}) 
+
+\begin{enumerate}
+\item We assume the existence of a prime number $p$ such that $p$ divides
+
+$$(j + 1) \cdot l + 1$$ 
+
+and $p$ divides also 
+
+$$(j + k + 1) \cdot l + 1.$$
+
+\item This gives by definition the congruence
+
+$$[(j + k + 1) \cdot l + 1] \equiv [(j + 1) \cdot l + 1] \quad \pmod{p}$$
+
+\item Therefore $p$ divides
+
+$$[(j + k + 1) \cdot l + 1] - [(j + 1) \cdot l + 1].$$
+
+\item Then $p$ divides
+
+$$j \cdot l + k \cdot l + l + 1 - j \cdot l - l - 1,$$
+
+that is, $p$ divides $k \cdot l$.
+
+\item But
+  
+$$ {p}\mid{k \cdot l} \rightarrow {p}\mid{k} \vee {p}\mid{l}.$$
+\end{enumerate}
+
+\textbf{Case I}: \textbf{Assume $ {p}\mid{l}$}
+
+\begin{enumerate}
+\item ${p}\mid{l} \rightarrow {p}\mid{l} \cdot (j + 1).$
+
+\item But by hypothesis: $ {p}\mid{(j + 1) \cdot l + 1}.$
+
+\item Therefore: $({p}\nmid{l}).$
+\end{enumerate}
+
+\textbf{Case II}: \textbf{Assume $ {p}\mid{k}$} 
+
+\begin{enumerate}
+\item $k \le n \le \text{max} (1, \ldots, n).$
+
+\item But $(\forall k) {k}\mid{l}.$
+
+\item $ {p}\mid{k} \wedge {k}\mid{l} \rightarrow  {p}\mid{l}$ 
+\end{enumerate}
+
+Case I.3. and Case II.3. are the desired contradiction.
+
+\textbf{Definition 2}: \quad [\textbf{G\"{o}del's $\beta$ function}] 
+
+\begin{center}
+\emph{If $m, l,$ and $k$ are natural numbers then the function}
+
+$\beta (m, l, k)$
+ 
+\emph{computes the rest of the division of $m$ by a term} $(k + 1) \cdot l + 1$
+
+\emph{of the $\Gamma$-sequence}.
+
+\emph{Therefore:} $\beta (m, l, k) = R [m, (k + 1) \cdot l + 1].$ 
+\end{center}
+
+\textbf{Theorem 2}: \quad [\textbf{Sequences of natural numbers are representable by the $\beta$ function}.]  
+
+$$<a_o, \ldots, a_n> \in \mathbb{N} \rightarrow (\exists m) (\exists l) [a_k = \beta (m, k, l)].$$ 
+
+\textbf{Proof}: 
+
+\begin{enumerate}
+\item Let 
+
+$$a_o, \ldots, a_n$$
+
+be a sequence of natural numbers.
+
+\item Then there is a number $l$ such that
+
+$$\Gamma = 1 \cdot l + 1, 2 \cdot l + 1, \ldots, n \cdot l + 1, (n + 1) \cdot l + 1.$$
+
+\item If $l \ge \text{max} (a_o, \ldots, a_n).$
+
+\item Then $a_k < (k + 1) \cdot l + 1.$
+
+\item But by the previous proposition the numbers
+
+$$(k + 1) \ldots l + 1$$
+
+are pairwise relatively prime.
+
+\item This implies that the simultaneous congruences
+
+$$x \equiv a_o [\pmod{1 \cdot l + 1}]$$ 
+
+$$\vdots$$
+                                  
+$$x \equiv a_n [\pmod{(n + 1) \cdot l + 1}]$$
+
+have a common solution $m$, by the chinese remainder theorem.
+
+\item Therefore 
+
+$$m \equiv a_k [\pmod{(k + 1) \cdot l + 1}].$$
+
+\item This means that
+
+$$a_k = R [m, (k + 1) \cdot l + 1].$$
+
+\item But that is 
+
+$$a_k = \beta (m, l, k).$$
+\end{enumerate}
+
+It is easily seen that the $\beta$ function is primitive recursive.
+
+For that we only have to redenominated $m, l$ and $k$ as: 
+\[ \begin{array}{ccc}
+m & = & x_1 \\
+l & = & x_2 \\
+k & = & x_3. \\
+\end{array} \]
+
+Then $\beta (x_1, x_2, x_3) = R [x_1, (x_3 + 1) \cdot x_2 + 1]$.
+
+But the functions "+", "$\cdot$" e "$R$" are primitive recursive.
+
+Therefore $\beta$ is primitive recursive. 
+
+\begin{thebibliography} {99}
+\bibitem{BPHD} Bernays, P., Hilbert, D., \emph{Grundlagen der Mathematik}, 2.Auflage, Berlin, 1968.
+\bibitem{KG} G\"{o}del, K., \emph{Collected works}, ed. S. Feferman, Oxford, 1987-2003.
+\bibitem{SK} Kleene, S., \emph{Introduction to metamathematics}, North-Holland, Amsterdam, 1964.
+\end{thebibliography}
+
+\end{document}
+%%%%%
+%%%%%
+\end{document}

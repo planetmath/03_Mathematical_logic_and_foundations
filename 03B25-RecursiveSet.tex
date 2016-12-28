@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{RecursiveSet}
+\pmcreated{2013-03-22 17:34:52}
+\pmmodified{2013-03-22 17:34:52}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{recursive set}
+\pmrecord{16}{39993}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B25}
+\pmclassification{msc}{03D20}
+\pmsynonym{decidable set}{RecursiveSet}
+\pmsynonym{computable set}{RecursiveSet}
+\pmsynonym{decidable predicate}{RecursiveSet}
+\pmsynonym{computable predicate}{RecursiveSet}
+%\pmkeywords{decidable}
+\pmdefines{recursively enumerable set}
+\pmdefines{recursive predicate}
+\pmdefines{recursively enumerable predicate}
+\pmdefines{recursive language}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\PMlinkescapeword{recursive}
+
+A subset $S$ of the natural numbers $\mathbb{N}$ is said to be \emph{recursive} if its characteristic function  
+\begin{eqnarray*}
+\chi_S(x) &:=& \left\{
+\begin{array}{ll}
+1 & \mbox{ if } x\in S \\
+0 & \mbox{ if } x\in \mathbb{N}-S
+\end{array}\right.
+\end{eqnarray*}
+is recursive (computable).  In other words, there is an algorithm (via Turing machine for example) that determines whether an element is in $S$ or not in $S$.
+
+More generally, a subset $S\subseteq \mathbb{N}^n$ is \emph{recursive} if its characteristic function $f_S$ is recursive.
+
+A recursive set is also known as a \emph{decidable set} or a \emph{computable set}.
+
+Examples of recursive sets are finite subset of $\mathbb{N}$, the set $\mathbb{N}$ itself, the set of even integers, the set of Fibonacci numbers, the set of pairs $(a,b)$ where $a$ divides $b$, and the set of prime numbers.  In the last example, one may use the Sieve of Eratosthenes as an algorithm to determine the primality of an integer.
+
+A set $S\subseteq \mathbb{N}$ is \emph{recursively enumerable} if the partial function 
+\begin{eqnarray*}
+f(x) &:=& \left\{
+\begin{array}{ll}
+1 & \mbox{ if } x\in S \\
+\mbox{undefined} & \mbox{ if } x\in \mathbb{N}-S
+\end{array}\right.
+\end{eqnarray*}
+is computable.  In other words, there is an algorithm that halts (and returns $1$) only when an element in $S$ is used as an input.
+
+\textbf{Remarks}
+\begin{itemize}
+\item A special case of a recursive set is that of a \emph{primitive recursive set}.  A set is \emph{primitive recursive} if its characteristic function is \PMlinkname{primitive recursive}{PrimitiveRecursive}.  All of the examples cited above are primitive recursive.
+\item On the other hand, one can broaden the scope of recursiveness to sets which are not necessarily subsets of $\mathbb{N}^n$.  Below are two examples:
+\begin{itemize}
+\item Since $\mathbb{Z}$ can be effectively embedded in $\mathbb{N}$, so the notion of recursive sets be extended to subsets of $\mathbb{Z}$.
+\item Since every finite set $\Sigma$ can be encoded by the natural numbers, we can define a \emph{recursive language} over $\Sigma$ to be a subset $L\subseteq \Sigma^*$ such that $L$, when encoded by the natural numbers, is a recursive set.  Equivalently, $L$ is recursive iff there is a Turing machine that decides $L$ (accepts $L$ and rejects $\Sigma^*-L$).
+\end{itemize}
+\item Similarly, recursive enumerability can be defined on languages: a language $L$ over $\Sigma$ is \emph{recursively enumerable} if its encoding by the natural numbers is a recursively enumerable set.  This is equivalent to saying that $L$ is accepted by a Turing machine.
+\item Using the above definition, one can define a \emph{recursive predicate} or a \emph{recursively enumerable predicate} $\varphi(x)$ according to whether $\lbrace x\mid \varphi(x)\rbrace$ is a recursive or recursively enumerable set respectively.
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{UnivalentFoundations}
+\pmcreated{2013-11-12 21:32:11}
+\pmmodified{2013-11-12 21:32:11}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{Univalent foundations}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvspaced}[2]{\ensuremath{#1 \;\simeq\; #2}\xspace}
+\newcommand{\idtype}[3][]{\ensuremath{\mathsf{Id}_{#1}(#2,#3)}\xspace}
+\newcommand{\idtypevar}[1]{\ensuremath{\mathsf{Id}_{#1}}\xspace}
+\newcommand{\texteqv}[2]{\ensuremath{\mathsf{Equiv}(#1,#2)}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+
+\begin{document}
+Very briefly, the basic idea of the univalence axiom can be explained as follows.
+In type theory, one can have a universe $\UU$, the terms of which are themselves types, $A : \UU$, etc.
+Those types that are terms of $\UU$ are commonly called \emph{small} types.
+\index{type!small}%
+\index{small!type}%
+Like any type, $\UU$ has an identity type $\idtypevar{\UU}$, which expresses the identity relation $A = B$ between small types.
+Thinking of types as spaces, $\UU$ is a space, the points of which are spaces; to understand its identity type, we must ask, what is a path $p : A \leadsto B$ between spaces in $\UU$?
+The univalence axiom says that such paths correspond to homotopy equivalences $\eqv A B$, (roughly) as explained above.
+A bit more precisely, given any (small) types $A$ and $B$, in addition to the primitive type $\idtype[\UU]AB$ of identifications of $A$ with $B$, there is the defined type $\texteqv AB$ of equivalences from $A$ to $B$.
+Since the identity map on any object is an equivalence, there is a canonical map,
+\[\idtype[\UU]AB\to\texteqv AB.\]
+The univalence axiom states that this map is itself an equivalence.
+At the risk of oversimplifying, we can state this succinctly as follows:
+
+\begin{description}\index{univalence axiom}%
+\item[Univalence Axiom:]  $\eqvspaced{(A = B)}{(\eqv A B)}$.
+\end{description}
+%
+In other words, identity is equivalent to equivalence. \index{identity}% 
+In particular, one may say that ``equivalent types are identical''.
+However, this phrase is somewhat misleading, since it may sound like a sort of ``skeletality'' condition which \emph{collapses} the notion of equivalence to coincide with identity, whereas in fact univalence is about \emph{expanding} the notion of identity so as to coincide with the (unchanged) notion of equivalence.
+
+From the homotopical point of view, univalence implies that spaces of the same homotopy type are connected by a path in the universe $\UU$, in accord with the intuition of a classifying space for (small) spaces.
+From the logical point of view, however, it is a radically new idea: it says that isomorphic things can be identified!  Mathematicians are of course used to identifying isomorphic structures in practice, but they generally do so by ``abuse of notation''\index{abuse!of notation}, or some other informal device, knowing that the objects involved are not ``really'' identical.  But in this new foundational scheme, such structures can be formally identified, in the logical sense that every property or construction involving one also applies to the other. Indeed, the identification is now made explicit, and properties and constructions can be systematically transported along it.  Moreover, the different ways in which such identifications may be made themselves form a structure that one can (and should!)\ take into account.
+
+Thus in sum, for points $A$ and $B$ of the universe $\UU$ (i.e., small types), the univalence axiom identifies the following three notions:
+\begin{itemize}
+\item (logical) an identification $p:A=B$ of $A$ and $B$
+\item (topological) a path $p:A \leadsto B$ from $A$ to $B$ in $\UU$
+\item (homotopical) an equivalence $p:\eqv A B$ between $A$ and $B$.
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\end{thebibliography}
+
+\end{document}

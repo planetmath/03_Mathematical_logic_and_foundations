@@ -1,0 +1,382 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Hilbertsvarepsilonoperator}
+\pmcreated{2013-03-22 18:39:18}
+\pmmodified{2013-03-22 18:39:18}
+\pmowner{gribskoff}{21395}
+\pmmodifier{gribskoff}{21395}
+\pmtitle{Hilbert's $\varepsilon$-operator}
+\pmrecord{8}{41398}
+\pmprivacy{1}
+\pmauthor{gribskoff}{21395}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E30}
+\pmclassification{msc}{03E25}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03-01}
+\pmsynonym{choice function}{Hilbertsvarepsilonoperator}
+\pmsynonym{choice operator}{Hilbertsvarepsilonoperator}
+%\pmkeywords{choice function}
+%\pmkeywords{choice operator}
+%\pmkeywords{descriptions}
+%\pmkeywords{definite descriptions}
+%\pmkeywords{indefinite descriptions}
+%\pmkeywords{description operator}
+%\pmkeywords{iota-operator}
+%\pmkeywords{iota-rules}
+%\pmkeywords{Hilbert's epsilon-operator}
+%\pmkeywords{Hilbert's epsilon-axiom}
+%\pmkeywords{axiom of choice}
+\pmrelated{AnOutlineOfHilbertsProgramme}
+\pmrelated{FOUNDATIONSOFMATHEMATICSOVERVIEW}
+\pmrelated{AxiomOfChoice}
+\pmrelated{RussellsTheoryOfTypes}
+\pmdefines{Hilbert's epsilon-operator}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+%%\usepackage{xypic}
+\usepackage{psfrag}
+\usepackage{amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{yfonts}
+
+% define commands here
+\begin{document}
+\begin{abstract}
+Hilbert's $\varepsilon$-operator is a function introduced in the formal system of Hilbert and Bernays \emph{Grundlagen der Matematik}, the purpose of which is a reformulation of classical predicate calculus.
+
+In particular, it allows the elimination of Russell's $\iota$-terms and of the usual symbols for quantification.
+
+It is usually referred to as a "choice function" or a "choice operator" due to its kinship with the axiom of choice.
+\end{abstract}
+
+\tableofcontents
+
+\section{Background, definitions and notation}\normalsize
+
+In a first order theory with equality, whose domain is for example the set of positive integers, an object of the domain can be represented by a name, like "2", or by a complex expression, like "the positive square root of 4", in which case the number 2 is not even explicitly used.
+
+The interesting difference between the two representations consists in the fact that the complex expression makes it possible to refer to an object with a certain property, even in the absence of the object's name.
+
+The first systematic study of this fundamental logical process was done by Bertrand Russell in \emph{Principia Mathematica} and in \emph{Introduction to mathematical philosophy}, where Russell proposed to call descriptions all expressions of the general form
+
+\begin{center}
+"the object $x$ such that $F (x)$".
+\end{center}
+
+In \emph{Introduction to mathematical philosophy} Russell makes a distinction between definite and indefinite descriptions. These have the general form
+
+\begin{center}
+"an object $x$ such that $F (x)$".
+\end{center}
+
+This distinction did not find much echo in his subsequent logical theory, where the main focus became rather the development of a theory of definite descriptions.
+
+Thus where a name is an arbitrary symbol assigned to an object of the domain, and one then says that the object is the denotation of the name, in contrast a description is a condition which applies to any object of the domain that satisfies it. In a definite description the object is characterized by the fact that a certain predicate is uniquely satisfied by the object.
+
+The condition that a certain predicate $F (a)$ is satisfied by a unique object $a$ is represented in the so called \emph{uniqueness formulas} for $F (a)$ with the following configuration:
+
+$$(\exists x) F (x)$$
+ 
+$$(\forall x) (\forall y) {[F (x) \wedge F (y)] \to (x = y)}.$$
+
+The extension of the predicate $F (a)$ determines the object that uniquely satisfies $F$ and for that reason the argument of the predicate plays the role of a bound variable.
+
+In \emph{Principia Mathematica} the notation introduced for the definite description is a functional variable, known as the \emph{description operator}. It is build by the small Greek letter $\iota$ with $x$ as an index, followed by the predicate to which the operator is applied: 
+
+\begin{center}
+$\iota_{x} F (x).$
+\end{center}
+
+It is to such an expression that Russell calls a description.
+
+\section{Syntax}\normalsize
+
+In relation to syntax it is to be noticed that a description may have an occurrence in an argument position. This then gives rise to a formula like
+
+$$B [\iota_{x} F (x)]$$
+
+the interpretation of which is the statement
+
+\begin{center}
+"there is a unique object which satisfies $F (a)$ and also satisfies $B (a)$".
+\end{center}
+ 
+If the conditions stipulated by the uniqueness formulas are not satisfied, in propositions like for example "the smallest complex number is prime", the description "the smallest complex number" is said to be empty and the proposition in which it occurs is false.
+
+Notice that the interpretation of the formula
+
+$$B [\iota_{x} F (x)]$$
+
+is \emph{not} an explicit definition of the description 
+
+$$\iota_{x} F (x),$$
+
+since for this symbol we do not have a defining expression. What we have is a semantic characterization of the formulas in which the description occurs as one of its constituent parts, as a term.
+
+If there is a derivation of the uniqueness formulas for $F (a)$ then the symbol 
+
+$$\iota_{x} F (x)$$ 
+
+is a term, in particular the term representing the unique object that satisfies $F (a)$.
+
+The $\iota$-operator is subject to the so called $\iota$-Rule with the following content:
+
+\begin{quotation}
+\emph{If the uniqueness formulas for $F (a)$ have been derived then the description $\iota_{x} F (x)$ is a term and the formula}
+
+$$F [\iota_x F (x)]$$ 
+
+\emph{can now be derived by means of the following scheme:}
+
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad $(\exists x) F (x)$
+ 
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad $(\forall x) (\forall y) {[F (x) \wedge F (y)] \to (x = y)}$
+     
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad $\line(1,0){170}$              
+
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad $\therefore F [\iota_{x} F (x)]$ 
+\end{quotation}
+
+The rule of the redenomination of bound variables for quantifiers can be applied to the bound variable of the $\iota$-operator. Likewise the collision of bound variables, that one has to prevent when using quantifiers, has also  to be prevented also with the use of the $\iota$-operator.
+
+\section{Hilbert's epsilon-axiom}\normalsize
+
+On the face of it it would seem that the introduction of $\iota$-terms and of the $\iota$-Rule would allow the derivation of new formulas. But one can prove that if a formula $A$ of the first order predicate calculus with equality, with 0-occurences of $\iota$-terms, is derivable by means of the $\iota$-operator and the $\iota$-Rule, then $A$ can also be derived without the use of the $\iota$-operator.
+
+Other than the \emph{formal} eliminability of the $\iota$-operator, Hilbert also adopted the introduction of a symbol which secures the eliminability of the $\iota$-operator. 
+
+The basic idea is the following:
+
+\begin{quotation}
+\emph{the descriptive term}
+
+$$\iota_{x} A (x)$$ 
+
+\emph{formally represents the statement}
+
+\begin{center}
+"\textbf{the object $x$ which has the property $A$}".
+\end{center}
+\end{quotation}
+
+As we have seen above this term can only be formally introduced after the derivation of the uniqueness formulas.
+
+Hilbert proves that these formulas can be dispensed with and the $\iota$-operator be replaced by his $\varepsilon$-operator.
+
+The introduction of this operator is to be controlled by conditions that specify:
+
+\begin{enumerate}
+\item Which are the well formed formulas in which the operator is going to occur; 
+
+\item How the underlying logic is going to be adjusted;
+
+\item They give  an axiom that defines the use of $\varepsilon$.
+\end{enumerate}
+
+In particular, let us assume that $A (x)$ is a formula in which $x$ has a free occurrence. We can then build a term of the form 
+
+$$\varepsilon_{x} A (x)$$
+
+where the occurrence of $x$ is now bound.
+
+If a term built with the $\iota$-operator can be interpreted as a definite description, the term built with $\varepsilon$ can be interpreted as an indefinite description.
+
+So if there is at least a value $k$ such that $A (k)$ is satisfied, then the term
+
+$$\varepsilon_{x} A (x)$$
+ 
+denotes \emph{an object, without further specifications}, which satisfies $A$. If there is no such $k$ such that 
+
+$$\varepsilon_{x} A (x)$$ 
+
+then we let the term denote an arbitrary value. This already implies that the formula
+
+$$(\exists x) A (x) \to A [\varepsilon_{x} A (x)]$$
+ 
+is true.
+
+The fundamental axiom is the following:
+
+\begin{center}
+\textbf{Axiom $\varepsilon$: If $F$ is a predicate with a free occurrence of $y$, then} 
+
+($\star$) \qquad \qquad $F (y) \to F [\varepsilon_{x} F (x)]$.
+\end{center}
+
+\section{The axiom of choice}\normalsize
+
+It was already pointed out that the variable $x$ of the $\varepsilon$-term is a bound variable and that the redenomination rule for bound variables can be applied.
+
+The formula $A (x)$ to which the $\varepsilon$-operator is attached as a prefix may contain variables, free or bound by $\forall$, $\exists$, $\iota$ or $\varepsilon$. In that case the formal definition of the $\varepsilon$-term can not give rise to the \emph{collision of bound variables}.
+
+For Hilbert's new symbol the name "\textbf{choice operator}" has been suggested, due to the obvious analogy between the $\varepsilon$-axiom and the axiom of choice.
+
+To develop the analogy, let us suppose that
+
+$$\{M_{i}\}$$
+
+denotes a set of disjoint non-empty sets $M_{i}$ (with $i \in I$). Now the axiom of choice secures the existence of a function which chooses from each set $M_{i}$ an element $m_{i} \in M_{i}$, the representative element of $M_{i}$. 
+
+Hilbert's $\varepsilon$-operator works like such a function, since the term
+
+$$\varepsilon_{x} (x \in M_{i})$$ 
+
+in the usual interpretation represents a chosen element $m_{i}$ from $M_{i}$.
+
+Thus if we have the following:
+
+\begin{enumerate}
+\item $A (a, \ldots, k, x)$
+ 
+is a formula in which $a, \ldots, k, x$ are the only free variables, and 
+
+\item A relation which maps every set of elements $a, \ldots, k$ to at least an element $m$ such that 
+
+$$A (a,\ldots, k, m),$$
+
+then
+
+$$\varepsilon_{x} A (a,\ldots, k, x)$$
+
+is a function which maps every set of values of the arguments $a,\ldots, k$ to a unique value $x$.
+\end{enumerate}
+
+To sober up the analogy a little, it is to be noticed that Hilbert intended the choice function to have a finitistic meaning and accordingly to perform only a finite number of choices of one element at a time. In contrast the real choice function of the axiom of choice performs an infinite number of simultaneous choices. 
+
+\section{The elimination of descriptions and quantifiers}\normalsize
+
+We sketch now some of the best known properties of the $\varepsilon$-operator.
+
+\begin{enumerate}
+\item \textbf{Descriptions}
+
+If for a formula $A (x)$ it is at all possible to introduce the 
+
+\begin{center}
+$\iota$-operator 
+\end{center}
+
+then
+
+$$\iota_{x} A (x) = \varepsilon_{x} A (x).$$
+
+The argument is the following:
+
+\begin{itemize} 
+\item \textbf{i)} If the $\iota$-operator can be introduced then one has the term
+$$A [\iota_{x} A (x)].$$
+
+\item \textbf{ii)} In the formula ($\star$), Hilbert's axiom, we insert $A$ for $F$ and the descriptive term $\iota_{x} A (x)$ for $y$ and we obtain the formula
+
+$$A [\iota_{x} A (x)] \to A [\varepsilon_{x} A (x)].$$
+
+\item \textbf{iii)} By i) and \emph{modus ponens} one has then
+ 
+$$A [\varepsilon_{x} A (x)].$$
+
+\item \textbf{iv)} This shows that if the descriptive term can be introduced then the $\varepsilon$-term satisfies the same predicate $A$ and therefore that
+
+$$\iota_{x} A (x) = \varepsilon_{x} A (x).$$
+\end{itemize}
+
+\item \textbf{Quantifiers}
+
+\begin{itemize} 
+
+\item \textbf{i) Existence}
+
+If we start with the $\varepsilon$-axiom
+
+$$F (y) \to F [\varepsilon_{x} F (x)]$$
+
+then by $\exists$-introduction we obtain
+
+$$(\exists x) F (x) \to F [\varepsilon_x F (x)].$$
+
+Existential Generalization gives the formula 
+
+$$F (y) \to (\exists x) F (x)$$
+
+and by inserting the $\varepsilon$-term for $y$ we get 
+
+$$F [\varepsilon_{x} F (x)] \to (\exists x) F (x).$$
+
+This shows that 
+
+$$(\exists x) F (x) \leftrightarrow F [\varepsilon_{x} F (x)].$$
+
+\item \textbf{ii) Generality}
+
+We use as starting formula
+
+$$(\exists x) F (x) \leftrightarrow F [\varepsilon_{x} F (x)].$$
+
+The rule of insertion allows the reformulation
+ 
+$$(\exists x) \sim F (x) \leftrightarrow \sim F [\varepsilon_{x} \sim F (x)].$$
+
+The propositional tautology 
+
+$$(X \leftrightarrow Y) \to (\sim X \leftrightarrow \sim Y)$$
+
+gives the formula
+
+$$\sim (\exists x) \sim F (x) \leftrightarrow \sim \sim F [\varepsilon_{x} \sim F (x)].$$
+
+From predicate calculus we get
+
+$$(\forall x) F (x) \leftrightarrow \sim \sim F [\varepsilon_{x} \sim F (x)].$$
+
+\item \textbf{iii) \emph{Dictum de Omni}}
+
+The same kind of argument allows the derivation of \emph{dictum de omni}.
+
+To prove 
+
+$$(\forall x) F (x) \to F (y)$$
+ 
+we start with the $\varepsilon$-axiom
+
+$$F (y) \to F [\varepsilon_{x} F (x)]$$ 
+
+and by the rule of insertion we get
+
+$$\sim F (y) \to \sim F [\varepsilon_{x} \sim F (x)].$$
+
+The propositional tautology
+
+$$(X \to Y) \leftrightarrow (\sim Y \to \sim X)$$ 
+
+gives the formula
+
+$$\sim \sim F [\varepsilon_{x} \sim F (x)] \to \sim \sim F (y).$$
+
+But by Part ii) above this is
+ 
+$$(\forall x) F (x) \to \sim \sim F (y).$$
+
+Double negation gives
+
+$$(\forall x) F (x) \to F (y)$$
+
+as desired.
+\end{itemize}
+\end{enumerate} 
+
+\begin{thebibliography} {90}
+\bibitem{AF} Fraenkel, A., \emph{Foundations of set theory}, North-Holland, Amsterdam, 1958.
+\bibitem{BPHD} Bernays, P., Hilbert, D., \emph{Grundlagen der Mathematik}, 2. Auflage, Berlin, 1968.
+\bibitem{GK1} Kreisel, G., "Hilbert's Programme", \emph{Dialectica} 12, 1958.
+\bibitem{BRAW} Russell, B., Whitehead, A., \emph{Principia Mathematica}, Cambridge, 1910.
+\end{thebibliography}
+
+\end{document}
+%%%%%
+%%%%%
+\end{document}

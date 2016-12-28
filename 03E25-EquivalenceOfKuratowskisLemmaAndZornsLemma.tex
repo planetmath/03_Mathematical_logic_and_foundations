@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EquivalenceOfKuratowskisLemmaAndZornsLemma}
+\pmcreated{2013-03-22 18:44:23}
+\pmmodified{2013-03-22 18:44:23}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{equivalence of Kuratowski's lemma and Zorn's lemma}
+\pmrecord{6}{41512}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we prove the equivalence of Kuratowski's lemma and Zorn's lemma, thereby establishing the equivalence of Kuratowski's lemma and the axiom of choice.  The proof, of course, only uses ZF axioms.
+
+\begin{prop} Kuratowski's lemma implies Zorn's lemma. \end{prop}
+\begin{proof}
+Suppose $P$ is a poset such that every chain has an upper bound.  Let $C$ be a chain in $P$.  By Kuratowski's lemma, $C$ can be extended to a maximal chain $C'$, which, by assumption, has an upper bound $a\in P$.  Suppose for some $b\in P$, $a\le b$.  If $b\ne a$, then $b\not\le a$, or $b\notin C'$, which means $C'\cup \lbrace b\rbrace$ is a chain extending $C'$, thus extending $C$.  But this means that $C'$ is not maximal, a contradiction.  This shows that $b=a$, or that $a$ is a maximal element in $P$, proving Zorn's lemma.
+\end{proof}
+
+\begin{prop} Zorn's lemma implies Kuratowski's lemma. \end{prop}
+\begin{proof}
+Suppose $P$ is a poset and $C$ a chain in $P$.  We assume that $P\ne \varnothing$.  Let $\mathcal{P}$ be the set of all chains in $P$ extending $C$.  Partially order $\mathcal{P}$ by inclusion so that $\mathcal{P}$ is a poset.  Let $\mathcal{C}$ be a chain in $\mathcal{P}$.  Let $C'=\bigcup \mathcal{C}$.  We want to prove that $C'$ is an upper bound of $\mathcal{C}$ in $\mathcal{P}$.  
+\begin{enumerate}
+\item $C'$ is a chain in $P$.  If $x,y\in C'$, then $x\in D$ and $y\in E$ for some $D,E\in \mathcal{C}$.  Since $\mathcal{C}$ is a chain in $\mathcal{P}$, $D\subseteq E$ or $E\subseteq D$, which implies that $x,y$ belong to the same chain (either $D$ or $E$) in $P$.  So $x\le y$ or $y\le x$.  This shows that $C'$ is a chain in $P$.  
+\item $C'$ is in $\mathcal{P}$.  If $a\in C$, then $a\in D$ for every $D\in \mathcal{C}$, and therefore $a\in C'$, showing that $C'$ extends $C$, or $C' \in \mathcal{P}$.  
+\item $C'$ is an upper bound of $\mathcal{C}$.  Pick any $x\in D$, for an arbitrary $D\in \mathcal{C}$.  Then $x\in \bigcup \mathcal{C}=C'$, so $D\subseteq C'$.  Since $D$ is arbitrary, $C'$ is an upper bound of $\mathcal{C}$.
+\end{enumerate}
+By Zorn's lemma, $\mathcal{P}$ has a maximal element $M$.  Then $M$ is a maximal chain in $P$ extending $C$, for if there is a chain $N$ in $P$ such that $M\subseteq N$, then $N\in \mathcal{P}$ and $M$ would no longer be maximal.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

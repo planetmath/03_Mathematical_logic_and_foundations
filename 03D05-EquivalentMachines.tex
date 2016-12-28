@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EquivalentMachines}
+\pmcreated{2013-03-22 19:02:39}
+\pmmodified{2013-03-22 19:02:39}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{equivalent machines}
+\pmrecord{7}{41922}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmrelated{MealyMachine}
+\pmrelated{MooreMachine}
+\pmdefines{equivalent}
+\pmdefines{similar}
+\pmdefines{reduced machine}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $M_1=(S_1,\Sigma,\Delta,\sigma_1,\lambda_1)$ and $M_2=(S_2,\Sigma,\Delta,\sigma_2,\lambda_2)$ be two Mealy machines.  
+
+\textbf{Definition}.  A state $s_1$ of $M_1$ is said to be \emph{equivalent} to a state $s_2$ of $M_2$ iff
+$$\lambda_1(s_1,u)=\lambda_2(s_2,u) \mbox{  for all non-empty input words }u\mbox{ over }\Sigma.$$
+We write $\approx$ for the equivalence.
+
+In the same way, $\approx$ can be defined on two Moore machines.  However, where as $u$ is restricted to be non-empty in the Mealy case, input words in Moore case are arbitrary, that is: $s_1 \approx s_2$ iff 
+$$\beta_1(s_1,u)=\beta_2(s_2,u) \mbox{  for all input words }u\mbox{ over }\Sigma.$$
+Here, $\beta_i$ is the modifications of the original output function $\lambda_i$.
+
+Suppose now that $M=M_1=M_2$.  Then $\approx$ is an equivalence relation on the state alphabet $S$ of $M$.  Given $M$, form a new machine $M'=(S',\Sigma,\Delta,\sigma',\lambda')$ such that
+\begin{enumerate}
+\item $S':=S/\!\! \approx \; = \lbrace [s]\mid s\in S \rbrace$ is the set of equivalence classes of $\approx$ on $S$, 
+\item $\sigma'([s],a)=[\sigma(s,a)]$,
+\item $\lambda'([s],a)=\lambda(s,a)$.
+\end{enumerate}
+It is easy to verify that $M'$ is indeed a well-defined machine.  Furthermore, if $M$ is Moore, so is $M'$.
+
+Call a machine (Mealy or Moore) \emph{reduced} if $s_1\approx s_2$ implies $s_1=s_2$.  Then the machine $M'$ constructed from $M$ above is a reduced machine.
+
+Suppose $M_1$ and $M_2$ are both Mealy machines such that they have the same input and output alphabets.
+
+\textbf{Definition}.  $M_1$ is said to be \emph{equivalent} to $M_2$ if every state of $M_1$ is equivalent to a state of $M_2$, and vice versa.  When $M_1$ is equivalent to $M_2$, we write $M_1\approx M_2$.
+
+Equivalence between two Moore machines is similarly defined.  It is clear that $\approx$ is an equivalence relation on the class of Mealy machines (or Moore machines) over the same input and output alphabets.
+
+In addition, it is also possible to define ``equivalence'' between machines of different types.  However, in the literature, the word ``similar'' is used instead of ``equivalent'':
+
+\textbf{Definition}.  Let $M_1$ be a Mealy machine and $M_2$ a Moore machine.  $M_1$ is said to be \emph{similar} to $M_2$ if every state $s_1$ of $M_1$, there is a state $s_2$ of $M_2$ such that $$\lambda(s_1,u)=\beta(s_2,u) \mbox{  for all non-empty input words }u\mbox{ over }\Sigma.$$
+The definition of a Moore machine similar to a Mealy machine is analogous.  Note that in the definition of similarity, input words are restricted to non-empty words only.
+
+Two machines of different types are similar if one is similar to another, and vice versa.  We write $M_1 \sim M_2$ if $M_1$ and $M_2$ are similar.
+
+The concept of similarity may be broadened to machines of the same type.  In the Mealy case, similarity is the same as equivalence.  In the Moore case, the two notions are different.  Equivalence is more restrictive in that the empty word is required in the definition.  Two Moore machines may be similar without being equivalent.  In fact, we have the following facts:
+
+\begin{prop}  Two Mealy machines similar to a Moore machine are equivalent.  There exist two inequivalent Moore machines similar to a Mealy machine.
+\end{prop}
+%%%%%
+%%%%%
+\end{document}

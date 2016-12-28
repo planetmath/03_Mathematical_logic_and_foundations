@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{RecursivelyEnumerable}
+\pmcreated{2013-03-22 12:44:32}
+\pmmodified{2013-03-22 12:44:32}
+\pmowner{ariels}{338}
+\pmmodifier{ariels}{338}
+\pmtitle{recursively enumerable}
+\pmrecord{6}{33045}
+\pmprivacy{1}
+\pmauthor{ariels}{338}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D25}
+\pmsynonym{semi-recursive}{RecursivelyEnumerable}
+\pmrelated{HaltingProblem}
+\pmrelated{TuringComputable}
+\pmdefines{semi-recursive}
+\pmdefines{recursively enumerable function}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amstext}   % do we need this?
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newcommand{\Prob}[2]{\mathbb{P}_{#1}\left\{#2\right\}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+
+% Some sets
+\newcommand{\Nats}{\mathbb{N}}
+\newcommand{\Ints}{\mathbb{Z}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\begin{document}
+For a language $L$, TFAE:
+\begin{itemize}
+
+\item There exists a Turing machine $f$ such that $\forall x.(x\in L) \iff \mbox{the computation $f(x)$ terminates}$.
+
+\item There exists a total recursive function $f:\Nats\to L$ which is \emph{onto}.
+
+\item There exists a total recursive function $f:\Nats\to L$ which is \emph{one-to-one and onto}.
+
+\end{itemize}
+
+A language $L$ fulfilling \emph{any} (and therefore \emph{all}) of the above conditions is called \emph{recursively enumerable}.
+
+\subsection*{Examples}
+
+\begin{enumerate}
+\item Any recursive language.
+\item The set of encodings of Turing machines which halt when given no input.
+\item The set of encodings of theorems of Peano arithmetic.
+\item The set of integers $n$ for which the hailstone sequence starting at $n$ reaches 1.  \textit{(We don't know if this set is recursive, or even if it is $\Nats$; but a trivial program shows it is recursively enumerable.)}
+\end{enumerate}
+%%%%%
+%%%%%
+\end{document}

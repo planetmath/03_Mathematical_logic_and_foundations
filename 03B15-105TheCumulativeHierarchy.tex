@@ -1,0 +1,406 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{105TheCumulativeHierarchy}
+\pmcreated{2013-11-06 17:19:41}
+\pmmodified{2013-11-06 17:19:41}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{10.5 The cumulative hierarchy}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bin}{\ensuremath{\mathrel{\widetilde{\in}}}}
+\newcommand{\bisim}{\sim}       
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\newcommand{\Brck}[1]{\Trunc{}{#1}}
+\newcommand{\choice}[1]{\ensuremath{\mathsf{AC}_{#1}}\xspace}
+\newcommand{\CZF}{Constructive \ZF{} Set Theory}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\epi}{\ensuremath{\twoheadrightarrow}}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\LEM}[1]{\ensuremath{\mathsf{LEM}_{#1}}\xspace}
+\newcommand{\mono}{\ensuremath{\rightarrowtail}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\narrowbreak}{}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\newcommand{\power}[1]{\mathcal{P}(#1)} 
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\propU}{\ensuremath{\mathsf{Prop}_\UU}\xspace}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\Trunc}[2]{\Bigl\Vert #2\Bigr\Vert_{#1}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\vset}{\mathsf{set}}  
+\newcommand{\ZF}{Zermelo--Fraenkel}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{10.5.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{10.5.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{10.5.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{10.5.\arabic{mathcount}}
+\newenvironment{narrowmultline}{\csname equation\endcsname}{\csname endequation\endcsname}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{10.5.\arabic{mathcount}}
+\let\autoref\cref
+\let\nat\N
+\let\setof\Set    
+\makeatother
+
+\begin{document}
+
+\index{bargaining|(}%
+We can define a cumulative hierarchy $V$ of all sets in a given universe $\UU$ as a higher inductive type, in such a way that $V$ is again a set (in a larger universe $\UU'$), equipped with a binary ``membership'' relation $x\in y$ which satisfies the usual laws of set theory.
+
+\begin{defn}\label{defn:V}
+  The \define{cumulative hierarchy}
+  \indexdef{cumulative!hierarchy, set-theoretic}%
+  \indexdef{hierarchy!cumulative, set-theoretic}%
+  $V$ relative to a type universe $\UU$ is the
+  higher inductive type generated by the following constructors.
+  %
+  \begin{enumerate}
+  \item For every $A : \UU$ and $f : A \to V$, there is an element $\vset(A, f)$ : V.
+  \item For all $A, B : \UU$, $f : A \to V$ and $g : B \to V$ such that
+    %
+    \begin{narrowmultline} \label{eq:V-path}
+      \big(\fall{a:A} \exis{b:B} \id[V]{f(a)}{g(b)}\big) \land \narrowbreak
+      \big(\fall{b:B} \exis{a:A} \id[V]{f(a)}{g(b)}\big)
+    \end{narrowmultline}
+    %
+    there is a path $\id[V]{\vset(A,f)}{\vset(B,g)}$.
+  \item The 0-truncation constructor: for all $x,y:V$ and $p,q:x=y$, we have $p=q$.
+  \end{enumerate}
+\end{defn}
+
+In set-theoretic language, $\vset(A,f)$ can be understood as the set (in the sense of classical set theory) that is the image of $A$ under $f$, i.e.\ $\setof{ f(a) | a \in A }$.
+However, we will avoid this notation, since it would clash with our notation for subtypes (but see~\eqref{eq:class-notation} and \autoref{def:TypeOfElements} below).
+
+The hierarchy $V$ is
+bootstrapped from the empty map $\rec\emptyt(V) : \emptyt \to V$, which gives the empty set as $\emptyset = \vset(\emptyt,\rec\emptyt(V))$.
+Then the singleton $\{\emptyset\}$ enters $V$ through $\unit \to V$, defined as $\ttt \mapsto \emptyset$, and so
+on. The type $V$ lives in the same universe as the base universe $\UU$.
+
+The second constructor of $V$ has a form unlike any we have seen before: it involves not only paths in $V$ (which in \autoref{sec:hittruncations} we claimed were slightly fishy) but truncations of sums of them.
+It certainly does not fit the general scheme described in \autoref{sec:naturality}, and thus it may not be obvious what its induction principle should be.
+Fortunately, like our first definition of the 0-truncation in \autoref{sec:hittruncations}, it can be re-expressed using auxiliary higher inductive types.
+We leave it to the reader to work out the details (see \autoref{ex:cumhierhit}).
+
+\index{induction principle!for cumulative hierarchy}%
+At the end of the day, the induction principle for $V$ (written in pattern matching language) says that given $P:V\to \set$, in order to construct $h:\prd{x:V} P(x)$, it suffices to give the following.
+\begin{enumerate}
+\item For any $f:A\to V$, construct $h(\vset(A,f))$, assuming as given $h(f(a))$ for all $a:A$.
+\item Verify that if $f : A \to V$ and $g : B \to V$ satisfy~\eqref{eq:V-path}, then $h(\vset(A,f)) = h(\vset(B,g))$, assuming inductively that $h(f(a)) = h(g(b))$ whenever $f(a)=g(b)$.
+\end{enumerate}
+The second clause checks that the map being defined must respect the paths introduced in \eqref{eq:V-path}.
+As usual when we state higher induction principles using pattern matching, it may seem tautologous, but is not.
+The point is that ``$h(f(a))$'' is essentially a formal symbol which we cannot peek inside of, which $h(\vset(A,f))$ must be defined in terms of. Thus, in the second clause, we assume equality of these formal symbols when appropriate, and verify that the elements resulting from the construction of the first clause are also equal.  
+Of course, if $P$ is a family of mere propositions, then the second clause is automatic.
+
+Observe that, by induction, for each $v:V$ there merely exist $A:\UU$ and $f:A\to V$ such that $v=\vset(A,f)$.
+Thus, it is reasonable to try to define the \define{membership relation}
+\indexdef{membership, for cumulative hierarchy}%
+$x\in v$ on $V$ by setting:
+%
+% Note: "membership" rather than "elementhood", because "element" is taken.
+%
+\symlabel{V-membership}
+\begin{equation*}
+  (x \in \vset(A,f)) \defeq (\exis{a : A} x = f(a)).
+\end{equation*}
+%
+To see that the definition is valid, we must use the recursion principle of $V$.  Thus, suppose we have a path $\vset(A, f) = \vset(B, g)$
+constructed through~\eqref{eq:V-path}. If $x \in \vset(A,f)$ then there merely is $a : A$ such
+that $x = f(a)$, but by~\eqref{eq:V-path} there merely is $b : B$ such that $f(a) = g(b)$, hence
+$x = g(b)$ and $x \in \vset(B,f)$. The converse is symmetric.
+
+The \define{subset relation}
+\indexdef{subset!relation on the cumulative hierarchy}%
+$x\subseteq y$ is defined on $V$ as usual by
+%
+\begin{equation*}
+  (x \subseteq y) \defeq \fall{z : V} z \in x \Rightarrow z \in y.
+\end{equation*}
+
+A \define{class}
+\indexdef{class}%
+may be taken to be a mere predicate on~$V$. We can say that a class $C : V \to \prop$ is a
+\define{$V$-set}
+\indexdef{set!in the cumulative hierarchy}%
+if there merely exists $v\in V$ such that
+%
+\begin{equation*}
+  \fall{x : V} C(x) \Leftrightarrow x \in v.
+\end{equation*}
+We may also use the conventional notation for classes, which matches our standard notation for subtypes:
+\begin{myeqn}
+  \setof{ x | C(x) } \defeq \lam{x}C(x).\label{eq:class-notation}
+\end{myeqn}
+%
+A class $C: V\to \prop$ will be called \define{$\UU$-small}
+\indexdef{class!small}%
+\indexdef{small!class}%
+if all of its values $C(x)$ lie in $\UU$, specifically $C: V\to \prop_{\UU}$.
+Since $V$ lives in the same universe $\UU'$ as does the base universe $\UU$ from which it is built, the same is true for the identity types $v=_V w$ for any $v,w:V$. To obtain a well-behaved theory in the absence of propositional resizing,
+\index{propositional!resizing}%
+\index{resizing}%
+therefore, it will be convenient to have a $\UU$-small ``resizing'' of the identity relation, which we can define by induction as follows.
+
+\begin{defn}\label{def:bisimulation}
+  Define the \define{bisimulation}
+  \indexdef{bisimulation}%
+  relation
+  %
+  \begin{equation*}
+    \mathord\bisim : V \times V \longrightarrow \prop_{\UU}
+  \end{equation*}
+  %
+  by double induction over $V$, where for $\vset(A,f)$ and $\vset(B,g)$ we let:
+  \begin{narrowmultline*}
+    \vset(A,f)  \bisim \vset(B,g) \defeq \narrowbreak
+    \big(\fall{a:A}\exis{b:B} f(a)  \bisim g(b)\big) \land
+    \big(\fall{b:B}\exis{a:A} f(a) \bisim g(b)\big).
+  \end{narrowmultline*}
+\end{defn}
+%
+To verify that the definition is correct, we just need to check that it respects paths $\vset(A, f) = \vset(B, g)$ constructed through~\eqref{eq:V-path}, but this is obvious, and that $\prop_{\UU}$ is a set, which it is.  Note that $u \bisim v$ is in $\propU$ by construction.
+
+\begin{lem}\label{lem:BisimEqualsId}
+For any $u,v:V$ we have $(u=_V v) = (u \bisim v)$.
+\end{lem}
+
+\begin{proof}
+An easy induction shows that $\bisim$ is reflexive, so by transport we have $(u=_V v)\to (u \bisim v)$.
+Thus, it remains to show that $(u \bisim v)\to (u=_V v)$.
+By induction on $u$ and $v$, we may assume they are $\vset(A,f)$ and $\vset(B,g)$ respectively.
+Then by definition, $\vset(A,f)\bisim\vset(B,g)$ implies $(\fall{a:A}\exis{b:B}f(a)  \bisim g(b))$ and conversely.
+But the inductive hypothesis then tells us that $(\fall{a:A}\exis{b:B}f(a) = g(b))$ and conversely.
+So by the path-con\-struc\-tor for $V$ we have $\vset(A,f) =_V \vset(B,g)$.
+\end{proof}
+
+Now we can use the resized identity relation to get the following useful principle.
+
+\begin{lem}\label{lem:MonicSetPresent}
+For every $u:V$ there is a given $A_u:\UU$ and monic $m_u: A_u \mono V$ such that $u = \vset(A_u, m_u)$.
+\end{lem}
+
+\begin{proof}
+  Take any presentation $u = \vset(A,f)$ and factor $f:A\to V$ as a surjection followed by an injection:
+  %
+  \begin{equation*}
+    f = m_u\circ e_u : A \epi A_u \mono V.    
+  \end{equation*}
+  %
+  Clearly $u = \vset(A_u, m_u)$ if only $A_u$ is still in $\UU$, which holds if the kernel of $e_u : A \epi A_u$ is in $\UU$.  But the kernel of $e_u : A \epi A_u$ is the pullback along $f : A\to V$ of the identity on $V$, which we just showed to be $\UU$-small, up to equivalence.  Now, this construction of the pair $(A_u, m_u)$ with $m_u :A_u \mono V$ and $u = \vset(A_u, m_u)$ from $u:V$ is unique up to equivalence over $V$, and hence up to identity by univalence.  Thus by the principle of unique choice \eqref{cor:UC} there is a map $c : V\to\sm{A:\UU}(A\to V)$ such that $c(u) = (A_u, m_u)$, with $m_u :A_u \mono V$ and $u = \vset(c(u))$, as claimed.
+\end{proof}
+
+\begin{defn}\label{def:TypeOfElements}
+  For $u:V$, the just constructed monic presentation $m_u: A_u \mono V$ such that $u = \vset(A_u, m_u)$ may be called the \define{type of members}
+  \indexdef{type!of members}%
+  of $u$ and denoted $m_u : [u] \mono V$, or even $[u] \mono V$.  We can think of $[u]$ as the ``subclass of $V$ consisting of members of $u$''.
+\end{defn}
+
+\begin{thm}\label{thm:VisCST}
+  \index{axiom!of set theory, for the cumulative hierarchy}%
+  The following hold for $(V, {\in})$:
+  %
+  \begin{enumerate}
+  \item \emph{extensionality:}
+    %
+    \begin{equation*}
+      \fall{x, y : V} x \subseteq y \land y \subseteq x \Leftrightarrow x = y.
+    \end{equation*}
+    %
+     \item \emph{empty set:} for all $x:V$, we have $\neg (x\in \emptyset)$.
+    %
+    \item \emph{pairing:} for all $u, v:V$, the class $u\cup v \defeq \setof{ x | x = u \vee x = v}$ is a $V$-set.
+      %
+    \item \emph{infinity:}\index{axiom!of infinity}  there is a $v:V$ with $\emptyset\in v$ and $x\in v$ implies $x\cup \{x\}\in v$.
+    %
+  \item \emph{union:} for all $v:V$, the class $\cup v\defeq \setof{ x | \exis{u:V} x \in u \in v}$ is a $V$-set.
+    %
+    \item \emph{function set:} for all $u, v:V$, the class $v^u \defeq \setof{ x | x : u\to v}$ is a $V$-set.%
+      \footnote{Here $x:u\to v$ means that $x$ is an appropriate set of ordered pairs, according to the usual way of encoding functions in set theory.}
+    %
+   \item \emph{$\in$-induction:} if $C : V \to \prop$ is a class such that $C(a)$ holds whenever $C(x)$ for all $x\in a$, then $C(v)$ for all $v:V$.
+   %
+     \item \emph{replacement:}\index{axiom!of replacement} given any $r : V \to V$ and $a : V$, the class 
+       %
+       \begin{equation*}
+         \setof{ x | \exis{y : V} y \in a \land x = r(y)}
+       \end{equation*}
+       %
+       is a $V$-set.
+  %
+   \item \emph{separation:}\index{axiom!of separation}  given any $a : V$ and $\UU$-small $C : V \to \propU$, the class
+     %
+     \begin{equation*}
+       \setof{ x | x \in a \land C(x)}
+     \end{equation*}
+     %
+     is a $V$-set.
+  \end{enumerate}
+\end{thm}
+
+
+\begin{proof}[Sketch of proof]
+  \mbox{}
+  %
+  \begin{enumerate}
+  \item Extensionality: if $\vset(A,f) \subseteq \vset(B, g)$ then $f(a) \in \vset(B, g)$
+    for every $a : A$, therefore for every $a : A$ there merely exists $b : B$ such that
+    $f(a) = g(b)$. The assumption $\vset(B, g) \subseteq \vset(A, f)$ gives the other half
+    of~\eqref{eq:V-path}, therefore $\vset(A,f) = \vset(B,g)$.
+    
+  \item Empty set: suppose $x\in \emptyset = \vset(\emptyt,\rec\emptyt(V))$.  Then $\exis{a:\emptyt}x=\, \rec\emptyt(V,a)$, which is absurd.
+  
+  \item Pairing: given $u$ and $v$, let $w=\vset(\bool,\rec\bool(V,u,v))$.
+    \index{pair!unordered}
+
+  \item Infinity: take $w = \vset(\nat,I)$, where $I: \nat \to V$ is given by the recursion $I(0) \defeq \emptyset$ and $I(n+1) \defeq I(n)\cup \{I(n)\}$.
+ 
+  \item Union: Take any $v:V$ and any presentation $f :A\to V$ with $v=\vset(A,f)$.  Then let $\tilde{A} \defeq \sm{a:A}[fa]$, where $m_{fa} : [fa] \mono V$ is the type of members from \autoref{def:TypeOfElements}.  $\tilde{A}$ is plainly $\UU$-small, and we have $\cup v \defeq \vset(\tilde{A}, \lam{x} m_{f(\proj1(x))}(\proj2(x)))$.
+  
+  \item Function set: given $u, v:V$, take the types of elements $[u] \mono V$ and $[u] \mono V$, and the function type $[u]\to [v]$.  We want to define a map
+  \[
+ r: ([u]\to [v])\ \longrightarrow\ V
+  \] 
+   with ``$r(f) = \setof{ \pairr{x, f(x)} | x : [u] }$'', but in order for this to make sense we must first define the ordered pair $\pairr{x, y}$, and then we take the map $r': x \mapsto \pairr{x, f(x)}$, and then we can put $r(f)\defeq \vset([u], r')$.  But the ordered pair can be defined in terms of unordered pairing as usual.
+   
+  \item $\in$-induction: let $C : V \to \prop$ be a class such that $C(a)$ holds whenever $C(x)$ for all $x\in a$, and take any $v=\vset(B,g)$.  To show that $C(v)$ by induction, assume that $C(g(b))$ for all $b:B$.  For every $x\in v$ there merely exists some $b:B$ with $x = g(b)$, and so $C(x)$.  Thus $C(v)$.
+
+  \item Replacement: the statement ``$C$ is a $V$-set'' is a mere proposition, so we may
+    proceed by induction as follows. Supposing $x$ is $\vset(A, f)$, we claim that $w
+    \defeq \vset(A, r \circ f)$ is the set we are looking for.  If $C(y)$ then there merely exists
+    $z : V$ and $a : A$ such that $z = f(a)$ and $y = r(z)$, therefore $y \in w$.
+    Conversely, if $y \in w$ then there merely exists $a : A$ such that $y = r(f(a))$, so
+    if we take $z \defeq f(a)$ we see that $C(y)$ holds.
+
+  \item Let us say that a class $C: V\to\prop$ is \define{separable}
+    \indexdef{class!separable}%
+    \indexdef{separable class}%
+    if for any $a:V$ the class
+  %
+  \symlabel{class-intersection}
+  \begin{equation*}
+    a \cap C \defeq\setof{x | x\in a \wedge C(x)}
+  \end{equation*}
+  %
+  is a $V$-set.
+We need to show that any $\UU$-small  $C: V \to \propU$ is separable. Indeed, given $a=\vset(A,f)$, let $A' = \exis{x:A}C(fx)$, and take $f' = f\circ i$, where $i : A' \to A$ is the obvious inclusion.  Then we can take $a' = \vset(A',f')$ and we have $x\in a\wedge C(x) \Leftrightarrow x\in a'$ as claimed.  We needed the assumption that $C$ lands in $\UU$ in order for $A' = \exis{x:A}C(fx)$ to be in $\UU$.\qedhere
+\end{enumerate}
+\end{proof}
+
+It is also convenient to have a strictly syntactic criterion of separability, so that one can read off from the expression for a class that it produces a $V$-set.  One such familiar condition is being ``$\Delta_0$'', which means that the expression is built up from equality $x=_V y$ and membership $x\in y$, using only mere-propositional connectives $\neg$, $\land$, $\lor$, $\Rightarrow$ and quantifiers $\forall$, $\exists$ over particular sets, i.e.\ of the form $\exists(x\in a)$ and $\forall(y\in b)$ (these are called \define{bounded} quantifiers\index{bounded!quantifier}\index{quantifier!bounded}).\indexdef{separation!.Delta0@$\Delta_0$}%
+
+\begin{cor}\label{cor:Delta0sep}
+If the class $C: V \to \prop$ is $\Delta_0$ in the above sense, then it is separable.
+\end{cor}
+\index{axiom!of $\Delta_0$-separation}%
+
+\begin{proof}
+Recall that we have a $\UU$-small resizing $x \bisim y$ of identity $x = y$. Since $x\in y$ is defined in terms of $x=y$, we also have a $\UU$-small resizing of membership
+% 
+\symlabel{resized-membership}
+\begin{equation*}
+  x\bin\vset(A,f) \defeq \exis{a:A} x \bisim f(a).
+\end{equation*}
+%
+Now, let $\Phi$ be a $\Delta_0$ expression for $C$, so that as classes $\Phi = C$ (strictly speaking, we should distinguish expressions from their meanings, but we will blur the difference). Let $\widetilde{\Phi}$ be the result of replacing all occurrences of $=$ and $\in$ by their resized equivalents $\bisim$ and $\bin$.  Clearly then $\widetilde{\Phi}$ also expresses $C$, in the sense that for all $x:V$, $\widetilde{\Phi}(x) \Leftrightarrow C(x)$, and hence $\widetilde{\Phi}=C$ by univalence.  It now suffices to show that $\widetilde{\Phi}$ is $\UU$-small, for then it will be separable by the theorem.  
+
+We show that  $\widetilde{\Phi}$ is $\UU$-small by induction on the construction of the expression.  The base cases are $x \bisim y$ and $x\bin y$, which have already been resized into $\UU$.  It is also clear that $\UU$ is closed under the mere-propositional operations (and $(-1)$-truncation), so it just remains to check the bounded quantifiers $\exists(x\in a)$ and $\forall(y\in b)$.  By definition,  
+\begin{align*}
+\exists(x\in a) P(x) &\defeq \Brck {\sm{x:V}(x\bin a \land P(x))},\\
+\forall(y\in b) P(x) &\defeq  \prd{x:V}(x\bin a \to P(x)).
+\end{align*} 
+Let us consider $\brck {\sm{x:V}(x\bin a \land P(x))}$.  Although the body $(x\bin a \land P(x))$ is $\UU$-small since $P(x)$ is so by the inductive hypothesis, the quantification over $V$ need not stay inside $\UU$.  However, in the present case we can replace this with a quantification over the type $[a]\mono V$ of members of $a$, and easily show that
+\begin{equation*}
+  \sm{x:V}(x\bin a \land P(x)) = \sm{x:[a]} P(x).
+\end{equation*}
+The right-hand side does remain in $\UU$, since both $[a]$ and $P(x)$ are in $\UU$.  The case of $\prd{x:V}(x\bin a \to P(x))$ is analogous, using $\prd{x:V}(x\bin a \to P(x)) = \prd{x:[a]}P(x)$.
+\end{proof}
+
+We have shown that in type theory with a universe $\UU$, the cumulative hierarchy $V$ is a model of a ``constructive set theory''
+\index{constructive!set theory}%
+with many of the standard axioms.
+However, as far as we know, it lacks the \emph{strong collection}
+\index{axiom!strong collection}%
+\index{collection!strong}%
+\index{strong!collection}%
+and \emph{subset collection}
+\index{axiom!subset collection}%
+\index{collection!subset}%
+\index{subset!collection}%
+axioms which are included in \CZF{}~\cite{AczelCZF}.
+In the usual interpretation of this set theory into type theory, these two axioms are consequences of the setoid-like definition of equality; while in other constructed models of set theory, strong collection may hold for other reasons.
+We do not know whether either of these axioms holds in our model $(V,\in)$, but it seems unlikely.
+Since $V$ is a higher inductive type \emph{inside} the system, rather than being an \emph{external} construction, it is not surprising that it differs in some ways from prior interpretations.
+
+Finally, consider the result of adding the axiom of choice for sets to our type theory, in the form  $\choice{}$ from \autoref{subsec:emacinsets} above.  This has the consequence that $\LEM{}$ then also holds, by \autoref{thm:1surj_to_surj_to_pem}, and so $\set$ is a topos\index{topos} with subobject classifier $\bool$, by \autoref{thm:settopos}.  In this case, we have $\prop = \bool:\UU$, and so \emph{all classes are separable}.
+Thus we have shown:
+
+\begin{lem}\label{lem:fullsep}
+  In type theory with $\choice{}$, the law of \define{(full) separation}
+  \indexdef{separation!full}%
+  holds for $V$: given \emph{any} class $C : V \to \prop$ and $a : V$, the class $a \cap C$ is a $V$-set.
+\end{lem}
+
+\begin{thm}\label{thm:zfc}
+In type theory with $\choice{}$ and a universe $\UU$, the cumulative hierarchy $V$ is a model of Zermelo--Fraenkel\index{set theory!Zermelo--Fraenkel} set theory with choice, ZFC.
+\end{thm}
+
+\begin{proof}
+We have all the axioms listed in \autoref{thm:VisCST}, plus full separation, so we just need to show that there are power sets\index{power set} $\power a:V$ for all $a:V$.  But since we have $\LEM{}$ these are simply function types $\power a = (a\to\bool)$.  Thus $V$ is a model of Zermelo--Fraenkel set theory ZF. We leave the verification of the set-theoretic axiom of choice from $\choice{}$ as an easy exercise. 
+\end{proof}
+
+\index{bargaining|)}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

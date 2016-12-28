@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofOfCompletePartialOrdersDoNotAddSmallSubsets}
+\pmcreated{2013-03-22 12:53:35}
+\pmmodified{2013-03-22 12:53:35}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{proof of complete partial orders do not add small subsets}
+\pmrecord{4}{33240}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E40}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Take any $x\in\mathfrak{M}[G]$, $x\subseteq\kappa$.  Let $\hat{x}$ be a name for $x$.  There is some $p\in G$ such that 
+$$p\Vdash\hat{x}\text{ is a subset of }\kappa\text{ bounded by }\lambda<\kappa$$
+
+\emph{Outline:}
+
+For any $q\leq p$, we construct by induction a series of elements $q_\alpha$ stronger than $p$.  Each $q_\alpha$ will determine whether or not $\alpha\in\hat{x}$.  Since we know the subset is bounded below $\kappa$, we can use the fact that $P$ is $\kappa$ complete to find a single element stronger than $q$ which fixes the exact value of $\hat{x}$.  Since the series is definable in $\mathfrak{M}$, so is $\hat{x}$, so we can conclude that above any element $q\leq p$ is an element which forces $\hat{x}\in\mathfrak{M}$.  Then $p$ also forces $\hat{x}\in\mathfrak{M}$, completing the proof.
+
+\emph{Details:}
+
+Since forcing can be described within $\mathfrak{M}$, $S=\{q\in P\mid q\Vdash \hat{x}\in V\}$ is a set in $\mathfrak{M}$.  Then, given any $q\leq p$, we can define $q_0=q$ and for any $q_\alpha$ ($\alpha<\lambda$), $q_{\alpha+1}$ is an element of $P$ stronger than $q_\alpha$ such that either $q_{\alpha+1}\Vdash\alpha+1\in \hat{x}$ or $q_{\alpha+1}\Vdash\alpha+1\notin \hat{x}$.  For limit $\alpha$, let $q_\alpha^\prime$ be any upper bound of $q_\beta$ for $\alpha<\beta$ (this exists since $P$ is $\kappa$-complete and $\alpha<\kappa$), and let $q_\alpha$ be stronger than $q_\alpha^\prime$ and satisfy either $q_{\alpha+1}\Vdash\alpha\in \hat{x}$ or $q_{\alpha+1}\Vdash\alpha\notin \hat{x}$.  Finally let $q^*$ be the upper bound of $q_\alpha$ for $\alpha<\lambda$.  $q^*\in P$ since $P$ is $\kappa$-complete.
+
+Note that these elements all exist since for any $p\in P$ and any (first-order) sentence $\phi$ there is some $q\leq p$ such that $q$ forces either $\phi$ or $\neg\phi$.
+
+$q^*$ not only forces that $\hat{x}$ is a bounded subset of $\kappa$, but for every ordinal it forces whether or not that ordinal is contained in $\hat{x}$.    But the set $\{\alpha<\lambda\mid q^*\Vdash \alpha\in\hat{x}\}$ is defineable in $\mathfrak{M}$, and is of course equal to $\hat{x}[G^*]$ in any generic $G^*$ containing $q^*$.  So $q^*\Vdash\hat{x}\in\mathfrak{M}$.
+
+Since this holds for any element stronger than $p$, it follows that $p\Vdash\hat{x}\in\mathfrak{M}$, and therefore $\hat{x}[G]\in\mathfrak{M}$.
+%%%%%
+%%%%%
+\end{document}

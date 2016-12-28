@@ -1,0 +1,144 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{44ContractibleFibers}
+\pmcreated{2013-11-17 23:35:22}
+\pmmodified{2013-11-17 23:35:22}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{4.4 Contractible fibers}
+\pmrecord{2}{87666}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\biinv}{\ensuremath{\mathsf{biinv}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\iscontr}{\ensuremath{\mathsf{isContr}}}
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\newcommand{\ishae}{\ensuremath{\mathsf{ishae}}}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\rcoh}[3]{\mathsf{rcoh}_{#1}(#2,#3)}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{4.4.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{4.4.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{4.4.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{4.4.\arabic{mathcount}}
+\let\autoref\cref
+\let\setof\Set    
+\makeatother
+
+\begin{document}
+
+\index{function!contractible|(defstyle}%
+\index{contractible!function|(defstyle}%
+\index{equivalence!as contractible function|(defstyle}%
+
+Note that our proofs about $\ishae(f)$ and $\biinv(f)$ made essential use of the fact that the fibers of an equivalence are contractible.
+In fact, it turns out that this property is itself a sufficient definition of equivalence.
+
+\begin{defn}[Contractible maps] \label{defn:equivalence}
+  A map $f:A\to B$ is \define{contractible}
+  if for all $y:B$, the fiber $\hfib f y$ is contractible.
+\end{defn}
+
+Thus, the type $\iscontr(f)$ is defined to be
+\begin{align}
+  \iscontr(f) &\defeq \prd{y:B} \iscontr(\hfib f y)\label{eq:iscontrf}
+  % \\
+  % &\defeq \prd{y:B} \iscontr (\setof{x:A | f(x) = y}).
+\end{align}
+Note that in \PMlinkname{\S 3.11}{311contractibility} we defined what it means for a \emph{type} to be contractible.
+Here we are defining what it means for a \emph{map} to be contractible.
+Our terminology follows the general homotopy-theoretic practice of saying that a map has a certain property if all of its (homotopy) fibers have that property.
+Thus, a type $A$ is contractible just when the map $A\to\unit$ is contractible.
+From \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580} onwards we will also call contractible maps and types \emph{$(-2)$-truncated}.
+
+We have already shown in \PMlinkname{Theorem 4.2.6}{42halfadjointequivalences#Thmprethm2} that $\ishae(f) \to \iscontr(f)$.
+Conversely:
+
+\begin{thm}\label{thm:lequiv-contr-hae}
+For any $f:A\to B$ we have ${\iscontr(f)} \to {\ishae(f)}$.
+\end{thm}
+\begin{proof}
+Let $P : \iscontr(f)$. We define an inverse mapping $g : B \to A$ by sending each $y : B$ to the center of contraction of the fiber at $y$:
+\[ g(y) \defeq \proj{1}(\proj{1}(Py)) \]
+We can thus define the homotopy $\epsilon$ by mapping $y$ to the witness that $g(y)$ indeed belongs to the fiber at $y$:
+\[ \epsilon(y) \defeq \proj{2}(\proj{1}(P y)) \]
+It remains to define $\eta$ and $\tau$. This of course amounts to giving an element of $\rcoh{f}{g}{\epsilon}$. By \PMlinkname{Lemma 4.2.11}{42halfadjointequivalences#Thmprelem5}, this is the same as giving for each $x:A$ a path from $(gfx,\epsilon(fx))$ to $(x,\refl{fx})$ in the fiber of $f$ over $fx$. But this is easy: for any $x : A$, the type $\hfib{f}{fx}$ 
+is contractible by assumption, hence such a path must exist. We can construct it explicitly as
+\[\opp{\big(\proj{2}(P(fx))(gfx,\epsilon(fx))\big)} \ct \big(\proj{2}(P(fx)) (x,\refl{fx})\big). \qedhere \]
+\end{proof}
+
+It is also easy to see:
+
+\begin{lem}\label{thm:contr-hprop}
+  For any $f$, the type $\iscontr(f)$ is a mere proposition.
+\end{lem}
+\begin{proof}
+  By \PMlinkname{Lemma 3.11.4}{311contractibility#Thmprelem2}, each type $\iscontr (\hfib f y)$ is a mere proposition.
+  Thus, by \PMlinkname{Example 3.6.2}{36thelogicofmerepropositions#Thmpreeg2}, so is~\eqref{eq:iscontrf}.
+\end{proof}
+
+\begin{thm}\label{thm:equiv-contr-hae}
+  For any $f:A\to B$ we have $\eqv{\iscontr(f)}{\ishae(f)}$.
+\end{thm}
+\begin{proof}
+  We have already established a logical equivalence ${\iscontr(f)} \Leftrightarrow {\ishae(f)}$, and both are mere propositions (\PMlinkname{Lemma 4.4.3}{44contractiblefibers#Thmprelem1},\PMlinkname{Theorem 4.2.13}{42halfadjointequivalences#Thmprethm3}).
+  Thus, \PMlinkname{Lemma 3.3.3}{33merepropositions#Thmprelem2} applies.
+\end{proof}
+
+Usually, we prove that a function is an equivalence by exhibiting a quasi-inverse, but sometimes this definition is more convenient.
+For instance, it implies that when proving a function to be an equivalence, we are free to assume that its codomain is inhabited.
+
+\begin{cor}\label{thm:equiv-inhabcod}
+  If $f:A\to B$ is such that $B\to \isequiv(f)$, then $f$ is an equivalence.
+\end{cor}
+\begin{proof}
+  To show $f$ is an equivalence, it suffices to show that $\hfib f y$ is contractible for any $y:B$.
+  But if $e:B\to \isequiv(f)$, then given any such $y$ we have $e(y):\isequiv(f)$, so that $f$ is an equivalence and hence $\hfib f y$ is contractible, as desired.
+\end{proof}
+
+\index{function!contractible|)}%
+\index{contractible!function|)}%
+\index{equivalence!as contractible function|)}%
+
+
+\end{document}

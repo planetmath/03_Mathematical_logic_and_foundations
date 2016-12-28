@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{38TheAxiomOfChoice}
+\pmcreated{2013-11-17 20:07:44}
+\pmmodified{2013-11-17 20:07:44}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{3.8 The axiom of choice}
+\pmrecord{3}{87655}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\bproj}[1]{\tproj{}{#1}}
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\newcommand{\Brck}[1]{\Trunc{}{#1}}
+\newcommand{\choice}[1]{\ensuremath{\mathsf{AC}_{#1}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\LEM}[1]{\ensuremath{\mathsf{LEM}_{#1}}\xspace}
+\newcommand{\narrowbreak}{}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\Trunc}[2]{\Bigl\Vert #2\Bigr\Vert_{#1}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{3.8.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{3.8.\arabic{mathcount}}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{3.8.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{axiom!of choice|(defstyle}%
+\index{denial|(}%
+We can now properly formulate the axiom of choice in homotopy type theory.
+Assume a type $X$ and type families
+%
+\begin{equation*}
+  A:X\to\type
+  \qquad\text{and}\qquad 
+  P:\prd{x:X} A(x)\to\type,
+\end{equation*}
+%
+and moreover that
+\begin{itemize}
+\item $X$ is a set,
+\item $A(x)$ is a set for all $x:X$, and
+\item $P(x,a)$ is a mere proposition for all $x:X$ and $a:A(x)$.
+\end{itemize}
+The \define{axiom of choice}
+$\choice{}$ asserts that under these assumptions,
+\begin{myeqn}\label{eq:ac}
+  \Parens{\prd{x:X} \Brck{\sm{a:A(x)} P(x,a)}}
+  \to
+  \Brck{\sm{g:\prd{x:X} A(x)} \prd{x:X} P(x,g(x))}.
+\end{myeqn}
+Of course, this is a direct translation of~\PMlinkname{(3.2.1)}{32propositionsastypes#S0.E1} where we read ``there exists $x:A$ such that $B(x)$'' as $\brck{\sm{x:A}B(x)}$, so we could have written the statement in the familiar logical notation as
+\begin{narrowmultline*}
+  \textstyle
+  \Big(\fall{x:X}\exis{a:A(x)} P(x,a)\Big)
+  \Rightarrow \narrowbreak
+  \Big(\exis{g : \prd{x:X} A(x)} \fall{x : X} P(x,g(x))\Big).
+\end{narrowmultline*}
+%
+In particular, note that the propositional truncation appears twice.
+The truncation in the domain means we assume that for every $x$ there exists some $a:A(x)$ such that $P(x,a)$, but that these values are not chosen or specified in any known way.
+The truncation in the codomain means we conclude that there exists some function $g$, but this function is not determined or specified in any known way.
+
+In fact, because of \PMlinkname{Theorem 2.15.7}{215universalproperties#Thmprethm3}, this axiom can also be expressed in a simpler form.
+
+\begin{lem}\label{thm:ac-epis-split}
+  The axiom of choice~\eqref{eq:ac} is equivalent to the statement that for any set $X$ and any $Y:X\to\type$ such that each $Y(x)$ is a set, we have
+  \begin{myeqn}
+    \Parens{\prd{x:X} \Brck{Y(x)}}
+    \to
+    \Brck{\prd{x:X} Y(x)}.\label{eq:epis-split}
+  \end{myeqn}
+\end{lem}
+
+This corresponds to a well-known equivalent form of the classical\index{mathematics!classical} axiom of choice, namely ``the cartesian product of a family of nonempty sets is nonempty.''
+
+\begin{proof}
+  By \PMlinkname{Theorem 2.15.7}{215universalproperties#Thmprethm3}, the codomain of~\eqref{eq:ac} is equivalent to
+  \[\Brck{\prd{x:X} \sm{a:A(x)} P(x,a)}.\]
+  Thus,~\eqref{eq:ac} is equivalent to the instance of~\eqref{eq:epis-split} where \narrowequation{Y(x) \defeq \sm{a:A(x)} P(x,a).}
+  Conversely,~\eqref{eq:epis-split} is equivalent to the instance of~\eqref{eq:ac} where $A(x)\defeq Y(x)$ and $P(x,a)\defeq\unit$.
+  Thus, the two are logically equivalent.
+  Since both are mere propositions, by \PMlinkname{Lemma 3.3.3}{33merepropositions#Thmprelem2} they are equivalent types.
+\end{proof}
+
+As with \LEM{}, the equivalent forms~\eqref{eq:ac} and~\eqref{eq:epis-split} are not a consequence of our basic type theory, but they may consistently be assumed as axioms.
+
+\begin{rmk}
+  It is easy to show that the right side of~\eqref{eq:epis-split} always implies the left.
+  Since both are mere propositions, by \PMlinkname{Lemma 3.3.3}{33merepropositions#Thmprelem2} the axiom of choice is also equivalent to asking for an equivalence
+  \[ \eqv{\Parens{\prd{x:X} \Brck{Y(x)}}}{\Brck{\prd{x:X} Y(x)}} \]
+  This illustrates a common pitfall: although dependent function types preserve mere propositions (\PMlinkname{Example 3.6.2}{36thelogicofmerepropositions#Thmpreeg2}), they do not commute with truncation: $\brck{\prd{x:A} P(x)}$ is not generally equivalent to $\prd{x:A} \brck{P(x)}$.
+  The axiom of choice, if we assume it, says that this is true \emph{for sets}; as we will see below, it fails in general.
+\end{rmk}
+
+The restriction in the axiom of choice to types that are sets can be relaxed to a certain extent.
+For instance, we may allow $A$ and $P$ in~\eqref{eq:ac}, or $Y$ in~\eqref{eq:epis-split}, to be arbitrary type families; this results in a seemingly stronger statement that is equally consistent.
+We may also replace the propositional truncation by the more general $n$-truncations to be considered in \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580}, obtaining a spectrum of axioms $\choice n$ interpolating between~\eqref{eq:ac}, which we call simply \choice{} (or $\choice{-1}$ for emphasis), and \PMlinkname{Theorem 0.3}{215universalproperties#S0.Thmthm3}, which we shall call $\choice\infty$.
+See also \PMlinkexternal{Exercise 7.8}{http://planetmath.org/node/87816},\PMlinkexternal{Exercise 7.10}{http://planetmath.org/node/87863}.
+However, observe that we cannot relax the requirement that $X$ be a set.  
+
+\begin{lem}\label{thm:no-higher-ac}
+  There exists a type $X$ and a family $Y:X\to \type$ such that each $Y(x)$ is a set, but such that~\eqref{eq:epis-split} is false.
+\end{lem}
+\begin{proof}
+  Define $X\defeq \sm{A:\type} \brck{\bool = A}$, and let $x_0 \defeq (\bool, \bproj{\refl{\bool}}) : X$.
+  Then by the identification of paths in $\Sigma$-types, the fact that $\brck{A=\bool}$ is a mere proposition, and univalence, for any $(A,p),(B,q):X$ we have $\eqv{(\id[X]{(A,p)}{(B,q)})}{(\eqv AB)}$.
+  In particular, $\eqv{(\id[X]{x_0}{x_0})}{(\eqv \bool\bool)}$, so as in \PMlinkname{Example 3.1.9}{31setsandntypes#Thmpreeg6}, $X$ is not a set.
+
+  On the other hand, if $(A,p):X$, then $A$ is a set; this follows by induction on truncation for $p:\brck{\bool=A}$ and the fact that $\bool$ is a set.
+  Since $\eqv A B$ is a set whenever $A$ and $B$ are, it follows that $\id[X]{x_1}{x_2}$ is a set for any $x_1,x_2:X$, i.e.\ $X$ is a 1-type.
+  In particular, if we define $Y:X\to\UU$ by $Y(x) \defeq (x_0=x)$, then each $Y(x)$ is a set.
+
+  Now by definition, for any $(A,p):X$ we have $\brck{\bool=A}$, and hence $\brck{x_0 = (A,p)}$.
+  Thus, we have $\prd{x:X} \brck{Y(x)}$.
+  If~\eqref{eq:epis-split} held for this $X$ and $Y$, then we would also have $\brck{\prd{x:X} Y(x)}$.
+  Since we are trying to derive a contradiction ($\emptyt$), which is a mere proposition, we may assume $\prd{x:X} Y(x)$, i.e.\ that $\prd{x:X} (x_0=x)$.
+  But this implies $X$ is a mere proposition, and hence a set, which is a contradiction.
+\end{proof}
+
+\index{denial|)}%
+\index{axiom!of choice|)}%
+
+\end{document}

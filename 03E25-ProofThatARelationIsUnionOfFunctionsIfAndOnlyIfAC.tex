@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofThatARelationIsUnionOfFunctionsIfAndOnlyIfAC}
+\pmcreated{2013-03-22 16:34:23}
+\pmmodified{2013-03-22 16:34:23}
+\pmowner{ratboy}{4018}
+\pmmodifier{ratboy}{4018}
+\pmtitle{proof that a relation is union of functions if and only if AC}
+\pmrecord{4}{38763}
+\pmprivacy{1}
+\pmauthor{ratboy}{4018}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\rng}{rng}
+
+\begin{document}
+\newtheorem*{theorem}{Theorem}
+
+\begin{theorem}
+A relation $R$ is the union of a set of functions each of which
+has the same domain as $R$ if and only if for each set $A$ of
+nonempty sets, there is a choice function on $A$.
+\end{theorem}
+\begin{proof}
+Suppose that $R$ is a relation with $\dom(R) = A \mbox{ and }
+\rng(R) \subseteq B$. Let $g \colon A \to \mathcal{P}(B)$ be given
+by $a \mapsto R\left[\{a\}\right]$. There is be a choice function
+$c$ on $g\left[A\right]$. Let $f = c \circ g$, and for each pair
+$\langle a,b\rangle \in R$, let $f_{ab}$ send $a$ to $b$ and agree
+with $f$ elsewhere. Let $F = \{f_{ab}\mid \langle a,b \rangle \in
+R\}$. Clearly $\bigcup F \subseteq A \times B$, so suppose
+$\langle u,v \rangle \in \bigcup F$; then there is a pair $\langle
+a,b\rangle \in R$ such that $\langle u,v \rangle \in f_{ab} \in
+F$. Either $\langle u,v \rangle = \langle a,b\rangle$, or $v =
+f(u) = c \circ g(u) = c(R\left[\{u\}\right]) \in
+R\left[\{u\}\right]$. In each case, $\langle u,v \rangle \in R$.
+Thus, $\bigcup F \subseteq R.$ For each pair $\langle a,b\rangle
+\in R$, $\langle a,b\rangle \in f_{ab} \in F$, so $R \subseteq
+\bigcup F$. Therefore, $R = \bigcup F$.
+\\
+Suppose that $A$ is  set of nonempty sets. Let $R = \bigcup
+\{\{a\} \times a \mid a \in A \}$. A set $x$ is an element of $
+\dom(R)$ if and only if $x \in \{a\}$ for some $a \in A$. Thus,
+$\dom(R) = A$. There is a set $F$ of functions, each of which has
+domain $A$, such that $R = \bigcup F$. Let $f \in F$; then
+$\dom(f) = A$, and for each pair $\langle a,f(a)\rangle \in f$,
+$\langle a,f(a)\rangle \in \{a\} \times a$; i.e., $f(a) \in a$.
+Each such $f$ is, thus, a choice function on $A$.
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

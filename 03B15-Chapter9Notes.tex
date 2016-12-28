@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chapter9Notes}
+\pmcreated{2013-11-06 16:48:05}
+\pmmodified{2013-11-06 16:48:05}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{Chapter 9 Notes}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\sectionNotes}{\phantomsection\section*{Notes}\addcontentsline{toc}{section}{Notes}\markright{\textsc{\@chapapp{} \thechapter{} Notes}}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+The original definition of categories, of course, was in set-theoretic foundations, so that the collection of objects of a category formed a set (or, for large categories, a class).
+Over time, it became clear that all ``category-theoretic'' properties of objects were invariant under isomorphism, and that equality of objects in a category was not usually a very useful notion.
+Numerous authors~\cite{blanc:eqv-log,freyd:invar-eqv,makkai:folds,makkai:comparing} discovered that a dependently typed logic enabled formulating the definition of category without invoking any notion of equality for objects, and that the statements provable in this logic are precisely the ``category-theoretic'' ones that are invariant under isomorphism.
+\index{evil}%
+
+Although most of category theory appears to be invariant under isomorphism of objects and under equivalence of categories, there are some interesting exceptions, which have led to philosophical discussions about what it means to be ``category-theoretic''.
+For instance, \autoref{ct:galois} was brought up by Peter May on the categories mailing list in May 2010, as a case where it matters that two categories (defined as usual in set theory) are isomorphic rather than only equivalent.
+The case of $\dagger$-categories was also somewhat confounding to those advocating an isomorphism-invariant version of category theory, since the ``correct'' notion of sameness between objects of a $\dagger$-category is not ordinary isomorphism but \emph{unitary} isomorphism.
+\index{isomorphism!invariance under}%
+
+The fact that categories satisfying the ``saturation'' or ``univalence'' principle as in \autoref{ct:category} are a good notion of category in univalent foundations occurred independently to Voevodsky, Shulman, and perhaps others around the same time, and was formalized by Ahrens and Kapulkin~\cite{aks:rezk}.
+This framework puts all the above examples in a unified context: some precategories are categories, others are strict categories, and so on.
+A general theorem that ``isomorphism implies equality'' for a large class of algebraic structures (assuming the univalence axiom) was proven by Coquand and Danielsson; the formulation of the structure identity principle in \autoref{sec:sip} is due to Aczel.
+
+Independently of philosophical considerations about category theory, Rezk~\cite{rezk01css} discovered that when defining a notion of $(\infty,1)$-cat\-e\-go\-ry,
+\index{.infinity1-category@$(\infty,1)$-category}%
+it was very convenient to use not merely a \emph{set} of objects with spaces of morphisms between them, but a \emph{space} of objects incorporating all the equivalences and homotopies between them.
+This yields a very well-behaved sort of model for $(\infty,1)$-categories as particular simplicial spaces, which Rezk called \emph{complete Segal spaces}.
+\index{complete!Segal space}%
+\index{Segal!space}%
+One especially good aspect of this model is the analogue of \autoref{ct:eqv-levelwise}: a map of complete Segal spaces is an equivalence just when it is a levelwise equivalence of simplicial spaces.
+
+When interpreted in Voevodsky's simplicial\index{simplicial!sets} set model of univalent foundations, our precategories are similar to a truncated analogue of Rezk's ``Segal spaces'', while our categories correspond to his ``complete Segal spaces''.
+\index{Segal!category}%
+Strict categories correspond instead to (a weakened and truncated version of) what are called ``Segal categories''.
+It is known that Segal categories and complete Segal spaces are equivalent models for $(\infty,1)$-categories (see e.g.~\cite{bergner:infty-one}), so that in the simplicial set model, categories and strict categories yield ``equivalent'' category theories---although as we have seen, the former still have many advantages.
+However, in the more general categorical semantics of a higher topos,
+\index{.infinity1-topos@$(\infty,1)$-topos}%
+a strict category corresponds to an internal category (in the traditional sense) in the corresponding 1-topos\index{topos} of sheaves, while a category corresponds to a \emph{stack}.
+\index{stack}%
+The latter are generally a more appropriate sort of ``category'' relative to a topos.
+
+In Rezk's context, what we have called the ``Rezk completion'' corresponds to fibrant replacement
+\index{fibrant replacement}
+in the model category for complete Segal spaces.
+Since this is built using a transfinite induction argument, it most closely matches our second construction as a higher inductive type.
+However, in higher topos models of homotopy type theory, the Rezk completion corresponds to \emph{stack completion},\index{completion!stack}\index{stack!completion} which can be constructed either with a transfinite induction~\cite{jt:strong-stacks} or using a Yoneda embedding \cite{bunge:stacks-morita-internal}.
+
+
+
+\end{document}

@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ModalLogicGL}
+\pmcreated{2013-03-22 19:35:33}
+\pmmodified{2013-03-22 19:35:33}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{modal logic GL}
+\pmrecord{19}{42582}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmclassification{msc}{03F45}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+The modal logic \textbf{GL} (after G\"odel and L\"ob) is the smallest normal modal logic containing the following schema:
+\begin{itemize}
+\item W: $\square (\square A \to A ) \to \square A$.
+\end{itemize}
+\textbf{GL} is also known as \emph{provability logic}, because it is used to study the provability and consistency of first order Peano arithmetic.
+
+Recall that 4 is the schema $\square A \to \square \square A$.
+\begin{prop} In any normal modal logic, $\vdash W$ implies $\vdash 4$. \end{prop}
+The proof of this requires some \PMlinkname{theorems}{SomeTheoremSchemasOfNormalModalLogic} and \PMlinkname{meta-theorems}{SyntacticPropertiesOfANormalModalLogic} of a normal modal logic.
+\begin{proof}  We start with the tautology $A \to ((\square \square A \land \square A) \to (\square A \land A))$, which an instance of the schema $X \to ((Y\land Z)\to (Z \land X))$.  Since $\square (\square A \land A) \leftrightarrow \square \square A \land \square A$ is a theorem in any normal modal logic, $A \to (\square (\square A \land A) \to (\square A\land A))$ is a theorem by the substitution theorem.  By the syntactic property RM, $\square A \to \square (\square (\square A \land A) \to (\square A\land A))$ is a theorem.  Since $\square (\square (\square A \land A) \to (\square A\land A)) \to \square (\square A \land A)$ is an instance of W, by law of syllogism, $\square A \to \square (\square A \land A)$ is a theorem.
+
+Next, from the tautology $\square A \land A \to \square A$, we have the theorem $\square (\square A\land A) \to \square \square A$ by RM.  Combining this with the last theorem in the previous paragraph, we see that, by law of syllogism, $\square A \to \square \square A$, or 4, is a theorem.
+\end{proof}
+
+\begin{cor} 4 is a theorem of \textbf{GL}. \end{cor}
+
+A binary relation is said to be \emph{converse well-founded} iff its inverse is well-founded.
+\begin{prop} W is valid in a frame $\mathcal{F}$ iff $\mathcal{F}$ is transitive and converse well-founded. \end{prop}
+\begin{proof}  
+Suppose first that the schema W is valid in $\mathcal{F}=(U,R)$, then any theorem of \textbf{GL} is valid in $\mathcal{F}$, so in particular 4 is valid in $\mathcal{F}$, and hence $\mathcal{F}$ is transitive (see \PMlinkname{here}{ModalLogicS4}).  We next show that $R$ is converse well-founded.  Suppose not.  Then there is a non-empty subset $S\subseteq U$ such that $S$ has no $R$-maximal element.  We want to find a model $(U,R,V)$ such that, for some propositional variable $p$ and some world $u$ in $U$, $\not \models_u \square (\square p \to p) \to \square p$, or equivalently, $\models_u \square (\square p\to p)$ and $\not \models_u \square p$.  Let $V$ be the valuation such that $V(p):=\lbrace w \in U \mid w \notin S \rbrace$.  Pick any $u\in S$.  Suppose $u R v$.  To show that $\models_u \square (\square p\to p)$, we want to show that $\models_v \square p \to p$.  There are two cases: 
+\begin{itemize}
+\item
+If $v\in S$, then $\not \models_v p$.  Furthermore, since $S$ does not contain an $R$-maximal element, there is a $w\in S$ such that $v R w$.  Since $w\in S$, $\not\models_w p$.  Since $v R w$, $\not \models_v \square p$.  As a result, $\models_v \square p \to p$.
+\item
+If $v\notin S$, then $\models_v p$, so that $\models_v \square p \to p$.
+\end{itemize}
+Next, we want to show that $\not \models_u \square p$.  Since $u\in S$, and $S$ does not have an $R$-maximal element, there is a $w\in S$ such that $u R w$.  Since $w\in S$, $\not \models_w p$.  But since $u R w$, $\not \models_u \square p$.
+
+Conversely, let $\mathcal{F}$ be a transitive and converse well-founded frame, $M$ a model based on $\mathcal{F}$, and $u$ a world in $M$.  We want to show that $\models_u \square (\square p\to p) \to \square p$.  So suppose $\not \models_u \square p$.  Then the set $S:=\lbrace v\mid u R v \mbox{ and } \not \models_v p \rbrace$ is not empty.  Since $R$ is converse well-founded, $S$ has a $R$-maximal element, say $w$.  So $u R w$ and $\not \models_w p$.  Now, if $\models_w \square p \to p$, then $\not \models_w \square p$, which means there is a $v$ such that $w R v$ and $\not \models_v p$.  But since $R$ is transitive and $u R w$, we get $u R v$, implying $v \in S$, contradicting the $R$-maximality of $w$.  Therefore, $\not \models_w \square p \to p$, or $\not \models_u \square (\square p \to p)$.  As a result, $\models_u \square (\square p \to p) \to \square p$.
+\end{proof}
+Proposition 2 immediately implies
+\begin{cor} \textbf{GL} is sound in the class of transitive and converse well-founded frames. \end{cor}
+
+\textbf{Remark}.  However, unlike many other modal logics, \textbf{GL} \emph{is not} complete in the class of transitive and converse well-founded frames.  While its canonical model (hence the corresponding canonical frame) is transitive (because 4 is valid in it), it is not converse well-founded.
+
+Instead, it can be shown that \textbf{GL} \emph{is} complete in the restricted class of finite transitive and converse well-founded frames, or equivalently, finite transitive and irreflexive frames.
+
+%%%%%
+%%%%%
+\end{document}

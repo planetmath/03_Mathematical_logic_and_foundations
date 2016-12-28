@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{WellfoundednessAndAxiomOfFoundation}
+\pmcreated{2013-03-22 17:25:34}
+\pmmodified{2013-03-22 17:25:34}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{well-foundedness and axiom of foundation}
+\pmrecord{6}{39800}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E30}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Recall that a relation $R$ on a class $C$ is well-founded if 
+\begin{enumerate}
+\item
+For any $x\in C$, the collection $\lbrace y\in C\mid yRx\rbrace$ is a set, and
+\item
+for any non-empty $B\subseteq C$, there is an element $z\in B$ such that if $yRz$, then $y\notin B$.  
+\end{enumerate}
+$z$ is called an $R$-minimal element of $B$.  It is clear that the membership relation $\in$ in the class of all sets satisfies the first condition above.
+
+\begin{thm} Given ZF, $\in$ is a well-founded relation iff the Axiom of Foundation (AF) is true. \end{thm}
+
+We will prove this using one of the equivalent versions of AF: for every non-empty set $A$, there is an $x\in A$ such that $x\cap A=\varnothing$.
+
+\begin{proof}
+Suppose $\in$ is well-founded and $A$ a non-empty set.  We want to find $x\in A$ such that $x\cap A=\varnothing$.  Since $\in$ is well-founded, there is a $\in$-minimal set $x$ such that $x\in A$.  Since no set $y$ such that $y\in x$ and $y\in A$ (otherwise $x$ would not be $\in$-minimal), we have that $x\cap A=\varnothing$.
+
+Conversely, suppose that AF is true.  Let $A$ be any non-empty set.  We want to find a $\in$-minimal element in $A$.  Let $x\in A$ such that $x\cap A=\varnothing$.  Then $x$ is $\in$-minimal in $A$, for otherwise there is $y\in A$ such that $y\in x$, which implies $y\in x\cap A=\varnothing$, a contradiction.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

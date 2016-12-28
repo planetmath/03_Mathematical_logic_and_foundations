@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CompositionPreservesChainCondition}
+\pmcreated{2013-03-22 12:54:40}
+\pmmodified{2013-03-22 12:54:40}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{composition preserves chain condition}
+\pmrecord{5}{33262}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E40}
+\pmclassification{msc}{03E35}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Let $\kappa$ be a regular cardinal.  Let $P$ be a forcing notion satisfying the $\kappa$ chain condition.  Let $\hat{Q}$ be a $P$-name such that $\Vdash_P \hat{Q}$\texttt{ is a forcing notion satisfying the }$\kappa$\texttt{ chain condition}.  Then $P*Q$ satisfies the $\kappa$ chain condition.
+
+\subsection*{Proof:}
+\subsection*{Outline}
+
+We prove that there is some $p$ such that any generic subset of $P$ including $p$ also includes $\kappa$ of the $p_i$.  Then, since $Q[G]$ satisfies the $\kappa$ chain condition, two of the corresponding $\hat{q}_i$ must be compatible.  Then, since $G$ is directed, there is some $p$ stronger than any of these which forces this to be true, and therefore makes two elements of $S$ compatible.
+
+
+Let $S=\langle p_i,\hat{q}_i\rangle_{i<\kappa}\subseteq P*Q$.
+
+\subsubsection*{Claim: There is some $p\in P$ such that $p\Vdash |\{i\mid p_i\in \hat{G}\}|=\kappa$}
+
+(Note: $\hat{G}=\{\langle p,p\rangle\mid p\in P\}$, hence $\hat{G}[G]=G$)
+
+If no $p$ forces this then every $p$ forces that it is not true, and therefore $\Vdash_P |\{i\mid p_i\in G\}|\leq\kappa$.  Since $\kappa$ is regular, this means that for any generic $G\subseteq P$, $\{i\mid p_i\in G\}$ is bounded.  For each $G$, let $f(G)$ be the least $\alpha$ such that $\beta<\alpha$ implies that there is some $\gamma>\beta$ such that $p_\gamma\in G$.  Define $B=\{\alpha\mid \alpha=f(G)\}$ for some $G$.
+
+\subsubsection*{Claim: $|B|<\kappa$}
+
+If $\alpha\in B$ then there is some $p_\alpha\in P$ such that $p\Vdash f(\hat{G})=\alpha$, and if $\alpha,\beta\in B$ then $p_\alpha$ must be incompatible with $p_\beta$.  Since $P$ satisfies the $\kappa$ chain condition, it follows that $|B|<\kappa$.
+
+\bigskip{}
+Since $\kappa$ is regular, $\alpha=\operatorname{sub}(B)<\kappa$.  But obviously $p_{\alpha+1}\Vdash p_{\alpha+1}\in \hat{G}$.  This is a contradiction, so we conclude that there must be some $p$ such that $p\Vdash |\{i\mid p_i\in \hat{G}\}|=\kappa$.
+
+\bigskip{}
+
+
+If $G\subseteq P$ is any generic subset containing $p$ then $A=\{\hat{q}_i[G]\mid p_i\in G\}$ must have cardinality $\kappa$.  Since $Q[G]$ satisfies the $\kappa$ chain condition, there exist $i,j<\kappa$ such that $p_i,p_j\in G$ and there is some $\hat{q}[G]\in Q[G]$ such that $\hat{q}[G]\leq\hat{q}_i[G],\hat{q}_j[G]$.  Then since $G$ is directed, there is some $p^\prime\in G$ such that $p^\prime\leq p_i,p_j,p$ and $p^\prime\Vdash \hat{q}[G]\leq\hat{q}_1[G],\hat{q}_2[G]$.  So $\langle p^\prime,\hat{q}\rangle\leq\langle p_i,\hat{q}_i\rangle,\langle p_j,\hat{q}_j\rangle$.
+%%%%%
+%%%%%
+\end{document}

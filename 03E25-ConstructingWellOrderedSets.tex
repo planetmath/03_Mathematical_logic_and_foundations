@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ConstructingWellOrderedSets}
+\pmcreated{2013-03-22 18:49:12}
+\pmmodified{2013-03-22 18:49:12}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{constructing well ordered sets}
+\pmrecord{9}{41622}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+\pmclassification{msc}{06A05}
+\pmdefines{well-orderable}
+\pmdefines{Hebrew lexicographic ordering}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A set $A$ \emph{well-orderable} if there is a well-ordering on $A$.  For example, the empty set $\varnothing$, is well-orderable, the well-ordering itself is $\varnothing$.  Similarly, any singleton has $\varnothing$ as the unique well-ordering, and is therefore well-orderable.  More generally, every finite set is well-orderable.  To construct a well-ordering on a finite set, pick any element from the set and designate the element to be the smallest element of the set.  Then, pick an element from the remaining collection, and make this element the next smallest element.  Keep doing this until every element has been picked and assigned.  Obviously, this process will not go on forever.  If there are $n$ elements in the set, there are $n!$ well-orderings on the set (since every well-ordering is a linear ordering).  
+
+By the axiom of choice, every set is well-orderable.  However, this does not provide us with an explicit way to construct the well-order.  For example, how does one well-order $\mathbb{R}$, the set of real numbers?  Nevertheless, given two well-ordered sets $(A,<_A),(B,<_B)$, one can explicitly construct well-orderings on the following sets, without AC.
+
+\begin{prop} $A\cup B$ is well-orderable. \end{prop}
+\begin{proof}  We may assume $A\cap B=\varnothing$, since $A\cap B=A \cap (A-B)$, and any subset of an well-ordered set is well-ordered.  Define a binary relation $<_{(A,B)}$ on $A\cup B$ as follows: for $x,y\in A\cup B$,
+\begin{displaymath}
+x<_{(A,B)} y \quad \mbox{iff} \quad \left\{
+\begin{array}{ll}
+x,y \in A \mbox{ and } x<_A y, \mbox{ or }\\
+x,y \in B \mbox{ and } x<_B y, \mbox{ or }\\
+x \in A \mbox{ and } y\in B.
+\end{array}
+\right.
+\end{displaymath}
+So $<_{(A,B)}$ is a (strict) linear ordering on $A\cup B$.  Furthermore, $<_{(A,B)}$ extends both $<_A$ and $<_B$.  If $X\subseteq A\cup B$, then the least element of $X$ with respect to $<_{(A,B)}$ is the least element of $X$ with respect to $<_B$ if $X\subseteq B$, or the least element of $X\cap A$ with respect to $<_A$, if $X\cap A\ne \varnothing$.  Hence $(A\cup B, <_{(A,B)})$ is a well-ordered set.
+\end{proof}
+
+\begin{prop} $A\times B$ is well-orderable. \end{prop}
+\begin{proof}  We may assume that $A,B$ are both non-empty, since the empty set is well-orderable.  Define $<_{A\times B}$ on $A\times B$ as follows:
+\begin{displaymath}
+(x_1,x_2) <_{A\times B} (y_1,y_2) \quad \mbox{iff} \quad \left\{
+\begin{array}{ll}
+y_1 <_B y_2, \mbox{ or }\\
+y_1=y_2 \mbox{ and } x_1 <_A x_2.
+\end{array}
+\right.
+\end{displaymath}
+Again, it is easy to see that $<_{A\times B}$ is a strict linear ordering on $A\times B$.  Next, let $X\subseteq A\times B$.  Define $X[A]:=\lbrace y\in B\mid (x,y)\in X \mbox{ for some }x\in A\rbrace$.  Let $b$ be the least element of $X[A]$.  Define $X^{-1}(b):=\lbrace x\in A\mid (x,b)\in X\rbrace$.  Let $a$ be the least element of $X^{-1}(b)$.  Then $(a,b)\in X$.  For any $(c,d)\in X$ distinct from $(a,b)$, since $d\in X[A]$, either $b<_B d$ or $b=d$.  In the first case, $(a,b)<_{A\times B} (c,d)$.  In the second case, $c\in X^{-1}(b)$, either $a <_B c$ or $a = c$.  In the first case, $(a,b) <_{A\times B} (c,d)$, and the second case is impossible for otherwise $(a,b)=(c,d)$.  Therefore $<_{A\times B})$ is a well-ordering on $A\times B$.
+\end{proof}
+
+\textbf{Remarks}.
+\begin{itemize}
+\item
+The ordering constructed in Proposition 2 is called the \emph{Hebrew lexicographic ordering}.  It is similar to the usual lexicographic ordering, except that the second coordinates are ordered first before the first coordinates.  The reason for choosing this ordering is to make the ordering on $A\times 2$ compatible with the ordering on $A \coprod A$, the disjoint union of $A$ with itself.  Had we chosen the lexicographic ordering instead, on, say, $\omega \times 2$, then every initial segment of it would be finite, whereas the initial segment of $(0,1)$ on $\omega \coprod \omega = (\omega \times \lbrace 0\rbrace) \cup (\omega \times \lbrace 1\rbrace)$ is infinite.
+\item
+The above constructions parallel the ordinal arithmetic: if $\alpha,\beta$ are ordinals such that $(A,<_A)\cong \alpha$ and $(B,<_B)\cong \beta$, then
+\begin{enumerate}
+\item $(A\cup B,<_{(A,B)})\cong \alpha+\beta$, provided that $A\cap B=\varnothing$,
+\item $(A\times B,<_{A\times B}) \cong \alpha\cdot \beta$,
+\end{enumerate}
+where $\cong$ denotes order isomorphism between well-ordered sets.
+\item
+One would hope that for well-ordered sets $A,B$, the set $B^A$ is well-orderable without resorting to AC.  However, this is not possible, and the best one can do is the following: if $B$ is linearly ordered, and $A$ well-ordered, then one can linearly order $B^A$ without AC:
+\begin{proof}  Let $C:=B^A$.  For $f,g: A\to B$, let $[f,g]:=\lbrace a\in A\mid f(a)<_B g(a)\rbrace$.  If $[f,g]\ne \varnothing$, it has a least element $\min[f,g]$.  Define $<_C$ on $C$ as follows, for any $f,g\in C$: 
+$$f <_C g \quad \mbox{iff} \quad [f,g]\ne \varnothing \mbox{ and } f(a)= g(a)\mbox{ for all }a <_A \min[f,g].$$
+If $f\ne g$, then $[f,g]\cup [g,f]\ne \varnothing$ so that $f <_C g$ or $g <_C f$.  
+To show that $<_C$ is transitive, suppose $f <_C g$ and $g <_C h$.  Let $b=\min[f,g]$ and $c=\min[g,h]$.  Then:
+\begin{itemize}
+\item if $b \le_A c$, then $f(b)<_B g(b) \le_B h(b)$, which implies $[f,h]\ne \varnothing$ and $\min[f,h]\le_A b$.  
+\item if $c <_A b$, then $f(c) = g(c) <_B h(c)$, which implies $[f,h]\ne\varnothing$ and $\min[f,h]\le_A c$.
+\end{itemize}
+In either case, $\min[f,h]\le_A \min(b,c)$.  Now, suppose $a<\min[f,h]$.  Then $f(a)=g(a)=h(a)$.  As a result, $f <_C h$.  \end{proof}
+\item
+In fact, it can be shown that the following are all equivalent to AC in ZF:
+\begin{enumerate}
+\item the well-ordering principle,
+\item if $A,B$ are well-orderable, so is $B^A$,
+\item if $A$ is well-orderable, so is $P(A)$, the powerset of $A$.
+\end{enumerate}
+\end{itemize}
+
+
+%%%%%
+%%%%%
+\end{document}

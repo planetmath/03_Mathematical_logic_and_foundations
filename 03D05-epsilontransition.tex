@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{epsilontransition}
+\pmcreated{2013-03-22 18:03:24}
+\pmmodified{2013-03-22 18:03:24}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{$\epsilon$-transition}
+\pmrecord{20}{40586}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmsynonym{$\epsilon$-automaton}{epsilontransition}
+\pmsynonym{epsilon-automaton}{epsilontransition}
+\pmsynonym{epsilon-transition}{epsilontransition}
+\pmsynonym{automaton with epsilon-transitions}{epsilontransition}
+\pmdefines{automaton with $\epsilon$-transitions}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $A=(S,\Sigma,\delta,I,F)$ be an automaton.  Recall that a transition of $A$ is a triple written in the form $$p \stackrel{\alpha}{\longrightarrow} q,$$ where $q$ is a next state of the configuration $(p,\alpha)$.  In other words, $q\in \delta(p,\alpha)$.  Here, $\alpha$ is a symbol in $\Sigma$.  
+
+The notion of transitions can be generalized so that $p\stackrel{a}{\longrightarrow} q$ iff $q\in \delta(p,a)$, where $a\in \Sigma^*$.  The definition of the extended transition function $\delta$ dictates that $p\stackrel{\lambda}{\longrightarrow} q$ implies $p=q$.  This means that if the empty word is fed into an automaton at any state $p$, the next state stays the same.  In other words, the automaton does nothing.
+
+An $\epsilon$-transition, informally, is a transition in an ``automaton'' that changes the initial state when an empty word is read.  This means, notationally, that $p\stackrel{\lambda}{\longrightarrow} q$ where $p$ is not necessarily $q$.  The double quotes around the word automaton is to signify the fact that when $\epsilon$-transitions are considered, the machine is no longer an automaton strictly speaking.  The ``$\epsilon$'' here refers to the empty word $\lambda$, which is sometimes denoted by $\epsilon$.
+
+The consequence of adding $\epsilon$-transitions is that the set of next states is potentially enlarged whenever a word is read, because at any point during the reading, a next state could result from an alphabet, or it could come from any of the next states by inserting several empty words after the alphabet.  Outwardly, the insertions of empty words into a word does not change the word itself.  However, the possibility of accepting the word is increased.  So the question is: does this ``automaton with $\epsilon$-transitoins'' offers more computing power than a traditional automaton?  Interestingly, the answer is no, and we will demonstrate this fact in this article.
+
+First, we need to define formally what $\epsilon$-transitions and automata with $\epsilon$-transitions are.
+
+\textbf{Definitions}.  There are several concepts that need to be formalized:
+\begin{enumerate}
+\item
+An \emph{automaton with $\epsilon$-transitions}, or \emph{$\epsilon$-automaton} for short, is a sextuple $$E:=(S,\Sigma,\delta,I,F,\epsilon)$$ such that $\epsilon\notin \Sigma$, and $E_{\epsilon}:=(S,\Sigma_{\epsilon}, \delta,I,F)$, where $\Sigma_{\epsilon}:=\Sigma\cup \lbrace \epsilon\rbrace$, is an automaton, called the automaton \emph{associated with} $E$.
+\item
+An \emph{$\epsilon$-transition} is a transition of $E_{\epsilon}$ of the form $p\stackrel{\epsilon}{\longrightarrow} q$.
+\item
+We define the language $L(E)$ accepted by an $\epsilon$-automaton $E$ to be the set of all words in $\Sigma^*$ that can be obtained from words accepted by $E_{\epsilon}$ by deleting any occurrences of $\epsilon$.  Formally, $$L(E):=h(L(E_{\epsilon})),$$ where $h:\Sigma_{\epsilon}^*\to \Sigma^*$ is the monoid homomorphism given by $h|\Sigma=1$ and $h(\epsilon)=\lambda$.  It is easy to see, by induction, that $$h(a)=\alpha_1\alpha_2\cdots \alpha_n \qquad \mbox{ iff } \qquad a= \epsilon^{i_0}\alpha_1\epsilon^{i_1}\alpha_2 \epsilon^{i_2}\cdots \epsilon^{i_{n-1}}\alpha_n \epsilon^{i_n},$$ where $\alpha_j\in \Sigma$, $j=1,2,\ldots,n$.
+\item
+We say that an $\epsilon$-automaton $E$ is \emph{equivalent} to an automaton $A$ if $L(E)=L(A)$.  It is not hard to see that every $\epsilon$-automaton is equivalent to an automaton (\PMlinkname{proof here}{EveryEpsilonAutomatonIsEquivalentToAnAutomaton}).
+\end{enumerate}
+
+\textbf{Remark}.  $\epsilon$-transitions are useful in proving the two properties of regular languages: 1. if two languages are regular, so is their juxtaposition (see proof \PMlinkname{here}{JuxtapositionOfAutomata}), and 2. if a language is regular, so is its Kleene star (see proof \PMlinkname{here}{KleeneStarOfAnAutomaton}).
+%%%%%
+%%%%%
+\end{document}

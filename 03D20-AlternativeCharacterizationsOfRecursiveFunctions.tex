@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AlternativeCharacterizationsOfRecursiveFunctions}
+\pmcreated{2013-03-22 14:34:42}
+\pmmodified{2013-03-22 14:34:42}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{alternative characterizations of recursive functions}
+\pmrecord{12}{36139}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmdefines{minimized inversion}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+The class of recursive functions may be characterized by considerably weaker conditions than those given in the entry ``\PMlinkname{recursive function}{RecursiveFunction}'' of this encyclopaedia.  This entry will discuss several such characterizations.
+
+Criteria 2 and 3 in the list may be replaced by the considerably weaker criterion:
+
+2') The successor function $S \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ defined as $S(x) = x+1$ is a recursive function.
+
+By means of a pairing function, the definition may be simplified considerably.   Using such a function and its inverses, the set of recursive functions of $m$ variables may be put in one-to-one correspondence with recursive functions of $n$ variables for any pair of non-zero positive integers $m$ and $n$.  Hence one can focus attention on recursive functions of a small fixed number of variables.  One characterization of recursive functions of not more than two variables is the following:
+
+The class of recursive functions is the smallest class of positive integer valued functions of not more than two positive integers which satisfies the following criteria:
+
+\begin{enumerate}
+\item[1'] The constant function $c: \mathbb{Z}_+ \to \mathbb{Z}_+$ defined by $c(x) = 1$ for all $x \in \mathbb{Z}_+$ is a recursive function.
+\item[2']  The successor function $S \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ defined as $S(x) = x+1$ is a recursive function.
+\item[3'] The projection functions $I^1_1 \colon \mathbb{Z}_+ \to \mathbb{Z}_+$, $I^2_1 \colon \mathbb{Z}_+^2 \to \mathbb{Z}_+$, and $I^2_2 \colon \mathbb{Z}_+^2 \to \mathbb{Z}_+$ defined as
+ $$I^1_1 (x) = x$$ 
+ $$I^2_1 (x,y) = x$$ 
+ $$I^2_2 (x,y) = y$$ 
+are recursive functions.
+\item[4'] If $a \colon \mathbb{Z}_+^2 \to \mathbb{Z}_+$, $b \colon \mathbb{Z}_+^2 \to \mathbb{Z}_+$, $c \colon \mathbb{Z}_+^2 \to \mathbb{Z}_+$ ,$d \colon \mathbb{Z}_+ \to \mathbb{Z}_+$, and $e \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ are recursive functions, then $f \colon \mathbb{Z}_+^2 \to \mathbb{Z}_+$, $g \colon \mathbb{Z}_+ \to \mathbb{Z}_+$, and $h \colon \mathbb{Z}_+^2 \to \mathbb{Z}_+$, defined by
+ $$f(x,y) = d(a(x,y))$$
+ $$g(x) = a(d(x),e(y))$$
+ $$h(x,y) = a(b(x,y),c(x,y))$$
+are recursive functions.
+\item[5'] If $f \colon \mathbb{Z}_+ \to \mathbb{Z}_+$, $g \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ are recursive functions, then the function $h \colon \mathbb{Z}_+^2 \to \mathbb{Z}_+$ defined by the recursion
+ $$h(n+1,x) = g(h(n,x))$$
+with the initial condition
+ $$h(0,x) = f(x)$$
+is a recursive function.
+\item[6'] If $f \colon \mathbb{Z}_+^2 \to \mathbb{Z}_+$ is a recursive function then $g \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ is a recursive function, where $g(x)$ is defined to equal $y$ if there exists a $y \in \mathbb{Z}_+$ such that 
+\begin{enumerate}
+\item $f(0, x), f(1, x), \ldots f(y, x)$ are all defined, 
+\item $f(z, x) \ne 0$ when $1 \le z <y$, and 
+\item $f(y, x) = 0$.
+\end{enumerate}
+Otherwise, $g(x)$ is undefined.
+\end{enumerate}
+
+The criterion 5' may be shown to follow from the remaining criteria, and hence it may be dropped.
+
+By further exploiting the marvelous properties of the pairing function, criterion 6' may be replaced by the following:
+
+6'') If $f \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ is a recursive function then $g \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ is a recursive function, where $g(x)$ is defined to equal $y$  if there exists a $y \in \mathbb{Z}_+$ such that 
+\begin{enumerate}
+\item[a] $f(0), f(1), \ldots f(y)$ are all defined, 
+\item[b] $f(z) \ne x$ when $1 \le z <y$, and 
+\item[c] $f(y) = x$.
+\end{enumerate}
+Otherwise, $g(x)$ is undefined.
+
+The operation introduced in this new criterion is called \emph{minimized inversion} and will be denoted as $g = f^{-1}$.  Note that there is no conflict with the usual notion of inverse of a function because, if $f$ is invertible, the minimized inverse of $f$ is the same as the inverse of $f$ in the usual sense; otherwise the notion of minimized inverse extends the definition of inverse to a larger class of functions.
+
+Finally, by taking these ideas even further, Czirmaz showed that recursive functions of a single variable had the following simple characterization:
+
+The class of recursive functions is the smallest class of positive integer valued functions of a positive integer which satisfies the following criteria:
+\begin{enumerate}
+\item[1''] The constant function $c: \mathbb{Z}_+ \to \mathbb{Z}_+$ defined by $c(x) = 1$ for all $x \in \mathbb{Z}_+$ is a recursive function.
+\item[2'']  The successor function $S \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ defined as $S(x) = x+1$ is a recursive function.
+\item[3'']  The function $Q \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ defined as $Q(x) = x - \lceil \sqrt{x} \rceil^2$ is a recursive function.  In words, $Q(x)$ is the difference between $x$ and the largest square number smaller than $x$.
+\item[4'']  If $f \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ and $g \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ are recursive functions, then $h \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ is a recursive function, where
+ $$h(x) = f(g(x))$$
+\item[6''] If $f \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ is a recursive function then $g \colon \mathbb{Z}_+ \to \mathbb{Z}_+$ is a recursive function, where $g(x)$ is defined to equal $y$  if there exists a $y \in \mathbb{Z}_+$ such that \begin{enumerate}
+\item[a] $f(0), f(1), \ldots f(y)$ are all defined, 
+\item[b] $f(z) \ne x$ when $1 \le z <y$, and 
+\item[c] $f(y) = x$.
+\end{enumerate}
+Otherwise, $g(x)$ is undefined.
+\end{enumerate}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A211Definitions}
+\pmcreated{2013-11-09 5:44:46}
+\pmmodified{2013-11-09 5:44:46}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.11 Definitions}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\isequiv}{\ensuremath{\mathsf{isequiv}}}
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\narrowbreak}{}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+\index{definition}%
+
+Although the rules we listed so far allows us to construct everything we need directly, we
+would still like to be able to use named constants, such as $\isequiv$, as a matter of
+convenience. Informally, we can think of these constants simply as
+abbreviations, but the situation is a bit subtler in the formalization.
+
+For example, consider function composition, which takes $f:A\to B$ and
+$g:B\to C$ to $g\circ f:A\to C$. Somewhat unexpectedly, to make this work formally, $\circ$ must take as arguments not only $f$ and $g$, but also their types $A$, $B$, $C$:
+%
+\begin{narrowmultline*}
+  {\circ} \defeq \lam{A:\UU_i}{B:\UU_i}{C:\UU_i}
+  \narrowbreak
+  \lam{g:B\to C}{f:A\to B}{x:A} g(f(x)).
+\end{narrowmultline*}
+%
+From a practical perspective, we do not want to annotate each application of
+$\circ$ with $A$, $B$ and $C$, as the are usually quite easily guessed from surrounding information. We would like to simply write $g\circ f$.
+Then, strictly speaking, $g \circ f$ is not an abbreviation for $\lam{x : A} g(f(x))$,
+because it involves additional \define{implicit arguments} which we want to suppress.
+\index{implicit argument}
+
+Inference of implicit arguments, typical ambiguity\index{typical ambiguity} (\PMlinkname{\S 1.3}{13universesandfamilies}),
+ensuring that symbols are only defined once, etc., are collectively called
+\define{elaboration}. \index{elaboration, in type theory}
+Elaboration must take place prior to checking a derivation, and is
+thus not usually presented as part of the core type theory. However, it is
+essentially impossible to use any implementation of type theory which does not
+perform elaboration; see \cite{Coq,norell2007towards} for further discussion.
+
+
+\end{document}

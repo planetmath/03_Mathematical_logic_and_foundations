@@ -1,0 +1,169 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{32PropositionsAsTypes}
+\pmcreated{2013-11-17 18:45:02}
+\pmmodified{2013-11-17 18:45:02}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{3.2 Propositions as types?}
+\pmrecord{3}{87649}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bfalse}{{0_{\bool}}}
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\btrue}{{1_{\bool}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\happly}{\mathsf{happly}}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\inr}{\ensuremath\inrsym\xspace}
+\newcommand{\inrsym}{{\mathsf{inr}}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\mapdep}[2]{\ensuremath{\mapdepfunc{#1}\mathopen{}\left(#2\right)\mathclose{}}\xspace}
+\newcommand{\mapdepfunc}[1]{\ensuremath{\mathsf{apd}_{#1}}\xspace} 
+\newcommand{\narrowbreak}{}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ua}{\ensuremath{\mathsf{ua}}\xspace} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{3.2.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{3.2.\arabic{mathcount}}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{3.2.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{3.2.\arabic{mathcount}}
+\let\apd\mapdep
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+\index{proposition!as types|(}%
+\index{logic!constructive vs classical|(}%
+\index{anger|(}%
+Until now, we have been following the straightforward ``propositions as types'' philosophy described in \PMlinkname{\S 1.11}{111propositionsastypes}, according to which English phrases such as ``there exists an $x:A$ such that $P(x)$'' are interpreted by corresponding types such as $\sm{x:A} P(x)$, with the proof of a statement being regarded as judging some specific element to inhabit that type.
+However, we have also seen some ways in which the ``logic'' resulting from this reading seems unfamiliar to a classical mathematician.
+For instance, in \PMlinkname{Theorem 2.15.7}{215universalproperties#Thmprethm3} we saw that the statement
+\index{axiom!of choice!type-theoretic}%
+\begin{myeqn}\label{eq:english-ac}
+  \parbox{\textwidth-2cm}{``If for all $x:X$ there exists an $a:A(x)$ such that $P(x,a)$, then there exists a function $g:\prd{x:A} A(x)$ such that for all $x:X$ we have $P(x,g(x))$,''}
+\end{myeqn}
+which looks like the classical\index{mathematics!classical} \emph{axiom of choice}, is always true under this reading. This is a noteworthy, and often useful, feature of the propositions-as-types logic, but it also illustrates how significantly it differs from the classical interpretation of logic, under which the axiom of choice is not a logical truth, but an additional ``axiom''.
+
+On the other hand, we can now also show that corresponding statements looking like the classical \emph{law of double negation} and \emph{law of excluded middle} are incompatible with the univalence axiom.
+\index{univalence axiom}%
+
+\begin{thm}\label{thm:not-dneg}
+  \index{double negation, law of}%
+  It is not the case that for all $A:\UU$ we have $\neg(\neg A) \to A$.
+\end{thm}
+\begin{proof}
+  Recall that $\neg A \jdeq (A\to\emptyt)$.
+  We also read ``it is not the case that \dots'' as the operator $\neg$.
+  Thus, in order to prove this statement, it suffices to assume given some $f:\prd{A:\UU} (\neg\neg A \to A)$ and construct an element of \emptyt.
+
+  The idea of the following proof is to observe that $f$, like any function in type theory, is ``continuous''.
+  \index{continuity of functions in type theory@``continuity'' of functions in type theory}%
+  \index{functoriality of functions in type theory@``functoriality'' of functions in type theory}%
+  By univalence, this implies that $f$ is \emph{natural} with respect to equivalences of types.
+  From this, and a fixed-point-free autoequivalence\index{automorphism!fixed-point-free}, we will be able to extract a contradiction.
+
+  Let $e:\eqv\bool\bool$ be the equivalence defined by $e(\btrue)\defeq\bfalse$ and $e(\bfalse)\defeq\btrue$, as in \PMlinkname{Example 3.1.9}{31setsandntypes#Thmpreeg6}.
+  Let $p:\bool=\bool$ be the path corresponding to $e$ by univalence, i.e.\ $p\defeq \ua(e)$.
+  Then we have $f(\bool) : \neg\neg\bool \to\bool$ and
+  \[\apd f p : \transfib{A\mapsto (\neg\neg A \to A)}{p}{f(\bool)} = f(\bool).\]
+  Hence, for any $u:\neg\neg\bool$, we have
+  \[\happly(\apd f p,u) : \transfib{A\mapsto (\neg\neg A \to A)}{p}{f(\bool)}(u) = f(\bool)(u).\]
+
+  Now by~\PMlinkname{(2.9.4)}{29pitypesandthefunctionextensionalityaxiom#S0.E3}, transporting $f(\bool):\neg\neg\bool\to\bool$ along $p$ in the type family ${A\mapsto (\neg\neg A \to A)}$ is equal to the function which transports its argument along $\opp p$ in the type family $A\mapsto \neg\neg A$, applies $f(\bool)$, then transports the result along $p$ in the type family $A\mapsto A$:
+  \begin{narrowmultline*}
+    \transfib{A\mapsto (\neg\neg A \to A)}{p}{f(\bool)}(u) =
+    \narrowbreak
+    \transfib{A\mapsto A}{p}{f(\bool) (\transfib{A\mapsto \neg\neg
+        A}{\opp{p}}{u})}
+  \end{narrowmultline*}
+  %
+  However, any two points $u,v:\neg\neg\bool$ are equal by function extensionality, since for any $x:\neg\bool$ we have $u(x):\emptyt$ and thus we can derive any conclusion, in particular $u(x)=v(x)$.
+  Thus, we have $\transfib{A\mapsto \neg\neg A}{\opp{p}}{u} = u$, and so from $\happly(\apd f p,u)$ we obtain an equality
+  \[ \transfib{A\mapsto A}{p}{f(\bool)(u)} = f(\bool)(u).\]
+  Finally, as discussed in \PMlinkname{\S 2.10}{210universesandtheunivalenceaxiom}, transporting in the type family $A\mapsto A$ along the path $p\jdeq \ua(e)$ is equivalent to applying the equivalence $e$; thus we have
+  \begin{myeqn}
+    e(f(\bool)(u)) = f(\bool)(u).\label{eq:fpaut}
+  \end{myeqn}
+  %
+  However, we can also prove that
+  \begin{myeqn}
+    \prd{x:\bool} \neg(e(x)=x).\label{eq:fpfaut}
+  \end{myeqn}
+  This follows from a case analysis on $x$: both cases are immediate from the definition of $e$ and the fact that $\bfalse\neq\btrue$ (\PMlinkname{Remark 2.12.6}{212coproducts#Thmprermk1}).
+  Thus, applying~\eqref{eq:fpfaut} to $f(\bool)(u)$ and~\eqref{eq:fpaut}, we obtain an element of $\emptyt$.
+\end{proof}
+
+\begin{rmk}
+  \index{choice operator}%
+  \indexsee{operator!choice}{choice operator}%
+  In particular, this implies that there can be no Hilbert-style ``choice operator'' which selects an element of every nonempty type.
+  The point is that no such operator can be \emph{natural}, and under the univalence axiom, all functions acting on types must be natural with respect to equivalences.
+\end{rmk}
+
+\begin{rmk}
+  It is, however, still the case that $\neg\neg\neg A \to \neg A$ for any $A$; see \PMlinkexternal{Exercise 1.11}{http://planetmath.org/node/87564}.
+\end{rmk}
+
+\begin{cor}\label{thm:not-lem}
+  \index{excluded middle}%
+  It is not the case that for all $A:\UU$ we have $A+(\neg A)$.
+\end{cor}
+\begin{proof}
+  Suppose we had $g:\prd{A:\UU} (A+(\neg A))$.
+  We will show that then $\prd{A:\UU} (\neg\neg A \to A)$, so that we can apply \PMlinkname{Theorem 3.2.2}{32propositionsastypes#Thmprethm1}.
+  Thus, suppose $A:\UU$ and $u:\neg\neg A$; we want to construct an element of $A$.
+
+  Now $g(A):A+(\neg A)$, so by case analysis, we may assume either $g(A)\jdeq \inl(a)$ for some $a:A$, or $g(A)\jdeq \inr(w)$ for some $w:\neg A$.
+  In the first case, we have $a:A$, while in the second case we have $u(w):\emptyt$ and so we can obtain anything we wish (such as $A$).
+  Thus, in both cases we have an element of $A$, as desired.
+\end{proof}
+
+Thus, if we want to assume the univalence axiom (which, of course, we do) and still leave ourselves the option of classical\index{mathematics!classical} reasoning (which is also desirable), we cannot use the unmodified propositions-as-types principle to interpret \emph{all} informal mathematical statements into type theory, since then the law of excluded middle would be false.
+However, neither do we want to discard propositions-as-types entirely, because of its many good properties (such as simplicity, constructivity, and computability).
+We now discuss a modification of propositions-as-types which resolves these problems; in \PMlinkname{\S 3.10}{310whenarepropositionstruncated} we will return to the question of which logic to use when.
+\index{anger|)}%
+\index{proposition!as types|)}%
+\index{logic!constructive vs classical|)}%
+
+
+\end{document}

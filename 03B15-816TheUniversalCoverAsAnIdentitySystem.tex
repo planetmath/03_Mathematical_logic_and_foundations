@@ -1,0 +1,135 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{816TheUniversalCoverAsAnIdentitySystem}
+\pmcreated{2013-11-06 2:39:37}
+\pmmodified{2013-11-06 2:39:37}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.1.6 The universal cover as an identity system}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\base}{\ensuremath{\mathsf{base}}\xspace}
+\newcommand{\code}{\ensuremath{\mathsf{code}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\lloop}{\ensuremath{\mathsf{loop}}\xspace}
+\newcommand{\narrowbreak}{}
+\newcommand{\pairpath}{\ensuremath{\mathsf{pair}^{\mathord{=}}}\xspace}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{8.1.\arabic{mathcount}}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{8.1.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+Note that the fibration $\code:\Sn^1\to\type$ together with $0:\code(\base)$ is a \emph{pointed predicate} in the sense of \autoref{defn:identity-systems}.
+From this point of view, we can see that the encode-decode proof in \autoref{subsec:pi1s1-encode-decode} consists of proving that \code satisfies \autoref{thm:identity-systems}\ref{item:identity-systems3}, while the homotopy-theoretic proof in \autoref{subsec:pi1s1-homotopy-theory} consists of proving that it satisfies \autoref{thm:identity-systems}\ref{item:identity-systems4}.
+This suggests a third approach.
+
+\begin{thm}
+  The pair $(\code,0)$ is an identity system at $\base:\Sn^1$ in the sense of \autoref{defn:identity-systems}.
+\end{thm}
+\begin{proof}
+  Let $D:\prd{x:\Sn^1} \code(x) \to \type$ and $d:D(\base,0)$ be given; we want to define a function $f:\prd{x:\Sn^1}{c:\code(x)} D(x,c)$.
+  By circle induction, it suffices to specify $f(\base):\prd{c:\code(\base)} D(\base,c)$ and verify that $\trans{\lloop}{f(\base)} = f(\base)$.
+
+  Of course, $\code(\base)\jdeq \Z$.
+  By \autoref{lem:transport-s1-code} and induction on $n$, we may obtain a path $p_n : \transfib{\code}{\lloop^n}{0} = n$ for any integer $n$.
+  Therefore, by paths in $\Sigma$-types, we have a path $\pairpath(\lloop^n,p_n) : (\base,0) = (\base,n)$ in $\sm{x:\Sn^1} \code(x)$.
+  Transporting $d$ along this path in the fibration $\widehat{D}:(\sm{x:\Sn^1} \code(x)) \to\type$ associated to $D$, we obtain an element of $D(\base,n)$ for any $n:\Z$.
+  We define this element to be $f(\base)(n)$:
+  \[ f(\base)(n) \defeq \transfib{\widehat{D}}{\pairpath(\lloop^n,p_n)}{d}. \]
+  %
+  Now we need $\transfib{\lam{x} \prd{c:\code(x)} D(x,c)}{\lloop}{f(\base)} = f(\base)$.
+  By \autoref{thm:dpath-forall}, this means we need to show that for any $n:\Z$,
+  %
+  \begin{narrowmultline*}
+    \transfib{\widehat D}{\pairpath(\lloop,\refl{\trans\lloop n})}{f(\base)(n)} 
+    =_{D(\base,\trans\lloop n)} \narrowbreak
+    f(\base)(\trans\lloop n).
+  \end{narrowmultline*}
+  %
+  Now we have a path $q:\trans\lloop n = n+1$, so transporting along this, it suffices to show
+  \begin{multline*}
+    \transfib{D(\base)}{q}{\transfib{\widehat D}{\pairpath(\lloop,\refl{\trans\lloop n})}{f(\base)(n)}}\\
+    =_{D(\base,n+1)} \transfib{D(\base)}{q}{f(\base)(\trans\lloop n)}.
+  \end{multline*}
+  By a couple of lemmas about transport and dependent application, this is equivalent to
+  \[ \transfib{\widehat D}{\pairpath(\lloop,q)}{f(\base)(n)} =_{D(\base,n+1)} f(\base)(n+1). \]
+  However, expanding out the definition of $f(\base)$, we have
+  \begin{narrowmultline*}
+    \transfib{\widehat D}{\pairpath(\lloop,q)}{f(\base)(n)}
+    \narrowbreak
+    \begin{aligned}[t]
+      &= \transfib{\widehat D}{\pairpath(\lloop,q)}{\transfib{\widehat{D}}{\pairpath(\lloop^n,p_n)}{d}}\\
+      &= \transfib{\widehat D}{\pairpath(\lloop^n,p_n) \ct \pairpath(\lloop,q)}{d}\\
+      &= \transfib{\widehat D}{\pairpath(\lloop^{n+1},p_{n+1})}{d}\\
+      &= f(\base)(n+1).
+    \end{aligned}
+  \end{narrowmultline*}
+  We have used the functoriality of transport, the characterization of composition in $\Sigma$-types (which was an exercise for the reader), and a lemma relating $p_n$ and $q$ to $p_{n+1}$ which we leave it to the reader to state and prove.
+  
+  This completes the construction of $f:\prd{x:\Sn^1}{c:\code(x)} D(x,c)$.
+  Since
+  \[f(\base,0) \jdeq \trans{\pairpath(\lloop^0,p_0)}{d} = \trans{\refl{\base}}{d} = d,\]
+  we have shown that $(\code,0)$ is an identity system.
+\end{proof}
+
+\begin{cor}
+  For any $x:\Sn^1$, we have $\eqv{(\base=x)}{\code(x)}$.
+\end{cor}
+\begin{proof}
+  By \autoref{thm:identity-systems}.
+\end{proof}
+
+Of course, this proof also contains essentially the same elements as the previous two.
+Roughly, we can say that it unifies the proofs of \autoref{thm:pi1s1-decode},\autoref{lem:s1-encode-decode}, performing the requisite inductive argument only once in a generic case.
+
+
+
+\end{document}

@@ -1,0 +1,268 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{15ProductTypes}
+\pmcreated{2013-11-13 18:00:07}
+\pmmodified{2013-11-13 18:00:07}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.5 Product types}
+\pmrecord{19}{87541}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\fst}{\ensuremath{\proj1}\xspace}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\snd}{\ensuremath{\proj2}\xspace}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\newcommand{\tup}[2]{(#1,#2)}
+\newcommand{\un}{\ensuremath{\mathsf{upun}}\xspace} 
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\uppt}{\ensuremath{\mathsf{uppt}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\let\autoref\cref
+\makeatother
+
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{1.5.\arabic{mathcount}}
+\renewcommand{\theequation}{1.5.\arabic{mathcount}}
+\begin{document}
+
+Given types $A,B:\UU$ we introduce the type $A\times B:\UU$, which we call their \define{cartesian product}.
+\indexsee{cartesian product}{type, product}%
+\indexsee{type!cartesian product}{type, product}%
+\index{type!product|(defstyle}%
+\indexsee{product!of types}{type, product}%
+We also introduce a nullary product type, called the \define{unit type} $\unit : \UU$.
+\indexsee{nullary!product}{type, unit}%
+\indexsee{unit!type}{type, unit}%
+\index{type!unit|(defstyle}%
+We intend the elements of $A\times B$ to be pairs $\tup{a}{b} : A \times B$, where $a:A$ and $b:B$, and the only element of $\unit$ to be some particular object $\ttt : \unit$.
+\indexdef{pair!ordered}%
+However, unlike in set theory, where we define ordered pairs to be particular sets and then collect them all together into the cartesian product, in type theory, ordered pairs are a primitive concept, as are functions.   
+
+\begin{rmk}\label{rmk:introducing-new-concepts}
+  There is a general pattern for introduction of a new kind of type in type theory, and because products are our second example following this pattern,\footnote{The description of universes above is an exception.} it is worth emphasizing the general form:
+  To specify a type, we specify:
+  \begin{enumerate}
+  \item how to form new types of this kind, via \define{formation rules}.
+    \indexdef{formation rule}%
+    \index{rule!formation}%  
+(For example, we can form the function type $A \to B$ when $A$ is a type and when $B$ is a type. We can form the dependent function type $\prd{x:A} B(x)$ when $A$ is a type and $B(x)$ is a type for $x:A$.)
+
+  \item how to construct elements of that type.  
+    These are called the type's \define{constructors} or \define{introduction rules}.
+    \indexdef{constructor}%
+    \indexdef{rule!introduction}%
+    \indexdef{introduction rule}%
+    (For example, a function type has one constructor, $\lambda$-abstraction.
+    Recall that a direct definition like $f(x)\defeq 2x$ can equivalently be phrased
+    as a $\lambda$-abstraction $f\defeq \lam{x} 2x$.)
+
+  \item how to use elements of that type.  
+    These are called the type's \define{eliminators} or \define{elimination rules}.
+    \indexsee{rule!elimination}{eliminator}%
+    \indexsee{elimination rule}{eliminator}%
+    \indexdef{eliminator}%
+    (For example, the function type has one eliminator, namely function application.)
+
+  \item 
+    a \define{computation rule}\indexdef{computation rule}\footnote{also referred to as \define{$\beta$-reduction}\index{beta-reduction@$\beta $-reduction|footstyle}}, which expresses how an eliminator acts on a constructor.
+(For example, for functions, the computation rule states that $(\lamu{x:A}\Phi)(a)$ is judgmentally equal to the substitution of $a$ for $x$ in $\Phi$.)
+
+  \item 
+    an optional \define{uniqueness principle}\indexdef{uniqueness!principle}\footnote{also referred to as \define{$\eta$-expansion}\index{eta-expansion@$\eta $-expansion|footstyle}}, which expresses
+uniqueness of maps into or out of that type.  
+For some types, the uniqueness principle characterizes maps into the type, by stating that 
+every element of the type is uniquely determined by the results of applying eliminators to it, and can be reconstructed from those results by applying a constructor---thus expressing how constructors act on eliminators, dually to the computation rule.  
+(For example, for functions, the uniqueness principle says that any function $f$ is judgmentally equal to the ``expanded'' function $\lamu{x} f(x)$, and thus is uniquely determined by its values.)
+For other types, the uniqueness principle says that every map (function) \emph{from} that type is uniquely determined by some data. (An example is the coproduct type introduced in \PMlinkname{\S 1.7}{17coproducttypes}, whose uniqueness principle is mentioned in \PMlinkname{\S 2.15}{215universalproperties}.)  
+    
+    When the uniqueness principle is not taken as a rule of judgmental equality, it is often nevertheless provable as a \emph{propositional} equality from the other rules for the type.
+    In this case we call it a \define{propositional uniqueness principle}.
+    \indexdef{uniqueness!principle, propositional}%
+    \indexsee{propositional!uniqueness principle}{uniqueness principle, propositional}%
+    (In later chapters we will also occasionally encounter \emph{propositional computation rules}.)
+    \indexdef{computation rule!propositional}%
+  \end{enumerate}
+The inference rules in \PMlinkname{\S A.3}{a3homotopytypetheory} are organized and named accordingly; see, for example, \PMlinkname{\S A.2.4}{a24dependentfunctiontypespitypes}, where each possibility is realized.
+\end{rmk}
+
+The way to construct pairs is obvious: given $a:A$ and $b:B$, we may form $(a,b):A\times B$.
+Similarly, there is a unique way to construct elements of $\unit$, namely we have $\ttt:\unit$.
+We expect that ``every element of $A\times B$ is a pair'', which is the uniqueness principle for products; we do not assert this as a rule of type theory, but we will prove it later on as a propositional equality.
+
+Now, how can we \emph{use} pairs, i.e.\ how can we define functions out of a product type?
+Let us first consider the definition of a non-dependent function $f : A\times B \to C$.
+Since we intend the only elements of $A\times B$ to be pairs, we expect to be able to define such a function by prescribing the result
+when $f$ is applied to a pair $\tup{a}{b}$.
+We can prescribe these results by providing a function $g : A \to B \to C$.
+Thus, we introduce a new rule (the elimination rule for products), which says that for any such $g$, we can define a function $f : A\times B \to C$ by
+\[ f(\tup{a}{b}) \defeq g(a)(b). \]
+We avoid writing $g(a,b)$ here, in order to emphasize that $g$ is not a function on a product.
+(However, later on in the book we will often write $g(a,b)$ both for functions on a product and for curried functions of two variables.)
+This defining equation is the computation rule for product types\index{computation rule!for product types}.
+
+Note that in set theory, we would justify the above definition of $f$ by the fact that every element of $A\times B$ is a pair, so that it suffices to define $f$ on pairs.
+By contrast, type theory reverses the situation: we assume that a function on $A\times B$ is well-defined as soon as we specify its values on tuples, and from this (or more precisely, from its more general version for dependent functions, below) we will be able to \emph{prove} that every element of $A\times B$ is a pair.
+From a category-theoretic perspective, we can say that we define the product $A\times B$ to be left adjoint to the ``exponential'' $B\to C$, which we have already introduced.
+
+As an example, we can derive the \define{projection}
+\indexsee{function!projection}{projection}%
+\indexsee{component, of a pair}{projection}%
+\indexdef{projection!from cartesian product type}%
+functions
+\symlabel{defn:proj}%
+\begin{align*}
+  \fst & :  A \times B \to A \\
+  \snd & :  A \times B \to B
+\end{align*}
+with the defining equations 
+\begin{align*}
+  \fst(\tup{a}{b}) & \defeq  a \\
+  \snd(\tup{a}{b}) & \defeq  b.
+\end{align*}
+%
+\symlabel{defn:recursor-times}%
+Rather than invoking this principle of function definition every time we want to define a function, an alternative approach is to invoke it once, in a universal case, and then simply apply the resulting function in all other cases.
+That is, we may define a function of type
+\begin{myeqn}
+  \rec{A\times B} : \prd{C:\UU}(A \to B \to C) \to A \times B \to C
+\end{myeqn}
+with the defining equation
+\[\rec{A\times B}(C,g,\tup{a}{b}) \defeq g(a)(b). \]
+Then instead of defining functions such as $\fst$ and $\snd$ directly by a defining equation, we could  define
+\begin{align*}
+  \fst &\defeq \rec{A\times B}(A, \lam{a}{b} a)\\
+  \snd &\defeq \rec{A\times B}(B, \lam{a}{b} b).
+\end{align*}
+We refer to the function $\rec{A\times B}$ as the \define{recursor}
+\indexsee{recursor}{recursion principle}%
+for product types.  The name ``recursor'' is a bit unfortunate here, since no recursion is taking place.  It comes from the fact that product types are a degenerate example of a general framework for inductive types, and for types such as the natural numbers, the recursor will actually be recursive.  We may also speak of the \define{recursion principle} for cartesian products, meaning the fact that we can define a function $f:A\times B\to C$ as above by giving its value on pairs.
+\index{recursion principle!for cartesian product}%
+
+We leave it as a simple exercise to show that the recursor can be
+derived from the projections and vice versa.
+% Ex: Derive from projections
+
+\symlabel{defn:recursor-unit}%
+We also have a recursor for the unit type:
+\[\rec{\unit} : \prd{C:\UU}C \to \unit \to C\]
+with the defining equation
+\[ \rec{\unit}(C,c,\ttt) \defeq c. \]
+Although we include it to maintain the pattern of type definitions, the recursor for $\unit$ is completely useless,
+because we could have defined such a function directly
+by simply ignoring the argument of type $\unit$.
+
+To be able to define \emph{dependent} functions over the product type, we have
+to generalize the recursor. Given $C: A \times B \to \UU$, we may
+define a function $f : \prd{x : A \times B} C(x)$ by providing a
+function
+\narrowequation{
+ g : \prd{x:A}\prd{y:B} C(\tup{x}{y})
+}
+with defining equation
+\[ f(\tup x y) \defeq g(x)(y). \] 
+For example, in this way we can prove the propositional uniqueness principle, which says that every element of $A\times B$ is equal to a pair.
+\index{uniqueness!principle, propositional!for product types}%
+Specifically, we can construct a function
+\[ \uppt : \prd{x:A \times B} (\id[A\times B]{\tup{\fst {(x)}}{\snd {(x)}}}{x}). \]
+Here we are using the identity type, which we are going to introduce below in \PMlinkname{\S 1.12}{112identitytypes}.
+However, all we need to know now is that there is a reflexivity element $\refl{x} : \id[A]{x}{x}$ for any $x:A$.
+Given this, we can define
+\[ \uppt(\tup{a}{b}) \defeq \refl{\tup{a}{b}}. \]
+This construction works, because in the case that $x \defeq \tup{a}{b}$ we can 
+calculate 
+\[ \tup{\fst(\tup{a}{b})}{\snd{(\tup{a}{b})}} \jdeq \tup{a}{b} \]
+using the defining equations for the projections. Therefore,
+\[ \refl{\tup{a}{b}} : \id{\tup{\fst(\tup{a}{b})}{\snd{(\tup{a}{b})}}}{\tup{a}{b}} \]
+is well-typed, since both sides of the equality are judgmentally equal.
+
+More generally, the ability to define dependent functions in this way means that to prove a property for all elements of a product, it is enough 
+to prove it for its canonical elements, the tuples.
+When we come to inductive types such as the natural numbers, the analogous property will be the ability to write proofs by induction.
+Thus, if we do as we did above and apply this principle once in the universal case, we call the resulting function \define{induction} for product types: given $A,B : \UU$ we have
+\symlabel{defn:induction-times}%
+\[ \ind{A\times B} : \prd{C:A \times B \to \UU}
+\Parens{\prd{x:A}{y:B} C(\tup{x}{y})} \to \prd{x:A \times B} C(x) \]
+with the defining equation 
+\[ \ind{A\times B}(C,g,\tup{a}{b}) \defeq g(a)(b). \]
+Similarly, we may speak of a dependent function defined on pairs being obtained from the \define{induction principle}
+\index{induction principle}%
+\index{induction principle!for product}%
+of the cartesian product.
+It is easy to see that the recursor is just the special case of induction
+in the case that the family $C$ is constant.
+Because induction describes how to use an element of the product type, induction is also called the \define{(dependent) eliminator},
+\indexsee{eliminator!of inductive type!dependent}{induction principle}%
+and recursion the \define{non-dependent eliminator}.
+\indexsee{eliminator!of inductive type!non-dependent}{recursion principle}%
+\indexsee{non-dependent eliminator}{recursion principle}%
+\indexsee{dependent eliminator}{induction principle}%
+
+% We can read induction propositionally as saying that a property which
+% is true for all pairs holds for all elements of the product type.
+
+Induction for the unit type turns out to be more useful than the
+recursor: 
+\symlabel{defn:induction-unit}%
+\[ \ind{\unit} : \prd{C:\unit \to \UU} C(\ttt) \to \prd{x:\unit}C(x)\]
+with the defining equation
+\[ \ind{\unit}(C,c,\ttt) \defeq c. \]
+Induction enables us to prove the propositional uniqueness principle for $\unit$, which asserts that its only inhabitant is $\ttt$.
+That is, we can construct
+\[\un : \prd{x:\unit} \id{x}{\ttt} \]
+by using the defining equations
+\[\un(\ttt) \defeq \refl{\ttt} \]
+or equivalently by using induction:
+\[\un \defeq \ind{\unit}(\lamu{x:\unit} \id{x}{\ttt},\refl{\ttt}). \]
+
+\index{type!product|)}%
+\index{type!unit|)}%
+
+
+\end{document}

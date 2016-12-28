@@ -1,0 +1,130 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{310WhenArePropositionsTruncated}
+\pmcreated{2013-11-17 20:20:34}
+\pmmodified{2013-11-17 20:20:34}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{3.10 When are propositions truncated?}
+\pmrecord{3}{87658}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\newcommand{\choice}[1]{\ensuremath{\mathsf{AC}_{#1}}\xspace}
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\LEM}[1]{\ensuremath{\mathsf{LEM}_{#1}}\xspace}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+\index{logic!of mere propositions|(}%
+\index{mere proposition|(}%
+\index{logic!truncated}%
+
+At first glance, it may seem that the truncated versions of $+$ and $\Sigma$ are actually closer to the informal mathematical meaning of ``or'' and ``there exists'' than the untruncated ones.
+Certainly, they are closer to the \emph{precise} meaning of ``or'' and ``there exists'' in the first-order logic \index{first-order!logic} which underlies formal set theory, since the latter makes no attempt to remember any witnesses to the truth of propositions.
+However, it may come as a surprise to realize that the practice of \emph{informal} mathematics is often more accurately described by the untruncated forms.
+
+\index{prime number}%
+For example, consider a statement like ``every prime number is either $2$ or odd.''
+The working mathematician feels no compunction about using this fact not only to prove \emph{theorems} about prime numbers, but also to perform \emph{constructions} on prime numbers, perhaps doing one thing in the case of $2$ and another in the case of an odd prime.
+The end result of the construction is not merely the truth of some statement, but a piece of data which may depend on the parity of the prime number.
+Thus, from a type-theoretic perspective, such a construction is naturally phrased using the induction principle for the coproduct type ``$(p=2)+(p\text{ is odd})$'', not its propositional truncation.
+
+Admittedly, this is not an ideal example, since ``$p=2$'' and ``$p$ is odd'' are mutually exclusive, so that $(p=2)+(p\text{ is odd})$ is in fact already a mere proposition and hence equivalent to its truncation (see \PMlinkexternal{Exercise 3.7}{http://planetmath.org/node/87851}).
+More compelling examples come from the existential quantifier.
+It is not uncommon to prove a theorem of the form ``there exists an $x$ such that \dots'' and then refer later on to ``the $x$ constructed in Theorem Y'' (note the definite article).
+Moreover, when deriving further properties of this $x$, one may use phrases such as ``by the construction of $x$ in the proof of Theorem Y''.
+
+A very common example is ``$A$ is isomorphic to $B$'', which strictly speaking means only that there exists \emph{some} isomorphism between $A$ and $B$.
+But almost invariably, when proving such a statement, one exhibits a specific isomorphism or proves that some previously known map is an isomorphism, and it often matters later on what particular isomorphism was given.
+
+Set-theoretically trained mathematicians often feel a twinge of guilt at such ``abuses of language''.\index{abuse!of language}
+We may attempt to apologize for them, expunge them from final drafts, or weasel out of them with vague words like ``canonical''.
+The problem is exacerbated by the fact that in formalized set theory, there is technically no way to ``construct'' objects at all --- we can only prove that an object with certain properties exists.
+Untruncated logic in type theory thus captures some common practices of informal mathematics that the set theoretic reconstruction obscures.
+(This is similar to how the univalence axiom validates the common, but formally unjustified, practice of identifying isomorphic objects.)
+
+On the other hand, sometimes truncated logic is essential.
+We have seen this in the statements of \LEM{} and \choice{}; some other examples will appear later on in the book.
+Thus, we are faced with the problem: when writing informal type theory, what should we mean by the words ``or'' and ``there exists'' (along with common synonyms such as ``there is'' and ``we have'')?
+
+A universal consensus may not be possible.
+Perhaps depending on the sort of mathematics being done, one convention or the other may be more useful --- or, perhaps, the choice of convention may be irrelevant.
+In this case, a remark at the beginning of a mathematical paper may suffice to inform the reader of the linguistic conventions in use therein.
+However, even after one overall convention is chosen, the other sort of logic will usually arise at least occasionally, so we need a way to refer to it.
+More generally, one may consider replacing the propositional truncation with another operation on types that behaves similarly, such as the double negation operation $A\mapsto \neg\neg A$, or the $n$-truncations to be considered in \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580}.
+As an experiment in exposition,  in what follows we will occasionally use \emph{adverbs}\index{adverb} to denote the application of such ``modalities'' as propositional truncation.
+
+For instance, if untruncated logic is the default convention, we may use the adverb \define{merely}
+\indexdef{merely}%
+to denote propositional truncation.
+Thus the phrase
+\begin{center}
+  ``there merely exists an $x:A$ such that $P(x)$''
+\end{center}
+indicates the type $\brck{\sm{x:A} P(x)}$.
+Similarly, we will say that a type $A$ is \define{merely inhabited}
+\indexdef{merely!inhabited}%
+\indexdef{inhabited type!merely}%
+to mean that its propositional truncation $\brck A$ is inhabited (i.e.\ that we have an unnamed element of it).
+Note that this is a \emph{definition}\index{definition!of adverbs} of the adverb ``merely'' as it is to be used in our informal mathematical English, in the same way that we define nouns\index{noun} like ``group'' and ``ring'', and adjectives\index{adjective} like ``regular'' and ``normal'', to have precise mathematical meanings.
+We are not claiming that the dictionary definition of ``merely'' refers to propositional truncation; the choice of word is meant only to remind the mathematician reader that a mere proposition contains ``merely'' the information of a truth value and nothing more.
+
+On the other hand, if truncated logic is the current default convention, we may use an adverb such as \define{purely}
+\indexdef{purely}%
+or \define{constructively} to indicate its absence, so that
+\begin{center}
+``there purely exists an $x:A$ such that $P(x)$''
+\end{center}
+would denote the type $\sm{x:A} P(x)$.
+We may also use ``purely'' or ``actually'' just to emphasize the absence of truncation, even when that is the default convention.
+
+In this book we will continue using untruncated logic as the default convention, for a number of reasons.
+\begin{enumerate}
+\item We want to encourage the newcomer to experiment with it, rather than sticking to truncated logic simply because it is more familiar.
+\item Using truncated logic as the default in type theory suffers from the same sort of ``abuse of language''\index{abuse!of language} problems as set-theoretic foundations, which untruncated logic avoids.
+  For instance, our definition of ``$\eqv A B$'' as the type of equivalences between $A$ and $B$, rather than its propositional truncation, means that to prove a theorem of the form ``$\eqv A B$'' is literally to construct a particular such equivalence.
+  This specific equivalence can then be referred to later on.
+\item We want to emphasize that the notion of ``mere proposition'' is not a fundamental part of type theory.
+  As we will see in \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580}, mere propositions are just the second rung on an infinite ladder, and there are also many other modalities not lying on this ladder at all.
+\item Many statements that classically are mere propositions are no longer so in homotopy type theory.
+  Of course, foremost among these is equality.
+\item On the other hand, one of the most interesting observations of homotopy type theory is that a surprising number of types are \emph{automatically} mere propositions, or can be slightly modified to become so, without the need for any truncation.
+  (See \PMlinkname{Lemma 3.3.5}{33merepropositions#Thmprelem4},\PMlinkexternal{Chapter 4}{http://planetmath.org/node/87577},\PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580},\PMlinkexternal{Chapter 9}{http://planetmath.org/node/87583},\PMlinkexternal{Chapter 10}{http://planetmath.org/node/87584}.)
+  Thus, although these types contain no data beyond a truth value, we can nevertheless use them to construct untruncated objects, since there is no need to use the induction principle of propositional truncation.
+  This useful fact is more clumsy to express if propositional truncation is applied to all statements by default.
+\item Finally, truncations are not very useful for most of the mathematics we will be doing in this book, so it is simpler to notate them explicitly when they occur.
+\end{enumerate}
+
+\index{mere proposition|)}%
+\index{logic!of mere propositions|)}%
+
+
+\end{document}

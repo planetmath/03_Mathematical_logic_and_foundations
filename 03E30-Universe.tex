@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Universe}
+\pmcreated{2013-03-22 13:31:13}
+\pmmodified{2013-03-22 13:31:13}
+\pmowner{archibal}{4430}
+\pmmodifier{archibal}{4430}
+\pmtitle{universe}
+\pmrecord{8}{34107}
+\pmprivacy{1}
+\pmauthor{archibal}{4430}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E30}
+\pmclassification{msc}{18A15}
+\pmrelated{Small}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic} 
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newtheorem{axiom}{Axiom}
+\begin{document}
+A {\em universe} $\mathbf{U}$ is a nonempty set satisfying the following axioms:
+\begin{enumerate}
+  \item If $x\in \mathbf{U}$ and $y\in x$, then $y\in \mathbf{U}$.
+  \item If $x,y\in \mathbf{U}$, then $\{x,y\}\in \mathbf{U}$.
+  \item If $x\in\mathbf{U}$, then the power set $\mathcal{P}(x)\in\mathbf{U}$.
+  \item If $\{x_i | i\in I\in\mathbf{U}\}$ is a family of elements of
+        $\mathbf{U}$, then $\cup_{i\in I} x_i\in\mathbf{U}$.
+\end{enumerate}
+
+From these axioms, one can deduce the following properties:
+\begin{enumerate}
+  \item If $x\in\mathbf{U}$, then $\{x\}\in\mathbf{U}$.
+  \item If $x$ is a subset of $y\in\mathbf{U}$, then $x\in\mathbf{U}$.
+  \item If $x,y\in\mathbf{U}$, then the ordered pair 
+        $(x,y) = \{\{x,y\},x\}$ is in $\mathbf{U}$.
+  \item If $x,y\in\mathbf{U}$, then $x\cup y$ and $x\times y$ are in 
+        $\mathbf{U}$.
+  \item If $\{x_i | i\in I\in\mathbf{U}\}$ is a family of elements of
+        $\mathbf{U}$, then the product $\prod_{i\in I} x_i$ is in $\mathbf{U}$.
+  \item If $x\in \mathbf{U}$, then the cardinality of $x$ is strictly less than
+        the cardinality of $\mathbf{U}$.  In particular, 
+        $\mathbf{U}\notin\mathbf{U}$.
+\end{enumerate}
+
+In order for uncountable universes to exist, it is necessary to adopt an extra axiom for set theory.  This is usually phrased as:
+\begin{axiom}
+For every cardinal $\alpha$, there exists a strongly inaccessible cardinal $\beta>\alpha$.
+\end{axiom}
+This axiom cannot be proven using the axioms ZFC.  But it seems (according to Bourbaki) that it probably cannot be proven not to lead to a contradiction.
+
+One usually also assumes
+\begin{axiom}
+For every set $X$, there is no infinite descending chain $\cdots\in x_2 \in x_1 \in X$; this is called being \emph{artinian}.  
+\end{axiom}
+This axiom does not affect the consistency of ZFC, that is, ZFC is consistent if and only if ZFC with this axiom added is consistent.  This is also known as the axiom of foundation, and it is often included with ZFC.  If it is not accepted, then one can for all practical purposes restrict oneself to working within the class of artinian sets. 
+
+Finally, one must be careful when using relations within universes; the details are too technical for Bourbaki to work out (!), but see the appendix to Expos\'e 1 of \cite{sga4} for more detail.
+
+The standard reference for universes is \cite{sga4}.
+
+\begin{thebibliography}{9}
+  \bibitem[SGA4]{sga4}
+    Grothendieck et al.  \emph{Seminaires en Geometrie Algebrique 4}, Tome 1, Expos\'e 1 (or the appendix to Expos\'e 1, by N. Bourbaki for more detail and a large number of results there described as ``ne pouvant servir \`a rien'').  SGA4 is \PMlinkexternal{available}{http://www.math.mcgill.ca/~archibal/SGA/SGA.html} on the Web. (It is in French.) 
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

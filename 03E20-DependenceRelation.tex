@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DependenceRelation}
+\pmcreated{2013-03-22 14:19:25}
+\pmmodified{2013-03-22 14:19:25}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{dependence relation}
+\pmrecord{9}{35792}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmclassification{msc}{05B35}
+\pmrelated{LinearIndependence}
+\pmrelated{AlgebraicallyDependent}
+\pmrelated{Matroid}
+\pmrelated{AxiomatizationOfDependence}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+Let $X$ be a set. A (binary) relation $\prec$ between an element $a$ of $X$ and a subset $S$ of $X$ is called a \emph{dependence relation}, written $a \prec S$, when the following conditions are satisfied:
+\begin{enumerate}
+\item
+if $a \in S$, then $a \prec S$;
+\item
+if $a \prec S$, then there is a finite subset $S_0$ of $S$, such that $a \prec S_0$;
+\item
+if $T$ is a subset of $X$ such that $b \in S$ implies $b \prec T$, then $a \prec S$ implies $a \prec T$;
+\item
+if $a \prec S$ but $a \not\prec S-\lbrace b \rbrace$ for some $b \in S$, then $b \prec (S-\lbrace b \rbrace)\cup\lbrace a \rbrace$.
+\end{enumerate}
+
+Given a \emph{dependence relation} $\prec$ on $X$,  a subset $S$ of $X$ is said to be \emph{independent} if $a \not\prec S - \lbrace a \rbrace$ for all $a \in S$.  If $S \subseteq T$, then $S$ is said to \emph{span} $T$ if $t \prec S$ for every $t \in T$.  $S$ is said to be a \emph{basis} of $X$ if $S$ is \emph{independent} and $S$ \emph{spans} $X$.
+
+\vspace{8mm}
+
+\textbf{Remark.}  If $X$ is a non-empty set with a \emph{dependence relation} $\prec$, then $X$ always has a \emph{basis} with respect to $\prec$.  Furthermore, any two {\em \PMlinkescapetext{bases}} of $X$ have the same cardinality.
+
+\vspace{8mm}
+
+\textbf{Examples:}
+\begin{itemize}
+\item
+Let $V$ be a vector space over a field $F$.  The relation $\prec$, defined by $\upsilon \prec S$ if $\upsilon$ is in the subspace \PMlinkescapetext{spanned by} $S$, is a dependence relatoin.  This is equivalent to the definition of {\em \PMlinkname{linear dependence}{LinearIndependence}}.
+\item
+Let $K$ be a field extension of $F$.  Define $\prec$ by $\alpha \prec S$ if $\alpha$ is algebraic over $F(S)$. Then $\prec$ is a dependence relation.  This is equivalent to the definition of \emph{algebraic dependence}.  
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{RandomGraphinfinite}
+\pmcreated{2013-03-22 13:32:18}
+\pmmodified{2013-03-22 13:32:18}
+\pmowner{bbukh}{348}
+\pmmodifier{bbukh}{348}
+\pmtitle{random graph (infinite)}
+\pmrecord{8}{34137}
+\pmprivacy{1}
+\pmauthor{bbukh}{348}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C52}
+\pmclassification{msc}{03C30}
+\pmclassification{msc}{03C15}
+\pmclassification{msc}{05C30}
+\pmrelated{ExampleOfUniversalStructure}
+\pmrelated{Homogeneous4}
+\pmdefines{random graph}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newtheorem{pp}{Proposition}
+\begin{document}
+Suppose we have some method $M$ of generating sequences of letters from $\{p,q\}$ so that at each generation the probability of obtaining $p$ is $x$, a real number strictly between $0$ and $1$. 
+
+Let $\{a_{i}:i<\omega\}$ be a set of vertices. For each $i<\omega$ , $i\geq 1$  we construct a graph $G_{i}$ on the vertices $a_{1},\ldots,a_{i}$ recursively.
+
+\begin{itemize} \item $G_{1}$ is the unique graph on one vertex.
+
+\item For $i>1$ we must describe for any $j<k\leq i$ when  $a_{j}$ and $a_{k}$ are joined.
+\begin{itemize} \item If $k<i$ then join $a_{j}$ and $a_{k}$ in $G_{i}$ iff $a_{j}$ and $a_{k}$ are joined in $G_{i-1}$ 
+\item If $k=i$ then generate a letter $l(j,k)$ with $M$. Join $a_{j}$ to $a_{k}$ iff $l(j,k)=p$.
+\end{itemize}
+\end{itemize}
+
+Now let $\Gamma$ be the graph on $\{a_{i}:i<\omega\}$ so that for any $n,m <\omega$, $a_{n}$ is joined to $a_{m}$ in $\Gamma$ iff it is in some $G_{i}$.
+
+Then we call $\Gamma$ a \emph{random graph}. Consider the following property which we shall call \emph{f-saturation}:
+
+Given any finite disjoint $U$ and $V$, subsets of $\{a_{i}:i<\omega\}$ there is some $a_{n} \in \{a_{i}:i<\omega\} \setminus (U \cup V)$ so that $a_{n}$ is joined to every point of $U$ and no points in $V$.
+
+\begin{pp} A random graph has f-saturation with probability $1$.
+\end{pp}
+Proof: Let $b_{1},b_{2},\ldots,b_{n},\ldots$ be an enumeration of $\{a_{i}:i<\omega\} \setminus (U \cup V)$. 
+We say that $b_{i}$ is {\em correctly joined}
+ to $(U,V)$ iff it is joined to all the members of $U$ and non of the members of $V$. Then the probability that $b_{i}$ is not correctly joined is $(1-x^{|U|}(1-x)^{|V|})$ which is some real number $y$ strictly between $0$ and $1$. 
+The probability that none of the first $m$ are correctly joined is $y^{m}$ and the probability that none of the $b_{i}$s are correctly joined is $\textrm{lim}_{n \to \infty} y^{n}=0$. Thus one of the $b_{i}$s is correctly joined.
+
+\begin{pp} Any two countable graphs with f-saturation are isomorphic.\end{pp}
+Proof: This is via a back and forth argument. The property of f-saturation is exactly what is needed.
+
+\medskip
+
+Thus although the system of generation of a random graph looked as though it could deliver many potentially different graphs, this is not the case.  Thus we talk about \emph{the} random graph.
+
+
+\medskip
+
+The random graph can also be constructed as a Fraisse limit of all finite graphs, and in many other ways.  It is homogeneous and universal for the class of all countable graphs.
+
+The theorem that almost every two infinite random graphs are isomorphic was first proved in \cite{cite:erdos_renyi_randgr}.
+
+\begin{thebibliography}{1}
+
+\bibitem{cite:erdos_renyi_randgr}
+Paul Erd{\H{o}}s and Alfr{\'e}d R{\'e}nyi.
+\newblock Asymmetric graphs.
+\newblock {\em Acta Math. Acad. Sci. Hung.}, 14:295--315, 1963.
+
+\end{thebibliography}
+%
+%@ARTICLE{cite:erdos_renyi_randgr,
+%  author  = {Paul Erd{\H{o}}s and Alfr{\'e}d R{\'e}nyi},
+%  title   = {Asymmetric Graphs},
+%  journal = {Acta Math. Acad. Sci. Hung.},
+%  volume  = 14,
+%  year    = 1963,
+%  pages   = {295--315}
+%}
+%
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExampleOfMonadicAlgebra}
+\pmcreated{2013-03-22 17:51:55}
+\pmmodified{2013-03-22 17:51:55}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{example of monadic algebra}
+\pmrecord{10}{40343}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G15}
+\pmdefines{functional monadic algebra}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+The canonical example of a monadic algebra is what is known as a \emph{functional monadic algebra}, which is explained in this entry.
+
+Let $A$ be a Boolean algebra and $X$ be a non-empty set.  Then $A^X$, the set of all functions from $X$ into $A$, has a natural Boolean algebraic structure defined as follows:
+$$(f\wedge g)(x):=f(x)\wedge g(x),\qquad (f')(x):=f(x)',\qquad 1(x)=1$$
+where $f,g:X\to A$ are functions, and $1:X\to A$ is just the constant function mapping everything to $1\in A$ (the abuse of notation here is harmless).
+
+For each $f:X\to A$, let $f(X)\subseteq A$ be the range of $f$.  Let $B$ be the subset of $A^X$ consisting of all functions $f$ such that $\bigvee f(X)$ and $\bigwedge f(X)$ exist, where $\bigvee$ and $\bigwedge$ are the infinite join and infinite meet operations on $A$.  In other words, $$B:=\lbrace f\in A^X\mid \bigvee f(X)\in A\mbox{ and }\bigwedge f(X)\in A\rbrace.$$
+\begin{prop} $B$ defined above is a Boolean subalgebra of $A^X$. \end{prop}
+\begin{proof}
+We need to show that, (1): $1\in B$, (2): for any $f\in B$, $f'\in B$, and (3): for any $f,g\in B$, $f\wedge g\in B$.
+\begin{enumerate}
+\item $\bigvee 1(X)=\bigvee \lbrace 1\rbrace =1$ and $\bigwedge 1(X)=\bigwedge \lbrace 1\rbrace =1$ so $1\in B$
+\item Suppose $f\in B$.  Then $\bigvee f'(X)=\bigvee \lbrace f'(x)\mid x\in X\rbrace = \bigvee \lbrace f(x)'\mid x\in X\rbrace$.  By de Morgan's law on infinite joins, the last expression is $(\bigwedge \lbrace f(x)\mid x\in X\rbrace )'$, which exists.  Dually, $\bigwedge f'(X)$ exists by de Morgan's law on infinite meets.  Therefore, $f'\in B$.
+\item Suppose $f,g\in B$.  Then 
+\begin{eqnarray*}
+\bigwedge (f\wedge g)(X) &=& \bigwedge \lbrace f(x)\wedge g(x)\mid x\in X\rbrace \\ 
+&=& \bigwedge \lbrace f(x)\mid x\in X\rbrace \wedge \bigwedge \lbrace g(x) \mid x\in X\rbrace \\ 
+&=& \bigwedge f(X)\wedge \bigwedge g(X),
+\end{eqnarray*} 
+which exists because both $\bigwedge f(X)$ and $\bigwedge g(X)$ do.  In addition, $$\bigvee (f\wedge g)(X)=\bigvee \lbrace f(x)\wedge g(x)\mid x\in X\rbrace =\bigvee f(X)\wedge \bigvee g(X).$$  The last equality stems from the distributive law of infinite meets over finite joins.  Since the last expression exists, $f\wedge g \in B$.
+\end{enumerate}
+The three conditions are verified and the proof is complete.
+\end{proof}
+\textbf{Remark}.  Every constant function belongs to $B$.
+
+For each $f\in B$, write $f^{\vee}:=\bigvee f(X)$ and $f^{\wedge}:=\bigwedge f(X)$.  Define two functions $f^{\exists},f^{\forall}\in A^X$ by $$f^{\exists}(x):=f^{\vee}\qquad\mbox{ and }\qquad f^{\forall}(x):=f^{\wedge}.$$
+Since these are constant functions, they belong to $B$.
+
+Now, we define operators $\exists ,\forall$ on $B$ by setting $$\exists (f):=f^{\exists}\qquad \mbox { and }\qquad \forall (f): = f^{\forall}.$$
+By the remark above, $\exists$ and $\forall$ are well-defined functions on $B$ ($f^{\exists},f^{\forall}\in B$).
+
+\begin{prop} $\exists$ is an existential quantifier operator on $B$ and $\forall$ is its dual. \end{prop}
+\begin{proof} The following three conditions need to be verified:
+\begin{itemize}
+\item $\exists(0)=0$: $\exists(0)(x)=0^{\exists}(x)=0^{\vee}=\bigvee 0(X)=\bigvee 0=0$.
+\item $f\le \exists(f)$: $f(x)\le \bigvee f(X)=f^{\vee}=f^{\exists}(x)=\exists(f)(x)$.
+\item $\exists(f\wedge \exists(g))=\exists(f)\wedge \exists(g)$: 
+\begin{eqnarray*}
+\exists(f\wedge \exists(g))(x) &=& \bigvee \big(f\wedge \exists(g)\big)(X) = \bigvee \big(f(X)\wedge \exists(g)(X)\big) \\ &=& \bigvee \big(f(X)\wedge \exists(g)(x)\big) = \bigvee \big(f(X)\wedge \bigvee g(X)\big) \\
+&=& \bigvee f(X) \wedge \bigvee g(X) = \exists(f)(x) \wedge \exists(g)(x) = \big(\exists(f)\wedge \exists(g)\big)(x).
+\end{eqnarray*}
+\end{itemize}
+Finally, to see that $\forall$ is the dual of $\exists$, we do the following computations: 
+\begin{eqnarray*}
+\forall (f)(x) &=& \bigwedge \lbrace f(x)\mid x\in X\rbrace =\bigwedge \lbrace f(x)'' \mid x\in X\rbrace \\ &=& \big( \bigvee \lbrace f(x)'\mid x\in X\rbrace \big)'=\big( \bigvee \lbrace f'(x)\mid x\in X\rbrace \big)'=\big(\exists(f')\big)'(x),
+\end{eqnarray*}
+completing the proof.
+\end{proof}
+
+Based on Propositions 1 and 2, $(B,\exists)$ is a monadic algebra, and is called the \emph{functional monadic algebra} for the pair $(A,X)$.
+%%%%%
+%%%%%
+\end{document}

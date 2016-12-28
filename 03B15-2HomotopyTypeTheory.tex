@@ -1,0 +1,276 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{2HomotopyTypeTheory}
+\pmcreated{2013-11-13 22:13:29}
+\pmmodified{2013-11-13 22:13:29}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2. Homotopy Type Theory}
+\pmrecord{6}{87597}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idtype}[3][]{\ensuremath{\mathsf{Id}_{#1}(#2,#3)}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\indid}[1]{\ind{=_{#1}}} 
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\mentalpause}{\medskip} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}\xspace}           
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{2.0.\arabic{mathcount}}
+\let\autoref\cref
+\let\nat\N
+\let\type\UU
+\makeatother
+
+\begin{document}
+%
+The central new idea in homotopy type theory is that types can be regarded as
+spaces in homotopy theory, or higher-dimensional groupoids in category
+theory.  
+
+\index{classical!homotopy theory|(}
+\index{higher category theory|(}
+We begin with a brief summary of the connection between homotopy theory
+and higher-dimensional category theory.  
+In classical homotopy theory, a space $X$ is a set of points equipped
+with a topology,
+\indexsee{space!topological}{topological space}
+\index{topological!space}
+and a path between points $x$ and $y$ is represented by
+a continuous map $p : [0,1] \to X$, where $p(0) = x$ and $p(1) = y$.
+\index{path!topological}
+\index{topological!path}
+This function can be thought of as giving a point in $X$ at each
+``moment in time''.  For many purposes, strict equality of paths
+(meaning, pointwise equal functions) is too fine a notion.  For example,
+one can define operations of path concatenation (if $p$ is a path from
+$x$ to $y$ and $q$ is a path from $y$ to $z$, then the concatenation $p
+\ct q$ is a path from $x$ to $z$) and inverses ($\opp p$ is a path
+from $y$ to $x$).  However, there are natural equations between these
+operations that do not hold for strict equality: for example, the path
+$p \ct \opp p$ (which walks from $x$ to $y$, and then back along the
+same route, as time goes from $0$ to $1$) is not strictly equal to the
+identity path (which stays still at $x$ at all times).
+
+The remedy is to consider a coarser notion of equality of paths called
+\emph{homotopy}.
+\index{homotopy!topological}
+A homotopy between a pair of continuous maps $f :
+X_1 \to X_2$ and $g : X_1\to X_2$ is a continuous map $H : X_1
+\times [0, 1] \to X_2$ satisfying $H(x, 0) = f (x)$ and $H(x, 1) =
+g(x)$.  In the specific case of paths $p$ and $q$ from $x$ to $y$, a homotopy is a
+continuous map $H : [0,1] \times [0,1] \rightarrow X$
+such that $H(s,0) = p(s)$ and $H(s,1) = q(s)$ for all $s\in [0,1]$.
+In this case we require also that $H(0,t) = x$ and $H(1,t)=y$ for all $t\in [0,1]$,
+so that for each $t$ the function $H(\blank,t)$ is again a path from $x$ to $y$;
+a homotopy of this sort is said to be \emph{endpoint-preserving} or \emph{rel endpoints}.
+Such a homotopy is the
+image in $X$ of a square that fills in the space between $p$ and $q$,
+which can be thought of as a ``continuous deformation'' between $p$ and
+$q$, or a 2-dimensional \emph{path between paths}.\index{path!2-}
+
+For example, because
+$p \ct \opp p$ walks out and back along the same route, you know that
+you can continuously shrink $p \ct \opp p$ down to the identity
+path---it won't, for example, get snagged around a hole in the space.
+Homotopy is an equivalence relation, and operations such as
+concatenation, inverses, etc., respect it.  Moreover, the homotopy
+equivalence classes of loops\index{loop} at some point $x_0$ (where two loops $p$
+and $q$ are equated when there is a \emph{based} homotopy between them,
+which is a homotopy $H$ as above that additionally satisfies $H(0,t) =
+H(1,t) = x_0$ for all $t$) form a group called the \emph{fundamental
+  group}.\index{fundamental!group}  This group is an \emph{algebraic invariant} of a space, which
+can be used to investigate whether two spaces are \emph{homotopy
+  equivalent} (there are continuous maps back and forth whose composites
+are homotopic to the identity), because equivalent spaces have
+isomorphic fundamental groups.
+
+Because homotopies are themselves a kind of 2-dimensional path, there is
+a natural notion of 3-dimensional \emph{homotopy between homotopies},\index{path!3-}
+and then \emph{homotopy between homotopies between homotopies}, and so
+on.  This infinite tower of points, path, homotopies, homotopies between
+homotopies, \ldots, equipped with algebraic operations such as the
+fundamental group, is an instance of an algebraic structure called a
+(weak) \emph{$\infty$-groupoid}.  An $\infty$-groupoid\index{.infinity-groupoid@$\infty$-groupoid} consists of a
+collection of objects, and then a collection of \emph{morphisms}\indexdef{morphism!in an .infinity-groupoid@in an $\infty$-groupoid} between
+objects, and then \emph{morphisms between morphisms}, and so on,
+equipped with some complex algebraic structure; a morphism at level $k$ is called a \define{$k$-morphism}\indexdef{k-morphism@$k$-morphism}.  Morphisms at each level
+have identity, composition, and inverse operations, which are weak in
+the sense that they satisfy the groupoid laws (associativity of
+composition, identity is a unit for composition, inverses cancel) only
+up to morphisms at the next level, and this weakness gives rise to
+further structure. For example, because associativity of composition of
+morphisms $p \ct (q \ct r) = (p \ct q) \ct r$ is itself a
+higher-dimensional morphism, one needs an additional operation relating
+various proofs of associativity: the various ways to reassociate $p \ct
+(q \ct (r \ct s))$ into $((p \ct q) \ct r) \ct s$ give rise to Mac
+Lane's pentagon\index{pentagon, Mac Lane}.  Weakness also creates non-trivial interactions between
+levels.
+
+Every topological space $X$ has a \emph{fundamental $\infty$-groupoid}
+\index{.infinity-groupoid@$\infty$-groupoid!fundamental}
+\index{fundamental!.infinity-groupoid@$\infty$-groupoid}
+whose
+$k$-mor\-ph\-isms are the $k$-dimen\-sional paths in $X$.  The weakness of the
+$\infty$-group\-oid corresponds directly to the fact that paths form a
+group only up to homotopy, with the $(k+1)$-paths serving as the
+homotopies between the $k$-paths.  Moreover, the view of a space as an
+$\infty$-groupoid preserves enough aspects of the space to do homotopy theory:
+the fundamental $\infty$-groupoid construction is adjoint\index{adjoint!functor} to the
+geometric\index{geometric realization} realization of an $\infty$-groupoid as a space, and this
+adjunction preserves homotopy theory (this is called the \emph{homotopy
+  hypothesis/theorem},
+\index{hypothesis!homotopy}
+\index{homotopy!hypothesis}
+because whether it is a hypothesis or theorem
+depends on how you define $\infty$-groupoid).  For example, you can
+easily define the fundamental group of an $\infty$-groupoid, and if you
+calculate the fundamental group of the fundamental $\infty$-groupoid of
+a space, it will agree with the classical definition of fundamental
+group of that space.  Because of this correspondence, homotopy theory
+and higher-dimensional category theory are intimately related.
+
+\index{classical!homotopy theory|)}%
+\index{higher category theory|)}%
+
+\mentalpause
+
+Now, in homotopy type theory each type can be seen to have the structure
+of an $\infty$-groupoid.  Recall that for any type $A$, and any $x,y:A$,
+we have a identity type $\id[A]{x}{y}$, also written $\idtype[A]{x}{y}$
+or just $x=y$.  Logically, we may think of elements of $x=y$ as evidence
+that $x$ and $y$ are equal, or as identifications of $x$ with
+$y$. Furthermore, type theory (unlike, say, first-order logic) allows us
+to consider such elements of $\id[A]{x}{y}$ also as individuals which
+may be the subjects of further propositions.  Therefore, we can
+\emph{iterate} the identity type: we can form the type
+$\id[{(\id[A]{x}{y})}]{p}{q}$ of identifications between
+identifications $p,q$, and the type
+$\id[{(\id[{(\id[A]{x}{y})}]{p}{q})}]{r}{s}$, and so on.  The structure
+of this tower of identity types corresponds precisely to that of the
+continuous paths and (higher) homotopies between them in a space, or an
+$\infty$-groupoid.\index{.infinity-groupoid@$\infty$-groupoid}
+
+
+Thus, we will frequently refer to an element $p : \id[A]{x}{y}$ as
+a \define{path}
+\index{path}
+from $x$ to $y$; we call $x$ its \define{start point}
+\indexdef{start point of a path}
+\indexdef{path!start point of}
+and $y$ its \define{end point}.
+\indexdef{end point of a path}
+\indexdef{path!end point of}
+Two paths $p,q : \id[A]{x}{y}$ with the same start and end point are said to be \define{parallel},
+\indexdef{parallel paths}
+\indexdef{path!parallel}
+in which case an element $r : \id[{(\id[A]{x}{y})}]{p}{q}$ can
+be thought of as a homotopy, or a morphism between morphisms;
+we will often refer to it as a \define{2-path}
+\indexdef{path!2-}\indexsee{2-path}{path, 2-}%
+or a \define{2-dimensional path}
+\index{dimension!of paths}%
+\indexsee{2-dimensional path}{path, 2-}\indexsee{path!2-dimensional}{path, 2-}%
+Similarly, $\id[{(\id[{(\id[A]{x}{y})}]{p}{q})}]{r}{s}$ is the type of
+\define{3-dimensional paths}
+\indexdef{path!3-}\indexsee{3-path}{path, 3-}\indexsee{3-dimensional path}{path, 3-}\indexsee{path!3-dimensional}{path, 3-}%
+between two parallel 2-dimensional paths, and so on.  If the
+type $A$ is ``set-like'', such as \nat, these iterated identity types
+will be uninteresting (see \PMlinkname{\S 3.1}{31setsandntypes}), but in the
+general case they can model non-trivial homotopy types.
+
+%% (Obviously, the
+%% notation ``$\id[A]{x}{y}$'' has its limitations here.  The style
+%% $\idtype[A]{x}{y}$ is only slightly better in iterations:
+%% $\idtype[{\idtype[{\idtype[A]{x}{y}}]{p}{q}}]{r}{s}$.)
+
+An important difference between homotopy type theory and classical homotopy theory is that homotopy type theory provides a \emph{synthetic}
+\index{synthetic mathematics}%
+\index{geometry, synthetic}%
+\index{Euclid of Alexandria}%
+description of spaces, in the following sense. Synthetic geometry is geometry in the style of Euclid~\cite{Euclid}: one starts from some basic notions (points and lines), constructions (a line connecting any two points), and axioms
+(all right angles are equal), and deduces consequences logically.  This is in contrast with analytic
+\index{analytic mathematics}%
+geometry, where notions such as points and lines are represented concretely using cartesian coordinates in $\R^n$---lines are sets of points---and the basic constructions and axioms are derived from this representation.  While classical homotopy theory is analytic (spaces and paths are made of points), homotopy type theory is synthetic: points, paths, and paths between paths are basic, indivisible, primitive notions.
+
+Moreover, one of the amazing things about homotopy type theory is that all of the basic constructions and axioms---all of the
+higher groupoid structure----arises automatically from the induction
+principle for identity types.
+Recall from \PMlinkname{\S 1.12}{112identitytypes} that this says that if
+\begin{itemize}
+\item for every $x,y:A$ and every $p:\id[A]xy$ we have a type $D(x,y,p)$, and
+\item for every $a:A$ we have an element $d(a):D(a,a,\refl a)$, 
+\end{itemize}
+then
+\begin{itemize}
+\item there exists an element $\indid{A}(D,d,x,y,p):D(x,y,p)$ for \emph{every} two elements $x,y:A$ and $p:\id[A]xy$, such that $\indid{A}(D,d,a,a,\refl a) \jdeq d(a)$.
+\end{itemize}
+In other words, given dependent functions
+\begin{align*}
+D & :\prd{x,y:A}{p:\id{x}{y}} \type\\
+d & :\prd{a:A} D(a,a,\refl{a})
+\end{align*}
+there is a dependent function
+\[\indid{A}(D,d):\prd{x,y:A}{p:\id{x}{y}} D(x,y,p)\]
+such that 
+\begin{myeqn}\label{eq:Jconv}
+\indid{A}(D,d,a,a,\refl{a})\jdeq d(a)
+\end{myeqn}
+for every $a:A$.
+Usually, every time we apply this induction rule we will either not care about the specific function being defined, or we will immediately give it a different name.
+
+Informally, the induction principle for identity types says that if we want to construct an object (or prove a statement) which depends on an inhabitant $p:\id[A]xy$ of an identity type, then it suffices to perform the construction (or the proof) in the special case when $x$ and $y$ are the same (judgmentally) and $p$ is the reflexivity element $\refl{x}:x=x$ (judgmentally).
+When writing informally, we may express this with a phrase such as ``by induction, it suffices to assume\dots''.
+This reduction to the ``reflexivity case'' is analogous to the reduction to the ``base case'' and ``inductive step'' in an ordinary proof by induction on the natural numbers, and also to the ``left case'' and ``right case'' in a proof by case analysis on a disjoint union or disjunction.\index{induction principle!for identity type}%
+
+
+The ``conversion rule''~\eqref{eq:Jconv} is less familiar in the context of proof by induction on natural numbers, but there is an analogous notion in the related concept of definition by recursion.
+If a sequence\index{sequence} $(a_n)_{n\in \mathbb{N}}$ is defined by giving $a_0$ and specifying $a_{n+1}$ in terms of $a_n$, then in fact the $0^{\mathrm{th}}$ term of the resulting sequence \emph{is} the given one, and the given recurrence relation relating $a_{n+1}$ to $a_n$ holds for the resulting sequence.
+(This may seem so obvious as to not be worth saying, but if we view a definition by recursion as an algorithm\index{algorithm} for calculating values of a sequence, then it is precisely the process of executing that algorithm.)
+The rule~\eqref{eq:Jconv} is analogous: it says that if we define an object $f(p)$ for all $p:x=y$ by specifying what the value should be when $p$ is $\refl{x}:x=x$, then the value we specified is in fact the value of $f(\refl{x})$.
+
+This induction principle endows each type with the structure of an $\infty$-groupoid\index{.infinity-groupoid@$\infty$-groupoid}, and each function between two types the structure of an $\infty$-functor\index{.infinity-functor@$\infty$-functor} between two such groupoids.  This is interesting from a mathematical point view, because it gives a new way to work with
+$\infty$-groupoids.  It is interesting from a type-theoretic point view, because it reveals new operations that are associated with each type and function.  In the remainder of this chapter, we begin to explore this structure.
+
+\begin{thebibliography}{99}
+
+\bibitem{Euclid} {Euclid}, \emph{{Elements,{V}ols.\ 1--13}}  {Elsevier},{300 {BC}}
+
+\end{thebibliography}
+
+\end{document}

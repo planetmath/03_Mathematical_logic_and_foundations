@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TransfiniteRecursion}
+\pmcreated{2013-03-22 17:53:51}
+\pmmodified{2013-03-22 17:53:51}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{transfinite recursion}
+\pmrecord{12}{40387}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E45}
+\pmclassification{msc}{03E10}
+\pmrelated{WellFoundedRecursion}
+\pmrelated{TransfiniteInduction}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Transfinite recursion, roughly speaking, is a statement about the ability to define a function recursively using transfinite induction.  In its most general and intuitive form, it says
+
+\begin{thm}  Let $G$ be a (class) function on $V$, the class of all sets.  Then there exists a unique (class) function $F$ on $\mathbf{On}$, the class of ordinals, such that $$F(\alpha)=G(F|\alpha)$$ where $F|\alpha$ is the function whose domain is $\operatorname{seg}(\alpha):=\lbrace \beta\mid \beta<\alpha\rbrace$ and whose values coincide with $F$ on every $\beta\in \operatorname{seg}(\alpha)$.  In other words, $F|\alpha$ is the restriction of $F$ to $\operatorname{\alpha}$.
+\end{thm}
+
+Notice that the theorem above is not provable in ZF set theory, as $G$ and $F$ are both classes, not sets.  In order to prove this statement, one way of getting around this difficulty is to convert both $G$ and $F$ into formulas, and modify the statement, as follows:
+
+Let $\varphi(x,y)$ be a formula such that $$\forall x\exists y \forall z (\varphi(x,z)\leftrightarrow z=y).$$  Think of $G=\lbrace (x,y)\mid \varphi(x,y)\rbrace$.  Then there is a unique formula $\psi(\alpha,z)$ (think of $F$ as $\lbrace (\alpha,z)\mid \psi(\alpha,z)\rbrace$) such that the following two sentences are derivable using ZF axioms:
+\begin{enumerate}
+\item $\forall x\exists y \forall z \big(\mathbf{On}(x)\wedge (\psi(x,z)\leftrightarrow z=y) \big),$ where $\mathbf{On}(x)$ means ``$x$ is an ordinal'',
+\item $\forall x\forall y \Big(\mathbf{On}(x)\wedge \big(\psi(x,y)\leftrightarrow \exists f (A\wedge B \wedge C \wedge D) \big) \Big)$, where 
+\begin{itemize}
+\item $A$ is the formula ``$f$ is a function'', 
+\item $B$ is the formula ``$\operatorname{dom}(f)=x$'', 
+\item $C$ is the formula $\forall z \big(z\in x \wedge \varphi(f|z,f(z))\big)$, and 
+\item $D$ is the formula $\varphi(f,y)$.
+\end{itemize}
+\end{enumerate}
+
+A stronger form of the transfinite recursion theorem says:
+\begin{thm}  Let $\varphi(x,y)$ be any formula (in the language of set theory).  Then the following is a theorem: assume that $\varphi$ satisfies property that, for every $x$, there is a unique $y$ such that $\varphi(x,y)$.  If $A$ be a well-ordered set (well-ordered by $\le$), then there is a unique function $f$ defined on $A$ such that $$\varphi(f|\operatorname{seg}(s),f(s))$$ for every $s\in A$.  Here, $\operatorname{seg}(s):=\lbrace t\in A\mid t<s\rbrace$, the initial segment of $s$ in $A$.
+\end{thm}
+
+The above theorem is actually a collection of theorems, or known as a theorem schema, where each theorem corresponds to a formula.  The other difference between this and the previous theorem is that this theorem is provable in ZF, because the domain of the function $f$ is now a set.
+%%%%%
+%%%%%
+\end{document}

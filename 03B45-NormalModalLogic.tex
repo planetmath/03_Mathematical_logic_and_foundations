@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{NormalModalLogic}
+\pmcreated{2013-03-22 19:33:38}
+\pmmodified{2013-03-22 19:33:38}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{normal modal logic}
+\pmrecord{16}{42546}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmrelated{DisjunctionProperty}
+\pmdefines{law of distribution}
+\pmdefines{necessitation}
+\pmdefines{K}
+\pmdefines{logic}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{tabls}
+\usepackage{multicol}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The study of modal logic is based on the concept of a \emph{logic}, which is a set $\Lambda$ of wff's satisfying the following:
+\begin{itemize}
+\item contains all tautologies, and 
+\item is closed under modus ponens.
+\end{itemize}
+The last condition means: if $A$ and $A\to B$ are in $\Lambda$, so is $B$ in $\Lambda$.
+
+A \emph{normal modal logic} is a modal logic $\Lambda$ that includes the \emph{law of distribution} K (after Kripke):
+$$\square (A\to B)\to (\square A \to \square B)$$
+as an axiom schema, and obeying the \emph{rule of necessitation} $RN$:
+\begin{center}
+from $\vdash A$, we may infer $\vdash \square A$: if $A\in \Lambda$, then $\square A \in \Lambda$.
+\end{center}
+
+Normal modal logics are the most widely studied modal logics.  The smallest normal modal logic is called \textbf{K}.  Other normal modal logics are built from \textbf{K} by attaching wff's as axiom schemas.  Below is a list of schemas used to form some of the most common normal modal logics:
+\begin{multicols}{2}{
+\begin{itemize}
+\item 4: $\square A\to \square \square A$
+\item 5: $\Diamond A \to \square \Diamond A$
+\item D: $\square A \to \Diamond A$
+\item T: $\square A \to A$
+\item B: $A\to \square \Diamond A$
+\item C: $\square (A\wedge \square B)\to \square (A\wedge B)$
+\item M: $\square (A\wedge B)\to \square A\wedge \square B$
+\item G: $\Diamond \square A \to \square \Diamond A$
+\item L: $\square (A\wedge \square A \to B) \vee \square (B\wedge \square B \to A)$
+\item W: $\square (\square A \to A) \to \square A$
+\end{itemize}
+}\end{multicols}
+For example, the normal modal logic \textbf{D} is the smallest normal modal logic containing $D$ as its axiom schema.
+
+\textbf{Notation}.  The smallest normal modal logic containing schemas $\Sigma_1,\ldots, \Sigma_n$ is typically denoted 
+\begin{center}
+\textbf{K}$\mathbf{\Sigma_1 \cdots \Sigma_n}$.  
+\end{center}
+It is easy to see that \textbf{K}$\mathbf{\Sigma_1 \cdots \Sigma_n}$ can be built from the ``bottom up'': call a finite sequence of wff's a deduction if each wff is either a tautology, an instance of $\Sigma_i$ for some $i$, or as a result of an application of modus ponens or necessitation on earlier wff's in the sequence.  A wff is deducible from if it is the last member of some deduction.  Let $\Lambda_k$ be the set of all wff's deducible from deductions of lengths at most $k$.  Then 
+\begin{center}
+\textbf{K}$\mathbf{\Sigma_1 \cdots \Sigma_n} = \bigcup_{i=1}^{\infty} \Lambda_i$
+\end{center}
+
+Below are some of the most common normal modal logics:
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+\hline
+name & \textbf{D} & \textbf{T} & \textbf{B} & \textbf{S4} & \textbf{S5} & \textbf{GL} & \textbf{K4.3} & \textbf{S4.3} \\
+\hline
+notation & \textbf{KD} & \textbf{KT} & \textbf{KTB} & \textbf{KT4} & \textbf{KT5} & \textbf{KW} & \textbf{K4L} & \textbf{KT4L} \\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Remarks}
+\begin{itemize}
+\item \textbf{D} is commonly used in the study of deontic logic (logic of obligation).  Extensions of \textbf{D} such as \textbf{KD4} and \textbf{KD45} are used in the study of doxastic logic (logic of belief).
+\item \textbf{GL} is known as provability logic, where $\square A$ means $A$ is provable in Peano arithmetic.
+\item \textbf{S4} and \textbf{S5} are two of the Lewis' 5 modal logical systems.  They are commonly used in the study of epistemic logic (logic of knowledge).  The modal logics \textbf{S1}, \textbf{S2}, and \textbf{S3} are non-normal.
+\end{itemize}
+
+\subsubsection*{Semantics}
+
+The dominant semantics for normal modal logic is the Kripke semantics, or relational semantics.  More on this can be found \PMlinkid{here}{12541}.  A logic is \emph{sound} in a class of frames if every theorem is valid in every frame in the class, and \emph{complete} if any formula valid in every frame in the class is a theorem.  When a logic $\Lambda$ is both sound and complete in a class $\mathcal{C}$ of frames, we say that $\mathcal{C}$ \emph{describes} $\Lambda$.
+
+
+The following table lists the logics \textbf{K}$\mathbf{\Sigma}$ and the corresponding sound and complete classes of (Kripke) frames:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$\Sigma$ in  \textbf{K}$\mathbf{\Sigma}$ & frame \textbf{K}$\mathbf{\Sigma}$ is sound in & frame \textbf{K}$\mathbf{\Sigma}$ is complete in \\
+\hline\hline
+4 & transitive & transitive \\
+\hline
+5 & Euclidean & Euclidean \\
+\hline
+D & serial & serial \\
+\hline
+T & reflexive & reflexive \\
+\hline
+B & symmetric & symmetric \\
+\hline
+G & weakly directed & weakly directed \\
+\hline
+L & weakly connected & weakly connected \\
+\hline
+W & transitive and converse well-founded & finite transitive and irreflexive \\
+\hline
+\end{tabular}
+\end{center}
+
+%%%%%
+%%%%%
+\end{document}

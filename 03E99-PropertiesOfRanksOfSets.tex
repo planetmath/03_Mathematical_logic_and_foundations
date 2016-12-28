@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfRanksOfSets}
+\pmcreated{2013-03-22 18:50:31}
+\pmmodified{2013-03-22 18:50:31}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of ranks of sets}
+\pmrecord{8}{41647}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E99}
+\pmdefines{grounded}
+\pmdefines{grounded set}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A set $A$ is said to be \emph{grounded}, if $A\subseteq V_{\alpha}$ in the cumulative hierarchy for some ordinal $\alpha$.  The smallest such $\alpha$ such that $A\subseteq V_{\alpha}$ is called the rank of $A$, and is denoted by $\rho(A)$.
+
+In this entry, we list derive some basic properties of groundedness and ranks of sets.  Proofs of these properties require an understanding of some of the basic properties of ordinals.
+
+\begin{enumerate}
+\item $\varnothing$ is grounded, whose rank is itself.  This is obvious.
+\item If $A$ is grounded, so is every $x\in A$, and $\rho(x)< \rho(A)$.
+\begin{proof}  $A\subseteq V_{\rho(A)}$, so $x\in V_{\rho(A)}$, which means $x\subseteq V_{\beta}$ for some $\beta < \rho(A)$.  This shows that $x$ is grounded.  Then $\rho(x)\le \beta$, and hence $\rho(x)< \rho(A)$.
+\end{proof}
+\item If every $x\in A$ is grounded, so is $A$, and $\rho(A)=\sup \lbrace \rho(x)^+ \mid x\in A\rbrace$.
+\begin{proof}  Let $B=\lbrace \rho(x)^+ \mid x\in A\rbrace$.  Then $B$ is a set of ordinals, so that $\beta:=\bigcup B = \sup B$ is an ordinal.  Since each $x\in V_{\rho(x)^+}$, we have $x\in V_{\beta}$.  So $A\subseteq V_{\beta}$, showing that $A$ is grounded.  If $\alpha <\beta$, then for some $x\in A$, $\alpha < \rho(x)^+$, which means $x\notin V_{\alpha}$, and therefore $A\nsubseteq V_{\alpha}$.  This shows that $\rho(A)=\beta$.
+\end{proof}
+\item If $A$ is grounded, so is $\lbrace A\rbrace$, and $\rho(\lbrace A\rbrace)=\rho(A)^+$.  This is a direct consequence of the previous result.
+\item If $A,B$ are grounded, so is $A\cup B$, and $\rho(A\cup B)=\max(\rho(A),\rho(B))$.
+\begin{proof}  Since $A,B$ are grounded, every element of $A\cup B$ is grounded by property 2, so that $A\cup B$ is also grounded by property 3.  Then $\rho(A\cup B) = \sup \lbrace \rho(x)^+ \mid x\in A\cup B\rbrace = \max(\sup \lbrace \rho(x)^+ \mid x\in A \rbrace, \sup \lbrace \rho(x)^+ \mid x\in B\rbrace) = \max(\rho(A),\rho(B))$.
+\end{proof}
+\item If $A$ is grounded, so is $B\subseteq A$, and $\rho(B)\le \rho(A)$.
+\begin{proof}  Every element of $B$, as an element of the grounded set $A$, is grounded, and therefore $B$ is grounded.  So $\rho(B)= \sup \lbrace \rho(x)^+ \mid x\in B\rbrace \le \sup \lbrace \rho(x)^+ \mid x\in A\rbrace = \rho(A)$.  Since $\rho(B)$ and $\rho(A)$ are both ordinals, $\rho(B)\le \rho(A)$.
+\end{proof}
+\item If $A$ is grounded, so is $P(A)$, and $\rho(P(A))=\rho(A)^+$.
+\begin{proof}  Every subset of $A$ is grounded, since $A$ is by property 6.  So $P(A)$ is grounded.  Furthermore, $P(A) = \sup \lbrace \rho(x)^+ \mid x\in P(A)\rbrace$.  Since $\rho(B)\le \rho(A)$ for any $B\in P(A)$, and $A \in P(A)$, we have $P(A)=\rho(A)^+$ as a result.
+\end{proof}
+\item If $A$ is grounded, so is $\bigcup A$, and $\rho(\bigcup A)=\sup \lbrace \rho(x)\mid x\in A\rbrace$.
+\begin{proof}  Since $A$ is grounded, every $x\in A$ is grounded.  Let $B=\lbrace \rho(x)\mid x\in A\rbrace$.  Then $\beta:=\bigcup B =\sup B$ is an ordinal.  Since $\rho(x)\le \beta$, $V_{\rho(x)}=V_{\beta}$ or $V_{\rho(x)}\in V_{\beta}$.  In either case, $V_{\rho(x)}\subseteq V_{\beta}$, since $V_{\alpha}$ is a transitive set for any ordinal $\alpha$.  Since $x\subseteq V_{\rho(x)}$, $x\subseteq V_{\beta}$ for every $x\in A$.  This means $\bigcup A \subseteq V_{\beta}$, showing that $\bigcup A$ is grounded.  If $\alpha < \beta$, then $\alpha < \rho(x)$ for some $\rho(x) \le \beta$, which means $x \nsubseteq V_{\alpha}$, or $\bigcup A\nsubseteq V_{\alpha}$ as a result.  Therefore $\rho(\bigcup A)=\beta$.
+\end{proof}
+\item Every ordinal is grounded, whose rank is itself.
+\begin{proof}  If $\alpha=0$, then apply property 1.  If $\alpha$ is a successor ordinal, apply properties 4 and 5, so that $\rho(\alpha)=\rho(\beta^+) = \rho(\beta\cup \lbrace \beta\rbrace) = \max(\rho(\beta), \rho(\lbrace \beta \rbrace)) = \max(\rho(\beta), \rho(\beta)^+) = \rho(\beta)^+$.  If $\alpha$ is a limit ordinal, then apply property 8 and transfinite induction, so that $\rho(\alpha)=\rho(\bigcup \alpha)=\sup \lbrace \rho(\beta) \mid \beta < \alpha\rbrace = \sup \lbrace \beta \mid \beta< \alpha\rbrace =\alpha$.
+\end{proof}
+\end{enumerate}
+
+\begin{thebibliography}{8}
+\bibitem{he} H. Enderton, {\em Elements of Set Theory}, Academic Press, Orlando, FL (1977).
+\bibitem{al} A. Levy, {\em Basic Set Theory}, Dover Publications Inc., (2002).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FuzzySubset}
+\pmcreated{2013-03-22 16:34:54}
+\pmmodified{2013-03-22 16:34:54}
+\pmowner{ggerla}{15808}
+\pmmodifier{ggerla}{15808}
+\pmtitle{fuzzy subset}
+\pmrecord{11}{38773}
+\pmprivacy{1}
+\pmauthor{ggerla}{15808}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E72}
+\pmclassification{msc}{03G20}
+\pmsynonym{fuzzy set}{FuzzySubset}
+\pmsynonym{L-subset}{FuzzySubset}
+%\pmkeywords{multi-valued logic}
+%\pmkeywords{fuzzy control}
+\pmrelated{Logic}
+\pmrelated{FuzzyLogic2}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+Fuzzy set theory is based on the idea that vague notions as ``big'', ``near'', ``hold'' can be modelled by ``fuzzy subsets''.  The idea of a fuzzy subset $T$ of a set $S$ is the following: each element $x\in S$, there is a number $p\in [0,1]$ such that $p_x$ is the ``probability'' that $x$ is in $T$.  
+
+To formally define a fuzzy set, let us first recall a well-known fact about subsets: a subset $T$ of a set $S$ corresponds uniquely to the characteristic function $c_T:S\to \lbrace 0,1\rbrace$, such that $c_T(x)=1$ iff $x\in T$.  So if one were to replace $\lbrace 0,1\rbrace$ with the the closed unit interval $[0,1]$, one obtains a fuzzy subset:
+\begin{quote}
+A \emph{fuzzy subset} of a set $S$ is a map $s:S\rightarrow [0,1]$ from $S$ into the interval $[0,1]$. 
+\end{quote}
+More precisely, the interval $[0,1]$ is considered as a complete lattice with an involution $1-x$. 
+We call \textit{fuzzy subset of } $S$ any element of the direct power $[0,1]^S$.  Whereas there are $2^{|S|}$ subsets of $S$, there are $\aleph_1^{|S|}$ fuzzy subsets of $S$.
+
+The join and meet operations in the complete lattice $[0,1]^S$ are named \textit{union} and \textit{intersection}, respectively. The operation induced by the involution is called \textit{complement}. This means that if $s$ and $t$ are two fuzzy subsets, then the fuzzy subsets $s\cup t, s\cap t, -s$, are defined by the equations
+$$(s\cup t)(x) = \max\{s(x), t(x)\} \,\,\, ; \,\,\,(s\cap t)(x) = \min\{s(x), t(x)\} \,\,\, ; \,\,\,-s(x) = 1-s(x).$$
+It is also possible to consider any lattice $L$ instead of $[0,1]$. In such a case we call $L$\textit{-subset of } $S$ any element of the direct power $L^S$ and the union and the intersection are defined by setting
+$$(s\cup t)(x) = s(x)\vee t(x) \,\,\, ; \,\,\,(s\cap t)(x) = s(x)\wedge t(x)$$
+where $\vee$ and $\wedge$ denote the join and the meet operations in $L$, respectively. In the case an order reversing function $\neg : L \rightarrow L$ is defined in $L$, the \textit{complement} $-s$ of $s$ is defined by setting
+$$-s(x) = \neg s(x).$$
+Fuzzy set theory is devoted mainly to applications. The main success is perhaps \textit{fuzzy control}.
+
+\begin{thebibliography}{9}
+\bibitem{cdm} Cignoli R., D Ottaviano I. M. L. and Mundici D.,{\em Algebraic Foundations of Many-Valued Reasoning}. Kluwer, Dordrecht, (1999).
+\bibitem{e} Elkan C., {\em The Paradoxical Success of Fuzzy Logic}. (November 1993). Available from \PMlinkexternal{http://www.cse.ucsd.edu/users/elkan/}{http://www.cse.ucsd.edu/users/elkan/} Elkan's home page.
+\bibitem{gg} Gerla G., {\em Fuzzy logic: Mathematical tools for approximate reasoning}, Kluwer Academic Publishers, Dordrecht, (2001).
+\bibitem{gj} Goguen J., The logic of inexact concepts,  {\em Synthese}, vol. 19 (1968/69)
+\bibitem{gs} Gottwald S., {\em A treatise on many-valued logics}, Research Studies Press, Baldock (2000).
+\bibitem{h} HÃ¡jek P., {\em Metamathematics of fuzzy logic}. Kluwer (1998).
+\bibitem{k} Klir G. , UTE H. St.Clair and Bo Yuan, {\em Fuzzy Set Theory Foundations and Applications}, (1997).
+\bibitem{z} Zimmermann H., {\em Fuzzy Set Theory and its Applications} (2001), ISBN 0-7923-7435-5.
+\bibitem{z1} Zadeh L.A., Fuzzy Sets, {\em Information and Control}, 8 (1965) 338Â­-353.
+\bibitem{z2} Zadeh L. A., The concept of a linguistic variable and its application to approximate reasoning I, II, III, {\em Information Sciences}, vol. 8, 9(1975), pp. 199-275, 301-357, 43-80.
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

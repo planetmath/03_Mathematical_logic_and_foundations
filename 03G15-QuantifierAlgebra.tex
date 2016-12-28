@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{QuantifierAlgebra}
+\pmcreated{2013-03-22 17:49:04}
+\pmmodified{2013-03-22 17:49:04}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{quantifier algebra}
+\pmrecord{10}{40281}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G15}
+\pmrelated{MonadicAlgebra}
+\pmrelated{PolyadicAlgebra}
+\pmdefines{locally finite}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\PMlinkescapeword{degree}
+
+A \emph{quantifier algebra} is a triple $(B,V,\exists)$, where $B$ is a Boolean algebra, $V$ is a set, and $\exists$ is a function $$\exists: P(V)\to B^B$$
+from the power set of $V$ to the set of functions on $B$, such that
+\begin{enumerate}
+\item the pair $(B,\exists(I))$ is a monadic algebra for each subset $I\subseteq V$, 
+\item $\exists(\varnothing)=I_B$, the identity function on $B$, and
+\item $\exists(I\cup J)=\exists(I)\circ \exists(J)$, for any $I,J\in P(V)$.
+\end{enumerate}
+The cardinality of $V$ is called the \emph{degree} of the quantifier algebra $(B,V,\exists)$.
+
+
+Think of $V$ as a set of variables and $B$ a set of propositional functions closed under the usual logical connectives.  From this, $\exists(I)$ in the first condition can be viewed as the existential quantifier $\exists$ bounding a set $I$ of variables.  The second condition stipulates that, when no variables are bound by $\exists$, then $\exists$ has no effect on the propositional functions.  The last condition states that the order and frequency of the variables bound by $\exists$ does not affect the outcome ($\exists x_2, x_1, x_2$ is the same as $\exists x_1 \exists x_2$).
+
+\textbf{Remarks}  
+\begin{itemize}
+\item
+A monadic algebra is a quantifier algebra where $V=\lbrace x\rbrace$, a singleton, and a Boolean algebra is just a quantifier algebra with $V=\varnothing$.
+\item
+In classical first order logic, the set of variables bound by a quantifier appearing in a formula is finite.  Any variable not bound by the quantifier is considered free, as far as the scope of the quantifier is concerned.  This basically says that every propositional function in the classical first order logic has a finite number variables.  Translated into the language of quantifier algebras, this means that \begin{center} for each $p\in B$, there is a finite $I\subseteq V$, such that $\exists(V-I)(p)=p$. \end{center}  Any quantifier algebra satisfying the above condition is said to be \emph{locally finite}.
+
+Alternatively, a set $I\subseteq V$ is called a \emph{support} of $p\in B$ if $\exists(V-I)(p)=p$.  The intersection of all supports of $p$ is called \emph{the} support of $p$, denoted by $\operatorname{Supp}(p)$.  $B$ is locally finite iff every element of $B$ has a finite support, or that $\operatorname{Supp}(p)$ is finite.
+\item
+Quantifier algebras are a step closer in fully characterizing the ``algebra'' of predicate logic than monadic algebras.  However, it is not powerful enough to address situations where a ``change of variable'' occurs in a propositional function, such as $\exists x (x^2+z^2=1)$ versus $\exists y (y^2+z^2=1)$.  In a quatifier algebra, these two formulas are distinct, even though they are the same semantically in logic.  In order take into account these additional considerations, polyadic algebras are needed.
+\end{itemize}
+
+\begin{thebibliography}{8}
+\bibitem{ph} P. Halmos, \emph{Algebraic Logic}, Chelsea Publishing Co. New York (1962).
+\bibitem{bp} B. Plotkin, \emph{Universal Algebra, Algebraic Logic, and Databases}, Kluwer Academic Publishers (1994).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

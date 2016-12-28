@@ -1,0 +1,141 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A0Preliminaries}
+\pmcreated{2013-11-09 3:26:43}
+\pmmodified{2013-11-09 3:26:43}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.0 Preliminaries}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\ctx}{\ensuremath{\mathsf{ctx}}}
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\emptyctx}{\ensuremath{\cdot}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\wfctx}[1]{#1\ \ctx}
+\let\autoref\cref
+\makeatother
+\begin{document}
+In \PMlinkexternal{Chapter 1}{http://planetmath.org/node/87533}, we presented the two basic \define{judgments}
+\index{judgment}
+of type theory. The first, $a:A$, asserts that a term $a$ has type $A$. The second,
+$a\jdeq b:A$, states that the two terms $a$ and $b$ are \define{judgmentally
+equal}
+\index{equality!judgmental}
+\index{judgmental equality}
+at type $A$. These judgments are inductively defined by a set of
+inference rules described in \autoref{sec:syntax-more-formally}.
+
+To construct an element $a$ of a type $A$ is to derive $a:A$; in the book, we
+give informal arguments which describe the construction of $a$, but formally,
+one must specify a precise term $a$ and a full derivation that $a:A$.
+
+However, the main difference between the presentation of type theory in the book
+and in this appendix is that here judgments are explicitly
+formulated in an ambient \define{context},
+\index{context}
+or list of assumptions, of the form
+\[
+  x_1:A_1, x_2:A_2,\dots,x_n:A_n.
+\]
+An element $x_i : A_i$ of the context expresses the assumption that the
+variable
+\index{variable}%
+$x_i$ has type $A_i$. The variables $x_1, \ldots, x_n$ appearing in
+the context must be distinct. We abbreviate contexts with the letters $\Gamma$
+and $\Delta$.
+
+The judgment $a:A$ in context $\Gamma$ is written 
+\[ \oftp\Gamma aA \]
+and means that $a:A$ under the assumptions listed in $\Gamma$. When the list of
+assumptions is empty, we write simply
+\[ \oftp{}aA \]
+or
+\[ \oftp\emptyctx aA \]
+where $\emptyctx$ denotes the empty context. The same applies to the equality
+judgment
+\[
+  \jdeqtp\Gamma{a}{b}{A}
+\]
+
+However, such judgments are sensible only for \define{well-formed} contexts,
+\index{context!well-formed}%
+a notion captured by our third and final judgment
+\[
+  \wfctx{(x_1:A_1, x_2:A_2,\dots,x_n:A_n)}
+\]
+expressing that each $A_i$ is a type in the context $x_1:A_1,
+x_2:A_2,\dots,x_{i-1}:A_{i-1}$.  In particular, therefore, if $\oftp\Gamma aA$ and
+$\wfctx\Gamma$, then we know that each $A_i$ contains only the variables
+$x_1,\dots,x_{i-1}$, and that $a$ and $A$ contain only the variables
+$x_1,\dots,x_n$.
+\index{variable!in context}
+
+In informal mathematical presentations, the context is
+implicit. At each point in a proof, the mathematician knows which
+variables are available and what types they have, either by historical
+convention ($n$ is usually a number, $f$ is a function, etc.) or
+because variables are explicitly introduced with sentences such as
+``let $x$ be a real number''. We discuss some benefits of using explicit
+contexts in \autoref{sec:more-formal-pi},\autoref{sec:more-formal-sigma}.
+
+We write $B[a/x]$ for the \define{substitution}
+\index{substitution}%
+of a term $a$ for free occurrences of
+the variable~$x$ in the term $B$, with possible capture-avoiding
+renaming of bound variables,
+\index{variable!and substitution}%
+as discussed in
+\PMlinkname{\S 1.2}{12functiontypes}. The general form of substitution
+%
+\[
+   B[a_1,\dots,a_n/x_1,\dots,x_n]
+\]
+%
+substitutes expressions $a_1,\dots,a_n$ for the variables
+$x_1,\dots,x_n$ simultaneously.
+
+To \define{bind a variable $x$ in an expression $B$}
+\indexdef{variable!bound}%
+means to incorporate both of them into a larger expression, called an \define{abstraction},
+\indexdef{abstraction}%
+whose purpose is to express the fact that $x$ is ``local'' to $B$, i.e., it
+is not to be confused with other occurrences of $x$ appearing
+elsewhere. Bound variables are familiar to programmers, but less so to mathematicians.
+Various notations are used for binding, such as $x \mapsto B$,
+$\lam x B$, and $x \,.\, B$, depending on the situation. We may write $C[a]$ for the
+substitution of a term $a$ for the variable in the abstracted expression, i.e.,
+we may define $(x.B)[a]$ to be $B[a/x]$. As discussed in
+\PMlinkname{\S 1.2}{12functiontypes}, changing the name of a bound variable everywhere within an expression (``$\alpha$-conversion'')
+\index{alpha-conversion@$\alpha $-conversion}%
+does not change the expression. Thus, to be very
+precise, an expression is an equivalence class of syntactic forms
+which differ in names of bound variables.
+
+One may also regard each variable $x_i$ of a judgment
+\[
+  x_1:A_1, x_2:A_2,\dots,x_n:A_n \vdash a : A
+\]
+to be bound in its \define{scope},
+\indexdef{variable!scope of}%
+\index{scope}%
+consisting of the expressions $A_{i+1},
+\ldots, A_n$, $a$, and $A$.
+
+\end{document}

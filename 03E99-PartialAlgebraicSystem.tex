@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PartialAlgebraicSystem}
+\pmcreated{2013-03-22 18:42:10}
+\pmmodified{2013-03-22 18:42:10}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{partial algebraic system}
+\pmrecord{28}{41465}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E99}
+\pmclassification{msc}{08A55}
+\pmclassification{msc}{08A62}
+\pmsynonym{partial operator}{PartialAlgebraicSystem}
+\pmsynonym{partial algebra}{PartialAlgebraicSystem}
+\pmrelated{RelationalSystem}
+\pmdefines{partial operation}
+\pmdefines{partial groupoid}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $\lambda$ be a cardinal.  A partial function $f: A^{\lambda} \to A$ is called a \emph{partial operation} on $A$.  $\lambda$ is called the arity of $f$.  When $\lambda$ is finite, $f$ is said to be \emph{finitary}.  Otherwise, it is \emph{infinitary}.  A nullary partial operation is an element of $A$ and is called a constant.
+
+\textbf{Definition}.  A \emph{partial algebraic system} (or \emph{partial algebra} for short) is defined as a pair $(A,O)$, where $A$ is a set, usually non-empty, and called the underlying set of the algebra, and $O$ is a set of finitary partial operations on $A$.  The partial algebra $(A,O)$ is sometimes denoted by $\boldsymbol{A}$.
+
+Partial algebraic systems sit between algebraic systems and relational systems; they are generalizations of algebraic systems, but special cases of relational systems.
+
+The \emph{type} of a partial algebra is defined exactly the same way as that of an algebra.  When we speak of a partial algebra $\boldsymbol{A}$ of type $\tau$, we typically mean that $\boldsymbol{A}$ is \emph{proper}, meaning that the partial operation $f_{\boldsymbol{A}}$ is non-empty for every function symbol $f\in \tau$, and if $f$ is a constant symbol, $f_{\boldsymbol{A}} \in A$.
+
+Below is a short list of partial algebras.
+\begin{enumerate}
+\item
+Every algebraic system is automatically a partial algebraic system.
+\item
+A division ring $(D,\lbrace +\mbox{, }\cdot\mbox{, }-\mbox{, }^{-1}\mbox{, }0\mbox{, }1\rbrace)$ is a prototypical example of a partial algebra that is not an algebra.  It has type $\langle 2,2,1,1,0,0\rangle$.  It is not an algebra because the unary operation $^{-1}$ (multiplicative inverse) is only partial, not defined for $0$.
+\item
+Let $A$ be the set of all non-negative integers.  Let ``$-$'' be the ordinary subtraction.  Then $(A,\lbrace -\rbrace)$ is a partial algebra.
+\item
+A \emph{partial groupoid} is a partial algebra of type $\langle 2\rangle$.  In other words, it is a set with a partial binary operation (called the product) on it.  For example, a small category may be viewed as a partial algebra.  The product $ab$ is only defined when the source of $a$ matches with the target of $b$.  Special types of small categories are \PMlinkname{groupoids (category theoretic)}{GroupoidCategoryTheoretic}, and Brandt groupoids, all of which are partial.
+\item
+A small category can also be thought of as a partial algebra of type $\langle 2,1,1\rangle$, where the two (total) unary operators are the source and target operations.
+\end{enumerate}
+
+\textbf{Remark}.  Like algebraic systems, one can define subalgebras, direct products, homomorphisms, as well as congruences in partial algebras.
+
+\begin{thebibliography}{7}
+\bibitem{gg} G. Gr\"{a}tzer: {\em Universal Algebra}, 2nd Edition, Springer, New York (1978).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

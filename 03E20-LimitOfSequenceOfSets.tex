@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{LimitOfSequenceOfSets}
+\pmcreated{2013-03-22 15:00:34}
+\pmmodified{2013-03-22 15:00:34}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{limit of sequence of sets}
+\pmrecord{8}{36715}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmclassification{msc}{28A05}
+\pmclassification{msc}{60A99}
+\pmrelated{LimitSuperior}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+Recall that $\limsup$ and $\liminf$ of a sequence of sets $\lbrace A_i \rbrace$ denote the \PMlinkescapetext{limit superior} and the \PMlinkescapetext{limit inferior} of $\lbrace A_i \rbrace$, respectively.  Please click \PMlinkname{here}{LimitSuperiorOfSets} to see the definitions and \PMlinkname{here}{LimitSuperior} to see the specialized definitions when they are applied to the real numbers.
+
+\textbf{Theorem}.  Let $\lbrace A_i \rbrace$ be a sequence of sets with $i\in\mathbb{Z}^{+}=\lbrace 1,2,\ldots \rbrace$.  Then
+\begin{enumerate}
+\item for $I$ ranging over all infinite subsets of $\mathbb{Z}^{+}$, $$\limsup A_i=\bigcup_{I}\bigcap_{i\in I}A_i,$$
+\item for $I$ ranging over all subsets of $\mathbb{Z}^{+}$ with finite compliment, $$\liminf A_i=\bigcup_{I}\bigcap_{i\in I}A_i,$$
+\item $\liminf A_i\subseteq\limsup A_i$.
+\end{enumerate}
+
+\textbf{Proof}. \begin{enumerate}
+\item We need to show, for $I$ ranging over all infinite subsets of
+$\mathbb{Z}^{+}$,
+\begin{eqnarray}
+\bigcup_{I}\bigcap_{i\in I} A_i=\bigcap_{n=1}^\infty
+\bigcup_{i=n}^\infty A_k.\end{eqnarray} Let $x$ be an element of the
+LHS, the left hand side of Equation (1). Then $x\in\bigcap_{i\in I}
+A_i$ for some infinite subset $I\subseteq\mathbb{Z}^{+}$. Certainly,
+$x\in\bigcup_{i=1}^{\infty} A_i$.  Now, suppose
+$x\in\bigcup_{i=k}^{\infty} A_i$.  Since $I$ is infinite, we can
+find an $l\in I$ such that $l>k$.  Being a member of $I$, we have
+that $x\in A_l\subseteq\bigcup_{i=k+1}^{\infty} A_i$.  By induction,
+we have $x\in\bigcup_{i=n}^{\infty} A_i$ for all
+$n\in\mathbb{Z}^{+}$.  Thus $x$ is an element of the RHS. This
+proves one side of the inclusion ($\subseteq$) in (1).
+
+To show the other inclusion, let $x$ be an element of the RHS.  So
+$x\in\bigcup_{i=n}^{\infty} A_i$ for all $n\in\mathbb{Z}^{+}$  In
+$\bigcup_{i=1}^{\infty} A_i$, pick the least element $n_0$ such that
+$x\in A_{n_0}$.  Next, in $\bigcup_{i=n_0+1}^{\infty} A_i$, pick the
+least $n_1$ such that $x\in A_{n_1}$.  Then the set $I=\lbrace
+n_0,n_1,\ldots \rbrace$ fulfills the requirement $x\in\bigcap_{i\in
+I} A_i$, showing the other inclusion ($\supseteq$).
+\item  Here we have to show, for $I$ ranging over all subsets of
+$\mathbb{Z}^{+}$ with $\mathbb{Z}^{+}-I$ finite,
+\begin{eqnarray}
+\bigcup_{I}\bigcap_{i\in I} A_i=\bigcup_{n=1}^\infty
+\bigcap_{i=n}^\infty A_k.\end{eqnarray}  Suppose first that $x$ is
+an element of the LHS so that $x\in\bigcap_{i\in I} A_i$ for some
+$I$ with $\mathbb{Z}^{+}-I$ finite.  Let $n_0$ be a upper bound of
+the finite set $\mathbb{Z}^{+}-I$ such that for any
+$n\in\mathbb{Z}^{+}-I$, $n<n_0$.  This means that any $m\geq n_0$,
+we have $m\in I$. Therefore, $x\in\bigcap_{i=n_0}^{\infty} A_i$ and
+$x$ is an element of the RHS.
+
+Next, suppose $x$ is an element of the RHS so that
+$x\in\bigcap_{k=n}^\infty A_k$ for some $n$.  Then the set
+$I=\lbrace n_0,n_0+1,\ldots\rbrace$ is a subset of $\mathbb{Z}^{+}$
+with finite complement that does the job for the LHS.
+\item  The set of all subsets (of $\mathbb{Z}^{+}$) with finite
+complement is a subset of the set of all infinite subsets.  The
+third assertion is now clear from the previous two propositions. QED
+\end{enumerate}
+
+\textbf{Corollary}.  If $\lbrace A_i \rbrace$ is a decreasing
+sequence of sets, then $$\liminf A_i=\limsup A_i=\lim A_i=\bigcap
+A_i.$$  Similarly, if $\lbrace A_i \rbrace$ is an increasing
+sequence of sets, then $$\liminf A_i=\limsup A_i=\lim A_i=\bigcup
+A_i.$$
+
+\textbf{Proof}.  We shall only show the case when we have a
+descending chain of sets, since the other case is completely
+analogous.  Let $A_1\supseteq A_2\supseteq\ldots$ be a descending
+chain of sets.  Set $A=\bigcap_{i=1}^\infty A_i$.  We shall show
+that $$\limsup A_i=\liminf A_i=\lim A_i=A.$$  First, by the
+definition of \PMlinkescapetext{limit superior} of a sequence of sets:
+$$\limsup A_i=\bigcap_{n=1}^\infty \bigcup_{i=n}^\infty
+A_k=\bigcap_{n=1}^\infty A_n=A.$$  Now, by Assertion 3 of the above
+Theorem, $\liminf A_i\subseteq\limsup A_i=A$, so we only need to
+show that $A\subseteq\liminf A_i$.  But this is immediate from the
+definition of $A$, being the intersection of all $A_i$ with subscripts $i$ taking on all values of $\mathbb{Z}^{+}$.  Its complement is the empty
+set, clearly finite.  Having shown both the existence and equality
+of the \PMlinkescapetext{limit superior} and \PMlinkescapetext{limit inferior} of the $A_i$'s, we conclude
+that the limit of $A_i$'s exist as well and it is equal to $A$.
+QED
+%%%%%
+%%%%%
+\end{document}

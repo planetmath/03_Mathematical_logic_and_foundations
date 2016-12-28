@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Signature}
+\pmcreated{2013-03-22 13:51:48}
+\pmmodified{2013-03-22 13:51:48}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{signature}
+\pmrecord{16}{34603}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+\pmsynonym{language}{Signature}
+\pmsynonym{non-logical symbols}{Signature}
+\pmdefines{constant symbol}
+\pmdefines{function symbol}
+\pmdefines{relation symbol}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\let	\proves	=	\vdash
+\let	\implies	=	\rightarrow
+\let	\Implies	=	\Rightarrow
+\let	\iff		=	\leftrightarrow
+\let	\Iff		=	\Leftrightarrow
+\let	\iso		=	\cong
+\let	\embeds	=	\righthookarrow
+\newcommand{\eqclass}[1]{[\![#1]\!]}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\tuple}[1]{\langle#1\rangle}
+\newcommand{\gen}[1]{\langle\!\langle #1 \rangle\!\rangle}
+\newcommand{\powerset}{\mathcal P}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\im}{im}
+\begin{document}
+A \emph{signature} $\Sigma$ is a set 
+\begin{displaymath}
+\Sigma:=\left(\bigcup_{n\in\omega}\mathcal{R}_n\right)\cup\left(\bigcup_{n\in\omega}\mathcal{F}_n
+\right)\cup\mathcal{C}
+\end{displaymath}
+where for each natural number $n>0$, 
+\begin{description}
+\item[$\bullet$] $\mathcal{R}_n$ is a (usually countable) set of $n$-ary relation symbols.
+\item[$\bullet$] $\mathcal{F}_n$ is a (usually countable) set of $n$-ary function symbols.
+\item[$\bullet$] $\mathcal{C}$ is a (usually countable) set of constant symbols.
+\end{description}
+
+We require that all these sets be pairwise disjoint.
+
+Given a signature $\Sigma$, a $\Sigma$-structure is then a structure $\mathcal{A}$, whose underlying set is some set $A$, with elements $\mathcal{A}_c \in A$ for each constant symbol $c\in \Sigma$, $n$-ary operations $\mathcal{A}_f$ on $A$ for each $n$-ary function symbol $f\in \Sigma$, for each $n$, and $m$-ary relations $\mathcal{A}_R$ on $A$ for each $m$-ary relation symbol $R\in \Sigma$.
+
+On the other hand, every structure is associated with a signature.  For every structure, it has an underlying set, together with a collection of ``designated'' objects that ``define'' the structure.  These objects may be elements of the underlying set, operations on the set, or relations on the set.  For each such ``designated'' object, pick a symbol for it.  Make sure all symbols used are distinct from one another.  Then the collection of all such symbols is a signature for the structure.
+
+For most structures that we encounter, the set $\Sigma$ is finite, but we allow it to be infinite, even uncountable, as this sometimes makes things easier, and just about everything still works when the signature is uncountable.
+
+\textbf{Examples}:
+\begin{itemize}
+\item A signature of sets is the empty set.
+\item A signature of pointed sets is a singleton consisting of a constant symbol.
+\item A signature of groups is a set $\lbrace e, ^{-1}, \cdot \rbrace$, where 
+\begin{enumerate}
+\item $e$ (group identity symbol) is a constant symbol, 
+\item $^{-1}$ (group inverse symbol) is a unary function symbol, and 
+\item $\cdot$ (group multiplication symbol) is a binary function symbol.
+\end{enumerate}
+\item A signature of fields is a set $\lbrace 0,1, -, ^{-1}, +, \cdot \rbrace$, where 
+\begin{enumerate}
+\item $0$ (additive identity symbol) and $1$ (multiplicative identity symbol) are constant symbols, 
+\item $-$ (the additive inverse symbol) and $^{-1}$ (the multiplicative inverse symbol) are the unary function symbols, and 
+\item $+$ (addition symbol) $\cdot$ (multiplication symbol) are binary function symbols.
+\end{enumerate}
+\item A signature of posets is a singleton $\lbrace \le \rbrace$, where $\le$ (partial ordering symbol) is a binary relation symbol.
+\item A signature of vector spaces over a fixed field $k$ consists of the following
+\begin{enumerate}
+\item $0$ (additive identity symbol) is the constant symbol,
+\item $+$ (vector addition symbol) is the binary function symbol, and
+\item $\cdot_r$ (multiplication by scalar $r$ symbol) is the unary function symbol, for \emph{each} $r\in k$.
+\end{enumerate}
+\end{itemize}
+
+\textbf{Remark}.  Given a signature $\Sigma$, the set $L$ of logical symbols from first order logic, and a countably infinite set $V$ of variables, we can form a first order language, consisting of all formulas built from these symbols (in $\Sigma\cup L\cup V$).  The language so-created is uniquely determined by $\Sigma$.  In the literature, it is a common practice to identify $\Sigma$ both as a signature and the unique language it generates.
+
+\begin{thebibliography}{99}
+\bibitem{H}
+W.~Hodges, {\it A Shorter Model Theory}, Cambridge University Press, (1997).
+\bibitem{M}
+D.~Marker, {\it Model Theory, An Introduction}, Springer, (2002).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

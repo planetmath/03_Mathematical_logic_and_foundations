@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MealyMachine}
+\pmcreated{2013-03-22 18:59:54}
+\pmmodified{2013-03-22 18:59:54}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Mealy machine}
+\pmrecord{10}{41866}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmsynonym{complete sequential machine}{MealyMachine}
+\pmrelated{MooreMachine}
+\pmrelated{EquivalentMachines}
+\pmdefines{flow table}
+\pmdefines{combinational circuit}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{tabls}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A \emph{Mealy machine} $M$ is a five-tuple $(S,\Sigma,\Delta,\sigma,\lambda)$, where
+\begin{enumerate}
+\item $S$ is an alphabet whose elements are called \emph{states},
+\item $\Sigma$ is an alphabet whose elements are called \emph{input symbols},
+\item $\Delta$ is an alphabet whose elements are called \emph{output symbols},
+\item $\sigma: S\times \Sigma \to S$ is a function called the \emph{state transition function},
+\item $\lambda: S\times \Sigma \to \Delta$ is a function called the \emph{output function}.
+\end{enumerate}
+Given an a pair $(s,a)$ of state $s$ and input symbol $a$, the value $\sigma(s,a)$ is the \emph{next state} of $(s,a)$ and $\lambda(s,a)$ is the \emph{output} of $(s,a)$.
+
+Since all of the sets involved are finite, there are two ways to visualize a Mealy machine: via a table called the \emph{flow table} describing the transition and the output functions, or via a directed graph called the \emph{state diagram} (see details below).
+
+For example, consider a Mealy machine $M$ where $S=\lbrace s,t\rbrace$, $\Sigma = \lbrace a,b\rbrace$, and $\Delta = \lbrace x,y\rbrace$.  The state transition function $\sigma$ and the output function $\lambda$ are defined by the following table:
+
+\begin{center}
+\begin{tabular}{|c||c|c||c|c|}
+\hline
+& $a$ & $b$ & $a$ & $b$ \\
+\hline\hline
+$s$ & $t$ & $s$ & $y$ & $y$ \\
+\hline
+$t$ & $s$ & $t$ & $x$ & $y$ \\
+\hline
+\end{tabular}
+\end{center}
+The first column represents all the states of $M$; the second and third columns are the next states corresponding to the input symbols specified on the top row; and the last two columns show the corresponding output symbols.
+
+In addition, one can visualize a Mealy machine $M$ by way its state diagram $G_M$, which is a (labeled) directed graph.  $G_M$ is constructed as follows: the vertices of $G_M$ are states of $M$.  An edge from vertices $s$ to $t$ is constructed iff there is an input $a$ such that $\sigma(s,a)=t$.  Let $x=\lambda(s,a)$ be the corresponding output.  Then the edge from $s$ to $t$ is given a label $a|x$.  In the example above, the state diagram $G_M$ of $M$ is the following
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.80]{mealy.eps}
+\end{figure}
+
+\textbf{Remark}.  
+\begin{itemize}
+\item
+A Mealy machine with only one state is called a \emph{combinational circuit}.  It is nothing more than a finite function $\lambda$ from the set of inputs $I$ to the set of outputs $O$.
+\item
+A Mealy machine can be thought of as a state-output machine, if one treats the values of $\sigma$ and $\lambda$ as singleton subsets of $S$ and $\Delta$ respectively.  In this regard, a Mealy machine is complete because both $\sigma(s,a)$ and $\lambda(s,a)$ contain at least one element each, for all pairs $(s,a)\in S\times \Sigma$, and sequential because both $\sigma(s,a)$ and $\lambda(s,a)$ contain at most one element each.  As such, a Mealy machine is also known as a \emph{complete sequential machine}.
+\end{itemize}
+
+Viewed as a state-output machine, the transition and output functions of a Mealy machine can be extended so input words may be applied to the machine.  For the transition function $\sigma$, the extension is defined inductively on the length of input words: 
+$$\sigma(s,\epsilon):=s, \mbox{ and } \sigma(s,ua):=\sigma(\sigma(s,u),a), \mbox{ where }s\in S, u\in \Sigma^*, a\in \Sigma.$$  Like the transition function $\sigma$, the output function $\lambda$ is also extended inductively on the length of input words: $$\lambda(s,ua):=\lambda(\sigma(s,u),a), \mbox{ where }s\in S, u\in \Sigma^*, a\in \Sigma.$$  However, unlike $\sigma$, $\lambda$ is not defined for the empty input word $\epsilon$.
+
+\begin{thebibliography}{8}
+\bibitem{sg} S. Ginsburg, {\em An Introduction to Mathematical Machine Theory}, Addision-Wesley, (1962).
+\bibitem{ma} M. Arbib, \emph{Algebraic Theory of Machines, Languages, and Semigroups}, Academic Press, (1968).
+\bibitem{hs} J. Hartmanis, R.E. Stearns, \emph{Algebraic Structure Theory of Sequential Machines}, Prentice-Hall, (1966).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

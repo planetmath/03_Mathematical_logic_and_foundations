@@ -1,0 +1,231 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropositionalCalculus}
+\pmcreated{2013-03-22 17:54:40}
+\pmmodified{2013-03-22 17:54:40}
+\pmowner{Jon Awbrey}{15246}
+\pmmodifier{Jon Awbrey}{15246}
+\pmtitle{propositional calculus}
+\pmrecord{22}{40405}
+\pmprivacy{1}
+\pmauthor{Jon Awbrey}{15246}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F03}
+\pmclassification{msc}{03C05}
+\pmclassification{msc}{03B22}
+\pmclassification{msc}{03B05}
+\pmsynonym{propositional logic}{PropositionalCalculus}
+\pmsynonym{sentential calculus}{PropositionalCalculus}
+\pmsynonym{sentential logic}{PropositionalCalculus}
+\pmrelated{ZerothOrderLogic}
+\pmrelated{MinimalNegationOperator}
+\pmrelated{DifferentialLogic}
+\pmrelated{DifferentialPropositionalCalculus}
+\pmrelated{DifferentialPropositionalCalculusExamples}
+\pmrelated{DifferentialPropositionalCalculusAppendices}
+\pmrelated{DifferentialPropositionalCalculusAppendix2}
+\pmrelated{DifferentialPropositionalC}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+\PMlinkescapephrase{adapted}
+\PMlinkescapephrase{Adapted}
+\PMlinkescapephrase{angle}
+\PMlinkescapephrase{Angle}
+\PMlinkescapephrase{calculus}
+\PMlinkescapephrase{Calculus}
+\PMlinkescapephrase{complete}
+\PMlinkescapephrase{Complete}
+\PMlinkescapephrase{component}
+\PMlinkescapephrase{Component}
+\PMlinkescapephrase{degree}
+\PMlinkescapephrase{Degree}
+\PMlinkescapephrase{formalism}
+\PMlinkescapephrase{Formalism}
+\PMlinkescapephrase{holder}
+\PMlinkescapephrase{Holder}
+\PMlinkescapephrase{holders}
+\PMlinkescapephrase{Holders}
+\PMlinkescapephrase{origin}
+\PMlinkescapephrase{Origin}
+\PMlinkescapephrase{plus}
+\PMlinkescapephrase{Plus}
+\PMlinkescapephrase{point}
+\PMlinkescapephrase{Point}
+\PMlinkescapephrase{points}
+\PMlinkescapephrase{Points}
+\PMlinkescapephrase{right}
+\PMlinkescapephrase{Right}
+\PMlinkescapephrase{utility}
+\PMlinkescapephrase{Utility}
+
+A \textbf{propositional calculus} is a formal system whose expressions represent formal objects known as \textit{propositions} and whose distinguished relations among expressions represent existing relations among propositions.  Many different propositional calculi represent what is recognizably the same subject matter of propositions and their relations, which more generic subject matter is conveniently described as \textit{propositional logic}.  For the purposes of mathematical discussion, and especially in computational applications, it is sufficient to identify a proposition with a boolean-valued function, that is, a mapping of the type $X \to \mathbb{B}$, where $X$ is some set and $\mathbb{B} = \{ 0, 1 \}$.
+
+As a general consideration, a calculus is a formal system that consists of a set of syntactic expressions, a distinguished subset of these expressions, plus a set of transformation rules that define a binary relation on the space of expressions.  
+
+When the expressions are interpreted for mathematical purposes, the transformation rules are typically intended to preserve some type of semantic equivalence relation among the expressions.  In particular, when the expressions are intepreted as a logical system, the semantic equivalence is typically intended to be logical equivalence.  In this setting, the transformation rules can be used to derive logically equivalent expressions from any given expression.  These derivations include as special cases (1) the problem of \textit{simplifying} expressions and (2) the problem of deciding whether a given expression is equivalent to an expression in the distinguished subset, typically interpreted as the subset of logical \textit{axioms}.
+
+The formal language component of a propositional calculus consists of (1) a set of primitive symbols, variously referred to as \textit{atomic formulas}, \textit{placeholders}, \textit{proposition letters}, or \textit{variables}, and (2) a set of operator symbols, variously interpreted as \textit{logical operators} or \textit{logical connectives}.  A \textit{well-formed formula} (\textit{wff}) is any atomic formula or any formula that can be built up from atomic formulas by means of operator symbols.
+
+The following outlines a standard propositional calculus.  Many different formulations exist which are all more or less equivalent but differ in (1) their language, that is, the particular collection of primitive symbols and operator symbols, (2) the set of axioms, or distingushed formulas, and (3) the set of transformation rules that are available.
+
+\tableofcontents
+
+\section{Abstraction and application}
+
+Although it is possible to construct an abstract formal calculus that has no immediate practical use and next to nothing in the way of obvious applications, the very name \textit{calculus} indicates that this species of formal system owes its origin to the utility of its prototypical members in practical calculation.  Generally speaking, any mathematical calculus is designed with the intention of representing a given domain of formal objects, and typically with the aim of facilitating the computations and inferences that need to be carried out in this representation.  Thus some idea of the intended denotation, the formal objects that the formulas of the calculus are intended to denote, is given in advance of developing the calculus itself.
+
+Viewed over the course of its historical development, a formal calculus for any given subject matter normally arises through a process of gradual abstraction, stepwise refinement, and trial-and-error synthesis from the array of informal notational systems that inform prior use, each of which covers the object domain only in part or from a particular angle.
+
+\section{Generic description of a propositional calculus}
+
+A \textbf{propositional calculus} is a formal system $\mathcal{L} = \mathcal{L}(A, \Omega, Z, I)$, whose formulas are constructed in the following manner:
+
+\begin{itemize}
+
+\item
+The \textit{alpha set} $A$ is a finite set of elements called \textit{proposition symbols} or \textit{propositional variables}.  Syntactically speaking, these are the most basic elements of the formal language $\mathcal{L}$, otherwise referred to as \textit{atomic formulas} or \textit{terminal elements}.  In the examples to follow the elements of $A$ are typically the letters $p$, $q$, $r$, and so on.
+
+\item
+The \textit{omega set} $\Omega$ is a finite set of elements called \textit{operator symbols} or \textit{logical connectives}.  The set $\Omega$ is partitioned into disjoint subsets as follows:
+
+\begin{quote}
+$\Omega = \bigcup_{j=0}^m \Omega_j$.
+\end{quote}
+
+In this partition, $\Omega_j$ is the set of operator symbols of arity $j$.
+
+In the more familiar propositional calculi, $\Omega$ is typically partitioned as follows:
+
+\begin{quote}
+$\Omega_1 = \{ \lnot \}$,
+
+$\Omega_2 \subseteq \{ \land, \lor, \Rightarrow, \Leftrightarrow \}$.
+\end{quote}
+
+A frequently adopted option treats the constant logical values as operators of arity zero, thus:
+
+\begin{quote}
+$\Omega_0 = \{0,\ 1 \}$.
+\end{quote}
+
+Some writers use the tilde $(\text{\char126})$ instead of $(\lnot)$ and some use the ampersand $(\&)$ instead of $(\land)$.  Notation varies even more for the set of logical values, with symbols like  $\{ \mathrm{false}, \mathrm{true} \}$, $\{ \mathrm{F}, \mathrm{T} \}$, $\{ 0, 1 \}$, and $\{ \bot, \top \}$ all being seen in various contexts.
+
+\item
+Depending on the precise formal grammar or the grammar formalism that is being used, syntactic auxiliaries like the left parenthesis, $``("$, and the right parentheses, $``)"$, may be necessary to complete the construction of formulas.
+
+\item
+The \textit{zeta set} $Z$ is a finite set of \textit{transformation rules} that are called \textit{inference rules} when they acquire logical applications.
+
+\item
+The \textit{iota set} $I$ is a finite set of \textit{initial points} that are called \textit{axioms} when they receive logical interpretations.
+\end{itemize}
+
+\section{Example 1.  Simple axiom system}
+
+Let $\mathcal{L}_1 = \mathcal{L}(A, \Omega, Z, I)$, where $A, \Omega, Z, I$ are defined as follows:
+
+The alpha set $A$ is a finite set of symbols that is large enough to supply the needs of a given discussion, for example:
+
+\begin{quote}
+$A = \{ p, q, r, s, t, u \}$.
+\end{quote}
+
+The omega set $\Omega$ is a set of two symbols $\{ \lnot\ , \Rightarrow \}$ that partitions as follows:
+
+\begin{quote}
+$\Omega_1 = \{ \lnot \}$,
+
+$\Omega_2 = \{ \Rightarrow \}$.
+\end{quote}
+
+Under the usual interpretation of these symbols, this choice amounts to adopting negation and implication as the primitive operations of the propositional calculus $\mathcal{L}_1$.  
+
+Of the three connectives for conjunction $(\land)$, disjunction $(\lor)$, and implication $(\Rightarrow)$, one can be taken as primitive and the other two can be defined in terms of it and negation $(\lnot)$.  The equivalence $(\Leftrightarrow)$ is defined in terms of conjunction and implication, with $p \Leftrightarrow q$ defined as $(p \Rightarrow q) \land (q \Rightarrow p)$.
+
+The zeta set $Z$ formalizes the inference rule known as \textit{\PMlinkname{modus ponens}{ModusPonens}}:
+
+\begin{quote}
+From $p$, $(p \Rightarrow q)$, infer $q$.
+\end{quote}
+
+The iota set $I$ abstracts an axiom system for propositional logic that was discovered by Jan \text{\L}ukasiewicz:
+
+\begin{quote}
+$p \Rightarrow (q \Rightarrow p)$
+
+$(p \Rightarrow (q \Rightarrow r)) \Rightarrow ((p \Rightarrow q) \Rightarrow (p \Rightarrow r))$
+
+$(\lnot p \Rightarrow \lnot q) \Rightarrow (q \Rightarrow p)$
+\end{quote}
+
+We have the following auxiliary definitions:
+
+\begin{quote}
+$p \lor q\ :=\ \lnot p \Rightarrow q$.
+
+$p \land q\ :=\ \lnot(p \Rightarrow \lnot q)$.
+\end{quote}
+
+\section{Example 2.  Natural deduction system}
+
+Let $\mathcal{L}_2 = \mathcal{L}(A, \Omega, Z, I)$, where $A, \Omega, Z, I$ are defined as follows:
+
+The alpha set $A$ is a finite set of symbols that is large enough to supply the needs of a given discussion, for example:
+
+\begin{quote}
+$A = \{ p, q, r, s, t, u \}$.
+\end{quote}
+
+The omega set $\Omega = \Omega_1 \cup \Omega_2$ partitions as follows:
+
+\begin{quote}
+$\Omega_1 = \{ \lnot \}$,
+
+$\Omega_2 = \{ \land, \lor, \Rightarrow, \Leftrightarrow \}$.
+\end{quote}
+
+In the following example of a propositional calculus, the transformation rules are intended to be interpreted as the inference rules of a so-called \textit{natural deduction system}.  The particular system presented here has no initial points, which means that its interpretation for logical applications derives its theorems from an empty axiom set.
+
+To be continued $\ldots$
+
+\section{Document history}
+
+Portions of the above article are adapted from the following sources under the GNU Free Documentation License, under other applicable licenses, or by permission of the copyright holders.
+
+\begin{itemize}
+\item
+\PMlinkexternal{Propositional calculus}{http://www.mywikibiz.com/Propositional_calculus}, \PMlinkexternal{MyWikiBiz}{http://www.mywikibiz.com/}.
+\item
+\PMlinkexternal{Propositional calculus}{http://www.getwiki.net/-Propositional_Calculus}, \PMlinkexternal{GetWiki}{http://www.getwiki.net/}.
+\item
+\PMlinkexternal{Propositional calculus}{http://www.wikinfo.org/index.php/Propositional_calculus}, \PMlinkexternal{Wikinfo}{http://www.wikinfo.org/}.
+\item
+\PMlinkexternal{Propositional calculus}{http://en.wikipedia.org/w/index.php?title=Propositional_calculus&oldid=74069381}, \PMlinkexternal{Wikipedia}{http://en.wikipedia.org/}.
+\end{itemize}
+
+%%%%%
+%%%%%
+\end{document}

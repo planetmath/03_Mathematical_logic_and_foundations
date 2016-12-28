@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{IFlogic}
+\pmcreated{2013-03-22 13:50:46}
+\pmmodified{2013-03-22 13:50:46}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{IF-logic}
+\pmrecord{9}{34583}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B99}
+\pmsynonym{Independence Friendly logic}{IFlogic}
+\pmrelated{SecondOrderLogic}
+\pmrelated{TarskisResultOnTheUndefinabilityOfTruth}
+\pmdefines{IF-logic}
+\pmdefines{Independence Friendly logic}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+\PMlinkescapeword{translation}
+\emph{Independence Friendly logic} (IF-logic) is an interesting conservative extension of classical first-order logic based on very natural ideas from game theoretical semantics developed by Jaakko Hintikka and Gabriel Sandu among others. Although IF-logic is a conservative extension of first order logic, it has a number of interesting properties, such as allowing truth-definitions and admitting a translation of all $\Sigma^1_1$ sentences (second-order sentences with an initial second-order existential quantifier followed by a first-order sentence).
+
+IF-logic can be characterised as the natural extension of first-order logic when one allows informational independence to occur in the game-theoretical truth definition. To understand this idea we need first to introduce the game theoretical definition of truth for classical first-order logic.
+
+To each first-order sentence $\phi$ we assign a game $G(\phi)$ with two players played on models of the appropriate language. The two players are called {\em verifier} and {\em falsifier} (or {\em nature}). The idea is that the {\em verifier} attempts to show that the sentence is true in the model, while the {\em falsifier} attempts to show that it is false in the model. The game $G(\phi)$ is defined as follows. We will use the convention that if $p$ is a symbol that names a function, a predicate or an object of the model $M$, then $p^M$ is that named entity.
+
+\begin{itemize}
+ \item if $P$ is an $n$-ary predicate and $t_i$ are names of elements of the
+       model, then $G(P(t_1,...,t_n))$ is a game in which the verifier 
+       immediately wins if $(t^M_1,...,t^M_n) \in P^M$, otherwise
+       the falsifier immediately wins.
+ \item the game $G(\phi_1 \vee \phi_2)$ begins with the choice $\phi_i$ from 
+       $\phi_1$ and $\phi_2$ ($i = 1$ or $i = 2$) by the verifier, and then
+       proceeds as the game $G(\phi_i)$
+ \item the game $G(\phi_1 \wedge \phi_2)$ is the same as $G(\phi_1 \vee
+       \phi_2)$, except that the choice is made by the falsifier
+ \item the game $G(\exists x \phi(x))$ begins with the choice by verifier
+       of a member of $M$ which is given a name $\mathbf{a}$, and then proceeds
+       as $G(\phi(\mathbf{a}))$
+ \item the game $G(\forall x \phi(x))$ is the same as $G(\exists x \phi(x))$, 
+       except that the choice of $\mathbf{a}$ is made by the falsifier
+ \item the game $G(\neg \phi)$ is the same as $G(\phi)$ with the roles of the
+       falsifier and verifier exchanged
+\end{itemize}
+
+Truth of a sentence $\phi$ is defined as the existence of a winning strategy for verifier for the game $G(\phi)$. Similarly, falsity of $\phi$ is defined as the existence of a winning strategy for the falsifier for the game $G(\phi)$. (A strategy is a specification that determines for each move of the opponent what the player should do. A winning strategy is a strategy which guarantees victory no matter what strategy the opponent follows.)
+
+For classical first-order logic, this definition is equivalent to the usual Tarskian definition of truth (i.e. the one based on satisfaction found in most treatments of semantics of first-order logic). This means also that since the law of excluded middle holds for first-order logic that the games $G(\phi)$ have a very strong property: either the falsifier or the verifier has a winning strategy.
+
+Notice that all rules except those for negation and atomic sentences concern choosing a sentence or finding an element. These can be codified into functions, which tell us which sentence to pick or which element of the model to choose, based on our previous choices and those of our opponent. For example, consider the sentence $\forall x( P(x) \vee Q(x))$. The corresponding game begins with the falsifier picking an element $\mathbf{a}$ from the model, so a strategy for the verifier must specify for each element $\mathbf{a}$ which of $Q(\mathbf{a})$ and $P(\mathbf{a})$ to pick. The truth of the sentence is equivalent to the existence of a winning strategy for the verifier, i.e. just such a function. But this means that $\forall x( P(x) \vee Q(x))$ is equivalent to $\exists f \forall x P(x) \wedge f(x) = 0 \vee Q(x) \wedge f(x) = 1$. Let's consider a more complicated example: $\forall x \exists y \forall z \exists s \neg P(x,y,z,s)$. The truth of this is equivalent to the existence of a functions $f$ and $g$, s.t. $\forall x \forall z P(x,f(x),z,g(z))$.
+
+These sort of functions are known as Skolem functions, and they are in essence just winning strategies for the verifier. We won't prove it here, but all first-order sentences can be expressed in form $\exists f_1 ... \exists f_n \forall x_1 ... \forall x_k \phi$, where $\phi$ is a truth-functional combination of atomic sentences in which all terms are either constants or variables $x_i$ or formed by application of the functions $f_i$ to such terms. Such sentences are said to be in $\Sigma^1_1$ form.
+
+Let's consider a $\Sigma^1_1$ sentence $\exists f \exists g \forall x \forall z \phi(x, f(x),y,g(z))$. Up front, it seems to assert the existence of a winning strategy in a simple semantical game like those described above. However, the game can't correspond to any (classical) first-order formula! Let's see what such a strategy would look like. First, the falsifier chooses elements $\mathbf{a}$ and $\mathbf{b}$ to serve as $x$ and $y$. Then the verifier chooses an element $\mathbf{c}$ knowing only $\mathbf{a}$ and an element $\mathbf{d}$ knowing only $\mathbf{b}$. The verifier's goal is that $\phi(\mathbf{a},\mathbf{c},\mathbf{b},\mathbf{d})$ comes out as a true atomic sentence. The game could actually be arranged so that the verifier is a team of two players (who aren't allowed to communicate with each other), one of which picks $\mathbf{c}$, the other one picking $\mathbf{d}$.
+
+From a game-theoretical point of view, games in which some moves must be made without depending on some of the earlier moves are called ``informationally incomplete'' games, and they occur very commonly. Bridge is such a game, for example, and usually real examples of such games have ``players'' being actually teams made up of several people.
+
+IF-logic comes out of the game-theoretical definition in a natural way if we allow informational independence in our semantical games. In IF-logic, every connective can be augmented with an independence marker $//$, so that $*//*'$ means that the game for the occurrence of $*'$ within the scope of $*$ must be played without knowledge of the choices made for $*$. For example $(\forall x // \exists y) \exists y \phi(x,y)$ asserts that for any choice of value for $x$ by the falsifier, the verifier can find a value for $y$ that does not depend on the value of $x$, s.t. $\phi(x,y)$ comes out true. This is not a very characteristic example, as it can be written as an ordinary first-order formula $\exists y \forall x \phi(x,y)$. The curious game we described above corresponding to the second-order Skolem-function formulation $\Sigma^1_1$ sentence $\exists f \exists g \forall x \forall z \phi(x, f(x),y,g(z))$ corresponds to an IF-sentence $(\forall x // \exists y)(\forall z // \exists u)(\exists y)(\exists u)\phi(x,y,z,u)$. IF-logic allows informational independence also for the usual logical connectives, for example $(\forall x // \vee)(\phi(x) \vee \psi(x))$ is true if and only if for all $x$, either $\phi(x)$ or $\psi(x)$ is true, but which of these is picked by the verifier must be decided independently of the choice for $x$ by the falsifier.
+
+One of the striking characteristics of IF-logic is that every $\Sigma^1_1$ formula $\phi$ has an IF-translation $\phi^IF$ which is true if and only if $\phi$ is true (the equivalence does not in general hold if we replace 'true' with 'false'). Since for example first-order truth (in a model) is $\Sigma^1_1$ definable (it's just quantification over all possible valuations, which are second-order objects), there are IF-theories which correctly represent the truth predicate for their first-order part. What is even more striking is that sufficiently strong IF-theories can do this for the {\em whole} of the language they are expressed in.
+
+This seems to contradict Tarski's famous result on the undefinability of truth, but this is illusory. Tarski's result depends on the assumption that the logic is closed under contradictory negation. This is not the case for IF-logic. In general for a given sentence $\phi$ there is no sentence $\phi*$ that is true just in case $\phi$ is not true. Thus the law of excluded middle does not hold in general in IF-logic (although it does for the classical first-order portion). This is quite unsurprising since games of imperfect information are very seldom determined in the sense that either the verifier or the falsifier has a winning strategy. For example, a game in which I choose a 10-letter word and you have one go at guessing it is not determined in this sense, since there is no 10-letter word you couldn't guess, and on the other hand you have no way of forcing me to choose any particular 10-letter word (which would guarantee your victory).
+
+IF-logic is stronger than first-order logic in the usual sense that there are classes of structures which are IF-definable but not first-order definable. Some of these are even finite. Many interesting concepts are expressible in IF-logic, such as equicardinality, infinity (which can be expressed by a logical formula in contradistinction to ordinary first-order logic in which non-logical symbols are needed), and well-ordering.
+
+By Lindstr\"om's theorem we thus know that either IF-logic is not complete (i.e. its set of validities is not r.e.) or the L\"owenheim-Skolem theorem does not hold. In fact, the (downward) L\"owenheim-Skolem theorem {\em does} hold for IF-logic, so it's not complete. There is a complete disproof procedure for IF-logic, but because IF-logic is not closed under contradictory negation this does not yield a complete proof procedure.
+
+IF-logic can be extended by allowing contradictory negations of closed sentences and truth functional combinations thereof. This extended IF-logic is extremely strong. For example, the second-order induction axiom for PA is $\forall X( (X(0) \wedge \forall y( X(y) \rightarrow X(y+1))) \rightarrow \forall y X(y))$. The negation of this is a $\Sigma^1_1$ sentence asserting the existence of a set that invalidates the induction axiom. Since $\Sigma^1_1$ sentences are expressible in IF-logic, we can translate the negation of the induction axiom into IF-sentence $\phi$. But now $\neg\phi$ is a formula of extended IF-logic, and is clearly equivalent to the usual induction axiom! As all the rest of PA axioms are first order, this shows that extended IF-logic PA can correctly define the natural number system.
+
+There exists also an interesting ``translation'' of $n$th-order logic into extended IF-logic. Consider an $n$-sorted first-order language and an $n$th-order theory $T$ translated into this language. Now, extend the language to second order and add the axiom stating that the sort $k+1$ actually comprises the whole of the powerset of the sort $k$. This is a $\Pi^1_1$ sentence (i.e. of the form ``for all predicates P there is a first order element of sort $k+1$ that comprises exactly the $k$ extension of $P$''). It is easy to see that a formula is valid in this new system if and only if it was valid in the original $n$th-order logic. The negation of this axiom is again $\Sigma^1_1$ and translatable into IF-logic, and thus the axiom itself is expressible in extended IF-logic. Moreover, since most interesting second-order theories are finitely axiomatisable, we can consider sentences of form $T*\rightarrow\phi$ (where $T*$ is the multisorted translation of $T$), which express logical implication of $\phi$ by $T$ (correctly). This is equivalent to $\neg (T*) \vee \phi$ (where $\neg$ is contradictory), but since $T*$ is a conjunction of a $\Pi^1_1$-sentence-asserting comprehension translated into extended IF-logic and first-order translation of the axioms of $T$, this is a $\Sigma_1^1$ formula translatable to {\em non}-extended IF-logic and so is $\phi$. Thus sentences of form $T \rightarrow \phi$ of $n$th-order logic are translatable into IF-sentences which are true just in case the originals were.
+%%%%%
+%%%%%
+\end{document}

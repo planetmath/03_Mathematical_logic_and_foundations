@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CharacterizationOfSignatureOfAPermutation}
+\pmcreated{2013-03-22 17:16:49}
+\pmmodified{2013-03-22 17:16:49}
+\pmowner{rm50}{10146}
+\pmmodifier{rm50}{10146}
+\pmtitle{characterization of signature of a permutation}
+\pmrecord{4}{39621}
+\pmprivacy{1}
+\pmauthor{rm50}{10146}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-00}
+\pmclassification{msc}{05A05}
+\pmclassification{msc}{20B99}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+\newtheorem{thm}{Theorem}
+\newcommand{\Ints}{\mathbb{Z}}
+
+% define commands here
+
+\begin{document}
+The signature of a permutation is well-defined, as proved in the \PMlinkescapetext{parent} article. This note characterizes odd permutations.
+
+\begin{thm} A permutation $\sigma$ is odd if and only if the number of even-order cycles in its cycle type is odd.
+\end{thm}
+
+Thus, for example, this theorem asserts that $(1~2~3)$ is an even permutation, since it has zero even-order cycles, while $(1~2)(3~4~5)$ is odd, since it has precisely one even-order cycle.
+
+\begin{proof}
+Note that the function taking a permutation to its signature is a homomorphism from $S_n\to \Ints/2\Ints$, and we thus get the following multiplication rules for even and odd permutations:
+\begin{center}
+\begin{tabular}{c}
+(even)$\cdot$(even)\ =\ (odd)$\cdot$(odd)\ =\ (even)\\
+(even)$\cdot$(odd)\ =\ (odd)$\cdot$(even)\ =\ (odd)
+\end{tabular}
+\end{center}
+
+Note that we can represent a single cycle as a product of transpositions:
+\[(a_1~a_2~a_3~\ldots~a_k)=(a_1~a_k)(a_1~a_{k-1})\ldots(a_1~2)\]
+and that therefore an even-length cycle is odd (since it is equivalent to an odd number of transpositions) while an odd-length cycle is even.
+
+By the multiplication rules above, then, a given permutation is odd if and only if the product of the signs of its cycles is odd, which happens if and only if there are an odd number of cycles whose sign is odd, which happens if and only if there are an odd number of cycles of even length.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

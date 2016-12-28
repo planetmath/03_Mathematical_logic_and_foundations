@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{87TheVanKampenTheorem}
+\pmcreated{2013-11-06 15:22:41}
+\pmmodified{2013-11-06 15:22:41}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.7 The van Kampen theorem}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\newcommand{\Sn}{\mathbb{S}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\type\UU
+
+\begin{document}
+
+\index{van Kampen theorem|(}%
+\index{theorem!van Kampen|(}%
+
+\index{fundamental!group}%
+The van Kampen theorem calculates the fundamental group $\pi_1$ of a (homotopy) pushout of spaces.
+It is traditionally stated for a topological space $X$ which is the union of two open subspaces $U$ and $V$, but in homotopy-theoretic terms this is just a convenient way of ensuring that $X$ is the pushout of $U$ and $V$ over their intersection.
+Thus, we will prove a version of the van Kampen theorem for arbitrary pushouts.
+
+In this section we will describe a proof of the van Kampen theorem which uses the same encode-decode method that we used for $\pi_1(\Sn^1)$ in \autoref{sec:pi1-s1-intro}.
+There is also a more homotopy-theoretic approach; see \autoref{ex:rezk-vankampen}.
+
+We need a more refined version of the encode-decode method.
+In \autoref{sec:pi1-s1-intro} (as well as in \autoref{sec:compute-coprod},\autoref{sec:compute-nat}) we used it to characterize the path space of a (higher) inductive type $W$ --- deriving as a consequence a characterization of the loop space $\Omega(W)$, and thereby also of its 0-truncation $\pi_1(W)$.
+In the van Kampen theorem, our goal is only to characterize the fundamental group $\pi_1(W)$, and we do not have any explicit description of the loop spaces or the path spaces to use.
+
+It turns out that we can use the same technique directly for a truncated version of the path fibration, thereby characterizing not only the fundamental \emph{group} $\pi_1(W)$, but also the whole fundamental \emph{groupoid}.
+\index{fundamental!pregroupoid}%
+Spe\-cif\-ical\-ly, for a type $X$, write $\Pi_1 X: X\to X\to \type$ for the $0$-truncation of its identity type, i.e.\ $\Pi_1 X(x,y) \defeq \trunc0{x=y}$.
+Note that we have induced groupoid operations
+\begin{align*}
+  (\blank\ct\blank) &\;:\; \Pi_1X(x,y) \to \Pi_1X(y,z) \to \Pi_1X(x,z)\\
+  \opp{(\blank)} &\;:\; \Pi_1X(x,y) \to \Pi_1X(y,x)\\
+  \refl{x} &\;:\; \Pi_1X(x,x)\\
+  \apfunc{f} &\;:\; \Pi_1X(x,y) \to \Pi_1Y(fx,fy)
+\end{align*}
+for which we use the same notation as the corresponding operations on paths.
+
+
+\end{document}

@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CompletenessTheoremForPropositionalLogic1}
+\pmcreated{2013-03-22 19:32:47}
+\pmmodified{2013-03-22 19:32:47}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{completeness theorem for propositional logic}
+\pmrecord{21}{42527}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newtheorem{lem}{Lemma}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The completeness theorem of propositional logic is the statement that a wff is tautology iff it is a theorem.  In symbol, we have $$\models A \quad \mbox{iff} \quad \vdash A$$
+for any wff $A$.  The ``if'' part of the statement is the soundness theorem, and is proved \PMlinkname{here}{TruthValueSemanticsForPropositionalLogicIsSound}.  We will prove the ``only if'' part, which is also known as the completeness portion of the theorem.  We will give a constructive proof of this.  Before proving this, we state and prove some preliminary facts:
+
+\begin{enumerate}
+\item $A,B \vdash A\to B$
+\item $A,\neg B \vdash \neg (A \to B)$
+\item $\neg A,B \vdash A \to B$
+\item $\neg A, \neg B \vdash A \to B$
+\item Let $v$ be a valuation.  For any wff $A$, let $v[A]$ be defined as follows: 
+\begin{displaymath}
+v[A] \textrm{ is }  \left\{
+\begin{array}{ll}
+A & \textrm{if } v(A)=1,\\
+\neg A & \textrm{if } v(A)=0.
+\end{array}
+\right.
+\end{displaymath}
+Suppose $p_1,\ldots,p_n$ are the propositional variables in $A$.  Then $$v[p_1],\ldots, v[p_n]\vdash v[A].$$
+\item if $\Delta, A \vdash B$ and $\Delta, \neg A \vdash B$, then $\vdash B$.
+\end{enumerate}
+\begin{proof}
+Facts 1 and 3 come from the axiom schema $B\to (A\to B)$.  From $\vdash B\to (A\to B)$, we have $C\vdash B\to (A\to B)$, so $C,B \vdash A\to B$.  If $C$ is $A$, we have fact 1, and if $C$ is $\neg A$, we have fact 3.
+
+Fact 2: this is proved \PMlinkname{here}{SubstitutionTheoremForPropositionalLogic}.
+
+Fact 4: By ex falso quodlibet, $\vdash \perp \to B$, so $A\vdash \perp\to B$, and therefore $\vdash A\to (\perp\to B)$ by the deduction theorem.  Now, $(A \to (\perp \to B))\to ((A\to \perp)\to (A\to B))$ is an axiom instance, so $\vdash (A\to \perp) \to (A\to B)$, or $\vdash \neg A \to (A\to B)$, or $\neg A \vdash A\to B$, and $$ \neg A, \neg B \vdash A\to B$$ all the more so.
+
+Fact 5: by induction on the number $n$ of occurrences of $\to$ in $A$.  If $n=0$, then $A$ is either $\perp$ or a propositional variable $p$.  In the first case, $v[A]$ is $\neg \perp$, and from $\perp \vdash \perp$, we get $\vdash \perp \to \perp$, or $\vdash \neg \perp$.  In the second case, $v[p]\vdash v[p]$.  Now, suppose there are $n+1$ occurrences of $\to$ in $A$.  Let $p_1,\ldots, p_m$ be the propositional variables in $A$.  By unique readability, $A$ is $B\to C$ for some unique wff's $B$ and $C$.  Since each $B$ and $C$ has no more than $n$ occurrences of $\to$, by induction, we have 
+$$v[p_{i(1)}],\ldots, v[p_{i(s)}] \vdash v[B] \qquad \mbox{and} \qquad v[p_{j(1)}],\ldots,  v[p_{j(t)}] \vdash v[C],$$
+where the propositional variables in $B$ are $p_{i(1)},\ldots,p_{i(s)}$, and in $C$ are $p_{j(1)},\ldots,p_{j(t)}$.  So
+$$v[p_1],\ldots, v[p_m] \vdash v[B] \qquad \mbox{and} \qquad v[p_1],\ldots,  v[p_m] \vdash v[C].$$
+
+Next, we want to show that $v[B],v[C] \vdash v[B\to C]$.  We break this into four cases:
+\begin{itemize}
+\item if $v[B]$ is $B$ and $v[C]$ is $C$: then $v[B\to C]$ is $B\to C$, and use Fact 1
+\item if $v[B]$ is $B$ and $v[C]$ is $\neg C$: then $v[B\to C]$ is $\neg (B\to C)$, and use Fact 2
+\item if $v[B]$ is $\neg B$ and $v[C]$ is $C$: then $v[B\to C]$ is $B\to C$, and use Fact 3
+\item if $v[B]$ is $\neg B$ and $v[C]$ is $\neg C$: then $v[B\to C]$ is $B\to C$, and use Fact 4.
+\end{itemize}
+In all cases, we have by applying modus ponens,
+$$v[p_1],\ldots, v[p_m] \vdash v[B \to C].$$
+
+Fact 6 is proved \PMlinkname{here}{SubstitutionTheoremForPropositionalLogic}.
+\end{proof}
+
+\begin{thm} Propositional logic is complete with respect to truth-value semantics. \end{thm}
+\begin{proof}  Suppose $A$ is a tautology.  Let $p_1,\ldots,p_n$ be the propositional variables in $A$.  Then $$ v[p_1],\ldots, v[p_n] \vdash v[A]$$
+for any valuation $v$.  Since $v[A]$ is $A$.  We have
+$$v[p_1],\ldots, v[p_n] \vdash A.$$
+If $n=0$, then we are done.  So suppose $n>0$.  Pick a valuation $v$ such that $v(p_n)=1$, and a valuation $v'$ such that $v'(p_i)=v(p_i)$ and $v'(p_n)=0$  Then
+$$v[p_1],\ldots, v[p_{n-1}],  p_n \vdash A \qquad \mbox{and} \qquad v[p_1],\ldots,  v[p_{n-1}], \neg p_n \vdash A,$$
+where the first deducibility relation comes from $v$ and the second comes from $v'$.  By Fact 6 above,
+$$v[p_1],\ldots, v[p_{n-1}] \vdash A.$$
+So we have eliminated $v[p_n]$ from the left of $v[p_1],\ldots, v[p_n] \vdash A$.  Now, repeat this process until all of the $v[p_i]$ have been eliminated, and we have $\vdash A$.
+\end{proof}
+
+The completeness theorem can be used to show that certain complicated wff's are theorems.  For example, one of the  distributive laws
+$$\vdash (A\land B)\lor C \leftrightarrow (A\lor C)\land (B\lor C)$$
+To see that this is indeed a theorem, by the completeness theorem, all we need to show is that it is true using the truth table:
+\begin{center}
+\begin{tabular}{ccccccccccccc}
+$(A$ & $\land$ & $B)$ & $\lor$ & $C$ & $\leftrightarrow$ & $(A$ & $\lor$ & $C)$ & $\land$ & $(B$ & $\lor$ & $C)$ \\
+\hline 
+T & T & T & T & T & T & T & T & T & T & T & T & T \\
+T & T & T & T & F & T & T & T & F & T & T & T & F \\
+T & F & F & T & T & T & T & T & T & T & F & T & T \\
+T & F & F & F & F & T & T & T & F & F & F & F & F \\
+F & F & T & T & T & T & F & T & T & T & T & T & T \\
+F & F & T & F & F & T & F & F & F & F & T & T & F \\
+F & F & F & T & T & T & F & T & T & T & F & T & T \\
+F & F & F & F & F & T & F & F & F & F & F & F & F 
+\end{tabular}
+\end{center}
+Similarly, one can show $\vdash (A\lor B)\land C \leftrightarrow (A\land C)\lor (B\land C)$.
+
+%%%%%
+%%%%%
+\end{document}

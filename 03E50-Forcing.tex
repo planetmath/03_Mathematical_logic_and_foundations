@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Forcing}
+\pmcreated{2013-03-22 12:44:17}
+\pmmodified{2013-03-22 12:44:17}
+\pmowner{ratboy}{4018}
+\pmmodifier{ratboy}{4018}
+\pmtitle{forcing}
+\pmrecord{12}{33039}
+\pmprivacy{1}
+\pmauthor{ratboy}{4018}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E50}
+\pmclassification{msc}{03E35}
+\pmclassification{msc}{03E40}
+\pmrelated{ForcingRelation}
+\pmrelated{CompositionOfForcingNotions}
+\pmrelated{EquivalenceOfForcingNotions}
+\pmrelated{FieldAdjunction}
+\pmdefines{forcing}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+\usepackage[arrow,curve,poly,arc,2cell,frame,web]{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\newcommand{\br}{[\![}
+\newcommand{\rb}{]\!]}
+\newcommand{\oq}{\text{``}}
+\newcommand{\cq}{\text{''}}
+
+
+\newcommand{\im}{\mathbf{Im}}
+\newcommand{\dom}{\mathbf{Dom}}
+
+
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\proves}{\vdash}
+\renewcommand{\And}{\wedge}
+\newcommand{\Sup}{\bigwedge}
+\newcommand{\Inf}{\bigvee}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\N}{\mathfrak{N}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\K}{\mathfrak{K}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Def}{\overset{\operatorname{def}}{:=}}
+
+
+
+\newcommand{\spec}{\text{{\bf Spec}}}
+\newcommand{\stab}{\text{{\bf Stab}}}
+\newcommand{\ann}{\text{{\bf Ann}}}
+\newcommand{\irr}{\text{{\bf Irr}}}
+\newcommand{\qt}{\text{{\bf Qt}}}
+\newcommand{\st}{\mathcal{Qt}}
+\newcommand{\ro}{\mathbf{r.o.}}
+
+
+\newcommand{\Endo}{\text{{\bf End}}}
+\newcommand{\mat}{\text{{\bf Mat}}}
+\newcommand{\der}{\text{{\bf Der}}}
+\newcommand{\rad}{\text{{\bf Rad}}}
+\newcommand{\trd}{\text{{\bf tr.d.}}}
+\newcommand{\cl}{\text{{\bf acl}}}
+\newcommand{\Int}{\text{{\bf int}}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\D}{\mathbf{D}}
+
+\newcommand{\del}{\partial}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\aut}{\mathbf{Aut}}
+\newcommand{\height}{\text{\bf Height}}
+\newcommand{\coheight}{\text{\bf Co-height}}
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\inner}[2]{\langle #1|#2\rangle}
+\renewcommand{\r}{{r}}
+\renewcommand{\t}{{t}}
+
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\Matrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 
+\end{array}\right)}
+
+\newenvironment{definition}{{\bf Definition.}}{}
+\newenvironment{theorem}{{\bf Theorem.}}{}
+\newenvironment{proof}{{\bf Proof:}}{\hfill$\diamondsuit$}
+\newenvironment{corollary}{{\bf Corollary}}{}
+\newenvironment{proposition}{{\bf Proposition.}}{}
+\newenvironment{example}{{\bf Example.}}{}
+\begin{document}
+Forcing is the method used by Paul Cohen to prove the independence of
+the continuum hypothesis (CH).  In fact, the method was used by Cohen to
+prove that CH could be violated.  
+
+Adding a set to a model of set theory via forcing is similar to adjoining a new element to a field. Suppose we have a field $k$, and we want to add to this field an
+element $\alpha$ such $\alpha^2=-1$.  We see
+that we cannot simply drop a new $\alpha$ in $k$, since then we are
+not guaranteed that we still have a field.  Neither can we simply
+assume that $k$ already has such an element.  The standard way of
+doing this is to start by adjoining a generic indeterminate $X$, and
+impose a constraint on $X$, saying that $X^2+1=0$.  What we do is take
+the quotient $k[X]/(X^2+1)$, and make a field out of it by taking the
+quotient field.  We then obtain $k(\alpha)$, where $\alpha$ is the
+equivalence class of $X$ in the quotient.
+The general case of this is the theorem of algebra saying that every
+polynomial $p$ over a field $k$ has a root in some extension field.
+
+We can rephrase this and say that ``it is consistent with standard
+field theory that $-1$ have a square root''.
+
+When the theory we consider is ZFC, we run in exactly the same
+problem : we can't just add a ``new'' set and pretend it has the
+required properties, because then we may violate something else, like
+foundation.  Let $\M$ be a transitive model of set theory, which we
+call the {\bf ground model}.  We want to ``add a new set'' $S$ to $\M$ in
+such a way that the extension $\M'$ has $\M$ as a subclass, and the
+properties of $\M$ are preserved, and $S\in\M'$.
+
+The first step is to ``approximate'' the new set using elements of
+$\M$.  This is the analogue of finding the irreducible polynomial in
+the algebraic example.  The set $P$ of such ``approximations'' can be
+ordered by how much information the approximations give : let $p,q\in
+P$, then $p\leq q$ if and only if $p$ ``is stronger than'' $q$.  We
+call this set a set of {\bf forcing conditions}.  Furthermore, it is required that the set $P$ itself and the order relation be elements of $\M$.
+
+Since $P$ is a partial order, some of its subsets have interesting
+properties.  Consider $P$ as a topological space with the order
+topology.  A subset $D\subseteq P$ is {\bf dense} in $P$ if and only
+if for every $p\in P$, there is $d\in D$ such that $d\leq p$.  A
+filter in $P$ is said to be {\bf $\M$-generic} if and only if it intersects
+every one of the dense subsets of $P$ which are in $\M$.  An $\M$-generic
+filter in $P$ is also referred to as a {\bf generic set of conditions}
+in the literature.  In general, even though $P$ is a set in $\M$, generic filters are not elements of $\M$.
+
+If $P$ is a set of forcing conditions, and $G$ is a generic set of
+conditions in $P$, all in the ground model $\M$, then we define
+$\M[G]$ to be the least model of ZFC that contains $G$. The
+big theorem is this :
+
+\begin{theorem}
+$\M[G]$ is a model of ZFC, and has the same ordinals as $\M$, and
+$\M\subseteq \M[G]$.
+\end{theorem}
+
+The way to prove that we can violate CH using a generic extension is
+to add many new ``subsets of $\omega$'' in the following way : let
+$\M$ be a transitive model of ZFC, and let $(P,\leq)$ be the set (in
+$\M$) of all functions $f$ whose domain is a finite subset of
+$\aleph_2\times\aleph_0$, and whose range is the set $\{0,1\}$.  The
+ordering here is $p\leq q$ if and only if $p\supset q$.  Let
+$G$ be a generic set of conditions in $P$.  Then $\bigcup G$ is a
+total function whose domain is $\aleph_2\times\aleph_0$, and range is
+$\{0,1\}$.  We can see this $f$ as coding $\aleph_2$ new functions
+$f_\alpha:\aleph_0\to\{0,1\}$, $\alpha<\aleph_2$, 
+ which are subsets of omega.  These
+functions are all distinct. $(P,\leq)$ \PMlinkid{doesn't collapse cardinals}{3242} since it satisfies the countable chain condition. Thus $\aleph_2^{\M[G]} = \aleph_2^{\M}$ and CH is false in $\M[G]$.  
+
+All this relies on a proper definition of the satisfaction relation in
+$\M[G]$, and the forcing relation.  Details can be found in Thomas Jech's book {\em Set Theory}.
+%%%%%
+%%%%%
+\end{document}

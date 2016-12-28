@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PrimitiveRecursiveNumber}
+\pmcreated{2013-03-22 19:06:06}
+\pmmodified{2013-03-22 19:06:06}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{primitive recursive number}
+\pmrecord{13}{41994}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D25}
+\pmclassification{msc}{68Q05}
+\pmrelated{BombellisMethodOfComputingSquareRoots}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A special \PMlinkescapetext{type} of computable numbers is so-called the \emph{primitive recursive numbers}.  Informally, these are numbers that can be measured by primitive recursive functions to an arbitrary degree of precision.
+
+\textbf{Definition}.  A non-negative real number $r$ is said to be \emph{primitive recursive} if there is a primitive recursive function $f:\mathbb{N} \to \mathbb{N}$ such that 
+\begin{displaymath}
+f(n) = \left\{
+\begin{array}{ll}
+[r] \textrm{  }(\textrm{the integer part of }r), & \textrm{if } n=0, \\
+n^\textrm{th}\textrm{ digit of }r\textrm{ when }r\textrm{ is expressed in its decimal representation,} & \textrm{if } n\ne 0.
+\end{array}
+\right.
+\end{displaymath}
+A real number $r$ is \emph{primitive recursive} if $|r|$ is, and a complex number $x+yi$ is \emph{primitive recursive} if both $x$ and $y$ are.
+
+Clearly, any integer is primitive recursive.  It is easy to see that all rational numbers are primitive recursive too, as the decimal representation of a rational number is periodic, so if $$r=[r].\overline{a_1\cdots a_k},$$ we can define $f$ so that
+\begin{displaymath}
+f(n) = \left\{
+\begin{array}{ll}
+[r] , & \textrm{if } n=0, \\
+a_i & \textrm{if } n\ne 0 \mbox{ and } n \equiv i \pmod k.
+\end{array}
+\right.
+\end{displaymath}
+Here, we assume that $r$ is non-negative.
+
+In addition, we can show that $\sqrt{n}$ is primitive recursive for any non-negative integer $n$.
+\begin{proof}  Suppose $r=\sqrt{n}$.  Write $r$ in its decimal representation $$r=n_0.n_1 n_2 \cdots n_k \cdots$$
+Then $n_0=[\sqrt{n}]$.  Multiply $r$ by $10$ to get its decimal representation $$10r = n_0 n_1.n_2 \cdots n_k \cdots $$
+Then $10n_0 + n_1 = [10r]=[\sqrt{100 n}]$, so that $n_1 = [\sqrt{100n}]-10n_0$  By induction, we see that
+$$n_{k+1} = [\sqrt{100^{k+1} n} ] - 10 (10^k n_0 + 10^{k-1} n_1 + \cdots + n_k).$$
+Define $f:\mathbb{N}^2 \to \mathbb{N}$ by $f(n,m)=n_m$.  Then $f(n,0)$ is primitive recursive.  Next, $$f(n,m)= [\sqrt{100^m n} ]- 10 \sum_{i=0}^{m-1} 10^{m-1-i} f(n,i) = h(n,m, \overline{f}(n,m)),$$ where $$h(x,y,z)= [\sqrt{100^x y} ] \dot{-} 10 \sum_{i=0}^{y \dot{-} 1} 10^{y \dot{-} s(i) } (z)_i $$
+which is primitive recursive (all of the operations, including the bounded sum are primitive recursive).  Since $f$ is defined by course-of-values recursion via $h$, $f$ is primitive recursive also.
+\end{proof}
+
+\textbf{Remark}.  It can be shown that $\pi$ is primitive recursive.  A proof of this can be found in the link below.
+
+\begin{thebibliography}{9}
+\bibitem{SS} S. G. Simpson, \PMlinkexternal{Foundations of Mathematics}{http://www.math.psu.edu/simpson/courses/math558/fom.pdf}. (2009).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A27TheEmptyType0}
+\pmcreated{2013-11-09 5:36:58}
+\pmmodified{2013-11-09 5:36:58}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.7 The empty type 0}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Application}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\ctx}{\ensuremath{\mathsf{ctx}}}
+\newcommand{\elim}{\textsc{elim}}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\form}{\textsc{form}}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\wfctx}[1]{#1\ \ctx}
+\begin{document}
+\index{type!empty|(}%
+
+\begin{mathparpagebreakable}
+  \inferrule*[right=$\emptyt$-\form]
+  {\wfctx\Gamma}
+  {\oftp\Gamma\emptyt{\UU_i}}
+\and
+  \inferrule*[right=$\emptyt$-\elim]
+  {\oftp{\Gamma,\tmtp x\emptyt}{C}{\UU_i} \\ \oftp\Gamma{a}{\emptyt}}
+  {\oftp\Gamma{\ind{\emptyt}(x.C,a)}{C[a/x]}}
+\end{mathparpagebreakable}
+%
+In $\ind{\emptyt}$, $x$ is bound in $C$. The empty type has no introduction rule and no computation rule.
+
+\index{type!empty|)}%
+\end{document}

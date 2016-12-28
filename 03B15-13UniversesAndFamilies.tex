@@ -1,0 +1,136 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{13UniversesAndFamilies}
+\pmcreated{2013-11-12 21:01:43}
+\pmmodified{2013-11-12 21:01:43}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.3 Universes and Families}
+\pmrecord{11}{87539}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Definition}
+\pmclassification{msc}{03B15}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+
+% making logically defined graphics
+%\usepackage{xypic}
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\def\index#1{}
+\def\indexdef#1{}
+\def\indexsee#1#2{}
+\def\indexfoot#1{}
+\def\symlabel#1{}
+\def\define#1{\textbf{#1}}
+\usepackage{xspace}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\let\nat\N
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Fin}{\ensuremath{\mathsf{Fin}}}
+
+\def\lam#1{{\lambda}(#1){.\,}}
+
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\begin{document}
+So far, we have been using the expression ``$A$ is a type'' informally. We
+are going to make this more precise by introducing \define{universes}.
+\index{type!universe|(defstyle}%
+\indexsee{universe}{type, universe}%
+A universe is a type whose elements are types. As in naive set theory,
+we might wish for a universe of all types $\UU_\infty$ including itself
+(that is, with $\UU_\infty : \UU_\infty$).
+However, as in set
+theory, this is unsound, i.e.\ we can deduce from it that every type,
+including the empty type representing the proposition False (see \PMlinkname{\S 1.7}{17coproducttypes}), is inhabited.
+For instance, using a
+representation of sets as trees, we can directly encode Russell's
+paradox\index{paradox} \cite{coquand:paradox}.
+%  or alternatively, in order to avoid the use of
+% inductive types to define trees, we can follow Girard \cite{girard:paradox} and encode the Burali-Forti paradox,
+% which shows that the collection of all ordinals cannot be an ordinal.
+
+To avoid the paradox we introduce a hierarchy of universes
+\indexsee{hierarchy!of universes}{type, universe}%
+\[ \UU_0 : \UU_1 : \UU_2 : \cdots \]
+where every universe $\UU_i$ is an element of the next universe
+$\UU_{i+1}$. Moreover, we assume that our universes are
+\define{cumulative},
+\indexdef{type!universe!cumulative}%
+\indexdef{cumulative!universes}%
+that is that all the elements of the $i^{\mathrm{th}}$
+universe are also elements of the $(i+1)^{\mathrm{st}}$ universe, i.e.\ if
+$A:\UU_i$ then also $A:\UU_{i+1}$.
+This is convenient, but has the slightly unpleasant consequence that elements no longer have unique types, and is a bit tricky in other ways that need not concern us here; see the Notes.
+
+When we say that $A$ is a type, we mean that it inhabits some universe
+$\UU_i$. We usually want to avoid mentioning the level
+\indexdef{universe level}%
+\indexsee{level}{universe level or $n$-type}%
+\indexsee{type!universe!level}{universe level}%
+$i$ explicitly,
+and just assume that levels can be assigned in a consistent way; thus we
+may write $A:\UU$ omitting the level. This way we can even write
+$\UU:\UU$, which can be read as $\UU_i:\UU_{i+1}$, having left the
+indices implicit.  Writing universes in this style is referred to as
+\define{typical ambiguity}.
+\indexdef{typical ambiguity}%
+It is convenient but a bit dangerous, since it allows us to write valid-looking proofs that reproduce the paradoxes of self-reference.
+If there is any doubt about whether an argument is correct, the way to check it is to try to assign levels consistently to all universes appearing in it.
+When some universe \UU is assumed, we may refer to types belonging to \UU as \define{small types}.
+\indexdef{small!type}%
+\indexdef{type!small}%
+
+To model a collection of types varying over a given type $A$, we use functions $B : A \to \UU$  whose
+codomain is a universe. These functions are called
+\define{families of types} (or sometimes \emph{dependent types});
+\indexsee{family!of types}{type, family of}%
+\indexdef{type!family of}%
+\indexsee{type!dependent}{type, family of}%
+\indexsee{dependent!type}{type, family of}%
+they correspond to families of sets as used in
+set theory.
+
+\symlabel{fin}%
+An example of a type family is the family of finite sets $\Fin
+: \nat \to \UU$, where $\Fin(n)$ is a type with exactly $n$ elements.
+(We cannot \emph{define} the family $\Fin$ yet --- indeed, we have not even introduced its domain $\nat$ yet --- but we will be able to soon; see \autoref{ex:fin}.)
+We may denote the elements of $\Fin(n)$ by $0_n,1_n,\dots,(n-1)_n$, with subscripts to emphasize that the elements of $\Fin(n)$ are different from those of $\Fin(m)$ if $n$ is different from $m$, and all are different from the ordinary natural numbers (which we will introduce in \PMlinkname{\S 1.9}{19thenaturalnumbers}).
+\index{finite!sets, family of}%
+
+A more trivial (but very important) example of a type family is the \define{constant} type family
+\indexdef{constant!type family}%
+\indexdef{type!family of!constant}%
+at a type $B:\UU$, which is of course the constant function $(\lam{x:A} B):A\to\UU$.
+
+As a \emph{non}-example, in our version of type theory there is no type family ``$\lam{i:\nat} \UU_i$''.
+Indeed, there is no universe large enough to be its codomain.
+Moreover, we do not even identify the indices $i$ of the universes $\UU_i$ with the natural numbers \nat of type theory (the latter to be introduced in \PMlinkname{\S 1.9}{19thenaturalnumbers}).
+
+\index{type!universe|)}%
+
+\begin{thebibliography}{99}
+
+\bibitem{coquand:paradox} {Coquand,Thierry}. {The paradox of trees in type theory}. \emph{BIT Numerical Mathematics}, {32}:{10--14} {1992}
+
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EquivalenceOfZornsLemmaAndTheAxiomOfChoice}
+\pmcreated{2013-03-22 12:59:04}
+\pmmodified{2013-03-22 12:59:04}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{equivalence of Zorn's lemma and the axiom of choice}
+\pmrecord{10}{33358}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Let $X$ be a set partially ordered by $<$ such that each chain has an upper bound.  Define $p(x)=\{y\in X\mid x< y\}\in P(X)$.
+Let $p(X)=\{p(x)\mid x\in X\}$.  If $p(x)=\emptyset$ then it follows that $x$ is maximal.
+
+Suppose no $p(x)=\emptyset$.  Then by the \PMlinkname{axiom of choice}{AxiomOfChoice} there is a choice function $f$ on $p(X)$, and since for each $p(x)$ we have $f(p(x))\in p(x)$, it follows that $x<f(p(x))$.  Define $f_\alpha(p(x))$ for all ordinals $\alpha$ by transfinite induction:
+
+$f_0(p(x))=x$
+
+$f_{\alpha+1}(p(x))=f(p(f_\alpha(p(x))))$
+
+And for a limit ordinal $\alpha$, let $f_\alpha(p(x))$ be an upper bound of $f_i(p(x))$ for $i<\alpha$.
+
+This construction can go on forever, for any ordinal.  Then we can easily construct an injective function from $Ord$ to $X$ by $g(\alpha)=f_\alpha(p(x))$ for an arbitrary $x\in X$.  This must be injective, since $\alpha<\beta$ implies $g(\alpha)<g(\beta)$.  But that requires that $X$ be a proper class, in contradiction to the fact that it is a set.  So there can be no such choice function, and there must be a maximal element of $X$.
+
+For the reverse, assume Zorn's lemma and let $C$ be any set of non-empty sets.  Consider the set of functions $F=\{f\mid \forall a\in\operatorname{dom}(f) (a\in C \wedge f(a)\in a)\}$ partially ordered by inclusion.  Then the union of any chain in $F$ is also a member of $F$ (since the union of a chain of functions is always a function).  By Zorn's lemma, $F$ has a maximal element $f$, and since any function with domain smaller than $C$ can be easily expanded, $\operatorname{dom}(f)=C$, and so $f$ is a choice function for $C$.
+%%%%%
+%%%%%
+\end{document}

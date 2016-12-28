@@ -1,0 +1,182 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A4BasicMetatheory}
+\pmcreated{2013-11-09 3:42:57}
+\pmmodified{2013-11-09 3:42:57}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.4 Basic metatheory}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\conv}{\downarrow}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\mentalpause}{\medskip} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\production}{\vcentcolon\vcentcolon=}
+\newcommand{\suc}{\mathsf{succ}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{12.5.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{12.5.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{12.5.\arabic{mathcount}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+This section discusses the meta-theoretic properties of the type theory presented in 
+\autoref{sec:syntax-informally}, and similar results hold for \autoref{sec:syntax-more-formally}. Figuring out which of these still hold when we add the features from \autoref{sec:hott-features} quickly leads to open questions,\index{open!problem} as discussed at the end of this section.
+
+Recall that \autoref{sec:syntax-informally} defines the terms of type theory as
+an extension of the untyped $\lambda$-calculus. The $\lambda$-calculus 
+has its own notion of computation, namely the computation rule\index{computation rule!for function types}: 
+\[
+  (\lam{x} t)(u) \defeq t[u/x]
+\]
+This rule, together with the defining equations for the defined constants form
+\emph{rewriting rules}\index{rewriting rule}\index{rule!rewriting} that determine reduction steps for a rewriting 
+system. These steps yield a notion of computation in the sense that each rule
+has a natural direction: one simplifies $(\lam{x} t)(u)$ by evaluating the
+function at its argument.
+
+Moreover, this system is \emph{confluent}\index{confluence}, that is, if $a$ simplifies in some
+number of steps to both $a'$ and $a''$, there is some $b$ to which both $a'$ and
+$a''$ eventually simplify. Thus we can define $t\conv u$ to mean that $t$ and
+$u$ simplify to the same term.
+
+(The situation is similar in \autoref{sec:syntax-more-formally}: Although there
+we presented the computation rules as undirected equalities $\jdeq$, we can give
+an operational semantics by saying that the application of an eliminator to an
+introductory form simplifies to its equal, not the other way around.)
+
+It is straightforward to show that the system in \autoref{sec:syntax-informally}
+has the following properties:
+
+\begin{thm}\label{thm:conversion-preserves-typing}
+If $A : \UU$ and $A \conv A'$ then $A' : \UU$.
+If $t:A$ and $t \conv t'$ then $t':A$.
+\end{thm}
+
+We say that a term is \define{normalizable}
+\indexdef{term!normalizable}%
+\index{normalization}%
+\indexdef{normalizable term}%
+(respectively, \define{strongly
+normalizable})
+\indexdef{term!strongly normalizable}%
+\index{normalization!strong}%
+\index{strong!normalization}%
+if some (respectively, every), sequence of rewriting steps from the term
+terminates.
+
+\begin{thm}\label{thm:strong-normalization}
+If $A : \UU$ then $A$ is strongly normalizable.
+If $t:A$ then $A$ and $t$ are strongly normalizable.
+\end{thm}
+
+We say that a term is in \define{normal form}
+\index{normal form}%
+\index{term!normal form of}%
+if it cannot be further
+simplified, and that a term is \define{closed}
+\index{closed!term}%
+\index{term!closed}%
+if no variable occurs freely in
+it. A closed normal type has to be a primitive type, i.e., of the form
+$c(\vec{v})$ for some primitive constant $c$ (where the list $\vec{v}$ of closed
+normal terms may be omitted if empty, for instance, as with $\N$). In fact, we
+can explicitly describe all normal forms:
+
+\begin{lem}\label{lem:normal-forms}
+  The terms in normal form can be described by the following syntax:
+  % 
+  \begin{align*}
+    v & \production  k \mid \lam{x} v \mid c(\vec{v}) \mid f(\vec{v}), \\
+    k &\production x \mid k(v) \mid f(\vec{v})(k),
+  \end{align*}
+  % 
+  where $f(\vec{v})$ represents a partial application of the defined function $f$.
+  In particular, a type in normal form is of the form $k$ or $c(\vec{v})$.
+\end{lem}
+
+\begin{thm}
+  If $A$ is in normal form then the 
+  judgment $A : \UU$ is decidable. If $A : \UU$ and $t$ is in normal form then the judgment
+  $t:A$ is decidable.
+\end{thm}
+
+Logical consistency\index{consistency} (of the system in \autoref{sec:syntax-informally}) follows
+immediately: if we had $a:\emptyt$ in the empty context, then by
+\autoref{thm:conversion-preserves-typing},\autoref{thm:strong-normalization}, $a$
+simplifies to a normal term $a':\emptyt$. But by
+\autoref{lem:normal-forms} no such term exists.
+
+\begin{cor}
+ The system in \autoref{sec:syntax-informally} is logically consistent.
+\end{cor}
+
+Similarly, we have the \emph{canonicity}\indexdef{canonicity} property that if $a:\N$ in the empty
+context, then $a$ simplifies to a normal term $\suc^k(0)$ for some numeral $k$.
+
+\begin{cor}
+ The system in \autoref{sec:syntax-informally} has the canonicity property.
+\end{cor}
+
+Finally, if $a,A$ are in normal form, it is \emph{decidable} whether $a:A$; in
+other words, because type-checking amounts to verifying the correctness of a
+proof, this means we can always ``recognize a correct proof when we see one.''
+
+\begin{cor}
+The property of being a proof in the system in \autoref{sec:syntax-informally} is decidable.
+\end{cor}
+
+\mentalpause
+
+The above results do not apply to the extended system of homotopy type
+theory (i.e., the above system extended by \autoref{sec:hott-features}), since
+occurrences of the univalence axiom and constructors of higher inductive types
+never simplify, breaking \autoref{lem:normal-forms}. It is an open question\index{open!problem}
+whether one can simplify applications of these constants in order to restore
+canonicity. We also do not have a schema describing all permissible higher
+inductive types, nor are we certain how to correctly formulate their rules
+(e.g., whether the computation rules on higher constructors should be judgmental
+equalities).
+
+The consistency\index{consistency} of Martin-L\"{o}f type theory extended with univalence and higher
+inductive types could be shown by inventing an appropriate normalization procedure, but currently
+the only proofs that these systems are consistent are via semantic models---for
+univalence, a model in Kan\index{Kan complex} complexes due to Voevodsky \cite{klv:ssetmodel}, and
+for higher inductive types, a model due to Lumsdaine and Shulman \cite{ls:hits}.
+
+Other metatheoretic issues, and a summary of our current results, are discussed
+in greater length in the ``Constructivity'' and ``Open problems'' sections of
+the introduction to this book.
+
+\index{metatheory|)}%
+
+\end{document}

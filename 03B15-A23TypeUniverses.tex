@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A23TypeUniverses}
+\pmcreated{2013-11-09 5:26:15}
+\pmmodified{2013-11-09 5:26:15}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.3 Type universes}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\ctx}{\ensuremath{\mathsf{ctx}}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\wfctx}[1]{#1\ \ctx}
+
+\begin{document}
+\index{type!universe}%
+
+We postulate an infinite hierarchy of type universes
+%
+\begin{equation*}
+  \UU_0, \quad \UU_1, \quad  \UU_2, \quad \ldots
+\end{equation*}
+%
+Each universe is contained in the next, and any type in $\UU_i$ is also in $\UU_{i+1}$:
+%
+\begin{mathpar}
+\inferrule*[right=\UU-\textsc{intro}]
+  {\wfctx \Gamma }
+  {\oftp\Gamma{\UU_i}{\UU_{i+1}}}
+\and
+\inferrule*[right=\UU-\textsc{cumul}]
+  {\oftp\Gamma{A}{\UU_i}}
+  {\oftp\Gamma{A}{\UU_{i+1}}}
+\end{mathpar}
+%
+We shall set up the rules of type theory in such a way that $\oftp\Gamma{a}{A}$
+implies $\oftp\Gamma{A}{\UU_i}$ for some $i$. In other words, if $A$ plays the role of a type then it is in some universe. Another property of our type system is that $\jdeqtp\Gamma{a}{b}{A}$
+implies $\oftp\Gamma{a}{A}$ and $\oftp\Gamma{b}{A}$.
+
+\end{document}

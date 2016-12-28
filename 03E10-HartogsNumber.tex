@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{HartogsNumber}
+\pmcreated{2013-03-22 18:49:48}
+\pmmodified{2013-03-22 18:49:48}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Hartogs number}
+\pmrecord{10}{41634}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A set $A$ is said to be \emph{embeddable} in another set $B$ if there is a one-to-one function $f:A\to B$.  For example, every subset of a set is embeddable in the set.  In particular, $\varnothing$ is embeddable in every set.  Clearly, given any set, there is an ordinal embeddable in it.  On the other hand, is any set embeddable in an ordinal?  If so, then the set is well-orderable (as it is equipollent to one), which is equivalent to the well-ordering principle.  In other words, in ZF, AC is equivalent to saying that every set is embeddable in an ordinal.  Without AC, how much can one deduce?  In 1915, Hartogs proved the following:
+
+\begin{thm} Given any set $A$, there is an ordinal $\alpha$ not embeddable in $A$. \end{thm}
+\begin{proof}  Let $\alpha$ be the class of all ordinals embeddable in $A$.  We want to show that $\alpha$ is in fact an ordinal, not embeddable in $A$.  We have the following steps:
+\begin{itemize}
+\item $\alpha$ is a set.
+
+Let $\mathcal{B}$ be the subset of $P(A)$, the powerset of $A$, consisting of all well-orderable subsets of $A$.  For each element of $B\in \mathcal{B}$, let $W(B)$ be the collection of well-orderings on $B$.  Each element of $W(B)$ is a subset of $B\times B$, so that $W(B)\in P(B\times B)$.  For any $R\in W(B)$, the well-ordered set $(B,R)$ is order isomorphic to exactly one element $\beta$ of $\alpha$.  Conversely, every $\beta\in \alpha$, by definition, is embeddable in $A$, so equipollent to a subset $B$ of $A$.  We may well-order $B$ via $\beta$, and this well-ordering $R\in W(B)$.  Therefore, there is a surjection from $W:=\lbrace (B,R)\mid B\in \mathcal{B}, R\in W(B)\rbrace$ onto $\alpha$.  Since $W$ is a set, so is its range (by the replacement axiom), which is just $\alpha$.
+\item $\alpha$ is an ordinal.
+
+Since $\alpha$ is a set consisting of ordinals, $\alpha$ is well-ordered.  Now, suppose $\gamma\in \beta \in \alpha$.  Since $\beta$ is an ordinal, $\gamma\subseteq \beta$.  If $\phi: \beta \to (B,R)$ is an order isomorphism, then $\phi$ restricted to $\gamma$ is an order isomorphism onto $\phi(\gamma)\subseteq A$, whose well-ordering is that induced by $R$.  Therefore, $\gamma \in \alpha$, so $\alpha$ is a transitive set.  This shows that $\alpha$ is an ordinal.
+\item $\alpha$ is not embeddable in $A$.
+
+Otherwise, $\alpha\in \alpha$, contradicting the fact that an ordinal can never be a member of itself.
+\end{itemize}
+\end{proof}
+The proof is done within ZF, without the aid of the axiom of choice.
+
+Since the class of ordinals \textbf{On} is well-ordered, so is the subclass $C$ of all ordinals not embeddable in $A$.  The least element in $C$ is called the \emph{Hartogs number} of $A$, and is denoted by $h(A)$.
+
+In fact, the $\alpha$ constructed above is the Hartogs number of $A$, for if $\delta$ is another ordinal distinct from $\alpha$ that is not embeddable in $A$, then $\delta \notin \alpha$, so $\alpha\in \delta$ by trichotomy.
+
+\textbf{Remark}.  For every set $A$, its Hartogs number $h(A)$ is a cardinal number: it is first of all an ordinal, so $|h(A)|\le h(A)$, where $\le$ is the ordering on the ordinals, and if $|h(A)| < h(A)$ (meaning $|h(A)|\in h(A)$), then $|h(A)|$ is embeddable in $A$.  Since $h(A)$ is equipollent to $|h(A)|$, $h(A)$ is embeddable in $A$, contradicting the definition of $h(A)$.  Hence $h(A)=|h(A)|$.  From the discussion so far, we see that $h$ can be thought of as a class function from the class $V$ of all sets onto the class \textbf{Cn} of all cardinal numbers.  In addition, assuming AC, every set is well-orderable, so that $h(A)$ is the least cardinal greater $|A|$, for every set $A$.
+%%%%%
+%%%%%
+\end{document}

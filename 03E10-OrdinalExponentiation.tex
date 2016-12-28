@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{OrdinalExponentiation}
+\pmcreated{2013-03-22 17:51:09}
+\pmmodified{2013-03-22 17:51:09}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{ordinal exponentiation}
+\pmrecord{6}{40327}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmrelated{PropertiesOfOrdinalArithmetic}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $\alpha,\beta$ be ordinals.  We define $\alpha^\beta$ as follows:
+\begin{displaymath}
+\alpha^\beta:= \left\{
+\begin{array}{ll}
+1 & \textrm{if }\beta=0,\\
+\alpha^\gamma\cdot \alpha & \textrm{if $\beta$ is a successor ordinal and }\beta=S\gamma, \\
+\sup\lbrace \alpha^\gamma \mid \gamma<\beta \rbrace & \textrm{if $\beta$ is a limit ordinal and }\beta=\sup\lbrace \gamma\mid \gamma<\beta\rbrace.
+\end{array}
+\right.
+\end{displaymath}
+
+Some properties of exponentiation:
+\begin{enumerate}
+\item $0^\alpha=0$ if $\alpha>0$
+\item $1^\alpha=1$
+\item $\alpha^1=\alpha$
+\item $\alpha^\beta\cdot \alpha^\gamma=\alpha^{\beta+\gamma}$
+\item $(\alpha^\beta)^\gamma=\alpha^{\beta\cdot\gamma}$
+\item For any ordinals $\alpha,\beta$ with $\alpha>0$ and $\beta>1$, there exists a unique triple $(\gamma,\delta,\epsilon)$ of ordinals such that
+$$\alpha=\beta^\gamma\cdot \delta+\epsilon$$
+where $0<\delta<\beta$ and $\epsilon<\beta^\delta$.
+\end{enumerate}
+
+All of these properties can be proved using transfinite induction.
+%%%%%
+%%%%%
+\end{document}

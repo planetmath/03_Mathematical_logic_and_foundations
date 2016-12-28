@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chain}
+\pmcreated{2013-03-22 12:09:12}
+\pmmodified{2013-03-22 12:09:12}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{chain}
+\pmrecord{11}{31344}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-00}
+\pmdefines{finite chain}
+\pmdefines{infinite chain}
+\pmdefines{dense chain}
+\pmdefines{complete chain}
+\pmdefines{join of chains}
+\pmdefines{chain homomorphism}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+%%%\usepackage{xypic}
+
+\begin{document}
+\subsubsection*{Introduction}
+
+Let $A$ be a poset ordered by $\le$.  A subset $B$ of $A$ is called a \emph{chain} in $A$ if any two elements of $B$ are comparable.  In other words, if $a,b\in B$, then either $a\le b$ or $b\le a$, that is, $\le$ is a total order on $B$, or that $B$ is a linearly ordered subset of $A$.  When $a\le b$, we also write $b\ge a$.  When $a\le b$ and $a\ne b$, we write $a<b$.  When $a\ge b$ and $a\ne b$, then we write $a>b$.  A poset is a \emph{chain} if it is a chain as a subset of itself.  The \emph{cardinality} of a chain is the cardinality of the underlying set.
+
+Below are some common examples of chains:
+\begin{enumerate}
+\item $\mathbf{n}:=\lbrace 1, 2, \ldots, n\rbrace$ is a chain under the usual order ($a\le b$ iff $b-a$ is non-negative).  This is an example of a \emph{finite chain}: a chain whose cardinality is finite.  Any finite set $A$ can be made into a chain, since there is a bijection from $\mathbf{n}$ onto $A$, and the total order on $A$ is induced by the order on $\mathbf{n}$.  A chain that is not finite is called an \emph{infinite chain}.
+\item $\mathbb{N}$, the set of natural numbers, is a chain under the usual order.  Here we have an example of a well-ordered set: a chain such that every non-empty subset has a minimal element (as in a poset).  Other well-ordered sets are the set $\mathbb{Q}^{+}$ of positive rationals and $\mathbb{R}^{+}$ of positive reals.  The well-ordering principle states that every set can be well-ordered.  It can be shown that the axiom of choice is equivalent to the well-ordering principle.
+\item $\mathbb{Z}$, the set of integers, is a chain under the usual order.
+\item $\mathbb{Q}$, the set of rationals, is a chain under the usual order.  This is an example of a \emph{dense chain}: a chain such that for every pair of distinct elements $a<b$, there is an element $c$ such that $a<c<b$.
+\item $\mathbb{R}$, the set of reals, is a chain under the usual order.  This is an example of a \emph{Dedekind complete chain}: a chain such that every non-empty bounded subset has a supremum and an infimum.
+\end{enumerate}
+
+\subsubsection*{Constructing chains}
+
+One easy way to produce a new chain from an existing one is to form the \emph{dual} of the existing chain: if $A$ is a chain, form $A^{\partial}$ so that $a\le b$ in $A^{\partial}$ iff $b\le a$ in $A$.
+
+Another way to produce new chains from existing ones is to form a \emph{join} of chains.  Given two chains $A,B$, we can form a new chain $A\coprod B$.  The basic idea is to form the disjoint union of $A$ and $B$, and order this newly constructed set so that the order among elements of $A$ is preserved, and similarly for $B$.  Furthermore, any element of $A$ is always less than any element of $B$ (See \PMlinkname{here}{AlternativeTreatmentOfConcatenation} for detail).
+
+With these two methods, one can construct many more examples of chains:
+\begin{enumerate}
+\item Take $\mathbb{R}$, and form $A=\mathbb{R}\coprod \lbrace a\rbrace$.  Then $A$ is a chain with a top element.  If we take $B=\lbrace b\rbrace \coprod A$, we get a chain with both a top and a bottom element.  In fact, $B$ is an example of a complete chain: a chain such that every subset has a supremum and an infimum.  Observe that any finite chain is complete.
+\item We can form $\mathbb{N}^{\partial}$ which is a set with $1$ as the top element.  We can also form $\mathbb{N}^{\partial}\coprod \mathbb{N}$, which has neither top nor bottom, or $\mathbb{N}\coprod \mathbb{N}^{\partial}$, which has both a top and a bottom element, but is not complete, as $\mathbb{N}$, considered as a subset, has no top.  Likewise, $\mathbb{N}^{\partial}$ is bottomless.
+\end{enumerate}
+
+The idea of joining two chains can be generalized.  Let $\lbrace A_i\mid i\in I\rbrace$ be a family of chains indexed by $I$, itself a chain.  We form $\coprod_{i\in I} A_i$ as follows: take the disjoint union of $A_i$, which we also write as $\coprod_{i\in I} A_i$.  Then $(a,i)\le (b,j)$ iff either $i=j$ and $a\le b$, or $i<j$.
+
+For example, let $I=\mathbb{R}$ and $A_i=\mathbb{R}$, with $i\in I$.  Then $\coprod_{i\in I}A_i$ is a chain, whose total order is the lexicographic order on $\mathbb{R}^2$.  If we well-order $I=\mathbb{R}$, then $\coprod_{i\in I}A_i$ is another chain called the long line.
+
+\subsubsection*{Chain homomorphisms}
+
+Let $A,B$ be chains.  A function $f$ from $A$ to $B$ is said to be a \emph{chain homomorphism} if it is a poset homomorphism (it preserves order).  $f(A)$ is the homomorphic image of $A$ in $B$.  Two chains are homomorphic if there is a chain homomorphism from one to another.  A chain homomorphism is an embedding if it is one-to-one.  If $A$ embeds in $B$, we write $A\subseteq B$.  A strict embedding is an embedding that is not onto.  If $A$ strictly embeds in $B$, we write $A\subset B$.  An onto embedding is also called an isomorphism.  If $A$ is isomorphic to $B$, we write $A\cong B$.
+
+Some properties:
+\begin{itemize}
+\item Two finite chains are isomorphic iff they have the same cardinality.
+\item Top and bottom elements are preserved by chain isomorphisms.  In other words, if $f:A\to B$ is a chain isomorphism and if $a\in A$ is the top (bottom) element, then $f(a)$ is the top (bottom) element in $B$.
+\item In addition, the properties of being well-ordered, dense, Dedekind complete, and complete are all preserved under a chain isomorphism.
+\item $A\subseteq A\coprod B$.  More generally $A_i\subseteq \coprod_{i\in I} A_i$.
+\item $(A\coprod B)\coprod C\cong A\coprod (B\coprod C)$.
+\item If $k$ is the bottom element of $I$, and $A_k$ has a top element $x$, then there is a chain homomorphism $f:\coprod_{i\in I} A_i\to A_k$ given by $f(a,i)=a$ if $i=k$ and $f(a,i)=x$ if $i>k$.
+\item Dually, if $k$ is the top of $I$ and $A_k$ has a bottom $x$, then there is a chain homomorphism $f:\coprod_{i\in I} A_i\to A_k$ given by $f(a,i)=a$ if $i=k$ and $f(a,i)=x$ if $i<k$.
+\item If $A_k$ has both a bottom $x$ and a top $y$, then we may define $f:\coprod_{i\in I} A_i\to A_k$ by $f(a,i)=a$ if $i=k$, $f(a,i)=x$ if $i<k$ and $f(a,i)=y$ if $k<i$.
+\end{itemize}
+
+Some examples:
+\begin{itemize}
+\item $\mathbf{n}\subset \mathbb{N}\subset \mathbb{Z}\subset \mathbb{Q}\subset \mathbb{R}$.
+\item $\mathbf{n}\coprod \mathbf{m}\cong \mathbf{p}$ iff $p=m+n$ for any non-negative integers $m,n$ and $p$.
+\item $\mathbf{n}\coprod \mathbb{N}\cong \mathbb{N}$ for any non-negative integer $n$.
+\item $\mathbb{N}\coprod \mathbb{N}^{\partial}\ncong \mathbb{N}^{\partial}\coprod\mathbb{N}$.
+\item Let $I$ be the chain over $\mathbb{R}$ under the usual order, and $J$ the chain over $\mathbb{R}$ under a well-ordering.  Then $\coprod_{i\in I}\mathbb{R}\ncong \coprod_{j\in J}\mathbb{R}$.
+\end{itemize}
+%%%%%
+%%%%%
+%%%%%
+\end{document}

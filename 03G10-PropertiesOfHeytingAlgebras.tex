@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfHeytingAlgebras}
+\pmcreated{2013-03-22 19:31:45}
+\pmmodified{2013-03-22 19:31:45}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of Heyting algebras}
+\pmrecord{19}{42506}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G10}
+\pmclassification{msc}{06D20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+\begin{prop} Let $H$ be a Brouwerian lattice.  The following properties hold:
+\begin{enumerate}
+\item $a\to a = 1$
+\item $a\wedge (a\to b)=a\wedge b$
+\item $b\wedge (a\to b)=b$
+\item $a\to (b\wedge c) = (a\to b)\wedge (a\to c)$
+\end{enumerate}
+\end{prop}
+\begin{proof}  The first three equations are proved in this \PMlinkname{entry}{BrouwerianLattice}.  We prove the last equation here.  For any $x\in H$, $x\le a\to (b\wedge c)$ iff $x\wedge a \le b\wedge c$ iff $x\wedge a\le b$ and $x\wedge a \le c$ iff $x\le a\to b$ and $x\le a\to c$ iff $x\le (a\to b)\wedge (a\to c)$.  Hence the equation holds.
+\end{proof}
+
+\begin{prop} Conversely, a lattice with a binary operation $\to$ satisfying the four conditions above is a Brouwerian lattice. \end{prop}
+\begin{proof}  Let $H$ be a lattice with a binary operation $\to$ on it satisfying the identities above.  We want to show that $x\le a\to b$ iff $x\wedge a \le b$ for any $x\in H$.  First, suppose $x\le a\to b$.  Then $x\wedge a \le a\wedge (a\to b) = a\wedge b \le b$.  Conversely, suppose $x\wedge a \le b$.  Then $a\to (x\wedge a) \le a\to b$ by the property 6 in \PMlinkname{this entry}{BrouwerianLattice}.  As a result, $x=x\wedge (a\to x) \le (a\to a)\wedge (a\to x) = a\to (a\wedge x) \le a\to b$.
+\end{proof}
+
+\begin{cor} The class of Brouwerian lattices is equational.  The class of Heyting algebras is equational.  \end{cor}
+\begin{proof}  The first fact is the result of the two propositions above.  The second comes from the fact that $0$ is not used in the proofs of the propositions.
+\end{proof}
+
+\begin{prop} Let $H$ be a Heyting algebra.  Then $a\vee a^* = 1$ iff $a^{**}=a$ for all $a\in H$. \end{prop}
+\begin{proof}  Suppose $a\vee a^*=1$.  Since $a\le a^{**}$ in any Heyting algebra, we only need to show that $a^{**} \le a$.  Since $H$ is distributive, we have $a^{**}=a^{**}\wedge (a\vee a^*)= (a^{**}\wedge a)\vee (a^{**}\wedge a^*) =a^{**}\wedge a$.  The last equation comes from the fact that $a^{**}\wedge a^*=0$.  As a result, $a^{**}\le a$.  Conversely, suppose $a^{**} = a$. Now, $(a\vee a^*)^* \le a^* \wedge a^{**}=0$, and therefore $a\vee a^* = (a\vee a^*)^{**} = 0^* = 1$.
+\end{proof}
+
+Note, the last inequality in the proof above comes from the inequality $(a\vee b)^* \le a^* \wedge b^*$, which is a direct consequence of the fact that pseudocomplementation is order-reversing: $x\le y$ implies that $y^*\le x^*$.
+
+\begin{cor} A Heyting algebra where psuedocomplentation $*$ satisfies the equivalent conditions above is a Boolean algebra.  Conversely, a Boolean algebra with $a\to b:= a^* \vee b$ is a Heyting algebra.  \end{cor}
+\begin{proof}  Since $a\wedge a^*=0$ and $a\vee a^*=1$, the pseudocomplementation operation $*$ is the complementation operation.  And because any Heyting algebra is distributive, it is Boolean as a result.  Conversely, assume $B$ is Boolean.  Then $c\le a\to b= a^*\vee b$, so that $c\wedge a \le a\wedge (a^* \vee b) = a\wedge b \le b$.  On the other hand, if $c\wedge a\le b$, then $c\le c\vee a^* =(c\wedge a)\vee a^* \le a^* \vee b = a\to b$.
+\end{proof}
+
+\begin{prop} A subset $F$ of a Heyting algebra $H$ is an ultrafilter iff there is a Heyting algebra homomorphism $f:H\to \lbrace 0,1\rbrace$ with $F=f^{-1}(1)$. \end{prop}
+\begin{proof}  First, assume $f:H\to \lbrace 0,1\rbrace$ is a Heyting algebra homomorphism, and $F=f^{-1}(1)$.  Clearly, $F$ is a filter.  Suppose $0\ne a\notin F$, then $f(a)=0$.  Now, $f(a^*)=f(a)^*= 0^*=1$, so $a^*\in F$.  If $F$ is not maximal, let $G$ be a proper filter containing $F$ and $a$, then $a^*\in G$, so that $0\in a\wedge a^* \in G$, and hence $G=H$, contradicting the fact that $G$ is proper.  So $F$ is maximal.  
+
+Conversely, suppose $F$ is an ultrafilter of $H$.  Define $f:H\to \lbrace 0,1\rbrace$ by $f(x)=1$ iff $x\in F$.  Let $a,b\in H$.  We first show that $f$ is a lattice homomorphism:
+\begin{itemize}
+\item
+First, $f(a\wedge b)=1$ iff $a\wedge b\in F$ iff $a,b\in F$ (since $F$ is a filter) iff $f(a)=f(b)=1$.  So $f$ respects $\wedge$.
+\item
+Next, if $f(a\vee b)=0$, then $a\vee b\notin F$, which means neither $a$ nor $b$ is in $F$, or that $f(a)=f(b)=0$.  On the other hand, if $f(a)=f(b)=0$, then neither $a$ nor $b$ is in $F$, since $F$ is an ultrafilter.  As a result, neither is $a\vee b \in F$, which means $f(a\vee b)=0$.  So $f$ respects $\vee$.
+\end{itemize}
+So $f$ is a lattice homomorphism.  Next, we show that $f$ is a Heyting algebra homomorphism, which means showing that $f$ respects $\to$: $f(a\to b)=f(a)\to f(b)$.  It suffices to show $f(a\to b)=0$ iff $f(a)=1$ and $f(b)=0$.  
+\begin{itemize}
+\item
+First, if $f(a)=1$ and $f(b)=0$ then $a\in F$ and $b\notin F$.  If $a\to b\in F$, then $(a\to b)\wedge a\in F$.  Since $(a\to b)\wedge a\le b$, $b\in F$, a contradiction.  So $a\to b\notin F$.  
+\item
+On the other hand, suppose $f(a\to b)=0$.  So $a\to b\notin F$.  Now, since $b\le a\to b$, $b\notin F$, or $f(b)=0$.  If $f(a)=0$, then $a\notin F$, so there is some $c\in F$ with $0=a\wedge c$.  But this means $c\le a^*$, or $a^*\in F$.  Since $a^*\le a\to b$, we would have $a\to b\in F$, a contradiction.  Hence $f(a)=1$.
+\end{itemize}
+Therefore $f$ is a Heyting algebra homomorphism.
+\end{proof}
+
+In the proof above, we use the fact that, for any ultrafilter $F$ in a bounded lattice $L$, if $x\notin F$, then there is $y\in F$ such that $0= x\wedge y$ (for otherwise, the filter generated by $x$ and $F$ would be proper and properly contains $F$, contradicting the maximality of $F$).  If in addition $L$ were distributive, then $a\vee b\in F$ implies that either $a\in F$ or $b\in F$.  To see this, suppose $a\notin F$.  Then there is $c\in F$ such that $0=a\wedge c$.  Similarly, if $b\notin F$, there is $d\in F$ such that $0=b\wedge d$.  Let $e=c\wedge d\in F$.  So $e\ne 0$, and $a\wedge e=0=b\wedge e$.  Furthermore, $0=(a\wedge e)\vee (b\wedge e)=(a\vee b)\wedge e$.  If $a\vee b\in F$, so would $0\in F$, a contradiction.  Hence $a\vee b\notin F$.
+
+%%%%%
+%%%%%
+\end{document}

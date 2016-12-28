@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{97daggercategories}
+\pmcreated{2013-11-06 16:41:16}
+\pmmodified{2013-11-06 16:41:16}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{9.7 $\dagger$-categories}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\newcommand{\dgr}[1]{{#1}^{\dagger}}
+\newcommand{\idtoiso}{\ensuremath{\mathsf{idtoiso}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\inv}[1]{{#1}^{-1}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\newcommand{\uhilb}{\ensuremath{\mathcal{H}ilb}\xspace}
+\newcommand{\unitaryiso}{\mathrel{\cong^\dagger}}
+\newcommand{\urel}{\ensuremath{\mathcal{R}el}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{9.7.\arabic{mathcount}}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{9.7.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{9.7.\arabic{mathcount}}
+\let\autoref\cref
+
+\begin{document}
+It is also worth mentioning a useful kind of precategory whose type of objects is not a set, but which is not a category either.
+
+\begin{defn}
+  A \define{$\dagger$-precategory}
+  \indexdef{.dagger-precategory@$\dagger$-precategory}%
+  \indexdef{precategory!.dagger-@$\dagger$-}%
+  is a precategory $A$ together with the following.
+  \begin{enumerate}
+  \item For each $x,y:A$, a function $\dgr{(-)}:\hom_A(x,y) \to \hom_A(y,x)$.
+  \item For all $x:A$, we have $\dgr{(1_x)} = 1_x$.
+  \item For all $f,g$ we have $\dgr{(g\circ f)} = \dgr f \circ \dgr g$.
+  \item For all $f$ we have $\dgr{(\dgr f)} = f$.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}\label{ct:unitary}
+  A morphism $f:\hom_A(x,y)$ in a $\dagger$-precategory is \define{unitary}
+  \indexdef{.dagger-precategory@$\dagger$-precategory!unitary morphism in}%
+  \indexdef{unitary morphism}%
+  \indexdef{morphism!unitary}%
+  \indexdef{isomorphism!unitary}%
+  if $\dgr f \circ f = 1_x$ and $f\circ \dgr f = 1_y$.
+\end{defn}
+
+Of course, every unitary morphism is an isomorphism, and being unitary is a mere proposition.
+Thus for each $x,y:A$ we have a set of unitary isomorphisms from $x$ to $y$, which we denote $(x\unitaryiso y)$.
+
+\begin{lem}\label{ct:idtounitary}
+  If $p:(x=y)$, then $\idtoiso(p)$ is unitary.
+\end{lem}
+\begin{proof}
+  By induction, we may assume $p$ is $\refl x$.
+  But then $\dgr{(1_x)} \circ 1_x = 1_x\circ 1_x = 1_x$ and similarly.
+\end{proof}
+
+\begin{defn}
+  A \define{$\dagger$-category}
+  \indexdef{.dagger-category@$\dagger$-category}%
+  is a $\dagger$-precategory such that for all $x,y:A$, the function
+  \[ (x=y) \to (x \unitaryiso y) \]
+  from \autoref{ct:idtounitary} is an equivalence.
+\end{defn}
+
+\begin{eg}
+  The category \urel from \autoref{ct:rel} becomes a $\dagger$-pre\-cat\-e\-go\-ry if we define $(\dgr R)(y,x) \defeq R(x,y)$.
+  The proof that \urel is a category actually shows that every isomorphism is unitary; hence \urel is also a $\dagger$-category.
+\end{eg}
+
+\begin{eg}
+  Any groupoid becomes a $\dagger$-category if we define $\dgr f \defeq \inv{f}$.
+\end{eg}
+
+\begin{eg}\label{ct:hilb}
+  Let \uhilb be the following precategory.
+  \begin{itemize}
+  \item Its objects are finite-dimensional \index{finite!-dimensional vector space} vector spaces\index{vector!space} equipped with an inner product $\langle \blank,\blank\rangle$.
+  \item Its morphisms are arbitrary linear maps.
+    \index{function!linear}%
+    \indexsee{linear map}{function, linear}%
+  \end{itemize}
+  By standard linear algebra, any linear map $f:V\to W$ between finite
+  dimensional inner product spaces has a uniquely defined adjoint\index{adjoint!linear map} $\dgr f:W\to V$, characterized by $\langle f v,w\rangle = \langle v,\dgr f w\rangle$.
+  In this way, \uhilb becomes a $\dagger$-precategory.
+  Moreover, a linear isomorphism is unitary precisely when it is an \define{isometry},
+  \indexdef{isometry}%
+  i.e.\ $\langle fv,fw\rangle = \langle v,w\rangle$.
+  It follows from this that \uhilb is a $\dagger$-category, though it is not a category (not every linear isomorphism is unitary).
+\end{eg}
+
+There has been a good deal of general theory developed for $\dagger$-cat\-e\-gor\-ies under classical\index{mathematics!classical}\index{classical!category theory} foundations.
+It was observed early on that the unitary isomorphisms, not arbitrary isomorphisms, are the correct notion of ``sameness'' for objects of a $\dagger$-category, which has caused some consternation among category theorists.
+Homotopy type theory resolves this issue by identifying $\dagger$-categories, like strict categories, as simply a different kind of precategory.
+
+
+
+\end{document}

@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{muoperator}
+\pmcreated{2013-03-22 19:05:47}
+\pmmodified{2013-03-22 19:05:47}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{$\mu$-operator}
+\pmrecord{12}{41988}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmsynonym{minimization operator}{muoperator}
+\pmsynonym{minimization-operator}{muoperator}
+\pmsynonym{search operator}{muoperator}
+\pmsynonym{search-operator}{muoperator}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\subsection*{$\mu$ on predicates}
+
+Let a property on non-negative integers be given.  Informally, the $\mu$-operator looks for the smallest number satisfying the given property.  The $\mu$-operator is also known as the (unbounded) minimization operator or the (unbounded) search operator.  Formally,
+
+\textbf{Definition}.  Let $\Phi(\boldsymbol{x},y)$ be an $(m+1)$-ary predicate (property) over $\mathbb{N}$, the set of natural numbers ($0$ included here), with $m$ a non-negative integer ($\boldsymbol{x}$ is $m$-ary).  Define $$A_{\Phi}(\boldsymbol{x}):=\lbrace y \in \mathbb{N} \mid \Phi(\boldsymbol{x},y) \rbrace,$$ The \emph{$\mu$-operator} on $\Phi$ is given by 
+\begin{displaymath}
+\mu y \Phi(\boldsymbol{x},y) := \left\{
+\begin{array}{ll}
+\min A_{\Phi}(\boldsymbol{x}) & \textrm{if } A_{\Phi}(\boldsymbol{x})\ne \varnothing, \\
+\textrm{undefined} & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+The notation $\mu y \Phi(\boldsymbol{x},y)$ reads ``the smallest $y$ such that $\Phi(\boldsymbol{x},y)$ is satisfied''.  Note that $y$ is used both as a variable and a number that the variable $y$ represents.  
+
+Note that $\mu y \Phi(\boldsymbol{x},y)$ is a partial function on $\boldsymbol{x}$ ($y$ is a bounded variable).  In other words, the $\mu$-operator is a function that takes an $m+1$-ary predicate to an $m$-ary partial function.  When $m=0$, $\mu$ is either an integer, or $\varnothing$.
+
+For example, suppose $\Phi(x,y)$ is the property $(x-y)(x+y) \ge 10$.  Then $\mu y \Phi(x,y) = 0$ iff $x\ge 4$, and undefined otherwise.
+
+The reason why the $\mu$-operator is called the search operator comes from recursive function theory.  The search for the smallest $y$ such that $\Phi(\boldsymbol{x},y)$ begins with testing for $\Phi(\boldsymbol{x},0)$.  If the test fails ($\Phi(\boldsymbol{x},0)$ is false), then testing for $\Phi(\boldsymbol{x},1), \Phi(\boldsymbol{x},2), \Phi(\boldsymbol{x},3), \cdots$ are successively performed.  The testing stops when a $y$ with $\Phi(\boldsymbol{x},y)$ is found.  This $y$ is also the smallest $y$ satisfying $\Phi$.  Nevertheless, the testing can conceivably go on indefinitely, hence the name \emph{unbounded}.  There is also a bounded version of $\mu$-operation:
+
+\textbf{Definition}.  Let $\Phi(\boldsymbol{x},y)$ be given as above.  Define $$A_{\Phi}(\boldsymbol{x},y):=\lbrace z \in \mathbb{N} \mid \Phi(\boldsymbol{x},z)\mbox{ and }z\le y \rbrace.$$ The \emph{bounded $\mu$-operator} on $\Phi$ is given by 
+\begin{displaymath}
+\mu z\le y \Phi(\boldsymbol{x},z) := \left\{
+\begin{array}{ll}
+\min A_{\Phi}(\boldsymbol{x},y) & \textrm{if } A_{\Phi}(\boldsymbol{x},y)\ne \varnothing, \\
+y+1 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+Thus the bounded $\mu$-operator takes an $(m+1)$-ary predicate (on $(\boldsymbol{x},z)$, where $z$ is a free variable) to an $(m+1)$-ary total function (on $(\boldsymbol{x},y)$, as $z$ is now bounded by $\mu$).
+
+\subsection*{$\mu$ on total functions}
+
+The $\mu$ operator can also be defined on functions.  We first discuss the case of $\mu$ on total functions.  
+
+\textbf{Definition}.  Given a total $(m+1)$-ary function $f:\mathbb{N}^{m+1}\to \mathbb{N}$, define $$A_f(\boldsymbol{x}):=\lbrace y \in \mathbb{N} \mid f(\boldsymbol{x},y)=0 \rbrace,$$
+The \emph{$\mu$-operator} on $f$ is given by 
+\begin{displaymath}
+\mu y f(\boldsymbol{x},y) := \left\{
+\begin{array}{ll}
+\min A_f(\boldsymbol{x}) & \textrm{if } A_f(\boldsymbol{x})\ne \varnothing, \\
+\textrm{undefined} & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+
+This definition is actually equivalent to the one regarding predicates, in the following sense: given a total function $f$ with arity $m+1$, define predicate $\Phi_f(\boldsymbol{x},y)$ of arity $m+1$, as ``$f(\boldsymbol{x},y)=0$''.  Then $$\mu y f(\boldsymbol{x},y) = \mu y \Phi_f(\boldsymbol{x},y).$$  Conversely, given an $(m+1)$-ary predicate $\Phi(\boldsymbol{x},y)$, define an $(m+1)$-ary function $f_{\Phi}(\boldsymbol{x},y):=1\dot{-} \chi_{\Phi}(\boldsymbol{x},y)$, where $\chi_{\Phi}$ is the characteristic function of $\Phi$.  Then $$\mu y \Phi(\boldsymbol{x},y) = \mu y f_{\Phi}(\boldsymbol{x},y).$$
+
+Note also that $\mu f$ may be partial even if $f$ is total, since it is possible $f(\boldsymbol{x},y)\ne 0$ for all $y$, and the search will go on indefinitely.  For example, let $f(x,z,y)= x^2+z^2 - y^2$ if $x^2+z^2 \ge y^2$, and $1$ otherwise.  Clearly, $f$ is a total function.  It is easy to see that $\mu y f(3,4,y) = 5$, while $\mu y f(1,2,y)$ is undefined.
+
+\subsection*{$\mu$ on partial functions}
+
+The definition of the $\mu$-operator on total functions can be generalized to partial functions.  However, in recursive functions theory, an additional condition is imposed in order to make the generalization.
+
+\textbf{Definition}.  Given a partial $(m+1)$-ary function $f:\mathbb{N}^{m+1}\to \mathbb{N}$, define $$A_f(\boldsymbol{x}):=\lbrace y \in \mathbb{N} \mid f(\boldsymbol{x},y)=0 \mbox{ and }(\boldsymbol{x},z) \in \operatorname{dom}(f) \mbox{ for all }z\le y\rbrace,$$
+The \emph{$\mu$-operator} on $f$ is given by 
+\begin{displaymath}
+\mu y f(\boldsymbol{x},y) := \left\{
+\begin{array}{ll}
+\min A_f(\boldsymbol{x}) & \textrm{if } A_f(\boldsymbol{x})\ne \varnothing, \\
+\textrm{undefined} & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+
+The extra condition that $f(\boldsymbol{x},z)$ be defined for all $z\le y$ is needed in order to avoid situations where testing for $f(\boldsymbol{x},z)=0$ gets stuck in an infinite loop (in a Turing machine or a URM) because $f(\boldsymbol{x},z)$ is undefined, before $y$ is ever reached for testing.  If we drop this extra condition, then it is possible to find a partial recursive function $f$ such that $\mu f$ is not recursive.
+
+\textbf{Remarks}.
+\begin{itemize}
+\item
+Bounded $\mu$-operator may also be defined on functions.  In the case of partial functions, the definition can be given as follows: let $f(\boldsymbol{x},y)$ be an $(m+1)$-ary partial function, with
+$$A_f(\boldsymbol{x},y):=\lbrace z \in \mathbb{N} \mid f(\boldsymbol{x},z)=0, z\le y,\mbox{ and }(\boldsymbol{x},t)\in \operatorname{dom}(f)\mbox{ for all }t\le z  \rbrace,$$
+then
+\begin{displaymath}
+\mu z\le y f(\boldsymbol{x},z) := \left\{
+\begin{array}{ll}
+\min A_f(\boldsymbol{x},y) & \textrm{if } A_f(\boldsymbol{x},y)\ne \varnothing, \\
+y+1 & \textrm{if }A_f(\boldsymbol{x},y)= \varnothing \mbox{ and }(\boldsymbol{x},t) \in \operatorname{dom}(f) \mbox{ for all }t\le y \\
+\textrm{undefined} & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+\item
+Given the set $\mathcal{PR}$ of primitive recursive functions, one obtains the set $\mathcal{R}$ of recursive functions by taking the closure of $\mathcal{PR}$ with respect to the application of the $\mu$-operator.  Furthermore, if $f\in \mathcal{R}$, so is $\mu f \in \mathcal{R}$, and it can be shown that any recursive function can be obtained from primitive recursive functions by no more than one application of the $\mu$-operator.  This is known as the Kleene normal form theorem.
+\item
+With respect to the bounded $\mu$-operator, any primitive recursive function (or predicate) stays primitive recursive after an application of the bounded $\mu$, and any total recursive function stays total after an application of the bounded $\mu$.
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

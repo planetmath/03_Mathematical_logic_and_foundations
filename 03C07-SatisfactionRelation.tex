@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SatisfactionRelation}
+\pmcreated{2013-03-22 12:43:56}
+\pmmodified{2013-03-22 12:43:56}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{satisfaction relation}
+\pmrecord{14}{33032}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+\pmrelated{Model}
+\pmdefines{satisfaction}
+\pmdefines{satisfy}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[arrow,curve,poly,arc,2cell,frame,web]{xypic}
+
+\newcommand{\br}{[\![}
+\newcommand{\rb}{]\!]}
+\newcommand{\oq}{\text{``}}
+\newcommand{\cq}{\text{''}}
+\newcommand{\im}{\mathbf{Im}}
+\newcommand{\dom}{\mathbf{Dom}}
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\proves}{\vdash}
+\renewcommand{\And}{\wedge}
+\newcommand{\Sup}{\bigwedge}
+\newcommand{\Inf}{\bigvee}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\N}{\mathfrak{N}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\K}{\mathfrak{K}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Def}{\overset{\operatorname{def}}{:=}}
+\newcommand{\spec}{\text{{\bf Spec}}}
+\newcommand{\stab}{\text{{\bf Stab}}}
+\newcommand{\ann}{\text{{\bf Ann}}}
+\newcommand{\irr}{\text{{\bf Irr}}}
+\newcommand{\qt}{\text{{\bf Qt}}}
+\newcommand{\st}{\mathcal{Qt}}
+\newcommand{\ro}{\mathbf{r.o.}}
+\newcommand{\Endo}{\text{{\bf End}}}
+\newcommand{\mat}{\text{{\bf Mat}}}
+\newcommand{\der}{\text{{\bf Der}}}
+\newcommand{\rad}{\text{{\bf Rad}}}
+\newcommand{\trd}{\text{{\bf tr.d.}}}
+\newcommand{\cl}{\text{{\bf acl}}}
+\newcommand{\Int}{\text{{\bf int}}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\del}{\partial}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\aut}{\mathbf{Aut}}
+\newcommand{\height}{\text{\bf Height}}
+\newcommand{\coheight}{\text{\bf Co-height}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\inner}[2]{\langle #1|#2\rangle}
+\renewcommand{\r}{{r}}
+\renewcommand{\t}{{t}}
+\newcommand{\restr}{\upharpoonright}
+\newcommand{\Matrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 
+\end{array}\right)}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\val}{\operatorname{Val}}
+\begin{document}
+Alfred Tarski was the first mathematician to give a formal definition of what
+it means for a formula to be ``true'' in a structure.  To do this, we
+need to provide a meaning to terms, and truth-values to the formulas.
+In doing this, free variables cause a problem : what value are they
+going to have ?  One possible answer is to supply temporary values for the free variables, and define our notions in terms of these temporary values.
+
+Let $\mathcal{A}$ be a structure with signature $\tau$.
+Suppose $\I$ is an interpretation, and $\sigma$ is a function that
+assigns elements of $A$ to variables, we define the function
+$\val_{\I,\sigma}$ inductively on the construction of terms :
+
+\begin{eqnarray*}
+\val_{\I,\sigma}(c)& = &\I(c)\qquad c\;\;\text{a constant symbol}\\
+\val_{\I,\sigma}(x)& = &\sigma(x)\qquad x\;\;\text{a variable}\\
+\val_{\I,\sigma}(f(t_1,...,t_n))& = &\I(f)(\val_{\I,\sigma}(t_1),...,\val_{\I,\sigma}(t_n))\qquad f\text{ an }\; n\text{-ary function symbol}
+\end{eqnarray*}
+
+Now we are set to define satisfaction.  Again we have to take care of free variables by assigning temporary values to them via a function $\sigma$.  
+We define the relation $\mathcal{A},\sigma\models\varphi$ by induction on the construction of formulas :
+
+\begin{eqnarray*}
+\mathcal{A},\sigma & \models & t_1=t_2\text{ if and only if 
+}\val_{\I,\sigma}(t_1)=\val_{\I,\sigma}(t_2)\\
+\mathcal{A},\sigma & \models & R(t_1,...,t_n)\text{ if and only if } 
+(\val_{\I,\sigma}(t_1),...,\val_{\I,\sigma}(t_1))\in\I(R)\\
+\mathcal{A},\sigma & \models & \neg\varphi\text{ if and only if }\;\;\mathcal{A},\sigma\not\models\varphi\\
+\mathcal{A},\sigma & \models & \varphi\Or\psi \text{ if and only if either } 
+\mathcal{A},\sigma\models\psi
+\text{ or } \A,\sigma\models\psi \\
+\mathcal{A},\sigma & \models &\exists x.\varphi(x)\text{ if and only if for some }
+\;\;a\in A,\; \mathcal{A},\sigma[x/a]\models \varphi\\
+\end{eqnarray*}
+
+Here 
+\begin{displaymath}
+\sigma[x/a](y)\begin{cases}
+a & \text{ if }\;\;x=y \\
+\sigma(y) & \text{ else.}
+\end{cases}
+\end{displaymath}
+
+In case for some $\varphi$ of $L$, we have $\mathcal{A},\sigma\models\varphi$, we say that $\mathcal{A}$ {\bf models}, or {\bf is a model of}, or {\bf satisfies} $\varphi$.  If $\varphi$ has the free variables $x_1,...,x_n$, and $a_1,...,a_n\in A$, we also write $\mathcal{A}\models\varphi(a_1,...,a_n)$ or $\mathcal{A}\models\varphi(a_1/x_1,...,a_n/x_n)$ instead of $\mathcal{A},\sigma[x_1/a_1]\cdots[x_n/a_n]\models\varphi$.  In case $\varphi$ is a sentence (formula with no free variables), we write $\mathcal{A}\models\varphi$.
+%%%%%
+%%%%%
+\end{document}

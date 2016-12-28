@@ -1,0 +1,935 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{BeyondFormalismGodelsIncompleteness}
+\pmcreated{2013-03-22 18:26:04}
+\pmmodified{2013-03-22 18:26:04}
+\pmowner{gribskoff}{21395}
+\pmmodifier{gribskoff}{21395}
+\pmtitle{beyond formalism: G\"{o}del's incompleteness}
+\pmrecord{28}{41093}
+\pmprivacy{1}
+\pmauthor{gribskoff}{21395}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03A05}
+\pmclassification{msc}{03-01}
+\pmsynonym{G\"{o}del's Theorem}{BeyondFormalismGodelsIncompleteness}
+\pmsynonym{Incompleteness Theorem}{BeyondFormalismGodelsIncompleteness}
+\pmsynonym{Tarski's theorem}{BeyondFormalismGodelsIncompleteness}
+%\pmkeywords{Incompleteness}
+%\pmkeywords{Omega-Consistency}
+%\pmkeywords{Recursive indecidebility}
+\pmrelated{FOUNDATIONSOFMATHEMATICSOVERVIEW}
+\pmrelated{AnOutlineOfHilbertsProgramme}
+\pmrelated{GodelNumbering}
+\pmrelated{GodelsIncompletenessTheorems}
+\pmrelated{FormalLogicsAndMetaMathematics}
+\pmrelated{AlgebraicCategoryOfLMnLogicAlgebras}
+\pmrelated{FromHilbertsTenthProblemToGodelsTrichotomy}
+\pmrelated{GodelsBetaFunction}
+\pmrelated{Mathematical}
+\pmdefines{Incompleteness}
+\pmdefines{Omega-Consistency}
+\pmdefines{Arithmetic truth}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+%%\usepackage{xypic}
+\usepackage{psfrag}
+\usepackage{amsthm}
+
+% define commands here
+\begin{document}
+\tableofcontents
+
+\section{Overview}\normalsize
+
+In the literature on the foundations of mathematics the term "formalism" occurs with three different configurations.
+
+The first (chronologically) was refuted by Frege in both \emph{Grundagen der Arithmetik}, on the issue of the existence of the complex number system, and in \emph{Grundgesetze der  Arithmetik} (Sec. 86 \emph{et seq}.). In its oldest configuration the formalist doctrine is to be found in the writings of Frege's contemporaries Heine, Thomae and von Helmholz and it is essentially composed out of two fundamental thesis.
+ 
+According to the first thesis mathematical propositions are merely sequences of symbols, the interpretation of which may be helpful but not relevant. Thus mathematical propositions can be said to have form but not content, since this is only given by means of an interpretation. In today's terminology mathematics would then consist of a language with a fixed syntax but without semantics.
+
+To this thesis is usually associated the well known metaphor that mathematics is a game like a board or a card game, for which rules to move the pieces or to play the cards are provided, without having to stipulate the meaning that the game will have to yield. A paradigm case is a game of chess, as described in the usual notation.
+
+The second thesis of this first configuration is the equally repeated ontological doctrine that the existence of a  mathematical object is secured by the consistency proof of the theory in which the object occurs. Under these circumstances we can secure the existence of everything that does not lead to a contradiction and the associated slogan is that the criterion of existence is consistency.
+
+In a second configuration the term "formalism" is frequently used to refer to the set of proposals known as Hilbert's  Programme. It is actually a terminological inaptitude, since Hilbert was not a formalist in the first sense. About Hilbert's proposals as to how to preserve the meaning of mathematical propositions and his hopes of a consistency proof for arithmetic the reader can use the PM entry "An Outline of Hilbert's Programme" where the issue is developed with some detail.
+
+Modern formalism is the object of a very successful refutation by Georg Kreisel, who coined the complex term "formalist-positivist doctrine". The formalist-positivist doctrine set foot in the philosophy of mathematics after the successful  formalization of some mathematical theories, i.e., theories with a positive solution to the decision problem. The formalist-positivist doctrine rejects the validity of our knowledge of abstract objects. These are, for this theory, no more than purely verbal extrapolations of the true knowledge of concrete objects or facts.
+
+The main \emph{fazit} of the formalist-positivist doctrine is the elimination of the use of abstract concepts, defined as being of second or higher order, and their substitution by concepts that can be subject to the control of a formal system. In this sense formalist mathematics is reduced to concepts, for the understanding of which it is sufficient to have a list of formal rules which describes them completely.
+
+In epistemology the formalist-positivist doctrine maintains that formal rules are not only qualitatively different from the abstract concepts used in classical mathematics, but also that the knowledge provided by them has a degree of reliability higher than the knowledge obtained by the use of abstract objects or by the use of our intuition of   mathematical reality. It is argued that the use of our intuition caused the paradoxes and the foundational crisis of the late XIX century, and that this fact is evidence against the reliability of our intuition and therefore favours the need to subject such use to the control of formal systems.
+
+On the greater reliability of formal rules and mechanical control Kreisel argues that it is a fact of experience, acknowledge even by Bourbaki, that this mechanical or formal control is hardly ever carried out in full. From this it follows that this increased reliability is no more that a matter of faith, because if the formalization is not fully carried out and the mechanical control is not verified then on what grounds are we supposed to trust their reassuring  value?
+
+It remains the so called historical fact that the paradoxes prove the unreliability of our intuition and of the use of abstract concepts. It is also a fact of experience that the paradoxes do not affect our confidence in the use of our  intuition more than debugging a program affects our confidence in mechanical computation. Our intuition of mathematical reality has an homological image in our perception of physical reality. The paradoxes shake our confidence in that intuition just as much as errors of perception shake our confidence in our knowledge of the external world.
+
+In its third configuration formalism articulates again the issues of Frege's contemporaries (using the benefit of hindsight) and is associated with the names of Rudolph Carnap, Haskell Curry and more recently S. Mac Lane.
+
+The position is better described as syntacticist and G\"{o}del refuted it in his "Gibb's Lecture" and in "Is mathematics syntax of language?". The argument is based on his theorems to be discussed bellow and can be essentially reproduced as follows: I can not propose a formal system for a mathematical theory and claim with consistency that I can with mathematical rigor have the insight that \emph{i}) the axioms of the system and the rules of inference are correct and \emph{ii}) they express all true statements of the theory. Because if I can see that the axioms and the rules are correct then I can also see that the axiom system is consistent. But the consistency of the axioms is not provable within the system (Theorem 2 bellow) and so I claim to have an insight into something that can not be proved in the system. But that also makes it impossible to claim that the system contains all true statements of the theory (Theorem 1 bellow).
+
+\section{Arithmetic}\normalsize
+
+The object of study of arithmetic is not only the set of natural numbers but also other sets of objects that one can define categorically, like the integers or the rational numbers, so that a theory about one of these sets of objects is also called an arithmetic. In general the objects studied are taken to be individuals, in the sense that they can not be further analyzed as being composed out of other objects. A departure from this restriction is sometimes tolerated, as it is the case when the basic properties of the positive rational numbers are explained using a representation of them in terms of pairs of natural numbers.
+
+In contrast with the term "number theory", the word "arithmetic" is also used to denote the study of the properties of some particular functions over the integers like sum, multiplication and related concepts.
+
+An obvious extension of this vocabulary takes place when one speaks of arithmetic to denote the sum of non-denumerable sets, in contexts like "the arithmetic of transfinite cardinals".                                         
+
+\section{From the number sequence to formal arithmetic}\normalsize   
+
+In spite of the fact that the philosophical reflection on the concept of number is as old as philosophy itself, the scientific treatment of this reflection only took place at the dawn of the XX century, with the work of Dedekind (1831-1916) and Frege (1848-1925). It is important to notice that the new scientific outlook raised, rather than lowered, the philosophical significance of the whole subject, as we can see in the abundant literature on the theorems of L\"{o}wenheim, G\"{o}del and Tarski, thereby refuting the positivistic claim that progress in science makes philosophical reflection obsolete.
+
+The first modern characterization of the concept of number was formulated by Dedekind in 1901 by characterizing the number sequence with the following axioms:
+
+\begin{enumerate}
+\item 0 is a number.
+\item For every number $x$ there is a unary function $f$ defined by $f (x) =  x + 1$, the value of which is the number that immediately follows $x$ in the sequence, called the successor of $x$.
+\item 0 is not a successor.
+\item The function $f (x)$ is 1-1.
+\item If $P$ is an arithmetical property such that $P(0)$ and for all $x$ $P(x)$ implies $P (x + 1)$, then for all $x$, $P(x)$.
+\end{enumerate}
+
+Dedekind's propositions together with the theory of sets allow the derivation not only of the theory of natural numbers but also of other numbers systems, rational, real, and complex.
+
+But these propositions can not be considered as an axiomatic system, in the sense of a formal axiomatic system, because it contains informal concepts like "property".
+
+Formal arithmetic is the syntactical version of Dedekind's axioms and we will be using a simplified version of the treatment proposed by Hilbert and Bernays in \emph{Grundlagen der Mathematik}.
+
+\section{The formal theory \textbf{Z}}\normalsize
+
+The formal theory to be used is a first order theory with equality and it will be called $\textbf{Z}$ (the first letter of the german word \emph{Zahl}, number). It has a denumerable number of individual variables, one binary predicative symbol $I (a, b)$ which will be abbreviate to $a = b$. There are three functional symbols, unary $f$, binary $g$ and binary $h$. They will be abbreviated to $f (a)$, $a + b$ and $a \cdot b$. The only individual constant is Dedekind's initial object 0.
+
+The proper axioms of $\textbf{Z}$ are the following:
+
+\begin{itemize}
+\item \textbf{Z1}: $(a = b) \rightarrow [ (a = c) \rightarrow (b = c) ]$
+\item \textbf{Z2}: $(a = b) \rightarrow [ f (a) = f (b) ]$
+\item \textbf{Z3}: $(\forall x) \neg [ 0 = f (x) ]$
+\item \textbf{Z4}: $[ f (a) = f (b) ] \rightarrow (a = b)$
+\item \textbf{Z5}: $a + 0 = a$ 
+\item \textbf{Z6}: $a  + f (b) = f (a + b)$
+\item \textbf{Z7}: $a \cdot 0 = 0$ 
+\item \textbf{Z8}: $a \cdot f (b) = (a \cdot b) + a$ 
+\item \textbf{Z9}: If $\Phi (x)$ is a  well formed formula of Z then:
+\end{itemize}
+ 
+$$\Phi (0) \rightarrow \{ [ (\forall x) [ \Phi(x) \rightarrow \Phi ( f (x)) ] \rightarrow (\forall x) \Phi (x) \}.$$   
+
+Axioms \textbf{Z1} and \textbf{Z2} state the properties of equality between objects and their successors. \textbf{Z3} and \textbf{Z4} correspond to Dedekind's axioms 3 and 4. Dedekind's axioms 1 and 2 are represented by the individual constant and the unary function of $\textbf{Z}$. 
+
+It is to be noticed that \textbf{Z9} differs from the other axioms \textbf{Z1}, $\ldots$, \textbf{Z8}, since it is an axiomatic scheme. It does not correspond exactly to Dedekinds axiom 5, the principle of mathematical induction, since this refers to a non-denumerable number of properties of the number sequence. Instead \textbf{Z9} refers only to a denumerable number of properties, precisely those properties that can be defined in $\textbf{Z}$ by means of well-formed formulas of $\textbf{Z}$.
+
+To prove by induction in $\textbf{Z}$ that $(\forall x)$ $\Phi (x)$ one uses the premises $\Phi (0)$ and $(\forall x) [ \Phi (x) \rightarrow \Phi ( f (x) ) ]$. Using \textbf{Z9} as starting formula two applications of \emph{modus ponens} give $(\forall x) \Phi (x)$. 
+
+Axioms \textbf{Z5} to \textbf{Z8} allow the proof in $\textbf{Z}$ of all known results of addition, product and divisibility of numbers, the existence and the uniqueness of the quotient and rest.
+
+Order can be defined in $\textbf{Z}$ and thereby the principle of complete induction, by saying that $t$ is less than $s$ if and only if there is a number $m$ different from 0 such that $t + m = s$.
+
+The underlying logic allows the derivation of the usual results about order. If we call \textbf{Z9} the rule of induction we can use it to prove the principle of complete induction:
+
+\begin{center}
+If $P$ is a property such $P(x)$ and for every $x$ if $P$ is satisfied by all numbers less than $x$ then $P (x)$, 
+
+then for every $x$ $P (x)$.
+\end{center}
+
+The rule of induction allows the demonstration of the principle of complete induction and the least number principle as theorems of $\textbf{Z}$.
+
+\section{A model for \textbf{Z}}\normalsize
+
+It is now obvious that a model $M$ for $\textbf{Z}$ has to satisfy the following conditions:
+
+\begin{enumerate}
+\item The domain of the model is the set of natural numbers.
+\item The natural number 0 is the interpretation of the individual constant of $\textbf{Z}$.
+\item The unary function $f (x)$ is interpreted as "the successor of $x$".
+\item The binary function $g (x, y)$ is the addition of $x$ and $y$.
+\item The binary function $h (x, y)$ is the product of $x$ and $y$.
+\item The only predicative letter is equality.
+\end{enumerate}
+
+The terms of $\textbf{Z}$ are the initial object 0 and the result of prefixing and reiterating $f$. We  shall  call these terms numerals and represent them by:
+
+\begin{center}
+0, $f (0)$, $f (f (0))$, $\ldots$
+\end{center}
+
+We allow the typographical convention of representing $f (0)$ by $1^*$ and in general if $n$ is a natural number $n^*$ is the corresponding numeral.
+
+This interpretation is known as the standard model for $\textbf{Z}$. A model that is not isomorphic to $M$ is called non-standard.
+
+If one accepts $M$ as a model for $\textbf{Z}$, then from the semantic point of view $\textbf{Z}$ is consistent. To see this one verifies that the axioms of $\textbf{Z}$ are true in $M$ and that the rules of inference preserve truth. Therefore the theorems of $\textbf{Z}$ are also true in $M$.
+
+As a student of Hilbert's Programme G\"{o}del was interested in the problem of proving the consistency of a theory like $\textbf{Z}$, using only concepts definable in $\textbf{Z}$. He found a negative solution to this problem and in the same work he also proved the existence of propositions true in $M$ but not provable in $\textbf{Z}$, thereby showing, contrary to Hilbert's expectations, that the concepts of truth and formal proof are not equivalent. We turn now to that work. 
+
+\section{G\"{o}del numbers}\normalsize
+
+We begin by defining a 1-1 function $g$, whose domain is the union of the set of all symbols, expressions and finite sequences of expressions of $\textbf{Z}$ and whose range is a subset of the set of positive integers. We want $g$ to satisfy the following clauses:
+
+\begin{enumerate}
+\item $g$ is computable.
+\item There is a procedure that given a integer $m$ it can be verified if $m$ is in the range of $g$.
+\item If $m$ is an integer then the procedure finds the object $x$ such that $m$ is the image of $x$ by $g$.
+\end{enumerate}
+
+The values of $g$ for the symbols of $\textbf{Z}$ are the following:
+
+\begin{itemize}
+\item $g (0) = 1$ 
+\item $g (f) = 3$ 
+\item $g (+) = 5$ 
+\item $g (\cdot) = 7$
+\item $g (=) = 9$
+\item $g (() = 11$
+\item $g ()) = 13$ 
+\item $g (,) = 15$ 
+\item $g (\neg) = 17$
+\item $g (\forall) = 19$
+\item $g (\rightarrow) = 21$
+\item $g (x_k) = 15 + 8 \cdot k$
+\item $g (a_k) = 17 + 8 \cdot k$
+\end{itemize}
+
+These values are called the G\"{o}del numbers of the symbols.
+
+Since $g$ is 1-1 different symbols have different G\"{o}del numbers and every G\"{o}del number of a symbol is an odd positive integer.
+
+An expression of $\textbf{Z}$ is a sequence of symbols of $\textbf{Z}$, $s_1$, $\ldots$, $s_n$, and we can define a unique representation of $g (s_1, \ldots, s_n)$ by defining:
+
+\begin{center}
+$g (s_1, \ldots, s_n) = 2^{g(s_1)} \cdot 3^{g(s_2)} \cdot \ldots \cdot p^{g(s_n)}_{n-1}$
+\end{center}
+ 
+where $p_i$ is the ith prime number and $p_0 = 2$.
+
+Thus different expressions of $\textbf{Z}$ have different G\"{o}del numbers. Expressions and symbols have different G\"{o}del numbers since the G\"{o}del number of an expression is an even positive integer.
+
+A proof in $\textbf{Z}$ is a sequence of expressions of $\textbf{Z}$ and we can define a unique representation of $g (e_1, \ldots, e_n)$ by defining:
+
+\begin{center}
+$g(e_1, \ldots, e_n) = 2^{g(e_1)} \cdot 3^{g(e _2)} \cdot \ldots \cdot p^{g(e_n)}_{n-1}$
+\end{center}
+
+where $p_i$ is the ith prime number and $p_0 = 2$.
+
+Different sequences of expressions and thus different proofs in $\textbf{Z}$ have different G\"{o}del numbers.
+
+G\"{o}del numbering  is the tool that will allow our formal theory to refer to its own symbols, expressions and proofs, thereby expressing the metamathematics of the theory inside the theory.
+
+\section{Expressing relations and representing functions in \textbf{Z}}\normalsize
+
+It would be completely surprising if we could give an account of G\"{o}del's theorems without a certain amount of terminology and conceptual complexity. In this sense we begin by introducing a metamathematical binary predicate $P (y, x)$ the meaning of which can be expressed by the sentence:
+
+\begin{center}
+"$y$ is the G\"{o}del number of a proof of a formula whose G\"{o}del number is $x$."
+\end{center}
+
+In particular in our theory $\textbf{Z}$ this predicate can take either:
+
+\begin{itemize}
+
+\item \emph{i}) The form $P^{+} (g, y)$ with the following interpretation:
+
+\begin{center}
+"$g$ is the G\"{o}del number of a well formed formula $\Phi (x_1)$ where the occurrence of $x_1$ is free and $y$ is the G\"{o}del number of a proof of $\Phi (g*)$";
+\end{center}
+ 
+or else it can take the form:
+\item \emph{ii}) $P^{\neg} (g, y)$ with the following interpretation:
+
+\begin{center}
+"$g$ is the G\"{o}del number of a well formed formula $\Phi (x_1)$ where the occurrence of $x_1$ is free and $y$ is the G\"{o}del number of a proof of the formula $\neg \Phi (g^*)$."
+\end{center}
+\end{itemize}
+
+It will be useful for future reference to discuss now the status of the formulas of $\textbf{Z}$ and for that purpose we will separate relations from functions.
+
+If $R (x_1, \ldots, x_n)$ is an arithmetical relation we say that it is expressible in $\textbf{Z}$ if and only if there is a well formed formula $\Phi$ of $\textbf{Z}$ with $n$ free variables and such that for any $n$-tuple of natural numbers $k_1, \ldots, k_n$ the following two conditions are satisfied:
+
+\begin{enumerate}
+\item If $R (k_1, \ldots, k_n)$ is true then there is a proof in $\textbf{Z}$ of $\Phi (k^*_1, \ldots, k^*_n).$
+\item If $R$ is false then there is a proof in $\textbf{Z}$ of $\neg \Phi (k^*_1, \ldots, k^*_n).$
+\end{enumerate}
+
+In the case of an arithmetical function $f (x_1, \ldots, x_n)$ one speaks of its representation in $\textbf{Z}$. Thus an arithmetical function of $n$ arguments is representable in $\textbf{Z}$ if and only if there is a well formed formula of $\textbf{Z}$ with $n + 1$ free variables such that for any $k_{n+1}$-tuple of natural numbers the following two conditions are satisfied:
+
+\begin{enumerate}
+\item If $f (k_1, \ldots, k_n) = k_{n+1}$ then there is in $\textbf{Z}$ a proof of $\Phi (k^*_1, \ldots, k^*_{n+1}).$
+\item There is in $\textbf{Z}$ a proof ($\exists$! $x_{n+1}$) $\Phi (k^*_1, \ldots, k^*_n, x_{n+1})$ where $\exists$! means uniqueness.
+\end{enumerate}
+
+The relations between  the concepts of  expression, representation and the formal theory $\textbf{Z}$ are regulated by two main theorems which we will use later  without proving them now:
+
+\textbf{Theorem 1.: An arithmetical relation is expressible in $\textbf{Z}$ if and only if it is recursive}.
+
+\textbf{Theorem 2.: An arithmetical function is representable in $\textbf{Z}$ if and only if it is recursive}.
+
+\section{Omega-consistency and metamathematical predicates}\normalsize
+
+We turn now to the concept of $\Omega$-consistency which plays an essential role in both proofs.
+
+The concept was first discovered by Tarski and we begin by defining a theory as being $\Omega$-inconsistent if and only if we have a well formed formula $\Phi (x)$ such that we have for every natural number $n$ a proof in $\textbf{Z}$ of $\Phi (n^*)$ and a proof in $\textbf{Z}$ of $(\exists x) \neg \Phi (x)$. If on the contrary it is not possible to derive in $\textbf{Z}$ for every $n$ a proof of $\Phi (n^*)$ and a proof of $(\exists x) \neg \Phi (x)$ then $\textbf{Z}$ is $\Omega$-consistent.
+
+A simple argument shows that if $\textbf{Z}$ is $\Omega$-consistent then it is also simply consistent. To see this one allows the formula $\Phi (x)$ to be the well formed formula of $\textbf{Z}$:
+
+$$(\forall x) (x = x) \rightarrow (x = x).$$
+
+Of course one has in $\textbf{Z}$ for every $n$ a proof of:
+ 
+$$(n^* = n^*) \rightarrow (n^* = n^*).$$
+
+Therefore there is no proof in $\textbf{Z}$ of:
+
+$$(\exists x) \neg [ (x = x) \rightarrow (x = x)].$$
+
+Therefore $\textbf{Z}$ is simply consistent.
+
+If we take the semantic point of view we also see that if $\textbf{Z}$ is interpreted in the standard model it turns out $\Omega$-consistent.
+
+We are now going to take advantage of the use of G\"{o}del numbers to formulate in $\textbf{Z}$ metamathematical predicates.
+
+Paradigm cases are the predicates "provable" and "refutable".
+ 
+"Provable" can be formulated as:
+\begin{center}
+"there is a number $y$ such that $y$ is the G\"{o}del number of a proof of a formula with the G\"{o}del number $m$."
+\end{center}
+ 
+"Refutable" can be formulated as:
+\begin{center} 
+"there is a number $y$ such that $y$ is the G\"{o}del number of a proof of the negation of a formula with the G\"{o}del number $m$."
+\end{center}
+
+\section{How to build G\"{o}del's undecidable statement}\normalsize
+
+In order to achieve a reasonably clear view we break down the construction process in several steps.
+
+\begin{enumerate}
+\item Let $\Phi (x_1)$ be a well formed formula of $\textbf{Z}$, with a free occurrence of $x_1$, and let $g$ be the G\"{o}del number of $\Phi (x_1)$.
+
+\item From this formula we can obtain by insertion for $x_1$ the formula $\Phi (g^*)$. Let $y$ the G\"{o}del number of the formula $\Phi (g^*)$.
+
+\item We can now form the predicate $D^{+} (g, y)$, already mentioned, which is a recursive relation and therefore expressible in $\textbf{Z}$ by a well formed formula $\Delta (x_1, x_2)$ where both variables have free occurrences.
+
+\item By the definition of expression of a relation we have that if the relation is true and therefore $D (k_1, k_2)$ is true, then we have a proof in $\textbf{Z}$ of $\Delta (k^*_1,k^*_2)$.
+
+\item If the relation is false and therefore $\neg D (k_1, k_2)$ we have in $\textbf{Z}$ a proof of $\neg \Delta (k^*_1, k^*_2)$.
+
+\item If we consider now the case in which the relation is false and we have therefore in $\textbf{Z}$ a proof of $\neg \Delta (k^*_1, k^*_2)$ we can, by quantifier-introduction, build the formula:
+$$(\Theta) \hspace{6em} (\forall x_2) \neg \Delta (x_1, x_2)$$ 
+where $x_1$ still has a free occurrence.
+
+\item Let $m$ be the G\"{o}del number of the formula:
+$$(\Theta) \hspace{6em} (\forall x_2) \neg \Delta (x_1, x_2).$$
+
+\item We interpret this formula as saying that no number $x_2$ is the G\"{o}del number of a proof of the formula with the G\"{o}del number $x_1$. And this is the same as saying that the formula with the G\"{o}del number $x_1$ is unprovable.
+
+\item Since $x_1$ has a free occurrence we can insert for $x_1$ the numeral for the G\"{o}del number of the formula $(\Theta)$ and obtain the closed well formed formula:
+$$(\heartsuit) \hspace{6em} (\forall x_2) \neg \Delta (m^*, x_2).$$
+
+\item By 1-3 above $D^{+} (g, y)$ is satisfied if and only if $g$ is the G\"{o}del number of a well formed formula $\Phi (x_1)$ and $y$ the G\"{o}del number of a proof of $\Phi (g^*).$
+
+\item Since $(\heartsuit)$ comes from $(\Theta)$ by substitution of $m^*$ for $x_1$ we are led to the following conclusion:
+$$(*) \hspace{6em} D^{+} (m, y)$$
+is satisfied if and only if $y$ is the G\"{o}del number of a proof of $(\heartsuit).$
+\end{enumerate}
+
+\section{G\"{o}del's first theorem}\normalsize
+
+The statement of the theorem is the following:
+\begin{center}
+"If $\textbf{Z}$ is consistent then the formula $(\heartsuit)$ is not provable in $\textbf{Z}$ and if $\textbf{Z}$ is $\Omega$-consistent 
+
+then the formula $\neg (\heartsuit)$ is not provable in $\textbf{Z}$."
+\end{center}
+
+We split the proof in two halves, one using the consistency assumption and the other the $\Omega$-consistency. We prove both by reductio.
+
+\medskip
+\begin{large}
+\textbf{Part I}.
+\end{large}
+
+We assume consistency and the reductio hypothesis is that we have a proof in $\textbf{Z}$ of: 
+$$(\heartsuit) \hspace{6em} (\forall x_2) \neg \Delta (m^*, x_2).$$
+
+Let $k$ be the G\"{o}del number of a proof in $\textbf{Z}$ of $(\heartsuit)$. Then by (*) we have $D^{+} (m, k)$. As $\Delta$ expresses $D^{+}$ in $\textbf{Z}$ one has a proof in $\textbf{Z}$ of $\Delta (m^*, k^*).$ 
+
+But $(\forall x_2) \neg \Delta (m^*, x_2) \rightarrow \neg \Delta (m^*, k^*)$. This formula and the reduction hypothesis give us a proof in $\textbf{Z}$ of $\neg \Delta (m^*, k^*)$. This proves the inconsistency of $\textbf{Z}$ contrary to hypothesis of the theorem. Therefore if $\textbf{Z}$ is consistent $(\heartsuit)$ does not have a proof in $\textbf{Z}$.
+
+\medskip
+\begin{large}
+\textbf{Part II}.
+\end{large}
+
+We assume the $\Omega$-consistency of $\textbf{Z}$ and the reductio hypothesis is that we have in $\textbf{Z}$ a proof of:
+$$\neg (\forall x_2) \neg \Delta (m^*, x_2).$$
+
+Now since $\textbf{Z}$ is $\Omega$-consistent it is also simply consistent. Therefore we do not have in $\textbf{Z}$ a proof of $(\heartsuit)$. This means that for every $n$, $n$ is not the G\"{o}del number of a proof in $\textbf{Z}$ of $(\heartsuit)$. Thus by (*) \hspace{2em} $(\forall n) D^{+} (m, n)$ is false. This implies a proof in $\textbf{Z}$ of $\neg \Delta (m^*, n^*)$.
+
+Now in the definition of $\Omega$-consistency we let $\Phi (x)$ be the formula $\neg \Delta (m^*, x_2)$. Then there is no proof in $\textbf{Z}$ of $(\exists x_2) \neg \neg \Delta (m^*, x_2)$ and by double negation there is no proof in $\textbf{Z}$ of $(\exists x_2) \Delta (m^*, x_2).$
+
+By the reductio hypothesis there is in $\textbf{Z}$ a proof of $\neg (\forall x_2) \neg \Delta (m^*, x_2)$ and this formula is by predicate calculus equivalent to $(\exists x_2) \Delta (m^*, x_2)$. Therefore we have in $\textbf{Z}$ a proof of $(\exists x_2) \Delta (m^*, x_2)$. This proves the inconsistency of $\textbf{Z}$ contrary to the hypothesis. Thus if $\textbf{Z}$ is $\Omega$-consistent the formula $\neg (\heartsuit)$ is not provable in $\textbf{Z}$.
+
+We have proven that neither the formula $(\heartsuit)$ nor the formula $\neg (\heartsuit)$ is provable in $\textbf{Z}$. A formula such as $(\heartsuit)$ is called an undecidable formula.
+
+\section{The interpretation of the undecidable formula}\normalsize
+
+We have seen that the predicate $\Delta$ expresses the relation $D^{+}$ in $\textbf{Z}$. Thus the interpretation of the  undecidable proposition $(\heartsuit)$ in the standard model results in the assertion that $D^{+} (m, x_2)$ is false for every natural number $x_2$.
+
+But by proposition (*) this means that in $\textbf{Z}$ there is no proof of the closed well formed formula $(\heartsuit)$. Therefore the formula $(\forall x_2) \neg \Delta (m^*, x_2)$ asserts its own unprovability.
+
+Now since we assume $\textbf{Z}$ to be consistent and the theorem proves that there is no proof in $\textbf{Z}$ of the undecidable formula, then the undecidable formula is true and unprovable in $\textbf{Z}$. This shows that the set of proofs of $\textbf{Z}$ does not contain all propositions true in the standard model.
+
+If we define a formal theory as complete if for every well formed formula $\Phi$ either there is a proof of $\Phi$ or a proof of $\neg \Phi$, then the formal theory $\textbf{Z}$ is incomplete and the theorem proves that incompleteness. 
+
+It would seem \emph{prima facie} that the reason for this incompleteness lies in the fact that $\textbf{Z}$ does not have enough axioms to allow the derivation of the undecidable proposition. Of course  we can add to $\textbf{Z}$ the undecidable proposition and obtain a theory $\textbf{Z}^{+}$ and since the undecidable propostion is true it would be derivable in $\textbf{Z}^{+}$.
+
+But all recursive functions that are representable in $\textbf{Z}$ are representable in $\textbf{Z}^{+}$, just like all predicates, relations and metamathematical functions. These will also be recursive in $\textbf{Z}^{+}$.
+
+But if $\textbf{Z}^{+}$ is $\Omega$-consistent it will also contain an undecidable proposition which will differ from $(\heartsuit)$. And so the undecidability of $(\heartsuit)$, the incompleteness of the formal theory $\textbf{Z}$ and the impossibility of finding in $\textbf{Z}$ an equivalent to the concept of truth do not depend on the number of axioms of $\textbf{Z}$.
+
+\section{G\"{o}del's second theorem}\normalsize
+
+For the significance of the consistency problem within the framework of Hilbert's Programme it can be useful to read  the PM encyclopaedia  entry "An Outline of Hilbert's Programme".
+
+We have seen that in the first theorem the argument can be expressed by the implication:
+
+\begin{center}
+If $\textbf{Z}$ is consistent then $(\heartsuit)$ is unprovable in $\textbf{Z}$.
+\end{center}
+
+This means then that if we add to this implication a proof of the consistency of $\textbf{Z}$ we get again the unprovability of G\"{o}del's undecidable proposition. We want now to build a sentence that represents the consistency of $\textbf{Z}$ and which can be expressed in $\textbf{Z}$.
+
+We begin by introducing the binary predicate $P (y, x)$ interpreted as meaning "$y$ is the G\"{o}del number of a proof of a well formed formula with the G\"{o}del number $x$".
+
+Now this predicate is recursive and thereby is expressible in $\textbf{Z}$ by a well formed formula $\Pi (x_1, x_2)$.
+
+Let $x$ be the G\"{o}del number of a well formed formula and Ng ($x$) the G\"{o}del number of its negation. This function is primitive recursive and therefore representable in $\textbf{Z}$ by a well formed formula $\nu (x_1, x_2)$.
+
+Then the well formed formula:
+
+$$(\spadesuit) \hspace{6em} (\forall x_1) (\forall x_2) (\forall x_3) (\forall x_4) \neg [\Pi (x_1, x_3) \wedge \Pi (x_2, x_4) \wedge \nu (x_3, x_4)].$$
+
+expresses the consistency of $\textbf{Z}$.
+
+The statement of the first theorem is obviously equivalent to the formula:
+
+\begin{center}
+$(\diamondsuit)$ $\hspace{6em}$ If $\{$$\textbf{Z}$ is consistent$\}$ then $\{$$(\heartsuit)$ is unprovable$\}$.
+\end{center}
+
+By using G\"{o}del's numbering the whole proof of the formula $(\diamondsuit)$ can be written in $\textbf{Z}$. For $\{$ $\textbf{Z}$ is consistent $\}$ we insert the formula $(\spadesuit)$. For $\{$ $(\heartsuit)$ is unprovable $\}$ we insert the formula $(\heartsuit)$ itself, since this formula asserts its own unprovability. We are then led to a proof in $\textbf{Z}$ of:
+ 
+$$(\clubsuit) \hspace{6em} (\spadesuit) \rightarrow (\heartsuit).$$
+
+The statement of G\"{o}del's second theorem is the following:
+
+\begin{center}
+If $\textbf{Z}$ is consistent then the formula $(\spadesuit)$ is not provable in $\textbf{Z}$.
+\end{center}
+
+We prove the theorem by \emph{reductio ad absurdum} assuming the consistency of $\textbf{Z}$ and the provability of $(\spadesuit)$ as the reductio hypothesis.
+
+Now $(\clubsuit)$ by we have in $\textbf{Z}$ a proof that the consistency statement implies the undecidable proposition. Then using \emph{modus ponens} we can have in $\textbf{Z}$ a proof of the undecidable proposition. But this entails the inconsistency of $\textbf{Z}$ since by the first theorem we can not have in $\textbf{Z}$ a proof of the undecidable proposition. Therefore the reductio hypothesis is false and we can not have in $\textbf{Z}$ a proof of the consistency statemnent $(\spadesuit)$.  
+
+\section{The interpretation of the second theorem}\normalsize
+
+The interpretation of the theorem is that if $\textbf{Z}$ is consistent then there is no proof of the consistency of $\textbf{Z}$ by means of concepts that can be formalized in $\textbf{Z}$.
+
+The consistency hypothesis used is needed simply because if $\textbf{Z}$ is not consistent then any formula can be proved in $\textbf{Z}$, in particular also our formula $(\spadesuit)$. 
+
+It is interesting to notice that an inconsistent system allows the proof of its own consistency.
+
+G\"{o}del's second theorem can be described as a negative solution to the problem of finding the consistency proof of an axiomatic system by means of concepts more elementary than those formalized in the system.
+
+It was an essential point of Hilbert's Programme that the justification of principles of deduction, like the \emph{tertium non datur} when applied to infinite domains, could only be realized by a consistency proof of the formal system in which such principles could be represented.
+
+However in the consistency proof one could only use principles of deduction more evident than the infinitary machinery, whose elimination should be made possible by the formalization.
+
+Hilbert's conception was that the evident principles were the finitist evident principles, and they were only a part of the whole of classical reasoning.
+
+Therefore for the consistency proof of $\textbf{Z}$ the concepts needed were only a part of all the concepts that can be formalized in $\textbf{Z}$.
+
+G\"{o}del's second theorem shows that this goal is unattainable, since the consistency proof is not possible even if one uses all the principles of $\textbf{Z}$, the more and the less evident. Thus \emph{a fortiori} it can not be achieved by using only finitist evident principles. 
+
+\section{The concept of truth}\normalsize
+
+We begin by defining a variant of the already introduced metamathematical function substitution, which we shall call monadic substitution.
+
+\textbf{Definition  1}:
+
+\begin{center}
+\emph{Let $g$ be the G\"odel number of a well formed formula}
+
+$\alpha (x_1)$
+
+\emph{where $x_1$ has a free occurrence.} 
+\emph{Then the monadic function}
+
+$S (g)$
+
+\emph{denotes the G\"odel number of the well formed formula}
+
+$\alpha (g^*),$
+
+\emph{where $g^{\star}$ is the numeral which denotes $g.$}
+\end{center}
+
+\textbf{Proposition 1}:
+                   
+\begin{center}
+\emph{The function $S (g)$ is $\phi$-representable.}
+\end{center}
+
+Proof:
+ 
+We reduce monadic substitution to the already defined case of triadic substitutuion. Thus the reduction formula is:
+
+\begin{center}
+$S (g) =\text{Sub} [g,\text{Num} (g), 2^g (x_1)].$
+\end{center}
+
+Now since the triadic function is recursive the monadic function is recursive too. But if it is recursive it is also representable.
+
+This means that the result of the substitution in the formula with G\"{o}del number $g$, for the free occurrence of $x_1$ the numeral for $g$, is still a primitive recursive function which is representable. 
+
+We turn now to a 1st order theory with equality $\Omega$, which has the same symbols as the already known theory $\textbf{Z}$. The notation
+
+\begin{center}
+$\lbrace T_{\Omega} \rbrace$
+\end{center}
+
+denotes the set of all G\"odel numbers of the $\Omega$-theorems. Thus if $x$ is the G\"{o}del number of a $\Omega$-theorem then this can be denoted by
+
+\begin{center} 
+$x \in \lbrace T_{\Omega} \rbrace.$
+\end{center}
+
+We want to prove that the membership relation to $\{ T_{\Omega} \}$ can not be expressed in $\Omega$. 
+
+\textbf{Proposition 2}:
+
+\begin{center}
+\emph{If $\Omega$ is consistent and the monadic function $S$ is representable in $\Omega$,}
+
+\emph{then the membership relation to $\{ T_{\Omega} \}$ can not be expressed in $\Omega$.}
+\end{center}
+
+Proof:
+
+\begin{enumerate}
+\item We assume that $S$ is representable in $\Omega$ and that
+
+\item The membership relation to $\{ T_{\Omega} \}$ is expressible in $\Omega$.
+
+\item From these assumptions we get well formed formulas:
+
+\begin{center}
+$\sum (x_1, x_2)$ and
+
+$\theta (x _2)$
+\end{center}
+
+with the following four properties:
+
+\begin{itemize}
+\item \emph{i)} $\hspace{2em}$ If $S (k) = j$ then
+
+\begin{center}
+$\vdash_{\Omega} \sum (k^*, j^*).$
+\end{center}
+
+\item \emph{ii)} $\hspace{2em}$ $\vdash_{\Omega} (\exists! x_2) \sum (k^*, x_2).$
+
+\item \emph{iii)} $\hspace{2em}$ If $k \in \{ T_{\Omega} \}$ then
+
+\begin{center}
+$\vdash_{\Omega} \theta (k^*).$
+\end{center}
+
+\item \emph{iv)} $\hspace{2em}$ If $\neg [k \in \{ T_{\Omega} \}]$ then
+
+\begin{center}
+$\vdash_{\Omega} \neg \theta (k^*).$
+\end{center}
+\end{itemize}
+
+\item Let $\alpha (x_1)$ be the well formed formula:
+
+\begin{center}
+$(\star) \hspace{6em} (\forall x_2) [\sum (x_1, x_2) \to \neg \alpha (x_2)],$
+\end{center}
+
+with a free occurrence of $x_1.$
+
+\item Let $m$ be the G\"{o}del number of $(\star).$
+
+\item Then we can build $\alpha (m^*)$ with the following configuration:
+
+\begin{center}
+$(\star \star) \hspace{6em} (\forall x_2) [\sum (m^*, x_2) \to \neg \alpha (x_2)].$
+\end{center}
+
+\item Let $n$ be the G\"odel number of $(\star \star).$
+
+\item This proves that:
+
+\begin{center}
+$S (m) = n.$
+\end{center}
+
+\end{enumerate}
+
+\textbf{Lemma 1}:
+
+\begin{center}
+$\neg [n \in \{ T_{\Omega} \}].$ 
+\end{center}
+
+Proof:
+
+\begin{enumerate}
+\item By 8. and by 3.iii) (above) we have:
+
+\begin{center}
+$\vdash_{\Omega} \sum (m^*, n^*).$
+\end{center}
+
+\item Now in $\Omega$ either:
+
+\begin{center}
+$\vdash_{\Omega} \alpha (m^*)$
+\end{center}
+
+or else:
+
+\begin{center}
+$\neg \vdash_{\Omega} (\alpha^*)$
+\end{center}
+ 
+\item We first assume the second disjunct, then:
+
+\begin{center}
+$\neg (n \in \{ T_{\Omega} \}).$
+\end{center}
+
+\item Thus by 3.iv):
+
+\begin{center}
+$\vdash_{\Omega} \neg \alpha (n^*).$
+\end{center}
+
+\item If we assume the first disjunct, then:
+
+\begin{center}
+$\vdash_{\Omega} (\forall x_2) [\sum (m^*, x_2) \to \neg \alpha (x_2)].$
+\end{center}
+
+\item From 5. by \emph{dictum de omni} we have:
+
+\begin{center}
+$\vdash_{\Omega} \sum (m^*, n^*) \to \neg \alpha (n^*).$
+\end{center}
+
+\item From 1., 6. and \emph{modus ponens} we get:
+
+\begin{center}
+$\vdash_{\Omega} \neg \alpha (n^*).$
+\end{center}
+
+\item From 4.,7. and $\vee$-Elimination we have:
+
+\begin{center}
+$\neg \alpha (n^*)$
+\end{center}
+
+and that means that
+
+\begin{center}
+$\neg (n \in \{ T_{\Omega} \}).$
+\end{center}
+\end{enumerate}
+
+\textbf{Lemma 2}:
+
+\begin{center}
+$n \in \{ T_{\Omega} \}.$ 
+\end{center}
+
+Proof:
+
+\begin{enumerate}
+\item From 1. (Lemma 1) we have in $k$:
+
+\begin{center}
+$\vdash_{\Omega} \sum (m^*, n^*)$
+\end{center}
+
+and by 3.ii) we deduce:
+
+\begin{center}
+$\vdash_{\Omega} \sum (m^*, x_2) \to x_2 = n^*.$
+\end{center}
+
+\item Since from Lemma 1 $\vdash_{\Omega} \neg \alpha (n^*)$ we deduce that:
+
+\begin{center}
+$\vdash_{\Omega} (x_2 = n^*) \to \neg \alpha (x_2).$
+\end{center}
+
+\item From 1. and 2. we have:
+
+\begin{center} 
+$\vdash_{\Omega} \sum (m^*, x_2) \to \neg \alpha (x_2).$
+\end{center}
+
+\item By $\forall$-Introduction:
+
+\begin{center}
+$\vdash_{\Omega} (\forall x_2) [\sum (m^*, x_2) \to \neg \alpha (x_2)].$
+\end{center}
+
+\item But that is the formula $\alpha (m^*).$
+
+\item Since $n$ is the G\"odel number of this formula we have:
+
+\begin{center}
+$n \in \{ T_{\Omega} \}$
+\end{center}
+
+as desired.
+
+\item This means that by 3.iii):
+
+\begin{center}
+$\vdash_{\Omega} \alpha (n^*).$
+\end{center}
+
+With 7. from Lemma 1 and 7. from Lemma 2 we prove the inconsistency of $\Omega$, contrary to our hypotesis. And that establishes Proposition 2.
+\end{enumerate}
+
+\textbf{Proposition 3}:
+
+\begin{center} 
+\emph{If $\Omega$ is consistent then the set $\{ T_{\Omega} \}$ is not recursive.}
+\end{center}
+
+Proof:
+\begin{enumerate}
+\item The function $S (g)$ is primitive recursive and therefore $\Omega$-representable.
+
+\item But by Proposition 2, the membership relation to $\{ T_{\Omega} \}$ can not be expressed in $\Omega.$
+
+\item This implies that its characteristic function:
+
+\begin{center} 
+$K_{\{ T_{\Omega} \}}$
+\end{center}
+
+is not $\Omega$-representable. But then the function:
+
+\begin{center}
+$K_{\{ T_{\Omega} \}}$
+\end{center}
+
+is not recursive and therefore the set $\{ T_{\Omega} \}$ can not be recursive.
+\end{enumerate}
+
+\textbf{Definition 2}:
+           
+\begin{center}
+\emph{A 1st order theory $\Omega$ with equality is said to be recursively undecidable if and only if the set}
+ 
+$\{ T_{\Omega} \}$
+
+\emph{is not recursive.}
+\end{center}
+
+\textbf{Definition 3}: 
+
+\begin{center}          
+\emph{A 1st order theory $\Omega$ with equality is said to be recursively and essentially undecidable if and only if}
+
+\emph{every consistent extension of $\Omega$ is recursively undecidable.}
+\end{center}
+
+If we now assume Church's Thesis we can then say that recursive undecidability is equivalent to effective undecidability. And this implies that there is no algorithm to decide the theoremhood predicate.
+
+\textbf{Proposition 4}:
+
+\begin{center}
+\emph{If \textbf{Z} is consistent then it is recursively and essentially undecidable.}
+\end{center}
+
+Proof:
+
+Let $\Omega$ be a consistent extension of \textbf{Z}.
+
+Since every recursive function is \textbf{Z}-representable it will also be $\Omega$-representable.
+
+Therefore the membership relation to the set $\{ T_{\Omega} \}$ can not be expressed in $\Omega$ and this entails that the set $\{ T_{\Omega} \}$ is not recursive.
+
+By Definition 2 this proves that \textbf{Z} is recursively and essentially undecidable.
+
+\textbf{Definition 4}:
+
+\begin{center}
+\emph{Let $\{ W \}$ denote the set of G\"odel numbers of the well formed formulas that are true in the standard model.}
+
+\emph{The set $\{ W \}$ is said to be arithmetic if and only if there is a well formed formula $\alpha (x)$ in \textbf{Z} such that $\{ W \}$ is the set of numbers $m$ for which $\alpha (m^*)$ is true in the standard model.}
+\end{center}
+
+\textbf{Proposition 5}: [\textbf{Tarski's Theorem}]
+
+\begin{center}                           
+\emph{The set $\{ W \}$ is not arithmetic.}
+\end{center}
+
+Proof:
+\begin{enumerate}
+\item Let $\Omega$ be an extension of \textbf{Z}.
+
+\item We build the axioms of $\Omega$ by using all the well formed formulas that are true in the standard model.
+
+\item Thus $\{ T_{\Omega} \} = \{ W \}.$
+
+\item Since the standard model is a model of $\Omega$, $\Omega$ is consistent.
+
+\item Every recursive function is $\Omega$-representable and therefore the membership relation to $\{ W \}$ is not expressible in $\Omega$.
+
+\item Now $\{ T_{\Omega} \} = \{ W \}$ implies that the membership relation to $\{ T_{\Omega} \}$ is not expressible in $\Omega$.
+
+\item Since a relation is expressible in $\Omega$ if and only if it is the standard interpretation of a well formed formula of \textbf{Z}, this shows that there is no well formed formula $\alpha (x)$ in \textbf{Z} satisfying the definition 4.
+
+\item This proves that $\{ W \}$ is not arithmetic.
+\end{enumerate}
+
+\begin{thebibliography} {25}
+
+\bibitem{RC} Carnap, C., \emph{The logical syntax of language}, London, 1959.
+\bibitem{JC} Crossley, J., \emph{What is mathematical logic?}, OUP, London, 1972.
+\bibitem{HC} Curry, H., \emph{Outlines of a formalist philosophy of mathematics}, North-Holland, Amsterdam, 1958.
+\bibitem{MD} Dummett, M., "The philosophical significance of G\"{o}del's theorem", in \emph{Truth and other enigmas}, Duckworth, 1977.
+\bibitem{KG} G\"{o}del, K., \emph{Collected works}, ed. S. Feferman, Oxford, 1987-2003.
+\bibitem{DHPB} Hilbert, D., Bernays, P., \emph{Grundlagen der mathematik}, 2.Auflage, Springer-Verlag, Berlin, 1968.
+\bibitem{SK} Kleene, S., \emph{Introduction to metamathematics}, North-Holland, Amsterdam, 1964.
+\bibitem{GK1} Kreisel, G., "Hilbert's Programme", \emph{Dialectica} 12, 1958.
+\bibitem{GK2} Kreisel, G., "Die formalistisch-positivistische Doktrin der mathematischen Pr\"{a}zision im Lichte der Erfahrung", \emph{Zentrallblatt f\"{u}r Mathematik und ihre Grenzgebiete}, 196, pgs. 65-122, 1970. 
+
+\end{thebibliography}
+
+\section{Q \& A}\normalsize
+
+\textbf{Reply to Dr. Roger Lipsett}.
+
+Thank you so much for your message. I don't know if the concepts you mention are already available in PM. But at the risk of being redundant I am going to define them.
+
+\begin{large}
+\textbf{Part I}.
+\end{large}
+
+A \emph{formal theory} like $\textbf{Z}$ is a countable set of distinct symbols and a finite sequence of such symbols is an expression of $\textbf{Z}$. A subset of these expressions are \emph{the well-formed-formulas} of $\textbf{Z}$ and there is an algorithm to determine whether a given expression is well-formed.
+
+Thus if $f$ is a symbol for a monadic function of $\textbf{Z}$ the expression $f (a, b)$ is not well-formed.
+
+We set aside some wffs of $\textbf{Z}$ as being \emph{the axioms} of $\textbf{Z}$ and there is also an algorithm to decide whether a wff is an axiom of $\textbf{Z}$. There is a finite set of relations among the wffs of $\textbf{Z}$ called \emph{the rules of inference}. For each $R_i$ there is a unique integer $k$ such that for every set of $k$-wffs and each wff $\phi$ one can decide in a finite number of steps whether the given $k$-wffs stand in the relation $R_i$ to $\phi$, in which case one says that $\phi$ is a \emph{direct consequence} of the given wffs by an application of $R_i$.
+
+\emph{A proof in} $\textbf{Z}$ is a sequence of wffs $f_1, \ldots, f_n$ such that for each $i$ either $f_i$ is axiom of $\textbf{Z}$ or $f_i$ is a direct consequence of some of the previous wffs by the application of some rule of inference. In that case \emph{a theorem of} $\textbf{Z}$ is a wff $T$ of $\textbf{Z}$ such that there is a proof whose last term is $T$.
+
+Wffs only have \emph{meaning} if an interpretation is provided.
+
+An interpretation $I$ is a non-empty set $D$ called \emph{the domain} of $I$, which is given and a mapping $\theta$ such that:
+
+\begin{itemize}
+\item \textbf{i)} $\theta$ maps a predicate symbol of $\textbf{Z}$ to a relation of $D$;
+
+\item \textbf{ii)} $\theta$ maps each functional symbol of $\textbf{Z}$ to an operation in $D$, i.e.,
+
+$$\theta: D^n \rightarrow D;$$
+
+\item \textbf{iii)} $\theta$ maps each individual constant of $\textbf{Z}$ to a fixed object of $D$.
+\end{itemize}
+
+A sequence of objects in $D$, $a_1, a_2, \ldots$, \emph{satisfies in} $I$ a wff $\phi$ if and only if the proposition that results from the insertion of a symbol representing $a_i$ in all free occurrences of $x_i$ in $\phi$ is true in $I$.
+
+Thus $\phi$ \emph{is true under} $I$ if and only if every sequence in $D$ satisfies $\phi$ and is false if no sequence satisfies $\phi$.
+
+\emph{An interpretation is a Model} for a set of wffs if and only if every wff is true under the interpretation.
+
+In particular an interpretation of $\textbf{Z}$ in which:
+
+\begin{itemize}
+\item \textbf{i)} $D = \mathbb{N}$;
+
+\item \textbf{ii)} $0 \in \mathbb{N}$ is the interpretation of "$0$";
+
+\item \textbf{iii)} The successor function is the interpretation of "$f$";
+
+\item \textbf{iv)} Addition and product in $\mathbb{N}$ are the interpretation of "$+$" and "$\cdot$".
+
+\item \textbf{v)} Identity in $\mathbb{N}$ is the interpretation of "$=$", is called \emph{the standard model for} $\textbf{Z}$, \emph{usually denoted by} $M$.
+\end{itemize}
+
+\begin{large}
+\textbf{Part II}.
+\end{large}
+
+\textbf{"Am I to think of $\textbf{Z}$ as the integers and $M$ as a set of formal axioms for $\textbf{Z}$?"}
+
+The answers is no. Neither $\textbf{Z}$ is the integers nor $M$ a set of formal axioms for $\textbf{Z}$. $\textbf{Z}$ is a formal theory as defined above and one interpretation of the symbols of that theory is $M$, the standard Model. So $M$ is not a set of axioms but you can interpret in $M$ an axiom. To do this one lets the individual variables range over $\mathbb{N}$ and one interprets the other symbols as specified above.
+
+Example: Axiom $\textbf{Z2}$: $(a = b) \rightarrow [f (a) = f (b)]$. The variables stand for natural numbers, the equals sign for identity, $f$ for the successor function and the meaning of $\textbf{Z2}$ is then that if two natural numbers are the same they have the same successor, a proposition that is true in $\mathbb{N}$.
+
+\begin{large}
+\textbf{Part III}.
+\end{large}
+
+\textbf{"In addition the truth of the sentence starting" To see this...}
+
+Now if one interprets all 9 axioms of $\textbf{Z}$ in the standard Model $M$ we only get true propositions (about the natural numbers). The formal theory $\textbf{Z}$ has as underlying logic the first order predicate calculus. The rules of inference of this calculus are all truth-preserving. So a theorem of $\textbf{Z}$, as a sequence of formulas that are either axioms (which we have seen to be true) or derived from the axioms by rules of inference that are truth-preserving, will be a true proposition. The inconsistency of $\textbf{Z}$ will only arise when one has \emph{two theorems}, in which one is the negation of the other. But the negation of a true theorem can not be true.
+
+\begin{large}
+\textbf{Part IV}.
+\end{large}
+
+\textbf{"Using only the concepts definable in $\textbf{Z}$".}
+
+The sentence (above) refers to the concept of truth as not being arithmetically definable.
+
+The situation was identified by Tarski and has essentially the following content:
+
+If we call $\{ W \}$ the set of G\"odel numbers of wffs of $\textbf{Z}$ \emph{which are true in} $M$ we will realize that this set is not arithmetical. That is, we can not build up a formula $\phi (x)$ in $\textbf{Z}$ such that $\{ W \}$ contains the G\"odel numbers $k$ of formulas $\phi (k^*)$ \emph{which are true in} $M$.
+
+One can paraphrase this by saying that truth in $\textbf{Z}$ is not $\textbf{Z}$-definable, or in other words, the concept of arithmetic truth is not arithmetically definable.
+
+I believe that this also answers the second question "How is that different from $M$?".
+
+I report on Tarski's Theorem in the last section of "Beyond Formalism" where a more formal approach is used.
+
+\begin{large}
+\textbf{Part V}.
+\end{large}
+
+\textbf{"What concepts are definable in $\textbf{Z}$?"}
+
+A concept or a relation is definable in $\textbf{Z}$ if it is numeralwise expressible in $\textbf{Z}$. A function is definable in $\textbf{Z}$ if it is numeralwise representable or numeralwise $\phi$-representable in $\textbf{Z}$.
+
+On the whole we have a theorem about the equivalence of a function being recursive and being numeralwise representable in $\textbf{Z}$. Above one can find formal definitions of the concepts of expression, resp. representation in $\textbf{Z}$, as they were first formulated in Hilbert and Bernays \emph{Grundlagen}.
+
+I thank you for giving me the opportunity to try to be clear
+and remain yours sincerely,
+
+M.S. Louren\c{c}o.
+
+\end{document}
+%%%%%
+%%%%%
+\end{document}

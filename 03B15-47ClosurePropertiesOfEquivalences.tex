@@ -1,0 +1,267 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{47ClosurePropertiesOfEquivalences}
+\pmcreated{2013-11-20 2:03:07}
+\pmmodified{2013-11-20 2:03:07}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{4.7 Closure properties of equivalences}
+\pmrecord{6}{87669}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\htpy}{\sim}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\total}[1]{\ensuremath{\mathsf{total}(#1)}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{4.7.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{4.7.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{4.7.\arabic{mathcount}}
+\let\ap\map
+\let\autoref\cref
+\let\hfiber\hfib
+\let\type\UU
+\makeatother
+
+\begin{document}
+\label{sec:fiberwise-equivalences}
+\index{equivalence!properties of}%
+
+
+% We end this chapter by observing some important closure properties of equivalences.
+We have already seen in \PMlinkname{Lemma 2.4.12}{http://planetmath.org/24homotopiesandequivalences#Thmprelem3} that equivalences are closed under composition.
+Furthermore, we have:
+
+\begin{thm}[The 2-out-of-3 property]\label{thm:two-out-of-three}
+  \index{2-out-of-3 property}%
+  Suppose $f:A\to B$ and $g:B\to C$.
+  If any two of $f$, $g$, and $g\circ f$ are equivalences, so is the third.
+\end{thm}
+\begin{proof}
+  If $g\circ f$ and $g$ are equivalences, then $\opp{(g\circ f)} \circ g$ is a quasi-inverse to $f$.
+  On the one hand, we have $\opp{(g\circ f)} \circ g \circ f \htpy \idfunc[A]$, while on the other we have
+  \begin{align*}
+    f \circ \opp{(g\circ f)} \circ g
+    &\htpy \opp g \circ g \circ f \circ \opp{(g\circ f)} \circ g\\
+    &\htpy \opp g \circ g\\
+    &\htpy \idfunc[B].
+  \end{align*}
+  Similarly, if $g\circ f$ and $f$ are equivalences, then $f\circ \opp{(g\circ f)}$ is a quasi-inverse to $g$.
+\end{proof}
+
+This is a standard closure condition on equivalences from homotopy theory.
+Also well-known is that they are closed under retracts, in the following sense.
+
+\index{retract!of a function|(defstyle}%
+
+\begin{defn}\label{defn:retract}
+A function $g:A\to B$ is said to be a \define{retract}
+of a function $f:X\to Y$ if there is a diagram
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_4.7.1.png}
+\end{figure}
+%\begin{equation*}
+%  \xymatrix{
+%    {A} \ar[r]^{s} \ar[d]_{g}
+%    &
+%    {X} \ar[r]^{r} \ar[d]_{f}
+%    &
+%    {A} \ar[d]^{g}
+%    \\
+%    {B} \ar[r]_{s'}
+%    &
+%    {Y} \ar[r]_{r'}
+%    &
+%    {B}
+%  }
+%\end{equation*}
+for which there are
+\begin{enumerate}
+\item a homotopy $R:r\circ s \htpy \idfunc[A]$.
+\item a homotopy $R':r'\circ s' \htpy\idfunc[B]$.
+\item a homotopy $L:f\circ s\htpy s'\circ g$.
+\item a homotopy $K:g\circ r\htpy r'\circ f$.
+\item for every $a:A$, a path $H(a)$ witnessing the commutativity of the square
+\begin{figure}
+ \centering
+ \includegraphics{HoTT_fig_4.7.2.png}
+\end{figure}
+%\begin{equation*}
+%  \xymatrix@C=3pc{
+%    {g(r(s(a)))} \ar@{=}[r]^-{K(s(a))} \ar@{=}[d]_{\ap g{R(a)}}
+%    &
+%    {r'(f(s(a)))} \ar@{=}[d]^{\ap{r'}{L(a)}}
+%    \\
+%    {g(a)} \ar@{=}[r]_-{\opp{R'(g(a))}}
+%    &
+%    {r'(s'(g(a)))}
+%  }
+\end{equation*}
+\end{enumerate}
+\end{defn}
+
+Recall that in \PMlinkname{\S 3.11}{311contractibility} we defined what it means for a type to be a retract of another.
+This is a special case of the above definition where $B$ and $Y$ are $\unit$.
+Conversely, just as with contractibility, retractions of maps induce retractions of their fibers.
+
+\begin{lem}\label{lem:func_retract_to_fiber_retract}
+If a function $g:A\to B$ is a retract of a function $f:X\to Y$, then $\hfib{g}b$ is a retract of $\hfib{f}{s'(b)}$
+for every $b:B$, where $s':B\to Y$ is as in \PMlinkname{Definition 4.7.2}{47closurepropertiesofequivalences#Thmpredefn1}.
+\end{lem}
+
+\begin{proof}
+Suppose that $g:A\to B$ is a retract of $f:X\to Y$. Then for any $b:B$ we have the functions
+\begin{align*}
+\varphi_b &:\hfiber{g}b\to\hfib{f}{s'(b)}, &
+\varphi_b(a,p) & \defeq \pairr{s(a),L(a)\ct s'(p)},\\
+\psi_b &:\hfib{f}{s'(b)}\to\hfib{g}b, &
+\psi_b(x,q) &\defeq \pairr{r(x),K(x)\ct r'(q)\ct R'(b)}.
+\end{align*}
+Then we have $\psi_b(\varphi_b({a,p}))\equiv\pairr{r(s(a)),K(s(a))\ct r'(L(a)\ct s'(p))\ct R'(b)}$.
+We claim $\psi_b$ is a retraction with section $\varphi_b$ for all $b:B$, which is to say that for all $(a,p):\hfib g b$ we have $\psi_b(\varphi_b({a,p}))= \pairr{a,p}$.
+In other words, we want to show
+\begin{equation*}
+\prd{b:B}{a:A}{p:g(a)=b} \psi_b(\varphi_b({a,p}))= \pairr{a,p}.
+\end{equation*}
+By reordering the first two $\Pi$s and applying a version of \PMlinkname{Lemma 3.11.9}{311contractibility#Thmprelem6}, this is equivalent to
+\begin{equation*}
+\prd{a:A}\psi_{g(a)}(\varphi_{g(a)}({a,\refl{g(a)}}))=\pairr{a,\refl{g(a)}}.
+\end{equation*}
+For any $a$, by \PMlinkname{Theorem 2.7.2}{27sigmatypes#Thmprethm1}, this equality of pairs is equivalent to a pair of equalities. The first components are equal by $R(a):r(s(a))= a$, so we need only show
+\begin{equation*}
+\trans{R(a)}{K(s(a))\ct r'(L(a))\ct R'(g(a))} = \refl{g(a)}.
+\end{equation*}
+But this transportation computes as $\opp{g(R(a))}\ct K(s(a))\ct r'(L(a))\ct R'(g(a))$, so the required path is given by $H(a)$.
+\end{proof}
+
+\begin{thm}\label{thm:retract-equiv}
+  If $g$ is a retract of an equivalence $f$, then $g$ is also an equivalence.
+\end{thm}
+\begin{proof}
+  By \PMlinkname{Lemma 4.7.3}{47closurepropertiesofequivalences#Thmprelem1}, every fiber of $g$ is a retract of a fiber of $f$.
+  Thus, by \PMlinkname{Lemma 3.11.7}{311contractibility#Thmprelem4}, if the latter are all contractible, so are the former.
+\end{proof}
+
+\index{retract!of a function|)}%
+
+\index{fibration}%
+\index{total!space}%
+Finally, we show that fiberwise equivalences can be characterized in terms of equivalences of total spaces.
+To explain the terminology, recall from \PMlinkname{\S 2.3}{23typefamiliesarefibrations} that a type family $P:A\to\type$ can be viewed as a fibration over $A$ with total space $\sm{x:A} P(x)$, the fibration being is the projection $\proj1:\sm{x:A} P(x) \to A$.
+From this point of view, given two type families $P,Q:A\to\type$, we may refer to a function $f:\prd{x:A} (P(x)\to Q(x))$ as a \define{fiberwise map} or a \define{fiberwise transformation}.
+\indexsee{transformation!fiberwise}{fiberwise transformation}%
+\indexsee{function!fiberwise}{fiberwise transformation}%
+\index{fiberwise!transformation|(defstyle}%
+\indexsee{fiberwise!map}{fiberwise transformation}%
+\indexsee{map!fiberwise}{fiberwise transformation}
+Such a map induces a function on total spaces:
+
+\begin{defn}\label{defn:total-map}
+  Given type families $P,Q:A\to\type$ and a map $f:\prd{x:A} P(x)\to Q(x)$, we define
+  \begin{equation*}
+    \total f  \defeq \lam{w}\pairr{\proj{1}w,f(\proj{1}w,\proj{2}w)} : \sm{x:A}P(x)\to\sm{x:A}Q(x).
+  \end{equation*}
+\end{defn}
+
+\begin{thm}\label{fibwise-fiber-total-fiber-equiv}
+Suppose that $f$ is a fiberwise transformation between families $P$ and
+$Q$ over a type $A$ and let $x:A$ and $v:Q(x)$. Then we have an equivalence
+\begin{equation*}
+\eqv{\hfib{\total{f}}{\pairr{x,v}}}{\hfib{f(x)}{v}}.
+\end{equation*}
+\end{thm}
+\begin{proof}
+  We calculate:
+\begin{align}
+  \hfib{\total{f}}{\pairr{x,v}} 
+  & \jdeq \sm{w:\sm{x:A}P(x)}\pairr{\proj{1}w,f(\proj{1}w,\proj{2}w)}=\pairr{x,v}
+  \notag \\
+  & \eqv{}{} \sm{a:A}{u:P(a)}\pairr{a,f(a,u)}=\pairr{x,v}
+  \tag{by~\PMlinkexternal{Exercise 2.10}{http://planetmath.org/node/87641}} \\
+  & \eqv{}{} \sm{a:A}{u:P(a)}{p:a=x}\trans{p}{f(a,u)}=v
+  \tag{by \PMlinkname{Theorem 0.1}{27sigmatypes#S0.Thmthm1}} \\
+  & \eqv{}{} \sm{a:A}{p:a=x}{u:P(a)}\trans{p}{f(a,u)}=v
+  \notag \\
+  & \eqv{}{} \sm{u:P(x)}f(x,u)=v
+  \tag{$*$}\label{eq:uses-sum-over-paths} \\
+  & \jdeq \hfib{f(x)}{v}. \notag
+\end{align}
+The equivalence~\eqref{eq:uses-sum-over-paths} follows from \PMlinkname{Lemma 3.11.9}{311contractibility#Thmprelem6},\PMlinkname{Lemma 3.11.8}{311contractibility#Thmprelem5},\PMlinkexternal{Exercise 2.10}{http://planetmath.org/node/87641}.
+\end{proof}
+
+We say that a fiberwise transformation $f:\prd{x:A} P(x)\to Q(x)$ is a \define{fiberwise equivalence}%
+\indexdef{fiberwise!equivalence}%
+\indexdef{equivalence!fiberwise}
+if each $f(x):P(x) \to Q(x)$ is an equivalence.
+
+\begin{thm}\label{thm:total-fiber-equiv}
+Suppose that $f$ is a fiberwise transformation between families
+$P$ and $Q$ over a type $A$.
+Then $f$ is a fiberwise equivalence if and only if $\total{f}$ is an equivalence.
+\end{thm}
+
+\begin{proof}
+Let $f$, $P$, $Q$ and $A$ be as in the statement of the theorem.
+By \PMlinkname{Theorem 4.7.6}{47closurepropertiesofequivalences#Thmprethm3} it follows for all
+$x:A$ and $v:Q(x)$ that
+$\hfib{\total{f}}{\pairr{x,v}}$ is contractible if and only if
+$\hfib{f(x)}{v}$ is contractible.
+Thus, $\hfib{\total{f}}{w}$ is contractible for all $w:\sm{x:A}Q(x)$ if and only if $\hfib{f(x)}{v}$ is contractible for all $x:A$ and $v:Q(x)$.
+\end{proof}
+
+\index{fiberwise!transformation|)}%
+
+
+
+\end{document}

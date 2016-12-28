@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MartinsAxiomIsConsistent}
+\pmcreated{2013-03-22 13:21:59}
+\pmmodified{2013-03-22 13:21:59}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{Martin's axiom is consistent}
+\pmrecord{7}{33893}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E50}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+%\usepackage{psfrag}
+%\usepackage{graphicx}
+%%%\usepackage{xypic}
+\begin{document}
+If $\kappa$ is an uncountable strong limit cardinal such that for any $\lambda<\kappa$, $\kappa^\lambda=\kappa$ then it is consistent that $2^{\aleph_0}=\kappa$ and MA.  This is shown by using finite support iterated forcing to construct a model of ZFC in which this is true.  Historically, this proof was the motivation for developing iterated forcing.
+
+\subsection*{Outline}
+
+The proof uses the convenient fact that $MA_\kappa$ holds as long as it holds for all partial orders smaller than $\kappa$.  Given the conditions on $\kappa$, there are at most $\kappa$ names for these partial orders.  At each step in the forcing, we force with one of these names.  The result is that the actual generic subset we add intersects every dense subset of every partial order.
+
+\subsection*{Construction of $P_\kappa$}
+$\hat{Q}_\alpha$ will be constructed by induction with three conditions: $|P_\alpha|\leq\kappa$ for all $\alpha\leq\kappa$, $\Vdash_{P_\alpha}\hat{Q}_\alpha\subseteq\mathcal{M}$, and $P_\alpha$ satisfies the ccc.  Note that a partial ordering on a cardinal $\lambda<\kappa$ is a function from $\lambda\times\lambda$ to $\{0,1\}$, so there are at most $2^\lambda<\kappa$ of them.  Since a canonical name for a partial ordering of a cardinal is just a function from $P_\alpha$ to that cardinal, there are at most $\kappa^{2^\lambda}\leq\kappa$ of them.
+
+At each of the $\kappa$ steps, we want to deal with one of these possible partial orderings, so we need to partition the $\kappa$ steps in to $\kappa$ steps for each of the $\kappa$ cardinals less than $\kappa$.  In addition, we need to include every $P_\alpha$ name for any level.  Therefore, we partion $\kappa$ into $\langle S_{\gamma,\delta}\rangle_{\gamma,\delta<\kappa}$ for each cardinal $\delta$, with each $S_{\gamma,\delta}$ having cardinality $\kappa$ and the added condition that $\eta\in S_{\gamma,\delta}$ implies $\eta\geq\gamma$.  Then each $P_\gamma$ name for a partial ordering of $\delta$ is assigned some index $\eta\in S_{\gamma,\delta}$, and that partial order will be dealt with at stage $Q_\eta$.
+
+Formally, given $\hat{Q}_\beta$ for $\beta<\alpha$, $P_\alpha$ can be constructed and the $P_\alpha$ names for partial orderings of each cardinal $\delta$ enumerated by the elements of $S_{\alpha,\delta}$.  $\alpha\in S_{\gamma,\delta}$ for some $\gamma_\alpha$ and $\delta_\alpha$, and $\alpha\geq\gamma_\alpha$ so some canonical $P_{\gamma_\alpha}$ name for a partial order $\hat{\leq}_\alpha$ of $\delta_\alpha$ has already been assigned to $\alpha$.
+
+Since $\hat{\leq}_\alpha$ is a $P_{\gamma_\alpha}$ name, it is also a $P_\alpha$ name, so $\hat{Q}_\alpha$ can be defined as $\langle\delta_\alpha,\hat{\leq}_\alpha\rangle$ if $\Vdash_{P_\alpha} \langle \delta_\alpha,\hat{\leq}_\alpha\rangle$\texttt{ satisfies the ccc} and by the trivial partial order $\langle 1,\{\langle 1,1\rangle\}\rangle$ otherwise.  Obviously this satisfies the ccc, and so $P_{\alpha+1}$ does as well.  Since $\hat{Q}_\alpha$ is either trivial or a cardinal together with a canonical name, $\Vdash_{P_\alpha}\hat{Q}_\alpha\subseteq\mathcal{M}$.  Finally, $|P_{\alpha+q}|\leq\sum_n|\alpha|^n\cdot(\operatorname{sup}_i|\hat{Q}_i|)^n\leq\kappa$.
+
+\subsection*{Proof that $MA_\lambda$ holds for $\lambda<\kappa$}
+
+\subsubsection*{Lemma: It suffices to show that $MA_\lambda$ holds for partial order with size $\leq\lambda$}
+\begin{proof}
+Suppose $P$ is a partial order with $|P|>\kappa$ and let $\langle D_\alpha\rangle_{\alpha<\lambda}$ be dense subsets of $P$.  Define functions $f_i:P\rightarrow D_\alpha$ for $\alpha\kappa$ with $f_\alpha(p)\geq p$ (obviously such elements exist since $D_\alpha$ is dense).  Let $g:P\times P\rightarrow P$ be a function such that $g(p,q)\geq p,q$ whenever $p$ and $q$ are compatible.  Then pick some element $q\in P$ and let $Q$ be the closure of $\{q\}$ under $f_\alpha$ and $g$ with the same ordering as $P$ (restricted to $Q$).
+
+Since there are only $\kappa$ functions being used, it must be that $|Q|\leq\kappa$.  If $p\in Q$ then $f_\alpha(p)\geq p$ and clearly $f_\alpha(p)\in Q\cap D_\alpha$, so each $D_\alpha\cap Q$ is dense in $Q$.  In addition, $Q$ is ccc: if $A$ is an antichain in $Q$ and $p_1,p_2\in A$ then $p_1,p_2$ are incompatible in $Q$.  But if they were compatible in $P$ then $g(p_1,p_2)\geq p_1,p_2$ would be an element of $Q$, so they must be incompatible in $P$.  Therefore $A$ is an antichain in $P$, and therefore must have countable cardinality, since $P$ satisfies the ccc.
+
+By assumption, there is a directed $G\subseteq Q$ such that $G\cap (D_\alpha\cap Q)\neq\emptyset$ for each $\alpha<\kappa$, and therefore $MA_\lambda$ holds in full.
+\end{proof}
+
+Now we must prove that, if $G$ is a generic subset of $P_\kappa$, $R$ some partial order with $|R|\leq\lambda$ and $\langle D_\alpha\rangle_{\alpha<\lambda}$ are dense subsets of $R$ then there is some directed subset of $R$ intersecting each $D_\alpha$.
+
+If $|R|<\lambda$ then $\lambda$ additional elements can be added greater than any other element of $R$ to make $|R|=\lambda$, and then since there is an order isomorphism into some partial order of $\lambda$, assume $R$ is a partial ordering of $\lambda$.  Then let $D=\{\langle\alpha,\beta\rangle\mid\alpha\in D_\beta\}$.
+
+Take canonical names so that $R=\hat{R}[G]$, $D=\hat{D}[G]$ and $D_i=\hat{D}_i[G]$ for each $i<\lambda$ and:
+$$
+\begin{array}{rl}
+\Vdash_{P_\kappa}
+&\hat{R}\texttt{ is a partial ordering satisfying ccc and} \\
+&\hat{D}\subseteq \lambda\times\lambda\texttt{ and }\\
+&\hat{D_\alpha}\texttt{ is dense in }\hat{R}
+\end{array}
+$$
+
+For any $\alpha,\beta$ there is a maximal antichain $D_{\alpha,\beta}\subseteq P_\kappa$ such that if $p\in D_{\alpha,\beta}$ then either $p\Vdash_{P_\kappa} \alpha\leq_{\hat{R}}\beta$ or $p\Vdash_{P_\kappa}\alpha\nleq_{\hat{R}}\beta$ and another maximal antichain $E_{\alpha,\beta}\subseteq P_\kappa$ such that if $p\in E_{\alpha,\beta}$ then either $p\Vdash_{P_\kappa}\langle\alpha,\beta\rangle\in\hat{D}$ or $p\Vdash_{P_\kappa}\langle\alpha,\beta\rangle\not\in\hat{D}$.  These antichains determine the value of those two formulas.
+
+Then, since $\kappa^{\operatorname{cf}\kappa}>\kappa$ and $\kappa^\mu=\kappa$ for $\mu<\kappa$, it must be that $\operatorname{cf}\kappa=\kappa$, so $\kappa$ is regular.  Then $\gamma=\operatorname{sup}(\{\alpha+1\mid \alpha\in\operatorname{dom}(p),p\in \bigcup_{\alpha,\beta<\lambda} D_{\alpha,\beta}\cup E_{\alpha,\beta})<\kappa$, so $D_{\alpha,\beta},E_{\alpha,\beta}\subseteq P_\gamma$, and therefore the $P_\kappa$ names $\hat{R}$ and $\hat{D}$ are also $P_\gamma$ names.
+
+\subsubsection*{Lemma: For any $\gamma$, $G_\gamma=\{p\upharpoonright\gamma\mid p\in G\}$ is a generic subset of $P_\gamma$}
+\begin{proof}
+First, it is directed, since if $p_1\upharpoonright\gamma,p_2\upharpoonright\gamma\in G_\gamma$ then there is some $p\in G$ such that $p\leq p_1,p_2$, and therefore $p\upharpoonright\gamma\in G_\gamma$ and $p\leq p_1\upharpoonright\gamma,p_2\upharpoonright\gamma$.
+
+Also, it is generic.  If $D$ is a dense subset of $P_\gamma$ then $D_\kappa=\{p\in P_\kappa\mid p\leq q\in D\}$ is dense in $P_\kappa$, since if $p\in P_\kappa$ then there is some $d\leq p\upharpoonright$, but then $d$ is compatible with $p$, so $d\cup p\in D_\kappa$.  Therefore there is some $p\in D_\kappa\cap G_\kappa$, and so $p\upharpoonright \in D\cap G_\gamma$.
+\end{proof}
+
+Since $\hat{R}$ and $\hat{D}$ are $P_\gamma$ names, $\hat{R}[G]=\hat{R}[G_\gamma]=R$ and $\hat{D}[G]=\hat{D}[G_\gamma]=D$, so 
+$$
+\begin{array}{rl}
+V[G_\gamma]\vDash
+&\hat{R}\texttt{ is a partial ordering of }\lambda\texttt{ satisfying the ccc and} \\
+&\hat{D_\alpha}\texttt{ is dense in }\hat{R}
+\end{array}
+$$
+
+Then there must be some $p\in G_\gamma$ such that $$p\Vdash_{P_\gamma}\hat{R}\texttt{ is a partial ordering of }\lambda\texttt{ satisfying the ccc}$$
+
+Let $A_p$ be a maximal antichain of $P_\gamma$ such that $p\in A_p$, and define $\hat{\leq}^*$ as a $P_\gamma$ name with $(p,m)\in\hat{\leq}^*$ for each $m\in\hat{R}$ and $(a,n)\in\hat{\leq}^*$ if $n=(\alpha,\beta)$ where $\alpha<\beta<\lambda$ and $p\neq a\in A_p$.  That is, $\hat{\leq}^*[G]=R$ when $p\in G$ and $\hat{\leq}^*[G]=\in\upharpoonright\lambda$ otherwise.  Then this is the name for a partial ordering of $\lambda$, and therefore there is some $\eta\in S_{\gamma,\lambda}$ such that $\hat{\leq}^*=\hat{\leq}_\eta$, and $\eta\geq\gamma$.  Since $p\in G_\gamma\subseteq G_\eta$, $\hat{Q}_\eta[G_\eta]=\hat{\leq}_\eta[G_\eta]=R$.
+
+Since $P_{\eta+1}=P_{\eta}*Q_\eta$, we know that $G_{Q_\eta}\subseteq Q_\eta$ is generic since \PMlinkid{forcing with the composition is equivalent to successive forcing}{3258}.  Since $D_i\in V[G_\gamma]\subseteq V[G_\eta]$ and is dense, it follows that $D_i\cap G_{Q_\eta}\neq\emptyset$ and since $G_{Q_\eta}$ is a subset of $R$ in $P_\kappa$, $MA_\lambda$ holds.
+
+
+\subsection*{Proof that $2^{\aleph_0}=\kappa$}
+The relationship between Martin's axiom and the continuum hypothesis tells us that $2^{\aleph_0}\geq\kappa$.  Since $2^{\aleph_0}$ was less than $\kappa$ in $V$, and since $|P_\kappa|=\kappa$ adds at most $\kappa$ elements, it must be that $2^{\aleph_0}=\kappa$.
+%%%%%
+%%%%%
+\end{document}

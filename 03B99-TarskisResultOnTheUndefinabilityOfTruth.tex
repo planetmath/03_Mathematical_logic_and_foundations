@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TarskisResultOnTheUndefinabilityOfTruth}
+\pmcreated{2013-03-22 13:49:19}
+\pmmodified{2013-03-22 13:49:19}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{Tarski's result on the undefinability of truth}
+\pmrecord{14}{34552}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B99}
+\pmrelated{IFLogic}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+Assume $\mathbf{L}$ is a logic which is \PMlinkescapetext{closed} under contradictory negation and has the usual truth-functional connectives. Assume also that $\mathbf{L}$ has a notion of \PMlinkescapetext{open} formula with one variable and of substitution. Assume that $T$ is a theory of $\mathbf{L}$ in which we can define surrogates for formulae of $\mathbf{L}$, and in which all true instances of the substitution relation and the truth-functional connective relations are provable. We show that either $T$ is inconsistent or $T$ can't be augmented with a truth predicate $\mathbf{True}$ for which the following T-schema holds
+
+\begin{displaymath}
+\mathbf{True}('\phi') \leftrightarrow \phi
+\end{displaymath}
+
+Assume that the \PMlinkescapetext{open} formulae with one variable of $\mathbf{L}$ have been indexed by some suitable set that is representable in $T$ (otherwise the predicate $\mathbf{True}$ would be next to useless, since if there's no way to speak of sentences of a logic, there's little hope to define a truth-predicate for it). Denote the $i$:th element in this indexing by $B_i$. Consider now the following open formula with one variable
+
+\begin{displaymath}
+ \mathbf{Liar}(x) = \neg \mathbf{True}(B_x(x))
+\end{displaymath}
+
+Now, since $\mathbf{Liar}$ is an open formula with one free variable it's indexed by some $i$. Now consider the sentence $\mathbf{Liar}(i)$. From the T-schema we know that
+
+\begin{displaymath}
+ \mathbf{True}(\mathbf{Liar}(i)) \leftrightarrow \mathbf{Liar(i)}
+\end{displaymath}
+
+and by the definition of $\mathbf{Liar}$ and the fact that $i$ is the \PMlinkescapetext{index} of $\mathbf{Liar}(x)$ we have 
+
+\begin{displaymath}
+ \mathbf{True}(\mathbf{Liar}(i)) \leftrightarrow \neg \mathbf{True}(\mathbf{Liar(i)})
+\end{displaymath}
+
+which clearly is absurd. Thus there can't be an \PMlinkescapetext{extension} of $T$ with a predicate $\mathbf{Truth}$ for which the T-schema holds.
+
+We have made several assumptions on the logic $\mathbf{L}$ which are crucial in order for this proof to go through. The most important is that $\mathbf{L}$ is closed under contradictory negation. There are logics which allow truth-predicates, but these are not usually closed under contradictory negation (so that it's possible that $\mathbf{True}(\mathbf{Liar}(i))$ is neither true nor false). These logics usually have stronger notions of negation, so that a sentence $\neg P$ says {\em more} than just that $P$ is not true, and the proposition that $P$ is simply not true is not expressible.
+
+An example of a logic for which Tarski's undefinability result does not hold is the so-called Independence Friendly logic, the semantics of which is based on game theory and which allows various generalised quantifiers (the Henkin branching quantifier, etc.) to be used.
+%%%%%
+%%%%%
+\end{document}

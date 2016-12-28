@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DeductionTheorem}
+\pmcreated{2013-03-22 19:13:30}
+\pmmodified{2013-03-22 19:13:30}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{deduction theorem}
+\pmrecord{15}{42146}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Feature}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F03}
+\pmclassification{msc}{03B99}
+\pmclassification{msc}{03B22}
+\pmclassification{msc}{03B47}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+In mathematical logic, the \emph{deduction theorem} is the following (meta-)statement:
+$$\Delta, A \vdash B\qquad \mbox{iff} \qquad \Delta \vdash A\to B,$$ 
+where $\Delta$ is a set of formulas, and $A,B$ are formulas in a logical system where $\to$ is a (binary) logical connective denoting implication or entailment.  In words, the statement says that if the formula $B$ is deducible from a set $\Delta$ of assumptions, together with the assumption $A$, then the formula $A\to B$ is deducible from $\Delta$ alone.  Conversely, if we can deduce $A\to B$ from $\Delta$, and if in addition we assume $A$, then $B$ can be deduced.  The deduction theorem conforms with our intuitive understanding of how mathematical proofs work: if we want to prove the statement ``$A$ implies $B$'', then by assuming $A$, if we can prove $B$, we have established ``$A$ implies $B$''.
+
+The converse statement of the deduction theorem turns out to be a trivial consequence of modus ponens: if $\Delta \vdash A\to B$, then certainly $\Delta, A \vdash A\to B$.  Since $\Delta, A \vdash A$, we get, via modus ponens, $\Delta, A \vdash B$ as a result.
+
+An apparently weaker version of the deduction theorem is to restrict $\Delta$ to a finite set.  However, this version is actually equivalent the original version:
+\begin{proof}
+Clearly, the original version implies the version where $\Delta$ is finite.  Now assume the ``weaker'' version and that $\Delta, A \vdash B$, where $\Delta$ is an arbitrary set of formulas.  Then there is a deduction (finite sequence of formulas) $$A_1,\ldots, A_{n+1} = B$$
+such that each $A_i$ (where $i\le n$) is either an axiom, $A$ itself, a formula in $\Delta$, or a formula obtained from an application of an inference rule to earlier formula(s).  Let $\Delta'$ be the set of $A_i$'s which are in $\Delta$.  Then $\Delta'$ is finite, and clearly the sequence above is a deduction with assumptions in $\Delta'\cup \lbrace A \rbrace$ and conclusion $B$.  Thus $\Delta', A \vdash B$.  By our (meta)-assumption, $\Delta' \vdash A\to B$, which means that there is a deduction $$B_1,\ldots, B_{m+1}=A\to B$$ such that each $B_j$ (where $j\le m$) is either an axiom, or a formula in $\Delta'$.  Then certainly this is also a deduction with assumptions in $\Delta$ and conclusion $A\to B$.  Therefore, $\Delta \vdash A\to B$.
+\end{proof}
+
+The deduction theorem holds in most of the widely studied logical systems, such as classical propositional logic and predicate logic, intuitionistic logic, normal modal logics, to name a few.  On the other hand, the deduction theorem fails for other systems such as fuzzy logic.  A modified version of the deduction theorem is usually available, however.
+
+\textbf{Remark}.  In the statement of the deduction theorem, $\Delta$ is taken to be a (finite) set, meaning that some of the proof-structural rules, such as the exchange rules, weakening rules, etc..., are assumed automatically.  In substructural logics where some of these structural rules are absent, Gentzen's sequent systems are employed.  The form of the deduction theorem then becomes 
+$${\Delta,A \Rightarrow B,\Gamma \over \Delta \Rightarrow A\to B,\Gamma}$$
+This is often taken as an inference rule, because the ``deduction theorem'' usually fails in these logics.  Here, $\Delta$ is a finite sequence of formulas (as is $\Gamma$).  The ``deduction theorem'' in this context is generally called the \emph{right $\to$-introduction rule} (since the connective $\to$ is introduced on the right hand side of the succedent).
+
+\begin{thebibliography}{7}
+\bibitem{JR} J. W. Robbin, {\it Mathematical Logic, A First Course}, Dover Publication (2006)
+\bibitem{TS} A. S. Troelstra, H. Schwichtenberg, {\it Basic Proof Theory}, 2nd Edition, Cambridge University Press (2000)
+\bibitem{GR} G. Restall, {\it An Introduction to Substructural Logics}, Routledge, (2000)
+\bibitem{MB} M. Bergmann, {\it An Introduction to Many-Valued and Fuzzy Logic}, Cambridge University Press (2008)
+\end{thebibliography}
+
+%%%%%
+%%%%%
+\end{document}

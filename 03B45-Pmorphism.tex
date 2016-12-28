@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Pmorphism}
+\pmcreated{2013-03-22 19:34:54}
+\pmmodified{2013-03-22 19:34:54}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{p-morphism}
+\pmrecord{12}{42569}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmrelated{Bisimulation}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+Let $\mathcal{F}_1=(W_1,R_1)$ and $\mathcal{F}_2=(W_2,R_2)$ be Kripke frames.  A \emph{p-morphism} from $\mathcal{F}_1$ to $\mathcal{F}_2$ is a function $f:W_1 \to W_2$ such that
+\begin{itemize}
+\item if $u R_1 w$, then $f(u) R_2 f(w)$,
+\item if $s R_2 t$ and $s=f(u)$ for some $u\in W_1$, then $u R_1 w$ and $t=f(w)$ for some $w\in W_1$,
+\end{itemize}
+We write $f:\mathcal{F}_1\to \mathcal{F}_2$ to denote that $f$ is a p-morphism from $\mathcal{F}_1$ to $\mathcal{F}_2$.
+
+Let $M_1=(\mathcal{F}_1,V_1)$ and $M_2=(\mathcal{F}_2,V_2)$ be Kripke models of modal propositional logic PL$_M$.  A \emph{p-morphism} from $M_1$ to $M_2$ is a p-morphism $f:\mathcal{F}_1\to \mathcal{F}_2$ such that
+\begin{itemize}
+\item $M_1 \models_w p$ iff $M_2 \models_{f(w)} p$ for any propositional variable $p$.
+\end{itemize}
+
+\begin{prop} For any wff $A$, $M_1 \models_w A$ iff $M_2 \models_{f(w)} A$. \end{prop}
+\begin{proof}  Induct on the number $n$ of logical connectives in $A$.  When $n=0$, $A$ is either $\perp$ or a propositional variable.  The case when $A$ is $\perp$ is obvious, and the other case is definition.  Next, suppose $A$ is $B\to C$, then $M_1 \models_w A$ iff $M_1 \not \models_w B$ or $M_1 \models_w C$ iff $M_2 \not \models_{f(w)} B$ or $M_2 \models_{f(w)} C$ iff $M_2 \models_{f(w)} A$.  Finally, suppose $A$ is $\square B$, and $M_1 \models_w A$.  To show $M_2 \models_{f(w)} A$, let $t$ be such that $f(w) R_2 t$.  Then there is a $u$ such that $t=f(u)$ and $w R_1 u$, so that $M_1 \models_u B$.  By induction, $M_2 \models_{f(u)} B$, or $M_2 \models_t B$.  Hence $M_2 \models_{f(w)} A$.  Conversely, suppose $M_2 \models_{f(w)} A$.  To show $M_1 \models_w A$, let $u$ be such that $w R_1 u$.  So $f(w) R_2 f(u)$, and therefore $M_2 \models_{f(u)} B$.  By induction, $M_1 \models_u B$, whence $M_1 \models_w A$.
+\end{proof}
+
+\begin{prop} If a p-morphism $f:\mathcal{F}_1\to \mathcal{F}_2$ is one-to-one, then $\mathcal{F}_2 \models A$ implies $\mathcal{F}_1 \models A$ for any wff $A$. \end{prop}
+\begin{proof}  Suppose $\mathcal{F}_2 \models A$.  Let $M=(W_1,R_1,V_1)$ be any model based on $\mathcal{F}_1$ and $w$ any world in $W_1$.  We want to show that $M \models_w A$.
+
+Define a Kripke model $M':=(W_2,R_2,V_2)$ as follows: for any propositional variable $p$, let $V_2(p):= \lbrace s\in W_2 \mid f^{-1}(s) \cap V_1(p) \ne \varnothing \rbrace$.  Then $M \models_w p$ iff $w \in V_1(p)$ iff $f^{-1}(f(w)) =\lbrace w \rbrace  \subseteq V_1(p)$ (since $f$ is one-to-one) iff $f^{-1}(f(w))\cap V_1(p)\ne \varnothing$ iff $f(w)\in V_2(p)$ iff $M' \models_{f(w)} p$.  This shows that $f$ is a p-morphism from $M$ to $M'$.
+
+Now, let $w\in W_1$.  Then $M'\models_{f(w)} A$ by assumption.  By the last proposition, $M \models_w A$.
+\end{proof}
+
+\begin{prop} If a p-morphism $f:\mathcal{F}_1\to \mathcal{F}_2$ is onto, then $\mathcal{F}_1 \models A$ implies $\mathcal{F}_2 \models A$ for any wff $A$. \end{prop}
+\begin{proof}  Suppose $\mathcal{F}_1 \models A$.  Let $M=(W_2,R_2,V_2)$ be any model based on $\mathcal{F}_2$ and $s$ any world in $W_2$.  We want to show that $M \models_s A$.
+
+Define a Kripke model $M':=(W_1,R_1,V_1)$ as follows: for any propositional variable $p$, let $V_1(p):= \lbrace w\in W_1 \mid f(w) \in V_2(p) \rbrace$.  Then $w\in V_1(p)$ iff $f(w)\in V_2(p)$, so $f$ is a p-morphism from $M'$ to $M$, and by assumption $M'\models A$ for any wff $A$.
+
+Now, let $w\in W_1$ be a world such that $f(w)=s$.  Since $M'\models A$, $M'\models_w A$ in particular, and therefore $M\models_{f(w)} A$ or $M \models_s A$ by the last proposition.
+\end{proof}
+
+\begin{cor} If $f:\mathcal{F}_1\to \mathcal{F}_2$ is bijective, then $\mathcal{F}_1 \models A$ iff $\mathcal{F}_2 \models A$ for any wff $A$. \end{cor}
+
+A frame $\mathcal{F}'$ is said to be a p-morphic image of a frame $\mathcal{F}$ if there is an onto p-morphism $f: \mathcal{F} \to \mathcal{F}'$.  Let $\mathcal{C}$ be the class of all frames validating a wff.  Then by the third proposition above, $\mathcal{C}$ is closed under p-morphic images: if a frame is in $\mathcal{C}$, so is any of its p-morphic images.  Using this property, we can show the following: if $\mathcal{C}$ is the class of all frames validating a wff $A$, then $\mathcal{C}$ can not be
+\begin{itemize}
+\item the class of all irreflexive frames
+\item the class of all asymetric frames
+\item the class of all anti-symmetric frames
+\end{itemize}
+\begin{proof}  Let $\mathcal{F}_1 = (\mathbb{N},<)$ and $\mathcal{F}_2 = (\lbrace 0 \rbrace, R)$, where $0R0$.  Notice that $\mathcal{F}_1$ is in both the class of irreflexive frames and the class of asymetric frames, but $\mathcal{F}_2$ is in neither.  Let $f: \mathbb{N}\to \lbrace 0\rbrace$ be the obvious surjection.  Clearly, $m<n$ implies $f(m)Rf(n)$.  Also, if $f(m)R0$, then $f(m)Rf(m+1)$.  So $f$ is a p-morphism.  Suppose $\mathcal{C}$ is either the class of all irreflexive frames or the class of all asymetric frames.  If $A$ is validated by $\mathcal{C}$, $A$ is validated by $\mathcal{F}_1$ in particular (since $\mathcal{F}_1$ is in $\mathcal{C}$), so that $A$ is validated by $\mathcal{F}_2$ as well, which means $\mathcal{F}_2$ is $\mathcal{C}$ too, a contradiction.  Therefore, no such an $A$ exists.
+
+Next, let $\mathcal{F}_3 = (\mathbb{N}, S)$, where $n S (n+1)$ for all $n\in \mathbb{N}$ and  $\mathcal{F}_4 = (\lbrace 0,1\rbrace, R)$, where $R=\lbrace (0,1),(1,0)\rbrace$.  Let $\mathcal{C}$ be the class of all anti-symmetric frames.  Then $\mathcal{F}_3$ is in $\mathcal{C}$ but $\mathcal{F}_4$ is not.  Let $f:\mathcal{F}_3\to \mathcal{F}_4$ be given by $f(n)=0$ if $n$ is even and $f(n)=1$ if $n$ is odd.  If $a S b$, then $f(a)$ and $f(b)$ differ by $1$, so $f(a) R f(b)$.  On the other hand, if $f(a) R x$, then $x$ is either $0$ or $1$, depending on whether $a$ odd or even.  Pick $b=a+1$, so $a S b$ and $f(b)=x$.  This shows that $f$ is a p-morphism.  By the same argument as in the last paragraph, no wff $A$ is validated by precisely the members of $\mathcal{C}$.
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

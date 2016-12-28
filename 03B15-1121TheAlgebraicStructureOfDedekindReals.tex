@@ -1,0 +1,291 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1121TheAlgebraicStructureOfDedekindReals}
+\pmcreated{2013-11-06 17:47:07}
+\pmmodified{2013-11-06 17:47:07}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{11.2.1 The algebraic structure of Dedekind reals}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\apart}{\mathrel{\#}}  
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+\newcommand{\RD}{\ensuremath{\mathbb{R}_\mathsf{d}}\xspace} 
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{11.2.\arabic{mathcount}}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{11.2.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{11.2.\arabic{mathcount}}
+\newtheorem{prermk}{Remark}
+\newenvironment{rmk}{\begin{prermk}}{\end{prermk}\addtocounter{mathcount}{1}}
+\renewcommand{\theprermk}{11.2.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{11.2.\arabic{mathcount}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+
+The construction of the algebraic and order-theoretic structure of Dedekind reals proceeds
+as usual in intuitionistic logic. Rather than dwelling on details we point out the
+differences between the classical\index{mathematics!classical} and intuitionistic setup. Writing $L_x$ and $U_x$ for
+the lower and upper cut of a real number $x : \RD$, we define addition as%
+%
+\indexdef{addition!of Dedekind reals}%
+\begin{align*}
+  L_{x + y}(q) &\defeq \exis{r, s : \Q} L_x(r) \land L_y(s) \land q = r + s, \\
+  U_{x + y}(q) &\defeq \exis{r, s : \Q} U_x(r) \land U_y(s) \land q = r + s,
+\end{align*}
+%
+and the additive inverse by
+%
+\begin{align*}
+  L_{-x}(q) &\defeq \exis{r : \Q} U_x(r) \land q = - r, \\
+  U_{-x}(q) &\defeq \exis{r : \Q} L_x(r) \land q = - r.
+\end{align*}
+%
+With these operations $(\RD, 0, {+}, {-})$ is an abelian\index{group!abelian} group. Multiplication is a bit
+more cumbersome:
+%
+\indexdef{multiplication!of Dedekind reals}%
+\begin{align*}
+  L_{x \cdot y}(q) &\defeq
+  \begin{aligned}[t]
+    \exis{a, b, c, d : \Q} & L_x(a) \land U_x(b) \land L_y(c) \land U_y(d) \land {}\\
+                           & \qquad q < \min (a \cdot c, a \cdot d, b \cdot c, b \cdot d),
+  \end{aligned} \\
+  U_{x \cdot y}(q) &\defeq
+  \begin{aligned}[t]
+    \exis{a, b, c, d : \Q} & L_x(a) \land U_x(b) \land L_y(c) \land U_y(d) \land {}\\
+                           & \qquad \max (a \cdot c, a \cdot d, b \cdot c, b \cdot d) < q.
+  \end{aligned}
+\end{align*}
+%
+\index{interval!arithmetic}%
+These formulas are related to multiplication of intervals in interval arithmetic, where
+intervals $[a,b]$ and $[c,d]$ with rational endpoints multiply to the interval
+%
+\begin{equation*}
+  [a,b] \cdot [c,d] =
+  [\min(a c, a d, b c, b d), \max(a c, a d, b c, b d)].
+\end{equation*}
+%
+For instance, the formula for the lower cut can be read as saying that $q < x \cdot y$
+when there are intervals $[a,b]$ and $[c,d]$ containing $x$ and $y$, respectively, such
+that $q$ is to the left of $[a,b] \cdot [c,d]$. It is generally useful to think of an
+interval $[a,b]$ such that $L_x(a)$ and $U_x(b)$ as an approximation of~$x$, see
+\autoref{ex:RD-interval-arithmetic}.
+
+We now have a commutative ring\index{ring} with unit
+\index{unit!of a ring}%
+$(\RD, 0, 1, {+}, {-}, {\cdot})$. To treat
+multiplicative inverses, we must first introduce order. Define $\leq$ and $<$ as
+%
+\begin{align*}
+  (x \leq y) &\ \defeq \ \fall{q : \Q} L_x(q) \Rightarrow L_y(q), \\
+  (x < y)    &\ \defeq \ \exis{q : \Q} U_x(q) \land L_y(q).
+\end{align*}
+
+\begin{lem} \label{dedekind-in-cut-as-le}
+  For all $x : \RD$ and $q : \Q$, $L_x(q) \Leftrightarrow (q < x)$ and $U_x(q)
+  \Leftrightarrow (x < q)$.
+\end{lem}
+
+\begin{proof}
+  If $L_x(q)$ then by roundedness there merely is $r > q$ such that $L_x(r)$, and since
+  $U_q(r)$ it follows that $q < x$. Conversely, if $q < x$ then there is $r : \Q$ such
+  that $U_q(r)$ and $L_x(r)$, hence $L_x(q)$ because $L_x$ is a lower set. The other half
+  of the proof is symmetric.
+\end{proof}
+
+\index{partial order}%
+\index{transitivity!of . for reals@of $<$ for reals}
+\index{transitivity!of . for reals@of $\leq$ for reals}
+\index{relation!irreflexive}
+\index{irreflexivity!of . for reals@of $<$ for reals}
+The relation $\leq$ is a partial order, and $<$ is transitive and irreflexive. Linearity
+\index{order!linear}%
+\index{linear order}%
+%
+\begin{equation*}
+  (x < y) \lor (y \leq x)
+\end{equation*}
+%
+is valid if we assume excluded middle, but without it we get weak linearity
+%
+\index{order!weakly linear}
+\index{weakly linear order}
+\begin{myeqn} \label{eq:RD-linear-order}
+  (x < y) \Rightarrow (x < z) \lor (z < y).
+\end{myeqn}
+%
+At first sight it might not be clear what~\eqref{eq:RD-linear-order} has to do with
+linear order. But if we take $x \jdeq u - \epsilon$ and $y \jdeq u + \epsilon$ for
+$\epsilon > 0$, then we get
+%
+\begin{equation*}
+  (u - \epsilon < z) \lor (z < u + \epsilon).
+\end{equation*}
+%
+This is linearity ``up to a small numerical error'', i.e., since it is unreasonable to
+expect that we can actually compute with infinite precision, we should not be surprised
+that we can decide~$<$ only up to whatever finite precision we have computed.
+
+To see that~\eqref{eq:RD-linear-order} holds, suppose $x < y$. Then there merely exists $q : \Q$ such that $U_x(q)$ and
+$L_y(q)$. By roundedness there merely exist $r, s : \Q$ such that $r < q < s$, $U_x(r)$
+and $L_y(s)$. Then, by locatedness $L_z(r)$ or $U_z(s)$. In the first case we get $x < z$
+and in the second $z < y$. 
+
+Classically, multiplicative inverses exist for all numbers which are different from zero.
+However, without excluded middle, a stronger condition is required. Say that $x, y : \RD$
+are \define{apart}
+\indexdef{apartness}%
+from each other, written $x \apart y$, when $(x < y) \lor (y < x)$:
+%
+\symlabel{apart}
+\begin{equation*}
+  (x \apart y) \defeq (x < y) \lor (y < x).
+\end{equation*}
+%
+If $x \apart y$, then $\lnot (x = y)$.
+The converse is true if we assume excluded middle, but is not provable constructively.
+\index{mathematics!constructive}%
+Indeed, if $\lnot (x = y)$ implies $x\apart y$, then a little bit of excluded middle follows; see \autoref{ex:reals-apart-neq-MP}.
+
+\begin{thm} \label{RD-inverse-apart-0}
+  A real is invertible if, and only if, it is apart from $0$.
+\end{thm}
+
+\begin{rmk}
+  We observe that a real is invertible if, and only if, it is merely
+  invertible.  Indeed, the same is true in any ring,\index{ring} since a ring is a set, and
+  multiplicative inverses are unique if they exist.  See the discussion
+  following \autoref{cor:UC}.
+\end{rmk}
+
+\begin{proof}
+  Suppose $x \cdot y = 1$. Then there merely exist $a, b, c, d : \Q$ such that
+  $a < x < b$, $c < y < d$ and $0 < \min (a c, a d, b c, b d)$. From $0 < a c$ and $0 < b c$ it follows
+  that $a$, $b$, and $c$ are either all positive or all negative.
+  Hence either $0 < a < x$ or $x < b < 0$, so that $x \apart 0$.
+
+  Conversely, if $x \apart 0$ then
+  %
+  \begin{align*}
+    L_{x^{-1}}(q) &\defeq
+    \exis{r : \Q} U_x(r) \land ((0 < r \land q r < 1) \lor (r < 0 \land 1 < q r))
+    \\
+    U_{x^{-1}}(q) &\defeq
+    \exis{r : \Q} L_x(r) \land ((0 < r \land q r > 1) \lor (r < 0 \land 1 > q r))
+  \end{align*}
+  %
+  defines the desired inverse. Indeed, $L_{x^{-1}}$ and $U_{x^{-1}}$ are inhabited because
+  $x \apart 0$.
+\end{proof}
+
+\index{ordered field!archimedean}%
+\index{dense}%
+\indexsee{order-dense}{dense}%
+The archimedean principle can be stated in several ways. We find it most illuminating in the
+form which says that $\Q$ is dense in $\RD$.
+
+\begin{thm}[Archimedean principle for $\RD$] \label{RD-archimedean}
+  %
+  For all $x, y : \RD$ if $x < y$ then there merely exists $q : \Q$ such that
+  $x < q < y$.
+\end{thm}
+
+\begin{proof}
+  By definition of $<$.
+\end{proof}
+
+Before tackling completeness of Dedekind reals, let us state precisely what algebraic
+structure they possess. In the following definition we are not aiming at a minimal
+axiomatization, but rather at a useful amount of structure and properties.
+
+\begin{defn} \label{ordered-field} An \define{ordered field}
+  \indexdef{ordered field}%
+  \indexsee{field!ordered}{ordered field}%
+  is a set $F$ together with
+  constants $0$, $1$, operations $+$, $-$, $\cdot$, $\min$, $\max$, and mere relations
+  $\leq$, $<$, $\apart$ such that:
+  %
+  \begin{enumerate}
+  \item $(F, 0, 1, {+}, {-}, {\cdot})$ is a commutative ring with unit;
+    \index{unit!of a ring}%
+    \index{ring}%
+  \item $x : F$ is invertible if, and only if, $x \apart 0$;
+  \item $(F, {\leq}, {\min}, {\max})$ is a lattice;
+  \item the strict order $<$ is transitive, irreflexive,
+    \index{relation!irreflexive}
+    \index{irreflexivity!of . in a field@of $<$ in a field}%
+    and weakly linear ($x < y \Rightarrow x < z \lor z < y$);\index{transitivity!of . in a field@of $<$ in a field}
+    \index{order!weakly linear}
+    \index{weakly linear order}
+    \index{strict!order}%
+    \index{order!strict}%
+  \item apartness $\apart$ is irreflexive, symmetric and cotransitive ($x \apart y \Rightarrow x \apart z \lor y \apart z$);
+    \index{relation!irreflexive}
+    \index{irreflexivity!of apartness}%
+    \indexdef{relation!cotransitive}%
+    \index{cotransitivity of apartness}%
+  \item for all $x, y, z : F$:
+    %
+    \begin{align*}
+      x \leq y &\Leftrightarrow \lnot (y < x), &
+      x < y \leq z &\Rightarrow x < z, \\
+      x \apart y &\Leftrightarrow (x < y) \lor (y < x), &
+      x \leq y < z &\Rightarrow x < z, \\
+      x \leq y &\Leftrightarrow x + z \leq y + z, &
+      x \leq y \land 0 \leq z &\Rightarrow x z \leq y z, \\
+      x < y &\Leftrightarrow x + z < y + z, &
+      0 < z \Rightarrow (x < y &\Leftrightarrow x z < y z), \\
+      0 < x + y &\Rightarrow 0 < x \lor 0 < y, &
+      0 &< 1.
+    \end{align*}
+  \end{enumerate}
+  %
+  Every such field has a canonical embedding $\Q \to F$. An ordered field is
+  \define{archimedean}
+  \indexdef{ordered field!archimedean}%
+  \indexsee{archimedean property}{ordered field, archi\-mede\-an}%
+  when for all $x, y : F$, if $x < y$ then there merely exists $q :
+  \Q$ such that $x < q < y$.
+\end{defn}
+
+\begin{thm} \label{RD-archimedean-ordered-field}
+  The Dedekind reals form an ordered archimedean field.
+\end{thm}
+
+\begin{proof}
+  We omit the proof in the hope that what we have demonstrated so far makes the theorem
+  plausible.
+\end{proof}
+
+
+\end{document}

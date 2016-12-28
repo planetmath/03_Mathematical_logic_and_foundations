@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AnInjectionBetweenTwoFiniteSetsOfTheSameCardinalityIsBijective}
+\pmcreated{2013-03-22 15:10:20}
+\pmmodified{2013-03-22 15:10:20}
+\pmowner{alozano}{2414}
+\pmmodifier{alozano}{2414}
+\pmtitle{an injection between two finite sets of the same cardinality is bijective}
+\pmrecord{6}{36923}
+\pmprivacy{1}
+\pmauthor{alozano}{2414}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-00}
+%\pmkeywords{bijective}
+%\pmkeywords{injective}
+\pmrelated{SchroederBernsteinTheorem}
+\pmrelated{ProofOfSchroederBernsteinTheorem}
+\pmrelated{OneToOneFunctionFromOntoFunction}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{prop}{Proposition}
+\newtheorem*{lemma}{Lemma}
+\newtheorem{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{exa}{Example}
+
+% Some sets
+\newcommand{\Nats}{\mathbb{N}}
+\newcommand{\Ints}{\mathbb{Z}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Rats}{\mathbb{Q}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\begin{document}
+\begin{lemma}
+Let $A,B$ be two finite sets of the same cardinality. If $f\colon A \to B$ is an injective function then $f$ is bijective.
+\end{lemma}
+\begin{proof}
+In order to prove the lemma, it suffices to show that if $f$ is an injection then the cardinality of $f(A)$ and $A$ are equal. We prove this by induction on $n=\text{card}(A)$. The case $n=1$ is trivial. Assume that the lemma is true for sets of cardinality $n$ and let $A$ be a set of cardinality $n+1$. Let $a\in A$ so that $A_1=A-\{a\}$ has cardinality $n$. Thus, $f(A_1)$ has cardinality $n$ by the induction hypothesis. Moreover, $f(a)\notin f(A_1)$ because $a\notin A_1$ and $f$ is injective. Therefore:
+$$f(A)=f(\{a\}\cup A_1)=\{f(a)\}\cup f(A_1)$$
+and the set $\{f(a)\}\cup f(A_1)$ has cardinality $1+n$, as desired.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

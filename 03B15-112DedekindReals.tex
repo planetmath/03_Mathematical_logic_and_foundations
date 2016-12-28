@@ -1,0 +1,179 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{112DedekindReals}
+\pmcreated{2013-11-06 17:45:35}
+\pmmodified{2013-11-06 17:45:35}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{11.2 Dedekind reals}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\bool}{\ensuremath{\mathbf{2}}\xspace}
+\newcommand{\dcut}{\mathsf{isCut}}  
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+\newcommand{\RD}{\ensuremath{\mathbb{R}_\mathsf{d}}\xspace} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{11.2.\arabic{mathcount}}
+\let\autoref\cref
+\let\setof\Set    
+\makeatother
+
+\begin{document}
+
+\index{real numbers!Dedekind|(}%
+Let us first recall the basic idea of Dedekind's construction. We use two-sided Dedekind
+cuts, as opposed to an often used one-sided version, because the symmetry makes
+constructions more elegant, and it works constructively as well as classically.
+\index{mathematics!constructive}%
+A \emph{Dedekind cut}\index{cut!Dedekind} consists of a pair $(L, U)$ of subsets $L, U \subseteq \Q$, called the
+\emph{lower} and \emph{upper cut} respectively, which are:
+% 
+\begin{enumerate}
+\item \emph{inhabited:} there are $q \in L$ and $r \in U$,
+\item \emph{rounded:} $q \in L \Leftrightarrow \exis {r \in \Q} q < r \land r \in L$
+  and $r \in U \Leftrightarrow \exis {q \in \Q} q \in U \land q < r$,
+  \index{rounded!Dedekind cut}
+\item \emph{disjoint:} $\lnot (q \in L \land q \in U)$, and
+\item \emph{located:} $q < r \Rightarrow q \in L \lor r \in U$.
+  \index{locatedness}%
+\end{enumerate}
+%
+Reading the roundedness condition from left to right tells us that cuts are \emph{open},
+\index{open!cut}%
+and from right to left that they are \emph{lower}, respectively \emph{upper}, sets. The
+locatedness condition states that there is no large gap between $L$ and $U$. Because cuts
+are always open, they never include the ``point in between'', even when it is rational. A
+typical Dedekind cut looks like this:
+%
+\begin{center}
+  \begin{tikzpicture}[x=\textwidth]
+    \draw[<-),line width=0.75pt] (0,0) -- (0.297,0) node[anchor=south east]{$L\ $};
+    \draw[(->,line width=0.75pt] (0.300, 0) node[anchor=south west]{$\ U$} -- (0.9, 0) ;
+  \end{tikzpicture}
+\end{center}
+%
+We might naively translate the informal definition into type theory by saying that a cut
+is a pair of maps $L, U : \Q \to \prop$. But we saw in \autoref{subsec:prop-subsets} that
+$\prop$ is an ambiguous\index{typical ambiguity} notation for $\prop_{\UU_i}$ where~$\UU_i$ is a universe. Once we
+use a particular $\UU_i$ to define cuts, the type of reals will reside in the next
+universe $\UU_{i+1}$, a property of reals two levels higher in $\UU_{i+2}$, a property of
+subsets of reals in $\UU_{i+3}$, etc. In principle we should be able to keep track of the
+universe levels\index{universe level}, especially with the help of a proof assistant, but doing so here would
+just burden us with bureaucracy that we prefer to avoid. We shall therefore make a
+simplifying assumption that a single type of propositions $\Omega$ is sufficient for all
+our purposes.
+
+In fact, the construction of the Dedekind reals is quite resilient to logical
+manipulations. There are several ways in which we can make sense of using a single type
+$\Omega$:
+%
+\begin{enumerate}
+
+\item We could identify $\Omega$ with the ambiguous $\prop$ and track all the universes
+  that appear in definitions and constructions.
+
+\item We could assume the propositional resizing axiom,
+  \index{propositional!resizing}%
+  as in \autoref{subsec:prop-subsets}, which essentially collapses the $\prop_{\UU_i}$'s to the
+  lowest level\index{universe level}, which we call $\Omega$.
+
+\item A classical mathematician who is not interested in the intricacies of type-theoretic
+  universes or computation may simply assume the law of excluded middle~\eqref{eq:lem} for
+  mere propositions so that $\Omega \jdeq \bool$.
+  \index{excluded middle}
+  This not only eradicates questions about
+  levels\index{universe level} of $\prop$, but also turns everything we do into the standard classical\index{mathematics!classical}
+  construction of real numbers.
+
+\item On the other end of the spectrum one might ask for a minimal requirement that makes
+  the constructions work. The condition that a mere predicate be a Dedekind cut is
+  expressible using only conjunctions, disjunctions, and existential quantifiers\index{quantifier!existential} over~\Q, which
+  is a countable set. Thus we could take $\Omega$ to be the initial \emph{$\sigma$-frame},
+  \index{initial!sigma-frame@$\sigma$-frame}%
+  \index{sigma-frame@$\sigma$-frame!initial|defstyle}%
+  i.e., a lattice\index{lattice} with countable joins\index{join!in a lattice} in which binary meets distribute over countable
+  joins. (The initial $\sigma$-frame cannot be the two-point lattice $\bool$ because
+  $\bool$ is not closed under countable joins, unless we assume excluded middle.) This
+  would lead to a construction of~$\Omega$ as a higher inductive-inductive type, but one
+  experiment of this kind in \autoref{sec:cauchy-reals} is enough.
+\end{enumerate}
+
+In all of the above cases $\Omega$ is a set.
+%
+Without further ado, we translate the informal definition into type theory.
+Throughout this chapter, we use the
+logical notation from \autoref{defn:logical-notation}.
+
+\begin{defn} \label{defn:dedekind-reals}
+  A \define{Dedekind cut}
+  \indexsee{Dedekind!cut}{cut, Dedekind}%
+  \indexdef{cut!Dedekind}%
+  is a pair $(L, U)$ of mere predicates $L : \Q \to \Omega$ and $U
+  : \Q \to \Omega$ which is:
+  %
+  \begin{enumerate}
+  \item \emph{inhabited:} $\exis{q : \Q} L(q)$ and $\exis{r : Q} U(r)$,
+  \item \emph{rounded:} for all $q, r : \Q$,
+    \index{rounded!Dedekind cut}
+    %
+    \begin{align*}
+      L(q) &\Leftrightarrow \exis{r : \Q} (q < r) \land L(r)
+      \qquad\text{and}\\
+      U(r) &\Leftrightarrow \exis{q : \Q} (q < r) \land U(q),
+    \end{align*}
+  \item \emph{disjoint:} $\lnot (L(q) \land U(q))$ for all $q : \Q$,
+  \item \emph{located:} $(q < r) \Rightarrow L(q) \lor U(r)$ for all $q, r : \Q$.
+  \index{locatedness}%
+  \end{enumerate}
+  %
+  We let $\dcut(L, U)$ denote the conjunction of these conditions. The type of
+  \define{Dedekind reals} is
+  \indexsee{Dedekind!real numbers}{real numbers, De\-de\-kind}%
+  \indexdef{real numbers!Dedekind}%
+  %
+  \begin{equation*}
+    \RD \defeq \setof{ (L, U) : (\Q \to \Omega) \times (\Q \to \Omega) | \dcut(L,U)}.
+  \end{equation*}
+\end{defn}
+
+It is apparent that $\dcut(L, U)$ is a mere proposition, and since $\Q \to \Omega$ is a
+set the Dedekind reals form a set too. See
+\autoref{ex:RD-extended-reals,ex:RD-lower-cuts,ex:RD-interval-arithmetic} for variants of
+Dedekind cuts which lead to extended reals, lower and upper reals, and the interval
+domain.
+
+There is an embedding $\Q \to \RD$ which associates with each rational $q : \Q$ the cut
+$(L_q, U_q)$ where
+%
+\begin{equation*}
+  L_q(r) \defeq (r < q)
+  \qquad\text{and}\qquad
+  U_q(r) \defeq (q < r).
+\end{equation*}
+%
+We shall simply write $q$ for the cut $(L_q, U_q)$ associated with a rational number.
+
+
+\end{document}

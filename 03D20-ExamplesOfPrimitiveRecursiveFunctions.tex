@@ -1,0 +1,158 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExamplesOfPrimitiveRecursiveFunctions}
+\pmcreated{2013-03-22 19:05:06}
+\pmmodified{2013-03-22 19:05:06}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{examples of primitive recursive functions}
+\pmrecord{17}{41973}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmrelated{ExamplesOfPrimitiveRecursivePredicates}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Starting from the simplest primitive recursive functions, we can build more complicated primitive recursive functions by functional composition and primitive recursion.  In this entry, we have listed some basic examples using functional composition alone.  In this entry, we list more basic examples, allowing the use of primitive recursion:
+
+\begin{enumerate}
+\item $\operatorname{add}(x,y)=x+y$: $\operatorname{add}(x,0)=\operatorname{id}(x)$, and $\operatorname{add}(x,n+1)=s(\operatorname{add}(x,n))$
+\item $\operatorname{mult}(x,y)=xy$: $\operatorname{mult}(x,0)=z(x)$, and $\operatorname{mult}(x,n+1)=\operatorname{add}(x,\operatorname{mult}(x,n))$.
+\item $p_2(x)=x^2$, which is just $\operatorname{mult}(x,x)$; more generally, $p_{m+1}(x)=\operatorname{mult}(x,p_m(x))$, which is primitive recursive by induction on $m$
+\item $\exp_m(x)=m^x$: $\exp_m(0)=s(0)$, and $\exp_m(n+1)=\operatorname{mult}(\operatorname{const}_m(n),\exp_m(n))$
+\item $\exp(x,y)=x^y$: $\exp(x,0)=\operatorname{const}_1(x)$, and $\exp(x,n+1)=\operatorname{mult}(x,\exp(x,n))$
+\item $\operatorname{fact}(x)=x!$: $\operatorname{fact}(0)=s(0)$, and $\operatorname{fact}(n+1)=\operatorname{mult}(s(n),\operatorname{fact}(n))$
+\item 
+\begin{displaymath}
+\operatorname{sub}_1(x)=x\dot{-} 1:= \left\{
+\begin{array}{ll}
+0 & \textrm{if } x =0, \\
+x-1 & \textrm{otherwise,}
+\end{array}
+\right.
+\end{displaymath}
+built using $z$ and $s$: $\operatorname{sub}_1(0)=z(0)$, and $\operatorname{sub}_1(n+1)= s(\operatorname{sub}_1(n))$; 
+\item more generally, $\operatorname{sub}_m(x)=x\dot{-}m$ may be defined: $\operatorname{sub}_m=\operatorname{sub}_1^m$.
+\item $\operatorname{sub}(x,y)=x\dot{-}y$: $\operatorname{sub}(x,0)=\operatorname{id}(x)$, and $\operatorname{sub}(x,n+1)=\operatorname{sub}_1(\operatorname{sub}(x,n))$.
+\item $\operatorname{diff}(x,y)=|x-y|:=\operatorname{sub}(x,y)+\operatorname{sub}(y,x)$
+\item
+\begin{displaymath}
+d_0(x):= \left\{
+\begin{array}{ll}
+1 & \textrm{if } x =0, \\
+0 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+built using $\operatorname{const}_1$ and $z$: $d_0(0)=\operatorname{const}_1(0)$, and $d_0(n+1)=z(d_0(n))$.
+\item more generally,
+\begin{displaymath}
+d_m(x):= \left\{
+\begin{array}{ll}
+1 & \textrm{if } x =m, \\
+0 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+is primitive recursive, for it is $d_0(\operatorname{diff}(x,\operatorname{const}_m(x))$.
+\item even more generally,
+\begin{displaymath}
+d_S(x):= \left\{
+\begin{array}{ll}
+1 & \textrm{if } x\in S, \\
+0 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+where $S=\lbrace a_1,\ldots,a_m\rbrace$, is primitive recursive, for it is $d_{a_1}+\cdots +d_{a_m}$.
+\item
+\begin{displaymath}
+\operatorname{sgn}(x):= \left\{
+\begin{array}{ll}
+0 & \textrm{if } x =0, \\
+1 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+which is just $\operatorname{sub}(\operatorname{const}_1(x),d_0(x))$.
+\item 
+\begin{displaymath}
+\operatorname{rem}(x,y):= \left\{
+\begin{array}{ll}
+0 & \textrm{if } y=0, \\
+x\!\!\!\!\!\mod\! y & \textrm{otherwise,}
+\end{array}
+\right.
+\end{displaymath}
+where $x\!\!\!\mod\! y$ is the remainder of $x\div y$.  Suppose $y\ne 0$.  Then $0\!\!\!\mod\! y=0$.  In addition, 
+\begin{displaymath}
+(n+1)\!\!\!\!\mod\! y= \left\{
+\begin{array}{ll}
+0 & \textrm{if } \operatorname{diff}(s(n\!\!\!\!\mod\! y),y)=0, \\
+s(n\!\!\!\!\mod\! y) & \textrm{otherwise,}
+\end{array}
+\right.
+\end{displaymath}
+Then $\operatorname{rem}(0,y)=z(y)$, and 
+\begin{eqnarray*}
+\operatorname{rem}(n+1,y) &=& \operatorname{sgn}(y) (\operatorname{rem}(n,y)+1)\operatorname{sgn}(|\operatorname{rem}(n,y)+1 - y|) \\ &=& \operatorname{mult}(\operatorname{sgn}(y),\operatorname{mult}(s(\operatorname{rem}(n,y)),\operatorname{sgn}(\operatorname{diff}(s(\operatorname{rem}(n,y)),y)))) \\
+&=& g(y,\operatorname{rem}(n,y))
+\end{eqnarray*}
+where $g(y,x):=\operatorname{mult}(\operatorname{sgn}(y),\operatorname{mult}(s(x),\operatorname{sgn}(\operatorname{diff}(s(x),y))))$.  The reason for including $\operatorname{sgn}(y)$ is to account for the case when $y=0$.
+\item 
+\begin{displaymath}
+q(x,y)= \left\{
+\begin{array}{ll}
+\textrm{quotient of }x\div y & \textrm{if } y \ne 0 \\
+0 & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+To see that $q$ is primitive recursive, we use equation $$x=yq(x,y)+\operatorname{rem}(x,y)$$ obtained from the division algorithm for integers.  Then $$yq(x,y)+\operatorname{rem}(x,y)+1 = x+1 = yq(x+1,y)+\operatorname{rem}(x+1,y).$$  Simplify and we get $$y(q(x+1,y)-q(x,y))=\operatorname{rem}(x,y)+1 -\operatorname{rem}(x+1,y).$$
+Thus, by the previous example, we get
+\begin{displaymath}
+q(n+1,y)= \left\{
+\begin{array}{ll}
+q(n,y)+1 & \textrm{if } \operatorname{rem}(n,y)+1 = y, \\
+q(n,y) & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+Therefore, $q(0,y)=z(y)$, and $$q(n+1,y)=\operatorname{sgn}(y)(q(n,y)+\operatorname{sgn}(\operatorname{diff}(s(\operatorname{rem}(n,y)),y)))$$
+where $\operatorname{sgn}(y)$ takes the case $y=0$ into account.
+\end{enumerate}
+
+\textbf{Remarks}.  
+\begin{itemize}
+\item All of the functions above are in fact examples of elementary recursive functions.
+\item Example 3(m) above is a special case of a more general phenomenon.  Recall that a subset $S\subseteq \mathbb{N}^n$ is called \emph{primitive recursive} if its characteristic function $\varphi_S$ is primitive recursive.  If we take $S=\lbrace m\rbrace$, then $\varphi_S=d_m$.  Furthermore, a predicate $\Phi(\boldsymbol{x})$ over $\mathbb{N}^k$ is \emph{primitive recursive} if the corresponding set $S(\Phi):=\lbrace \boldsymbol{x}\in \mathbb{N}^k \mid \Phi(\boldsymbol{x})\rbrace$ is primitive recursive.
+\item The technique of bounded maximization may be used to prove the primitive recursiveness of the quotient and the reminder functions in examples 3(o) and 3(p).  See \PMlinkname{this entry}{BoundedMaximization} for more detail.
+\end{itemize}
+%%%%%
+%%%%%
+\end{document}

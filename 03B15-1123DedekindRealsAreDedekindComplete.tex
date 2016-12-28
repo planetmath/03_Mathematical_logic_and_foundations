@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1123DedekindRealsAreDedekindComplete}
+\pmcreated{2013-11-06 17:50:18}
+\pmmodified{2013-11-06 17:50:18}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{11.2.3 Dedekind reals are Dedekind complete}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\barRD}{\ensuremath{\bar{\mathbb{R}}_\mathsf{d}}\xspace} 
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\narrowbreak}{}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+\newcommand{\RD}{\ensuremath{\mathbb{R}_\mathsf{d}}\xspace} 
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{11.2.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{11.2.\arabic{mathcount}}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{11.2.\arabic{mathcount}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+
+We obtained $\RD$ as the type of Dedekind cuts on $\Q$. But we could have instead started
+with any archimedean ordered field $F$ and constructed Dedekind cuts\index{cut!Dedekind} on $F$. These would
+again form an archimedean ordered field $\bar{F}$, the \define{Dedekind completion of $F$},%
+\index{completion!Dedekind}%
+\indexsee{Dedekind!completion}{completion, Dedekind}
+with $F$ contained as a subfield. What happens if we apply this construction to
+$\RD$, do we get even more real numbers? The answer is negative. In fact, we shall prove a
+stronger result: $\RD$ is final.
+
+Say that an ordered field~$F$ is \define{admissible for $\Omega$}
+\indexsee{admissible!ordered field}{ordered field, admissible}%
+\indexdef{ordered field!admissible}%
+when the strict order
+$<$ on~$F$ is a map ${<} : F \to F \to \Omega$.
+
+\begin{thm} \label{RD-final-field}
+  Every archimedean ordered field which is admissible for $\Omega$ is a subfield of~$\RD$.
+\end{thm}
+
+\begin{proof}
+  Let $F$ be an archimedean ordered field. For every $x : F$ define $L, U : \Q \to
+  \Omega$ by
+  %
+  \begin{equation*}
+    L_x(q) \defeq (q < x)
+    \qquad\text{and}\qquad
+    U_x(q) \defeq (x < q).
+  \end{equation*}
+  %
+  (We have just used the assumption that $F$ is admissible for $\Omega$.)
+  Then $(L_x, U_x)$ is a Dedekind cut.\index{cut!Dedekind} Indeed, the cuts are inhabited and rounded because
+  $F$ is archimedean and $<$ is transitive, disjoint because $<$ is irreflexive, and
+  located because $<$ is a weak linear order. Let $e : F \to \RD$ be the map $e(x) \defeq (L_x,
+  U_x)$.
+
+  We claim that $e$ is a field embedding which preserves and reflects the order. First of
+  all, notice that $e(q) = q$ for a rational number $q$. Next we have the equivalences,
+  for all $x, y : F$,
+  %
+  \begin{narrowmultline*}
+    x < y \Leftrightarrow
+    (\exis{q : \Q} x < q < y) \Leftrightarrow \narrowbreak
+    (\exis{q : \Q} U_x(q) \land L_y(q)) \Leftrightarrow
+    e(x) < e(y),
+  \end{narrowmultline*}
+  %
+  so $e$ indeed preserves and reflects the order. That $e(x + y) = e(x) + e(y)$ holds
+  because, for all $q : \Q$,
+  %
+  \begin{equation*}
+    q < x + y \Leftrightarrow
+    \exis{r, s : \Q} r < x \land s < y \land q = r + s.
+  \end{equation*}
+  %
+  The implication from right to left is obvious. For the other direction, if $q < x +
+  y$ then there merely exists $r : \Q$ such that $q - y < r < x$, and by taking $s \defeq
+  q - r$ we get the desired $r$ and $s$. We leave preservation of multiplication by $e$ as
+  an exercise.
+\end{proof}
+
+To establish that the Dedekind cuts on $\RD$ do not give us anything new, we need just one
+more lemma.
+
+\begin{lem} \label{lem:cuts-preserve-admissibility}
+  If $F$ is admissible for $\Omega$ then so is its Dedekind completion.
+  \index{completion!Dedekind}%
+\end{lem}
+
+\begin{proof}
+  Let $\bar{F}$ be the Dedekind completion of $F$. The strict order on $\bar{F}$ is
+  defined by
+  %
+  \begin{equation*}
+    ((L,U) < (L',U')) \defeq \exis{q : \Q} U(q) \land L'(q).
+  \end{equation*}
+  %
+  Since $U(q)$ and $L'(q)$ are elements of $\Omega$, the lemma holds as long as $\Omega$
+  is closed under conjunctions and countable existentials, which we assumed from the outset.
+\end{proof}
+
+
+\begin{cor} \label{RD-dedekind-complete}
+  %
+  \indexdef{complete!ordered field, Dedekind}%
+  \indexdef{Dedekind!completeness}%
+  The Dedekind reals are Dedekind complete: for every real-valued Dedekind cut $(L, U)$
+  there is a unique $x : \RD$ such that $L(y) = (y < x)$ and $U(y) = (x < y)$ for all $y :
+  \RD$.
+\end{cor}
+
+\begin{proof}
+  By \autoref{lem:cuts-preserve-admissibility} the Dedekind completion $\barRD$ of $\RD$
+  is admissible for $\Omega$, so by \autoref{RD-final-field} we have an embedding $\barRD
+  \to \RD$, as well as an embedding $\RD \to \barRD$. But these embeddings must be
+  isomorphisms, because their compositions are order-preserving field homomorphisms\index{homomorphism!field} which
+  fix the dense subfield~$\Q$, which means that they are the identity. The corollary now
+  follows immediately from the fact that $\barRD \to \RD$ is an isomorphism.
+\end{proof}
+
+\index{real numbers!Dedekind|)}%
+
+
+\end{document}

@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProductOfCountableSets}
+\pmcreated{2013-03-22 19:02:53}
+\pmmodified{2013-03-22 19:02:53}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{product of countable sets}
+\pmrecord{10}{41926}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{tabls}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\PMlinkescapeword{c}
+
+\begin{prop} $\mathbb{N}^2$ is countable. \end{prop}
+
+This is actually proved in \PMlinkname{this entry}{AlternativeDefinitionsOfCountable}, by finding either a surjection $\mathbb{N}\to \mathbb{N}^2$, or an injection $\mathbb{N}^2 \to \mathbb{N}$.  In the following proof, we are going to get a bijection.
+
+\begin{proof}
+There are many ways to prove this.  One way is to place the integer pairs in a two-dimensional array indicated by the table on the left below:
+\begin{center}
+\begin{tabular}{ c|c c c c }
+$i \backslash j$ & $1$ & $2$ & $3$ & $\cdots$ \\
+\hline
+$1$ & $(0,0)$ & $(0,1)$ & $(0,2)$ & $\cdots$ \\
+$2$ & $(1,0)$ & $(1,1)$ & $(1,2)$ & $\cdots$ \\
+$3$ & $(2,0)$ & $(2,1)$ & $(2,2)$ & $\cdots$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ 
+\end{tabular}
+\hspace{1cm}
+\begin{tabular}{ c|c c c c }
+$i \backslash j$ & $1$ & $2$ & $3$ & $\cdots$ \\
+\hline
+$1$ & $1$ & $2$ & $4$ & $\cdots$ \\
+$2$ & $3$ & $5$ & $8$ & $\cdots$ \\
+$3$ & $6$ & $9$ & $13$ & $\cdots$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ 
+\end{tabular}
+\end{center}
+Let $C(i,j)$ be the content of cell $(i,j)$, located in the $i$-th row and $j$-th column.  For example, $C(1,1)=(0,0)$, and $C(3,2)=(2,1)$.
+
+Now, let us construct a list of the pairs, which essentially amounts to constructing a bijection $h: \mathbb{N}^2 \to \mathbb{N}$ (the table on the right above).  We start at cell $(1,1)$.  If cell $(i,j)$ has been counted, the next cell to be counted is $(i+1,j-1)$ if $j>1$, or $(1,i+1)$ if $j=1$.  Thus, the first several pairs on the list are
+$$(0,0),\; (0,1),\; (1,0),\; (0,2),\; (1,1),\; (2,0),\; (0,3),\; \ldots$$
+We leave it to the reader to find the bijection $h$ (hint: see the entry on pairing function).  Therefore, $\mathbb{N}^2$ is countable.  
+\end{proof}
+
+\begin{prop} If $A$ and $B$ are countable, so is $A\times B$. \end{prop}
+\begin{proof}  Suppose $f:A\to \mathbb{N}$ and $g:B\to \mathbb{N}$ are injections.  Then $h:=(f,g):A\times B\to \mathbb{N}^2$ is an injection.  Since $\mathbb{N}^2$ is countable, so is $A\times B$.
+\end{proof}
+
+\begin{prop}  Let $n$ be a positive integer, and $A_1,\ldots, A_n$ sets.  Then $A_1 \times \cdots \times A_n$ is countable iff each $A_i$ is. \end{prop}
+\begin{proof}
+Again, if one of $A_i$ is empty, so is the product, and vice versa.  The countability follows immediately.  So we assume that none of $A_i$ is empty.  Set $A:=A_1\times \cdots A_n$.
+
+Suppose first that $A_1,\ldots, A_n$ are countable.  We do induction on $n$.  The case where $n=1$ is clear.  Suppose now that $n=k$ is true.  Then $A_1\times \cdots \times A_k \times A_{k+1}$ is just the product of two countable sets $A_1 \times \cdots \times A_k$ and $A_{k+1}$, which we know is countable by the proposition above.
+
+Conversely, suppose $A$ is countable.  Let $g: A \to \mathbb{N}$ be an injection.  Since $A_i \ne \varnothing$, fix $a_i\in A_i$ for each $i = 1,\ldots, n$.  Now, for any $A_i$, define a map $e_i: A_i\to A$ so that the $i$-th component of $e_i(a)$ is $a$, and the $j$-th component is the fixed element $a_j \in A_j$, if $j\ne i$.  Clearly, $e_i: A_i\to A$ is an injection, so its composition with $g$ is also an injection from $A$ to $\mathbb{N}$, showing that $A_i$ is countable.
+\end{proof}
+
+\begin{cor} For any positive integer $n$, $A$ is countable iff $A^n$ is. \end{cor}
+
+\textbf{Remark}.  However, infinite products of sets are in general uncountable, even if each of the sets is finite.  In particular, $\lbrace 0,1\rbrace^{\mathbb{N}}$ is uncountable.  The proof uses Cantor's diagonalization argument.
+
+%%%%%
+%%%%%
+\end{document}

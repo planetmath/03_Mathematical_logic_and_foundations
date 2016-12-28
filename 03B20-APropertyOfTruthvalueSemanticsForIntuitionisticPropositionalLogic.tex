@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{APropertyOfTruthvalueSemanticsForIntuitionisticPropositionalLogic}
+\pmcreated{2013-03-22 19:34:14}
+\pmmodified{2013-03-22 19:34:14}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{a property of truth-value semantics for intuitionistic propositional logic}
+\pmrecord{16}{42557}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B20}
+\pmdefines{Glivenko's theorem}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+In this entry, we show the following: if $\neg A$ is a tautology of $V_n$, then $\neg A$ is a theorem.  First, we need the following lemma, which is the intuitionistic version of one for classical propositional logic, found \PMlinkname{here}{CompletenessTheoremForClassicalPropositionalLogic}.
+Given an interpretation $v$, define 
+\begin{displaymath}
+v[A] \textrm{ is }  \left\{
+\begin{array}{ll}
+\neg A & \textrm{if } v(A)=0,\\
+\neg\neg A & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+It is easy to see that for any $A$, $v(v[A])=n$ for any $v$, so that $v[A]$ is always true.  In addition, we have the following table:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$v(A)$ & $v[A]$ & $v(B)$ & $v[B]$ & $v(A\land B)$ & $v[A\land B]$ & $v(A\lor B)$ & $v[A\lor B]$ & $v(A\to B)$ & $v[A\to B]$ \\
+\hline\hline
+$0$ & $\neg A$ & $0$ & $\neg B$ & $0$ & $\neg (A\land B)$ & $0$ & $\neg (A\lor B)$ & $0$ & $\neg \neg (A\to B)$ \\
+\hline
+$0$ & $\neg A$ & $\ne 0$ & $\neg \neg B$ & $0$ & $\neg (A\land B)$ & $\ne 0$ & $\neg \neg (A\lor B)$ & $n$ & $\neg \neg (A\to B)$ \\
+\hline
+$\ne 0$ & $\neg \neg A$ & $0$ & $\neg B$ & $0$ & $\neg (A\land B)$ & $\ne 0$ & $\neg \neg (A\lor B)$ & $0$ & $\neg (A\to B)$  \\
+\hline
+$\ne 0$ & $\neg \neg A$ & $\ne 0$ & $\neg \neg B$ & $\ne 0$ & $\neg \neg (A\land B)$ & $\ne 0$ & $\neg \neg (A\lor B)$ & $\ne 0$ & $\neg \neg (A\to B)$ \\
+\hline
+\end{tabular}
+\end{center}
+The proofs of the following lemmas use instances of the theorem schemas below (proofs \PMlinkname{here}{SomeTheoremSchemasOfIntuitionisticPropositionalLogic}):
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$1$ & $2$ & $3$ \\
+\hline\hline
+$(C\to D)\to (\neg D\to \neg C)$ & $\neg \neg \neg C \to \neg C$ & $C \to \neg \neg C$ \\
+\hline
+\end{tabular}
+\end{center}
+\begin{lem}  
+$v[A],v[B]\vdash v[A\land B]$.
+\end{lem}
+\begin{proof}  Since $\vdash A\land B \to A$ and $\vdash A\land B\to B$, by modus ponens and instances of the theorem schema 1 above, we have $\vdash \neg A \to \neg (A\land B)$ and $\vdash \neg B \to \neg (A\land B)$.  This proves the first three cases.
+
+For the last case, we start with the axiom $A\to (B\to A\land B)$, or $A \vdash B\to A\land B$ by the deduction theorem.  Apply modus ponens twice to instances of schema 1, we get $A \vdash \neg \neg B \to \neg \neg(A\land B)$, or $\neg \neg B \vdash A \to \neg \neg (A\land B)$ by the deduction theorem twice.  Again, applying modus ponens twice to instances of 1, we have $\neg \neg B\vdash \neg \neg A \to \neg \neg \neg \neg (A\land B)$, or $\neg \neg B, \neg \neg A \vdash \neg \neg \neg \neg (A\land B)$ by the deduction theorem.  One application of modus ponens to an instance of schema 2, we have $\neg \neg B, \neg \neg A \vdash \neg \neg (A\land B)$, as desired.
+\end{proof}
+
+\begin{lem}  
+$v[A],v[B]\vdash v[A\lor B]$.
+\end{lem}
+\begin{proof}  Since $\vdash A \to A\lor B$ and $\vdash B\to A\lor B$, by modus ponens twice to instances of the schema 1, we have $\vdash \neg \neg A \to \neg \neg (A\lor B)$ and $\vdash \neg \neg B \to \neg \neg (A\lor B)$.  This settles the last three cases.
+
+For the first case, we use the axiom $(A\to \perp)\to ((B\to \perp) \to ((A\lor B)\to \perp))$, which is just $\neg A \to (\neg B\to \neg (A\lor B))$, or $\neg A,\neg B\vdash \neg (A\lor B)$ by the deduction theorem twice.
+\end{proof}
+
+\begin{lem}  
+$v[A],v[B]\vdash v[A\to B]$.
+\end{lem}
+\begin{proof}  
+For the first two, all we need is $\neg A \vdash \neg \neg (A\to B)$.  To see this, we have deduction $$A \to \perp, A, \perp, \perp \to B, B,$$ so $\neg A, A\vdash B$, or $\neg A \vdash A\to B$ by the deduction theorem.  Since $(A\to B) \to \neg \neg (A\to B)$ is an instance of schema 3, by modus ponens, $\neg A \vdash \neg \neg (A\to B)$ as desired.
+
+For the third, by the deduction theorem, it is enough to show $\neg \neg A, \neg B, A\to B \vdash \perp$.  Now,
+$$\neg A \to \perp, \neg B, A \to B, (A\to B)\to (\neg B\to \neg A), \neg B \to \neg A, \neg A, \perp$$ is a deduction of $\perp$ from $\neg \neg A, \neg B$, and $A\to B$, where $(A\to B) \to (\neg B\to \neg A)$ is a theorem.
+
+For the last, all we need to show is $\neg \neg B\vdash \neg \neg (A\to B)$.  We start with $B\to (A\to B)$, which is an axiom. Applying modus ponens twice to instances of 1, we have $\vdash \neg \neg B \to \neg \neg (A\to B)$, or $\neg \neg B \vdash \neg \neg (A\to B)$.
+\end{proof}
+
+\begin{lem}  Suppose $p_1,\ldots, p_n$ are all the propositional variables in a wff $A$.  Then
+$$v[p_1], \ldots, v[p_m] \vdash v[A].$$
+\end{lem}
+\begin{proof}  We use induction on the number $n$ of primitive logical connectives ($\land, \lor$, and $\to$) in $A$.  If $n=0$, then $A$ is either $\perp$ or a propositional variable $p$.  If $A$ is $\perp$, then $\perp \vdash \perp$, or $\vdash \neg \perp$, or $\vdash v[\perp]$.  If $A$ is $p$, then clearly $v[p]\vdash v[p]$.  Now, if $A$ has $n+1$ connectives, and is either $B\land C$, $B\lor C$, or $B\to C$, then $B$ and $C$ has no more than $n$ connectives. By induction, $$v[p_{i(1)}],\ldots, v[p_{i(s)}]\vdash v[B]\qquad \mbox{and} \qquad v[p_{j(1)}],\ldots, v[p_{j(t)}]\vdash v[C]$$
+or $$v[p_1],\ldots, v[p_m]\vdash v[B]\qquad \mbox{and} \qquad v[p_1],\ldots, v[p_m]\vdash v[C]$$
+By the first three lemmas above, $v[B],v[C]\vdash v[A]$, so by modus ponens twice,
+$$v[p_1],\ldots, v[p_m]\vdash v[A].$$
+\end{proof}
+
+We are now ready for the main result:
+\begin{thm}  If $A$ is a tautology of $V_n$, then $\vdash \neg \neg A$. \end{thm}
+\begin{proof}  Let $v$ be any interpretation, then $v[p_1],\ldots, v[p_m]\vdash v[A]$ by the last lemma, where $p_1,\ldots,p_m$ are all the propositional variables in $A$.  Since $A$ is a tautology, $$v[p_1],\ldots, v[p_m]\vdash \neg \neg A.$$  If $m=0$, then we are done.  Otherwise, let $v_1$ and $v_2$ be two interpretations such that $v_1[p_i]=v_2[p_i]$ for $i=1,\ldots,m-1$, and $v_1[p_m]=\neg p_m$ and $v_2[p_m]=\neg \neg p_m$, so that 
+$$v[p_1],\ldots, v[p_{m-1}], \neg p_m \vdash \neg \neg A \qquad \mbox{and} \qquad v[p_1],\ldots, v[p_{m-1}], \neg \neg p_m \vdash \neg \neg A.$$
+By applying the deduction theorem twice to each of the above deductive relations, we get
+$$v[p_1],\ldots, v[p_{m-1}], \neg A \vdash \neg \neg p_m \qquad \mbox{and} \qquad v[p_1],\ldots, v[p_{m-1}], \neg A \vdash \neg \neg \neg p_m.$$
+Apply schema 2 to the second deductive relation above, we get $$v[p_1],\ldots, v[p_{m-1}], \neg A \vdash \neg p_m.$$  By the deduction theorem once more, we have 
+$$v[p_1],\ldots, v[p_{m-1}] \vdash \neg A \to \neg \neg p_m \qquad \mbox{and} \qquad v[p_1],\ldots, v[p_{m-1}] \vdash \neg A \to \neg p_m.$$
+With the axiom instance $(\neg A\to \neg p_m)\to ((\neg A\to \neg \neg p_m) \to \neg \neg A)$, apply modus ponens to each of the last two deductive relations, we get
+$$v[p_1],\ldots, v[p_{m-1}] \vdash \neg \neg A,$$ so that $v[p_m]$ is removed from the original deductive relation.  Continue this process until all of the $v[p_i]$ are removed on the left, and we get $$\vdash \neg \neg A.$$
+\end{proof}
+We record to immediate corollaries:
+\begin{cor} If $\neg A$ is a tautology of $V_n$, then $\vdash \neg A$. \end{cor}
+\begin{proof} By the theorem, $\vdash \neg \neg \neg A$.  But $\vdash \neg \neg \neg A \to \neg A$, $\vdash \neg A$ by modus ponens.  \end{proof}
+In the next corollary, we use $\vdash_c A$ and $\vdash_i$ to distinguish that $A$ is a theorem of classical and intuitionistic propositional logic respectively.
+\begin{cor} (Glivenko's Theorem) $\vdash_c A$ iff $\vdash_i \neg \neg A$. \end{cor}
+\begin{proof}  If $\vdash_c A$, then by the soundness theorem of classical propositional logic, $A$ is a tautology of truth-value semantics, which is just $V_2$, and therefore by the theorem above, $\vdash_i \neg \neg A$.
+
+Conversely, if $\vdash_i \neg \neg A$, then certainly $\vdash_c \neg \neg A$, as \PMlinkname{PL$_i$ is a subsystem of PL$_c$}{IntuitionisticPropositionalLogicIsASubsystemOfClassicalPropositionalLogic}.  Since $\neg \neg A \to A$ is a theorem of PL$_c$, we get $\vdash_c A$ by modus ponens.
+\end{proof}
+In particular, $\vdash_c \perp$ iff $\vdash_i \perp$, since $\vdash_i \neg \neg \perp\leftrightarrow \perp$.  In other words, PL$_c$ is consistent iff PL$_i$ is.
+
+%%%%%
+%%%%%
+\end{document}

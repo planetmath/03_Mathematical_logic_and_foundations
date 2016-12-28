@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{OrderedTree}
+\pmcreated{2013-03-22 19:00:11}
+\pmmodified{2013-03-22 19:00:11}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{ordered tree}
+\pmrecord{5}{41871}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E05}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A tree is, by definition, a partially ordered set.  An \emph{ordered tree} is a tree equipped with a linear extension.  In other words, its a linear order on the nodes of the tree that obeys the parent-child relationship of the tree.  By Zorn's lemma, every tree can be ordered.  When a tree $T$ is finite, the linear extension of the tree can be constructed inductively:
+\begin{enumerate}
+\item First, label the nodes of $T$: each label is an $n$-tuple of positive integers, for some $n$,
+\begin{enumerate}
+\item the root of $T$ is labeled $(1)$,
+\item if a node $V$ of $T$ has been labeled $(m_1,\ldots,m_k)$, and if the children of $T$ are $V_1,\ldots, V_{\ell}$, then label each $V_i$ by $(m_1,\ldots, m_k, i)$.
+\end{enumerate}
+From this labeling process, we see that the (direct) children of the root have labels $(1,1),(1,2),\ldots $.  In general, if a node is of level $k$, its label is a $k$-tuple starting with $1$.  It is easy to see that each label corresponds to a unique node of $T$: for if two distinct nodes are of different level, their labels are clearly different.  However, if they are of the same level, then the last components of their labels are distinct.
+\item
+Next, order the labels of the nodes lexicographically.  In other words, given an $m$-tuple $p=(p_1,\ldots, p_m)$ and an $n$-tuple $q=(q_1,\ldots, q_n)$, compare them componentwise, starting from the first.  There are two cases:
+\begin{enumerate}
+\item either all $k$ components match, where $k=\min(m,n)$, or
+\item $p_j\ne q_j$, but $p_i=q_i$ for all $i<j$, where $j\le \min(m,n)$.
+\end{enumerate}
+Then $p<q$ iff $m< n$ in the first case, or $p_j< q_j$ in the second.  This ordering on the labels induces an ordering on the nodes: for nodes $V$ and $V'$ with labels $p$ and $p'$, $$V\le V' \qquad \mbox{iff} \qquad p\le p'.$$
+This ordering on the nodes is linear, and extends the partial ordering on $T$.
+\end{enumerate}
+
+For example, below are two diagrams of the same tree.  The one on the right is labeled by the method above:
+\begin{figure}[htp]
+  \centering
+    \begin{minipage}[t]{0.58\linewidth}
+      \includegraphics{tree1.eps}
+    \end{minipage}
+\hspace{-2.5cm}
+    \begin{minipage}[t]{0.38\linewidth}
+      \includegraphics[scale=0.75]{tree2.eps}
+    \end{minipage}
+\end{figure}
+
+By ordering the labels, we get the corresponding ordering of the nodes:
+$$ a < b < e < f < c < g < h < i < j < k < d.$$
+%%%%%
+%%%%%
+\end{document}

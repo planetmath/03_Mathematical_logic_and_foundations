@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofOfZermelosWellorderingTheorem}
+\pmcreated{2013-03-22 12:59:07}
+\pmmodified{2013-03-22 12:59:07}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{proof of Zermelo's well-ordering theorem}
+\pmrecord{9}{33359}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Let $X$ be any set and let $f$ be a choice function on $\mathcal{P}(X)\setminus\{\emptyset \} $.  Then define a function $i$ by transfinite recursion on the class of ordinals as follows:
+$$i(\beta)=f(X-\bigcup_{\gamma<\beta} \{i(\gamma)\})\text{ unless } X-\bigcup_{\gamma<\beta} \{i(\gamma)\}=\emptyset\text{ or }i(\gamma)\text{ is undefined for some }\gamma<\beta$$
+
+(the function is undefined if either of the unless clauses holds).
+
+Thus $i(0)$ is just $f(X)$ (the least element of $X$), and $i(1)=f(X-\{i(0)\})$ (the least element of $X$ other than $i(0)$).
+
+Define by the axiom of replacement $\beta=i^{-1}[X]=\{\gamma\mid i(\gamma)=x \text{ for some }x\in X\}$.  Since $\beta$ is a set of ordinals, it cannot contain all the ordinals (by the Burali-Forti paradox).
+
+Since the ordinals are well ordered, there is a least ordinal $\alpha$ not in $\beta$, and therefore $i(\alpha)$ is undefined.  It cannot be that the second unless clause holds (since $\alpha$ is the least such ordinal) so it must be that $X-\bigcup_{\gamma<\alpha} \{i(\gamma)\}=\emptyset$, and therefore for every $x\in X$ there is some $\gamma<\alpha$ such that $i(\gamma)=x$.  Since we already know that $i$ is injective, it is a bijection between $\alpha$ and $X$, and therefore establishes a well-ordering of $X$ by $x<_Xy\leftrightarrow i^{-1}(x)<i^{-1}(y)$.
+
+The reverse is simple.  If $C$ is a set of nonempty sets, select any well ordering of $\bigcup C$.  Then a choice function is just $f(a)=$\texttt{ the least member of }$a$\texttt{ under that well ordering}.
+%%%%%
+%%%%%
+\end{document}

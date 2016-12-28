@@ -1,0 +1,198 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{215UniversalProperties}
+\pmcreated{2013-11-16 5:43:25}
+\pmmodified{2013-11-16 5:43:25}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2.15 Universal properties}
+\pmrecord{5}{87623}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\dsm#1{\@dsm{#1}\@ifnextchar\bgroup{\dsm}{}}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\emptyt}{\ensuremath{\mathbf{0}}\xspace}
+\newcommand{\eqvspaced}[2]{\ensuremath{#1 \;\simeq\; #2}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newenvironment{myeqn}{\begin{equation}}{\end{equation}\addtocounter{mathcount}{1}}
+\renewcommand{\theequation}{2.15.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{2.15.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{universal!property|(}%
+By combining the path computation rules described in the preceding sections, we can show that various type forming operations satisfy the expected universal properties, interpreted in a homotopical way as equivalences.
+For instance, given types $X,A,B$, we have a function
+\index{type!product}%
+\begin{myeqn}\label{eq:prod-ump-map}
+  (X\to A\times B) \to (X\to A)\times (X\to B)
+\end{myeqn}
+defined by $f \mapsto (\proj1 \circ f, \proj2\circ f)$.
+
+\begin{thm}\label{thm:prod-ump}
+  \index{universal!property!of cartesian product}%
+  \eqref{eq:prod-ump-map} is an equivalence.
+\end{thm}
+\begin{proof}
+  We define the quasi-inverse by sending $(g,h)$ to $\lam{x}(g(x),h(x))$.
+  (Technically, we have used the induction principle for the cartesian product $(X\to A)\times (X\to B)$, to reduce to the case of a pair.
+  From now on we will often apply this principle without explicit mention.)
+
+  Now given $f:X\to A\times B$, the round-trip composite yields the function
+  \begin{myeqn}
+    \lam{x} (\proj1(f(x)),\proj2(f(x))).\label{eq:prod-ump-rt1}
+  \end{myeqn}
+  By \PMlinkname{Theorem 2.6.2}{26cartesianproducttypes#Thmprethm1}, for any $x:X$ we have $(\proj1(f(x)),\proj2(f(x))) = f(x)$.
+  Thus, by function extensionality, the function~\eqref{eq:prod-ump-rt1} is equal to $f$.
+
+  On the other hand, given $(g,h)$, the round-trip composite yields the pair $(\lam{x} g(x),\lam{x} h(x))$.
+  By the uniqueness principle for functions, this is (judgmentally) equal to $(g,h)$.
+\end{proof}
+
+In fact, we also have a dependently typed version of this universal property.
+Suppose given a type $X$ and type families $A,B:X\to \type$.
+Then we have a function
+\begin{myeqn}\label{eq:prod-umpd-map}
+  \Parens{\prd{x:X} (A(x)\times B(x))} \to \Parens{\prd{x:X} A(x)} \times \Parens{\prd{x:X} B(x)}
+\end{myeqn}
+defined as before by $f \mapsto (\proj1 \circ f, \proj2\circ f)$.
+
+\begin{thm}\label{thm:prod-umpd}
+  \eqref{eq:prod-umpd-map} is an equivalence.
+\end{thm}
+\begin{proof}
+  Left to the reader.
+\end{proof}
+
+Just as $\Sigma$-types are a generalization of cartesian products, they satisfy a generalized version of this universal property.
+Jumping right to the dependently typed version, suppose we have a type $X$ and type families $A:X\to \type$ and $P:\prd{x:X} A(x)\to\type$.
+Then we have a function
+\index{type!dependent pair}%
+\begin{myeqn}
+  \label{eq:sigma-ump-map}
+  \Parens{\prd{x:X}\dsm{a:A(x)} P(x,a)} \to
+  \Parens{\sm{g:\prd{x:X} A(x)} \prd{x:X} P(x,g(x))}.
+\end{myeqn}
+Note that if we have $P(x,a) \defeq B(x)$ for some $B:X\to\type$, then~\eqref{eq:sigma-ump-map} reduces to~\eqref{eq:prod-umpd-map}.
+
+\begin{thm}\label{thm:ttac}
+  \index{universal!property!of dependent pair type}%
+  \eqref{eq:sigma-ump-map} is an equivalence.
+\end{thm}
+\begin{proof}
+  As before, we define a quasi-inverse to send $(g,h)$ to the function $\lam{x} (g(x),h(x))$.
+  Now given $f:\prd{x:X} \sm{a:A(x)} P(x,a)$, the round-trip composite yields the function
+  \begin{myeqn}
+    \lam{x} (\proj1(f(x)),\proj2(f(x))).\label{eq:prod-ump-rt2}
+  \end{myeqn}
+  Now for any $x:X$, by \PMlinkname{Corollary 2.7.3}{27sigmatypes#Thmprecor1} (the uniqueness principle for $\Sigma$-types) we have
+  % 
+  \begin{equation*}
+    (\proj1(f(x)),\proj2(f(x))) = f(x).
+  \end{equation*}
+  %
+  Thus, by function extensionality,~\eqref{eq:prod-ump-rt2} is equal to $f$.
+  On the other hand, given $(g,h)$, the round-trip composite yields $(\lam {x} g(x),\lam{x} h(x))$, which is judgmentally equal to $(g,h)$ as before.
+\end{proof}
+
+\index{axiom!of choice!type-theoretic}
+This is noteworthy because the propositions-as-types interpretation of~\eqref{eq:sigma-ump-map} is ``the axiom of choice''.
+If we read $\Sigma$ as ``there exists'' and $\Pi$ (sometimes) as ``for all'', we can pronounce:
+\begin{itemize}
+\item $\prd{x:X} \sm{a:A(x)} P(x,a)$ as ``for all $x:X$ there exists an $a:A(x)$ such that $P(x,a)$'', and
+\item $\sm{g:\prd{x:X} A(x)} \prd{x:X} P(x,g(x))$ as ``there exists a choice function $g:\prd{x:X} A(x)$ such that for all $x:X$ we have $P(x,g(x))$''.
+\end{itemize}
+Thus, \PMlinkname{Theorem 2.15.7}{215universalproperties#Thmprethm3} says that not only is the axiom of choice ``true'', its antecedent is actually equivalent to its conclusion.
+(On the other hand, the classical\index{mathematics!classical} mathematician may find that~\eqref{eq:sigma-ump-map} does not carry the usual meaning of the axiom of choice, since we have already specified the values of $g$, and there are no choices left to be made.
+We will return to this point in \PMlinkname{\S 3.8}{38theaxiomofchoice}.)
+
+The above universal property for pair types is for ``mapping in'', which is familiar from the category-theoretic notion of products.
+However, pair types also have a universal property for ``mapping out'', which may look less familiar.
+In the case of cartesian products, the non-dependent version simply expresses
+the cartesian closure adjunction\index{adjoint!functor}:
+\[ \eqvspaced{\big((A\times B) \to C\big)}{\big(A\to (B\to C)\big)}.\]
+The dependent version of this is formulated for a type family $C:A\times B\to \type$:
+\[ \eqvspaced{\Parens{\prd{w:A\times B} C(w)}}{\Parens{\prd{x:A}{y:B} C(x,y)}}. \]
+Here the right-to-left function is simply the induction principle for $A\times B$, while the left-to-right is evaluation at a pair.
+We leave it to the reader to prove that these are quasi-inverses.
+There is also a version for $\Sigma$-types:
+\begin{myeqn}
+  \eqvspaced{\Parens{\prd{w:\sm{x:A} B(x)} C(w)}}{\Parens{\prd{x:A}{y:B(x)} C(x,y)}}.\label{eq:sigma-lump}
+\end{myeqn}
+Again, the right-to-left function is the induction principle.
+
+Some other induction principles are also part of universal properties of this sort.
+For instance, path induction is the right-to-left direction of an equivalence as follows:
+\index{type!identity}%
+\index{universal!property!of identity type}%
+\begin{myeqn}
+  \label{eq:path-lump}
+  \eqvspaced{\Parens{\prd{x:A}{p:a=x} B(x,p)}}{B(a,\refl a)}
+\end{myeqn}
+for any $a:A$ and type family $B:\prd{x:A} (a=x) \to\type$.
+However, inductive types with recursion, such as the natural numbers, have more complicated universal properties; see \PMlinkexternal{Chapter 5}{http://planetmath.org/node/87578}.
+
+\index{type!limit}%
+\index{type!colimit}%
+\index{limit!of types}%
+\index{colimit!of types}%
+Since \PMlinkname{Theorem 2.15.2}{215universalproperties#Thmprethm1} expresses the usual universal property of a cartesian product (in an appropriate homotopy-theoretic sense), the categorically inclined reader may well wonder about other limits and colimits of types.
+In \PMlinkexternal{Exercise 2.9}{http://planetmath.org/node/87640} we ask the reader to show that the coproduct type $A+B$ also has the expected universal property, and the nullary cases of $\unit$ (the terminal object) and $\emptyt$ (the initial object) are easy.
+\index{type!empty}%
+\index{type!unit}%
+\indexsee{initial!type}{type, empty}%
+\indexsee{terminal!type}{type, unit}%
+
+\indexdef{pullback}%
+For pullbacks, the expected explicit construction works: given $f:A\to C$ and $g:B\to C$, we define
+\begin{myeqn}
+  A\times_C B \defeq \sm{a:A}{b:B} (f(a)=g(b)).\label{eq:defn-pullback}
+\end{myeqn}
+In \PMlinkexternal{Exercise 2.11}{http://planetmath.org/node/87642} we ask the reader to verify this.
+Some more general homotopy limits can be constructed in a similar way, but for colimits we will need a new ingredient; see \PMlinkexternal{Chapter 6}{http://planetmath.org/node/87579}.
+
+\index{universal!property|)}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

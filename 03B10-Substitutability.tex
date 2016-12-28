@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Substitutability}
+\pmcreated{2013-03-22 19:12:15}
+\pmmodified{2013-03-22 19:12:15}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{substitutability}
+\pmrecord{24}{42119}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03B05}
+\pmsynonym{substitutable for}{Substitutability}
+\pmrelated{Subformula}
+\pmrelated{FreeAndBoundVariables}
+\pmdefines{free for}
+\pmdefines{free substitution instance}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+In any logical system, the way to obtain (well-formed) formulas from existing ones is by attaching logical connectives to existing ones.  For example, in classical propositional logic, if $\varphi$ and $\psi$ are formulas, the following $$\varphi\vee \psi, \quad \neg \varphi, \quad \psi \wedge \varphi$$
+are formed by attaching logical connectives $\vee,\neg$, and $\wedge$ appropriately to $\varphi$ and $\psi$.
+
+Another convenient device is substitution:
+\begin{quote}
+replace all occurrences of some symbol $x$ in a formula $\varphi$ by an expression $\psi$.
+\end{quote}
+We denote the resulting expression by $$\varphi[\psi/x].$$
+
+For example, in classical propositional logic, if $\varphi$ is $p \wedge (\neg r \vee p)$, then $\varphi[(p\vee q)/p]$ is $$(p\vee q)\wedge (\neg r \vee (p\vee q))$$
+On the other hand, the expressions
+\begin{itemize}
+\item $\varphi[\neg / p]$, which is $\neg \wedge (\neg r \vee \neg)$, and 
+\item $\varphi[q / \wedge]$, which is $p \; q (\neg r \vee q)$,
+\end{itemize}
+are not formulas.  Thus, one must be careful when performing substitutions on formulas lest the resulting expressions are ill-formed.  In other words, conditions must be placed on $x$ and $\psi$ in $\varphi[\psi/x]$ in order that $\varphi[\psi/x]$ is a (well-formed) formula.  These conditions are called the \emph{substitutability conditions}.  In this entry, we will concentrate on substitutability conditions on predicate logic.  Details on substitions in propositional logic can be found in \PMlinkname{here}{SubstitutionsInLogic}.
+
+\subsubsection*{Substitution in First-Order Logic}
+
+Substitution works pretty much the same way for first-order logic as in propositional logic.  However, the substitutability conditions are more subtle.  Take a look at the following example: $$\exists x \; (x=1)$$
+If we replace $x$ by $0$, we end up with $$\exists 0 \; (0=1),$$ which is non-sensical (not a wff).  This is because $x$ occurs in the formula as a bound variable. (one reason why we distinguish the variables occurring in first order formulas into two types: free and bound).  
+
+We now formalize the notion of substitution in first-order logic.  There are two parts: substitution for terms, and substitution for formulas.
+
+\textbf{Definition}.  For any term $t$, any symbol $x$, and any expression $s$, define $t[s/x]$ inductively, as follows:
+\begin{enumerate}
+\item if $t$ is an individual variable or a constant symbol, then $t[s/x]$ is $s$ if $t$ is $x$, and $t[s/x]$ is $t$ otherwise;
+\item if $t$ is $f(t_1,\ldots, t_n)$, where $f$ is an $n$-ary function symbol, and each $t_i$ is a term, then $t[s/x]$ is $f(t_1[s/x],\ldots, t_n[s/x])$.
+\end{enumerate}
+
+For example, if $t$ is $x+y$, then $t[(x-y)/x]$ is $(x-y)+y$.
+
+It is easy to see that $s$ is a term and $x$ an individual variable, then $t[s/x]$ is a term.  In addition, by induction, one can easily show that if the formula $s_1=s_2$ is true, so is the formula $t[s_1/x]=t[s_2/x]$.
+
+Next, we define substitution for formulas.  In light of the last example at the beginning of this section, we need to be a little careful.
+
+\textbf{Definition}.  Let $\varphi$ be a formula, $x$ a symbol, and $s$ an expression.  The expression $\varphi[s/x]$ is again define inductively:
+\begin{enumerate}
+\item if $\varphi$ is $t_1=t_2$, then $\varphi[s/x]$ is $t_1[s/x]=t_2[s/x]$;
+\item if $\varphi$ is $R(t_1,\ldots,t_n)$, then $\varphi[s/x]$ is $R(t_1[s/x],\ldots, t_n[s/x])$;
+\item if $\varphi$ is $\neg \psi$, then $\varphi[s/x]$ is $\neg (\psi[s/x])$;
+\item if $\varphi$ is $\psi \vee \sigma$, then $\varphi[s/x]$ is $\psi[s/x]\vee \sigma[s/x]$;
+\item if $\varphi$ is $\exists y \psi$, then $\varphi[s/x]$ is $\exists y (\psi[s/x])$ if $x\ne y$, and $\varphi[s/x]$ is $\varphi$ otherwise.
+\end{enumerate}
+Again, substitutions involving logical connectives $\to$, $\wedge$, and the universal quantifier $\forall$ can be derived from the rules given above.
+
+For example, if $\varphi$ is $\exists x (x=y \vee y=z)$, then $\varphi[t/y]$ is $\exists x (x=t \vee t=z)$, whereas $\varphi[t/x]$ is just $\varphi$.
+
+Given that $\varphi$ is a formula, it is easy to see that if $x$ is an individual variable, and $s$ is a term, then $\varphi[s/x]$ is a formula.  
+
+In addition, it is easy to see that sentences are not affected by substitutions: if $\varphi$ is a sentence, then $\varphi[s/x]$ is just $\varphi$.  In other words, sentences can not be changed into formulas with free variables.  
+
+Conversely, can a formula with free variables be changed into a sentence by substitution?  Certainly.  For example, if $\varphi$ is $$\exists x (y < x),$$ then $\varphi[x/y]$ is $$\exists x (x < x).$$  Although syntactically correct, this is undesirable in many situations, particularly when we are interested in the interpretations of these formulas.  In the example above, we have changed $\exists x (y < x)$, which many very well be true in many interpretations, into $\exists x (x < x)$, something with a fixed meaning (and always false if $<$ is interpreted as the usual less than relation).
+
+The problem with the situation described in the last paragraph arises because a free variable in $t$ becomes bound in $\varphi[t/x]$.  To eliminate this undesirable situation, we define the notion of ``free for'':
+
+\textbf{Definition}.  Let $x$ be an individual variable, $t$ a term, and $\varphi$ a formula.  We define the relation 
+\emph{$t$ is free for, or substitutable for $x$ in $\varphi$}, inductively, as follows:
+\begin{enumerate}
+\item $\varphi$ is an atomic formula;
+\item $\varphi$ is $\neg \psi$, and $t$ is free for $x$ in $\psi$;
+\item $\varphi$ is $\psi \vee \sigma$, and $t$ is free for $x$ in $\psi$ and in $\sigma$;
+\item $\varphi$ is $\exists y \psi$, and either
+\begin{itemize}
+\item $x\notin \operatorname{FV}(\varphi)$ ($x$ does not occur free in $\varphi$), or 
+\item $y$ does not occur in $t$, and $t$ is free for $x$ in $\psi$.
+\end{itemize}
+\end{enumerate}
+In words, $t$ is free for $x$ in $\varphi$ iff whenever $z$ is a variable in $t$, no literal subformula of $\varphi$ of the form $\exists z \psi$ contains an occurrence of $x$ which is free in $\varphi$.
+
+For example, $f(x,y)$ is free for $x$ in the following formulas:
+$$P(x,y),\qquad P(x)\vee \neg Q(z), \qquad \neg \exists x \; \neg R(x,y), \qquad \mbox{and} \qquad \neg S(y) \vee \exists y T(y,z),$$
+but not in the following formulas:
+$$\exists y P(x,y),\qquad Q(x)\vee \exists z \exists y R(x,y), \qquad \mbox{and} \qquad S(y) \to \forall y (T(y,y)\wedge \neg Q(x)).$$
+
+Given any formula $\varphi$, we again write $\varphi(x)$ to mean that variable $x$ occurs in $\varphi$.  A \emph{substitution instance} of $\varphi(x)$ is just $\varphi[t/x]$, or $\varphi(t)$ for short.  Furthermore, if $t$ is free for $x$ in $\varphi$, then $\varphi(t)$ is called a \emph{free substitution instance} of $\varphi(x)$.
+
+It is easy, by induction, to show that if terms $t_1$ and $t_2$ are free for $x$ in $\varphi$, and that the formula $t_1=t_2$ is true, the substitution instances $\varphi(t_1)$ and $\varphi(t_2)$ are logically equivalent, as intended.
+
+%%%%%
+%%%%%
+\end{document}

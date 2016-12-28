@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{mathcalNJp}
+\pmcreated{2013-03-22 13:05:17}
+\pmmodified{2013-03-22 13:05:17}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{$\mathcal{NJ}p$}
+\pmrecord{7}{33504}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F03}
+\pmsynonym{NJp}{mathcalNJp}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+$\mathcal{NJ}p$ is a natural deduction proof system for intuitionistic propositional logic.  Its only axiom is $\alpha\Rightarrow\alpha$ for any atomic $\alpha$.  Its rules are:
+
+$$\begin{array}{cc}
+\frac{\begin{array}{c}\Gamma\Rightarrow\alpha\end{array}}{
+\begin{array}{cc}
+\Gamma\Rightarrow\alpha\vee\beta&
+\Gamma\Rightarrow\beta\vee\alpha
+\end{array}{cc}}(\vee I)
+&
+\frac{\begin{array}{ccc}
+\Gamma\Rightarrow\alpha&
+\Sigma,\alpha^0\Rightarrow\phi&
+\Pi,\beta^0\Rightarrow\phi
+\end{array}}
+{\begin{array}{c}[\Gamma,\Sigma,\Pi]\Rightarrow\phi\end{array}}(\vee E)
+\end{array}$$
+
+The syntax $\alpha^0$ indicates that the rule also holds if that formula is omitted.
+
+
+$$\begin{array}{cc}
+\frac{\begin{array}{cc}
+\Gamma\Rightarrow\alpha&
+\Sigma\Rightarrow\beta
+\end{array}}{\begin{array}{c}
+[\Gamma,\Sigma]\Rightarrow\alpha\wedge\beta\end{array}}(\wedge I)
+&
+\frac{\begin{array}{c}\Gamma\Rightarrow\alpha\wedge\beta\end{array}}
+{\begin{array}{cc}
+\Gamma\Rightarrow\alpha&
+\Gamma\Rightarrow\beta
+\end{array}}(\wedge E)
+\end{array}$$
+
+$$\begin{array}{cc}
+\frac{\begin{array}{c}\Gamma,\alpha\Rightarrow\beta\end{array}}{
+\begin{array}{c}\Gamma\Rightarrow\alpha\rightarrow\beta\end{array}}(\rightarrow I)
+&
+\frac{\begin{array}{cc}
+\Gamma\Rightarrow\alpha\rightarrow\beta&
+\Sigma\Rightarrow\alpha
+\end{array}}
+{\begin{array}{c}[\Gamma,\Sigma]\Rightarrow\beta\end{array}}(\rightarrow E)
+\end{array}$$
+
+$$\frac{\Gamma\Rightarrow\bot}{\Gamma\Rightarrow\alpha}(\bot_i),\quad \text{ where }\alpha\text{ is atomic}$$
+%%%%%
+%%%%%
+\end{document}

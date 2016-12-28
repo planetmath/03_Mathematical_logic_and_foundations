@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A18IdentityTypes}
+\pmcreated{2013-11-09 5:05:03}
+\pmmodified{2013-11-09 5:05:03}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.1.8 Identity types}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idsym}{{=}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\makeatother
+
+\begin{document}
+We introduce primitive constants $c_\idsym$ and $c_{\refl{}}$. We write
+$\id[A] a b$ for $c_\idsym(A,a,b)$ and $\refl a$ for $c_{\refl{}}(A,a)$, when
+$a:A$ is understood:
+%
+\begin{itemize}
+\item If $A : \UU_n$, $a:A$, and $b:A$ then $\id[A] a b : \UU_n$.
+\item If $a:A$ then $\refl a :\id[A] a a $.
+\end{itemize}
+%
+Given $a:A$, if $y:A, z:\id[A] a y \vdash C : \UU_m$ and 
+$\vdash d:C[a,\refl{a}/y,z]$ then we can introduce a defined constant 
+\[
+  f:\tprd{y:A}{z:\id[A] a y} C
+\]
+with defining equation
+\[
+  f(a,\refl{a})\defeq d.
+\]
+
+\end{document}

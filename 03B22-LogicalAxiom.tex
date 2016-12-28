@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{LogicalAxiom}
+\pmcreated{2013-03-22 16:57:58}
+\pmmodified{2013-03-22 16:57:58}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{logical axiom}
+\pmrecord{15}{39240}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B22}
+\pmclassification{msc}{03B05}
+\pmsynonym{axiom scheme}{LogicalAxiom}
+\pmrelated{InferenceRule}
+\pmrelated{LogicalConnective}
+\pmrelated{DeductiveSystem}
+\pmdefines{axiom schema}
+\pmdefines{axiom schemata}
+\pmdefines{law of the excluded middle}
+\pmdefines{non-logical axiom}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In a logical system, a \emph{logical axiom} (sometimes called an axiom for short) is a logically valid (well-formed) formula used in a deductive system (particularly an axiom system) to deduce other logically valid formulas.  By a logically valid formula, we mean the formula is true in every interpretation of the logical system.  For example, in the classical first-order logic with equality, the formula $$x=x$$ may be considered a logical axiom, since it is true in every model.  Similarly, the formula $$\forall x A \to A[x/y]$$ may also be considered a logical axiom, since its interpretation ``if for all $x$ the formula $A$ is true, then the formula $A$ is true for an arbitrarily picked $x$'' is also logically valid.
+
+A logical axiom is to be contrasted from a \emph{non-logical axiom}, which is a formula that is valid depending on its interpretation.  For example, in the first-order theory of abelian groups (with one binary function symbol $\cdot$), the formula $x\cdot y=y\cdot x$ is a non-logical axiom.  But it fails to be an axiom in the first-order theory of groups.
+
+As discussed above, logical axioms are logically valid formulas set up to deduce other logically valid formulas (called theorems of the system) via certain rules, called rules of inference, for the logical system.  These rules have the property that they preserve logical validity.  A logical system in which all theorems are logically valid is said to be sound.  Conversely, if a logical system in which any logically valid formula is a theorem is said to be complete.
+
+\textbf{Example}.  (Classical propositional logic)  Formulas of the following forms can be easily verified to be logicaly valid using the truth-valuation semantics of the logical system:
+\begin{enumerate}
+\item $a\to (b\to a)$
+\item $(a\to(b\to c))\to ((a\to b)\to(a\to c))$
+\item $(\neg a\to \neg b)\to(b\to a)$
+\end{enumerate}
+where $\to$ is a binary logical connective and $\neg$ is a unary logical connective, and $a,b,c$ are any (well-formed) formulas.  Let us take these formulas as axioms.  
+
+Next, we pick a rule of inference.  The popular choice is the rule ``modus ponens'', which states that from formulas $A$ and $A\to B$, one my deduce $B$.  It is easy to see that this rule preserves logical validity.
+
+The axioms, together with modus ponens, form a sound deductive system for the classical propositional logic.  In addition, it is also complete.
+
+Note that in the above set, we are actually looking at three smaller sets, each set containing formulas of a specific form.  For example, the first sets of axioms above is: $$\lbrace a\to (b\to a)\mid a,b\mbox{ are well-formed formulas of classical propositional language.}\rbrace.$$
+Any such a set of axioms is called an \emph{axiom scheme}, or \emph{axiom schema}, and a collection of axiom schemas is called the \emph{axiom schemata}.
+
+\textbf{Remark}.  Note that the deductive system in the example above is not unique for classical propositional logic.  The idea is that one may take an axiom schema (or schemata), and swap it with a logically equivalent set of schema (or schemata).  The resulting schemata, together with the rules, gives a deductive system equivalent to the original one.  The following schemata, together with modus ponens, also produces a sound and complete deductive system:
+\begin{enumerate}
+\item $a\to (b\to a)$
+\item $(a\to(b\to c))\to ((a\to b)\to(a\to c))$
+\item $a\to (a\vee b)$
+\item $b\to (a\vee b)$
+\item $(a\to c)\to ((b\to c)\to((a\vee b)\to c))$
+\item $(a\wedge b)\to a$
+\item $(a\wedge b)\to b$
+\item $(c\to a)\to ((c\to b)\to (c\to (a\wedge b)))$
+\item $(a\to \neg b)\to (b\to \neg a)$
+\item $\neg(a\to a)\to b$
+\item $a\vee \neg a$ (law of the excluded middle)
+\end{enumerate}
+Note that the difference between these axioms and the ones in the previous example is the appearance of the logical connectives $\vee$ and $\wedge$.  Here, $\vee$ and $\wedge$ are treated as primitive logical symbols, where as in the previous example, formulas of the forms $a\vee b$ and $a\wedge b$ may be ``defined'' in terms of $a,b,\to$ and $\neg$.
+
+It is interesting to note that it is even possible to form a deductive system using just one axiom schema and modus ponens.  The following example was discovered by C. Meredith:
+$$\Big[\Big(\big((a\to b)\to (\neg c\to \neg d)\big)\to c\Big)\to e\Big]\to \big((e\to a)\to (d\to a)\big).$$
+
+\begin{thebibliography}{7}
+\bibitem{dm} D. Monk: {\em Mathematical Logic}, Springer-Verlag, New York (1976).
+\bibitem{he} H. Enderton: {\em A Mathematical Introduction to Logic}, Academic Press, San Diego (1972).
+\bibitem{JS} J. R. Shoenfield, {\it Mathematical Logic}, AK Peters (2001).
+\bibitem{hr} H. Rasiowa: {\em Post Algebras as a Semantic Foundation of $m$-Valued Logics, Studies in Algebraic Logic}, The Mathematical Association of America, (1974).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

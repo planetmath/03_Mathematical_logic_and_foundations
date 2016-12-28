@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PropertiesOfSubstitutability}
+\pmcreated{2013-03-22 19:35:51}
+\pmmodified{2013-03-22 19:35:51}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{properties of substitutability}
+\pmrecord{23}{42588}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03B05}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+In this entry, we list some basic properties of substitutability in first order logic with respect to commutativity.  
+
+\begin{prop} If $x,y$ are distinct variables, then $$t[s/x][r/y]=t[r/y][s[r/y]/x],$$ provided that $x$ does not occur in $r$. \end{prop}
+\begin{proof}
+Suppose $x$ and $y$ are distinct variables, and $r,s,t$ are terms.  We do induction on the complexity of $t$.
+\begin{enumerate}
+\item First, suppose $t$ is a constant symbol.  Then LHS and RHS are both $t$.  
+\item Next, suppose $t$ is a variable.  
+\begin{itemize}
+\item If $t$ is $x$, then LHS $=s[r/y]$, and since $y$ is not $x$, RHS $=x[s[r/y]/x]=s[r/y]$.  
+\item If $t$ is $y$, then LHS $=y[r/y]=r$, since $x$ is not $y$, and RHS $=r[s[r/y]/x]=r$, since $x$ does not occur in $r$.  
+\item If $t$ is neither $x$ nor $y$, then both sides are $t$.
+\end{itemize}
+In all three cases, LHS $=$ RHS.  
+\item Finally, suppose $t$ is of the form $f(t_1,\ldots,t_n)$.  Then LHS $= f(t_1[s/x],\ldots, t_n[s/x]) [r/y] = f(t_1[s/x][r/y], \ldots, t_n[s/x][r/y])$, which, by induction, is $$f(t_1[r/y][s[r/y]/x], \ldots, t_n[r/y][s[r/y]/x])$$  or $f(t_1[r/y], \ldots, t_n[r/y]) [s[r/y]/x] = f(t_1,\ldots, t_n) [r/y][s[r/y]/x] = $RHS.
+\end{enumerate}
+\end{proof}
+Now, if $s$ is $y$, then $t[y/x][r/y]=t[r/y][r/x]$, and we record the following corollary:
+\begin{cor} If $x$ is not in $r$ and $y$ not in $t$, then $t[y/x][r/y]=t[r/x]$. \end{cor}
+The only thing we need to show is the case when $x$ is $y$, but this is also clear, as $t[y/x][r/y]=t[x/x][r/x]=t[r/x]$.
+
+With respect to formulas, we have a similar proposition:
+\begin{prop} If $x,y$ are distinct variables, then $$A[t/x][s/y]=A[s/y][t[s/y]/x],$$ provided that $x$ does not occur in $s$, and $t$ and $s$ are respectively free for $x$ and $y$ in $A$. \end{prop}
+\begin{proof} Suppose $x$ and $y$ are distinct variables, $s,t$ terms, and $A$ a wff.  We do induction on the complexity of $A$.
+\begin{enumerate}
+\item First, suppose $A$ is atomic.
+\begin{itemize}
+\item $A$ is of the form $t_1 = t_2$, then LHS is $t_1[t/x][s/y]=t_2[t/x][s/y]$ and we can apply the previous equation to both $t_1$ and $t_2$ to get RHS.  
+\item If $A$ is of the form $R(t_1,\ldots,t_n)$, then LHS is $R(t_1[t/x][s/y],\ldots, t_n[t/x][s/y])$, and we again apply the previous equation to each $t_i$ to get RHS.  
+\end{itemize}
+\item Next, suppose $A$ is of the form $B\to C$.  Then LHS $=B[t/x][s/y] \to C[t/x][s/y]$, and, by induction, is $B[s/y][t[s/y]/x] \to C[s/y][t[s/y]/x] = $ RHS.  
+\item Finally, suppose $A$ is of the form $\exists z B$.
+\begin{itemize}
+\item $x$ is $z$.  Then $A[t/x][s/y]=A[s/y]$, and $A[s/y][t[s/y]/x]=A[s/y]$ since $x$ is bound in $A[s/y]$.
+\item $x$ is not $z$.  Then $A[t/x][s/y]=(\exists z B[t/x])[s/y]$.
+\begin{itemize}
+\item $y$ is $z$.  Then $(\exists z B[t/x])[s/y] = \exists z B[t/x]$.  On the other hand, $A[s/y][t[s/y]/x] = A[t[s/y]/x] = \exists z B[t[s/y]/x]$.  By induction, $t,s$ are free for $x,y$ in $B$, and $B[t/x]=B[t[s/y]/x]$, the result follows.
+\item $y$ is not $z$.  Then $(\exists z B[t/x])[s/y] = \exists z B[t/x][s/y]$.  On the other hand, $A[s/y][t[s/y]/x] = (\exists z B[s/y])[t[s/y]/x] = \exists z B[s/y][t[s/y]/x]$ since $x$ is not $z$.  By induction again, $t,s$ are free for $x,y$ in $B$, and $B[t/x]=B[t[s/y]/x]$, the result follows once more.
+\end{itemize}
+\end{itemize}
+\end{enumerate}
+\end{proof}
+Now, if $t$ is $y$, then $A[y/x][s/y]=A[s/y][s/x]$, and we record the following corollary:
+\begin{cor} If $y$ is not free in $A$, and is free for $x$ in $A$, then $A[y/x][s/y]=A[s/x]$. \end{cor}
+
+%%%%%
+%%%%%
+\end{document}

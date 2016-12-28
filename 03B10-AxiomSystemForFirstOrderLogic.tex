@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AxiomSystemForFirstOrderLogic}
+\pmcreated{2013-03-22 19:32:22}
+\pmmodified{2013-03-22 19:32:22}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{axiom system for first order logic}
+\pmrecord{24}{42518}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+\pmsynonym{universal generalization}{AxiomSystemForFirstOrderLogic}
+\pmdefines{generalization}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Let FO$(\Sigma)$ be a first order language over signature $\Sigma$.  Furthermore, let $V$ be a countably infinite set of variables and $V(\Sigma)$ the set extending $V$ to include the constants in $\Sigma$.  Before describing the axiom system for FO$(\Sigma)$, we need the following definition:
+
+\textbf{Definition}.  Let $A$ be a wff.  A \emph{generalization} of $A$ is a wff having the form $\forall x_1 \forall x_2 \cdots \forall x_n A$, for any $n\ge 0$.  Thus, $A$ is a generalization of itself.
+
+The axiom system of FO$(\Sigma)$ consists of any wff that is a generalization of a wff belonging to any one of the following six schemas:
+\begin{enumerate}
+\item $A\to (B\to A)$
+\item $(A\to (B\to C)) \to ((A\to B)\to (A\to C))$
+\item $\neg \neg A \to A$
+\item $\forall x (A\to B) \to (\forall x A \to \forall x B)$, where $x\in V$
+\item $A\to \forall x A$, where $x\in V$ is not free in $A$
+\item $\forall x A \to A[a/x]$, where $x\in V$, $a\in V(\Sigma)$, and $a$ is free for $x$ in $A$
+\end{enumerate}
+and modus ponens (from $A$ and $A\to B$ we may infer $B$) as its only rule of inference.
+
+In schema 6, the wff $A[a/x]$ is obtained by replacing all free occurrences of $x$ in $A$ by $a$.  
+
+Logical symbols $\land,\lor$, and $\exists$ are derived: $A\lor B:=\neg A\to B$; $A\land B:=\neg (\neg A\lor \neg B)$; and $\exists x A:=\neg \forall x \neg A$.
+
+\textbf{Remark}.  Again, in schema 6, the reason why we want $a$ free for $x$ in $A$ is to keep the ``intended meaning'' of $A$ intact.  For example, suppose $A$ is $\forall y (x < y)$.  Then $A[y/x]$ is $\forall y (y < y)$.  Obviously the two do not have the same ``intended meaning''.  In fact, $A[y/x]$ is not valid in any model.  Similarly, in the schema 5, we want $x$ not occur free in $A$ to maintain its ``intended meaning''.  For example, if $A$ is the formula $x=0$, then $\forall x A$ is $\forall x (x=0)$, which is not true in any model with at least two elements.
+
+The concepts of deductions and theorems are exactly the same as those found in propositional logic.  Here is an example: if $\vdash A$, then $\vdash \forall x A$.  To see this, we induct on the length $n$ of the deduction of $A$.  If $n=1$, then $A$ is an axiom, and therefore so is its generalization $\forall x A$, so that $\vdash \forall x A$. Suppose now that the length is $n+1$.  If $A$ is an axiom, we are back to the previous argument.  Otherwise, $A$ is obtained from earlier formulas $B$ and $B\to A$ via modus ponens.  Since the deduction of $B$ and $B\to A$ are at most $n$, by induction, we have $\vdash \forall x B$ and $\vdash \forall x (B\to A)$.  Since $\forall x (B\to A) \to (\forall x B \to \forall x A)$ is an axiom, we have $\vdash \forall x B \to \forall x A$ by modus ponens, and then $\vdash \forall x A$ by modus ponens again.
+
+\textbf{Remark}.  Another popular axiom system for first order logic has 1, 2, 3, 6 above as its axiom schemas, plus the following schema
+\begin{itemize}
+\item $\forall x (A\to B) \to (A \to \forall x B)$, where $x \in V$ is not free in $A$
+\end{itemize}
+and two rules of inferences: modus ponens, and \emph{universal generalization}:
+\begin{itemize}
+\item from $A$ we may infer $\forall x A$, where $x \in V$
+\end{itemize}
+Note the similarity between the rule of generalization and axiom schema 5 above.  However, the important difference is that $x$ is not permitted to be free in $A$ in the axiom schema.
+
+With this change, the concept of deductions needs to be modified: we say that a wff $A$ is \emph{deducible} from a set $\Gamma$ of wff's, if there is a finite sequence $$A_1,\ldots, A_n$$
+where $A=A_n$, such that for each $i$, $i=1,\ldots, n$
+\begin{enumerate}
+\item $A_i$ is either an axiom or in $\Gamma$
+\item $A_i$ is obtained by an application of modus ponens
+\item $A_i$ is obtained by an application of generalization: $A_i$ is $\forall x A_j$ for some $j<i$.
+\end{enumerate}
+
+%%%%%
+%%%%%
+\end{document}

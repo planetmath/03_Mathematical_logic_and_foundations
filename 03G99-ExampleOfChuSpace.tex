@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExampleOfChuSpace}
+\pmcreated{2013-03-22 13:05:00}
+\pmmodified{2013-03-22 13:05:00}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{example of Chu space}
+\pmrecord{5}{33498}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G99}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Any set $A$ can be represented as a Chu space over $\{0,1\}$ by $(A,r,\mathcal{P}(A))$ with $r(a,X)=1$ iff $a\in X$.  This Chu space satisfies only the trivial property $2^A$, signifying the fact that sets have no internal structure.  If $A=\{a,b,c\}$ then the matrix representation is:
+
+\begin{tabular}{c|llllllll}
+&\{\}&\{a\}&\{b\}&\{c\}&\{a,b\}&\{a,c\}&\{b,c\}&\{a,b,c\}\\
+a&0&1&0&0&1&1&0&1\\
+b&0&0&1&0&1&0&1&1\\
+c&0&0&0&1&0&1&1&1
+\end{tabular}
+
+Increasing the structure of a Chu space, that is, adding properties, is equivalent to deleting columns.  For instance we can delete the columns named $\{c\}$ and $\{b,c\}$ to turn this into the partial order satisfying $c\leq a$.  By deleting more columns, we can further increase the structure.  For example, if we require that the set of rows be closed under the bitwise or operation (and delete those columns which would prevent this) then we can it will define a semilattice, and if it is closed under both bitwise or and bitwise and then it will define a lattice.  If the rows are also closed under complementation then we have a boolean algebra.
+
+Note that these are not arbitrary connections: the Chu transforms on each of these classes of Chu spaces correspond to the appropriate notion of homomorphism for those classes.
+
+For instance, to see that Chu transforms are order preserving on Chu spaces viewed as partial orders, let $\mathcal{C}=(\mathcal{A},r,\mathcal{X})$ be a Chu space satisfying $b\leq a$.  That is, for any $x\in X$ we have $r(b,x)=1\rightarrow r(a,x)=1$.  Then let $(f,g)$ be a Chu transform to $\mathcal{D}=(\mathcal{B},s,\mathcal{X})$, and suppose $s(f(b),y)=1$.  Then $r(b,g(y))=1$ by the definition of a Chu transform, and then we have $r(a,g(y))=1$ and so $s(f(a),y)=1$, demonstrating that $f(b)\leq f(a)$.
+%%%%%
+%%%%%
+\end{document}

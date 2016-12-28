@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SchroderBernsteinTheoremProof}
+\pmcreated{2013-03-22 16:40:36}
+\pmmodified{2013-03-22 16:40:36}
+\pmowner{sauravbhaumik}{15615}
+\pmmodifier{sauravbhaumik}{15615}
+\pmtitle{Schr\"{o}der Bernstein Theorem: Proof}
+\pmrecord{10}{38884}
+\pmprivacy{1}
+\pmauthor{sauravbhaumik}{15615}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+Let $A$ and $B$ be two nonempty sets; and let there be, in addition, two one-one functions $f:A\rightarrowtail B$ and $g:B\rightarrowtail A$. We propose to show that $A$ and $B$ are equinumerous i.e., they are in one to one correspondence.
+
+Consider the notation:
+\begin{eqnarray*}
+ g^{-1}(x),&\mbox{if}& x\in g(B)\\
+ f^{-1}(g^{-1}(x)),&\mbox{if}& g^{-1}(x)\in f(A)\\
+ g^{-1}(f^{-1}(g^{-1}(x))),&\mbox{if}& f^{-1}(g^{-1}(x))\in g(B)\\
+ .....
+\end{eqnarray*}
+Define, for each $x\in A$, the order of it, denoted by $\circ(x)$, to be the number of such preimage(s) which exist. In a similer way, we'd be able to define the order of an element $y\in B$, i.e., by considering the sequence $f^{-1}(y),g^{-1}(f^{-1}(y)),...$. 
+
+Now define, for each $x\in A$,
+\begin{eqnarray*}
+\phi(x):&=& f(x),\quad  \circ(x)=\infty \\
+&=&f(x),\quad  \circ(x)=2n,\mbox{ for some } n\in\omega\\
+&=&b,\quad \circ(x)=2n+1,i.e.,\exists b\in B : g(b)=x\\
+\end{eqnarray*}
+
+Notice that if the order is infinite, $\phi(x)=f(x)$ is also infinite. Because, otherwise $x$ would have to have a finite order. On the other hand, if $y\in B$ and $\circ(y)$ is infinite, then $f^{-1}(y)$ exists and has an infinite order; call the latter one $x$. This means, $\phi$ maps the infinite order elements of $A$ bijectively onto the infinite order elements of $B$.
+
+Next, if $\circ(x)=2n$, then the order of $f(x)$ is sheer $2n+1$. Similer to the above para, if for $y\in B$, the order is $2n+1$, as the order is non-zero, $f^{-1}(y)$ exists and it must have order $2n$. To formally show it you need a tedious inductive reasoning!
+
+Last, if $\circ(x)=2n+1$, then the order is $\ge 1$, and so, $g^{-1}(x)$ exists and the order of $g^{-1}(x)$ is sheer $2n$(looking upon $g^{-1}(x)$ as an element of $B$). Conversely, similer to above, if there is an element $y$ of order $2n$ in $B$, take $x=g(y)$ and the order of $x$ is indeed $2n+1$. All that you need to convince a sceptic is a long, tedious, involved induction!!
+
+What we learn from what precedes is that the one-one function $\phi$ maps the infinite order elements onto infinite order elements, odd order onto odd order, and even order onto even order; a simple set theory reveals that $\phi$ is a one-one map from $A$ onto $B$. This completes the proof. 
+
+%%%%%
+%%%%%
+\end{document}

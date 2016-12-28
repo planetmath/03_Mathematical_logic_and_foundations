@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{OrderingOnCardinalities}
+\pmcreated{2013-03-22 18:50:23}
+\pmmodified{2013-03-22 18:50:23}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{ordering on cardinalities}
+\pmrecord{4}{41645}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmclassification{msc}{03E25}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+When there is a one-to-one function from a set $A$ to a set $B$, we say that $A$ is \emph{embeddable} in $B$, and write $A \le B$.  Thus $\le$ is a (class) binary relation on the class $V$ of all sets.  This relation is clearly reflexive and transitive.  If $A\le B$ and $B\le A$, then, by Schr\"oder-Bernstein theorem, $A$ is bijective to $B$, $A\sim B$.  However, clearly $A\ne B$ in general.  Therefore $\le$ fails to be a partial order.  However, since $A\sim B$ iff they have the same cardinality, $|A|=|B|$, and since cardinals are by definition sets, the class of all cardinals becomes a partially ordered set with partial order $\le$.  We record this result as a theorem:
+
+\begin{thm} In ZF, the relation $\le$ is a partial order on the cardinals. \end{thm}
+
+With the addition of the axiom of choice, one can show that $\le$ is a linear order on the cardinals.  In fact, the statement ``$\le$ is a linear order on the cardinals'' is equivalent to the axiom of choice.
+
+\begin{thm} In ZF, the following are equivalent:
+\begin{enumerate}
+\item the axiom of choice
+\item $\le$ is a linear order on the cardinals
+\end{enumerate}
+\end{thm}
+\begin{proof}  Restating the second statement, we have that for any two sets $A,B$, there is an injection from one to the other.  The plan is to use Zorn's lemma to prove the second statement, and use the second statement to prove the well-ordering principle (WOP).
+\begin{description}
+\item[Zorn implies Statement 2:] Suppose there are no injections from $A$ to $B$.  We need to find an injection from $B$ to $A$.  We may assume that $B\ne \varnothing$, for otherwise $\varnothing$ is an injection from $B$ to $A$.  Let $P$ be the collection of all partial injective functions from $B$ to $A$.  $P$, as a collection of relations between $B$ and $A$, is a set.  $P\ne \varnothing$, since any function from a singleton subset of $B$ into $A$ is in $P$.  Order $P$ by set inclusion, so $P$ becomes a poset.  Suppose $F$ is a chain of partial functions in $P$, let us look at $f:=\bigcup F$.  Suppose $(a,b),(a,c)\in f$.  Then $(a,b)\in p$ and $(a,c)\in q$ for some $p,q\in F$.  Since $F$ is a chain, one is a subset of the other, so say, $p\subseteq q$.  Then $(a,b)\in q$, and since $q$ is a partial function, $b=c$.  This shows that $f$ is a partial function.  Next, suppose $(a,c),(b,c)\in f$.  By the same argument used to show that $f$ is a function, we see that $a=b$, so that $f$ is injective.  Therefore $f\in P$.  Thus, by Zorn's lemma, $P$ has a maximal element $g$.  We want to show that $g$ is defined on all of $B$.  Now, $g$ can not be surjective, or else $g$ is a bijection from $\operatorname{dom}(g)$ onto $A$.  Then $g^{-1}: A\to B$ is an injection, contrary to the assumption.  Therefore, we may pick an element $a\in A-\operatorname{ran}(g)$.  Now, if $\operatorname{dom}(g)\ne B$, we may pick an element $b\in B-\operatorname{dom}(g)$.  Then the partial function $g^*: \operatorname{dom}(g)\cup \lbrace b\rbrace \to A$ given by 
+\begin{displaymath}
+g^*(x)= \left\{
+\begin{array}{ll}
+g(x) \quad \mbox{ if }x\in \operatorname{dom}(g),\\
+a \quad \mbox{ if } x = b.
+\end{array}
+\right.
+\end{displaymath}
+Since $g^*$ is injective by construction, $g^*\in P$.  Since $g^*$ properly extends $g$, we have reached a contradiction, as $g$ is maximal in $P$.  Therefore the domain of $g$ is all of $B$, and is our desired injective function from $B$ to $A$.
+\item[Statement 2 implies WOP:] Let $A$ be a set and let $h(A)$ be its Hartogs number.  Since $h(A)$ is not embeddable in $A$, by statement 2, $A$ is embeddable in $h(A)$.  Let $f$ be the injection from $A$ to $h(A)$ is injective.  Since $h(A)$ is an ordinal, it is well-ordered.  Therefore, as $f(A)$ is well-ordered, and because $A\sim f(A)$, $A$ itself is well-orderable via the well-ordering on $f(A)$.
+\end{description}
+Since Zorn's lemma and the well-ordering principles are both equivalent to AC in ZF, the theorem is proved.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

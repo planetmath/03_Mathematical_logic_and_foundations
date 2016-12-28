@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProductOfNonemptySetOfNonemptySetsIsNonempty}
+\pmcreated{2013-03-22 18:44:28}
+\pmmodified{2013-03-22 18:44:28}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{product of non-empty set of non-empty sets is non-empty}
+\pmrecord{7}{41514}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we show that the statement: 
+\begin{quote}
+(*) the non-empty generalized cartesian product of non-empty sets is non-empty
+\end{quote}
+is equivalent to the axiom of choice (AC).
+
+\begin{prop} AC implies (*). \end{prop}
+\begin{proof}  Suppose $C=\lbrace A_j\mid j\in J\rbrace$ is a set of non-empty sets, with $J\ne \varnothing$.  We want to show that $$B:=\prod_{j\in J} A_j$$ is non-empty.  Let $A = \bigcup C$.  Then, by AC, there is a function $f:C\to A$ such that $f(X)\in X$ for every $X\in C$.  Define $g:J \to A$ by $g(j):=f(A_j)$.  Then $g\in B$ as a result, $B$ is non-empty.
+\end{proof}
+
+\textbf{Remark}.  The statement that if $J\ne \varnothing$, then $B\ne \varnothing$ implies $A_j\ne \varnothing$ does not require AC: if $B$ is non-empty, then there is a function $g:J\to A$, and, as $J\ne \varnothing$, $g\ne \varnothing$, which means $A\ne \varnothing$, or that $A_j\ne \varnothing$ for some $j\in J$.
+
+\begin{prop} (*) implies AC. \end{prop}
+\begin{proof}  Suppose $C$ is a set of non-empty sets.  If $C$ itself is empty, then the choice function is the empty set.  So suppose that $C$ is non-empty.  We want to find a (choice) function $f: C\to \bigcup C$, such that $f(x)\in x$ for every $x\in C$.  Index elements of $C$ by $C$ itself: $A_x:=x$ for each $x\in C$.  So $A_x\ne \varnothing$ by assumption.  Hence, by (*), the (non-empty) cartesian product $B$ of the $A_x$ is non-empty.  But an element of $B$ is just a function $f$ whose domain is $C$ and whose codomain is the union of the $A_x$, or $\bigcup C$, such that $f(A_x)\in A_x$, which is precisely $f(x)\in x$.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

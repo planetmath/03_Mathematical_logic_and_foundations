@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A25DependentPairTypesSigmatypes}
+\pmcreated{2013-11-09 5:31:58}
+\pmmodified{2013-11-09 5:31:58}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.5 Dependent pair types ($Sigma$-types)}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\comp}{\textsc{comp}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\elim}{\textsc{elim}}
+\newcommand{\form}{\textsc{form}}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\intro}{\textsc{intro}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\def\prdsym{\textstyle\prod}
+\def\smsym{\textstyle\sum}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\def\tsm#1{\@tsm{#1}\@ifnextchar\bgroup{\tsm}{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\tup}[2]{(#1,#2)}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+
+\index{type!dependent pair}%
+\index{type!product}%
+
+In \PMlinkname{\S 1.6}{16dependentpairtypes}, we needed $\to$ and $\prdsym$ types in order to
+define the introduction and elimination rules for $\smsym$; as with $\prdsym$, contexts allow us to state the rules for $\smsym$ independently:
+%
+\begin{mathparpagebreakable}
+  \def\premise{\oftp{\Gamma}{A}{\UU_i} \and \oftp{\Gamma,\tmtp xA}{B}{\UU_i}}
+  \inferrule*[right=$\Sigma$-\form]
+    \premise
+    {\oftp\Gamma{\tsm{x:A} B}{\UU_i}}
+  \and
+  \inferrule*[right=$\Sigma$-\intro]
+    {\oftp{\Gamma, \tmtp x A}{B}{\UU_i} \\
+     \oftp\Gamma{a}{A} \\ \oftp\Gamma{b}{B[a/x]}}
+    {\oftp\Gamma{\tup ab}{\tsm{x:A} B}}
+  \and
+  \inferrule*[right=$\Sigma$-\elim]
+    {\oftp{\Gamma, \tmtp z {\tsm{x:A} B}}{C}{\UU_i} \\
+     \oftp{\Gamma,\tmtp x A,\tmtp y B}{g}{C[\tup x y/z]} \\
+     \oftp\Gamma{p}{\tsm{x:A} B}}
+    {\oftp\Gamma{\ind{\tsm{x:A} B}(z.C,x.y.g,p)}{C[p/z]}}
+  \and
+  \inferrule*[right=$\Sigma$-\comp]
+    {\oftp{\Gamma, \tmtp z {\tsm{x:A} B}}{C}{\UU_i} \\
+     \oftp{\Gamma, \tmtp x A, \tmtp y B}{g}{C[\tup x y/z]} \\\\
+     \oftp\Gamma{a'}{A} \\ \oftp\Gamma{b'}{B[a'/x]}}
+    {\jdeqtp\Gamma{\ind{\tsm{x:A} B}(z.C,x.y.g,\tup{a'}{b'})}{g[a',b'/x,y]}{C[\tup {a'} {b'}/z]}}
+\end{mathparpagebreakable}
+%
+The expression $\tsm{x:A} B$ binds free occurrences of $x$ in $B$. Furthermore, because
+$\ind{\tsm{x:A} B}$ has some arguments with free variables beyond those in $\Gamma$,
+we bind (following the variable names above) $z$ in $C$, and $x$ and $y$ in $g$.
+These bindings are written as $z.C$ and $x.y.g$, to indicate the names of the bound
+variables.
+\index{variable!bound}%
+In particular, we treat $\ind{\tsm{x:A} B}$ as a primitive,
+two of whose arguments contain binders; this is superficially similar to, but
+different from, $\ind{\tsm{x:A} B}$ being a function that takes functions as
+arguments.
+
+When $B$ does not contain free occurrences of $x$, we obtain as a special case
+the cartesian product $A \times B \defeq \tsm{x:A} B$. We take this
+as the \emph{definition} of the cartesian product.
+
+Notice that we don't postulate a judgmental uniqueness principle for $\Sigma$-types, even
+though we could have; see PMlinkname{Corollary 1}{27sigmatypes#Thmcor1} for a proof of the corresponding
+propositional uniqueness principle.
+
+
+\end{document}

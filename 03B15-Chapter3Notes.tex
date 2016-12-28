@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chapter3Notes}
+\pmcreated{2013-11-17 20:27:08}
+\pmmodified{2013-11-17 20:27:08}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{Chapter 3 Notes}
+\pmrecord{2}{87661}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\Agda}{\textsc{Agda}\xspace}
+\newcommand{\Coq}{\textsc{Coq}\xspace}
+\newcommand{\LEM}[1]{\ensuremath{\mathsf{LEM}_{#1}}\xspace}
+\newcommand{\NuPRL}{\textsc{NuPRL}\xspace}
+\newcommand{\sectionNotes}{\phantomsection\section*{Notes}\addcontentsline{toc}{section}{Notes}\markright{\textsc{\@chapapp{} \thechapter{} Notes}}}
+\let\autoref\cref
+\makeatother
+\begin{document}
+The fact that it is possible to define sets, mere propositions, and contractible types in type theory, with all higher homotopies automatically taken care of as in \PMlinkname{\S 3.1}{31setsandntypes},\PMlinkname{\S 3.3}{33merepropositions},\PMlinkname{\S 3.11}{311contractibility}, was first observed by Voevodsky.
+In fact, he defined the entire hierarchy of $n$-types by induction, as we will do in \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580}.\index{n-type@$n$-type!definable in type theory}%
+
+\PMlinkname{Theorem 3.2.2}{32propositionsastypes#Thmprethm1},\PMlinkname{Corollary 3.2.7}{32propositionsastypes#Thmprecor1} rely in essence on a classical theorem of Hedberg,
+\index{Hedberg's theorem}%
+\index{theorem!Hedberg's}%
+which we will prove in \PMlinkname{\S 7.2}{72uniquenessofidentityproofsandhedbergstheorem}.
+The implication that the propositions-as-types form of \LEM{} contradicts univalence was observed by Mart\'\i n Escard\'o on the \Agda mailing list.
+The proof we have given of \PMlinkname{Theorem 3.2.2}{32propositionsastypes#Thmprethm1} is due to Thierry Coquand.
+
+The propositional truncation was introduced in the extensional type theory of
+\index{proof!assistant!\NuPRL}%
+\NuPRL in 1983 by Constable~\cite{Con85} as an
+application of ``subset'' and ``quotient'' types.  What is here called the
+``propositional truncation'' was called ``squashing'' in the \NuPRL type theory~\cite{constable+86nuprl-book}.
+Rules characterizing the propositional truncation directly, still in extensional type theory, were given in~\cite{ab:bracket-types}.
+The intensional version in homotopy type theory was constructed by Voevodsky using an impredicative\index{impredicative!truncation} quantification, and later by Lumsdaine using higher inductive types (see \PMlinkname{\S 6.9}{69truncations}).
+
+\index{propositional!resizing}%
+Voevodsky~\cite{Universe-poly} has proposed resizing rules of the kind considered in \PMlinkname{\S 3.5}{35subsetsandpropositionalresizing}.
+\index{axiom!of reducibility}\index{resizing}%
+These are clearly related to the notorious \emph{axiom of reducibility} proposed by Russell in his and Whitehead's \emph{Principia Mathematica}~\cite{PM2}.\index{Russell, Bertrand}
+
+The adverb ``purely'' as used to refer to untruncated logic is a reference to the use of monadic modalities to model effects in programming languages; see \PMlinkname{\S 7.7}{77modalities} and the Notes to \PMlinkexternal{Chapter 7}{http://planetmath.org/node/87580}.
+
+There are many different ways in which logic can be treated relative to type theory.
+For instance, in addition to the plain propositions-as-types logic described in \PMlinkname{\S 1.11}{111propositionsastypes}, and the alternative which uses mere propositions only as described in \PMlinkname{\S 3.6}{36thelogicofmerepropositions}, one may introduce a separate ``sort'' of propositions, which behave somewhat like types but are not identified with them.
+This is the approach taken in logic enriched type theory~\cite{aczel2002collection} and in some presentations of the internal languages of toposes\index{topos} and related categories (e.g.~\cite{jacobs1999categorical},\cite{elephant}), as well as in the proof assistant \Coq.\index{proof!assistant!Coq@\textsc{Coq}}
+Such an approach is more general, but less powerful.
+For instance, the principle of unique choice (\PMlinkname{\S 3.9}{39theprincipleofuniquechoice}) fails in the category of so-called setoids in \Coq~\cite{Spiwack}, in logic enriched type theory~\cite{aczel2002collection}, and in minimal type theory~\cite{maietti2005toward}.\index{setoid}
+Thus, the univalence axiom makes our type theory behave more like the internal logic of a topos;~see also \PMlinkexternal{Chapter 10}{http://planetmath.org/node/87584}.\index{topos}
+
+Martin-L\"of~\cite{martin2006100} provides a discussion on the history of axioms of choice.
+Of course, constructive and intuitionistic mathematics has a long and complicated history, which we will not delve into here; see for instance~\cite{TroelstraI},\cite{TroelstraII}.
+
+\begin{thebibliography}{99}
+
+\bibitem{ab:bracket-types} {Awodey,Steven and Bauer,Andrej}. {Propositions as [types]}. \emph{Journal of Logic and Computation}, {14}:{447--471} {2004},Bdsk-Url-1
+
+\bibitem{aczel2002collection} {Aczel,Peter and Gambino,Nicola}. {Collection principles in dependent type theory}. In emph{Types for Proofs and Programs,International Workshop,TYPES 2000,Durham,UK,December 8-12,2000,Selected Papers}, pages {1--23}{Springer}, .
+
+\bibitem{aczel2002collection} {Aczel,Peter and Gambino,Nicola}. {Collection principles in dependent type theory}. In emph{Types for Proofs and Programs,International Workshop,TYPES 2000,Durham,UK,December 8-12,2000,Selected Papers}, pages {1--23}{Springer}, .
+
+\bibitem{Con85} {Constable,Robert L.}. {Constructive Mathematics as a Programming Logic {I}: Some Principles of Theory}. In \emph{Annals of Mathematics},volume 24 pages {21--37}. {Elsevier Science Publishers,B.V. (North-Holland)}, 1985.
+
+\bibitem{constable+86nuprl-book} {Robert L. Constable and Stuart F. Allen and H. M. Bromley and W. R. Cleaveland and J. F. Cremer and Robert W. Harper and Douglas J. Howe and T. B. Knoblock and N. P. Mendler and P. Panangaden and James T. Sasaki and Scott F. Smith}, \emph{{Implementing Mathematics with the {NuPRL} Proof Development System}}  {Prentice Hall},1986
+
+\bibitem{elephant} {Peter T. Johnstone}, \emph{{Sketches of an Elephant: A Topos Theory Compendium: Volumes 1 and 2}}  {Oxford Science Publications},{2002}
+
+\bibitem{jacobs1999categorical} {Bart Jacobs}, \emph{{Categorical logic and type theory}}  {Elsevier},{1999}
+
+\bibitem{maietti2005toward} {Maietti,Maria Emilia and Sambin,Giovanni}. {Toward a minimalist foundation for constructive mathematics}. In \emph{From Sets and Types to Topology and Analysis: Practicable Foundations for Constructive Mathematics},volume 48 of {Oxford Logic Guides}, pages {91--114}. {Clarendon Press}, 2005.
+
+\bibitem{martin2006100} {Martin-L{\"o}f,Per}. {100 years of {Z}ermelo's axiom of choice: what was the problem with it?}. \emph{The Computer Journal}, {49}:{345--350} {2006}
+
+\bibitem{PM2} {Whitehead,Alfred North and Russell,Bertrand}, \emph{{Principia mathematica,3 vol.s}}  {Cambridge University Press},{1910--1913; Second edition,1925--1927}
+
+\bibitem{Spiwack} {Arnaud Spiwack}. \emph{A Journey Exploring the Power and Limits of Dependent Type Theory}. PhD thesis, {{\'Ecole Polytechnique,Palaiseau,France}}, 2011.
+
+\bibitem{TroelstraI} {Troelstra,Anne Sjerp and van Dalen,Dirk}, \emph{{Constructivism in mathematics. {V}ol. {I}}}  {North-Holland Publishing Co.},{1988}
+
+\bibitem{TroelstraII} {Troelstra,Anne Sjerp and van Dalen,Dirk}, \emph{{Constructivism in mathematics. {V}ol. {II}}}  {North-Holland Publishing Co.},{1988}
+
+\bibitem{Universe-poly} {Vladimir Voevodsky}. {A universe polymorphic type system}. {\url{http://uf-ias-2012.wikispaces.com/file/view/Universe+polymorphic+type+sytem.pdf}}, 2012.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chapter8Notes}
+\pmcreated{2013-11-06 15:41:37}
+\pmmodified{2013-11-06 15:41:37}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{Chapter 8 Notes}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\sectionNotes}{\phantomsection\section*{Notes}\addcontentsline{toc}{section}{Notes}\markright{\textsc{\@chapapp{} \thechapter{} Notes}}}
+\newcommand{\Sn}{\mathbb{S}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+%% For the spheres,  two
+%% different definitions of the $n$-sphere $\Sn ^n$ have been used: the first as the
+%% suspension of $\Sn ^ {n-1}$ (\autoref{sec:suspension}), and the second
+%% as a higher inductive type with one base point and one loop in
+%% $\Omega^n$ (\autoref{sec:circle}); we list the status for both
+%% definitions.  The equivalence of the two can be deduced from the remarks
+%% at the end of \autoref{sec:suspension}.
+
+{
+\newcommand{\humancheck}{\ding{52}}
+\newcommand{\computercheck}{\ding{52}\kern-0.5em\ding{52}}
+\begin{table}[htb]
+  \centering
+\begin{tabular}{lcc}
+\toprule
+Theorem         & Status \\
+\midrule
+$\pi_1(\Sn ^1)$                     & \computercheck \\
+$\pi_{k<n}(\Sn ^n)$                  & \computercheck \\
+%% $\pi_{k<n}(\Sn ^n)$ --- suspension  & \computercheck \\
+%% $\pi_2(\Sn ^2)$ --- suspension      & \computercheck \\
+long-exact-sequence of homotopy groups & \computercheck    \\
+total space of Hopf fibration is $\Sn ^3$ & \humancheck    \\
+$\pi_2(\Sn ^2)$                     & \computercheck \\
+$\pi_3(\Sn ^2)$                     & \humancheck    \\
+$\pi_n(\Sn ^n)$                     & \computercheck \\
+%% $\pi_n(\Sn ^n)$ --- suspension      & \computercheck \\
+$\pi_4(\Sn ^3)$                     & \humancheck    \\
+Freudenthal suspension theorem      & \computercheck \\
+Blakers--Massey theorem              & \computercheck \\
+Eilenberg--Mac Lane spaces $K(G,n)$ & \computercheck \\
+van Kampen theorem                & \computercheck \\
+covering spaces                     & \computercheck \\
+Whitehead's principle for $n$-types & \computercheck \\
+\bottomrule
+\end{tabular}
+\caption{Theorems from homotopy theory proved by
+  hand (\humancheck) and by computer (\computercheck).}
+  \label{tab:theorems}
+\end{table}
+}
+
+The theorems described in this chapter are standard results in classical
+homotopy theory; many are described by \cite{hatcher02topology}.  In these
+notes, we review the development of the new synthetic proofs of them in homotopy
+type theory.  \autoref{tab:theorems} lists the homotopy-theoretic
+theorems that have been proven in homotopy type theory, and whether they
+have been computer-checked.
+Almost all of these results were developed during the spring term at IAS
+in 2013, as part of a significant collaborative effort.  Many people
+contributed to these results, for example by being the principal author
+of a proof, by suggesting problems to work on, by participating in many
+discussions and seminars about these problems, or by giving feedback on
+results.  The following people were the principal authors of the first
+homotopy type theory proofs of the above theorems. Unless indicated otherwise, for the
+theorems that have been computer-checked, the principal authors were
+also the first ones to formalize\index{mathematics!formalized} the proof using a computer proof
+assistant.
+\begin{itemize}
+\item 
+Shulman gave the homotopy-theoretic calculation of $\pi_1(\Sn^1)$.  Licata later discovered the
+encode-decode proof and the encode-decode method.
+
+\item 
+Brunerie calculated $\pi_{k<n}(\Sn ^ n)$.
+Licata later gave an encode-decode version.
+
+\item Voevodsky constructed the long exact sequence of homotopy groups. 
+
+\item Lumsdaine constructed the Hopf fibration.
+  Brunerie proved that its total space is $\Sn ^3$, thereby calculating $\pi_2(\Sn ^2)$ and
+  $\pi_3(\Sn ^3)$.
+
+\item Licata and Brunerie gave a direct calculation of
+$\pi_n(\Sn ^n)$.  
+
+\item 
+  Lumsdaine proved the Freudenthal suspension theorem; Licata and
+  Lumsdaine formalized this proof.
+\item Lumsdaine, Finster, and Licata proved the Blakers--Massey theorem;
+  Lumsdaine, Brunerie, Licata, and Hou formalized it.
+
+\item 
+Licata gave an encode-decode calculation of $\pi_2(\Sn ^2)$, and a
+calculation of $\pi_n(\Sn ^n)$ using the Freudenthal suspension theorem; using similar
+techniques, he constructed $K(G,n)$.
+
+\item 
+Shulman proved the van Kampen theorem; Hou formalized this proof.
+
+\item 
+Licata proved Whitehead's theorem for $n$-types.
+
+\item Brunerie calculated $\pi_4(\Sn ^3)$.
+
+\item 
+Hou established the theory of covering spaces and formalized it.
+\end{itemize}
+
+The interplay between homotopy theory and type theory was crucial to the
+development of these results.  For example, the first proof that
+$\pi_1(\Sn ^1)=\mathbb{Z}$ was the one given in \autoref{subsec:pi1s1-homotopy-theory}, which follows a classical homotopy theoretic one.  A
+type-theoretic analysis of this proof resulted in the development of the
+encode-decode method.  The first calculation of $\pi_2(\Sn ^2)$ also followed
+classical methods, but this led quickly to an encode-decode proof of the
+result.  The encode-decode calculation generalized to $\pi_n(\Sn ^n)$, which
+in turn led to the proof of the Freudenthal suspension theorem, by
+combining an encode-decode argument with classical homotopy-theoretic
+reasoning about connectedness, which in turn led to the Blakers--Massey
+theorem and Eilenberg--Mac Lane spaces.  The rapid development of this
+series of results illustrates the promise of our new understanding of
+the connections between these two subjects.
+
+
+\end{document}

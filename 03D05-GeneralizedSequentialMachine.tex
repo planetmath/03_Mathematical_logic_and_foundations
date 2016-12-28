@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{GeneralizedSequentialMachine}
+\pmcreated{2013-03-22 18:57:22}
+\pmmodified{2013-03-22 18:57:22}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{generalized sequential machine}
+\pmrecord{15}{41813}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmsynonym{gsm}{GeneralizedSequentialMachine}
+\pmsynonym{deterministic generalized sequential machine}{GeneralizedSequentialMachine}
+\pmrelated{StateOutputMachine}
+\pmdefines{gsm mapping}
+\pmdefines{inverse gsm mapping}
+\pmdefines{deterministic gsm}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{tabls}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\subsubsection*{Definition}
+
+Generalized sequential machines are generalizations of finite state sequential machines.  In a finite state machine $M=(S,\Sigma,\Delta,\delta,\lambda)$, the next-state ($\delta$) and output ($\lambda$) functions work independently of one another in the sense that no next states affect the outputs, and vice versa: given an input symbol $a$ and current state $s$, if $p,q$ are next states, and $c,d$ are output symbols, then all four output configurations are possible: $(p,c), (p,d), (q,c), (q,d)$.  In addition, for a given input symbol $a$, the corresponding outputs are individual symbols in the output alphabet, rather than words: $\lambda(s,a)$ is a subset of $\Delta$.  When these restrictions are removed, we have a generalized sequential machine.
+
+Formally, a \emph{generalized sequential machine} is a quadruple $M=(S,\Sigma,\Delta,\tau)$, such that
+\begin{enumerate}
+\item $S$ is an alphabet whose elements are called \emph{states},
+\item $\Sigma$ is an alphabet whose elements are called \emph{input symbols},
+\item $\Delta$ is an alphabet whose elements are called \emph{output symbols}, and
+\item $\tau$ is a function from $S\times \Sigma$ to $P(S\times \Delta^*)$, such that $\tau(s,a)$ is finite for all $(s,a) \in S\times \Sigma$.  $\tau$ is called the \emph{transition function}.
+\end{enumerate}
+A generalized sequential machine is also called a \emph{gsm} for short.  Note that a gsm $M$ becomes a finite state machine if $\tau$ can be written as $(\delta,\lambda)$, and $\lambda$ is a function from $S\times \Sigma$ to $P(\Delta)$.  A gsm is said to be \emph{deterministic} if each $\tau(s,a)$ is a singleton.  So a Mealy machine is just a deterministic gsm such that $\tau(s,a)$ consists of an output symbol.
+
+Like a finite state machine, the function $\tau$ can be extended so its first component applies to sets of states, rather than individual states:  $$\tau(T,a)=\bigcup \lbrace \tau(s,a)\mid s\in T\rbrace.$$  As usual, $\tau(\varnothing,a)=\varnothing$.
+
+Next, we can extend $\tau$ so $M$ can process input words rather than input symbols.  The key idea, like in the case of a fsm, is that the input word is processed one symbol at a time from left to right.  Each time an input symbol is processed or consumed, a set of output configurations are produced.  The states in these output configurations are used to process the next input symbols, and the outputs are appended to the right of the outputs that have already been generated.  More precisely,
+$$\tau(T,ua):= \lbrace (s,vw) \mid (s,w)\in \tau(t,a)\mbox{ for some }t\in S\mbox{ such that }(t,v)\in \tau(T,u) \rbrace.$$
+When the input word is the empty word $\lambda$, we require its output to be the empty word also, without changing the state, hence $\tau(s,\lambda):=\lbrace (s,\lambda)\rbrace$.
+
+Here's an example.  Let $M=(\lbrace s,t\rbrace, \lbrace a,b\rbrace,\lbrace c,d\rbrace, \tau)$ be a gsm whose transition function $\tau$ is given by the following table
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+$(x,y)$ & $\tau(x,y)$ \\
+\hline\hline
+$(s,a)$ & $\lbrace (t,c) \rbrace$ \\
+\hline
+$(s,b)$ & $\lbrace (s,cd), (s,d^2) \rbrace$ \\
+\hline
+$(t,a)$ & $\lbrace (t,dc) \rbrace$ \\
+\hline
+$(t,b)$ & $\lbrace (s,d), (s,c^2) \rbrace$ \\
+\hline
+\end{tabular}
+\end{center}
+To fine $\tau(s,ab)$, first find $\tau(s,a)$, which consists of a single output configuration $(t,c)$ according to the table above.  So $c$ will serve as the prefix of the output(s).  The next state is now $t$, to be applied to the second symbol $b$ in $ab$.  By the table above, $\tau(t,b)$ has two output configurations: $(s,d)$ and $(s,c^2)$.  Therefore, the final output configurations are $(s,cd)$ and $(s,c^3)$, when $c$ is appended to the left of $d$ and $c^2$.  We may also apply the formula above:
+\begin{eqnarray*}
+\tau(s,ab) &=& \lbrace (p,vw) \mid (p,w) \in \tau(q,b) \mbox{ where }(q,v)\in \tau(s,a)\rbrace \\ &=& \lbrace (p,cw) \mid (p,w) \in \tau(t,b) \rbrace \\ &=& \lbrace (s,cd),(s,c^3)\rbrace.
+\end{eqnarray*}
+
+\subsubsection*{Language Translation}
+
+A gsm can be used to translate languages.  In other words, an input language $L$ over $\Sigma$ is fed into a gsm $M$ so that an output language $M(L)$ is produced, or ``translated''.  This can be done by fixing a start state $s_0$ and a set $F$ of final states, much like an automaton.  First, consider an input word $u$, then $\tau(s_0,u)$ is the resulting set of output configurations.  Define the set of outputs translated from $u$ by $M$ as: $$\operatorname{GSM}_M(u):=\lbrace v \mid (t,v)\in \tau(s_0,u)\mbox{ for some }t\in F\rbrace.$$
+More generally, let $L$ be an input language (a set of inputs), define the output language translated from $L$ by $M$ as: $$\operatorname{GSM}_M(L):=\lbrace v \mid v\in\operatorname{GSM}(u)\mbox{ for some }u\in L\rbrace.$$
+It is clear that $\operatorname{GSM}_M$ is a mapping from $P(\Sigma^*)$ to $P(\Delta^*)$, and it is in this regard that we see $M$ as a language translator.  Of course, different start states and different sets of final states produce different translations, which is the reason why a gsm is usually regarded as a 6-tuple $(S,\Sigma,\Delta,\tau,s_0,F)$ rather than a quadruple.
+
+Given a set $K$ of output words, one can ask the inverse question: what are all the input words whose output configurations contain an output word in $K$?  In other words, we are forming the set:
+$$\operatorname{GSM}^{-1}_M(K):=\lbrace u\mid \operatorname{GSM}_M(u)\cap K\ne \varnothing \rbrace.$$
+Note, however, that if $L=\operatorname{GSM}^{-1}_M(K)$, then $L$ in general does not get translated to $K$: the function $\operatorname{GSM}^{-1}_M$ is not a functional inverse of $\operatorname{GSM}_M$: $$\operatorname{GSM}_M\circ \operatorname{GSM}^{-1}_M(K) \ne K \qquad \mbox{and} \qquad \operatorname{GSM}_M^{-1}\circ \operatorname{GSM}_M(L) \ne L$$ in general.
+
+\subsubsection*{GSM as an Acceptor}
+
+A gsm may be turned into a language acceptor in the following way: let $M=(S,\Sigma,\Delta,\tau,s_0,F)$ be a gsm with starting state $s_0$ and $F$ the set of final states.  Then the language $$L(M):=\lbrace u\in \Sigma^* \mid \operatorname{GSM}(u)\ne \varnothing \rbrace$$ is called the language \emph{accepted by M}.  Now, given $M$, we may construct a gsm $M'=(S,\Sigma,\varnothing,\tau',s_0,F)$, such that $\tau'(s,a):=\lbrace (t,\epsilon)\mid (t,v)\in \tau(s,a)\mbox{ for some }v\in \Delta^*\rbrace$, where $\epsilon$ denotes the empty word.  It is easy to see that $L(M)=L(M')$.  Given any $(s,a)\in S\times \Sigma$, define $s\to at$ iff $(t,\epsilon)\in \tau'(s,a)$.  From this, it is readily seen that the formal grammar $G=(\Sigma \cup S,F,P,s_0)$, where the productions in $P$ are of the form $s\to at$ defined earlier, generates $L(M')$.  As a result, every language accepted by a gsm is regular.  It is not hard to see that the converse is also true: every regular language is accepted by some gsm.
+
+\subsubsection*{GSM Mappings}
+
+The gsm mapping of a gsm $M$ is the function $\operatorname{GSM}_M: P(\Sigma^*)\to P(\Delta^*)$ defined earlier.  A GSM mapping is a function $\operatorname{GSM}_M$ for some gsm $M$.  An inverse GSM mapping is defined similarly.  A GSM mapping is said to be $\lambda$-free if $(t,\epsilon)\notin \tau(s,a)$ for any $(s,a)\in S\times \Sigma$.  
+
+\textbf{Examples}
+\begin{itemize}
+\item
+Any language homomorphism is a gsm mapping.  Given a homomorphism $h:\Sigma\to \Delta^*$, define $M=(S,\Sigma,\Delta,\tau,s_0,F)$ such that $S=F=\lbrace s_0\rbrace$ and $\tau(s_0,a)=\lbrace (s_0, h(a))\rbrace$.  Then $M$ is a gsm with $\operatorname{GSM}_M=h$.  Similarly, any inverse homomorphism is an inverse gsm mapping.
+\item
+The mapping $L\mapsto L\cap R$, where $R$ is a regular language, is a gsm mapping.  To see this, let $G$ be a grammar generating $R$ consisting of productions of the form $A\to aB$ or the form $A\to \lambda$.  Define $M=(S,\Sigma,\Sigma,\tau,s_0,F)$ as follows: $S$ consists of the non-terminals of $G$ as well as a new symbol $s$, $s_0$ is the starting symbol for $G$, and $F=\lbrace s\rbrace$.  Next, set $\tau(A,a)=(B,a)$ iff $A\to aB$, and $\tau(A,a)=(s,a)$ iff $A\to \lambda$. Then, for any word $u$, it is easy to see that $\operatorname{GSM}_M(u)=\lbrace u\rbrace$ iff $u \in R$.  As a result, $\operatorname{GSM}_M(L)=L\cap R$.
+\end{itemize}
+
+A family $\mathscr{F}$ of languages is said to be closed under GSM mappings if for any $L\in \mathscr{F}$, $\operatorname{GSM}_M(L)\in \mathscr{F}$ for any gsm $M$.  Closure under $\lambda$-free GSM mappings and inverse GSM mappings are similarly defined.  It can be shown that each of the four families in the Chomsky hierarchy is closed under inverse GSM mappings.  While the families of regular, context-free, and T0 languages are closed under GSM mappings, the family of context-sensitive languages is only closed under $\lambda$-free GSM mappings.
+
+\begin{thebibliography}{9}
+\bibitem{AS} A. Salomaa, {\em Formal Languages}, Academic Press, New York (1973).
+\bibitem{hu} J.E. Hopcroft, J.D. Ullman, {\em Formal Languages and Their Relation to Automata}, Addison-Wesley, (1969).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

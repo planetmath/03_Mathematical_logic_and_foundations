@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DeductionTheoremHoldsForFirstOrderLogic}
+\pmcreated{2013-03-22 19:32:31}
+\pmmodified{2013-03-22 19:32:31}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{deduction theorem holds for first order logic}
+\pmrecord{26}{42521}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+In this entry, we show that the deduction theorem holds for first order logic.  Actually, depending on the axiom systems, some modifications to the deduction theorem may be necessary.  If we use the system given in the beginning of  \PMlinkname{this entry}{AxiomSystemForFirstOrderLogic}, no modifications are necessary, and the proof is mutatis mutandis the same as the one for propositional logic.  However, if we instead use the system given in the remark of that entry, the deduction theorem needs to be revised.  For convenience, we briefly state the axiom system here:
+\begin{enumerate}
+\item tautologies
+\item $\forall x A \to A[a/x]$, where $x\in V$, $a\in V(\Sigma)$, and $a$ is free for $x$ in $A$
+\item $\forall x (A\to B) \to (A \to \forall x B)$, where $x \in V$ is not free in $A$
+\end{enumerate}
+with modus ponens and generalization as inference rules.  A deduction of a wff $A$ from a set $\Delta$ is a finite sequence of wff's, where each wff is either an axiom, an element of $\Delta$, or the result of an application of an inference rule.
+
+\begin{thm}(Modified Deduction Theorem).  If $\Delta, A \vdash B$, then $\Delta \vdash A \to B$, provided that there is a deduction $\mathcal{E}$ of $B$ from $\Delta\cup \lbrace A\rbrace$ that contains no applications of universal generalization 
+\begin{itemize}
+\item either to a variable occurring free in $A$, or
+\item to a wff whose deduction in $\mathcal{E}$ contains $A$ as a premise
+\end{itemize}
+\end{thm}
+
+A big portion of the proof is the same as the one given for the deduction theorem for propositional logic, namely, the cases that $B$ is an axiom, an element of $\Delta$, or as the result of an application of modus ponens.  We will not repeat the proof here, but refer the reader to \PMlinkname{this entry}{DeductionTheoremHoldsForClassicalPropositionalLogic} for that.  In this entry, we will concentrate on the proof of the last case: when $B$ is the result of an application of universal generalization.
+
+\begin{proof}  Let us first rephrase the conditions in the theorem.  We are given a deduction $\mathcal{E}$ of $B$ from $\Delta \cup \lbrace A\rbrace$, that is, sequence of wff's $$A_1,\ldots, A_n$$
+such that if $A_i$ is $\forall x A_j$ (where $j<i$), then either
+\begin{itemize}
+\item the variable $x$ is not free in $A$, or
+\item the deduction of $A_j$ in the sequence $A_1,\ldots, A_j$ does not contain $A$
+\end{itemize}
+
+As mentioned, we assume that $B$ is $\forall x A_k$, where $A_k$ is in $\mathcal{E}$.
+
+We induct on the length $n$ of $\mathcal{E}$.  By the assumption on $B$, $n$ is at least $2$.  If $n=2$, then $\mathcal{E}$ is $$A_1, \forall x A_1.$$  Then $A_1$ is either an axiom, or an element of $\Delta \cup \lbrace A\rbrace$.  Furthermore, $x$ does not occur free in $A_1$.  If $A_1$ is either an axiom or in $\Delta$, then
+\begin{equation} A_1, \forall x A_1, \forall x A_1 \to (A \to \forall x A_1), A \to \forall x A_1\end{equation}
+is a deduction of $A \to B$ from $\Delta$.  If $A_1$ is $A$, then
+\begin{equation}\cdots, A\to A , \forall x (A\to A), \forall x(A\to A) \to (A\to \forall x A), A\to \forall xA \end{equation}
+is a deduction of $A\to B$ from $\Delta$, where $\cdots, A\to A$ is a deduction of the tautology $A\to A$ (see \PMlinkname{here}{AxiomSystemForPropositionalLogic}).
+
+Now assume the length of $\mathcal{E}$ is $n>2$.  Furthermore, we may assume that it has the form
+$$A_1,\ldots, A_{n-1}, \forall x A_{n-1}$$
+from $\Delta\cup \lbrace A \rbrace$.  Then none of $A_1,\ldots, A_{n-1}$ contain $x$ free.  Now, let us look at the conditions above:
+\begin{itemize}
+\item $x$ is not free in $A$.  As $A_1,\ldots, A_{n-1}$ is a deduction of $A_{n-1}$ of length $n-1$, by induction, there is a deduction of $$B_1,\ldots,B_m$$ of $A\to A_{n-1}$ from $\Delta$.  Since $x$ does not occur free in $A$, \begin{equation}B_1,\ldots,B_m, \forall x (A\to A_{n-1}), \forall x (A\to A_{n-1}) \to (A \to \forall x A_{n-1}), A\to \forall x A_{n-1} \end{equation} is a deduction of $A\to \forall x A_{n-1}$.
+\item the deduction of $A_j$ in the sequence $A_1,\ldots, A_j$ does not contain $A$.  Let $$B_1,\ldots, B_m$$ be this deduction of $A_j$ in $\mathcal{E}$.  Then 
+\begin{equation}B_1,\ldots, B_m, \forall x A_{n-1}, \forall x A_{n-1} \to (A \to \forall x A_{n-1}), A\to \forall x A_{n-1}\end{equation} is a deduction of $A\to \forall x A_{n-1}$.
+\end{itemize}
+In both cases, since $A$ does not occur in the deduction, $\Delta \vdash A \to B$.
+\end{proof}
+Note that the last three steps of deductions $(1)$ and $(4)$ use generalization, the axiom schema $A\to (B\to A)$, and modus ponens, and the last steps of deductions $(2)$ and $(3)$ use generalization, the axiom schema $\forall x (A\to B) \to (A \to \forall x B)$, and modus ponens.
+
+As a corollary, we have
+
+\begin{cor} If $\Delta, A \vdash B$, and $A$ a sentence, then $\Delta \vdash A \to B$. \end{cor}
+
+\textbf{Remark}.  If we want to restore the modified deduction theorem to its original version (Theorem 2 below), and we want keep the axiom system stated above, the way deductions are constructed needs to be modified.  In this case, the modification is: if $A_1,\ldots,A_n$ is a deduction of $A$, and $A$ is $\forall x A_i$, the result of an application of generalization to an earlier wff $A_i$, then $x$ does not occur free in any of the wff's in the deduction.  With this change, we have the original version:
+
+\begin{thm} (Deduction Theorem).  If $\Delta, A \vdash B$, then $\Delta \vdash A\to B$. \end{thm}
+
+This is an immediate consequence of the following fact: if $B$ can be deduced with $A$ as a hypothesis, then $A\to B$ can be deduced without $A$ as a hypothesis, which can be easily proved using induction.
+
+%%%%%
+%%%%%
+\end{document}

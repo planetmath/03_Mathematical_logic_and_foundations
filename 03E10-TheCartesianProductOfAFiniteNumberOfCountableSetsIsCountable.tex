@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TheCartesianProductOfAFiniteNumberOfCountableSetsIsCountable}
+\pmcreated{2013-03-22 15:19:45}
+\pmmodified{2013-03-22 15:19:45}
+\pmowner{BenB}{9643}
+\pmmodifier{BenB}{9643}
+\pmtitle{the Cartesian product of a finite number of countable sets is countable}
+\pmrecord{13}{37142}
+\pmprivacy{1}
+\pmauthor{BenB}{9643}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmsynonym{The product of a finite number of countable sets is countable}{TheCartesianProductOfAFiniteNumberOfCountableSetsIsCountable}
+%\pmkeywords{Cardinality}
+%\pmkeywords{countable}
+%\pmkeywords{cartesian product}
+%\pmkeywords{cross product}
+\pmrelated{CardinalityOfACountableUnion}
+\pmrelated{AlgebraicNumbersAreCountable}
+\pmrelated{CardinalityOfTheRationals}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+\newtheorem{thm}{Theorem}
+\begin{thm}
+The Cartesian product of a finite number of countable sets is countable.
+\end{thm}
+
+\emph{Proof:}
+Let $A_1, A_2, \ldots, A_n$ be countable sets and let
+$S = A_1 \times A_2 \times \cdots \times A_n$.
+Since each $A_i$ is countable, there exists an injective function
+$f_i\colon A_i \to \mathbb{N}$.
+The function $h\colon S \to \mathbb{N}$ defined by
+\[
+  h(a_1, a_2, \ldots a_n) = \prod_{i=1}^n p_i^{f_i(a_i)}
+\]
+where $p_i$ is the $i$th prime
+is, by the fundamental theorem of arithmetic, a bijection between
+$S$ and a subset of $\mathbb{N}$ and therefore $S$ is also countable.
+
+Note that this result does \emph{not} (in general) extend to the
+Cartesian product of a countably infinite collection of countable
+sets.  If such a collection contains more than a finite number of sets
+with at least two elements, then Cantor's diagonal argument can be
+used to show that the product is not countable.
+
+For example, given $B = \{0, 1\}$, the set $F = B \times B \times
+\cdots$ consists of all countably infinite sequences of zeros and ones.
+Each element of $F$ can be viewed as a binary fraction and can
+therefore be mapped to a unique
+real number in $[0, 1)$ and $[0, 1)$ is, of course, not countable.
+
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{851FibrationsOverPushouts}
+\pmcreated{2013-11-06 14:22:53}
+\pmmodified{2013-11-06 14:22:53}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.5.1 Fibrations over pushouts}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\Ddiag}{\mathscr{D}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\defid}{\coloneqq}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\glue}{\mathsf{glue}}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\inl}{\ensuremath\inlsym\xspace}
+\newcommand{\inlsym}{{\mathsf{inl}}}
+\newcommand{\inr}{\ensuremath\inrsym\xspace}
+\newcommand{\inrsym}{{\mathsf{inr}}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\map}[2]{\ensuremath{{#1}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\narrowequation}[1]{$#1$}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ua}{\ensuremath{\mathsf{ua}}\xspace} 
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.5.\arabic{mathcount}}
+\let\autoref\cref
+\let\judgeq\jdeq
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+We first start with a lemma explaining how to construct fibrations over
+pushouts.
+\index{pushout}%
+
+\begin{lem}\label{lem:fibration-over-pushout}
+  Let $\Ddiag=(Y\xleftarrow{j}X\xrightarrow{k}Z)$ be a span\index{span} and assume
+  that we have
+  \begin{itemize}
+  \item Two fibrations $E_Y:Y\to\type$ and $E_Z:Z\to\type$.
+  \item An equivalence $e_X$ between $E_Y\circ j:X\to\type$ and $E_Z\circ
+    k:X\to\type$, i.e.
+    \[e_X:\prd{x:X}\eqv{E_Y(j(x))}{E_Z(k(x))}.\]
+  \end{itemize}
+
+  Then we can construct a fibration $E:Y\sqcup^XZ\to\type$ such that
+  \begin{itemize}
+  \item For all $y:Y$, $E(\inl(y))\judgeq E_Y(y)$.
+  \item For all $z:Z$, $E(\inr(z))\judgeq E_Z(z)$.
+  \item For all $x:X$, $\map E{\glue(x)}=\ua(e_X(x))$ (note that both sides of
+    the equation are paths in $\type$ from $E_Y(j(x))$ to $E_Z(k(x))$).
+  \end{itemize}
+  Moreover, the total space of this fibration fits in the following pushout
+  square:
+  \[\xymatrix{ \sm{x:X}E_Y(j(x)) \ar[r]_\sim^{\idfunc\times e_X}
+    \ar[d]_{j\times\idfunc} &
+    \sm{x:X}E_Z(k(x)) \ar[r]^-{k\times\idfunc}
+    & \sm{z:Z}E_Z(z) \ar[d]^\inr \\
+    \sm{y:Y}E_Y(y) \ar[rr]_\inl & & \sm{t:Y\sqcup^XZ}E(t) }\]
+\end{lem}
+
+\begin{proof}
+  We define $E$ by the recursion principle of the pushout $Y\sqcup^XZ$. For
+  that, we need to specify the value of $E$ on elements of the form $\inl(y)$, $\inr(z)$
+  and the action of $E$ on paths $\glue(x)$, so we can just choose the following
+  values:
+  \begin{align*}
+    E(\inl(y)) & \defeq E_Y(y),\\
+    E(\inr(z)) & \defeq E_Z(z),\\
+    \map E{\glue(x)} & \defid \ua(e_X(x)).
+  \end{align*}
+  %
+  To see that the total space of this fibration is a pushout, we apply the
+  flattening lemma (\autoref{thm:flattening}) with the following values:\index{flattening lemma}
+  \begin{itemize}
+  \item $A\defeq Y+Z$, $B\defeq X$ and $f,g:B\to A$ are defined by
+    $f(x)\defeq\inl(j(x))$, $g(x)\defeq\inr(k(x))$,
+  \item the type family $C:A\to\type$ is defined by
+    \begin{equation*}
+      C(\inl(y)) \defeq E_Y(y)
+      \qquad\text{and}\qquad
+      C(\inr(z)) \defeq E_Z(z),
+    \end{equation*}
+  \item the family of equivalences $D:\prd{b:B}C(f(b))\eqvsym C(g(b))$ is defined
+    to be $e_X$.
+  \end{itemize}
+  %
+  The base higher inductive type $W$ in the flattening lemma is equivalent to
+  the pushout $Y\sqcup^XZ$ and the type family $P:Y\sqcup^XZ\to\type$ is
+  equivalent to the $E$ defined above.
+
+  Thus the flattening lemma tells us that $\sm{t:Y\sqcup^XZ}E(t)$ is equivalent
+  the higher inductive type ${E^{\mathrm{tot}}}'$ with the following generators:
+  %
+  \begin{itemize}
+  \item a function $\mathsf{z}:\sm{a:Y+Z}C(a)\to {E^{\mathrm{tot}}}'$,
+  \item for each $x:X$ and $t:E_Y(j(x))$, a path
+    \narrowequation{\mathsf{z}(\inl(j(x)),t)=\mathsf{z}(\inr(k(x)),e_C(t)).}
+  \end{itemize}
+  %
+  Using the flattening lemma again or a direct computation, it is easy to see
+  that $\eqv{\sm{a:Y+Z}C(a)}{\sm{y:Y}E_Y(y)+\sm{z:Z}E_Z(z)}$, hence
+  ${E^{\mathrm{tot}}}'$ is equivalent to the higher inductive type
+  $E^{\mathrm{tot}}$ with the following generators:
+  %
+  \begin{itemize}
+  \item a function $\inl:\sm{y:Y}E_Y(y)\to E^{\mathrm{tot}}$,
+  \item a function $\inr:\sm{z:Z}E_Z(z)\to E^{\mathrm{tot}}$,
+  \item for each $(x,t):\sm{x:X}E_Y(j(x))$ a path
+    \narrowequation{\glue(x,t):\inl(j(x),t) = \inr(k(x),e_X(t)).}
+  \end{itemize}
+  %
+  Thus the total space of $E$ is the pushout of the total spaces of
+  $E_Y$ and $E_Z$, as required.
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{BoundedRecursion}
+\pmcreated{2013-03-22 19:07:01}
+\pmmodified{2013-03-22 19:07:01}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{bounded recursion}
+\pmrecord{5}{42011}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmsynonym{bounded primitive recursion}{BoundedRecursion}
+\pmrelated{ElementaryRecursiveFunction}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, the following notations are used:
+\begin{quote} $\mathcal{F} = \bigcup \lbrace F_k \mid k \in \mathbb{N}
+\rbrace$, where for each $k \in \mathbb{N}$, and $F_k = \lbrace f \mid f \colon \mathbb{N}^{k}
+\to \mathbb{N} \rbrace$. \end{quote}
+
+\textbf{Definition}.  A function $f\in F_{m+1}$ is said to be defined by \emph{bounded recursion} via functions $g\in F_m$, $h\in F_{m+2}$, and $k\in F_{m+1}$ if, for any $\boldsymbol{x}\in \mathbb{N}^m$ and $y\in \mathbb{N}$,
+\begin{enumerate}
+\item $f$ is defined by primitive recursion via $g$ and $h$:
+\begin{itemize}
+\item $f(\boldsymbol{x},0)=g(\boldsymbol{x})$,
+\item $f(\boldsymbol{x},y+1)=h(\boldsymbol{x},y,f(\boldsymbol{x},y))$;
+\end{itemize}
+\item $f$ is bounded from above by $k$: 
+\begin{itemize}
+\item $f(\boldsymbol{x},y)\le k(\boldsymbol{x},y)$.
+\end{itemize}
+\end{enumerate}
+
+Clearly, a function that is defined by bounded recursion is defined by primitive recursion.  Conversely, a function is defined by primitive recursion, it is also defined by bounded recursion, since it is bounded by itself.  However, the two concepts are not exactly the same.  To make this precise, we first define what it means for a set of number-theoretic functions be closed under bounded recursion:
+
+\textbf{Definition}.  A set $\mathcal{B}\subseteq \mathcal{F}$ is said to be \emph{closed under bounded recursion} if, for any $f$ defined by bounded recursion via $g,h,k\in \mathcal{B}$, then $f\in \mathcal{B}$.
+
+It is clear that $\mathcal{F}$ is closed under both primitive recursion and bounded recursion, and so are $\mathcal{PR}$, the set of all primitive recursive functions, as well as $\mathcal{R}\cap \mathcal{F}$, the set of all total recursive functions.  However,
+
+\begin{prop} The set $\mathcal{ER}$ of all elementary recursive functions is closed under bounded recursion, but not primitive recursion.  \end{prop}
+
+Since the exponential function, the $i$-th prime function, and the function $(x)_y$ (the exponent of $y$ in $x$) are elementary recursive, we have the following corollary:
+
+\begin{cor} If $f$ is defined by course-of-values recursion via an elementary recursive function $h$, and $f$ is bounded from above by an elementary recursive function $k$, then $f$ is elementary recursive. \end{cor}
+%%%%%
+%%%%%
+\end{document}

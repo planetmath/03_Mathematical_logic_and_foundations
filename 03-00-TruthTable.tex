@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TruthTable}
+\pmcreated{2013-03-22 11:54:35}
+\pmmodified{2013-03-22 11:54:35}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{truth table}
+\pmrecord{16}{30532}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-00}
+\pmclassification{msc}{34C29}
+\pmrelated{ZerothOrderLogic}
+\pmrelated{PropositionalCalculus}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+%%%%\usepackage{xypic}
+\begin{document}
+A \emph{truth table} is a tabular listing of all possible input value combinations for a logical function and their corresponding output values.  Similarly, the truth table of a logical proposition is the truth table of the corresponding logical function. 
+
+For instance, the truth table of the connective ``or'' is as follows:
+\begin{center}
+\begin{tabular}{ccc}
+$a$ & $b$ & $a \lor b$ \\
+\hline 
+F & F & F \\
+F & T & T \\
+T & F & T \\
+T & T & T 
+\end{tabular}
+\end{center}
+
+For $n$ input variables, there will always be $2^n$ rows in the truth table.  
+A sample truth table for ``$(a \land b) \rightarrow c$'' would be
+
+\begin{center}
+\begin{tabular}{cccc}
+$a$ & $b$ & $c$ & $(a \land b) \rightarrow c$ \\
+\hline 
+F & F & F & T \\
+F & F & T & F \\
+F & T & F & T \\
+F & T & T & F \\
+T & F & F & T \\
+T & F & T & F \\
+T & T & F & T \\
+T & T & T & T 
+\end{tabular}
+\end{center}
+
+(Note that $\land$ represents logical and, while $\rightarrow$ represents the conditional truth function).
+
+To compute truth tables of expressions, one often proceeds in steps.  for instance, 
+to compute a truth table for ``$\neg p \lor (p \land q)$, one might proceed as follows:
+
+\begin{center}
+\begin{tabular}{ccccc}
+$p$ & $q$ & $\neg p$ & $(p \land q)$ & $\neg p \lor (p \land q)$ \\
+\hline 
+F & F & T & F & T \\
+F & T & T & F & T \\
+T & F & F & F & F \\
+T & T & F & T & T
+\end{tabular}
+\end{center}
+
+For reference, here is a truth table of some popular connectives:
+
+\begin{center}
+\begin{tabular}{ccccccc}
+$p$ & $q$ & $p \lor q$ & $p \land q$ & $p \veebar q$ & $p \rightarrow q$ & $p \leftrightarrow q$ \\
+\hline 
+F & F & F & F & F & T & T \\
+F & T & T & F & T & T & F \\
+T & F & T & F & T & F & F \\
+T & T & T & T & F & T & T
+\end{tabular}
+\end{center}
+
+For completeness, here are the remaining connectives, excluding trivial connectives which
+depend on only one or none of their arguments:
+
+\begin{center}
+\begin{tabular}{ccccccccc}
+$p$ & $q$ & $p \not\!\!\land q$ & $p \not\!\lor q$ & $p \leftarrow q$ & $p \not\rightarrow q$ & $p \not\!\leftarrow q$ \\
+\hline 
+F & F & T & T & T & F & F \\
+F & T & T & F & F & F & T \\
+T & F & T & F & T & T & F \\
+T & T & F & F & T & F & F
+\end{tabular}
+\end{center}
+%%%%%
+%%%%%
+%%%%%
+%%%%%
+\end{document}

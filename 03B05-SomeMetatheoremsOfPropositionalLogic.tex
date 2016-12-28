@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SomeMetatheoremsOfPropositionalLogic}
+\pmcreated{2013-03-22 19:34:29}
+\pmmodified{2013-03-22 19:34:29}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{some meta-theorems of propositional logic}
+\pmrecord{10}{42561}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmdefines{law of syllogism}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Based on the axiom system in \PMlinkname{this entry}{AxiomSystemForPropositionalLogic}, we will prove some meta-theorems of propositional logic.  In the discussion below, $\Delta$ and $\Gamma$ are sets of well-formed formulas (wff's), and $A,B,C,\ldots$ are wff's. 
+
+\begin{enumerate}
+\item (Deduction Theorem) $\Delta,A\vdash B$ iff $\Delta\vdash A\to B$.
+\item (Proof by Contradiction) $\Delta,A\vdash \perp$ iff $\Delta \vdash \neg A$.
+\item (Proof by Contrapositive) $\Delta,A\vdash \neg B$ iff $\Delta, B\vdash \neg A$.
+\item (Law of Syllogism) If $\Delta \vdash A\to B$ and $\Gamma \vdash B\to C$, then $\Delta, \Gamma \vdash A\to C$.
+\item $\Delta \vdash A$ and $\Delta \vdash B$ iff $\Delta \vdash A\land B$.
+\item $\Delta \vdash A\leftrightarrow B$ iff $\Delta, A \vdash B$ and $\Delta, B \vdash A$.
+\item If $\Delta \vdash A\leftrightarrow B$, then $\Delta \vdash B\leftrightarrow A$.
+\item If $\Delta \vdash A\leftrightarrow B$ and $\Delta \vdash B\leftrightarrow C$, then $\Delta \vdash A \leftrightarrow C$.
+\item $\Delta\vdash A\land B\to C$ iff $\Delta \vdash A \to (B\to C)$.
+\item $\Delta \vdash A$ implies $\Delta \vdash B$ iff $\Delta \vdash A\to B$.  This is a useful restatement of the deduction theorem.
+\item (Substitution Theorem) If $\vdash B_i \leftrightarrow C_i$, then $\vdash A[\overline{B}/\overline{p}] \leftrightarrow A[\overline{C}/\overline{p}]$.
+\item $\Delta \vdash \perp$ iff there is a wff $A$ such that $\Delta \vdash A$ and $\Delta \vdash \neg A$.
+\item If $\Delta,A\vdash B$ and $\Delta,\neg A\vdash B$, then $\Delta \vdash B$.
+\end{enumerate}
+
+\textbf{Remark}.  The theorem schema $A\to \neg \neg A$ is used in the proofs below.
+
+\begin{proof}  The first three are proved \PMlinkname{here}{DeductionTheoremHoldsForClassicalPropositionalLogic}, and the last three are proved \PMlinkname{here}{SubstitutionTheoremForPropositionalLogic}.  We will prove the rest here, some of which relies on the deduction theorem.
+
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item
+From $\Delta \vdash A\to B$, by the deduction theorem, we have $\Delta, A\vdash B$.  Let $\mathcal{E}_1$ be a deduction of $B$ from $\Delta \cup \lbrace A \rbrace$, and $\mathcal{E}_2$ be a deduction of $B\to C$ from $\Gamma$, then $$\mathcal{E}_1, \mathcal{E}_2, C$$ is a deduction of $C$ from $\Delta\cup \lbrace A\rbrace \cup \Gamma$, so $\Delta, A, \Gamma \vdash C$, and by the deduction theorem again, we get $\Delta, \Gamma \vdash A\to C$.
+\item
+$(\Rightarrow)$.  Since $A\land B$ is $\neg (A\to \neg B)$, by the deduction theorem, it is enough to show $\Delta, A\to \neg B \vdash \perp$.  Suppose $\mathcal{E}_1$ is a deduction of $A$ from $\Delta$ and $\mathcal{E}_2$ is a deduction of $B$ from $\Delta$, then $$\mathcal{E}_1, \mathcal{E}_2, A\to \neg B, \neg B, \perp$$ is a deduction of $\perp$ from $\Delta \cup \lbrace A\to \neg B\rbrace$.
+
+$(\Leftarrow)$.  We first show that $\Delta \vdash B$.  Now, $\neg B \to (A\to \neg B)$ is an axiom and $\vdash (A\to \neg B) \to \neg \neg (A\to \neg B)$ is a theorem, $\vdash \neg B \to \neg \neg (A\to \neg B)$, so that by modus ponens, $\vdash \neg (A\to \neg B)\to B$, using axiom schema $(\neg C\to \neg D)\to (D\to C)$.  Since by assumption $\Delta \vdash \neg (A\to \neg B)$, by modus ponens again, we get $\Delta \vdash B$.
+
+We next show that $\Delta \vdash A$.  From the deduction $A,A\to \perp, \perp$, we have $A,\neg A \vdash \perp$, so certainly $\Delta, \neg A, A, B \vdash \perp$.  By three applications of the deduction theorem, we get $\Delta \vdash \neg A \to (A\to \neg B)$.  By theorem $(A\to \neg B) \to \neg \neg (A\to \neg B)$, $\Delta \vdash \neg A \to \neg \neg (A\to \neg B)$.  By axiom schema $(\neg C \to \neg D)\to (D\to C)$ and modus ponens, we get $\Delta \vdash \neg (A\to \neg B)\to A$.  Since $\Delta \vdash \neg A\to \neg B$ by assumption, $\Delta \to A$ as a result.
+\item
+$\Delta \vdash A\leftrightarrow B$ iff $\Delta \vdash A\to B$ and $\Delta \vdash B\to A$ iff $\Delta, A \vdash B$ and $\Delta, B \vdash A$.
+\item
+Apply 6 to $\Delta \vdash A\to B$ and $\Delta \vdash B\to A$.
+\item
+Apply 5 and 6.
+\item
+Since $\Delta,A\vdash B\to A\land B$ by the theorem schema $\vdash A\to (B\to A\land B)$, together with 
+$\Delta\vdash A\land B\to C$, we have $\Delta,A\vdash B\to C$ by law of syllogism, or equivalently $\Delta \vdash A\to (B\to C)$, by the deduction theorem.  Conversely, $\Delta, A\vdash B\to C$ and theorem schema $A\land B\to B$ result in $\Delta, A\vdash A\land B\to C$ by law of syllogism.  So $\Delta \vdash A\to (A\land B\to C)$ by the deduction theorem.  But $A\land B\to A$ is a theorem schema, $\Delta \vdash A\land B\to (A\land B\to C)$, and therefore $\Delta \vdash A\land B\to C$ by the theorem schema $(X\to (X\to Y)) \leftrightarrow (X\to Y)$.
+\item
+Assume the former.  Then a deduction of $B$ from $\Delta$ may or may not contain $A$.  In either case, $\Delta, A \vdash B$, so $\Delta \vdash A\to B$ by the deduction theorem.  Next, assume the later.  Let $\mathcal{E}_1$ be a deduction of $A\to B$ from $\Delta$.  Then if $\mathcal{E}_2$ is a deduction of $A$ from $\Delta$, then $\mathcal{E}_1, \mathcal{E}_2, B$ is a deduction of $B$ from $\Delta$, and therefore $\Delta \vdash B$.
+\end{enumerate}
+To see the last meta-theorem implies the deduction theorem, assume $\Delta, A \vdash B$.  Suppose $\Delta \vdash A$.  Let $\mathcal{E}_1$ be a deduction of $A$ from $\Delta$, and $\mathcal{E}_2$ a deduction of $B$ from $\Delta\cup \lbrace A \rbrace$.  Then $\mathcal{E}_1,\mathcal{E}_2$ is a deduction of $B$ from $\Delta$.  So $\Delta \vdash B$.  As a result $\Delta A\to B$ by the statement of the meta-theorem.
+\end{proof}
+
+\textbf{Remark}.  Meta-theorems 7 and 8, together with the theorem schema $A\leftrightarrow A$, show that $\leftrightarrow$ defines an equivalence relation on the set of all wff's of propositional logic.  Formally, for any two wff's $A,B$, if we define $A\sim B$ iff $\vdash A\leftrightarrow B$, then $\sim$ is an equivalence relation.
+
+%%%%%
+%%%%%
+\end{document}

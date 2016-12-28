@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ConsequenceOperatorDeterminedByAClassOfSubsets}
+\pmcreated{2013-03-22 16:29:45}
+\pmmodified{2013-03-22 16:29:45}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{consequence operator determined by a class of subsets}
+\pmrecord{10}{38671}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G25}
+\pmclassification{msc}{03G10}
+\pmclassification{msc}{03B22}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\begin{theorem}
+Let $L$ be a set and let $K$ be a subset of $\mathcal{P}(L)$.  The the mapping
+$C \colon \mathcal{P}(L) \to \mathcal{P}(L)$ defined as $ C(X) = \cap \{ Y \in K
+\mid X \subseteq Y\}$ is a consequence operator.
+\end{theorem}
+
+\begin{proof}
+We need to check that $C$ satisfies the defining properties.
+
+\emph{ Property 1:} 
+Since every element of the set $\{ Y \in K \mid X \subseteq Y \}$ 
+contains $X$, we have $X \subseteq C(X)$.
+
+\emph{ Property 2:}
+For every element $Y$ of $K$ such that $X \subseteq Y$, it also is the case that
+$C(X) \subseteq Y$ because an intersection of a family of sets is a subset of
+any member of the family.  In other words (or rather, symbols),
+ \[ \{ Y \in K \mid X \subseteq Y \} \subseteq \{ Y \in K \mid C(X) 
+\subseteq Y \},\]
+hence $C(C(X)) \subseteq C(X)$.  By the first property proven above, $C(X)
+\subseteq C(C(X))$ so $C(C(X)) = C(X)$.  Thus, $C \circ C = C$.
+
+\emph{Property 3:}
+Let $X$ and $Y$ be two subsets of $L$ such that $X \subseteq Y$.  Then if,
+for some other subset $Z$ of $L$, we have $Y \subset Z$, it follows that
+$X \subset Z$.  Hence,
+ \[ \{ Z \in K \mid Y \subseteq Z \} \subseteq \{ Z \in K \mid X 
+\subseteq Z \},\]
+so $C(X) \subseteq C(Y)$.
+
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

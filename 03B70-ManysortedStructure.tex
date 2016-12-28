@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ManysortedStructure}
+\pmcreated{2013-03-22 17:45:17}
+\pmmodified{2013-03-22 17:45:17}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{many-sorted structure}
+\pmrecord{9}{40206}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B70}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03C07}
+\pmsynonym{many sorted structure}{ManysortedStructure}
+\pmsynonym{many sorted algebra}{ManysortedStructure}
+\pmdefines{many-sorted interpretation}
+\pmdefines{many-sorted algebra}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $L$ be a many-sorted language and $S$ the set of sorts.  A \emph{many-sorted structure} $M$ for $L$, or simply an $L$-structure consists of the following:
+\begin{enumerate}
+\item for each sort $s\in S$, a non-empty set $A_s$,
+\item for each function symbol $f$ of sort type $(s_1,\ldots, s_n)$:
+\begin{itemize}
+\item if $n>1$, a function $f_M: A_{s_1}\times \cdots \times A_{s_{n-1}} \to A_{s_n}$
+\item if $n=1$ (constant symbol), an element $f_M\in A_{s_1}$
+\end{itemize}
+\item for each relation symbol $r$ of sort type $(s_1,\ldots,s_n)$, a relation (or subset) $$r_M\subseteq A_{s_1}\times \cdots \times A_{s_n}.$$
+\end{enumerate}
+
+A \emph{many-sorted algebra} is a many-sorted structure without any relations.
+
+\textbf{Remark}.  A many-sorted structure is a special case of a more general concept called a \emph{many-sorted interpretation}, which consists all of items 1-3 above, as well as the following:
+\begin{itemize}
+\item[4.] an element $x_M\in A_s$ for each variable $x$ of sort $s$.
+\end{itemize}
+
+\textbf{Examples}. 
+\begin{enumerate}
+\item 
+A left module over a ring can be thought of as a two-sorted algebra (say, with sorts $\lbrace s_1,s_2\rbrace$), for there are
+\begin{itemize}
+\item there are two non-empty sets $M$ (corresponding to sort $s_1$) and $R$ (corresponding to sort $s_2$), where
+\item $M$ has the structure of an abelian group (equipped with three operations: $0,-,+$, corresponding to function symbols of sort types $(s_1), (s_1,s_1)$, and $(s_1,s_1,s_1)$)
+\item $R$ has the structure of a ring (equipped with at least four operations: $0,-,+,\times$, corresponding to function symbols of sort types $(s_2), (s_2,s_2)$ and $(s_2,s_2,s_2)$ for $+$ and $\times$, and possibly a fifth operation $1$ of sort type $(s_2)$)
+\item a function $\cdot: R\times M\to M$, which corresponds to a function symbol of sort type $(s_2,s_1,s_1)$.  Clearly, $\cdot$ is the scalar multiplication on the module $M$.
+\end{itemize}
+For a right module over a ring, one merely replaces the sort type of the last function symbol by the sort type $(s_1,s_2,s_1)$.
+\item
+A deterministic semiautomaton $A=(S,\Sigma,\delta)$ is a two-sorted algebra, where 
+\begin{itemize}
+\item $S$ and $\Sigma$ are non-empty sets, corresponding to sorts, say, $s_1$ and $s_2$,
+\item $\delta: S\times \Sigma \to S$ is a function corresponding to a function symbol of sort type $(s_1,s_2,s_1)$.  
+\end{itemize}
+\item
+A deterministic automaton $B=(S,\Sigma,\delta,\sigma,F)$ is a two-sorted structure, where 
+\begin{itemize}
+\item $(S,\Sigma,\delta)$ is a semiautomaton discussed earlier,
+\item $\sigma$ is a constant corresponding to a nullary function symbol of sort type $(s_1)$,
+\item $F$ is a unary relation corresponding to a relation symbol of sort type $(s_1)$.  
+\end{itemize}
+Because $F$ is a relation, $B$ is not an algebra.
+\item
+A complete sequential machine $M=(S,\Sigma,\Delta,\delta,\lambda)$ is a three-sorted algebra, where 
+\begin{itemize}
+\item $(S,\Sigma,\delta)$ is a semiautomaton discussed earlier,
+\item $\Delta$ is a non-empty sets, corresponding to sort, say, $s_3$,
+\item $\lambda: S\times \Sigma \to \Delta$ is a function corresponding to a function symbol of sort type $(s_1,s_2,s_3)$.
+\end{itemize}
+\end{enumerate}
+
+\begin{thebibliography}{9}
+\bibitem{dm} J. D. Monk, \emph{Mathematical Logic}, Springer, New York (1976).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

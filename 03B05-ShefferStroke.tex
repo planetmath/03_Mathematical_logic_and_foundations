@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ShefferStroke}
+\pmcreated{2013-03-22 18:51:55}
+\pmmodified{2013-03-22 18:51:55}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Sheffer stroke}
+\pmrecord{4}{41695}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmsynonym{alternative denial}{ShefferStroke}
+\pmsynonym{NAND}{ShefferStroke}
+\pmsynonym{joint denial}{ShefferStroke}
+\pmsynonym{NOR}{ShefferStroke}
+\pmdefines{Peirce arrow}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In the late 19th century and early 20th century, Charles Sanders Peirce and H.M. Sheffer independently discovered that a single binary logical connective suffices to define all logical connectives (they are each functionally complete).  Two such connectives are
+\begin{itemize}
+\item
+$\uparrow$: the \emph{Sheffer stroke} (sometimes denoted by $|$) and
+
+\item
+$\downarrow$: the \emph{Peirce arrow} (sometimes denoted by $\bot$).
+\end{itemize}
+
+The Sheffer stroke is defined by the truth table
+\begin{center}
+\begin{tabular}{ccc}
+$P$ & $Q$ & $P \uparrow Q$ \\
+\hline
+F & F & T \\
+F & T & T \\
+T & F & T \\
+T & T & F
+\end{tabular}
+\end{center}
+Observe that $P\uparrow Q$ is true if and only if either $P$ or $Q$ is false.  For this reason, the Sheffer stroke is sometimes called \emph{alternative denial} or \emph{NAND}.
+
+The Peirce arrow is defined by the truth table
+\begin{center}
+\begin{tabular}{ccc}
+$P$ & $Q$ & $P \downarrow Q$ \\
+\hline
+F & F & T \\
+F & T & F \\
+T & F & F \\
+T & T & F
+\end{tabular}
+\end{center}
+The proposition $P\downarrow Q$ is true if and only if both $P$ and $Q$ are false.  For this reason, the Peirce arrow is sometimes called \emph{joint denial} or \emph{NOR}.
+
+To show the sufficiency of the Sheffer stroke, all we have to do is define both $\lnot$ and $\lor$ in terms of $\uparrow$.  The proposition $P\uparrow P$ asserts that either $P$ is false, or $P$ is false; thus we can define $\lnot$ by $\lnot P := P\uparrow P$.  We define $\lor$ by 
+\[
+P \lor Q := (P\uparrow P)\uparrow(Q\uparrow Q),
+\]
+since this asserts that either $P\uparrow P$ is false (that is, that $P$ is true) or that $Q\uparrow Q$ is false (that is, that $Q$ is true).
+
+We can show the sufficiency of the Peirce arrow in a similar way.  Define
+\[
+\lnot P := P\downarrow P
+\]
+and
+\[
+P\lor Q := (P\downarrow Q)\downarrow(P\downarrow Q).
+\]
+This expression asserts that $P\downarrow Q$ is false, that is, that it is false that both $P$ and $Q$ are false.  By DeMorgan's law, this is equivalent to asserting that at least one of $P$ and $Q$ is true.
+
+\textbf{Remark}.  It can be shown that no binary connective, other than Sheffer stroke and Peirce arrow, is functionally complete.
+%%%%%
+%%%%%
+\end{document}

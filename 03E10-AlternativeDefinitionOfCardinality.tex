@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AlternativeDefinitionOfCardinality}
+\pmcreated{2013-03-22 18:50:11}
+\pmmodified{2013-03-22 18:50:11}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{alternative definition of cardinality}
+\pmrecord{10}{41641}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\card}{\operatorname{card}}
+\newcommand{\kard}{\operatorname{kard}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+The concept of cardinality comes from the notion of equinumerosity of sets.  To define the cardinality $|A|$ of a set $A$, one desirable property is that $A$ is equinumerous to $B$ precisely when $|A|=|B|$.  The first attempt, due to Frege and Russel, is to define a relation $\sim$ on the class $V$ of sets so that $A\sim B$ iff there is a bijection from $A$ to $B$.  This relation is an equivalence relation on $V$.  Then we can define $|A|$ as the equivalence class containing the set $A$.  However, $|A|$ is not a set, so we can't do much with $|A|$ in ZF.
+
+The second attempt, due to Von Neumann, defines $|A|$ to be the smallest ordinal $\card(A)$ equinumerous to $A$.  Now, $\card(A)$ exists if $A$ is well-orderable.  But in general, we do not know if $A$ is well-orderable unless the well-ordering principle is applied, which is just another form of the axiom of choice.  Thus, this definition depends on AC, and, in everyday mathematical usage (which assumes ZFC), $|A|:=\card(A)$ suffices.
+
+The third way, due to Scott, of looking at $|A|$, without AC, is to modify the first attempt somewhat, so that $|A|$ is a set.  Recall that the rank of a set $A$ is the least ordinal $\alpha$ such that $A\subseteq V_{\alpha}$ in the cumulative hierarchy.  A set having a rank is said to be \emph{grounded}.  By the axiom of foundation, every set is grounded.  For any set $A$, let $R(A):=\lbrace \rho(B)\mid B\sim A\rbrace$.  Then $R(A)$, as a class of ordinals, has a least element $r(A)$.  So $r(A)\le \rho(A)$.  Next, we define (borrowing the terminology used in the first reference below) $$\kard(A):=\lbrace B \mid B\sim A\mbox{ and }\rho(B)=r(A)\rbrace,$$ and set $|A|:=\kard(A)$.  Since every element in $\kard(A)$ is a subset of $V_{r(A)}$, $\kard(A)\subseteq V_{r(A)^+}$, so that $|A|$ is a set.  This method is known as Scott's trick.  It can also be used in defining other isomorphism types on sets.  It is easy to see that $|A|=|B|$ iff $A\sim B$.  However, with this definition, $\kard(n)\ne n$ in general, where $n$ is a natural number.
+
+Nevertheless, it is known that every finite set is well-orderable, and so we come to the fourth definition of the cardinality of a set: given a set $A$:
+\begin{displaymath}
+|A|:= \left\{
+\begin{array}{ll}
+\card(A) \mbox{ if }A\mbox{ is well-orderable},\\
+\kard(A) \mbox{ otherwise }.
+\end{array}
+\right.
+\end{displaymath}
+The one big advantage of this definition is clear: it does not require AC, and with AC, it is identical to the second definition above.  At the same time, it also resolves the conflict with our intuitive notion about cardinality: the cardinality of a finite set is the number of elements in the set.  However, the one big disadvantage in this definition is that we do not have $A\sim |A|$ in general (of course, $A$ is infinite).  There is no way, without AC, to find a definition of $|A|$, such that $A\sim B$ iff $|A|=|B|$, and $A\sim |A|$ at the same time.
+
+\begin{thebibliography}{8}
+\bibitem{he} H. Enderton, {\em Elements of Set Theory}, Academic Press, Orlando, FL (1977).
+\bibitem{tjj} T. J. Jech, \emph{Set Theory}, 3rd Ed., Springer, New York, (2002).
+\bibitem{al} A. Levy, {\em Basic Set Theory}, Dover Publications Inc., (2002).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

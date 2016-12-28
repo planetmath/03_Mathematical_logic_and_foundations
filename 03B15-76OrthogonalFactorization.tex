@@ -1,0 +1,388 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{76OrthogonalFactorization}
+\pmcreated{2013-11-21 18:05:01}
+\pmmodified{2013-11-21 18:05:01}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{7.6 Orthogonal factorization}
+\pmrecord{3}{87703}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\eqvspaced}[2]{\ensuremath{#1 \;\simeq\; #2}\xspace}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\fact}{\mathsf{fact}}
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\htpy}{\sim}
+\newcommand{\im}{\ensuremath{\mathsf{im}}} 
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\iscontr}{\ensuremath{\mathsf{isContr}}}
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\mapfunc}[1]{\ensuremath{\mathsf{ap}_{#1}}\xspace} 
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\nplusone}{\ensuremath{(n+1)}}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\newcommand{\Pairr}[1]{{\mathopen{}\left(#1\right)\mathclose{}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\tproj}[3][]{\mathopen{}\left|#3\right|_{#2}^{#1}\mathclose{}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\Trunc}[2]{\Bigl\Vert #2\Bigr\Vert_{#1}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{7.6.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{7.6.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{7.6.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{7.6.\arabic{mathcount}}
+\let\apfunc\mapfunc
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+\index{unique!factorization system|(}%
+\index{orthogonal factorization system|(}%
+In set theory, the surjections and the injections form a unique factorization system: every function factors essentially uniquely as a surjection followed by an injection.
+We have seen that surjections generalize naturally to $n$-connected maps, so it is natural to inquire whether these also participate in a factorization system.
+Here is the corresponding generalization of injections.
+
+\begin{defn}
+  A function $f:A\to B$ is \define{$n$-truncated}
+  \indexdef{n-truncated@$n$-truncated!function}%
+  \indexdef{function!n-truncated@$n$-truncated}%
+if the fiber $\hfib f b$ is an $n$-type for all $b:B$.
+\end{defn}
+
+In particular, $f$ is $(-2)$-truncated if and only if it is an equivalence.
+And of course, $A$ is an $n$-type if and only if $A\to\unit$ is $n$-truncated.
+Moreover, $n$-truncated maps could equivalently be defined recursively, like $n$-types.
+
+\begin{lem}\label{thm:modal-mono}
+  For any $n\ge -2$, a function $f:A\to B$ is $(n+1)$-truncated if and only if for all $x,y:A$, the map $\apfunc{f}:(x=y) \to (f(x)=f(y))$ is $n$-truncated.
+  \index{function!embedding}%
+  \index{function!injective}%
+  In particular, $f$ is $(-1)$-truncated if and only if it is an embedding in the sense of \PMlinkname{\S 4.6}{46surjectionsandembeddings}.
+\end{lem}
+\begin{proof}
+  Note that for any $(x,p),(y,q):\hfib f b$, we have
+  \begin{align*}
+    \big((x,p) = (y,q)\big)
+    &= \sm{r:x=y} (p = \apfunc f(r)\ct q)\\
+    &= \sm{r:x=y} (\apfunc f (r) = p\ct \opp q)\\
+    &= \hfib{\apfunc{f}}{p\ct \opp q}.
+  \end{align*}
+  Thus, any path space in any fiber of $f$ is a fiber of $\apfunc{f}$.
+  On the other hand, choosing $b\defeq f(y)$ and $q\defeq \refl{f(y)}$ we see that any fiber of $\apfunc f$ is a path space in a fiber of $f$.
+  The result follows, since $f$ is $\nplusone$-truncated if all path spaces of its fibers are $n$-types.
+\end{proof}
+
+We can now construct the factorization, in a fairly obvious way.
+
+\begin{defn}\label{defn:modal-image}
+Let $f:A\to B$ be a function. The \define{$n$-image}
+\indexdef{image}%
+\indexdef{image!n-image@$n$-image}%
+\indexdef{n-image@$n$-image}%
+\indexdef{function!n-image of@$n$-image of}%
+of $f$ is defined as
+\begin{equation*}
+\im_n(f)\defeq \sm{b:B} \trunc n{\hfib{f}b}.
+\end{equation*}
+When $n=-1$, we write simply $\im(f)$ and call it the \define{image} of $f$.
+\end{defn}
+
+\begin{lem}\label{prop:to_image_is_connected}
+For any function $f:A\to B$, the canonical function $\tilde{f}:A\to\im_n(f)$ is $n$-connected. 
+Consequently, any function factors as an $n$-connected function followed by an $n$-truncated function.
+\end{lem}
+
+\begin{proof}
+Note that $A\eqvsym\sm{b:B}\hfib{f}b$. The function $\tilde{f}$ is the function on total spaces induced by the canonical fiberwise transformation
+\begin{equation*}
+\prd{b:B} \Parens{\hfib{f}b\to\trunc n{\hfib{f}b}}.
+\end{equation*}
+Since each map $\hfib{f}b\to\trunc n{\hfib{f}b}$ is $n$-connected by \PMlinkname{Corollary 7.5.8}{75connectedness#Thmprecor2}, $\tilde{f}$ is $n$-connected by \PMlinkname{Lemma 7.5.13}{75connectedness#Thmprelem8}.
+Finally, the projection $\proj1:\im_n(f) \to B$ is $n$-truncated, since its fibers are equivalent to the $n$-truncations of the fibers of $f$.
+\end{proof}
+
+In the following lemma we set up some machinery to prove the unique factorization theorem.
+
+\begin{lem}\label{prop:factor_equiv_fiber}
+Suppose we have a commutative diagram of functions
+\begin{figure}
+ \centering}
+ \includegraphics{HoTT_fig_7.6.1.png}
+\end{figure}
+%\begin{equation*}
+%  \xymatrix{
+%    {A} \ar[r]^{g_1} \ar[d]_{g_2} &
+%    {X_1} \ar[d]^{h_1} &
+%    \\
+%    {X_2} \ar[r]_{h_2}
+%    &
+%    {B}
+%  }
+\end{equation*}
+with $H:h_1\circ g_1\htpy h_2\circ g_2$, where $g_1$ and $g_2$ are $n$-connected and where $h_1$ and $h_2$ are $n$-truncated.
+Then there is an equivalence
+\begin{equation*}
+E(H,b):\hfib{h_1}b\eqvsym\hfib{h_2}b
+\end{equation*}
+for any $b:B$, such that for any $a:A$ we have an identification
+\[\overline{E}(H,a) :  E(H,h_1(g_1(a)))({g_1(a),\refl{h_1(g_1(a))}}) = \pairr{g_2(a),\opp{H(a)}}.\]
+\end{lem}
+
+\begin{proof}
+Let $b:B$. Then we have the following equivalences:
+\begin{align}
+\hfib{h_1}b
+& \eqvsym \sm{w:\hfib{h_1}b} \trunc n{ \hfib{g_1}{\proj1 w}}
+\tag{since $g_1$ is $n$-connected}\\
+& \eqvsym \Trunc n{\sm{w:\hfib{h_1}b}\hfib{g_1}{\proj1 w}}
+\tag{by \PMlinkname{Corollary 7.3.10}{73truncations#Thmprecor2}, since $h_1$ is $n$-truncated}\\
+& \eqvsym \trunc n{\hfib{h_1\circ g_1}b}
+\tag{by \PMlinkexternal{Exercise 4.4}{http://planetmath.org/node/87774}}
+\end{align}
+and likewise for $h_2$ and $g_2$.
+Also, since we have a homotopy $H:h_1\circ g_1\htpy h_2\circ g_2$, there is an obvious equivalence $\hfib{h_1\circ g_1}b\eqvsym\hfib{h_2\circ g_2}b$.
+Hence we obtain
+\begin{equation*}
+\hfib{h_1}b\eqvsym\hfib{h_2}b
+\end{equation*}
+for any $b:B$. By analyzing the underlying functions, we get the following representation of what happens to the element
+$\pairr{g_1(a),\refl{h_1(g_1(a))}}$ after applying each of the equivalences of which $E$ is composed.
+Some of the identifications are definitional, but others (marked with a $=$ below) are only propositional; putting them together we obtain $\overline E(H,a)$.
+{\allowdisplaybreaks
+\begin{align*}
+\pairr{g_1(a),\refl{h_1(g_1(a))}} & 
+    \overset{=}{\mapsto} \Pairr{\pairr{g_1(a),\refl{h_1(g_1(a))}}, \tproj n{ \pairr{a,\refl{g_1(a)}}}}\\
+  & \mapsto \tproj n { \pairr{\pairr{g_1(a),\refl{h_1(g_1(a))}}, \pairr{a,\refl{g_1(a)}} }}\\
+  & \mapsto \tproj n { \pairr{a,\refl{h_1(g_1(a))}}}\\
+  & \overset{=}{\mapsto} \tproj n { \pairr{a,\opp{H(a)}}}\\
+  & \mapsto \tproj n { \pairr{\pairr{g_2(a),\opp{H(a)}},\pairr{a,\refl{g_2(a)}}} }\\
+  & \mapsto \Pairr{\pairr{g_2(a),\opp{H(a)}}, \tproj n {\pairr{a,\refl{g_2(a)}}} }\\
+  & \mapsto \pairr{g_2(a),\opp{H(a)}}
+\end{align*}}
+The first equality is because for general $b$, the map
+\narrowequation{ \hfib{h_1}b \to \sm{w:\hfib{h_1}b} \trunc n{ \hfib{g_1}{\proj1 w}} }
+inserts the center of contraction for $\trunc n{ \hfib{g_1}{\proj1 w}}$ supplied by the assumption that $g_1$ is $n$-truncated; whereas in the case in question this type has the obvious inhabitant $\tproj n{ \pairr{a,\refl{g_1(a)}}}$, which by contractibility must be equal to the center.
+The second propositional equality is because the equivalence $\hfib{h_1\circ g_1}b\eqvsym\hfib{h_2\circ g_2}b$ concatenates the second components with $\opp{H(a)}$, and we have $\opp{H(a)} \ct \refl{} = \opp{H(a)}$.
+The reader may check that the other equalities are definitional (assuming a reasonable solution to \PMlinkexternal{Exercise 4.4}{http://planetmath.org/node/87774}).
+\end{proof}
+
+% The equivalences $E(H,b)$ are such that $E(H^{-1},b)= E(H,b)^{-1}$.
+
+Combining \PMlinkname{Lemma 7.6.4}{76orthogonalfactorization#Thmprelem2},\PMlinkname{Lemma 7.6.5}{76orthogonalfactorization#Thmprelem3}, we have the following unique factorization result:
+
+\begin{thm}\label{thm:orth-fact}
+For each $f:A\to B$, the space $\fact_n(f)$ defined by
+\begin{equation*}
+\sm{X:\type}{g:A\to X}{h:X\to B} (h\circ g\htpy f)\times\mathsf{conn}_n(g)\times\mathsf{trunc}_n(h).
+\end{equation*}
+is contractible.
+Its center of contraction is the element
+\begin{equation*}
+\pairr{\im_n(f),\tilde{f},\proj1,\theta,\varphi,\psi}:\fact_n(f)
+\end{equation*}
+arising from \PMlinkname{Lemma 7.6.4}{76orthogonalfactorization#Thmprelem2},
+where $\theta:\proj1\circ\tilde{f}\htpy f$ is the canonical homotopy, where $\varphi$ is the proof of
+\PMlinkname{Lemma 7.6.4}{76orthogonalfactorization#Thmprelem2}, and where $\psi$ is the obvious proof that $\proj1:\im_n(f)\to B$ has $n$-truncated fibers.
+\end{thm}
+
+\begin{proof}
+By \PMlinkname{Lemma 7.6.4}{76orthogonalfactorization#Thmprelem2} we know that there is an element of $\fact_n(f)$, hence it is enough to
+show that $\fact_n(f)$ is a mere proposition. Suppose we have two $n$-factorizations
+\begin{equation*}
+\pairr{X_1,g_1,h_1,H_1,\varphi_1,\psi_1}\qquad\text{and}\qquad\pairr{X_2,g_2,h_2,H_2,\varphi_2,\psi_2}
+\end{equation*}
+of $f$. Then we have the pointwise-concatenated homotopy
+\[ H\defeq (\lam{a} H_1(a) \ct H_2^{-1}(a)) \,:\, (h_1\circ g_1\htpy h_2\circ g_2).\]
+By univalence and the characterization of paths and transport in $\Sigma$-types, function types, and path types, it suffices to show that
+\begin{enumerate}
+\item there is an equivalence $e:X_1\eqvsym X_2$,
+\item there is a homotopy $\zeta:e\circ g_1\htpy g_2$,
+% \note{Is it easy enough to see that these elements are the various transports?}
+\item there is a homotopy $\eta:h_2\circ e\htpy h_1$,
+\item for any $a:A$ we have $\opp{\apfunc{h_2}(\zeta(a))} \ct \eta(g_1(a)) \ct H_1(a) = H_2(a)$.
+\end{enumerate}
+%where $\underline{e}$ is the function underlying the equivalence.
+We prove these four assertions in that order.
+\begin{enumerate}
+\item By \PMlinkname{Lemma 7.6.5}{76orthogonalfactorization#Thmprelem3}, we have a fiberwise equivalence
+% \note{It could be a nice exercise for the book to show
+% that if $f_1:A_1\to B$ and $f_2:A_2\to B$ have equivalent fibers, then $A_1\eqvsym A_2$}.
+\begin{equation*}
+E(H) : \prd{b:B} \eqv{\hfib{h_1}b}{\hfib{h_2}b}.
+\end{equation*}
+This induces an equivalence of total spaces, i.e.\ we have
+\begin{equation*}
+\eqvspaced{\Parens{\sm{b:B} \hfib{h_1}b}}{\Parens{\sm{b:B}\hfib{h_2}b}}.
+\end{equation*}
+Of course, we also have the equivalences $X_1\eqvsym\sm{b:B}\hfib{h_1}b$ and $X_2\eqvsym\sm{b:B}
+\hfib{h_2}b$ from \PMlinkname{Lemma 4.8.2}{48theobjectclassifier#Thmprelem2}.
+This gives us our equivalence $e:X_1\eqvsym X_2$; the reader may verify that the underlying function of $e$ is given by
+\begin{equation*}
+e(x) \jdeq \proj1(E(H,h_1(x))(x,\refl{h_1(x)})).
+\end{equation*}
+\item By \PMlinkname{Lemma 7.6.5}{76orthogonalfactorization#Thmprelem3}, we may choose
+  $\zeta(a) \defeq \apfunc{\proj1}(\overline E(H,a)) : e(g_1(a)) = g_2(a)$.
+  \label{item:orth-fact-2}
+\item For every $x:X_1$, we have
+\begin{equation*}
+\proj2(E(H,h_1(x))({x,\refl{h_1(x)}})) :h_2(e(x))= h_1(x),
+\end{equation*}
+giving us a homotopy $\eta:h_2\circ e\htpy h_1$.
+\item By the characterization of paths in fibers (\PMlinkname{Lemma 4.2.5}{42halfadjointequivalences#Thmprelem2}), the path $\overline E(H,a)$ from \PMlinkname{Lemma 7.6.5}{76orthogonalfactorization#Thmprelem3} gives us
+  $\eta(g_1(a)) = \apfunc{h_2}(\zeta(a)) \ct \opp{H(a)}$.
+  The desired equality follows by substituting the definition of $H$ and rearranging paths.\qedhere
+\end{enumerate}
+\end{proof}
+
+% I can't make sense of this, and it doesn't seem necessary
+%
+% \begin{cor}
+% A function $f:A\to B$ is $n$-connected if and only if
+% \begin{equation*}
+% \prd C\prd{g:\modalfunc(B\to C)} \iscontr\big(\sm{h:\modalfunc(B\to C)}\underline{h}\circ
+% f\htpy\underline{g}\circ f\big).
+% \end{equation*}
+% \end{cor}
+
+By standard arguments, this yields the following orthogonality principle.
+
+\begin{thm}
+  Let $e:A\to B$ be $n$-connected and $m:C\to D$ be $n$-truncated.
+  Then the map
+  \[ \varphi: (B\to C) \;\to\; \sm{h:A\to C}{k:B\to D} (m\circ h \htpy k \circ e) \]
+  is an equivalence.
+\end{thm}
+\begin{proof}[Sketch of proof]
+  For any $(h,k,H)$ in the codomain, let $h = h_2 \circ h_1$ and $k = k_2 \circ k_1$, where $h_1$ and $k_1$ are $n$-connected and $h_2$ and $k_2$ are $n$-truncated.
+  Then $f = (m\circ h_2) \circ h_1$ and $f = k_2 \circ (k_1\circ e)$ are both $n$-factorizations of $m \circ h = k\circ e$.
+  Thus, there is a unique equivalence between them.
+  It is straightforward (if a bit tedious) to extract from this that $\hfib\varphi{(h,k,H)}$ is contractible.
+\end{proof}
+
+\index{orthogonal factorization system|)}%
+\index{unique!factorization system|)}%
+
+We end by showing that images are stable under pullback.
+\index{image!stability under pullback}
+\index{factorization!stability under pullback}
+
+\begin{lem}\label{lem:hfiber_wrt_pullback}
+Suppose that the square
+\begin{figure}
+ \centering}
+ \includegraphics{HoTT_fig_7.6.2.png}
+\end{figure}
+%\begin{equation*}
+%  \vcenter{\xymatrix{
+%      A\ar[r]\ar[d]_f &
+%      C\ar[d]^g\\
+%      B\ar[r]_-h &
+%      D
+%      }}
+%\end{equation*}
+is a pullback square and let $b:B$. Then $\hfib{f}b\eqvsym\hfib{g}{h(b)}$.
+\end{lem}
+
+\begin{proof}
+This follows from pasting of pullbacks (\PMlinkexternal{Exercise 2.12}{http://planetmath.org/node/87643}), since the type $X$ in the diagram
+\begin{figure}
+ \centering}
+ \includegraphics{HoTT_fig_7.6.3.png}
+\end{figure}
+%\begin{equation*}
+%  \vcenter{\xymatrix{
+%      X\ar[r]\ar[d] &
+%      A\ar[r]\ar[d]_f &
+%      C\ar[d]^g\\
+%      \unit\ar[r]_b &
+%      B\ar[r]_h &
+%      D
+%      }}
+%\end{equation*}
+is the pullback of the left square if and only if it is the pullback of the outer rectangle, while $\hfib{f}b$ is the pullback of the square on the left and $\hfib{g}{h(b)}$ is the pullback of the outer rectangle.
+\end{proof}
+
+\begin{thm}\label{thm:stable-images}
+\index{stability!of images under pullback}%
+Consider functions $f:A\to B$, $g:C\to D$ and the diagram
+\begin{figure}
+ \centering}
+ \includegraphics{HoTT_fig_7.6.4.png}
+\end{figure}
+%\begin{equation*}
+%  \vcenter{\xymatrix{
+%      A\ar[r]\ar[d]_{\tilde{f}_n} &
+%      C\ar[d]^{\tilde{g}_n}\\
+%      \im_n(f)\ar[r]\ar[d]_{\proj1} &
+%      \im_n(g)\ar[d]^{\proj1}\\
+%      B\ar[r]_h &
+%      D
+%      }}
+%\end{equation*}
+If the outer rectangle is a pullback, then so is the bottom square (and hence so is the top square, by \PMlinkexternal{Exercise 2.12}{http://planetmath.org/node/87643}). Consequently, images are stable under pullbacks.
+\end{thm}
+
+\begin{proof}
+Assuming the outer square is a pullback, we have equivalences
+\begin{align*}
+B\times_D\im_n(g) & \jdeq \sm{b:B}{w:\im_n(g)} h(b)=\proj1 w\\
+& \eqvsym \sm{b:B}{d:D}{w:\trunc n{\hfib{g}d}} h(b)= d\\
+& \eqvsym \sm{b:B} \trunc n{\hfib{g}{h(b)}}\\
+& \eqvsym \sm{b:B} \trunc n{\hfib{f}b} &&
+\text{(by \PMlinkname{Theorem 7.6.9}{76orthogonalfactorization#Thmprethm3})}\\
+& \equiv \im_n(f). && \qedhere
+\end{align*}
+\end{proof}
+
+\index{n-type@$n$-type|)}%
+
+
+\end{document}

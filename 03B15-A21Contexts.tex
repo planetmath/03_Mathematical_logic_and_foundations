@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A21Contexts}
+\pmcreated{2013-11-09 5:18:47}
+\pmmodified{2013-11-09 5:18:47}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.1 Contexts}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\ctx}{\ensuremath{\mathsf{ctx}}}
+\newcommand{\emptyctx}{\ensuremath{\cdot}}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\wfctx}[1]{#1\ \ctx}
+
+\begin{document}
+\index{context}%
+A context is a list
+%
+\begin{equation*}
+  \tmtp{x_1}{A_1}, \tmtp{x_2}{A_2}, \ldots, \tmtp{x_n}{A_n}
+\end{equation*}
+%
+which indicates that the distinct variables
+\index{variable}%
+$x_1, \ldots, x_n$ are assumed to have types $A_1, \ldots, A_n$, respectively. The list may be empty. We abbreviate contexts with the letters $\Gamma$ and $\Delta$, and we may juxtapose them to form larger contexts.
+
+The judgment $\wfctx{\Gamma}$ formally expresses the fact that $\Gamma$ is a well-formed context, and is governed by the rules of inference
+%
+\begin{mathpar}
+  \inferrule*[right=\ctx-\textsc{emp}]
+  {\ }
+  {\wfctx\emptyctx}
+\and
+  \inferrule*[right=\ctx-\textsc{ext}]
+  {\oftp{\tmtp{x_1}{A_1}, \ldots, \tmtp{x_{n-1}}{A_{n-1}}}{A_n}{\UU_i}}
+  {\wfctx{(\tmtp{x_1}{A_1}, \ldots, \tmtp{x_n}{A_n})}}
+\end{mathpar}
+%
+with a side condition for the second rule: the variable $x_n$ must be distinct from the variables $x_1, \ldots, x_{n-1}$.
+Note that the hypothesis and conclusion of $\ctx$-\textsc{ext} are judgments of different forms: the hypothesis says that in the context of variables $x_1, \ldots, x_{n-1}$, the expression $A_n$ has type $\UU_i$; while the conclusion says that the extended context $(\tmtp{x_1}{A_1}, \ldots, \tmtp{x_n}{A_n})$ is well-formed.
+(It is a meta-theoretic property of the system that if $\oftp{\tmtp{x_1}{A_1}, \ldots, \tmtp{x_{n}}{A_{n}}}{b}{B}$ is derivable, then the context $(\tmtp{x_1}{A_1}, \ldots, \tmtp{x_{n}}{A_{n}})$ must be well-formed; thus $\ctx$-\textsc{ext} does not need to hypothesize well-formedness of the context to the left of $x_n$.)
+
+
+\end{document}

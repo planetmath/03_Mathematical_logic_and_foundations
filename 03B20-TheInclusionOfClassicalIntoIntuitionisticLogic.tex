@@ -1,0 +1,625 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TheInclusionOfClassicalIntoIntuitionisticLogic}
+\pmcreated{2013-03-22 18:32:28}
+\pmmodified{2013-03-22 18:32:28}
+\pmowner{gribskoff}{21395}
+\pmmodifier{gribskoff}{21395}
+\pmtitle{the inclusion of classical into intuitionistic logic}
+\pmrecord{10}{41260}
+\pmprivacy{1}
+\pmauthor{gribskoff}{21395}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B20}
+\pmclassification{msc}{03A05}
+\pmclassification{msc}{03-01}
+\pmsynonym{Brouwer's logic}{TheInclusionOfClassicalIntoIntuitionisticLogic}
+\pmsynonym{intuitionistic foundations}{TheInclusionOfClassicalIntoIntuitionisticLogic}
+\pmsynonym{consistency proof}{TheInclusionOfClassicalIntoIntuitionisticLogic}
+%\pmkeywords{constructive proof}
+%\pmkeywords{Evidenz}
+%\pmkeywords{Heyting's formal system}
+\pmrelated{IntuitionisticLogic}
+\pmrelated{AnOutlineOfHilbertsProgramme}
+\pmrelated{FOUNDATIONSOFMATHEMATICSOVERVIEW}
+\pmrelated{Logicism}
+\pmdefines{intuitionistic proof}
+\pmdefines{G\"{o}del's translation mapping}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+%%\usepackage{xypic}
+\usepackage{psfrag}
+\usepackage{amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{yfonts}
+
+% define commands here
+\begin{document}
+\title{The inclusion of classical into intuitionistic logic}\Large 
+\maketitle
+
+\begin{abstract}
+The entry is a report of \emph{G\"{o}del's 1933} first proof of the consistency of classical arithmetic by means of an interpretation of the basic concepts of intuitionistic logic. The seminal theorem is Glivenko's Theorem and full proofs of the theorems derived from G\"{o}del's translation function are provided. An attempt is made to clear some minor problems with G\"{o}del's original text. In spite of the provided continuity between the sections one can read most of them in isolation.
+\end{abstract}
+
+\tableofcontents
+
+\section{Background}\normalsize
+
+Brouwer visited Vienna on March 10, 1928 when he delivered his lecture "Mathematik, Wissenschaft und Sprache". Members of the Vienna Circle were attending, among them Hans Hahn, from the Mathematical Institute.
+
+One of the members of the Vienna Circle attending Brouwer's lecture was Karl Menger. Menger did his Ph.D. with Hans Hahn and his Habilitation with Brouwer in Amsterdam. He remained a member of the Circle until he left Austria for the United States.
+
+In 1932 Menger conducted a Colloquium in the Mathematical Institute in which on June 26 Kurt GÃ¶del presented his first proof of the Consistency of classical number theory relative to intuitionistic number theory.
+
+We give an overview of the main theorem and suggest two minor corrections. 
+
+\section{The analogy from the generalized Glivenko theorem}\normalsize
+
+\begin{enumerate}
+\item \textbf{Notation}
+
+\textbf{A.} Classical propositional calculus ($K$):
+
+the symbols 
+
+\begin{center}
+"$\sim$", "$\rightarrow$", "$\cdot$"
+\end{center}
+
+denote the truth-functions negation, implication and conjunction, respectively.
+
+\textbf{B.} Intuitionistic propositional calculus ($I$):
+
+the symbols
+
+\begin{center}
+"$\neg$", "$\wedge$"
+\end{center}
+ 
+denote the intuitionistic connectives negation and conjunction, respectively.
+
+\item \textbf{Glivenko's theorem}
+
+\begin{center}
+\emph{Let $F$ be a well formed formula of $K$ which consists only of conjunctions and negations. \\  If $F$ is valid in $K$ then it is demonstrable in $I$.}
+\end{center}
+
+This means that $F$ must have the form:
+
+\begin{center}
+$(\star \star)$ \qquad \qquad $\neg F_1 \wedge \neg F_2 \wedge \ldots \neg F_n$.
+\end{center}
+
+If the formula $(\star \star)$ is valid in $K$ then each $\neg F_i$ is also valid. Glivenko proves that $\neg F_i$ is provable in $I$, as we can see in Heyting (1930), pg. 43.
+
+In that case the whole formula $(\star \star)$ is also provable in $I$.
+
+\item \textbf{The generalized Glivenko's theorem}
+
+\begin{center}
+\fbox{\emph{The set of valid formulas of $K$ is a subset of all valid formulas of $I$}.}
+\end{center}
+
+To see this one translates a classically valid formula into a formula of $I$. The translations rules are the following:
+
+\textbf{A.} Negation: the classical function $\sim p$ has the translation $\neg p$;
+
+\textbf{B.} Disjunction: the classical function $p \vee q$ has the translation:
+
+\begin{center}
+$\neg (\neg p \wedge \neg q)$;
+\end{center}
+
+\textbf{C.} Implication: the classical function $p \rightarrow q$ has the translation:
+
+\begin{center}
+$\neg (p \wedge \neg q)$;
+\end{center}
+
+\textbf{D.} Conjunction: the classical function $p \cdot q$ has the translation:
+
+\begin{center}
+$p \wedge q$.
+\end{center}
+
+\end{enumerate}
+
+\section{Configuration of Herbrand's system}\normalsize
+
+G\"{o}del's theme is to prove that for arithmetic and number theory one can also obtain a result analogous to the result obtained by Glivenko for the propositional calculus.
+
+To achieve this we have to find translation rules such that the set of classically provable formulas becomes a subset of all intuitionistically valid formulas.
+
+The supporting system used is Herbrand's (1931) with the following configuration:
+
+\begin{enumerate}
+\item \textbf{Primitive symbols:}
+
+\textbf{A.} \emph{The functions of the classical propositional calculus}
+
+\textbf{B.} \emph{Numerical variables: small Roman} $x$, $y$, $\ldots$
+
+\textbf{C.} \emph{Universal quantifiers}: $(\forall x)$, $(\forall y)$, $\ldots$
+
+\textbf{D.} \emph{Equality}: "=" 
+
+\textbf{E.} \emph{Numerals}: 0, 1, $\ldots$
+
+\textbf{F.} \emph{A countable set of functional symbols} $f_i$, \emph{introduced according to Herbrand's axioms}. 
+
+To each symbol one associates an integer $n_i$, which denotes the number of arguments of $f_i$.
+
+\item \textbf{Formulas:}
+
+\textbf{A.} \emph{Numerical expression}
+
+As a preliminary definition we have the \emph{recursive definition of numerical expression}:
+
+\begin{itemize}
+\item \textbf{i)} 0 and every numerical variable are numerical expressions;
+
+\item \textbf{ii)} If $Z$ is a numerical expression $Z + 1$ is a numerical expression;
+
+\item \textbf{iii)} If $Z_1$, $\ldots$, $Z_n$ are numerical expressions then:
+
+\begin{center}
+$f (Z_1, \ldots, Z_n)$
+\end{center}
+
+is a numerical expression.
+\end{itemize}
+
+\textbf{B.} \emph{Atomic formula}
+
+An atomic formula is an equality, the terms of which are numerical expressions. Thus:
+
+\begin{center}
+$Z_i = Z_j$
+\end{center}
+
+is an atomic formula.
+
+\textbf{C.} \emph{$Z$-formula}
+
+\begin{itemize}
+\item \textbf{i)} An atomic formula is a $Z$-formula;
+
+\item \textbf{ii)} Numerical expressions that result from atomic formulas by means of the functions of the propositional calculus or by the use of quantifiers are $Z$-formulas.
+\end{itemize}
+
+\item \textbf{Axioms:}
+
+\textbf{A.} \emph{Herbrand's axioms} in particular from $A$ to $D$.
+
+\textbf{B.} \emph{Logical Axioms}
+
+Three axioms are introduced with the following content:
+
+\begin{itemize}
+\item \textbf{Axiom E}: [\emph{Rule of insertion}]
+
+Every numerical expression that results from the insertion of a $Z$-formula in a tautology of the propositional calculus is an axiom.
+
+\item \textbf{Axiom F}: [\emph{Dictum de omni}]
+
+If $F(x)$ is a $Z$-formula and $Z$ is a numerical expression such that the variables of $Z$ are not bound in $F$, then all formulas of the pattern:
+
+\begin{center}
+$(\forall x) F (x) \rightarrow F(Z)$ 
+\end{center}
+
+are axioms.
+
+\item \textbf{Axiom G}: [Leibniz]
+
+If $F (x)$ is a $Z$-formula then all formulas of the pattern:
+
+\begin{center}
+$x = y \rightarrow F (x) \rightarrow F (y)$ 
+\end{center}
+
+are axioms.
+\end{itemize}
+
+\item \textbf{Rules of inference:}
+
+\textbf{A.} \emph{Modus ponens}
+
+From $A \rightarrow B$ and $A$ we are allowed to infer $B$.
+
+\textbf{B.} \emph{$\forall$-Introduction in the implicatum}
+
+If $x$ does not occur free in $A$ then from $A \rightarrow B$ we are allowed to infer $A \rightarrow (\forall x) B$.
+
+\end{enumerate}
+
+\section{G\"{o}del's translation mapping: the system H'}\normalsize
+
+Heyting's system used is to be found in "Die formalen Regeln der intuitionistischen Mathematik" (1930) with a few notation variants.
+
+In this system small roman letters $x$, $y$, $\ldots$ are not numerical variables; they rather denote objects.
+
+\begin{enumerate}
+\item \textbf{The translation mapping "$\prime$":}
+
+If $x, y, z$ are object variables from Heyting's system, they will be translated into numerical variables by means of G\"{o}del's translation mapping "$\prime$" as $x', y', z'$ being now variables for natural numbers.
+
+The notation is defined by the rules:
+
+\textbf{A.} $(\mathcal{X} \wedge \mathcal{Y})' \leftrightarrow \mathcal{X}' \wedge \mathcal{Y}'$
+
+\textbf{B.} $(\mathcal{X} \vee \mathcal{Y})' \leftrightarrow \neg (\neg \mathcal{X}' \wedge \neg \mathcal{Y}')$
+
+\textbf{C.} $(\mathcal{X} \rightarrow \mathcal{Y})' \leftrightarrow \neg (\mathcal{X}' \wedge \neg \mathcal{Y}')$ 
+
+\textbf{D.} If $A (x', y', \ldots)$ is a formula in which these variables occur free then:
+
+\begin{center}
+$[A (x', y', \ldots)] \leftrightarrow [(x, y, \ldots \in \mathbb{N}) \rightarrow A (x, y, \ldots)]$
+\end{center}
+
+\textbf{E.} If $(\forall x') F (x')$ is a formula then:
+
+\begin{center}
+$(\forall x') F (x') \leftrightarrow [(\forall x) (x \in \mathbb{N}) \rightarrow F (x)]$
+\end{center}
+
+\item \textbf{Translation preserves validity:}
+
+The relevant formulas belong to $\mathsection 5$ [of $H2$, on the basic definitions and inference rules] and $\mathsection 6$ [of $H2$, on quantification). If in these formulas in the place of the variables we insert their translations the formulas remain valid, that is, translation preserves validity.
+
+G\"{o}del says that in order to achieve a validity-preserving translation of Heyting's formula 5.4 we have to substitute "$p \overline{\equiv} p$" by "$p' \overline{\equiv} \mathbb{N}$".
+
+Now formula 5.4 says that the set of valid formulas is closed under substitution provided that:
+
+\begin{itemize}
+
+\item \textbf{i)} For a propositional variable any expression can be inserted and
+
+\item \textbf{ii)} For an object variable a symbolic expression $p$ can be inserted, if  $p \overline{\equiv} p$ is a valid formula.
+
+We think that a more intuitive translation would be to follow the pattern of the rules i) and ii) above and propose instead:
+
+\begin{center}
+$(p' \overline{\equiv} p') \leftrightarrow [p \in \mathbb{N} \rightarrow p \overline{\equiv} p].$
+\end{center}
+\end{itemize}
+
+\item \textbf{Definition of arithmetical functions:}
+
+\textbf{A.} The definition of a function by recursion is intuitionistically acceptable and it is Heyting's method in 10.03 and 10.4.
+
+\textbf{B.} Herbrand's axioms Group $C$ allow the introduction of functions $f_i (x_1, \ldots, x_n)$ such that the computation of $f (x_1, \ldots, x_n)$ is always possible for any $n$-tuple of numbers. 
+
+Ex.: if a function $g (y)$ has already been introduced then we can define a new function $f (x)$ by recursion on $x$ with the following recursion equations:
+
+\begin{center}
+$f (0) = k$ 
+
+$f(x + 1) = g (f (x)).$
+\end{center}
+
+The axioms of Group $C$ and the axioms of Group $D$, which allow the introduction of universal quantifiers, are adjoined to $H$. The resulting system will be called $H'$.
+
+\item \textbf{The $Zâ€™$-formulas:}
+
+The $Zâ€™$-formulas are obtained from the $Z$-formulas \emph{by translation}. The rules are the following:
+
+\begin{itemize}
+\item \textbf{R1} The \emph{variables} $x, y, \ldots$ have the translation $x', y', \ldots$
+
+\item \textbf{R2} A \emph{functional symbol} $f_i$ is translated by the same symbol in $H'$.
+
+\item \textbf{R3} "=" has the identical translation "=".
+
+\item \textbf{R4} \emph{Numerals}: "0" has the translation "1", since in Heyting's system the natural number sequence starts with "1".
+
+\item \textbf{R5} \emph{Successor}: has the translation seq'.
+
+\item \textbf{R6} \emph{Propositional functions}: have the translation already specified.
+
+\item \textbf{R7} \emph{Universal quantification}: as in $(\forall x) A$ has the translation $(\forall x') A'$ if $A'$ is the translation of $A$.
+\end{itemize}
+
+By closer scrutiny Rules \textbf{3.B} and \textbf{R4} turn out to be inconsistent.
+
+By \textbf{3.B} the definition of functions by recursion is introduced and by \textbf{R4} "0" has the translation "1".
+
+So if we consider the usual recursive definitions of $x + y$, $x - y$ or $x^y$, the first recursion equation after translation is:
+
+\begin{center}
+$x' + 1 = x'$
+
+$x' - 1 = x'$
+
+$x'^1 = 1$
+\end{center}
+
+If both rules were to be allowed we could prove the inconsistency of $H'$.
+ 
+The informal argument is the following:
+
+The recursive definition of $+$, for example, gives for the first equation:
+
+\begin{center}  
+$x + 0 = x.$ 
+\end{center}
+
+The translation of this formula in $H'$ is therefore:
+
+\begin{center} 
+$x' + 1 = x'.$ 
+\end{center}
+
+But by definition of successor, $x' + 1$ is the successor of $x'$. This entails that $x'$ is its own successor. But by axiom 10.26 no number can be its own successor, hence the contradiction. 
+
+Here is the derivation:
+
+\begin{quote}
+\begin{tabular}{lll}
+1.&$x + 0 = x$&First rec. eq.\\
+2.&$x' + 1 = x'$&1, R1, R3, R4\\
+3.&$x' + 1 =\text{seq'} x'$&$H2$, 10.03\\
+4.&$x' =\text{seq'} x'$&2, 3, $H2$, 10.221\\
+5.&$\neg (x' =\text{seq'} x')$&$H2$, 10.26\\
+6.&$x' =\text{seq'} x' \wedge \neg (x' =\text{seq'} x')$&4, 5, $H1$, 1.2
+\end{tabular}
+\end{quote}     
+
+Since we can not let go of \textbf{3.B}, the moral of the story is that we have to stuff $H'$ with a "0" and use the identical translation, as it was done with "=".
+
+\end{enumerate}
+
+\section{The main lemmas and G\"{o}del's translation theorem}\normalsize
+
+In the following proofs we use the axioms and the theorems of Heyting 1930 divided by $H1$ (Logic) and $H2$ (Predicate calculus, Number Theory).
+
+Actually we will be using the prime translation of those formulas together with the prime translation of the rules of inference.
+
+\medskip
+\textbf{Lemma 1}:
+
+\begin{center}
+\emph{If $X'$ is a $Z'$-formula, then:}
+
+$\neg \neg X' \rightarrow X'.$
+\end{center}
+
+\medskip
+\textbf{Proof}:[Complete induction on the degree of complexity of the formula.]
+
+By definition a $Z'$-formula is either:
+
+\begin{itemize}
+\item \textbf{i)} an atomic formula, in which case the number of connectives is 0; or
+
+\item \textbf{ii)} is a formula composed out of atomic formulas by means of conjunction and negation; or
+
+\item \textbf{iii)} is a quantified formula.
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{1. Induction basis}
+
+Since $Z'$ is a translation of a numerical formula $Z$, obviously $Z' \in \mathbb{N}$. Therefore we can use \emph{tertium non datur} (theorem 4.45 of $H2$) as the starting formula.
+
+The derivation is:                                               
+
+\begin{quote}
+\begin{tabular}{lll}
+1.&$X' \vee \neg X'$&\\
+2.&$X' \vee \neg X' \rightarrow \neg \neg X' \rightarrow X'$&Theor. 4.45 ($H1$)\\
+3.&$\neg \neg X' \rightarrow X'$&1, 2, MP
+\end{tabular}
+\end{quote}  
+
+\item \textbf{2. Inductive step}
+
+The inductive hypothesis is that we already have proofs for X' and Y' in H'. 
+
+\begin{enumerate}
+
+\item \textbf{First Case}: \emph{Conjunction}
+
+\begin{quote}
+\begin{tabular}{lll}
+1.&$\neg \neg (X' \wedge Y') \rightarrow \neg \neg X' \wedge \neg \neg Y'$&4.61 ($H1$)\\
+2.&$\neg \neg X' \wedge \neg \neg Y' \rightarrow X' \wedge Y'$&1, IB, IH\\
+3.&$\neg \neg (X' \wedge Y') \rightarrow X' \wedge Y'$&1, 2, 2.29 ($H1$)
+\end{tabular}
+\end{quote} 
+
+\item \textbf{Second Case}: \emph{Negation}
+
+\begin{quote}
+\begin{tabular}{lll}
+1.&$\neg \neg X' \rightarrow X'$&IH\\
+2.&$\neg \neg \neg X' \rightarrow \neg X'$&4.32 ($H1$)
+\end{tabular}
+\end{quote}
+
+\item \textbf{Third Case}: $\forall$                                     
+
+\begin{quote}
+\begin{tabular}{lll}
+1.&$\neg \neg X' \rightarrow X'$&IH\\
+2.&$(\forall x') \neg \neg X' \rightarrow X'$&1, 5.8 ($H2$)\\
+3.&$(\forall x') \neg \neg X' \rightarrow (\forall x') X'$&6.4 ($H2$)\\
+4.&$\neg \neg (\forall x') X' \rightarrow (\forall x') \neg \neg X'$&6.78 ($H2$)\\
+5.&$\neg \neg (\forall x') X' \rightarrow (\forall x') X'$&3, 4, 2.29 ($H1$)
+\end{tabular}
+\end{quote}
+
+\end{enumerate}
+\end{itemize}
+
+\medskip
+\textbf{Lemma 2}:
+
+\begin{center}
+\emph{If $Xâ€™$ and $Yâ€™$ are $Zâ€™$-formulas then in $Hâ€™$:}
+
+$X' \rightarrow Y' \leftrightarrow \neg (Xâ€™ \wedge \neg Yâ€™).$
+\end{center}
+
+\medskip
+\textbf{Proof}:
+
+\begin{quote}
+\begin{tabular}{lll}
+1.&$X' \rightarrow Y' \rightarrow \neg (X' \wedge \neg Y')$&4.9 ($H1$)\\
+2.&$\neg (X' \wedge \neg Y') \rightarrow X' \rightarrow \neg \neg Y'$&4.52 ($H1$)\\
+3.&$\neg (X' \wedge \neg Y') \rightarrow X' \rightarrow Y'$&2, Lemma 1
+\end{tabular}
+\end{quote} 
+
+\medskip
+\textbf{Proposition 1}: [G\"{o}del's \emph{Hauptsatz}: The translation theorem ]
+
+\begin{center}
+\emph{If $X$ is a provable formula in Herbrand's system then:}
+ 
+\emph{its G\"{o}del-translation is provable in $H'$.}
+\end{center}
+
+\medskip
+\textbf{Proof}:
+
+\begin{enumerate}
+
+\item \textbf{The axioms:}
+
+\begin{itemize}
+
+\item \textbf{i)} \emph{Group A}
+ 
+Each of the \emph{Group A} axioms from Herbrand's system is equivalent to the following propositions of $H2$:
+
+10.2 $(p \in \mathbb{N} \rightarrow p = p)$
+
+10.22 $(p \in \mathbb{N} \wedge p = q \rightarrow q = p)$
+
+10.221 $(p \in \mathbb{N} \wedge p = q \wedge q = r \rightarrow p = r)$
+ 
+10.25 $(p \in \mathbb{N} \wedge q \in N \rightarrow (p = q) \vee \neg (p = q))$
+
+10.26 $(p \in \mathbb{N} \rightarrow \neg (\text{seq'} p = p))$
+
+\item \textbf{ii)} \emph{Group B}
+
+Herbrand's \emph{Group B} axioms have the following translation:
+
+\begin{center}
+$\phi (1) \wedge (\forall x') \phi (x') \rightarrow \phi (\text{seq'} x') \rightarrow (\forall x') \phi (x')$ 
+\end{center}
+
+Lemma 2 allows the substitution of both occurrences of "$\beta \rightarrow \beta$" by $\neg (\alpha \wedge \neg \beta).$
+
+After the substitution one then gets the formula:
+
+\begin{center}
+$\neg {\phi (1) \wedge \neg [(\forall x') \phi (x') \wedge \neg (\text{seq'} x')] \wedge \neg (\forall x') \phi (x')}.$
+\end{center}
+
+The formula is the translation of a \emph{Group B} axiom and is identical with the formula 1014 from $H2$. 
+
+\item \textbf{iii)} \emph{Group C} and \emph{Group D}
+ 
+Their adjunction was already realized.
+
+\item \textbf{iv)} \emph{Group E}
+ 
+Follows directly from the Lemmas.
+
+\item \textbf{v)} \emph{Group F}
+
+Use Lemma 2 and from $H2$ 6.3 and 5.4.
+
+\item \textbf{vi)} \emph{Group G}
+
+Follows directly from $H2$ 6.26 and 10.01.
+
+\end{itemize}
+
+\item \textbf{Rules of inference:}
+
+\begin{itemize}
+
+\item \textbf{i)} \emph{Modus ponens}
+
+We have to prove that if $X'$ and $(X \rightarrow Y)'$ are provable in $H'$ then $Y'$ is also provable in $H'$.
+
+Now by Lemma 2:
+
+\begin{center}
+$(X \rightarrow Y)' \leftrightarrow \neg (X \wedge\neg Y)'.$
+\end{center}
+
+This means that $(X \rightarrow Y)'$ is equivalent to:
+
+\begin{center}
+$\neg (X' \wedge \neg Y').$ 
+\end{center}
+ 
+The intuitionistic interpretation of this formula is that we can derive a contradiction from the fact that we have a proof of $X'$ and not a proof of $Y'$.
+ 
+Since by hypothesis $X'$ has a proof in $H'$, $Y'$ is also provable by 1.3 of $H1$.
+ 
+\item \textbf{ii)} $\forall$-\emph{Introduction in Implicatum}
+
+The G\"{o}del-translation is:
+
+\begin{center}
+$(X' \rightarrow Y') \rightarrow [X' \rightarrow (\forall x') Y'].$
+\end{center}
+
+But this is equivalent to:
+
+\begin{center}
+$[\neg (X' \wedge \neg Y')] \rightarrow [X' \rightarrow (\forall x') Y']$
+\end{center}
+ 
+and the last formula follows by 5.5 ($H2$) and Lemma 2. 
+
+\end{itemize}
+
+\end{enumerate}
+
+\medskip
+\textbf{Discussion:}
+
+G\"{o}del's \emph{Hauptsatz} shows that the set of all theorems of Herbrand's system is a subset of the set of theorems of $H'$.
+
+Thus, if we assume that intuitionistic arithmetic is consistent, the \emph{Hauptsatz} delivers a proof of the consistency of classical number theory, since an inconsistency in $Z$ would entail the inconsistency of $H'$.
+
+G\"{o}del points out that this proof is not finitistic in Hilbert's sense, due to the several occurrences of the abstract concepts of $H'$ like "construction" and "proof".
+
+This in turn entails the question, which G\"{o}del addressed in 1941 in his Yale lecture, to determine to what extent is then intuitionistic logic itself constructive. In the PM entry "the interpretation of intuitionistic logic by means of functionals" it will be reported on G\"{o}del's negative answer to this question.
+
+\section{Complementary material}\normalsize
+
+See \PMlinkname{"the interpretation of intuitionistic logic by means of functionals"}{InterpretationOfIntuitionisticLogicByMeansOfFunctionals}. See also parent entry \PMlinkname{"intuitionistic logic"}{IntuitionisticLogic}.
+
+\begin{thebibliography} {99}
+\bibitem{LEB1} Brouwer, L., \emph{Collected works: vol. 1}, North Holland, Amsterdam, 1975.
+\bibitem{LEB2} Brouwer, L., "Mathematik, Wissenschaft und Sprache", \emph{Monatshefte fÃ¼r Mathematik und Physik}, Leipzig, 1929.
+\bibitem{LEB3} Brouwer, L., "Consciousness, philosophy and mathematics", ed. W. Beth, \emph{Library of the tenth international congress of philosophy}, Amsterdam, 1948.
+\bibitem{MD} Dummett, M., \emph{Elements of intuitionism}, Clarendon Press, Oxford, 1977.
+\bibitem{KG} G\"{o}del, K., \emph{Collected works}, ed. S. Feferman, Oxford, 1987-2003.
+\bibitem{AH} Heyting, A. \emph{Intuitionism: An introduction}, 3. ed., North-Holland, Amsterdam, 1971.
+\bibitem{DHPB} Hilbert, D., and, Ackermann, \emph{GrundzÃ¼ge der theoretischen Logik}, Berlin, 1949.
+\bibitem{SK} Kleene, S., \emph{Introduction to metamathematics}, North-Holland, Amsterdam, 1964.
+\bibitem{RS} Rasiowa, H., and, Sikorski, R., \emph{The mathematics of metamathematics}, Warsaw, 1963.
+\bibitem{AT} Tarski, A., "Der AussagenkalkÃ¼l und die Topologie", \emph{Fundamenta Mathematicae}, 31, 1938.
+\end{thebibliography}
+
+\end{document}
+%%%%%
+%%%%%
+\end{document}

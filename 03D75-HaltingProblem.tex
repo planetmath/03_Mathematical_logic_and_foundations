@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{HaltingProblem}
+\pmcreated{2013-03-22 12:14:28}
+\pmmodified{2013-03-22 12:14:28}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{halting problem}
+\pmrecord{12}{31622}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D75}
+\pmrelated{RecursivelyEnumerable}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\newcommand{\Lindent}{0.4in}
+\newenvironment{Lalgorithm}[4]{
+\textbf{Algorithm} \textsc{#1}\texttt{(#2)}\newline
+\textit{Input}: #3\newline
+\textit{Output}: #4\newline
+
+}{}
+\newenvironment{Lfloatalgorithm}[6][h]{
+\begin{figure}[#1]
+\caption{#2}
+\begin{Lalgorithm}{#3}{#4}{#5}{#6}
+}{
+\end{Lalgorithm}
+\end{figure}
+}
+\newcommand{\Lgets}{\ensuremath{\gets}}
+\newcommand{\Lgroup}[1]{\textbf{begin}\\\hspace*{\Lindent}\parbox{\textwidth}{#1}\\\textbf{end}}
+\newcommand{\Lif}[2]{\textbf{if} #1 \textbf{then}\\\hspace*{\Lindent}\parbox{\textwidth}{#2}}
+\newcommand{\Lelse}[1]{\textbf{else}\\\hspace*{\Lindent}\parbox{\textwidth}{#1}}
+\newcommand{\Lelseif}[2]{\textbf{else if} #1 \textbf{then}\\\hspace*{\Lindent}\parbox{\textwidth}{#2}}
+\newcommand{\Lfor}[2]{\textbf{for} #1 \textbf{do}\\\hspace*{\Lindent}\parbox{\textwidth}{#2}}
+\newcommand{\Lwhile}[2]{\textbf{while} #1 \textbf{do}\\\hspace*{\Lindent}\parbox{\textwidth}{#2}}
+\begin{document}
+\PMlinkescapeword{loop}
+
+The \emph{halting problem} is to determine, given a particular input to a particular computer program, whether the program will terminate after a finite number of steps.
+
+The consequences of a solution to the halting problem are far-reaching.  Consider some predicate $P(x)$ regarding natural numbers; suppose we conjecture that $P(x)$ holds for all $x \in \mathbb{N}$.  (Goldbach's conjecture, for example, takes this form.)  We can write a program that will count up through the natural numbers and terminate upon finding some $n$ such that $P(n)$ is false; if the conjecture holds in general, then our program will never terminate.  Then, \emph{without running the program}, we could pass it along to a halting program to prove or disprove the conjecture.
+
+In 1936, Alan Turing proved that the halting problem is undecideable; the argument is presented here informally.  Consider a hypothetical program that decides the halting the problem:
+
+\begin{Lalgorithm}{Halt}{P, I}{A computer program $P$ and some input $I$ for $P$}{True if $P$ halts on $I$ and false otherwise}
+\end{Lalgorithm}
+
+The implementation of the algorithm, as it turns out, is irrelevant.  Now consider another program:
+
+\begin{Lalgorithm}{Break}{x}{Code $x$}{}
+\Lgroup{
+\Lif{IsValidCode(x) and {Halt(x,x)}}{\Lwhile{true}{nothing}}
+\Lelse{ return true }
+}
+
+\end{Lalgorithm}
+
+If our halting solution determines that Break(Break) halts, then it will immediately enter an infinite loop; otherwise, Break will return immediately.  We must conclude that the Halt program does not decide the halting problem.
+So for any attempted solution to the halting problem, we can find some input which breaks that solution.
+%%%%%
+%%%%%
+%%%%%
+\end{document}

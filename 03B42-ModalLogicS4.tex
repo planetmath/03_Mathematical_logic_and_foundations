@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ModalLogicS4}
+\pmcreated{2013-03-22 19:34:01}
+\pmmodified{2013-03-22 19:34:01}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{modal logic S4}
+\pmrecord{9}{42553}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B42}
+\pmclassification{msc}{03B45}
+\pmdefines{S4}
+\pmdefines{4}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The modal logic \textbf{S4} is the smallest normal modal logic containing the following schemas:
+\begin{itemize}
+\item (T) $\square A \to A$, and
+\item (4) $\square A \to \square \square A$.
+\end{itemize}
+In \PMlinkname{this entry}{ModalLogicT}, we show that T is valid in a frame iff the frame is reflexive.
+
+\begin{prop} 4 is valid in a frame $\mathcal{F}$ iff $\mathcal{F}$ is transitive. \end{prop}
+\begin{proof}  First, suppose $\mathcal{F}$ is a frame validating 4, with $w R u$ and $u R t$.  Let $M$ be a model with $V(p)=\lbrace v\mid w R v \rbrace$, where $p$ a propositional variable.  So $\models_w \square p$.  By assumption, we have $\models_w \square p \to \square \square p$.  Then $\models_w \square \square p$.  This means $\models_v \square p$ for all $v$ such that $w R v$.  Since $w R u$, $\models_u \square p$, which means $\models_s p$ for all $s$ such that $u R s$.  Since $u R t$, we have $\models_t p$, or $t\in V(p)$, or $w R t$.  Hence $R$ is transitive.
+
+Conversely, let $\mathcal{F}$ be a transitive frame, $M$ a model based on $\mathcal{F}$, and $w$ any world in $M$.  Suppose $\models_w \square A$.  We want to show $\models_w \square \square A$, or for all $u$ with $w R u$, we have $\models_u \square A$, or for all $u$ with $w R u$ and all $t$ with $u R t$, we have $\models_t A$.  If $w R u$ and $u R t$, $w R t$ since $R$ is transitive.  Then $\models_t A$ by assumption.  Therefore, $\models_w \square A \to \square \square A$.
+\end{proof}
+
+As a result,
+\begin{prop} \textbf{S4} is sound in the class of preordered frames. \end{prop}
+\begin{proof}  Since any theorem in \textbf{S4} is deducible from a finite sequence consisting of tautologies, which are valid in any frame, instances of T, which are valid in reflexive frames, instances of 4, which are valid in transitive frames by the proposition above, and applications of modus ponens and necessitation, both of which preserve validity in any frame, whence the result.
+\end{proof}
+
+In addition, using the canonical model of \textbf{S4}, which is preordered, we have
+\begin{prop} \textbf{S4} is complete in the class of serial frames. \end{prop}
+\begin{proof}  Since \textbf{S4} contains T, its canonical frame $\mathcal{F}_{\textbf{S4}}$ is reflexive.  We next show that the canonical frame $\mathcal{F}_{\Lambda}$ of any consistent normal logic $\Lambda$ containing the schema 4 must be transitive.  So suppose $w R_{\Lambda} u$ and $u R_{\Lambda} v$.  If $A \in \Delta_w:=\lbrace B\mid \square B\in w\rbrace$, then $\square A\in w$, or $\square \square A \in w$ by modus ponens on 4 and the fact that $w$ is closed under modus ponens.  Hence $\square A \in \Delta_w$, or $\square A \in u$ since $w R_{\Lambda} u$, or $A \in \Delta_u$, or $A\in v$ since $u R_{\Lambda} v$.  As a result, $w R_{\Lambda} v$, and therefore $\mathcal{F}_{\textbf{S4}}$ is a preordered frame.
+\end{proof}
+
+By a proper translation, one can map intuitionistic propositional logic PL$_i$ into \textbf{S4}, so that a wff of PL$_i$ is a theorem iff its translate is a theorem of \textbf{S4}.
+
+%%%%%
+%%%%%
+\end{document}

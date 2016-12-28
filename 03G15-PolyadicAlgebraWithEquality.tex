@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{PolyadicAlgebraWithEquality}
+\pmcreated{2013-03-22 17:51:37}
+\pmmodified{2013-03-22 17:51:37}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{polyadic algebra with equality}
+\pmrecord{10}{40337}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G15}
+\pmsynonym{equality algebra}{PolyadicAlgebraWithEquality}
+\pmrelated{CylindricAlgebra}
+\pmdefines{equality predicate}
+\pmdefines{substitutive}
+\pmdefines{reflexive}
+\pmdefines{symmetric}
+\pmdefines{transitive}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $A=(B,V,\exists,S)$ be a polyadic algebra.  An \emph{equality predicate} on $A$ is a function $E:V\times V\to B$ such that
+\begin{enumerate}
+\item $S(f)\circ E(x,y) = E(f(x),f(y))$ for any $f:V\to V$ and any $x,y\in V$
+\item $E(x,x)=1$ for every $x\in V$, and
+\item $E(x,y)\wedge a\le S(x/y)a$, where $a\in B$, and $(x/y)$ denotes the function $V\to V$ that maps $x$ to $y$, and constant everywhere else.
+\end{enumerate}
+Heuristically, we can interpret the conditions above as follows: 
+\begin{enumerate}
+\item if $x=y$ and if we replace $x$ by, say $x_1$, and $y$ by $y_1$, then $x_1=y_1$.  
+\item $x=x$ for every variable $x$
+\item if we have a propositional function $a$ that is true, and $x=y$, then the proposition obtained from $a$ by replacing all occurrences of $x$ by $y$ is also true.
+\end{enumerate}
+The second condition is also known as the \emph{reflexive property} of the equality predicate $E$, and the third is known as the \emph{substitutive property} of $E$
+
+A \emph{polyadic algebra with equality} is a pair $(A,E)$ where $A$ is a polyadic algebra and $E$ is an equality predicate on $A$.  Paul Halmos introduced this concept and called this simply an \emph{equality algebra}.
+
+Below are some basic properties of the equality predicate $E$ in an equality algebra $(A,E)$:
+\begin{itemize}
+\item (symmetric property) $E(x,y)\le E(y,x)$
+\item (transitive property) $E(x,y)\wedge E(y,z)\le E(x,z)$
+\item $E(x,y) \wedge a = E(x,y) \wedge S(x,y)a $, where $(x,y)$ in the $S$ is the transposition on $V$ that swaps $x$ and $y$ and leaves everything else fixed.
+\item if a variable $x\in V$ is not in the support of $a\in A$, then $a=\exists(x) (E(x,y)\wedge S(y/x)a)$.
+\item $\exists(x)(E(x,y)\wedge a)\wedge \exists(x)(E(x,y)\wedge a')=0$ for all $a\in A$ and all $x,y\in V$ whenever $x\ne y$.
+\item $\exists(x)(E(x,y)\wedge E(x,z))=E(y,z)$ for all $x,y,z\in V$ where $x\notin \lbrace y,z\rbrace$.
+\end{itemize}
+
+\textbf{Remarks}
+\begin{itemize}
+\item The degree and local finiteness of a polyadic algebra $(A,E)$ are defined as the degree and the local finiteness and degree of its underlying polyadic algebra $A$.
+\item It can be shown that every locally finite polyadic algebra of infinite degree can be embedded (as a polyadic subalgebra) in a locally finite polyadic algebra with equality of infinite degree.
+\item Like cylindric algebras, polyadic algebras with equality is an attempt at ``converting'' a first order logic (with equality) into algebraic form, so that the logic can be studied using algebraic means.
+\end{itemize}
+
+\begin{thebibliography}{8}
+\bibitem{ph} P. Halmos, \emph{Algebraic Logic}, Chelsea Publishing Co. New York (1962).
+\bibitem{bp} B. Plotkin, \emph{Universal Algebra, Algebraic Logic, and Databases}, Kluwer Academic Publishers (1994).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

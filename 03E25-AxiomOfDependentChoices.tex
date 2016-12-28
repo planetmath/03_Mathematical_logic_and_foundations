@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{AxiomOfDependentChoices}
+\pmcreated{2013-03-22 18:46:39}
+\pmmodified{2013-03-22 18:46:39}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{axiom of dependent choices}
+\pmrecord{7}{41571}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\newcommand{\dom}[1]{\operatorname{dom}(#1)}
+\newcommand{\ran}[1]{\operatorname{ran}(#1)}
+\newcommand{\seg}[1]{\operatorname{seg}(#1)}
+\begin{document}
+The \emph{axiom of dependent choices} (DC), or the \emph{principle of dependent choices}, is the following statement:
+\begin{quote}
+given a set $A$ and a binary relation $R\ne \varnothing$ on $A$ such that $\ran{R}\subseteq \dom{R}$, then there is a sequence $(a_n)_{n\in \mathbb{N}}$ in $A$ such that $a_n R a_{n+1}$.
+\end{quote}
+Here, $\mathbb{N}$ is the set of all natural numbers.
+
+The relation between DC, AC (axiom of choice), and CC (axiom of countable choice) are the following:
+
+\begin{prop} ZF+AC implies ZF+DC. \end{prop}
+
+We prove this by using one of the equivalents of AC: Zorn's lemma.  For this proof, we define $\seg{n}:=\lbrace m\in \mathbb{N} \mid m\le n\rbrace$, the initial segment of $\mathbb{N}$ with the greatest element $n$.  Before starting the proof, we need a fact about initial segments:
+\begin{lem}  The union of initial segments of $\mathbb{N}$ is either $\mathbb{N}$ or an initial segment.  \end{lem}
+\begin{proof}  Let $S$ be a set of initial segments of $\mathbb{N}$.  If $s:=\bigcup S \ne \mathbb{N}$, then  $B:=\mathbb{N}-S\ne \varnothing$, so $B$ has a least element $r$.  As a result, none of $i\in \seg{r-1}$ is in $B$, and $\seg{r-1}\subseteq s$.  If some $m \ge r$ is in $s$, then there is an initial segment $\seg{n} \in S$ with $m\in \seg{n}$, so that $r\in \seg{m} \subseteq \seg{n} \subseteq s$, contradicting $r\in B$. \end{proof}
+
+\textbf{Remark}.  The fact that $B$ in the proof above has a least element is a direct result of ZF, so the well-ordering principle (and hence AC) is not needed.
+
+We are now ready for the proof of proposition 1.
+
+\begin{proof}  Let $R$ be a non-empty binary relation on a set $A$ (of course non-empty).  We want to find a function $f:\mathbb{N}\to \dom{R}$ such that $f(n) R f(n+1)$.
+
+Let $P$ be the set of all partial functions $f:\mathbb{N}\Rightarrow \dom{R}$ such that $\dom{f}$ is either an initial segment of $\mathbb{N}$, or $\mathbb{N}$ itself, such that $f(n) R f(n+1)$, whenever $n,n+1\in \dom{f}$.  Since $R\ne \varnothing$, some $(a,b)\in R$.  Additionally, $b\in \ran{R}\subseteq \dom{R}$.  Define function $g:\lbrace 1,2\rbrace \to \dom{R}$ by $g(1)=a$ and $g(2)=b$.  Then $g(1) R g(2)$, so that $g\in P$, or $P$ is non-empty.
+
+Partial order $P$ by inclusion so it is a poset.  Let $C$ be a chain in $P$, then $h:=\bigcup C$ is a partial function from $\mathbb{N}$ to $A$.  Since $\dom{h}$ is the union of initial segments or $\mathbb{N}$, $\dom{h}$ itself is either an initial segment or $\mathbb{N}$ by Lemma 1.
+
+Now, suppose $m,m+1\in \dom{h}$, then $m+1\in \dom{s}$ for some $s\in C$, so $m\in \dom{s}$ as well.  Therefore $s(m) R s(m+1)$.  Since $h(i) = s(i)$ for any $i\in \dom{s}$, we see that $h(m) R h(m+1)$.  This shows that $h \in P$, or that $C$ has an upper bound in $P$.
+
+By Zorn's lemma, $P$ has a maximal element $f$.  We claim that $f$ is a total function.  If not, then $\dom{f}=\lbrace 1,\ldots, n\rbrace$ for some $n$.  Since $f(n)\in \dom{R}$, there is some $d\in \ran{R}$ such that $f(n) R d$.  Define a partial function $g: \mathbb{N}\Rightarrow \dom{R}$ such that $\dom{g}=\lbrace 1,\ldots, n+1\rbrace$, and $g(i)=f(i)$ for all $i=1,\ldots, n$, and $g(n+1)=b$.  So $g\ne f$ extends $f$, contradicting the maximality of $f$.  Hence, $f$ is a total function, and we are done. \end{proof}
+
+\begin{prop} ZF+DC implies ZF+CC. \end{prop}
+\begin{proof}  Let $C$ be a countable set of non-empty sets.  We assume that $C$ is countably infinite, for the finite case can be proved using ZF alone, and is left for the reader.
+
+Since there is a bijection $\phi: C\to \mathbb{N}$, index each element in $C$ by its image in $\mathbb{N}$, so that $C=\lbrace A_i\mid i\in \mathbb{N}\rbrace$.  Let $A:=\bigcup C$.  We want to find a function $f:C\to A$ such that $f(A_i)\in A_i$ for every $i\in \mathbb{N}$.
+
+Define a binary relation $R$ on $A$ as follows: $a R b$ iff there is an $i\in \mathbb{N}$ such that $a \in A_i$ and $b\in A_{i+1}$.  Since each $A_i\ne \varnothing$, $R\ne \varnothing$.  Furthermore, if $b\in \ran{R}$, then $b\in A_{i+1}$ for some $i\in \mathbb{N}$.  Pick any $c\in A_{i+2}$ (since $A_{i+2}\ne \varnothing$), so that $b R c$, and therefore $b\in \dom{R}$.  This shows that $\ran{R}\subseteq \dom{R}$.
+
+By DC, there is a function $g:\mathbb{N}\to \dom{R}$ such that $g(i) R g(i+1)$ for every $i\in \mathbb{N}$.  Now, $g(1)\in A_j$ for some $j\in \mathbb{N}$.  Define a function $h:\mathbb{N}\to A$ as follows, for each $i\in \seg{j-1}$, pick $a_i\in A_i$ and set $h(i):=a_i$ (this can be done by induction), and for $i\ge j$, set $h(i):=g(j-i+1)$ (arithmetic of finite cardinals is possible in ZF).  Then $h(i)\in A_i$ for all $i\in \mathbb{N}$.  
+
+Finally, define $f:C\to A$ as follows: for each $A_i\in C$, set $f(A_i):=h(i)$.  Then $f$ has the desired property $f(A_i)\in A_i$, and the proof is complete. \end{proof}
+
+However, the converses of both of these implications are false.  Jensen proved the independence of DC from ZF+CC, and Mostowski and Jech proved the independence of AC from ZF+DC.  In fact, it was shown that the weaker version of AC, which states that every set with cardinality at most $\aleph_1$ has a choice function, is independent from ZF+DC.
+
+\textbf{Remark}.  DC is related to Baire spaces in point-set topology.  It can be shown that DC is equivalent to each of the following statements in ZF:
+\begin{itemize}
+\item Any complete pseudometric space is Baire under the topology induced by the pseudometric.
+\item Any product of compact Hausdorff spaces is Baire under the product topology.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{tj} T. Jech, {\em Interdependence of weakened forms of the axiom of choice}, Comment. Math. Univ. Carolinae 7, pp. 359-371, (1966).
+\bibitem{rbj} R. B. Jensen {\em Independence of the axiom of dependent choices from the countable axiom of choice} (abstract), Jour. Symbolic Logic 31, 294, (1966).
+\bibitem{al} A. Levy, {\em Basic Set Theory}, Dover Publications Inc., (2002).
+\bibitem{am} A. Mostowski {\em On the principle of dependent choices}, Fund. Math. 35, pp 127-130 (1948).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TruthvalueSemanticsForIntuitionisticPropositionalLogicIsSound}
+\pmcreated{2013-03-22 19:31:38}
+\pmmodified{2013-03-22 19:31:38}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{truth-value semantics for intuitionistic propositional logic is sound}
+\pmrecord{21}{42504}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+\begin{prop} The truth-value semantics for intuitionistic propositional logic is sound. \end{prop}
+\begin{proof}
+We show that, for each positive integer $n$, every theorem of intuitionistic propositional logic is a tautology for $V_n$.  This amounts to showing that, for every interpretation $v$ on $V_n$,
+\begin{itemize}
+\item
+each axiom is true, and
+\item 
+modus ponens preserves truth.
+\end{itemize}
+Let us take care of the second one first.  Suppose $v(A)=v(A\to B)=n$.  If $v(A)\le v(B)$, then $v(B)=n$.  Otherwise, $v(B)<v(A)$.  But this means that $n=v(A\to B)=v(B)$, forcing $v(B)=n$.  Therefore, $v(B)=n$.
+
+Now, we verify that each of the axiom schemas below are true:
+
+\begin{enumerate}
+\item $(A \land B) \to A$ and $(A\land B)\to B$.
+
+Since $v(A\land B)=\min\lbrace v(A),v(B)\rbrace \le v(A)$, we get $v((A\land B)\to A)=n$.  The other one is proved similarly.
+
+\item $A \to (A \lor B)$ and $B \to (A\lor B)$.
+
+Since $v(A) \le \max\lbrace v(A),v(B)\rbrace = v(A\lor B)$, we get $v(A\to (A\lor B))=n$.  The other one is proved similarly.
+
+\item $A \to (B \to A)$.
+
+If $v(B)\le v(A)$, $v(B\to A)=n$, so that $v(A\to (B\to A))=n$ as well.  If $v(A)<v(B)$, then $v(B\to A)=v(A)$, so that $v(A\to (B\to A))=n$.
+
+\item $\neg A \to  (A \to B)$.
+
+If $v(A)\le v(B)$, $v(A\to B)=n$, so that $v(\neg A\to (A\to B))=n$ as well.  If $v(B)<v(A)$, then $v(A\to B)=v(B)$.  Also, $v(B)<v(A)$ implies that $v(A)>0$, so that $v(\neg A)=0$, and $v(\neg A\to (A\to B))=n$ as a result.
+
+\item $A \to (B \to (A \land B))$.
+
+If $v(B)=v(A\land B)$, then $v(B)\le v(A)$ and $v(B\to (A\land B))=n$, so that $v(A\to (B\to (A\land B))=n$ also.  If on the other hand $v(A\land B)<v(B)$, then $$v(A)=v(A\land B) \quad \mbox{and} \quad v(B\to (A\land B))=v(A\land B),$$ so that 
+$$v(A \to (B\to (A\land B)))= v(A\to (A\land B)) = n.$$
+
+\item $(A \to C) \to ((B \to C) \to ((A \lor B) \to C))$.
+
+If $v(B)=v(A\lor B)$, then $v(A)\le v(B)$, and $$v((B \to C) \to ((A \lor B) \to C))=v((B \to C) \to (B \to C)) = n,$$ so that $$v((A\to C) \to ((B \to C) \to ((A \lor B) \to C)))=n$$ as well.  Otherwise, $v(B)<v(A)=v(A\lor B)$.  This means that $$v((B\to C) \to ((A\lor B)\to C)))=v((B\to C)\to (A \to C)),$$ and therefore $$v((A \to C) \to ((B \to C) \to ((A \lor B) \to C))) = v((A\to C) \to ((B\to C)\to (A \to C))) =n$$ by 3 above.
+
+\item $(A \to B) \to ((A \to (B \to C)) \to (A \to C))$.
+
+It is clear that $v(C)\le v(B\to C)$.  If $v(C)=v(B\to C)$, then $$v((A \to (B \to C)) \to (A \to C)) = v((A \to C) \to (A \to C)) = n,$$ so that $$v((A \to B) \to ((A \to (B \to C)) \to (A \to C)))=n$$ too.  If $v(C)<v(B\to C)$, then $v(B\to C)=n$, which implies $v(B)\le v(C)$.  This in turn implies that $v(A\to B) \le v(A\to C)$, so that $$v((A \to C) \to ((A \to (B \to C)) \to (A \to C))) \le v((A \to B) \to ((A \to (B \to C)) \to (A \to C))).$$  But by 3 above, $$v((A \to C) \to ((A \to (B \to C)) \to (A \to C)))=n,$$ hence $$v((A \to B) \to ((A \to (B \to C)) \to (A \to C)))=n$$ as a result.
+
+\item $(A\to B)\to ((A\to \neg B)\to \neg A)$.
+
+Pick any $C$ such that $v(C)=0$, such as $D\land \neg D$.  Then $v(\neg B) = v(B\to C)$, so that $$v((A\to B)\to ((A\to \neg B)\to \neg A))= v((A\to B)\to ((A\to (B\to C))\to (A\to C)))=n$$ by 7.
+
+\end{enumerate}
+\end{proof}
+Note that the proofs of the axioms employ some elementary facts, for any wff's $A,B,C$:
+\begin{itemize}
+\item If $v(B)=n$ or $v(A)=0$, then $v(A\to B)=n$.
+\item if $v(B)=0$, then $v(A\to B)=v(\neg A)$.
+\item if $v(A)=n$, then $v(A\to B)=v(B)$.
+\item $v(B)\le v(A\to B)$.
+\item if $v(B)\le v(C)$, then 
+\begin{itemize}
+\item $v(A\lor B)\le v(A\lor C)$,
+\item $v(A\land B)\le v(A\land C)$,
+\item $v(A\to B)\le v(A\to C)$,
+\item $v(C\to A)\le v(B\to A)$.
+\end{itemize}
+\end{itemize}
+From the facts above, one readily deduces:
+\begin{itemize}
+\item if $v(B)\le v(C)$, then $v(\neg C)\le v(\neg B)$,
+\item if $v(B)=v(C)$, then
+\begin{itemize}
+\item $v(A\lor B)= v(A\lor C)$,
+\item $v(A\land B)= v(A\land C)$,
+\item $v(A\to B)= v(A\to C)$,
+\item $v(C\to A)= v(B\to A)$,
+\item $v(\neg B)=v(\neg C)$.
+\end{itemize}
+\end{itemize}
+
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{VonNeumannBernaysGodelSetTheory}
+\pmcreated{2013-03-22 13:42:51}
+\pmmodified{2013-03-22 13:42:51}
+\pmowner{Aatu}{2569}
+\pmmodifier{Aatu}{2569}
+\pmtitle{von Neumann-Bernays-G\"odel set theory}
+\pmrecord{16}{34395}
+\pmprivacy{1}
+\pmauthor{Aatu}{2569}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E30}
+\pmsynonym{NBG}{VonNeumannBernaysGodelSetTheory}
+\pmsynonym{vNBG}{VonNeumannBernaysGodelSetTheory}
+\pmsynonym{vNBG}{VonNeumannBernaysGodelSetTheory}
+\pmsynonym{VNB}{VonNeumannBernaysGodelSetTheory}
+%\pmkeywords{NBG}
+%\pmkeywords{VNBG}
+%\pmkeywords{vNBG}
+\pmrelated{ZFC}
+\pmrelated{ZermeloFraenkelAxioms}
+\pmdefines{NBG}
+\pmdefines{von Neumann-Bernays-G\"odel set theory}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+von Neumann-Bernays-G\"odel (commonly referred to as NBG or vNBG) set theory is an axiomatisation of set theory closely related to the more familiar Zermelo-Fraenkel with choice (ZFC) axiomatisation. The primary difference between ZFC and NBG is that NBG has proper classes among its objects. NBG and ZFC are very closely related and are in fact equiconsistent, NBG being a conservative extension of ZFC.
+
+In NBG, the proper classes are differentiated from sets by the fact that they do not belong to other classes. Thus in NBG we have
+
+\begin{displaymath}
+ \mathbf{Set}(x) \leftrightarrow \exists y ( x \in y )
+\end{displaymath}
+
+Another interesting fact about proper classes within NBG is the following {\em limitation of size principle} of von Neumann:
+
+\begin{displaymath}
+ \neg \mathbf{Set}(x) \leftrightarrow |x| = |V|
+\end{displaymath}
+
+where $V$ is the set theoretic universe. This principle can in fact replace in NBG essentially all set existence axioms with the exception of the powerset axiom (and obviously the axiom of infinity). Thus the classes that are proper in NBG are in a very clear sense big, while the sets are small.
+
+The NBG set theory can be axiomatised in two different ways
+
+\begin{itemize}
+ \item Using the G\"odel class construction functions, resulting in a finite
+       axiomatisation
+ \item Using a class comprehension axiom scheme, resulting in an infinite 
+       axiomatisation
+\end{itemize}
+
+In the latter alternative we take ZFC and relativise all of its axioms to sets, i.e. we replace every expression of form $\forall x \phi$ with $\forall x (Set(x) \rightarrow \phi)$ and $\exists x \phi$ with $\exists x (Set(x) \wedge \phi)$ and add the class comprehension scheme
+
+\begin{quotation}
+ If $\phi$ is a formula with a free variable $x$ with all its quantifiers
+ restricted to sets, then the following is an
+ axiom: $ \exists A \forall x (x \in A \leftrightarrow \phi)$
+\end{quotation}
+
+Notice the important restriction to formulae with quantifiers restricted to sets in the scheme. This requirement makes the NBG proper classes predicative; you can't prove the existence of a class the definition of which quantifies over all classes. This restriction is essential; if we loosen it we get a theory that is not conservative over ZFC. If we allow arbitrary formulae in the class comprehension axiom scheme we get what is called Morse-Kelley set theory. This theory is essentially stronger than ZFC or NBG, as it can prove their consistency (in addition to everything they already prove). In addition to these axioms, NBG also contains the global axiom of choice: there is a function which picks an element from each non-empty set. The global axiom of choice follows from the limitation of size principle. This is because we can prove, e.g. by means of the Burali-Forti paradox, that the class of all ordinals is not a set, and hence there is a bijection between the class of ordinals and the class of all sets. We can use this bijection to pick an element from each non-empty set simply by picking the element with the least ordinal assigned to it by the bijection.
+
+
+Another way to axiomatise NBG is to use the eight G\"odel class construction functions. These functions correspond to the various ways in which one can build up formulae (restricted to sets!) with set parameters. The functions are finite in number and so are the resulting axioms governing their behaviour. In particular, since there is a class corresponding to any restricted formula, the intersection of any set and this class exists too (and is a set). Thus the comprehension scheme of ZFC can be replaced with a finite number of axioms, provided we allow for proper classes.
+
+The device for turning NBG into a finitely axiomatised theory can be used for other theories too. For example, the theory $ACA_0$ which is a formalisation of $PA$ using set variables and the so called arithmetical comprehension scheme can be finitely axiomatised using this device.
+
+It is easy to show that everything provable in ZF is also provable in NBG. It is also not too difficult to show that NBG without global choice is a conservative extension of ZFC. However, showing that NBG (including global choice) is a conservative extension of ZFC is considerably more difficult. This is equivalent to showing that NBG with global choice is conservative over NBG with only local choice. In order to do this one needs to use (class) forcing. This result is usually credited to Easton and Solovay.
+%%%%%
+%%%%%
+\end{document}

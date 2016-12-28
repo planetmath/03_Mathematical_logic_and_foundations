@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Language}
+\pmcreated{2013-03-22 12:17:10}
+\pmmodified{2013-03-22 12:17:10}
+\pmowner{mps}{409}
+\pmmodifier{mps}{409}
+\pmtitle{language}
+\pmrecord{28}{31767}
+\pmprivacy{1}
+\pmauthor{mps}{409}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03C07}
+\pmclassification{msc}{68Q45}
+\pmsynonym{$\lambda$-free}{Language}
+\pmrelated{Alphabet}
+\pmrelated{ContextFreeLanguage}
+\pmrelated{RegularLanguage}
+\pmrelated{DeterministicFiniteAutomaton}
+\pmrelated{NonDeterministicFiniteAutomaton}
+\pmrelated{KleeneStar}
+\pmrelated{FormalGrammar}
+\pmrelated{FirstOrderLanguage}
+\pmrelated{TermsAndFormulas}
+\pmrelated{Word}
+\pmdefines{string}
+\pmdefines{empty language}
+\pmdefines{substring}
+\pmdefines{proper language}
+\pmdefines{improper language}
+\pmdefines{alphabet of a language}
+\pmdefines{alphabet of a word}
+\pmdefines{finite language}
+\pmdefines{atomic language}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\begin{document}
+Let $\Sigma$ be an alphabet. We then define the following using the
+powers of an alphabet and infinite union, where $n \in \mathbb{Z}$.
+\begin{eqnarray*}
+\Sigma^+ & = & \bigcup_{n=1}^{\infty} \Sigma^n \\
+\Sigma^* & = & \bigcup_{n=0}^{\infty} \Sigma^n = \Sigma^+ \cup \{\lambda\}
+\end{eqnarray*}
+where $\lambda$ is the element called \emph{empty string}.
+A \emph{string} is an element of $\Sigma^*$, meaning that
+it is a grouping of symbols from $\Sigma$ one after another (via concatenation). For example, $abbc$ is a
+string, and $cbba$ is a different string.  A string is also commonly called a \emph{word}.  
+$\Sigma^+$, like $\Sigma^*$, contains all finite strings except that
+$\Sigma^+$ does not contain the empty string $\lambda$.
+Given a string $s\in\Sigma^*$, a string $t$ is a \emph{substring} of $s$ if
+$s = utv$ for some strings $u,v\in\Sigma^*$.  For example, $lp, al, ha, alpha$, and $\lambda$ (the empty string) are all substrings of the string $alpha$.
+
+\textbf{Definition}.  A \emph{language} over an alphabet $\Sigma$ is a subset of $\Sigma^*$, meaning that
+it is a \PMlinkname{set}{Set} of strings made from the symbols in the alphabet $\Sigma$.
+
+Take for example an alphabet $\Sigma = \{\clubsuit, \wp, 63, a, A \}$.
+The following are all languages over $\Sigma$:
+\begin{itemize}
+\item 
+$\{aaa, \lambda, A\wp63, 63\clubsuit, AaAaA\}$, 
+\item 
+$\{\wp a,\wp aa, \wp aaa, \wp aaaa, \cdots\}$, 
+\item The empty set $ \varnothing $.  In the context of languages, $\varnothing$ is called the \emph{empty language}.
+\item $\lbrace 63 \rbrace$
+\item $\lbrace a^{2n}\mid n\ge 0 \rbrace$
+\end{itemize}
+A language $L$ is said to be \emph{proper} if the empty string does not belong to it: $\lambda\notin L$.  A proper language is also said to be \emph{$\lambda$-free}.  Otherwise, it is \emph{improper}.  In the examples above, all but the first and the last examples are $\lambda$-free.  $L$ is a \emph{finite language} if $L$ is a finite set, and \emph{atomic} if it is a singleton subset of $\Sigma$, such as the fourth example above.  A language can be arbitrarily formed, or constructed via some set of rules called a formal grammar.
+
+Given a language $L$ over $\Sigma$, the \emph{alphabet of $L$} is defined as the maximal subset $\Sigma(L)$ of $\Sigma$ such that every symbol in $\Sigma(L)$ occurs in some word in $L$.  Equivalently, define the alphabet of a word $w$ to be the set $\Sigma(w)$ of all symbols that occur in $w$, then $\Sigma(L)$ is the union of all $\Sigma(w)$, where $w$ ranges over $L$.
+
+\textbf{Remark}.  A language can also be described in terms of ``infinite'' alphabets.  For example, in model theory, a language is built from a set of symbols, together with a set of variables.  These sets are often infinite.  Another way of generalizing the notion of a language is to allow the strings to have infinite lengths.  The way to do this is to think of a string as a partial function $f$ from some set $X$ to the alphabet $A$ such that $|\operatorname{dom}(f)|<|X|$.  Then the length of a string $f:X\to A$ is just $|\operatorname{dom}(f)|$.  This specializes to the finite case if we take $X$ to be the set of all non-negative integers.
+%%%%%
+%%%%%
+\end{document}

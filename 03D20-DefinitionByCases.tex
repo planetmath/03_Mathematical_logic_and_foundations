@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DefinitionByCases}
+\pmcreated{2013-03-22 19:08:13}
+\pmmodified{2013-03-22 19:08:13}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{definition by cases}
+\pmrecord{5}{42035}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{lem}{Lemma}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\textbf{Definition}  A (total) function $f:\mathbb{N}^k \to \mathbb{N}$ is said to be defined by cases if there are functions $f_1, \ldots, f_m:\mathbb{N}^k \to \mathbb{N}$, and predicates $\Phi_1(\boldsymbol{x}), \ldots, \Phi_m(\boldsymbol{x})$, which are pairwise exclusive $$S(\Phi_i)\cap S(\Phi_j)=\varnothing$$ for $i\ne j$, such that
+\begin{displaymath}
+f(\boldsymbol{x}):= \left\{
+\begin{array}{ll}
+f_1(\boldsymbol{x}) & \textrm{if } \Phi_1(\boldsymbol{x}), \\
+\cdots \\
+f_m(\boldsymbol{x}) & \textrm{if } \Phi_m(\boldsymbol{x}).
+\end{array}
+\right.
+\end{displaymath}
+Since $f$ is a total function (domain is all of $\mathbb{N}^k$), we see that $S(\Phi_1) \cup \cdots \cup S(\Phi_m)=\mathbb{N}^k$.
+
+\begin{prop}  As above, if the functions $f_1, \ldots, f_m:\mathbb{N}^k \to \mathbb{N}$, as well as the predicates $\Phi_1(\boldsymbol{x}), \ldots, \Phi_m(\boldsymbol{x})$, are primitive recursive, then so is the function $f:\mathbb{N}^k \to \mathbb{N}$ defined by cases from the $f_i$ and $\Phi_j$. \end{prop}
+
+To see this, we first need the following:
+\begin{lem} If functions $f_1, \ldots, f_m:\mathbb{N}^k \to \mathbb{N}$ are primitive recursive, so is $f_1 +\cdots + f_m$. \end{lem}
+\begin{proof} By induction on $m$.  The case when $m=1$ is clear.  Suppose the statement is true for $m=n$.  Then $f_1 + \cdots + f_n + f_{n+1} = \operatorname{add}(f_1+\cdots+f_n,f_{n+1})$, which is primitive recursive, since $\operatorname{add}$ is, and that primitive recursiveness is preserved under functional composition.
+\end{proof}
+
+\begin{proof}[Proof of Proposition 1] $f$ is just
+\begin{displaymath}
+f(\boldsymbol{x}):= \left\{
+\begin{array}{ll}
+f_1(\boldsymbol{x}) & \textrm{if } \boldsymbol{x} \in S(\Phi_1), \\
+\cdots \\
+f_m(\boldsymbol{x}) & \textrm{if } \boldsymbol{x} \in S(\Phi_m).
+\end{array}
+\right.
+\end{displaymath}
+which can be re-written as $$f=\varphi_{S(\Phi_1)} f_1 + \cdots + \varphi_{S(\Phi_m)}f_m,$$ where $\varphi_S$ denotes the characteristic function of set $S$.  By assumption, both $f_i$ and $\varphi_{S(\Phi_i)}$ are primitive recursive, so is their product, and hence the sum of these products.  As a result, $f$ is primitive recursive too.  \end{proof}
+%%%%%
+%%%%%
+\end{document}

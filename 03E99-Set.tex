@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Set}
+\pmcreated{2013-03-22 12:15:09}
+\pmmodified{2013-03-22 12:15:09}
+\pmowner{Mathprof}{13753}
+\pmmodifier{Mathprof}{13753}
+\pmtitle{set}
+\pmrecord{24}{31635}
+\pmprivacy{1}
+\pmauthor{Mathprof}{13753}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E99}
+\pmrelated{ZermeloFraenkelAxioms}
+\pmrelated{Mapping}
+\pmrelated{SetTheory}
+\pmrelated{Class}
+\pmrelated{DeMorgansLaws}
+\pmrelated{NotationInSetTheory}
+\pmrelated{CardinalityOfAFiniteSetIsUnique}
+\pmrelated{OneToOneFunctionFromOntoFunction}
+\pmrelated{Collection}
+\pmrelated{FunctorCategory2}
+\pmrelated{Algebras2}
+\pmrelated{SetMembership}
+\pmdefines{contains}
+\pmdefines{subset}
+\pmdefines{proper subset}
+
+% This is Cosmin's preamble.
+
+% Packages
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{amsfonts}
+  \usepackage{amsthm}
+  \usepackage{mathrsfs}
+  %\usepackage{graphicx}
+  %%%%\usepackage{xypic}
+  %\usepackage{babel}
+
+% Theorem Environments
+  \newtheorem*{thm}{Theorem}
+  \newtheorem{thmn}{Theorem}
+  \newtheorem*{lem}{Lemma}
+  \newtheorem{lemn}{Lemma}
+  \newtheorem*{cor}{Corollary}
+  \newtheorem{corn}{Corollary}
+  \newtheorem*{prop}{Proposition}
+  \newtheorem{propn}{Proposition}
+
+% New Commands
+  % "Blackboard Bold" Letters
+    \newcommand{\bbC}{\mathbb{C}}
+    \newcommand{\bbN}{\mathbb{N}}
+    \newcommand{\bbP}{\mathbb{P}}
+    \newcommand{\bbQ}{\mathbb{Q}}
+    \newcommand{\bbR}{\mathbb{R}}
+    \newcommand{\bbS}{\mathbb{S}}
+    \newcommand{\bbZ}{\mathbb{Z}}
+    \newcommand{\caP}{\mathcal{P}}
+  % Other Commands
+    \renewcommand{\geq}{\geqslant}
+    \renewcommand{\leq}{\leqslant}
+    \newcommand{\vect}[1]{\boldsymbol{#1}}
+    \renewcommand{\div}{\!\mid\!}
+    \DeclareMathOperator{\card}{card}
+\begin{document}
+\PMlinkescapeword{type}
+\PMlinkescapeword{types}
+\PMlinkescapeword{represent}
+\PMlinkescapeword{restrictions}
+\PMlinkescapeword{generic}
+\PMlinkescapeword{order}
+\PMlinkescapeword{equivalent}
+\PMlinkescapeword{characteristics}
+\PMlinkescapeword{combinations}
+\PMlinkescapeword{property}
+\PMlinkescapephrase{basic set}
+
+\section{Introduction}
+
+A \emph{set} is a collection, \PMlinkescapetext{group}, or conglomerate\footnote{However, not every collection has to be a set (in fact, all collections \emph{can't} be sets: there is no set of all sets or of all ordinals for example). See proper class for more details.}.
+
+Sets can be of ``\PMlinkescapetext{real}'' objects or mathematical objects, but the sets themselves are purely conceptual. This is an important point to note: the set of all cows (for example) does not physically exist, even though the cows do. The set is a ``gathering'' of the cows into one conceptual \PMlinkescapetext{unit} that is not part of physical reality. This makes it easy to see why we can have sets with an infinite number of elements; even though we may not be able to point out infinitely many objects in the real world, we can construct conceptual sets which an infinite number of elements (see the examples below).
+
+The symbol $\in$ denotes set \emph{membership}. For example, \( s \in S \) would be read ``$s$ is an element of $S$''.
+
+
+We write  $A \subset B$ if for all $x \epsilon A$ we have $x \epsilon B$
+and we then say $B$ \emph{contains} $A$.
+We sometimes write 
+ ``$S$ \emph{contains} $s$'' when $S$ contains the 
+set whose only element is $s$. %\footnote{The notion of membership in a set generalizes beyond individuals to subsets --- see below.}.
+
+Mathematics is thus built upon sets of purely conceptual, or mathematical, objects. Sets are usually denoted by upper-case roman letters (such as $S$). Sets can be defined by listing the members, as in
+\[ S := \{ a, b, c, d\}. \]
+Or, a set can be defined from a predicate (called ``set builder notation''). This type of statement defining a set is of the form
+\[ S := \{ x \in X : P(x) \},\]
+where $S$ is the symbol denoting the set, $x$ is the variable we are introducing to represent a generic element of the set (note that, by the so called axiom of comprehension (or axiom of subsets), $x$ must be a member of some set which has already been defined. This is necessary in order to avoid Russell's paradox\footnote{One needs to be careful when defining a set by a predicate only, since (for example) ``$x$ is not in $x$'' is a perfectly good predicate. Either one needs to restrict the kind of predicate, or, more commonly, one needs to \emph{define only subsets} by predicates. So while one cannot do $\{x \colon x \not\in x\}$, if one already has a set $U$, one can do $\{x: x \in U, x \not\in x\}$.}.) and $P(x)$ is some property which must be true for any element $x$ of the set (that is, $x\in S$ is equivalent to $x\in X$ and $P(x)$ holds.) Sometimes, we write a set definition as $S := \{ f(x) \in X : P(x) \}$, where $f(x)$ is a transformation of that variable. In this case, we can simply replace the set $X$ by $Y$, where $Y := \{ y \in X : \exists x\in X, y = f(x) \}$ in order to define the set as above.
+
+Sets are, in fact, completely specified by their elements. If two sets have the same elements, they are equal. This is called the axiom of extensionality, and it is one of the most important characteristics of sets that distinguishes them from predicates or properties.
+
+%\[ S = \{ f(x) \colon P(x) \} \]
+
+%where $S$ is the symbol denoting the set, $x$ is the variable we are introducing to represent a generic element of the set, $f(x)$ is a transformation (possible $f(x) = x$) of that variable, and $P(x)$ is some property that is true for values $x$ within $S$ (that is $x \in S$ iff $P(x)$ holds). We denote ``and'' by comma-separated clauses in $P(x)$\footnote{One needs to be careful when defining a set by a predicate only, since (for example) ``x is not in x'' is a perfectly good predicate. Either one needs to restrict the kind of predicate, or, more commonly, one needs to \emph{define only subsets} by predicates. So while one cannot do $\{x \colon x \not\in x\}$, if one already has a set $U$, one can do $\{x: x \in U, x \not\in x\}$. This is necessary to avoid Russell's paradox.}.
+
+Some examples of sets are:
+
+\begin{itemize}
+\item The standard number sets $\bbN$, $\bbZ$, $\bbQ$, $\bbR$ and $\bbC$.
+\item The set of all even integers: $\{ x \in \mathbb{Z} : 2 \div x \}.$
+\item The set of all prime numbers (sometimes denoted $\bbP$): $\{ p \in \mathbb{N} : p > 1, \forall x \in \mathbb{N} \;\; x \div p \Rightarrow x \in \{1 , p \} \}$, where $\Rightarrow$ denotes implies and $\mid$ denotes divides.
+\item The set of all real functions of one real parameter (sometimes denoted by $\bbR^\bbR$): $\{ f(x) \in \mathbb{R} : x \in \mathbb{R} \}$ or, more formally, $\{f \subset \bbR^2 : \left[\forall x\in \bbR, \exists y\in \bbR, (x,y)\in f\right] \wedge \left[(x,y),(x,y')\in f \Rightarrow  y=y'\right] \}$.
+\item The unit circle $\bbS^1$: $\{z\in \bbC : |z| = 1\}$, where $|z|$ is the modulus of $z$.
+%\item The set of all isosceles triangles: $\{ \triangle ABC :overline{AB}=\overline{BC}\}$, where the overline denotes segment length.
+\end{itemize}
+
+The most basic set is the empty set (denoted $\varnothing$, $\emptyset$ or $\{\}$).
+
+The astute reader may have noticed that all of our examples of sets utilize sets, which does not suffice for rigorous definition. We can be more rigorous if we postulate only the empty set, and define a set in general as anything which one can construct from the empty set and the ZFC axioms. The non-negative integers, for instance, are defined by $0 := \varnothing$ and the successor of $x$, $s(x) = x \cup \{x\}.$ A non-negative integer is thus the set of all its predecessors (for example, we have $3 = \{0,1,2\} = \{\varnothing, \{\varnothing\},\{\varnothing, \{\varnothing\}\}\}$)\footnote{Note however that the existence of the \emph{set} of non-negative integers needs an additional axiom beside those which are required to define its members: the axiom of infinity.}.
+
+All objects in modern mathematics are constructed via sets. An important point to be made about this is that the construction of the object is less important than the way it will \emph{behave}. As an example, we usually define an ordered pair $(x,y)$ as the set $\{x,\{x,y\}\}$: what matters here is that, for two ordered pairs $(x,y)$ and $(x',y')$, we have $(x,y) = (x',y')$ if and only if $x = x'$ and $y = y'$, and this is true with the given definition, as one can easily see. We could, however, also have taken $\{x,\{x,\{y\}\}\}$ as the definition of $(x,y)$, in which case the needed property also holds and we have a valid definition (we chose the first only because it is simpler).
+
+\section{Set Notions}
+
+An important set notion is \emph{cardinality}. Cardinality is roughly the same as the intuitive notion of ``size'' or number of elements. While this intuitive definition works well for finite sets, intuition breaks down for sets with an infinite number of elements. The cardinality of a set $S$ is denoted $|S|$ (sometimes $\# S$ or $\card S$) and we say that sets $A$ and $B$ have the same cardinality if and only if there is a bijection from one to the other. For more detail, see the cardinality entry.
+
+Another important set concept is that of \emph{subsets}. A subset $B$ of a set $A$ is any set which contains only elements that appear in $A$. Subsets are denoted with the $\subseteq$ symbol, i.e. $B \subseteq A$ (in which case $A$ is called a \emph{superset} of B). Also useful is the notion of a \emph{proper subset}, denoted $B \subsetneq A$ (or sometimes, $B \subset A$)\footnote{Beware --- some authors use $\subset$ to mean proper subset, while most use it to mean subset with equality (the same as $\subseteq$), which can make the $B \subset A$ notation ambiguous.}, which adds the restriction that $B$ must also not be equal to $A$. The set of all subsets of a set $S$ is called \emph{the power set of $S$}, denoted $\caP(S)$ (the existence of this set is also axiomatic: it is guaranteed by the axiom of the power set). Note that $B$ does not need to have a lower cardinality than $A$ to be a proper subset, i.e., $\{1, 2, 3, \dotsc\}$ is a proper subset of $\{0, 1, 2, 3, \dotsc\}$, but both have the same cardinality, $\aleph_0$ (In fact, a set is infinite if and only if it has the same cardinality as some proper subset).
+
+\section{Set Operations}
+
+There are a number of standard (common) operations which are used to manipulate sets, producing new sets from combinations of existing sets (sometimes with entirely different types of elements). These standard operations are:
+
+\begin{itemize}
+
+\item \PMlinkname{union}{Union}
+
+%denoted by the $\cup$ symbol; takes two sets and returns the set consisting of all distinct elements occuring in either set. Formally, $A \cup B = \{x\}$ for all $x \in A$ or $x \in B$, for sets $A$ and $B$.
+
+\item intersection
+
+%denoted by the $\cap$ symbol; takes two sets and returns the set of all elements which occur in both sets. Formally, $A \cap B = \{x\}$, for all $x in \A$ and $x \in B$, for sets $A$ and $B$.
+
+\item set difference
+
+\item symmetric set difference
+
+%denoted by the backslash ($\setminus$) symbol; takes two sets and returns the set of elements in the first which are not in the second. Formally, $A \setminus B = \{x\}$ for all $x \in A$ and $x \not\in B$, for sets $A$ and $B$. Note that this is the empty set in the event
+
+\item complement
+
+%\item complement, denoted by overbar; takes a subset (of some parent set which should be obvious from the context) and returns all elements which are in the parent set but not in the subset. Formally, $\overline{A} = \{x\}$ where $x \in U$ and $x \not\in A$, for sets $A$ and $U$ with $A \subseteq U$.
+%
+\item Cartesian product
+
+%: denoted by $\times$; takes two sets and returns the set of all possible \emph{ordered} pairs of elements from each set. Formally, $A \times B = \{(a, b)\}$ for all $a \in A$, $b \in B$, for sets $A$ and $B$.
+
+\item \PMlinkname{power set}{PowerSet}
+
+\end{itemize}
+%%%%%
+%%%%%
+%%%%%
+\end{document}

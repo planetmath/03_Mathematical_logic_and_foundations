@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{A29TheNaturalNumberType}
+\pmcreated{2013-11-09 5:40:53}
+\pmmodified{2013-11-09 5:40:53}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{A.2.9 The natural number type}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\comp}{\textsc{comp}}
+\newcommand{\ctx}{\ensuremath{\mathsf{ctx}}}
+\newcommand{\elim}{\textsc{elim}}
+\newcommand{\form}{\textsc{form}}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\intro}{\textsc{intro}}
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\jdeqtp}[4]{#1 \vdash #2 \jdeq #3 : #4}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\oftp}[3]{#1 \vdash #2 : #3}
+\newcommand{\suc}{\mathsf{succ}}
+\newcommand{\tmtp}[2]{#1 \mathord{:} #2}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\wfctx}[1]{#1\ \ctx}
+\let\autoref\cref
+
+\begin{document}
+\index{natural numbers|(}%
+
+We give the rules for natural numbers, following \PMlinkname{\S 1.9}{19thenaturalnumbers}.
+
+\begin{mathparpagebreakable}
+  \def\premise{
+     \oftp{\Gamma,\tmtp x{\N}}{C}{\UU_i} \\
+     \oftp\Gamma{c_0}{C[0/x]} \\
+     \oftp{\Gamma,\tmtp{x}\N,\tmtp y C}{c_s}{C[\suc(x)/x]}}
+  %
+  \inferrule*[right=$\N$-\form]
+  {\wfctx\Gamma}
+  {\oftp\Gamma{\N}{\UU_i}}
+\and
+  \inferrule*[right=$\N$-\intro${}_1$]
+  {\wfctx\Gamma}
+  {\oftp\Gamma{0}{\N}}
+\and
+  \inferrule*[right=$\N$-\intro${}_2$]
+  {\oftp\Gamma{n}{\N}}
+  {\oftp\Gamma{\suc(n)}{\N}}
+\and
+  \inferrule*[right=$\N$-\elim]
+  {\premise \\ \oftp\Gamma{n}{\N}}
+  {\oftp\Gamma{\ind{\N}(x.C,c_0,x.y.c_s,n)}{C[n/x]}}
+\and
+  \inferrule*[right=$\N$-\comp${}_1$]
+  {\premise}
+  {\jdeqtp\Gamma{\ind{\N}(x.C,c_0,x.y.c_s,0)}{c_0}{C[0/x]}}
+\and
+  \inferrule*[right=$\N$-\comp${}_2$]
+  {\premise \\ \oftp\Gamma{n}{\N}}
+  {\Gamma\vdash
+    {\begin{aligned}[t]
+      &\ind{\N}(x.C,c_0,x.y.c_s,\suc(n)) \\
+      &\quad \jdeq c_s[n,\ind{\N}(x.C,c_0,x.y.c_s,n)/x,y] : C[\suc(n)/x]
+    \end{aligned}}}
+\end{mathparpagebreakable}
+%
+In $\ind{\N}$, $x$ is bound in $C$, and $x$ and $y$ are bound in $c_s$.
+
+Other inductively defined types follow the same general scheme.
+
+\index{natural numbers|)}%
+
+
+\end{document}

@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{OperationsOnMultisets}
+\pmcreated{2013-03-22 19:13:23}
+\pmmodified{2013-03-22 19:13:23}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{operations on multisets}
+\pmrecord{9}{42144}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E99}
+\pmdefines{multisubset}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we view multisets as functions whose ranges are the class $K$ of cardinal numbers.  We define operations on multisets that mirror the operations on sets.
+
+\textbf{Definition}.  Let $f:A\to K$ and $g:B\to K$ be multisets.
+\begin{itemize}
+\item The union of $f$ and $g$, denoted by $f\cup g$, is the multiset whose domain is $A\cup B$, such that $$(f\cup g)(x):= \max(f(x),g(x)),$$ keeping in mind that $f(x):=0$ if $x$ is not in the domain of $f$.
+\item The intersection of $f$ and $g$, denoted by $f\cap g$, is the multiset, whose domain is $A\cap B$, such that $$(f\cap g)(x):= \min(f(x),g(x)).$$
+\item The sum (or disjoint union) of $f$ and $g$, denoted by $f+g$, is the multiset whose domain is $A\cup B$ (not the disjoint union of $A$ and $B$), such that $$(f+g)(x):=f(x)+g(x),$$ again keeping in mind that $f(x):=0$ if $x$ is not in the domain of $f$.
+\end{itemize}
+Clearly, all of the operations described so far are commutative.  Furthermore, if $+$ is cancellable on both sides: $f+g=f+h$ implies $g=h$, and $g+f=h+f$ implies $g=h$.  
+
+Subtraction on multisets can also be defined.  Suppose $f:A\to K$ and $g:B\to K$ are multisets.  Let $C$ be the set $\lbrace x \in A\cap B \mid f(x)>g(x)\rbrace$.  Then 
+\begin{itemize}
+\item
+the complement of $g$ in $f$, denoted by $f-g$, is the multiset whose domain is $D:=(A-B)\cup C$, such that $$(f-g)(x):=f(x)-g(x)$$ for all $x\in D$.
+\end{itemize}
+
+For example, writing finite multisets (those with finite domains and finite multiplicities for all elements) in their usual notations, if $f=\lbrace a,a, b,b,b, c,d,d\rbrace$ and $g=\lbrace b,b, c,c,c, d,d,e\rbrace$, then 
+\begin{itemize}
+\item $f\cup g=\lbrace a,a, b,b,b, c,c,c,d,d,e\rbrace$
+\item $f\cap g=\lbrace b,b,c,d,d\rbrace$
+\item $f+g=\lbrace a,a,b,b,b,b,b,c,c,c,c,d,d,d,d,e\rbrace$
+\item $f-g=\lbrace a,a,b\rbrace$
+\end{itemize}
+
+We may characterize the union and intersection operations in terms of multisubsets.
+
+\textbf{Definition}.  A multiset $f:A\to K$ is a \emph{multisubset} of a multiset $g:B\to K$ if 
+\begin{enumerate}
+\item $A$ is a subset of $B$, and
+\item $f(a)\le g(a)$ for all $a\in A$.
+\end{enumerate}
+We write $f\subseteq g$ to mean that $f$ is a multisubset of $g$.
+
+\begin{prop} Given multisets $f$ and $g$. \end{prop}
+\begin{itemize}
+\item $f\cup g$ is the smallest multiset such that $f$ and $g$ are multisubsets of it.  In other words, if $f\subseteq h$ and $g\subseteq h$, then $f\cup g \subseteq h$.
+\item $f\cap g$ is the largest multiset that is a multisubset of $f$ and $g$.  In other words, if $h\subseteq f$ and $h\subseteq g$, then $h\subseteq f\cap g$.
+\end{itemize}
+
+\textbf{Remark}.  One may also define the powerset of a multiset $f$: the multiset such that each of its elements is a multisubset of $f$.  However, the resulting multiset is just a set (the multiplicity of each element is $1$).
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ModusPonens}
+\pmcreated{2013-03-22 16:50:48}
+\pmmodified{2013-03-22 16:50:48}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{modus ponens}
+\pmrecord{19}{39092}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B22}
+\pmclassification{msc}{03B05}
+\pmclassification{msc}{03B35}
+\pmsynonym{rule of detachment}{ModusPonens}
+\pmsynonym{detachment}{ModusPonens}
+\pmsynonym{modus ponendo ponens}{ModusPonens}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\begin{document}
+\textbf{Modus ponens} is a rule of inference that is commonly found in many logics where the binary logical connective $\to$ (sometimes written $\Rightarrow$ or $\supset$) called logical implication are defined.  Informally, it states that 
+
+\begin{center}
+from $A$ and $A \to B$, we may infer $B$.
+\end{center}
+
+Modus ponens is also called the \emph{rule of detachment}: the theorem $b$ can be ``detached'' from the theorem $A \to B$ provided that $A$ is also a theorem.
+
+An example of this rule is the following:  From the premisses ``It is raining'',
+and ``If it rains, then my laundry will be soaked'', we may draw the conclusion 
+``My laundry will be soaked''.
+
+Two common ways of mathematically denoting modus ponens are the following:
+$$\frac{A \quad A \to B}{B} \qquad \mbox{or} \quad \lbrace A, A \to B\rbrace \vdash B.$$
+
+One formal way of looking at modus ponens is to define it as a partial function $\vdash : F \times F \to F,$ where $F$ is a set of formulas in a language $L$ where a binary operation $\to$ is defined, such that 
+\begin{enumerate}
+\item
+$\vdash(A, B)$ is defined whenever $A, B \in F$ and $B \equiv (A \to C)$ for some $C \in L$, and
+\item
+when this is the case, $C \in F$ and $\vdash(A, B) := C$;
+\item
+$\vdash$ is not defined otherwise.
+\end{enumerate}
+
+\textbf{Remark}.  With modus ponens, one can easily prove the converse of the deduction theorem (see \PMlinkname{this link}{DeductionTheorem}).  Another easily proven fact is the following: 
+\begin{quote}\begin{center}
+If $\Delta \vdash A$ and $\Delta\vdash A\to B$, then $\Delta \vdash B$, where $\Delta$ is a set of formulas.
+\end{center}\end{quote}
+To see this, let $A_1,\ldots, A_n$ be a deduction of $A$ from $\Delta$, and $B_1,\ldots, B_m$ be a deduction of $A\to B$ from $\Delta$.  Then $A_1,\ldots, A_n, B_1,\ldots, B_m, B$ is a deduction of $B$ from $\Delta$, where $B$ is inferred from $A_n$ (which is $A$) and $B_m$ (which is $A\to B$) by modus ponens.
+%%%%%
+%%%%%
+\end{document}

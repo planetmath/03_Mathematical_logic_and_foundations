@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EveryepsilonautomatonIsEquivalentToAnAutomaton}
+\pmcreated{2013-03-22 19:02:03}
+\pmmodified{2013-03-22 19:02:03}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{every $\epsilon$-automaton is equivalent to an automaton}
+\pmrecord{8}{41907}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we show that an automaton with \PMlinkname{$\epsilon$-transitions}{EpsilonTransition} is no more power than one without.  Having $\epsilon$-transitions is purely a matter of convenience.
+
+\begin{prop} Every \PMlinkname{$\epsilon$-automaton}{EpsilonAutomaton} is equivalent to an automaton. \end{prop}
+
+For the proof, we use the following setup (see the parent entry for more detail):
+\begin{itemize}
+\item $E=(S,\Sigma,\delta,I,F,\epsilon)$ is an $\epsilon$-automaton, and $E_{\epsilon}$ is the automaton associated with $E$,
+\item $h:(\Sigma\cup\lbrace \epsilon\rbrace)^* \to \Sigma^*$ is the homomorphism that erases $\epsilon$ (it takes $\epsilon$ to the empty word, also denoted by $\epsilon$).  From the parent entry, $L(E):=h(L(E_{\epsilon}))$.
+\end{itemize}
+
+\begin{proof}  Define a function $\delta_1: S\times \Sigma\to P(S)$, as follows: for each pair $(s,a)\in S\times \Sigma$, let $$\delta_1(s,a)= \bigcup \, \lbrace \, \delta(s,u)\mid h(u)=a \, \rbrace.$$
+
+In other words, $\delta_1(s,a)$ is the set of all states reachable from $s$ by words of the form $\epsilon^m a\epsilon^n$.  As usual, we extend $\delta_1$ so its domain is $S\times \Sigma^*$.  By abuse of notation, we use $\delta_1$ again for this extension.  First, we set $\delta_1(s,\epsilon): = \lbrace s\rbrace$.  Then we inductively define $\delta_1(s,ua)= \delta_1(\delta_1(s,u),a)$.  Using induction, 
+\begin{eqnarray*}
+\delta_1(s,ua) &=& \delta_1(\delta_1(s,u),a) \\ 
+&=& \delta_1(\bigcup_{h(v)=u} \delta(s,v),a) \\
+&=& \bigcup_{h(v)=u} \delta_1(\delta(s,v),a) \\
+&=& \bigcup_{h(v)=u} \; \bigcup_{t\in \delta(s,v)} \delta_1(t,a) \\
+&=& \bigcup_{h(v)=u} \; \bigcup_{t\in \delta(s,v)} \; \bigcup_{h(w)=a} \delta(t,w) \\
+&=& \bigcup_{h(v)=u} \; \bigcup_{h(w)=a} \; \bigcup_{t\in \delta(s,v)} \delta(t,w) \\
+&=& \bigcup_{h(v)=u} \; \bigcup_{h(w)=a} \delta(\delta(s,v),w) \\
+&=& \bigcup_{h(v)=u} \; \bigcup_{h(w)=a} \delta(s,vw) \\
+&=& \bigcup \lbrace \delta(s,vw) \mid h(v)=u \mbox{ and } h(w)=a \rbrace \\
+&=& \bigcup \lbrace \delta(s,x) \mid h(x)=ua \rbrace
+\end{eqnarray*}
+So for any non-empty word $u$, we have the following equation:
+\begin{equation}
+\delta_1(s,u) = \bigcup \, \lbrace \, \delta(s,v)\mid h(v)=u \, \rbrace.
+\end{equation}
+
+In other words, if $u=a_1a_2\cdots a_n$, then $\delta_1(s,u)$ is the set of all states reachable from $s$ by words of the form 
+\begin{equation}
+\epsilon^{i_0}a_1\epsilon^{i_1}a_2 \epsilon^{i_2}\cdots \epsilon^{i_{n-1}}a_n \epsilon^{i_n}.
+\end{equation}
+
+Now, define $A$ to be the automaton $(S,\Sigma,\delta_1,I,F)$.  Then, from equation (1) above, a word $$u=a_1 a_2\cdots a_n$$ is accepted by $A$ iff some word $v$ of the form (2) is accepted by $E_{\epsilon}$ iff $u=h(v)$ is accepted by $E$, proving the proposition.
+\end{proof}
+
+\textbf{Remark}.  Another approach is to use the concept of \PMlinkname{$\epsilon$-closure}{EpsilonClosure}.  The proof is very similar to the one given above, and the resulting equivalent automaton is a DFA.
+%%%%%
+%%%%%
+\end{document}

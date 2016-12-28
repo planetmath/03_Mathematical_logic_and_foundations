@@ -1,0 +1,182 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ZerothOrderLogic}
+\pmcreated{2013-03-22 17:55:47}
+\pmmodified{2013-03-22 17:55:47}
+\pmowner{Jon Awbrey}{15246}
+\pmmodifier{Jon Awbrey}{15246}
+\pmtitle{zeroth order logic}
+\pmrecord{19}{40424}
+\pmprivacy{1}
+\pmauthor{Jon Awbrey}{15246}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G05}
+\pmclassification{msc}{03B05}
+\pmrelated{PropositionalCalculus}
+\pmrelated{LogicalConnective}
+\pmrelated{LogicalGraph}
+\pmrelated{LogicalGraphFormalDevelopment}
+\pmrelated{TruthFunction}
+\pmrelated{TruthTable}
+\pmrelated{DifferentialLogic}
+\pmrelated{DifferentialPropositionalCalculus}
+\pmrelated{DifferentialPropositionalCalculusAppendices}
+\pmrelated{DifferentialPropositionalCalculusAppendix2}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+\PMlinkescapephrase{calculus}
+\PMlinkescapephrase{Calculus}
+\PMlinkescapephrase{column}
+\PMlinkescapephrase{Column}
+\PMlinkescapephrase{columns}
+\PMlinkescapephrase{Columns}
+\PMlinkescapephrase{compact}
+\PMlinkescapephrase{Compact}
+\PMlinkescapephrase{degree}
+\PMlinkescapephrase{Degree}
+\PMlinkescapephrase{formal logic}
+\PMlinkescapephrase{Formal logic}
+\PMlinkescapephrase{level}
+\PMlinkescapephrase{Level}
+\PMlinkescapephrase{order}
+\PMlinkescapephrase{Order}
+\PMlinkescapephrase{reference}
+\PMlinkescapephrase{Reference}
+\PMlinkescapephrase{translation}
+\PMlinkescapephrase{Translation}
+
+\textit{\textbf{Note.}  This entry overlaps to some degree with other entries on \PMlinkname{boolean functions}{BooleanValuedFunction} and \PMlinkname{propositional logic}{PropositionalCalculus}, but serves as a compact reference and a translation manual for several different styles of notation.}
+
+\textit{\textbf{Zeroth order logic}} is a term in popular use among practitioners for the common principles underlying the algebra of sets, boolean algebra, boolean functions, logical connectives, monadic predicate calculus, propositional calculus, and sentential logic.  The term serves to mark a level of abstraction in which the inessential differences among these subjects can be subsumed under the appropriate isomorphisms.
+
+\tableofcontents
+
+\section{Propositional forms}
+
+Table 1 lists equivalent expressions for the four functions of concrete type $X \to \mathbb{B}$ and abstract type $\mathbb{B} \to \mathbb{B}$ in a number of different languages for zeroth order logic.
+
+\begin{quote}\begin{tabular}{|c|c|c|c|c|c|c|}
+\multicolumn{7}{c}{\textbf{Table 1.  Propositional Forms on One Variable}} \\
+\hline
+$\mathcal{L}_1$ & $\mathcal{L}_2$ &&
+$\mathcal{L}_3$ & $\mathcal{L}_4$ &
+$\mathcal{L}_5$ & $\mathcal{L}_6$ \\
+\hline
+& & $x =$ & 1 0 & & & \\
+\hline
+$f_{0}$ & $f_{00}$ & & 0 0 &  $( )$  & false   & $0$       \\
+$f_{1}$ & $f_{01}$ & & 0 1 &  $(x)$  & not $x$ & $\lnot x$ \\
+$f_{2}$ & $f_{10}$ & & 1 0 &   $x$   & $x$     & $x$       \\
+$f_{3}$ & $f_{11}$ & & 1 1 & $(( ))$ & true    & $1$       \\
+\hline
+\end{tabular}\end{quote}
+
+Table 2 lists equivalent expressions for the sixteen functions of concrete type $X \times Y \to \mathbb{B}$ and abstract type $\mathbb{B} \times \mathbb{B} \to \mathbb{B}$ in the same set of languages.
+
+\begin{quote}\begin{tabular}{|c|c|c|c|c|c|c|}
+\multicolumn{7}{c}{\textbf{Table 2.  Propositional Forms on Two Variables}} \\
+\hline
+$\mathcal{L}_1$ & $\mathcal{L}_2$ &&
+$\mathcal{L}_3$ & $\mathcal{L}_4$ &
+$\mathcal{L}_5$ & $\mathcal{L}_6$ \\
+\hline
+& & $x =$ & 1 1 0 0 & & & \\
+& & $y =$ & 1 0 1 0 & & & \\
+\hline
+$f_{0}$  & $f_{0000}$ & & 0 0 0 0 & $( )$    & false                 & $0$ \\
+$f_{1}$  & $f_{0001}$ & & 0 0 0 1 & $(x)(y)$ & neither $x$ nor $y$   & $\lnot x \land \lnot y  $ \\
+$f_{2}$  & $f_{0010}$ & & 0 0 1 0 & $(x) y$  & $y$ and not $x$       & $\lnot x \land y$ \\
+$f_{3}$  & $f_{0011}$ & & 0 0 1 1 & $(x)$    & not $x$               & $\lnot x$ \\
+$f_{4}$  & $f_{0100}$ & & 0 1 0 0 & $x (y)$  & $x$ and not $y$       & $x \land \lnot y$ \\
+$f_{5}$  & $f_{0101}$ & & 0 1 0 1 & $(y)$    & not $y$               & $\lnot y$ \\
+$f_{6}$  & $f_{0110}$ & & 0 1 1 0 & $(x, y)$ & $x$ not equal to $y$  & $x \ne y$ \\
+$f_{7}$  & $f_{0111}$ & & 0 1 1 1 & $(x y)$  & not both $x$ and $y$  & $\lnot x \lor \lnot y$ \\
+\hline
+$f_{8}$  & $f_{1000}$ & & 1 0 0 0 & $x y$      & $x$ and $y$         & $x \land y$ \\
+$f_{9}$  & $f_{1001}$ & & 1 0 0 1 & $((x, y))$ & $x$ equal to $y$    & $x = y$ \\
+$f_{10}$ & $f_{1010}$ & & 1 0 1 0 & $y$        & $y$                 & $y$ \\
+$f_{11}$ & $f_{1011}$ & & 1 0 1 1 & $(x (y))$  & not $x$ without $y$ & $x \Rightarrow y$ \\
+$f_{12}$ & $f_{1100}$ & & 1 1 0 0 & $x$        & $x$                 & $x$ \\
+$f_{13}$ & $f_{1101}$ & & 1 1 0 1 & $((x) y)$  & not $y$ without $x$ & $x \Leftarrow y$ \\
+$f_{14}$ & $f_{1110}$ & & 1 1 1 0 & $((x)(y))$ & $x$ or $y$          & $x \lor y$ \\
+$f_{15}$ & $f_{1111}$ & & 1 1 1 1 & $(( ))$    & true                & $1$ \\
+\hline
+\end{tabular}\end{quote}
+
+The columns of Tables 1 and 2 are conveniently described in the following order:
+
+\begin{itemize}
+
+\item
+Language $\mathcal{L}_3$.
+
+\begin{quote}
+In Table 1, $\mathcal{L}_3$ describes each boolean function $f : \mathbb{B} \to \mathbb{B}$ by means of the sequence of two boolean values $(f(1), f(0))$.
+
+In Table 2, $\mathcal{L}_3$ describes each boolean function $f : \mathbb{B}^2 \to \mathbb{B}$ by means of the sequence of four boolean values $(f(1, 1), f(1, 0), f(0, 1), f(0, 0))$.
+
+Sequences of these forms, perhaps in another order and perhaps with the logical values F and T instead of the boolean values 0 and 1, would normally be displayed vertically in a truth table under the column head for $f$.
+\end{quote}
+
+\item
+Language $\mathcal{L}_2$ lists the functions in the form $f_i$, where the index $i$ is a bit string formed from the sequence of boolean values in $\mathcal{L}_3$.
+
+\item
+Language $\mathcal{L}_1$ notates the functions $f_i$ with an index $i$ that is the decimal equivalent of the binary numeral index in $\mathcal{L}_2$.
+
+Notice that the sense of the binary and decimal codings is highly dependent on context.  One needs to know the number of variables in the function and the sequence of points over which it is evaluated in order to decode the indices properly.
+
+\item
+Language $\mathcal{L}_4$ expresses the boolean functions in terms of two families of logical operations:
+
+\begin{quote}
+Logical conjunctions written as continued products.  For example:
+
+\begin{quote}$\begin{array}{ccc}
+x y   & = & x \land y         \\
+x y z & = & x \land y \land z \\
+\end{array}$\end{quote}
+
+Minimal negation operators written as parenthesized lists.  For example:
+
+\begin{quote}$\begin{array}{ccc}
+( )    & = & 0       \\
+(x)    & = & \lnot x \\
+(x, y) & = & x \ne y \\
+\end{array}$\end{quote}
+\end{quote}
+
+\item
+Language $\mathcal{L}_5$ lists ordinary language expressions for the propositional forms.  Many other paraphrases are possible, but these afford a sample of the simplest equivalents.
+
+\item
+Language $\mathcal{L}_6$ expresses the propositional forms in one of the several notations that are commonly used in formal logic.
+
+\end{itemize}
+
+%%%%%
+%%%%%
+\end{document}

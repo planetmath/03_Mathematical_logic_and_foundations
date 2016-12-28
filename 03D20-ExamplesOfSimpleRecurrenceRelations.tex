@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExamplesOfSimpleRecurrenceRelations}
+\pmcreated{2013-03-22 17:52:51}
+\pmmodified{2013-03-22 17:52:51}
+\pmowner{PrimeFan}{13766}
+\pmmodifier{PrimeFan}{13766}
+\pmtitle{examples of simple recurrence relations}
+\pmrecord{6}{40362}
+\pmprivacy{1}
+\pmauthor{PrimeFan}{13766}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmclassification{msc}{11B37}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+Many arithmetic functions can be expressed as recurrence relations, even in those cases where it would be far more computationally efficient to use a non-recursive formula. For example, $n^2$ (whether $n$ is an integer or any other kind of real number) is most easily calculated as $n \times n$. The recurrence relation for $n^2$ (with $n$ a positive integer) is $a_n = a_{n - 1} + 2n - 1$, with of course $a_1 = 1$ (and if you like, $a_0 = 0$). The value of these recurrence relations is to illustrate the basic idea of recurrence relations with examples that can be easily verified with only a small effort. Similarly, the $n$th triangular number can be obtained from $a_n = a_{n - 1} + n$ (again with $a_1 = 1$, which will be tacitly assumed for the rest of these examples unless otherwise explicitly noted). Another such recurrence relation is that for $n!$, namely  $a_n = n(a_{n - 1})$. For $n^3$, just multiplying $n$ thrice certainly looks more efficient than the recurrence relation $a_n = a_{n - 1} + 3(n - 1)^2 + 3(n - 1) + 1$.
+
+Certain famous sequences, such as the Fibonacci sequence and the Padovan sequence, are perhaps more easily calculated by their recurrence relations than by a formula. The recurrence relations for these explicitly set $a_1$ and $a_2$ (or $a_0$ and $a_1$, depending on taste), and the rest are given by $a_n = a_{n - 2} + a_{n - 1}$ (that is, add up the previous two terms). So, for the Fibonacci sequence, $a_1 = a_2 = 1$, and we can easily verify that the next few terms are 2, 3, 5, 8, 13, 21, 34, 55, 89, etc. Adding up 34 and 55 is certainly quicker than computing $$\frac{1}{\sqrt{5}}\left(\left(\frac{1 + \sqrt{5}}{2}\right)^{11} - \left(\frac{1 - \sqrt{5}}{2}\right)^{11}\right).$$
+
+Moving on to a slightly more complicated recurrence relation: that for the Catalan numbers. With $C_0 = 1$, the later numbers can calculated by $$C_n = \sum_{i = 0}^{n - 1} C_i C_{n - 1 - i},$$ meaning that with the terms you do know, you multiply the first by the last, then multiply the second by the penultimate, etc., until reaching the middle terms, then add up those products. For smaller terms, this can actually be faster than by calculating binomial coefficients. Suppose you know the first eight terms (zeroeth to seventh): 1, 1, 2, 5, 14, 42, 132, 429. 429 plus 132, plus twice 42, plus twice 5 times 14, plus twice 42 again, and 132 and 429 again gives 1430. We doublecheck that by calculating the eight central binomial coefficient (which involves dealing with numbers as large as 20922789888000), 12870, and dividing that by 9 we get 1430, confirming our calculation by the recurrence relation. For a computer, there would be no appreciable difference for the smaller Catalan numbers, but for the larger ones the recurrence relation would show itself to be too stack-intensive to be practical.
+
+Lastly, we wish to give two examples where the initial term is not 0 or 1. The Lucas-Lehmer primality test uses a sequence defined by the recurrence relation $a_n = {a_{n - 1}}^2 - 2$ with initial term $a_1 = 4$. The sequence thus begins: 4, 14, 194, 37634, 1416317954, 2005956546822746114, 4023861667741036022825635656102100994, etc. (see A003010 in Sloane's OEIS). That the sequence has been calculated correctly can be verified by choosing some small Mersenne number $2^n - 1$ one knows to be either prime or composite, then seeing if that Mersenne number is divisible by $a_{n - 1}$. Then there's the Perrin sequence, where not one or two but three initial terms are explicitly defined: $a_0 = 3$, $a_1 = 0$, $a_2 = 2$. The later terms are given by $a_n = a_{n - 3} + a_{n - 2}$ for $n > 2$.
+%%%%%
+%%%%%
+\end{document}

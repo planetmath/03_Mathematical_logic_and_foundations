@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{TruthvalueSemanticsForIntuitionisticPropositionalLogic}
+\pmcreated{2013-03-22 19:31:04}
+\pmmodified{2013-03-22 19:31:04}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{truth-value semantics for intuitionistic propositional logic}
+\pmrecord{21}{42493}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B20}
+\pmrelated{AxiomSystemForIntuitionisticLogic}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+A \emph{truth-value semantic system} for intuitionistic propositional logic consists of the set $V_n:=\lbrace 0, 1, \ldots, n\rbrace$, where $n\ge 1$, and a function $v$ from the set of wff's (well-formed formulas) to $V_n$ satisfying the following properties:
+\begin{enumerate}
+\item $v(A\land B)= \min\lbrace v(A),v(B)\rbrace$
+\item $v(A\lor B)= \max\lbrace v(A),v(B)\rbrace$
+\item $v(A\to B)= n$ if $v(A)\le v(B)$, and $v(B)$ otherwise
+\item $v(\neg A)= n$ if $v(A)=0$, and $0$ otherwise.
+\end{enumerate}
+This function $v$ is called an \emph{interpretation} for the propositional logic.  A wff $A$ is said to be \emph{true} for $(V_n,v)$ if $v(A)=n$, and a \emph{tautology} for $V_n$ if $A$ is true for $(V_n,v)$ for all interpretations $v$.  When $A$ is a tautology for $V_n$, we write $\models_n A$.  It is not hard see that any truth-value semantic system is sound, in the sense that $\vdash_i A$ ($A$ is a theorem) implies $\models_n A$, for any $n$.  A proof of this fact can be found \PMlinkname{here}{truthvaluesemanticsforintuitionisticpropositionallogicissound}.
+
+$(V_n,v)$ is a generalization of the truth-value semantics for classical propositional logic.  Indeed, when $n=1$, we have the truth-value system for classical propositional logic.
+
+However, unlike the truth-value semantic system for classical propositional logic, no truth-value semantic systems for intuitionistic propositional logic are complete: there are tautologies that are not theorems for each $n$.  For example, for each $n$, the wff 
+$$ \bigvee_{j=1}^{n+2} \bigvee_{i=j}^{n+1} (p_j \leftrightarrow p_{i+1}) $$
+is a tautology for $V_n$ that is not a theorem, where each $p_i$ is a propositional letter.  The formula $\bigvee_{k=1}^m A_i$ is the abbreviation for $(\cdots (A_1 \lor A_2) \lor \cdots ) \lor A_m$, where each $A_i$ is a formula.  The following is a proof of this fact:
+\begin{proof}
+Let $A$ be the $ \bigvee_{j=1}^{n+2} \bigvee_{i=j}^{n+1} (p_j \leftrightarrow p_{i+1}) $.  Note that $p_1,\ldots, p_{n+2}$ are all the proposition letters in $A$.  However, there are only $n+1$ elements in $V_n$, so for every interpretation $v$, there are some $p_i$ and $p_j$ such that $v(p_i)=v(p_j)$ by the pigeonhole principle.  Then $v(p_i \leftrightarrow p_j)=n$, and hence $v(A)=n$, implying that $A$ is a tautology for $V_n$.  However, $A$ is not a tautology for $V_{n+1}$: let $v$ be the interpretation that maps $p_i$ to $i-1$.  Then $v(p_i \leftrightarrow p_j)=\min\lbrace i,j\rbrace -1$, so that $v(A)=n \ne n+1$.  Therefore, $A$ is not a theorem.
+\end{proof}
+
+Nevertheless, the truth-value semantic systems are useful in showing that certain theorems of the classical propositional logic are not theorems of the intuitionistic propositional logic.  For example, the wff $p\vee \neg p$ (law of the excluded middle) is not a theorem, because it is not a tautology for $V_2$, for if $v(p)=1$, then $v(p\vee \neg p)=1 \ne 2$.  Similarly, neither $\neg \neg p \to p$ (law of double negation) nor $((p\to q)\to p ) \to p$ (Peirce's law) are theorems of the intuitionistic propositional logic.
+
+\textbf{Remark}.  The linearly ordered set $V_n:=\lbrace 0,1,\ldots, n\rbrace$ turns into a Heyting algebra if we define the relative pseudocomplementation operation $\to$ by $x\to y:=n$ if $x\le y$ and $x\to y:=y$ otherwise.  Then the pseudocomplement $x^*$ of $x$ is just $x\to 0$.  This points to the connection of the intuitionistic propositional logic and Heyting algebra.
+
+%%%%%
+%%%%%
+\end{document}

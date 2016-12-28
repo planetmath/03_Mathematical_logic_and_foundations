@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{DerivationsInNaturalDeduction}
+\pmcreated{2013-03-22 19:32:08}
+\pmmodified{2013-03-22 19:32:08}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{derivations in natural deduction}
+\pmrecord{36}{42513}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03F03}
+\pmsynonym{derivation}{DerivationsInNaturalDeduction}
+\pmdefines{deduction}
+\pmdefines{assumption}
+\pmdefines{discharged assumption}
+\pmdefines{derivable}
+\pmdefines{derivability relation}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+\usepackage{pstricks,pst-tree}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Derivations, or deductions, for natural deduction systems, unlike the axiom systems, which are finite sequences of well-formed formulas (wff's) in a logic, are finite tress of wff's.  More precisely, they are rooted tress whose vertices are labeled by wff's of the logic.  For example,
+$$
+\pstree[treemode=U,radius=3pt,levelsep=7ex]{\Tc{3pt}~[tnpos=b,tndepth=0pt,radius=4pt]{A\to A}}
+{
+\pstree{\TC~[tnpos=r]{A}}
+{\pstree{\TC~[tnpos=r]{A\land A}}{\TC~[tnpos=l]{A}\TC~[tnpos=r]{A}}}
+}
+$$
+is a labeled rooted tree, whose root is labeled by the wff $A \to A$.  In natural deduction, the trees are presented a little bit differently, replacing each edge with a horizontal bar separating the neighboring vertices.  Thus, the tree above looks like
+\begin{prooftree}
+\AxiomC{$A$}
+\AxiomC{$A$}
+\BinaryInfC{$A \land A$}
+\UnaryInfC{$A$}
+\UnaryInfC{$A \to A$}
+\end{prooftree}
+
+Derivations are defined recursively: from atomic formulas as single-vertex trees via rules of inference of the system.  To see how this is done exactly, recall that a rule of inference generally takes the following form:
+$$ \infer[R]{Y}{X_1 \quad \cdots \quad X_i \quad \cdots \quad \infer*{X_j}{[A_j]} \quad \cdots \quad X_n} $$
+where $R$ is the name of the rule, and the $X_k$'s, $A_k$'s, and $Y$ are wff's of the logic.  Each $X_k$ is a \emph{premise}, and $Y$ is the \emph{conclusion}.  Some of the premises (like $X_j$ above) have optional \emph{assumptions} ($A_j$) which can be \emph{cancelled} or \emph{discharged} once the conclusion is reached.  Just exactly what ``cancelled'' or ``discharged'' means will be clear shortly.
+
+Now we are ready for the formal definition of derivations.
+
+\textbf{Definition}.  A labeled rooted tree over a natural deduction system is a rooted tree whose labels are of the form $A$ or $[A]$, where $A$ is a wff of the logical system.
+
+\textbf{Definition}.  The set $\mathbb{D}$ of \emph{derivations} of a natural deduction system the smallest set of labeled rooted trees over the wff's of system, such that
+\begin{enumerate}
+\item for each propositional variable $p$, a one-vertex tree with label $p$ is in $\mathbb{D}$
+\item for every inference rule $R$ where 
+\begin{itemize}
+\item $X_1,\ldots, X_n$ are premises
+\item $Y$ is the conclusion
+\item a subset $\mathcal{X}$ (may be empty) of the premises where each $X\in \mathcal{X}$ has an optional assumption $A_X$ that can be discharged when conclusion $Y$ is reached
+\end{itemize}
+if $T_1,\ldots, T_n$ are in $\mathdd{D}$ where each $X_i$ is the label of the root of $T_i$, then the rooted tree $T$, obtained by
+\begin{enumerate}
+\item transforming each of the trees $T$ whose root has label $X\in \mathcal{X}$ to a tree such that some (or none) of the leaves in $T$ with label $A_X$ are converted to leaves with label $[A_X]$,
+\item then combining the resulting trees, as well as the rest of the other trees by joining their roots to a new vertex as the root of $T$, with label is $Y$
+\end{enumerate}
+is also in $\mathbb{D}$.  Graphically, $T$ can be represented
+\begin{prooftree}
+\alwaysNoLine
+\AxiomC{$T_1$}
+\UnaryInfC{$X_1$}
+\AxiomC{$\cdots$}
+\AxiomC{[$A_{X_n}$]}
+\UnaryInfC{$T_n$}
+\UnaryInfC{$X_n$}
+\alwaysSingleLine
+\TrinaryInfC{$Y$}
+\end{prooftree}
+\end{enumerate}
+
+For example, using the following rule of inference in classical propositional logic, called $\to I$
+$$ \infer[\to I]{A\to B}{\infer*{B}{[A]}} $$
+we have the following derivations
+$$\infer{p\to q}{q}\qquad \qquad \infer{q\to (p\to q)}{\infer{p\to q}{[q]}}$$
+The first one is a derivation because $q$ is a propositional variable by $(a)$, and since the rule does not require the presence of an assumption (it is optional), the whole tree is a derivation by $(b)$.  As a result, by $(b)$ once more, the second one is also a derivation, where the label $q$ of the leaf (top vertex) has been changed to $[q]$.
+
+From now on, if no confusion arises, the vertices of a derivation are identified with their labels.
+
+\textbf{Definition}.  Given a derivation $T$ in a natural deduction logical system, the \emph{assumptions} of $T$ are leaves of the form $A$, and \emph{discharged assumptions} of $T$ if they are of the form $[A]$.  The \emph{conclusion} of $T$ is the root of $T$.  If $\Sigma$ is a set of wff's and $A$ a wff, we write $$\Sigma \vdash A$$ if there is a derivation $T$ whose assumptions are elements of $\Sigma$, and whose conclusion is $A$.  We say that $A$ is \emph{derivable from} $\Sigma$.  The symbol $\vdash$ is the \emph{derivability relation} between sets of wff's and wff's.  We say that $A$ is a \emph{theorem} (of the logical system) if it is derivable from the empty set, and write $$\vdash A.$$
+In other words, $A$ is a theorem if there is a derivation of $A$ whose assumptions are all discharged.  For example, from the two derivations above, we see that $q \vdash p\to q$ and $\vdash q\to (p\to q)$.
+
+%%%%%
+%%%%%
+\end{document}

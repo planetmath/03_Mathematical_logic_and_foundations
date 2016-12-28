@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Bisimulation}
+\pmcreated{2013-03-22 19:23:14}
+\pmmodified{2013-03-22 19:23:14}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{bisimulation}
+\pmrecord{44}{42342}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmclassification{msc}{68Q85}
+\pmclassification{msc}{68Q10}
+\pmsynonym{strong bisimulation}{Bisimulation}
+\pmsynonym{strongly bisimilar}{Bisimulation}
+\pmrelated{PMorphism}
+\pmdefines{simulation}
+\pmdefines{bisimilar}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+Given two labelled state transition systems (LTS) $M=(S_1,\Sigma, \rightarrow_1)$, $N=(S_2,\Sigma, \rightarrow_2)$, a binary relation $\approx \subseteq S_1\times S_2$ is called a \emph{simulation} if whenever $p \approx q$ and $p \stackrel{\alpha}{\rightarrow}_1 p'$, then there is a $q'$ such that $p'\approx q'$ and $q\stackrel{\alpha}{\rightarrow}_2 q'$.  An LSTS $M=(S_1,\Sigma,\rightarrow_1)$ is \emph{similar} to an LTS $N=(S_2,\Sigma,\rightarrow_2)$ if there is a simulation $\approx S_1\times S_2$.
+
+For example, any LTS is similar to itself, as the identity relation on the set of states is a simulation.  In addition,
+\begin{enumerate}
+\item if $M$ is similar to $N$ and $N$ is similar to $P$, then $M$ is similar to $P$:
+\begin{proof}
+Let $M=(S_1,\Sigma,\rightarrow_1)$, $N=(S_2,\Sigma,\rightarrow_2)$, and $P=(S_3,\Sigma,\rightarrow_3)$ be LSTS, and suppose $p \approx_1 \circ \approx_2 q$ with $p \stackrel{\alpha}{\rightarrow}_1 p'$, where $\approx_1$ and $\approx_2$ are simulations.  Then there is an $r $ such that $p \approx_1 r$ and $r\approx_2 q$.  Since $\approx_1$ is a simulation, there is an $r'$ such that $r \stackrel{\alpha}{\rightarrow}_2 r'$.  But then since $\approx_2$ is a simulation, there is a $q'$ such that $q \stackrel{\alpha}{\rightarrow}_3 q'$.  As a result, $\approx_1\circ \approx_2$ is a simulation.
+\end{proof}
+\item a union of simulations is a simulation.
+\begin{proof}
+Let $\approx$ be the union of simulations $\approx_i$, where $i\in I$, and suppose $p\approx q$, with $p \stackrel{\alpha}{\rightarrow} p'$.  Then $p\approx_i q$ for some $i$.  Since $\approx_i$ is a simulation, there is a state $q'$ such that $p' \approx_i q'$ and $q\stackrel{\alpha}{\rightarrow} q'$.  So $p' \approx q'$ and therefore $\approx$ is a simulation.
+\end{proof}
+\end{enumerate}
+
+A binary relation $\approx$ between $S_1$ and $S_2$ is a \emph{bisimulation} if both $\approx$ and its converse $\approx^{-1}$ are simulations.  A bisimulation is also called a \emph{strong bisimulation}, in contrast with \emph{weak bisimulation}.  When there is a bisimulation between the state sets of two LTS, we say that the two systems are \emph{bisimilar}, or \emph{strongly bisimilar}.  By abuse of notation, we write $M\approx N$ to denote that $M$ is bisimilar to $N$.
+
+An equivalent formulation of bisimulation is given by extending the binary relation on the sets to a binary relation on the corresponding power sets.  Here's how: let $\approx \subseteq S_1\times S_2$.  For any $A\subseteq S_1$ and $B\subseteq S_2$, define
+$$C(A):=\lbrace b\in S_2 \mid a \approx b \mbox{ for some } a\in A\rbrace \mbox{ and } C(B):=\lbrace a\in S_1 \mid a \approx b \mbox{ for some } b\in B\rbrace.$$
+Then the binary relation $\approx$ can be extended to a binary relation from $P(S_1)$ to $P(S_2)$, still denoted by $\approx$, as
+$$A\approx B \quad \textrm{iff} \quad A\subseteq C(B)\textrm{ and }B\subseteq C(A),$$
+for any $A\subseteq S_1$ and $B\subseteq S_2$.  In other words, $A\approx B$ iff for any $a\in A$, there is a $b\in B$ such that $a\approx b$ and for any $b\in B$, there is an $a\in A$ such that $a\approx b$.  Now, for any $p\in S_1$ and $\alpha \in \Sigma$, let $$\delta_1(p,a)=\lbrace q \in S_1\mid p\stackrel{\alpha}{\rightarrow}_1 q\rbrace.$$  We can similar define function $\delta_2: S_2\times \Sigma \to P(S_2)$.  So a binary relation $\approx$ between $S_1$ and $S_2$ is a bisimilation iff for any $(p,q)\in S_1\times S_2$ such that $p\approx q$, we have $\delta_1(p,a) \approx \delta_2(q,a)$ for any $a\in \Sigma$.
+
+Let $M=(S_1,\Sigma,\rightarrow_1)$, $N=(S_2,\Sigma,\rightarrow_2)$, and $P=(S_3,\Sigma,\rightarrow_3)$ be LTS.  The following are some basic properties of bisimulation:
+\begin{enumerate}
+\item The identity relation $=$ is a bisimilation on any LTS, since $=$ is a simulation and $=^{-1}$ is just $=$.
+\item If $M$ is bisimilar to $N$ via $\approx$, then $N$ is bisimilar to $M$ via $\approx^{-1}$, since both $\approx^{-1}$ and $(\approx^{-1})^{-1} = \approx$ are simulations.
+\item If $M\approx_1$ and $N\approx_2 P$, then $M \approx_1 \circ \approx_2 P$, since $\approx_1 \circ \approx_2$ and $(\approx_1 \circ \approx_2)^{-1} = \approx_2^{1-}\circ \approx_1^{-1}$ are both simulations according to the argument above.
+\item A union of bisimilations is a bisimilation.
+\begin{proof}
+Let $\approx$ be the union of bisimulations $\approx_i$, where $i\in I$.  Then $\approx$ is a simulation by the argument above.  Now, suppose $p \approx^{-1} q$ and $p\stackrel{\alpha}{\rightarrow} p'$, then $q\approx p$.  Then $q\approx_i p$ for some $i \in I$.  So $p \approx_i^{-1} q$.  Since $\approx_i$ is a bisimulation, so is $\approx_i^{-1}$, and therefore for some state $q'$, $p' \approx_i^{-1} q'$ and $q \stackrel{\alpha}{\rightarrow} q'$.  This means that $p' \approx^{-1} q'$, implying that $\approx^{-1}$ is a simulation.  Hence $\approx$ is a bisimulation.
+\end{proof}
+\item The union of all bisimilations on an LTS is a bisimulation that is also an equivalence relation.
+\begin{proof}
+For an LTS $M$, let $\approx_M$ be the union of all bisimulations on $M$.  Then $\approx_M$ is a bisimulation by the previous result.  Since $=$ is a bisimulation on $M$, $\approx_M$ is reflexive.  If $p \approx_M q$, $p\approx q$ for some bisimulation $\approx$ on $M$.  Then $\approx^{-1}$ is a bisimulation and therefore $q\approx^{-1} p$ implies that $q\approx_M p$, so that $\approx_M$ is symmetric.  Finally, if $p \approx_M q$ and $q\approx_M r$, then $p\approx_1 q$ and $q\approx_2 r$ for some bisimulations $\approx_1$ and $\approx_2$.  So $\approx_1 \circ \approx_2$ is a bisimulation.  Since $p \approx_1 \circ \approx_2 r$, $p \approx_M r$ and therefore $\approx_M$ is transitive.
+\end{proof}
+\end{enumerate}
+For an LTS $M=(S,\Sigma,\rightarrow)$, let $\approx_M$ be the maximal bisimulation on $M$ as defined above.  Since $\approx_M$ is an equivalence relation, we can form an equivalence class $[p]$ for each state $p\in S$.  Let $[S]$ be the set of all such equivalence classes: $[S]:=\lbrace [p]\mid p\in S\rbrace$.  Define $[\rightarrow]$ on $S\times \Sigma \times S$ by $$[p] \stackrel{\alpha}{[\rightarrow]} [q] \qquad \mbox{iff}  \qquad p\stackrel{\alpha}{\rightarrow} q.$$  This is a well-defined ternary relation, for if $p\approx_M p'$ and $q\approx_M q'$, we have $p'\stackrel{\alpha}{\rightarrow} q'$.  Now, $[M]:=([S],\Sigma,[\rightarrow])$ is an LSTS, and $M$ is bisimilar to it, with bisimulation given by the relation $\lbrace (p,[p])\mid p\in S\rbrace$.
+
+%%%%%
+%%%%%
+\end{document}

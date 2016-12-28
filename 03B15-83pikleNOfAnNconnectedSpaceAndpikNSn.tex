@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{83pikleNOfAnNconnectedSpaceAndpikNSn}
+\pmcreated{2013-11-06 14:14:57}
+\pmmodified{2013-11-06 14:14:57}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.3 $\pi_{k \le n}$ of an n-connected space and $\pi_{k < n}(S^n)$}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\narrowbreak}{}
+\newcommand{\Sn}{\mathbb{S}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\newcommand{\truncf}[1]{\Vert \blank \Vert_{#1}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{8.3.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.3.\arabic{mathcount}}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\let\autoref\cref
+
+\begin{document}
+
+Let $(A,a)$ be a pointed type and $n:\N$.  Recall from
+\autoref{thm:homotopy-groups} that if $n>0$ the set $\pi_n(A,a)$ has a group
+structure, and if $n>1$ the group is abelian\index{group!abelian}.
+
+We can now say something about homotopy groups of $n$-truncated and
+$n$-connected types.
+
+\begin{lem}
+  If $A$ is $n$-truncated and $a:A$, then $\pi_k(A,a)=\unit$ for all $k>n$.
+\end{lem}
+
+\begin{proof}
+  The loop space of an $n$-type  is an
+  $(n-1)$-type, hence $\Omega^k(A,a)$ is an $(n-k)$-type, and we have
+  $(n-k)\le-1$ so $\Omega^k(A,a)$ is a mere proposition. But $\Omega^k(A,a)$ is inhabited,
+  so it is actually contractible and
+  $\pi_k(A,a)=\trunc0{\Omega^k(A,a)}=\trunc0{\unit}=\unit$.
+\end{proof}
+
+\begin{lem} \label{lem:pik-nconnected}
+  If $A$ is $n$-connected and $a:A$, then $\pi_k(A,a)=\unit$ for all $k\le{}n$.
+\end{lem}
+
+\begin{proof}
+  We have the following sequence of equalities:
+  %
+  \begin{narrowmultline*}
+    \pi_k(A,a) = \trunc0{\Omega^k(A,a)}
+    = \Omega^k(\trunc k{(A,a)})
+    = \Omega^k(\trunc k{\trunc n{(A,a)}})
+    = \narrowbreak
+      \Omega^k(\trunc k{\unit})
+    = \Omega^k(\unit)
+    = \unit.
+  \end{narrowmultline*}
+  %
+  The third equality uses the fact that $k\le{}n$ in order to use that
+  $\truncf k\circ\truncf n=\truncf k$ and the fourth equality uses the fact that $A$ is
+  $n$-connected.
+\end{proof}
+
+\begin{cor}
+  $\pi_k(\Sn ^n) = \unit$ for $k < n$.
+\end{cor}
+\begin{proof}
+  The sphere $\Sn^n$ is $(n-1)$-connected by \autoref{cor:sn-connected}, so
+  we can apply \autoref{lem:pik-nconnected}.
+\end{proof}
+
+
+\end{document}

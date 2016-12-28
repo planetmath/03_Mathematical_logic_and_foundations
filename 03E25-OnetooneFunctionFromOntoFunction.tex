@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{OnetooneFunctionFromOntoFunction}
+\pmcreated{2013-03-22 16:26:55}
+\pmmodified{2013-03-22 16:26:55}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{one-to-one function from onto function}
+\pmrecord{8}{38604}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E25}
+%\pmkeywords{one-to-one}
+%\pmkeywords{onto}
+%\pmkeywords{choice function}
+%\pmkeywords{axiom of choice}
+\pmrelated{function}
+\pmrelated{ChoiceFunction}
+\pmrelated{AxiomOfChoice}
+\pmrelated{set}
+\pmrelated{onto}
+\pmrelated{SchroederBernsteinTheorem}
+\pmrelated{AnInjectionBetweenTwoFiniteSetsOfTheSameCardinalityIsBijective}
+\pmrelated{ASurjectionBetweenTwoFiniteSetsOfTheSameCardinalityIsBijective}
+\pmrelated{Set}
+\pmrelated{Surjective}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\theoremstyle{plain}
+\newtheorem*{thm}{Theorem}
+
+\begin{document}
+\begin{thm}
+Given an onto function from a set $A$ to a set $B$, there exists a one-to-one function from $B$ to $A$.
+\end{thm}
+\begin{proof}
+Suppose $f:A\rightarrow B$ is onto, and define $\mathcal{F}=\big\{f^{-1}(\{b\}):b\in B\big\}$; that is, $\mathcal{F}$ is the set containing the pre-image of each singleton subset of $B$. Since $f$ is onto, no element of $\mathcal{F}$ is empty, and since $f$ is a function, the elements of $\mathcal{F}$ are mutually disjoint, for if $a\in f^{-1}(\{b_1\})$ and $a\in f^{-1}(\{b_2\})$, we have $f(a)=b_1$ and $f(a)=b_2$, whence $b_1=b_2$. Let $\mathscr{C}:\mathcal{F}\rightarrow\bigcup\mathcal{F}$ be a choice function, noting that $\bigcup\mathcal{F}=A$, and define $g:B\rightarrow A$ by $g(b)=\mathscr{C}\big(f^{-1}(\{b\})\big)$. To see that $g$ is one-to-one, let $b_1,b_2\in B$, and suppose that $g(b_1)=g(b_2)$. This gives 
+$\mathscr{C}\big(f^{-1}(\{b_1\})\big)=\mathscr{C}\big(f^{-1}(\{b_2\})\big)$, but since the elements of $\mathcal{F}$ are disjoint, this implies that $f^{-1}(\{b_1\})=f^{-1}(\{b_2\})$, and thus $b_1=b_2$. So $g$ is a one-to-one function from $B$ to $A$. 
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

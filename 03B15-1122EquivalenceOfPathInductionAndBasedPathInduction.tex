@@ -1,0 +1,135 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1122EquivalenceOfPathInductionAndBasedPathInduction}
+\pmcreated{2013-11-13 20:48:38}
+\pmmodified{2013-11-13 20:48:38}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.12.2 Equivalence of path induction and based path induction}
+\pmrecord{3}{87629}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indid}[1]{\ind{=_{#1}}} 
+\newcommand{\indidb}[1]{\ind{=_{#1}}'} 
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\narrowbreak}{}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\let\autoref\cref
+\let\judgeq\jdeq
+\makeatother
+
+\begin{document}
+The two induction principles for the identity type introduced above are equivalent.
+It is easy to see that path induction follows from the based path induction principle.
+Indeed, let us assume the premises of path induction:
+\begin{align*}
+C &: \prd{x,y:A}(\id[A]{x}{y}) \to \UU,\\
+c &: \prd{x:A} C(x,x,\refl{x}).
+\end{align*}
+Now, given an element $x:A$, we can instantiate both of the above, obtaining
+\begin{align*}
+C' &: \prd{y:A} (\id[A]{x}{y}) \to \UU,  \\
+C' &\defeq C(x), \\
+c' &: C'(x,\refl{x}), \\
+c' &\defeq c(x).
+\end{align*}
+Clearly, $C'$ and $c'$ match the premises of based path induction and hence we can construct 
+\begin{equation*}
+  g : \prd{y:A}{p : \id{x}{y}} C'(y,p)
+\end{equation*}
+with the defining equality
+\[ g(x,\refl{x}) \defeq c'.\]
+Now we observe that $g$'s codomain is equal to $C(x,y,p)$.
+Thus, discharging our assumption $x:A$, we can derive a function 
+\[ f : \prd{x,y:A}{p : \id[A]{x}{y}} C(x,y,p) \]
+with the required judgmental equality $f(x,x,\refl{x}) \judgeq g(x,\refl{x}) \defeq c' \defeq c(x)$.
+
+Another proof of this fact is to observe that any such $f$ can be obtained as an instance of $\indidb{A}$
+so it suffices to define $\indid{A}$ in terms of $\indidb{A}$ as
+\[ \indid{A}(C,c,x,y,p) \defeq \indidb{A}(x,C(x),c(x),y,p). \]
+
+The other direction is a bit trickier; it is not clear how we can use a particular instance of path induction to derive a particular instance of
+based path induction. What we can do instead is to construct one instance of path induction which shows 
+all possible instantiations of based path induction at once.
+Define
+\begin{align*}
+D &: \prd{x,y:A} (\id[A]{x}{y}) \to \UU, \\
+D(x,y,p) &\defeq \prd{C : \prd{z:A} (\id[A]{x}{z}) \to \UU} C(x,\refl{x}) \to C(y,p).
+\end{align*}
+Then we can construct the function
+\begin{align*}
+d &: \prd{x : A} D(x,x,\refl{x}), \\
+d &\defeq \lamu{x:A}\lamu{C:\prd{z:A}{p : \id[A]{x}{z}} \UU}\lam{c:C(x,\refl{x})} c
+\end{align*}
+and hence using path induction obtain
+\[ f : \prd{x,y:A}{p:\id[A]{x}{y}} D(x,y,p) \]
+with $f(x,x,\refl{x}) \defeq d(x)$. Unfolding the definition of $D$, we can expand the type of $f$:
+\[ f : \prd{x,y:A}{p:\id[A]{x}{y}}{C : \prd{z:A} (\id[A]{x}{z}) \to \UU} C(x,\refl{x}) \to C(y,p). \]
+Now given $x:A$ and $p:\id[A]{a}{x}$, we can derive the conclusion of based path induction:
+\[ f(a,x,p,C,c) : C(x,p). \]
+Notice that we also obtain the correct definitional equality.
+
+Another proof is to observe that any use of based path induction is an instance of $\indidb{A}$  and to define
+\begin{narrowmultline*}
+\indidb{A}(a,C,c,x,p) \defeq \narrowbreak
+\indid{A}
+  \begin{aligned}[t]
+    \big(
+    &\big(\lamu{x,y:A}{p:\id[A]{x}{y}} \tprd{C : \prd{z:A} (\id[A]{x}{z}) \to \UU} C(x,\refl{x}) \to C(y,p) \big),\\
+    &(\lamu{x:A}{C:\prd{z:A} (\id[A]{x}{z}) \to \UU}{d:C(x,\refl{x})} d),
+     a, x, p, C, c \big) 
+   \end{aligned}
+\end{narrowmultline*}
+
+Note that the construction given above uses universes. That is, if we want to
+model $\indidb{A}$ with $C : \prd{x:A} (\id[A]{a}{x}) \to \UU_i$, we need
+to use $\indid{A}$ with 
+%
+\[ D:\prd{x,y:A} (\id[A]{x}{y}) \to \UU_{i+1} \]
+%
+since $D$ quantifies over all $C$ of the given type. While this is
+compatible with our definition of universes, it is also possible to
+derive $\indidb{A}$ without using universes: we can show that $\indid{A}$ entails \PMlinkname{Lemma 1}{23typefamiliesarefibrations#Thmlem1},\PMlinkname{Lemma 3.11.8}{311contractibility#Thmprelem5}, and that these two principles imply $\indidb{A}$ directly.
+We leave the details to the reader as \PMlinkexternal{Exercise 1.7}{http://planetmath.org/node/87560}.
+
+We can use either of the foregoing formulations of identity types
+to establish that equality is an equivalence relation, that every function preserves equality and that every family respects equality. We leave the details to the next chapter, where this will be derived  and explained in the context of homotopy type theory.
+
+
+\end{document}

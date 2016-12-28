@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SuperexponentiationIsNotElementary}
+\pmcreated{2013-03-22 19:07:14}
+\pmmodified{2013-03-22 19:07:14}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{superexponentiation is not elementary}
+\pmrecord{29}{42015}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmrelated{PropertiesOfSuperexponentiation}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{lem}{Lemma}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we will show that the superexponetial function $f:\mathbb{N}^2 \to \mathbb{N}$, given by $$f(m,0)=m,\qquad f(m,n+1)=m^{f(m,n)}$$
+is not elementary recursive (we set $f(0,n):=0$ for all $n$).  We will use the properties of $f$ (listed \PMlinkname{here}{PropertiesOfSuperexponentiation}) to complete this task.
+
+The idea behind the proof is to find a property satisfied by all elementary recursive functions but not by $f$.  The particular property we have in mind is the ``growth rate'' of a function.  We want to demonstrate that $f$, in some way, grows faster than any elementary function $g$.  This idea is similar to showing that $2^x$ is larger than, say, $x^{100}$ for large enough $x$.  Formally,
+
+\textbf{Definition}.  A function $h:\mathbb{N}^2\to \mathbb{N}$ is said to \emph{majorize} $g:\mathbb{N}^k \to \mathbb{N}$ if there is a $b\in \mathbb{N}$, such that for any $a_1,\ldots, a_k \in \mathbb{N}$: $$g(a_1,\ldots, a_k) < h(a,b),\qquad \mbox{where }a=\max \lbrace a_1,\ldots, a_k \rbrace > 1.$$
+It is easy to see that no binary function majorizes itself:
+\begin{prop} $h:\mathbb{N}^2 \to \mathbb{N}$ does not majorize $h$. \end{prop}
+\begin{proof}  Otherwise, there is a $b$ such that for any $x,y$, $h(x,y)< h(a, b)$ where $a=\max\lbrace x,y\rbrace>1$.  Let $c=\max \lbrace a,b\rbrace >1$.  Then $h(c,b)<h(\max \lbrace b,c\rbrace ,b)=h(c,b)$, a contradiction.
+\end{proof}
+
+Let $\mathcal{ER}$ be the set of all elementary recursive functions.
+
+\begin{prop} Let $\mathcal{A}$ be the set of all functions majorized by $f$.  Then $\mathcal{ER}\subseteq \mathcal{A}$.\end{prop}
+\begin{proof}  We simply show that $\mathcal{A}$ contains the addition, multiplication, difference, quotient, and the projection functions, and that $\mathcal{A}$ is closed under composition, bounded sum, and bounded product.  And since $\mathcal{ER}$ is the smallest such set, the proof completes.
+\begin{itemize}
+\item For addition, multiplication, and difference: suppose $t = \max\lbrace x,y\rbrace >1$.  Then $x+y \le 2t =2f(t,0)\le f(t,1)<f(t,2)$, and $xy \le t^2 = f(t,0)^2 \le f(t,1)<f(t,2)$.  Moreover, $|x-y| \le t = f(t,0)<f(t,1)$, and $\operatorname{quo}(x,y) \le t = f(t,0)<f(t,1)$.
+\item For projection functions $p_m^k$, suppose $t=\max \lbrace x_1,\ldots, x_k\rbrace>1$.  Then $p_m^k(\boldsymbol{x}) =x_m \le t = f(t,0)<f(t,1)$.
+\item Suppose $g_1,\ldots, g_m\in A$ are $n$-ary, and $h\in A$ is $m$-ary.  Let $u=h(g_1,\ldots, g_m)$ and suppose $x=\lbrace x_1, \ldots, x_n\rbrace >1$.  Given $u(\boldsymbol{x}) = h(g_1(\boldsymbol{x}),\ldots, g_m(\boldsymbol{x}))$, let $z= \max \lbrace g_1(\boldsymbol{x}),\ldots, g_m(\boldsymbol{x}) \rbrace$.  We have two cases:
+\begin{enumerate}
+\item $z\le 1$.  Let $y=\max \lbrace h(y_1,\ldots,y_m) \mid y_i \in \lbrace 0,1\rbrace \rbrace$.  Then $u(\boldsymbol{x}) \le y < f(x,y)$.
+\item $z>1$.  Then, for some $i$, $z= g_i(\boldsymbol{x})< f(x,s)$ for some $s$, since $g_i\in A$.  Then $u(\boldsymbol{x}) = h(g_1(\boldsymbol{x}),\ldots, g_m(\boldsymbol{x})) \le f(z,t)$ for some $t$ since $h\in \mathcal{A}$.  Now, $f(z,t)= f(g_i(\boldsymbol{x}),t) < f(f(x,s),t)\le f(x,s+2t)$.  As a result, $u(\boldsymbol{x})< f(x,s+2t)$.
+\end{enumerate}
+In either case, let $r=\max\lbrace y,s+2t\rbrace$.  We see that $u(\boldsymbol{x})< f(x,r)$.
+\item For the next two parts, suppose $g\in A$ is $(n+1)$-ary.  For any $\boldsymbol{x}=(x_1,\ldots, x_n)$, let $x=\max \lbrace x_1,\ldots, x_n \rbrace$, and for any $y$, assume $z=\max \lbrace x, y\rbrace>1$.  Since $g\in A$, let $t\in \mathbb{N}$ be such that $g(\boldsymbol{x},y) \le f(z,t)$, where $z$ is as described above.
+
+Let $g_s(\boldsymbol{x},y):=\sum_{i=0}^y g(\boldsymbol{x},i)$.  We break this down into cases:
+\begin{enumerate}
+\item $x>1$.  Then $g(\boldsymbol{x},i)< f(z_i,t)$ where $z_i = \max\lbrace x,i\rbrace>1$ for each $i$.  Let $f(z_j,t)$ be the maximum among the $f(z_i,t)$.  Then $g_s(\boldsymbol{x},y) \le (y+1)f(z_j,t) \le (y+1)f(z,t)$, as $j\le y$.  Since $y+1 \le z+1 < 2z = 2 f(z,0) \le f(z,1)$, we see that $g_s(\boldsymbol{x},y) < f(z,1)f(z,t) \le f(z,t_1)$, where $t_1=1+\max \lbrace 1,t\rbrace$.
+\item $x=1$.  Then $y>1$.  So $g_s(\boldsymbol{x},y)=h(\boldsymbol{x})+\sum_{i=2}^y g(\boldsymbol{x},i)$, where $h(\boldsymbol{x})=g(\boldsymbol{x},0)+g(\boldsymbol{x},1)$.  Let $v= \max \lbrace h(v_1,\ldots, v_n) \mid v_i\in \lbrace 0,1\rbrace \rbrace$.  Then $g_s(\boldsymbol{x},y) \le v+ \sum_{i=2}^y g(\boldsymbol{x},i)$.  As before, $g(\boldsymbol{x},i) \le f(z_i,t)$ for each $i\le 2$, so pick the largest $f(z_j,t)$ among the $f(z_i,t)$.  Then $\sum_{i=2}^y g(\boldsymbol{x},i) \le (y-1)f(z_j,t) \le (y-1)f(z,t) < zf(z,t)=f(z,0)f(z,t) \le f(z,t+1)$.  Therefore, $g_s(\boldsymbol{x},y) < v+f(z,t+1) < f(z,v)+f(z,t+1) \le f(z,t_2)$, where $t_2=1+ \max\lbrace v,t+1\rbrace$.
+\end{enumerate}
+In each case, pick $t_3 = \max\lbrace t_1,t_2\rbrace$, so that $g_s(\boldsymbol{x},y)< f(z,t_3)$.
+\item Let $g_p(\boldsymbol{x},y):=\prod_{i=0}^y g(\boldsymbol{x},i)$.  We again break down the proof into cases:
+\begin{enumerate}
+\item $x>1$.  Then each $g(\boldsymbol{x},i)< f(z_i,t)$ where $z_i = \max\lbrace x,i\rbrace>1$.  Let $f(z_j,t)$ be the maximum among the $f(z_i,t)$.  Then $g_s(\boldsymbol{x},y) \le f(z_j,t)^{(y+1)} \le f(z,t)^{(y+1)}$.  Since $y+1 \le z+1 < 2z = 2 f(z,0) \le f(z,1)$, we see that $g_s(\boldsymbol{x},y) < f(z,t)^{f(z,1)} \le f(z,t_1)$, where $t_1=2+\max \lbrace 1,t\rbrace$.
+\item $x=1$.  Then $y>1$.  So $g_p(\boldsymbol{x},y)=h(\boldsymbol{x})\prod_{i=2}^y g(\boldsymbol{x},i)$, where $h(\boldsymbol{x})=g(\boldsymbol{x},0)g(\boldsymbol{x},1)$.  Let $v= \max \lbrace h(v_1,\ldots, v_n) \mid v_i\in \lbrace 0,1\rbrace \rbrace$.  Then $g_p(\boldsymbol{x},y) \le v \prod_{i=2}^y g(\boldsymbol{x},i)$.  As before, each $g(\boldsymbol{x},i) \le f(z_i,t)$, so pick the largest $f(z_j,t)$ among the $f(x_i,t)$.  Then $\prod_{i=2}^y g(\boldsymbol{x},i) \le f(z_j,t)^{(y-1)} \le f(z,t)^{(y-1)} < f(z,t)^z =f(z,t)^{f(z,0)} \le f(z,t+2)$.  Therefore, $g_p(\boldsymbol{x},y) < v f(z,t+2) < f(z,v)f(z,t+2) \le f(z,t_2)$, where $t_2=1+ \max\lbrace v,t+2\rbrace$.
+\end{enumerate}
+In each case, pick $t_3 = \max\lbrace t_1,t_2\rbrace$, so that $g_p(\boldsymbol{x},y)< f(z,t_3)$.
+\end{itemize}
+As a result, $\mathcal{ER}\subseteq \mathcal{A}$.  In other words, every elementary function is majorized by $f$.
+\end{proof}
+
+In conclusion, we have
+\begin{cor} $f$ is not elementary. \end{cor}
+\begin{proof}  If it were, it would majorize itself, which is impossible. \end{proof}
+
+\textbf{Remark}.  Although $f$ is not elementary recursive, it is easy to see that, for any $n$, the function $f_n: \mathbb{N}\to \mathbb{N}$ defined by $f_n(m):=f(m,n)$ is elementary.  This can be done by induction on $n$: 
+\begin{quote}
+$f_0(m)=f(m,0)=m = p_1^1(m)$ is elementary, and if $f_n(m)$ is elementary, so is $f_{n+1}(m)=f(m,n+1)=\exp(m,f(m,n))=\exp(p_1^1(m),f_n(m))$, since $\exp$ is elementary, and elementary recursiveness preserves composition.  
+\end{quote}
+Using this fact, one may in fact show that $\mathcal{ER}=\mathcal{A}\cap \mathcal{PR}$, where $\mathcal{PR}$ is the set of all primitive recursive functions.
+%%%%%
+%%%%%
+\end{document}

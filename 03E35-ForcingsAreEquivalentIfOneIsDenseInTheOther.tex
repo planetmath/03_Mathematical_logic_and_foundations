@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ForcingsAreEquivalentIfOneIsDenseInTheOther}
+\pmcreated{2013-03-22 12:54:43}
+\pmmodified{2013-03-22 12:54:43}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{forcings are equivalent if one is dense in the other}
+\pmrecord{6}{33263}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E35}
+\pmclassification{msc}{03E40}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+Suppose $P$ and $Q$ are forcing notions and that $f:P\rightarrow Q$ is a function such that:
+\begin{itemize}
+
+\item $p_1\leq_P p_2$ implies $f(p_1)\leq_Q f(p_2)$
+
+%\item If $A$ is a maximal antichain in $P$ then $f[A]$ is a maximal antichain in $Q$
+
+%\item If $A$ is a maximal antichain in $P$, $p_1,p_2\in A$ and $f(p_1)=f(p_2)$ then $p_1=p_2$ ($f$ is injective on $A$)
+
+\item If $p_1,p_2\in P$ are incomparable then $f(p_1),f(p_2)$ are incomparable
+
+\item $f[P]$ is \PMlinkname{dense}{DenseInAPoset} in $Q$
+\end{itemize}
+
+then $P$ and $Q$ are equivalent.
+
+\section*{Proof}
+
+We seek to provide two operations (computable in the appropriate universes) which convert between generic subsets of $P$ and $Q$, and to prove that they are inverses.
+
+
+\subsection*{$F(G)=H$ where $H$ is generic}
+Given a generic $G\subseteq P$, consider $H=\{q\mid f(p)\leq q\}$ for some $p\in G$.
+
+If $q_1\in H$ and $q_1\leq q_2$ then $q_2\in H$ by the definition of $H$.  If $q_1,q_2\in H$ then let $p_1,p_2\in P$ be such that $f(p_1)\leq q_1$ and $f(p_2)\leq q_2$.  Then there is some $p_3\leq p_1,p_2$ such that $p_3\in G$, and since $f$ is order preseving $f(p_3)\leq f(p_1)\leq q_1$ and $f(p_3)\leq f(p_2)\leq q_2$.
+
+Suppose $D$ is a dense subset of $Q$.  Since $f[P]$ is dense in $Q$, for any $d\in D$ there is some $p\in P$ such that $f(p)\leq d$.  For each $d\in D$, assign (using the axiom of choice) some $d_p\in P$ such that $f(d_p)\leq d$, and call the set of these $D_P$.  This is dense in $P$, since for any $p\in P$ there is some $d\in D$ such that $d\leq f(p)$, and so some $d_p\in D_P$ such that $f(d_p)\leq d$.  If $d_p\leq p$ then $D_P$ is dense, so suppose $d_p\nleq p$.  If $d_p\leq p$ then this provides a member of $D_P$ less than $p$; alternatively, since $f(d_p)$ and $f(p)$ are compatible, $d_p$ and $p$ are compatible, so $p\leq d_p$, and therefore $f(p)=f(d_p)=d$, so $p\in D_P$.  Since $D_P$ is dense in $P$, there is some element $p\in D_P\cap G$.  Since $p\in D_P$, there is some $d\in D$ such that $f(p)\leq d$.  But since $p\in G$, $d\in H$, so $H$ intersects $D$.
+
+
+\subsection*{$G$ can be recovered from $F(G)$}
+Given $H$ constructed as above, we can recover $G$ as the set of $p\in P$ such that $f(p)\in H$.  Obviously every element from $G$ is included in the new set, so consider some $p$ such that $f(p)\in H$.  By definition, there is some $p_1\in G$ such that $f(p_1)\leq f(p)$.  Take some dense $D\in Q$ such that there is no $d\in D$ such that $f(p)\leq d$ (this can be done easily be taking any dense subset and removing all such elements; the resulting set is still dense since there is some $d_1$ such that $d_1\leq f(p)\leq d$).  This set intersects $f[G]$ in some $q$, so there is some $p_2\in G$ such that $f(p_2)\leq q$, and since $G$ is directed, some $p_3\in G$ such that $p_3\leq p_2,p_1$.  So $f(p_3)\leq f(p_1)\leq f(p)$.  If $p_3\nleq p$ then we would have $p\leq p_3$ and then $f(p)\leq f(p_3)\leq q$, contradicting the definition of $D$, so $p_3\leq p$ and $p\in G$ since $G$ is directed.
+
+\subsection*{$F^{-1}(H)=G$ where $G$ is generic}
+Given any generic $H$ in $Q$, we define a corresponding $G$ as above: $G=\{p\in P\mid f(p)\in H\}$.  If $p_1\in G$ and $p_1\leq p_2$ then $f(p_1)\in H$ and $f(p_1)\leq f(p_2)$, so $p_2\in G$ since $H$ is directed.  If $p_1,p_2\in G$ then $f(p_1),f(p_2)\in H$ and there is some $q\in H$ such that $q\leq f(p_1),f(p_2)$.
+
+Consider $D$, the set of elements of $Q$ which are $f(p)$ for some $p\in P$ and either $f(p)\leq q$ or there is no element greater than both $f(p)$ and $q$.  This is dense, since given any $q_1\in Q$, if $q_1\leq q$ then (since $f[P]$ is dense) there is some $p$ such that $f(p)\leq q_1\leq q$.  If $q\leq q_1$ then there is some $p$ such that $f(p)\leq q\leq q_1$.  If neither of these and $q$ there is some $r\leq q_1,q$ then any $p$ such that $f(p)\leq r$ suffices, and if there is no such $r$ then any $p$ such that $f(p)\leq q$ suffices.
+
+There is some $f(p)\in D\cap H$, and so $p\in G$.  Since $H$ is directed, there is some $r\leq f(p),q$, so $f(p)\leq q\leq f(p_1),f(p_2)$.  If it is not the case that $f(p)\leq f(p_1)$ then $f(p)=f(p_1)=f(p_2)$.  In either case, we confirm that $H$ is directed.
+
+Finally, let $D$ be a dense subset of $P$.  $f[D]$ is dense in $Q$, since given any $q\in Q$, there is some $p\in P$ such that $p\leq q$, and some $d\in D$ such that $d\leq p\leq q$.  So there is some $f(p)\in f[D]\cap H$, and so $p\in D\cap G$.
+
+
+\subsection*{$H$ can be recovered from $F^{-1}(H)$}
+Finally, given $G$ constructed by this method, $H=\{q\mid f(p)\leq q\}$ for some $p\in G$.  To see this, if there is some $f(p)$ for $p\in G$ such that $f(p)\leq q$ then $f(p)\in H$ so $q\in H$.  On the other hand, if $q\in H$ then the set of $f(p)$ such that either $f(p)\leq q$ or there is no $r\in Q$ such that $r\leq q,f(p)$ is dense (as shown above), and so intersects $H$.  But since $H$ is directed, it must be that there is some $f(p)\in H$ such that $f(p)\leq q$, and therefore $p\in G$.
+%%%%%
+%%%%%
+\end{document}

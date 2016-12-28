@@ -1,0 +1,176 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofThatCcupAndCcapAreConsequenceOperators}
+\pmcreated{2013-03-22 16:29:41}
+\pmmodified{2013-03-22 16:29:41}
+\pmowner{rspuzio}{6075}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{proof that $C_\cup$ and $C_\cap$ are consequence operators}
+\pmrecord{21}{38670}
+\pmprivacy{1}
+\pmauthor{rspuzio}{6075}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G25}
+\pmclassification{msc}{03G10}
+\pmclassification{msc}{03B22}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+The proof that the operators $C_\cup$ and $C_\cap$ defined in the second 
+example of section 3 of the
+\PMlinkname{parent entry}{ConsequenceOperator} are consequence operators 
+is a relatively straightforward matter of checking that they satisfy the defining properties given there.  For convenience, those definitions are
+reproduced here.
+
+\begin{definition}
+Given a set $L$ and two elements, $X$ and $Y$, of this set, the 
+function $C_\cap (X,Y) \colon \mathcal{P}(L) \to \mathcal{P}(L)$ 
+is defined as follows:
+ \[
+  C_\cap (X,Y) (Z) = 
+  \begin{cases} 
+   X \cup Z & Y \cap Z \not= \emptyset \\ 
+   Z & Y \cap Z = \emptyset 
+  \end{cases} 
+ \]
+\end{definition}
+
+\begin{theorem} 
+For every choice of two elements, $X$ and $Y$, of a given set $L$, the 
+function $C_\cap (X,Y)$ is a consequence operator. 
+\end{theorem}
+
+\begin{proof} ~
+
+\emph{Property 1:}
+Since $Z$ is a subset of itself and of $X \cup Z$, it follows that
+$Z \subseteq C_\cap (X,Y) (Z)$ in either case.
+
+\emph{Property 2:}
+We consider two cases.  If $Y \cap Z = \emptyset$, then $C_\cap (X,Y) 
+(Z) = Z$, so 
+ \[C_\cap (X,Y) (C_\cap (X,Y) (Z)) = C_\cap (X,Y) (Z).\]
+If $Y \cap Z \not= \emptyset$, then 
+\begin{eqnarray*}
+Y \cap C_\cap (X,Y) (Z) &=&
+Y \cap (X \cup Z) \\
+&=& (Y \cap X) \cup (Y \cap Z).
+\end{eqnarray*}
+Again, since $Y \cap Z \not= \emptyset$, we also
+have $(Y \cap X) \cup (Y \cap Z) \not= \emptyset$, so
+\begin{eqnarray*}
+C_\cap (X,Y) (C_\cap (X,Y) (Z)) 
+&=& X \cup C_\cap (X,Y) (Z) \\
+&=& X \cup (X \cup Z) \\
+&=& X \cup Z \\
+&=& C_\cap (X,Y) (Z)
+\end{eqnarray*}
+So, in both cases, we find that 
+\[C_\cap (X,Y) (C_\cap (X,Y) (Z)) = C_\cap (X,Y) (Z).\]
+
+\emph{Property 3:}
+Suppose that $Z$ and $W$ are subsets of $L$ and that $Z$ is a subset
+of $W$.  Then there are three possibilities: 
+
+1. $Y \cap Z = \emptyset$ and $Y \cap W = \emptyset$
+ 
+In this case, we have $C_\cap (X,Y) (Z) = Z$ and
+$C_\cap (X,Y) (W) = W$, so $C_\cap (X,Y) (Z) \subseteq C_\cap (X,Y) (W)$.
+
+2. $Y \cap Z = \emptyset$ but $Y \cap W \not= \emptyset$ 
+
+In this case, $C_\cap (X,Y) (Z) = Z$ and $C_\cap (X,Y) (W) = X \cup 
+W$.  Since $Z \subseteq W$ implies $Z \subseteq X \cup W$, we have 
+$C_\cap (X,Y) (Z) \subseteq C_\cap (X,Y) (W)$. 
+
+3. $Y \cap Z \not= \emptyset$ and $Y \cap W \not= \emptyset$
+
+In this case,
+$C_\cap (X,Y) (Z) = X \cup Z$ and $C_\cap (X,Y) (W) = X \cup W$.  Since 
+$Z \subseteq W$ implies $X \cup Z \subseteq X \cup W$, we have 
+$C_\cap (X,Y) (Z) \subseteq C_\cap (X,Y) (W)$.
+
+\end{proof}
+
+\begin{definition}
+Given a set $L$ and two elements, $X$ and $Y$, of this set, the 
+function $C_\cup (X,Y) \colon \mathcal{P}(L) \to \mathcal{P}(L)$ 
+is defined as follows:
+ \[
+  C_\cup (X,Y)(Z) = 
+  \begin{cases}  
+   X \cup Z & Y \cup Z = Z \\ 
+   Z & Y \cup Z \not= Z 
+  \end{cases}
+ \]
+\end{definition}
+
+\begin{theorem} 
+For every choice of two elements, $X$ and $Y$, of a given set $L$, the 
+function $C_\cup (X,Y)$ is a consequence operator.
+\end{theorem}
+
+\begin{proof} ~
+
+\emph{Property 1:}
+Since $Z$ is a subset of itself and of $X \cup Z$, it follows that
+$Z \subseteq C_\cup (X,Y) (Z)$ in either case.
+
+\emph{Property 2:}
+We consider two cases. If $C_\cup (X,Y) (Z) = Z$, then
+ \[C_\cup (X,Y) (C_\cup (X,Y) (Z)) = C_\cup (X,Y) (Z).\]
+If $C_\cup (X,Y) (Z) = X \cup Z$, then we note that, because 
+$X \cup (X \cup Z) = X \cup Z$, we must have $C_\cup (X,Y) 
+(X \cup Z) = X \cup Z$ whether or not $Y \cup (X \cup Z) = 
+X \cup Z$, so 
+ \[C_\cup (X,Y) (C_\cup (X,Y) (Z)) = C_\cup (X,Y) (Z).\]
+
+\emph{Property 3:}
+Suppose that $Z$ and $W$ are subsets of $L$ and that $Z$ is a subset
+of $W$.  Then there are three possibilities: 
+
+1. $Y \cup Z = Z$ and $Y \cup W = W$
+ 
+In this case, we have $C_\cup (X,Y) (Z) = X \cup Z$ and
+$C_\cup (X,Y) (W) = X \cup W$.  Since $Z \subseteq W$ implies 
+$X \cup Z \subseteq X \cup W$, we have $C_\cup (X,Y) (Z) 
+\subseteq C_\cup (X,Y) (W)$.
+
+2. $Y \cup Z \not= Z$ but $Y \cup W = W$ 
+
+In this case, $C_\cup (X,Y) (Z) = Z$ and $C_\cup (X,Y) (W) = X \cup W$. 
+Since $Z \subseteq W$ implies $Z \subseteq X \cup W$, we have 
+$C_\cup (X,Y) (Z) \subseteq C_\cup (X,Y) (W)$. 
+
+3. $Y \cup Z \not= Z$ and $Y \cup W \not= W$
+
+In this case, $C_\cup (X,Y) (Z) = Z$ and $C_\cup (X,Y) (W) = W$, 
+so $C_\cup (X,Y) (Z) \subseteq C_\cup (X,Y) (W)$.
+\end{proof}
+%%%%%
+%%%%%
+\end{document}

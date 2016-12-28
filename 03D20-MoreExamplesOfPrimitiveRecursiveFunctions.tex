@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MoreExamplesOfPrimitiveRecursiveFunctions}
+\pmcreated{2013-03-22 19:06:02}
+\pmmodified{2013-03-22 19:06:02}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{more examples of primitive recursive functions}
+\pmrecord{13}{41993}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+With bounded minimization, bounded maximization, and properties of primitive recursive predicates, many more examples of primitive recursive functions can now be exhibited.  We list some of the most common ones:
+
+\begin{enumerate}
+\item $\operatorname{NxtPrm}(n)$ is the smallest prime number greater than or equal to $n$.
+
+Let $\Phi_1(y)$ be the predicate ``$y$ is prime'' and $\Phi_2(n,y)$ the predicate ``$n\le y$''.  Then $$\operatorname{NxtPrm}(n) = \mu y (\Phi_1(y) \wedge \Phi_2(n,y)),$$
+where $\mu$ is the minimization operator.  Since both $\Phi_1$ and $\Phi_2$ are primitive recursive, $\operatorname{NxtPrm}$ is recursive.  From \PMlinkname{Euclid's proof of the infinitude of primes}{ProofThatThereAreInfinitelyManyPrimes}, two conclusions can be made:
+\begin{itemize}
+\item $\operatorname{NxtPrm}$ is a total function, and 
+\item the search for $y$ need not be unbounded: let $p_1,\ldots,p_k$ be all the prime numbers less than $n$ (suppose $n>2$), then $p=p_1\cdots p_k +1$ does not divide any of the $p_i$, so must be at least $n$.  Let $q$ be some prime such that $q|p$.  Then $q\ne p_i$ for any $i=1,\ldots, k$, which means that $n\le q$.  So what we have shown is that $q$ is the most we need to search to find the next prime after $n$.  Since $q\le p=p_1\cdots p_k+1 \le n! +1$, we may reformulate the above expression:
+$$\operatorname{NxtPrm}(n) = \mu y \le (n! +1)  (\Phi_1(y) \wedge \Phi_2(n,y)).$$
+\end{itemize}
+Since $n!+1$ is primitive recursive, we conclude that $\operatorname{NxtPrm}$ is primitive recursive by one application of bounded minimization and functional composition.
+\item $\operatorname{Pr}(n)$ is the $n$-th prime number, and $\operatorname{Pr}(0):=1$.  Again, this is a total function.  To see that $\operatorname{Pr}$ is primitive recursive, we simply note that $\operatorname{Pr}(n+1)=\operatorname{NxtPrm}(\operatorname{Pr}(n))$.
+\item $\operatorname{div}(x,y)$, which is $1$ if $x|y$, and $0$ otherwise, is primitive recursive.  The predicate $\Phi(x,y,z)$ ``$x=yz$'' is primitive recursive, so that $f(x,y):=\mu z \le x \Phi(x,y,z)$ is primitive recursive.  $f(x,y)$ returns $z\le x$ if $yz=x$, and $x+1$ otherwise.  Thus ``$f(x,y) \le x$'' is a primitive recursive predicate, and its characteristic function is easily seen to be $\operatorname{div}(x,y)$, hence primitive recursive.
+
+Note that the least $z$ such that $x=yz$ is also the \emph{only} $z$ satisfying the equation.  An alternative, more direct (without bounded minimization) way to prove that $\operatorname{div}$ is primitive recursive is by noticing that $\operatorname{div}(x,y)=1\dot{-}\operatorname{sgn}(\operatorname{rem}(x,y))$, where $\operatorname{sgn}$ is the sign function, and $\operatorname{rem}$ is the remainder function, both of which are primitive recursive.  Since $\dot{-}$ is primitive recursive, so is $\operatorname{div}$.
+
+\textbf{Remark}.  $\operatorname{div}(x,y)$ is also the characteristic function of the predicate ``$x|y$'', which shows that ``$x$ divides $y$'' is a primitive recursive predicate.
+\item $[x^{1/y}]$, which returns the largest $z$ (bounded by $x$) such that $z^y\le x$, is primitive recursive, since it can be obtained by an application of bounded maximization to the predicate ``$z^y\le x$''.
+\item $\operatorname{lo}(x,y)$, which returns the largest $z$ (bounded by $y$) such that $x^z\mid y$, the integer version of the logarithm function, is primitive recursive, for $\operatorname{lo}(x,y)$ is the largest $z$ such that $\operatorname{div}(x^z, y)=1$, and $\operatorname{div}$ has been shown to be primitive recursive in the previous example.  To make $\operatorname{lo}$ a total function, we also set $\operatorname{lo}(x,y):=0$ if $x \in \lbrace 0,1\rbrace$.
+\item $F(n)$ is the $n$-th Fibonacci number.  The Fibonacci numbers are defined using a slight variation of primitive recursion: $F(0)=F(1)=1$, and $F(n+2)=F(n+1)+F(n)$.  To show that $F$ is primitive recursive, first define a function $g$ as follows: $$g(n)=\operatorname{exp}(2,F(n))\operatorname{exp}(3,F(n+1)).$$  Then $F(n)=\operatorname{lo}(2,g(n))$, and $F(n+1)=\operatorname{lo}(3,g(n))$.  Moreover, $g(0)=6$, and 
+\begin{eqnarray*}
+g(n+1) &=& \operatorname{exp}(2,F(n+1))\operatorname{exp}(3,F(n+2)) \\ &=& \operatorname{exp}(2,F(n+1)) \operatorname{exp}(3,F(n+1)+F(n)) \\ &=& \operatorname{exp}(2,\operatorname{lo}(3,g(n))) \operatorname{exp}(3, \operatorname{lo}(3,g(n))+\operatorname{lo}(2,g(n))).
+\end{eqnarray*}
+Thus $g$ is defined via primitive recursion from multiplication, exponentiation, and $\operatorname{lo}$, all of which  primitive recursive.  Therefore, $g(n)$, and consequently, $F(n)=\operatorname{lo}(2,g(n))$, is primitive recursive.  The type of recursion used in defining the Fibonacci numbers is known as course-of-values recursion.
+\item $\operatorname{gcd}(x,y)$ is the greatest common divisor of $x$ and $y$ (for convenience, we set $\operatorname{gcd}(x,0)=\operatorname{gcd}(0,y):=0$).  In other words, the $\operatorname{gcd}$ function is defined by two cases:
+\begin{displaymath}
+\operatorname{gcd}(x,y) := \left\{
+\begin{array}{ll}
+0 & \textrm{if } xy=0, \\
+z & \textrm{if } xy\ne 0 \mbox{ and }z \mbox{ is the largest number }\!\!\le x\mbox{ with }z|x\mbox{ and }z|y.
+\end{array}
+\right.
+\end{displaymath}
+Since both $z|x$ and $z|y$ are primitive recursive (from previous example), as well as the predicate ``$xy\ne 0$'', so is their conjunction.  Let $c(x,y,z)$ be the corresponding characteristic function.  By taking the bounded maximum, the second case of $\operatorname{gcd}$ is primitive recursive.  Since the first case of $\operatorname{gcd}$ is clearly primitive recursive, hence $\operatorname{gcd}$ itself is primitive recursive.
+\item As a result, the predicate ``$x$ and $y$ are coprime'' is primitive recursive, as it has the same characteristic function as the predicate ``$\operatorname{gcd}(x,y)=1$'', and $\operatorname{gcd}(x,y)$ has just been shown to be primitive recursive.
+\item Euler \PMlinkname{$\phi$-function}{EulerPhifunction} is primitive recursive.  Let $c(x,y)$ be the characteristic function of the primitive recursive predicate ``$x$ and $y$ are coprime''.  Consider the bounded sum
+$$f(x,y) = \sum_{i=0}^y c(x,i),$$
+which is primitive recursive.  Hence $\phi(x)=f(x,x)$ is too.  Note that $\phi(0)=0$.
+\end{enumerate}
+
+\textbf{Remark}.  It is not hard to show that, all of the functions above are in fact elementary recursive.
+%%%%%
+%%%%%
+\end{document}

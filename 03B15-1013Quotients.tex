@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{1013Quotients}
+\pmcreated{2013-11-06 17:08:01}
+\pmmodified{2013-11-06 17:08:01}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{10.1.3 Quotients}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\brck}[1]{\trunc{}{#1}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqvsym}{\simeq}    
+\newcommand{\hfib}[2]{{\mathsf{fib}}_{#1}(#2)}
+\newcommand{\im}{\ensuremath{\mathsf{im}}} 
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\proj}[1]{\ensuremath{\mathsf{pr}_{#1}}\xspace}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\trans}[2]{\ensuremath{{#1}_{*}\mathopen{}\left({#2}\right)\mathclose{}}\xspace}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\uset}{\ensuremath{\mathcal{S}et}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{10.1.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{10.1.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{10.1.\arabic{mathcount}}
+\let\autoref\cref
+\let\hfiber\hfib
+\let\setof\Set    
+\makeatother
+
+\begin{document}
+
+\index{set-quotient|(}%
+Now that we know that $\uset$ is regular, to show that $\uset$ is exact, we need to show that every
+equivalence relation is effective.
+\index{effective!equivalence relation|(}%
+\index{relation!effective equivalence|(}%
+In other words, given an equivalence
+relation $R:A\to A\to\prop$, there is a coequalizer $c_R$ of the pair
+$\proj1,\proj2:\sm{x,y:A} R(x,y)\to A$ and, moreover, the $\proj1$ and $\proj2$
+form the kernel\index{kernel!pair} pair of $c_R$.
+
+We have already seen, in \autoref{sec:set-quotients}, two general ways to construct the quotient of a set by an equivalence relation $R:A\to A\to\prop$.
+The first can be described as the set-coequalizer of the two projections
+\[\proj1,\proj2:\Parens{\sm{x,y:A} R(x,y)} \to A.\]
+The important property of such a quotient is the following.
+
+\begin{defn}
+  A relation $R:A\to A\to\prop$ is said to be \define{effective}
+  \indexdef{effective!relation}
+  \indexdef{effective!equivalence relation}%
+  \indexdef{relation!effective equivalence}%
+  if the square
+\begin{equation*}
+  \xymatrix{
+    {\sm{x,y:A} R (x,y)}
+    \ar[r]^(0.7){\proj1}
+    \ar[d]_{\proj2}
+    &
+    {A}
+    \ar[d]^{c_R}
+    \\
+    {A}
+    \ar[r]_{c_R}
+    &
+    {A/R}
+    }
+\end{equation*}
+is a pullback. 
+\end{defn}
+
+Since the standard pullback of $c_R$ and itself is $\sm{x,y:A} (c_R(x)=c_R(y))$, by \autoref{thm:total-fiber-equiv} this is equivalent to asking that the canonical transformation $\prd{x,y:A} R(x,y) \to (c_R(x)=c_R(y))$ be a fiberwise equivalence.
+
+\begin{lem}\label{lem:sets_exact}
+Suppose $\pairr{A,R}$ is an equivalence relation. Then there is an equivalence
+\begin{equation*}
+(c_R(x)= c_R(y))\eqvsym R(x,y)
+\end{equation*}
+for any $x,y:A$. In other words, equivalence relations are effective.
+\end{lem}
+
+\begin{proof}
+We begin by extending $R$ to a relation $\widetilde{R}:A/R\to A/R\to\prop$, which we will then show is equivalent
+to the identity type on $A/R$. We define $\widetilde{R}$ by double induction on
+$A/R$ (note that $\prop$ is a set by univalence for mere propositions). We
+define $\widetilde{R}(c_R(x),c_R(y)) \defeq R(x,y)$. For $r:R(x,x')$ and $s:R(y,y')$,
+the transitivity and symmetry 
+of $R$ gives an equivalence from $R(x,y)$ to $R(x',y')$. This completes the
+definition of $\widetilde{R}$.
+
+It remains to show that $\widetilde{R}(w,w')\eqvsym (w= w')$ for every $w,w':A/R$.
+The direction $(w=w')\to \widetilde{R}(w,w')$ follows by transport once we show that $\widetilde{R}$ is reflexive, which is an easy induction.
+The other direction $\widetilde{R}(w,w')\to (w= w')$ is a mere proposition, so since $c_R:A\to A/R$ is surjective, it suffices to assume that $w$ and $w'$ are of the form $c_R(x)$ and $c_R(y)$.
+But in this case, we have the canonical map $\widetilde{R}(c_R(x),c_R(y)) \defeq R(x,y) \to (c_R(x)=c_R(y))$.
+(Note again the appearance of the encode-decode method.\index{encode-decode method})
+\end{proof}
+
+The second construction of quotients is as the set of equivalence classes of $R$ (a subset
+of its power set\index{power set}):
+\[ A\sslash R \defeq \setof{ P:A\to\prop | P \text{ is an equivalence class of } R} \]
+This requires propositional resizing\index{propositional resizing}\index{impredicative!quotient}\index{resizing} in order to remain in the same universe as $A$ and $R$.
+
+Note that if we regard $R$ as a function from $A$ to $A\to \prop$, then $A\sslash R$ is equivalent to $\im(R)$, as constructed in \autoref{sec:image}.
+Now in \autoref{lem:images_are_coequalizers} we have shown that images are
+coequalizers. In particular, we immediately get the coequalizer diagram
+\begin{equation*}
+  \xymatrix{
+    **[l]{\sm{x,y:A} R (x)= R (y)}
+    \ar@<0.25em>[r]^{\proj1}
+    \ar@<-0.25em>[r]_{\proj2}
+    &
+    {A}
+    \ar[r]
+    &
+    {A \sslash R.}
+  }
+\end{equation*}
+We can use this to give an alternative proof that any equivalence relation is effective and that the two definitions of quotients agree.
+
+\begin{thm}\label{prop:kernels_are_effective}
+For any function $f:A\to B$ between any two sets, 
+the relation $\ker(f):A\to A\to\prop$ given by 
+$\ker(f,x,y)\defeq (f(x)= f(y))$ is effective.
+\end{thm}
+
+\begin{proof}
+We will use that $\im(f)$ is the coequalizer of $\proj1,\proj2:
+(\sm{x,y:A} f(x)= f(y))\to A$.
+%we get this equivalence from~\autoref{prop:images_are_coequalizers}
+Note that the kernel pair of the function 
+\[c_f\defeq\lam{a} \Parens{f(a),\brck{\pairr{a,\refl{f(a)}}}}
+: A \to \im(f)
+\]
+consists of the two projections
+\begin{equation*}
+\proj1,\proj2:\Parens{\sm{x,y:A} c_f(x)= c_f(y)}\to A.
+\end{equation*}
+For any $x,y:A$, we have equivalences
+\begin{align*}
+  (c_f(x)= c_f(y))
+  & \eqvsym \Parens{\sm{p:f(x)= f(y)} \trans{p}{\brck{\pairr{x,\refl{f(x)}}}} =\brck{\pairr{y,\refl{f(x)}}}}\\
+  & \eqvsym (f(x)= f(y)),
+\end{align*}
+where the last equivalence holds because 
+$\brck{\hfiber{f}b}$ is a mere proposition for any $b:B$. 
+Therefore, we get that
+\begin{equation*}
+\Parens{\sm{x,y:A} c_f(x)= c_f(y)}\eqvsym \Parens{\sm{x,y:A} f(x)= f(y)}
+\end{equation*}
+and hence we may conclude that $\ker f$ is an effective relation 
+for any function $f$.
+\end{proof}
+
+\begin{thm}
+Equivalence relations are effective and there is an equivalence $A/R \eqvsym A\sslash  R $. 
+\end{thm}
+
+\begin{proof}
+We need to analyze the coequalizer diagram
+\begin{equation*}
+  \xymatrix{
+    **[l]{\sm{x,y:A} R (x)= R (y)}
+    \ar@<0.25em>[r]^{\proj1}
+    \ar@<-0.25em>[r]_{\proj2}
+    &
+    {A}
+    \ar[r]
+    &
+    {A \sslash R}
+  }
+\end{equation*}
+By the univalence axiom, the type $R(x) = R(y)$ is equivalent to the type of homotopies from $R(x)$ to $R(y)$, which is
+equivalent to
+\narrowequation{\prd{z:A} R (x,z)\eqvsym R (y,z).}
+Since $R$ is an equivalence relation, the latter space is equivalent to $R(x,y)$. To
+summarize, we get that $(R(x) = R(y)) \eqvsym R(x,y)$, so $R $ is effective since it is equivalent to an effective relation. Also,
+the diagram
+\begin{equation*}
+  \xymatrix{
+    **[l]{\sm{x,y:A} R(x, y)}
+    \ar@<0.25em>[r]^{\proj1}
+    \ar@<-0.25em>[r]_{\proj2}
+    &
+    {A}
+    \ar[r]
+    &
+    {A \sslash R.}
+  }
+\end{equation*}
+is a coequalizer diagram. Since coequalizers are unique up to equivalence, it follows that $A/R \eqvsym A\sslash  R $.
+\end{proof}
+
+We finish this section by mentioning a possible third construction of the quotient of a set $A$ by an equivalence relation $R$.
+Consider the precategory with objects $A$ and hom-sets $R$; the type of objects of the Rezk completion
+\index{completion!Rezk}%
+(see \autoref{sec:rezk}) of this precategory will then be the
+quotient. The reader is invited to check the details.
+
+\index{effective!equivalence relation|)}%
+\index{relation!effective equivalence|)}%
+\index{set-quotient|)}%
+
+
+\end{document}

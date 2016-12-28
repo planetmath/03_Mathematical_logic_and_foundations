@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{RationalTransducer}
+\pmcreated{2013-03-22 18:59:29}
+\pmmodified{2013-03-22 18:59:29}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{rational transducer}
+\pmrecord{12}{41858}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmrelated{GeneralizedSequentialMachine}
+\pmdefines{rational transduction}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\subsubsection*{Definition}
+
+A \emph{rational transducer} is a generalization of a generalized sequential machine (gsm).  Recall that a gsm $M$ is a quadruple $(S,\Sigma,\Delta,\tau)$ where $S$ is a finite set of states, $\Sigma$ and $\Delta$ are the input and output alphabets respectively, and $\tau$ is the transition function taking an input symbol from one state to an output word in another state.  A rational transducer has all of the components above, except that the transition function $\tau$ is more general: its domain consists of a pair of a state and an input word, rather than an input symbol.  
+
+Formally, a \emph{rational transducer} $M$ is a quadruple $(S,\Sigma,\Delta,\tau)$ where $S,\Sigma,\Delta$ are defined just as those in a gsm, except that the transition function $\tau$ has domain a finite subset of $S\times \Sigma^*$ such that $\tau(s,u)$ is finite for each $(s,u)\in \operatorname{dom}(\tau)$.  One can think of $\tau$ as a finite subset of $S\times \Sigma^* \times S\times \Delta^*$, or equivalently a finite relation between $S\times \Sigma^*$ and $S\times \Delta^*$.
+
+Like a gsm, a rational transducer can be turned into a language acceptor by fixing an initial state $s_0 \in S$ and a non-empty set $F$ of finite states $F\subseteq S$.  In this case, a rational transducer turns into a 6-tuple $(S,\Sigma,\Delta,\tau, s_0,F)$.  An input configuration $(s_0,u)$ is said to be \emph{initial}, and an output configuration $(t,v)$ is said to be \emph{final} if $t\in F$.  The language accepted by a rational transducer $M$ is defined as the set $$L(M):=\lbrace u\in \Sigma^* \mid \tau(s_0,u) \mbox{ contains an final output configuration.}\rbrace.$$
+
+\subsubsection*{Rational Transductions}
+
+Additionally, like a gsm, a rational transducer can be made into a language translator.  The initial state $s_0$ and the set $F$ of final states are needed.  Given a rational transducer $M$, for every input word $u$, let $$\operatorname{RT}_M(u):=\lbrace v \in \Delta^* \mid (t,v)\in \tau(s_0,u) \mbox{ is a final output configuration.}\rbrace.$$
+Thus, $\operatorname{RT}_M$ is a function from $\Sigma^*$ to $P(\Delta^*)$, and is called the \emph{rational transduction} (defined) for the rational transducer $M$.  The rational transduction for $M$ can be extended: for any language $L$ over the input alphabet $\Sigma$,
+$$\operatorname{RT}_M(L):=\bigcup \lbrace \operatorname{RT}_M(u)\mid u\in L\rbrace.$$
+In this way, $\operatorname{RT}_M$ may be thought of as a language translator.
+
+As with GSM mappings, one can define the inverse of a rational transduction, given a rational transduction $\operatorname{RT}_M$: $$\operatorname{RT}_M^{-1}(v):=\lbrace u\mid v\in \operatorname{RT}_M(u) \rbrace \quad\mbox{ and }\quad \operatorname{RT}_M^{-1}(L):=\bigcup \lbrace \operatorname{RT}_M^{-1}(v) \mid v\in L\rbrace.$$
+
+Here are some examples of rational transductions
+\begin{itemize}
+\item Every GSM mapping is clearly a rational transduction, since every gsm is a rational transducer.  As a corollary, any homomorphism, as well as intersection with any regular language, is a rational transduction.
+\item The inverse of a rational transduction is a transduction.  Given any rational transducer $M=(S,\Sigma,\Delta,\tau, s_0,F)$, define a rational transducer $M'=(S',\Delta,\Sigma,\tau',t_0,F')$ as follws: $S'=S\stackrel{\cdot}{\cup}\lbrace t_0\rbrace$ (where $\stackrel{\cdot}{\cup}$ denotes disjoint union), $F'=\lbrace s_0\rbrace$, and $\tau' \subseteq S\times \Delta^* \times S\times \Sigma^*$ is given by 
+\begin{displaymath}
+\tau'(t,v) = \left\{
+\begin{array}{ll}
+\lbrace (s,v)\mid (s,v)\mbox{ is a final output configuration of }M \rbrace & \textrm{if } t=t_0 \\
+\lbrace (s,u)\mid (t,v)\in \tau(s,u) \rbrace & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+As $\tau$ is finite, so is $\tau'$, so that $M'$ is well-defined.  In addition, $\operatorname{RT}_{M'}=\operatorname{RT}_{M}^{-1}$.  As a corollary, the inverse homomorphism is a rational transduction.
+\item The composition of two rational transductions is a rational transduction.  To see this, suppose $M_1=(S_1,\Sigma_1,\Delta_1, \tau_1,s_1,F_1)$ and $M_2=(S_2,\Sigma_2,\Delta_2,\tau_2,s_2,F_2)$ are two rational transducers such that $\Delta_1 \subseteq \Sigma_2$.  Define $M=(S,\Sigma_1,\Delta_2,\tau,s_1,F_2)$ as follows: $S=S_1\stackrel{\cdot}{\cup} S_2$, and $\tau \subseteq S \times \Sigma_1^* \times S\times \Delta_2^*$ is given by
+\begin{displaymath}
+\tau(s,u) = \left\{
+\begin{array}{ll}
+ \tau_1(s,u) & \textrm{if } (s,u)\in S_1\times \Sigma_1^* \\
+ \tau_2(s,u) & \textrm{if } (s,u)\in S_2\times \Sigma_2^* \\
+ \lbrace (s_2,u)\rbrace & \textrm{if } (s,u)\textrm{ is a final output configuration of } M_1 \\
+ \varnothing & \textrm{otherwise.}
+\end{array}
+\right.
+\end{displaymath}
+Again, since both $\tau_1$ and $\tau_2$ are finite, so is $\tau$, and thus $M$ well-defined.  In addition, $\operatorname{RT}_M=\operatorname{RT}_{M_2} \circ \operatorname{RT}_{M_1}$.
+\end{itemize}
+
+A family $\mathscr{F}$ of languages is said to be closed under rational transduction if for every $L\in \mathscr{F}$, and any rational transducer $M$, we have $\operatorname{RT}_M(L)\in \mathscr{F}$.  The three properties above show that if $\mathscr{F}$ is closed under rational transduction, it is a cone.  The converse is also true, as it can be shown that every rational transduction can be expressed as a composition of inverse homomorphism, intersection with a regular language, and homomorphism.  Thus, a family of languages being closed under rational transduction completely characterizes a cone.
+
+\begin{thebibliography}{9}
+\bibitem{as} A. Salomaa {\em Computation and Automata, Encyclopedia of Mathematics and Its Applications, Vol. 25}. Cambridge (1985).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

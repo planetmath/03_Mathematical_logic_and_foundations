@@ -1,0 +1,172 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{14DependentFunctionTypes}
+\pmcreated{2013-11-07 20:32:18}
+\pmmodified{2013-11-07 20:32:18}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.4 Dependent function types}
+\pmrecord{23}{87540}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+
+% making logically defined graphics
+%\usepackage{xypic}
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+
+% there are many more packages, add them here as you need them
+
+\usepackage{xspace}
+
+% define commands here
+
+\def\index#1{}
+\def\indexdef#1{}
+\def\indexsee#1#2{}
+\def\symlabel#1{}
+\def\define#1{\textbf{#1}}
+
+\newcommand{\vcentcolon}{܃\!\!}
+\newcommand{\defeq}{\vcentcolon\equiv} 
+\newcommand{\define}[1]{\textbf{#1}}
+
+\newcommand{\Fin}{\ensuremath{\mathsf{Fin}}}
+\newcommand{\fmax}{\ensuremath{\mathsf{fmax}}}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\jdeq}{\equiv} 
+
+\def\lamu#1{{\lambda}#1:{.\,}}
+
+\makeatletter
+
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\def\@lameatcolon#1:{#1}
+
+\makeatother
+
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\let\nat\N
+
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\let\type\UU
+
+\def\dprd#1{\prod_{(#1)}\,}
+\def\lprd#1{\prod({\textstyle #1}),\ }
+\def\tprd#1{\textstyle\prod_{(#1)}}
+\let\prd\tprd
+
+\renewcommand{\theequation}{1.4.\arabic{equation}}
+\begin{document}
+%17
+\index{type!dependent function|(defstyle}%
+\index{function!dependent|(defstyle}%
+\indexsee{dependent!function}{function, dependent}%
+\indexsee{type!Pi-@$\Pi$-}{type, dependent function}%
+\indexsee{Pi-type@$\Pi$-type}{type, dependent function}%
+In type theory we often use a more general version of function
+types, called a \define{$\Pi$-type} or \define{dependent function type}. The elements of
+a $\Pi$-type are functions
+whose codomain type can vary depending on the
+element of the domain to which the function is applied, called \define{dependent functions}. The name ``$\Pi$-type''
+is used because this type can also be regarded as the  cartesian
+product over a given type.
+
+Given a type $A:\UU$ and a family $B:A \to \UU$, we may construct
+the type of dependent functions $\prd{x:A}B(x) : \UU$.
+There are many alternative notations for this type, such as
+\[ \tprd{x:A} B(x) \qquad \dprd{x:A}B(x) \qquad \lprd{x:A} B(x). \]
+If $B$ is a constant family, then the dependent product type is the ordinary function type:
+\[\tprd{x:A} B \jdeq (A \to B).\]
+Indeed, all the constructions of $\Pi$-types are generalizations of the corresponding constructions on ordinary function types.
+
+\indexdef{definition!of function, direct}%
+We can introduce dependent functions by explicit definitions: to
+define $f : \prd{x:A}B(x)$, where $f$ is the name of a dependent function to be
+defined, we need an expression $\Phi : B(x)$ possibly involving the variable $x:A$,
+\index{variable}%
+and we write
+\[ f(x) \defeq \Phi \qquad \mbox{for $x:A$}.\]
+Alternatively, we can use \define{$\lambda$-abstraction}%
+\index{lambda abstraction@$\lambda$-abstraction|defstyle}%
+\begin{equation}
+  \label{eq:lambda-abstraction}
+  \lamu{x:A} \Phi \ :\ \prd{x:A} B(x).
+\end{equation}
+\indexdef{application!of dependent function}%
+\indexdef{function!dependent!application}%
+As with non-dependent functions, we can \define{apply} a dependent function $f : \prd{x:A}B(x)$ to an argument $a:A$ to obtain an element $f(a):B(a)$.
+The equalities are the same as for the ordinary function type, i.e.\ we have the computation rule
+\index{computation rule!for dependent function types}%
+given $a:A$ we have $f(a) \jdeq \Phi'$ and  
+$(\lamu{x:A} \Phi)(a) \jdeq \Phi'$, where $\Phi' $ is obtained by replacing all
+occurrences of $x$ in $\Phi$ by $a$ (avoiding variable capture, as always).
+Similarly, we have the uniqueness principle $f\jdeq (\lam{x} f(x))$ for any $f:\prd{x:A} B(x)$.
+\index{uniqueness!principle!for dependent function types}%
+
+As an example, recall from \PMlinkname{\S 1.3}{13universesandfamilies} that there is a type family $\Fin:\nat\to\UU$ whose values are the standard finite sets, with elements $0_n,1_n,\dots,(n-1)_n : \Fin(n)$.
+There is then a dependent function $\fmax : \prd{n:\nat} \Fin(n+1)$
+which returns the ``largest'' element of each nonempty finite type, $\fmax(n) \defeq n_{n+1}$.
+\index{finite!sets, family of}%
+As was the case for $\Fin$ itself, we cannot define $\fmax$ yet, but we will be able to soon; see \PMlinkexternal{Exercise 1.9}{http://planetmath.org/node/87562}.
+
+Another important class of dependent function types, which we can define now, are functions which are \define{polymorphic}
+\indexdef{function!polymorphic}%
+\indexdef{polymorphic function}%
+over a given universe.
+A polymorphic function is one which takes a type as one of its arguments, and then acts on elements of that type (or other types constructed from it).
+\symlabel{idfunc}%
+\indexdef{function!identity}%
+\indexdef{identity!function}%
+An example is the polymorphic identity function $\idfunc : \prd{A:\UU} A \to A$, which we define by $\idfunc{} \defeq \lam{A:\type}{x:A} x$.
+
+We sometimes write some arguments of a dependent function as subscripts.
+For instance, we might equivalently define the polymorphic identity function by $\idfunc[A](x) \defeq x$.
+Moreover, if an argument can be inferred from context, we may omit it altogether.
+For instance, if $a:A$, then writing $\idfunc(a)$ is unambiguous, since $\idfunc$ must mean $\idfunc[A]$ in order for it to be applicable to $a$.
+
+Another, less trivial, example of a polymorphic function is the ``swap'' operation that switches the order of the arguments of a (curried) two-argument function:
+\[ \mathsf{swap} : \prd{A:\UU}{B:\UU}{C:\UU} (A\to B\to C) \to (B\to A \to C)
+\]
+We can define this by
+\[ \mathsf{swap}(A,B,C,g) \defeq \lam{b}{a} g(a)(b). \]
+We might also equivalently write the type arguments as subscripts:
+\[ \mathsf{swap}_{A,B,C}(g)(b,a) \defeq g(a,b). \]
+
+Note that as we did for ordinary functions, we use currying to define dependent functions with
+several arguments (such as $\mathsf{swap}$). However, in the dependent case the second domain may
+depend on the first one, and the codomain may depend on both. That is,
+given $A:\UU$ and type families $B : A \to \UU$ and $C : \prd{x:A}B(x) \to \UU$, we may construct
+the type $\prd{x:A}{y : B(x)} C(x,y)$ of functions with two
+arguments.
+(Like $\lambda$-abstractions, $\Pi$s automatically scope\index{scope} over the rest of the expression unless delimited; thus $C : \prd{x:A}B(x) \to \UU$ means $C : \prd{x:A}(B(x) \to \UU)$.)
+In the case when $B$ is constant and equal to $A$, we may condense the notation and write $\prd{x,y:A}$; for instance, the type of $\mathsf{swap}$ could also be written as
+\[ \mathsf{swap} : \prd{A,B,C:\UU} (A\to B\to C) \to (B\to A \to C).
+\]
+Finally, given $f:\prd{x:A}{y : B(x)} C(x,y)$ and arguments $a:A$ and $b:B(a)$, we have $f(a)(b) : C(a,b)$, which,
+as before, we write as $f(a,b) : C(a,b)$.
+
+\index{type!dependent function|)}%
+\index{function!dependent|)}%
+
+
+
+\end{document}

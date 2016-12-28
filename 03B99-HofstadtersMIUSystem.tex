@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{HofstadtersMIUSystem}
+\pmcreated{2013-03-22 13:57:48}
+\pmmodified{2013-03-22 13:57:48}
+\pmowner{Daume}{40}
+\pmmodifier{Daume}{40}
+\pmtitle{Hofstadter's MIU system}
+\pmrecord{8}{34732}
+\pmprivacy{1}
+\pmauthor{Daume}{40}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B99}
+\pmsynonym{MIU system}{HofstadtersMIUSystem}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic} 
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+\begin{document}
+The alphabet of the system contains three symbols $M, I, U$.  The set of theorem is the set of string constructed by the rules and the axiom, is denoted by $\mathcal{T}$ and can be built as follows:
+\begin{enumerate}
+\item[(axiom)] $MI\in \mathcal{T}$.
+\item[(i)] If $xI\in \mathcal{T}$ then $xIU\in \mathcal{T}$.
+\item[(ii)] If $Mx \in \mathcal{T}$ then $Mxx\in \mathcal{T}$.
+\item[(iii)] In any theorem, $III$ can be replaced by $U$.
+\item[(iv)] In any theorem, $UU$ can be omitted.
+\end{enumerate}
+\textbf{example:}\\
+\begin{itemize}
+\item Show that $MUII \in \mathcal{T}$\\
+\begin{tabular}{ll}
+$MI\in \mathcal{T}$ & by axiom\\
+$\implies MII\in \mathcal{T}$ & by rule (ii) where $x=I$\\
+$\implies MIIII\in \mathcal{T}$ & by rule (ii) where $x=II$\\
+$\implies MIIIIIIII\in \mathcal{T}$ & by rule (ii) where $x=IIII$\\
+$\implies MIIIIIIIIU\in \mathcal{T}$ & by rule (i) where $x=MIIIIIII$\\
+$\implies MIIIIIUU\in \mathcal{T}$ & by rule (iii)\\
+$\implies MIIIII\in \mathcal{T}$ & by rule (iv)\\
+$\implies MUII\in \mathcal{T}$ & by rule (iii)\\
+\end{tabular}
+\item Is $MU$ a theorem?\\
+No. Why? Because the number of $I$'s of a theorem is never a multiple of 3.  We will show this by structural induction.\\\\
+\textit{base case:}  The statement is true for the base case. Since the axiom has one $I$ .  Therefore not a multiple of 3.\\
+\textit{induction hypothesis:}  Suppose true for premise of all rule.\\
+\textit{induction step:}  By induction hypothesis we assume the premise of each rule to be true and show that the application of the rule keeps the staement true.\\
+\textit{Rule 1:}  Applying rule 1 does not add any $I$'s to the formula. Therefore the statement is true for rule 1 by induction hypothesis.\\
+\textit{Rule 2:}  Applying rule 2 doubles the amount of $I$'s of the formula but since the initial amount of $I$'s was not a multiple of 3 by induction hypothesis.  Doubling that amount does not make it a multiple of 3 \textit{(i.e. if $n \not\equiv 0 \operatorname{mod} 3$ then $2n \not\equiv 0 \operatorname{mod} 3$)}. Therefore the statement is true for rule 2.\\
+\textit{Rule 3:} Applying rule 3 replaces $III$ by $U$.  Since the initial amount of $I$'s was not a multiple of 3 by induction hypothesis. Removing $III$ will not make the number of $I$'s in the formula be a multiple of 3.  Therefore the statement is true for rule 3.\\
+\textit{Rule 4:}  Applying rule 4 removes $UU$ and does not change the amount of $I$'s.  Since the initial amount of $I$'s was not a multiple of 3 by induction hypothesis.  Therefore the statement is true for rule 4.\\\\
+Therefore all theorems do not have a multiple of 3 $I$'s.
+\end{itemize}
+\cite{1}
+\begin{thebibliography}{1}
+\bibitem[HD]{1} Hofstader, R. Douglas: G\"odel, Escher, Bach: an Eternal Golden Braid. Basic Books, Inc., New York, 1979.
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

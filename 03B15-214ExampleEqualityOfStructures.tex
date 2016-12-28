@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{214ExampleEqualityOfStructures}
+\pmcreated{2013-11-14 18:29:05}
+\pmmodified{2013-11-14 18:29:05}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{2.14 Example: equality of structures}
+\pmrecord{2}{87620}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\semigroup}[0]{\ensuremath{\mathsf{Semigroup}}}
+\newcommand{\semigroupstr}[1]{\ensuremath{\mathsf{SemigroupStr}}(#1)}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{2.14.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+We now consider one example to illustrate the interaction between the groupoid structure on a type and the type
+formers.  In the introduction we remarked that one of the
+advantages of univalence is that two isomorphic things are interchangeable,
+in the sense that every property or construction involving one also
+applies to the other.  Common ``abuses of notation''\index{abuse!of notation} become formally
+true.  Univalence itself says that equivalent types are equal, and
+therefore interchangeable, which includes e.g.\  the common practice of identifying isomorphic sets.  Moreover, when we define other
+mathematical objects as sets, or even general types, equipped with structure or properties, we
+can derive the correct notion of equality for them from univalence.  We will illustrate this
+point with a significant example in \PMlinkexternal{Chapter 9}{http://planetmath.org/node/87583}, where we
+define the basic notions of category theory in such a way that equality
+of categories is equivalence, equality of functors is natural
+isomorphism, etc. See in particular \PMlinkname{\S 9.8}{98thestructureidentityprinciple}.
+ In this section, we describe a very simple example, coming from algebra.
+
+For simplicity, we use \emph{semigroups} as our example, where a
+semigroup is a type equipped with an associative ``multiplication''
+operation.  The same ideas apply to other algebraic structures, such as
+monoids, groups, and rings.
+Recall from \PMlinkname{\S 1.6}{16dependentpairtypes},\PMlinkname{\S 1.11}{111propositionsastypes} that the definition of a kind of mathematical structure should be interpreted as defining the type of such structures as a certain iterated $\Sigma$-type.
+In the case of semigroups this yields the following.
+
+\begin{defn}
+Given a type $A$, the type \semigroupstr{A} of \define{semigroup structures}
+\indexdef{semigroup!structure}%
+\index{structure!semigroup}%
+\index{associativity!of semigroup operation}%
+with carrier\index{carrier} $A$ is defined by
+\[
+\semigroupstr{A} \defeq \sm{m:A \to A \to A} \prd{x,y,z:A} m(x,m(y,z)) = m(m(x,y),z).
+\]
+%
+A \define{semigroup}
+\indexdef{semigroup}%
+is a type together with such a structure:
+%
+\[
+\semigroup \defeq \sm{A:\type} \semigroupstr A
+\]
+\end{defn}
+
+\noindent 
+In the next two sections, we describe two ways in which univalence makes
+it easier to work with such semigroups.
+
+
+\end{document}

@@ -1,0 +1,240 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{814TheEncodedecodeProof}
+\pmcreated{2013-11-06 2:35:21}
+\pmmodified{2013-11-06 2:35:21}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.1.4 The encode-decode proof}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\base}{\ensuremath{\mathsf{base}}\xspace}
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\code}{\ensuremath{\mathsf{code}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\decode}{\ensuremath{\mathsf{decode}}\xspace}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\encode}{\ensuremath{\mathsf{encode}}\xspace}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\newcommand{\lloop}{\ensuremath{\mathsf{loop}}\xspace}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{transport}^{#1}(#2,#3)\xspace}}
+\newcommand{\transfibf}[1]{\ensuremath{\mathsf{transport}^{#1}\xspace}}
+\newcommand{\trunc}[2]{\mathopen{}\left\Vert #2\right\Vert_{#1}\mathclose{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcommand{\Zpred}{\mathsf{pred}}
+\newcommand{\Zsuc}{\mathsf{succ}}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{8.1.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{8.1.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.1.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{8.1.\arabic{mathcount}}
+\let\autoref\cref
+\makeatother
+
+\begin{document}
+
+\index{encode-decode method|(}%
+\indexsee{encode}{encode-decode method}%
+\indexsee{decode}{encode-decode method}%
+We begin with the function~\eqref{eq:pi1s1-encode} that maps paths to codes:
+\begin{defn}
+Define $\encode : \prd{x : \Sn ^1} (\base=x) \rightarrow  \code(x)$ by 
+\[
+\encode \: p \defeq \transfib{\code} p 0
+\]
+(we leave the argument $x$ implicit).  
+\end{defn}
+Encode is defined by lifting a path into the universal cover, which
+determines an equivalence, and then applying the resulting equivalence
+to $0$.  
+The interesting thing about this function is that it computes a concrete
+number from a loop on the circle, when this loop is represented using
+the abstract groupoidal framework of homotopy type theory.  To gain an
+intuition for how it does this, observe that by the above lemmas,
+$\transfib \code \lloop x$ is the successor map and $\transfib \code {\opp
+  \lloop} x$ is the predecessor map.
+Further, $\mathsf{transport}$ is functorial (\autoref{cha:basics}), so
+$\transfib{\code} {\lloop \ct \lloop}{\blank}$ is
+\[(\transfib \code \lloop-) \circ (\transfib \code \lloop-)\]
+and so on.
+Thus, when $p$ is a composition like 
+\[
+\lloop \ct \opp \lloop \ct \lloop \ct \cdots
+\]
+$\transfib{\code}{p}{\blank}$ will compute a composition of functions like
+\[
+\Zsuc \circ \Zpred \circ \Zsuc \circ \cdots 
+\]
+Applying this composition of functions to 0 will compute the
+\index{winding!number}%
+\emph{winding number} of the path---how many times it goes around the
+circle, with orientation marked by whether it is positive or negative,
+after inverses have been canceled.  Thus, the computational behavior of
+$\encode$ follows from the reduction rules for higher-inductive types and
+univalence, and the action of $\mathsf{transport}$ on compositions and inverses.
+
+Note that the instance $\encode' \defeq \encode_{\base}$ has type 
+$(\id \base \base) \rightarrow \Z$.
+This will be one half of our desired equivalence; indeed, it is exactly the function $g$ defined in \autoref{sec:pi1s1-initial-thoughts}.
+
+Similarly, the function~\eqref{eq:pi1s1-decode} is a generalization of the function $\lloop^{\blank}$ from \autoref{sec:pi1s1-initial-thoughts}.
+
+\begin{defn}\label{thm:pi1s1-decode}
+Define $\decode : \prd{x : \Sn ^1}\code(x) \rightarrow (\base=x)$ by 
+circle induction on $x$.  It suffices to give a function 
+${\code(\base) \rightarrow (\base=\base)}$, for which we use $\lloop^{\blank}$, and 
+to show that $\lloop^{\blank}$ respects the loop.  
+\end{defn}
+
+\begin{proof}
+To show that $\lloop^{\blank}$ respects the loop, it suffices to give a path
+from $\lloop^{\blank}$ to itself that lies over $\lloop$. 
+By the definition of dependent paths, this means a path from
+\[\transfib {(x' \mapsto \code(x') \rightarrow (\base=x'))} {\lloop} {\lloop^{\blank}}\]
+to $\lloop^{\blank}$.  We define such a
+path as follows:
+\begin{align*}
+  \MoveEqLeft \transfib {(x' \mapsto \code(x') \rightarrow (\base=x'))} \lloop {\lloop^{\blank}}\\
+&= \transfibf {x'\mapsto (\base=x')}(\lloop) \circ {\lloop^{\blank}} \circ \transfibf \code ({\opp \lloop}) \\
+&= (- \ct \lloop) \circ (\lloop^{\blank}) \circ \transfibf \code ({\opp \lloop}) \\
+&= (- \ct \lloop) \circ (\lloop^{\blank}) \circ \Zpred \\
+&= (n \mapsto \lloop^{n - 1} \ct \lloop).
+\end{align*}
+On the first line, we apply the characterization of $\mathsf{transport}$
+when the outer connective of the fibration is $\rightarrow$, which
+reduces the $\mathsf{transport}$ to pre- and post-composition with
+$\mathsf{transport}$ at the domain and codomain types.  On the second line,
+we apply the characterization of $\mathsf{transport}$ when the type family
+is $x\mapsto \id{\base}{x}$, which is post-composition of paths.  On the third line,
+we use the action of $\code$ on $\opp \lloop$ from
+\autoref{lem:transport-s1-code}.  And on the fourth line, we simply
+reduce the function composition.  Thus, it suffices to show that for all
+$n$, \id{\lloop^{n - 1} \ct \lloop}{\lloop^{n}}, which is an easy
+induction, using the groupoid laws.  
+\end{proof}
+
+We can now show that $\encode$ and $\decode$ are quasi-inverses.
+What used to be the difficult direction is now easy!
+
+\begin{lem} \label{lem:s1-decode-encode}  For all 
+for all $x: \Sn ^1$ and $p : \id \base x$, $\id
+{\decode_x({{\encode_x(p)}})} p$.  
+\end{lem}
+
+\begin{proof}
+By path induction, it suffices to show that 
+\narrowequation{\id {\decode_{\base}({{\encode_{\base}(\refl{\base})}})} {\refl{\base}}.}
+But
+\narrowequation{\encode_{\base}(\refl{\base}) \jdeq \transfib{\code}{\refl{\base}} 0 \jdeq 0,}
+and $\decode_{\base}(0) \jdeq \lloop^ 0 \jdeq \refl{\base}$.  
+\end{proof}
+
+The other direction is not much harder.
+
+\begin{lem} \label{lem:s1-encode-decode} For all 
+$x: \Sn ^1$ and $c : \code(x)$, we have $\id
+{\encode_x({{\decode_x(c)}})} c$.  
+\end{lem}
+
+\begin{proof}
+The proof is by circle induction.  It suffices to show the case for
+\base, because the case for \lloop is a path between paths in
+$\Z$, which is immediate because $\Z$ is a set.  
+
+Thus, it suffices to show, for all $n : \Z$, that
+\[
+\id {\encode'(\lloop^n)} {n}
+\]
+The proof is by induction, using \cref{thm:looptothe}.
+%
+\begin{itemize}
+
+\item In the case for $0$, the result is true by definition.
+
+\item In the case for $n+1$, 
+\begin{align}
+ {\encode'(\lloop^{n+1})}
+&= {\encode'(\lloop^{n} \ct \lloop)} \tag{by definition of $\lloop^{\blank}$} \\
+&= \transfib{\code}{(\lloop^{n} \ct \lloop)}{0} \tag{by definition of $\encode$}\\
+&= \transfib{\code}{\lloop}{(\transfib{\code}{\lloop^n}{0})} \tag{by functoriality}\\
+&= {(\transfib{\code}{\lloop^n}{0})} + 1 \tag{by \autoref{lem:transport-s1-code}}\\
+&= n + 1. \tag{by the inductive hypothesis}
+\end{align}
+
+\item The case for negatives is analogous.  \qedhere
+\end{itemize}
+\end{proof}
+
+Finally, we conclude the theorem.
+
+\begin{thm} 
+There is a family of equivalences $\prd{x : \Sn ^1} (\eqv {(\base=x)} {\code(x)})$.
+\end{thm}
+\begin{proof}
+The maps $\encode$ and $\decode$ are quasi-inverses by
+\autoref{lem:s1-decode-encode},\autoref{lem:s1-decode-encode}.
+\end{proof}
+
+Instantiating at {\base} gives
+\begin{cor}\label{cor:omega-s1}
+$\eqv {\Omega(\Sn^1,\base)} {\Z}$.
+\end{cor}
+
+A simple induction shows that this equivalence takes addition to
+composition, so that $\Omega(\Sn ^1) = \Z$ as groups.
+
+\begin{cor} \label{cor:pi1s1}
+$\id{\pi_1(\Sn ^1)} {\Z}$, while $\id{\pi_n(\Sn ^1)}0$ for $n>1$.
+\end{cor}
+\begin{proof}
+For $n=1$, we sketched the proof from \autoref{cor:omega-s1} above.
+For $n > 1$, we have $\trunc 0 {\Omega^{n}(\Sn ^1)} = \trunc 0 {\Omega^{n-1}(\Omega{\Sn ^1})} = \trunc 0 {\Omega^{n-1}(\Z)}$.
+And since $\Z$ is a set, $\Omega^{n-1}(\Z)$ is contractible, so this is trivial.
+\end{proof}
+
+\index{encode-decode method|)}%
+
+
+
+\end{document}

@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{NondeterministicPushdownAutomaton}
+\pmcreated{2013-03-22 12:26:49}
+\pmmodified{2013-03-22 12:26:49}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{non-deterministic pushdown automaton}
+\pmrecord{14}{32571}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D10}
+\pmclassification{msc}{68Q42}
+\pmclassification{msc}{68Q05}
+\pmsynonym{pushdown automaton}{NondeterministicPushdownAutomaton}
+\pmsynonym{PDA}{NondeterministicPushdownAutomaton}
+\pmsynonym{NPDA}{NondeterministicPushdownAutomaton}
+\pmsynonym{initial stack symbol}{NondeterministicPushdownAutomaton}
+\pmrelated{ContextFreeLanguage}
+\pmrelated{NonDeterministicFiniteAutomaton}
+\pmrelated{Automaton}
+\pmdefines{state diagram}
+\pmdefines{stack alphabet}
+\pmdefines{start stack symbol}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\begin{document}
+\PMlinkescapeword{name}
+\PMlinkescapeword{onto}
+\PMlinkescapeword{simple}
+
+\subsubsection*{Definition}
+
+A \emph{non-deterministic pushdown automaton} (NPDA), or just \emph{pushdown automaton} (PDA) is a variation on the idea of a non-deterministic finite automaton (NDFA).  Unlike an NDFA, a PDA is associated with a stack (hence the name \textit{pushdown}).  The transition function must also take into account the ``state'' of the stack.
+
+Formally defined, a pushdown automaton $M$ is a 7-tuple $M=(Q,\Sigma,\Gamma,T,q_0,\bot,F)$, where 
+$Q, \Sigma, q_0,$ and $F$, like those in an NDFA, are the set of states, the input alphabet, the start state, and the set of final states respectively.  $\Gamma$ is the \emph{stack alphabet}, specifying the set of symbols that can be pushed onto the stack.  $\Gamma$ is not necessarily disjoint from $\Sigma$.  $\bot$ is an element of $\Gamma$ called the \emph{start stack symbol}.  The transition function is $$T : Q\times(\Sigma\cup\{\lambda\})\times\Gamma\to\mathcal{P}(Q \times \Gamma^*).$$
+
+\subsubsection*{How It Works}
+
+To see how the computing machine $M$ works, first imagine $M$ with the following features:
+\begin{enumerate}
+\item a finite set $Q$ of internal states, 
+\item a horizontal tape of cells each containing an input symbol of $\Sigma$, 
+\item a tape reader that reads at most one tape cell in any given internal state, and 
+\item a vertical stack of cells storing symbols of $\Gamma$.
+\end{enumerate}
+Now, given that $M$ is in state $p$, with symbol $A$ on top of the stack, and tape reader pointing at a tape cell containing symbol $a$, it may do one of the following:
+\begin{itemize}
+\item if $T(p,a,A)\ne \varnothing$, then it
+\begin{enumerate}
+\item ``pops'' $A$ off the stack, 
+\item ``pushes'' word $A_1\cdots A_n$ onto the stack, by starting with symbol $A_n$, and ending with symbol $A_1$, 
+\item ``consumes'' $a$ by moving the tape reader to the right of the cell containing $a$, and
+\item enters state $q$, 
+\end{enumerate}
+provided that $(q,A_1\cdots A_n)\in T(p,a,A)$; if $T(p,a,A)=\varnothing$, then $M$ does nothing.
+\item if $T(p,\lambda,A)\ne \varnothing$, then, without reading $a$, it 
+\begin{enumerate}
+\item ``pops'' $A$ off the stack,
+\item ``pushes'' word $A_1\cdots A_n$ onto the stack, and 
+\item enters state $q$, 
+\end{enumerate}
+as long as $(q,A_1\cdots A_n)\in T(p,\lambda,A)$; if $T(p,\lambda,A)=\varnothing$, then $M$ does nothing.
+\end{itemize}
+If $(q,\lambda) \in T(p,a,A)$, then $A$ gets popped off, and nothing gets pushed onto the stack.
+
+\subsubsection*{Modes of Acceptance}
+
+A PDA is a language acceptor.  We describe how words are accepted by a PDA $M$.  First, we start with configurations.
+
+A configuration of $M$ is an element of $Q\times \Sigma^* \times \Gamma^*$.  For any word $u$, the configuration $(q_0,u,\bot)$ is called the \emph{start configuration} of $u$.  A binary relation $\vdash$ on the set of configurations is defined as follows: if $(p,u,\alpha)$ and $(q,v,\beta)$ are configurations of $M$, then $$(p,u,\alpha)\vdash (q,v,\beta)$$ provided that $\alpha=A\gamma$ and $\beta=B_1\cdots B_n\gamma$, for some $A,B_1,\ldots, B_n \in \Gamma$, and
+\begin{itemize}
+\item either $u=av$, and $(q,B_1\cdots B_n)\in T(p,a,A)$,
+\item or $u=v$, and $(q,B_1\cdots B_n)\in T(p,\lambda,A)$.
+\end{itemize}
+Now, take the reflexive transitive closure $\vdash^*$ of $\vdash$.  When $(p,u,\alpha) \vdash^* (q,v,\beta)$, we say that $v$ is derivable from $u$.  A word $u \in\Sigma^*$ is said to be 
+\begin{itemize}
+\item accepted on final state by $M$ if $(q_0,u,\bot) \vdash^* (q,\lambda,\alpha)$ for some final state $q\in F$,
+\item accepted on empty stack by $M$ if $(q_0,u,\bot) \vdash^* (q,\lambda,\lambda)$,
+\item accepted on final state and empty stack by $M$ if $(q_0,u,\bot) \vdash^* (q,\lambda,\lambda)$ for some $q\in F$.
+\end{itemize}
+
+\subsubsection*{Languages Accepted by a PDA}
+
+Given a mode of acceptance, the set of words accepted by $M$ is called the language accepted by $M$ based on that mode of acceptance.  Given a PDA $M$, there are three languages accepted by $M$, corresponding to the three acceptance modes above.
+
+It turns out that three modes of acceptance are \emph{equivalent}, in the following sense: if a language $L$ is accepted by $M$ on one acceptance mode, there are PDA $M_1$ and $M_2$ that accept $L$ in the other two acceptance modes.  
+
+In general, unless otherwise stated, the language $L(M)$ accepted by a PDA $M$ stands for the language accepted by $M$ on final state.
+
+\textbf{Remarks}.
+\begin{enumerate}
+\item
+Two PDAs are said to be equivalent if they accept the same language.  It can be shown that any PDA is equivalent to a PDA where $T(p,\lambda,A)=\varnothing$ for all $p\in F$ and $A\in \Gamma$ (called a $\lambda$-free PDA).
+\item
+One of the main reasons for studying PDA is: the notion of a PDA is equivalent to the notion of a context-free grammar.  This means that, every language accepted by a PDA is context-free, and every context-free language is accepted by some PDA.
+\end{enumerate}
+
+\subsubsection*{Representation by State Diagrams}
+
+Like an NDFA, a PDA can be presented visually as a directed graph, called a \emph{state diagram}.  Instead of simply labelling edges representing transitions with the leading symbol, two additional symbols are added, representing what symbol must be matched and removed from the top of the stack (or $\lambda$ if none) and what symbol should be pushed onto the stack (or $\lambda$ if none).  For instance, the notation
+\verb=a A/B= for an edge label indicates that \verb=a= must be the first symbol in the remaining input string and \verb=A= must be the symbol at the top of the stack for this transition to occur, and after the transition, \verb=A= is replaced by \verb=B= at the top of the stack.  If the label had been
+$\verb=a=\,\lambda\verb=/B=$, then the symbol at the top of the stack would not matter (the stack could even be empty), and \verb=B= would be pushed on top of the stack during the transition.  If the label had been $\verb=a=\,\verb=A/=\lambda$, \verb=A= would be popped from the stack and nothing would replace it during the transition.
+
+For example, consider the alphabet $\Sigma := \left\{ \verb=(=, \verb=)= \right\}$.
+Let us define a context-free language $L$ that consists of strings where the parentheses are fully balanced.  If we define $\Gamma := \left\{ A \right\}$,
+then a PDA for accepting such strings is:
+
+$$
+\UseComputerModernTips
+\xymatrix {
+\ar[r] &
+*++[o][F=]{0}
+\ar@(u,r)[]^{\texttt{(}\,\lambda/\texttt{A}}
+\ar@(d,r)[]_{\texttt{)}\,\texttt{A}/\lambda}
+}
+$$
+
+Another simple example is a PDA to accept binary palindromes
+(that is, $\left\{ w \in \left\{ 0, 1 \right\}^* \mid w = w^R \right\}$).
+
+$$
+\xymatrix{
+\ar[r] &
+*+[o][F-]{0}
+\ar@(u,r)[]^{0\,\lambda/A}
+\ar@(d,r)[]_{1\,\lambda/B}
+\ar[rrrr]^{\stackrel{\lambda\,\lambda/\lambda}{\stackrel{0\,\lambda/\lambda}{\stackrel{1\,\lambda/\lambda}{}}}}
+&&&&
+*++[o][F=]{1}
+\ar@(u,r)[]^{0\,A/\lambda}
+\ar@(d,r)[]_{1\,B/\lambda}
+}
+$$
+%%%%%
+%%%%%
+\end{document}

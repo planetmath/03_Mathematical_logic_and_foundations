@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProductOfAutomata}
+\pmcreated{2013-03-22 18:03:06}
+\pmmodified{2013-03-22 18:03:06}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{product of automata}
+\pmrecord{12}{40577}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+One way to manufacture an automaton out of existing automata is by taking products.
+
+\subsubsection*{Products of Two Automata}
+
+Let $A_1=(S_1,\Sigma_1,\delta_1,I_1,F_1)$ and $A_2=(S_2,\Sigma_2,\delta_2,I_2,F_2)$ be two automata.  We define the product $A$ of $A_1$ and $A_2$, written $A_1\times A_2$, as the quituple 
+$$(S,\Sigma,\delta,I,F):=(S_1\times S_2,\Sigma_1\times \Sigma_2,\delta_1\times \delta_2, I_1\times I_2, F_1\times F_2),$$
+where $\delta$ is a function from $S\times \Sigma$ to $P(S_1)\times P(S_2)\subseteq P(S)$, given by $$\delta((s_1,s_2),(\alpha_1,\alpha_2)):=\delta_1(s_1,\alpha_1)\times \delta_2(s_2,\alpha_2).$$
+
+Since $S,\Sigma,I,F$ are non-empty, $A$ is an automaton.  The automaton $A$ can be thought of as a machine that runs automata $A_1$ and $A_2$ simultaneously.  A pair $(\alpha_1,\alpha_2)$ of symbols being fed into $A$ at start state $(q_1,q_2)\in I$ is the same as $A_1$ reading $\alpha_1$ at state $q_1$ and $A_2$ reading $\alpha_2$ at state $q_2$.  The set of all possible next states for the configuration $((s_1,s_2),(\alpha_1,\alpha_2))$ in $A$ is the same as the set of all possible combinations $(t_1,t_2)$, where $t_1$ is a next state for the configuration $(s_1,\alpha_1)$ in $A_1$ and $t_2$ is a next state for the configuration $(s_2,\alpha_2)$ in $A_2$.
+
+If $A_1$ and $A_2$ are FSA, so is $A$.  In addition, if both $A_1$ and $A_2$ are deterministic, so is $A$, because $$\delta((s_1,s_2),(\alpha_1,\alpha_2))=(\delta_1(s_1,\alpha_1),\delta_2(s_2, \alpha_2)),$$ and $I$ is a singleton.
+
+As usual, $\delta$ can be extended to read words over $\Sigma$, and it is easy to see that  $$\delta((s_1,s_2),(a_1,a_2))=\delta_1(s_1,a_1)\times \delta_2(s_2,a_2),$$ where $a_1$ and $a_2$ are words over $\Sigma_1$ and $\Sigma_2$ respectively.  A word $(a_1,a_2)$ is accepted by $A$ iff $a_1$ is accepted by $A_1$ and $a_2$ is accepted by $A_2$.
+
+\subsubsection*{Intersection of Two Automata}
+
+Again, we assume $A_1$ and $A_2$ are automata specified above.  Now, suppose $\Sigma_1=\Sigma_2=\Delta$.  Then $\Delta$ can be identified as the diagonal in $\Sigma=\Sigma_1\times \Sigma_2=\Delta^2$.  We are then led to an automaton $$A_1\cap A_2:=(S,\Delta, \delta,I,F),$$ where $S,I$, and $F$ are defined previously, and $\delta$ is given by $$\delta((s_1,s_2),\alpha)=\delta_1(s_1,\alpha)\times \delta_2(s_2,\alpha).$$  
+Suppose in addition that $\Delta$ is finite.  From the discussion in the previous section, it is evident that the language accepted by $A_1\cap A_2$ is the same as the intersection of the language accepted by $A_1$ and the language accepted by $A_2$: $$L(A_1\cap A_2) = L(A_1)\cap L(A_2).$$
+%%%%%
+%%%%%
+\end{document}

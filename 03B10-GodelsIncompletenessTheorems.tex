@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{GodelsIncompletenessTheorems}
+\pmcreated{2013-03-22 13:50:36}
+\pmmodified{2013-03-22 13:50:36}
+\pmowner{mathcam}{2727}
+\pmmodifier{mathcam}{2727}
+\pmtitle{G\"odel's incompleteness theorems}
+\pmrecord{13}{34580}
+\pmprivacy{1}
+\pmauthor{mathcam}{2727}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+\pmclassification{msc}{03F45}
+\pmrelated{BeyondFormalism}
+\pmdefines{G\"odel's first incompleteness theorem}
+\pmdefines{incompleteness theorem}
+\pmdefines{Hilbert-Bernays derivability conditions}
+\pmdefines{provability logic}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%\usepackage{amsthm}
+\newtheorem{thm}{Theorem}
+
+\def\Godel{\hbox{\bf G\"odel}}
+\def\Prov{\operatorname{Prov}} % Is this what it's supposed to look like?
+\begin{document}
+G\"odel's first and second incompleteness theorems are perhaps the most celebrated results in mathematical logic. The basic idea behind G\"odel's proofs is that by the device of G\"odel numbering, one can formulate properties of theories and sentences as arithmetical properties of the corresponding G\"odel numbers, thus allowing 1st order arithmetic to speak of its own consistency, provability of some sentence and so forth.
+
+The original result G\"odel proved in his classic paper {\em On Formally Undecidable Propositions in Principia Mathematica and Related Systems} can be stated as
+
+\begin{thm}
+No theory $\mathbf{T}$ axiomatisable in the type system of PM (i.e., in Russell's theory of types) which contains Peano-arithmetic and is $\omega$-consistent proves all true theorems of arithmetic (and no false ones).
+\end{thm}
+
+Stated this way, the theorem is an obvious corollary of Tarski's result on the undefinability of truth. This can be seen as follows. Consider a G\"odel numbering G, which assigns to each formula $\phi$ its G\"odel number $^\lceil\phi^\rceil$. The set of G\"odel numbers of all true sentences of arithmetic is $\{^\lceil\phi^\rceil \mid \mathbb{N}\models \phi\}$, and by Tarski's result it isn't definable by any arithmetic formula. But assume there's a theory $T$ an axiomatisation $\mathbf{Ax}_T$ of which is definable in arithmetic and which proves all true statements of arithmetic. But now $\exists P(P$ is a proof of $x$ from $\mathbf{Ax}_T)$ defines the set of (G\"odel numbers of) true sentences of arithmetic, which contradicts Tarski's result.
+
+The proof given above is highly non-constructive. A much stronger version can actually be extracted from G\"odel's paper, namely that
+
+\begin{thm}
+There is a primitive recursive function $\Godel$, 
+such that if $T$ is a theory with a p.r. axiomatisation $\alpha$, 
+and if all primitive recursive functions are representable in $T$ 
+then $\mathbb{N}\models\Godel(\alpha)$ 
+but $T \not\vdash\Godel(\alpha)$
+\end{thm}
+
+This second form of the theorem is the one usually proved, although the theorem is usually stated in a form for which the nonconstructive proof based on Tarski's result would suffice. The proof for this stronger version is based on a similar idea as Tarski's result. 
+
+Consider the formula $\exists P (P$ is a proof of $x$ from $\alpha)$, 
+which defines a predicate $$\Prov_\alpha(x)$$ which represents provability from $\alpha$. 
+Assume we have numerated the open formulae with one variable in a sequence $B_i$, so that every open formula occurs. 
+Consider now the sentence $\neg\Prov_\alpha(B_x)$, which defines the non-provability from $\alpha$ predicate.  
+Now, since $\neg\Prov_\alpha(B_x)$ is an open formula with one variable, it must be $B_k$ for some $k$. Thus we can consider the closed sentence $B_k(k)$. 
+This sentence is equivalent to 
+$\neg\Prov_\alpha(subst(^\lceil\neg\Prov_\alpha(x)^\rceil),k))$,
+but since $subst(^\lceil\neg\Prov_\alpha(x)^\rceil),k)$ is just $B_k(k)$, 
+it ``asserts its own unprovability''. 
+
+Since all the steps we took to get the undecided but true sentence $subst(^\lceil\neg\Prov_\alpha(x)^\rceil),k)$ is just $B_k(k)$ were very simple mechanic manipulations of G\"odel numbers guaranteed to terminate in bounded time, we have in fact produced the p.r. function $\Godel$ required by the statement of the theorem.
+
+The first version of the proof can be used to show that also many non-axiomatisable theories are incomplete. For example, consider $PA$ + all true $\Pi_1$ sentences. Since $\Pi_1$ truth is definable at $\Pi_2$-level, this theory is definable in arithmetic by a formula $\alpha$. However, it's not complete, since otherwise $\exists p (p$ is a proof of $x$ from $\alpha)$ would be the set of true sentences of arithmetic. This can be extended to show that no arithmetically definable theory with sufficient expressive power is complete.
+
+The second version of G\"odel's first incompleteness theorem suggests a natural way to extend theories to stronger theories which are exactly as sound as the original theories. This sort of process has been studied by Turing, Feferman, Fenstad and others under the names of ordinal logics and transfinite recursive progressions of arithmetical theories.
+
+G\"odel's second incompleteness theorem concerns what a theory can prove about its own provability predicate, in particular whether it can prove that no contradiction is provable. The answer under very general settings is that a theory can't prove that it is consistent, without actually being inconsistent. 
+
+The second incompleteness theorem is best presented by means of a provability logic. 
+Consider an arithmetic theory $T$ which is p.r. axiomatised by $\alpha$. 
+We extend the language this theory is expressed in with a new sentence forming operator $\Box$, so that any sentence in parentheses prefixed by $\Box$ is a sentence. 
+Thus for example, $\Box(0=1)$ is a formula. 
+Intuitively, we want $\Box(\phi)$ to express the provability of $\phi$ from $\alpha$. 
+Thus the semantics of our new language is exactly the same as that of the original language, with the additional rule that $\Box(\phi)$ is true if and only if $\alpha \vdash \phi$. 
+There is a slight difficulty here; $\phi$ might itself contain boxed expressions, and we haven't yet provided any semantics for these. 
+The answer is simple, whenever a boxed expression $\Box(\psi)$ occurs within the scope of another box, we replace it with the arithmetical statement $\Prov_\alpha(\psi)$. 
+Thus for example the truth of $\Box(\Box(0=1))$ is equivalent to $\alpha \vdash \Prov_\alpha(^\lceil 0=1 ^\rceil)$. Assuming that $\alpha$ is strong enough to prove all true instances of $\Prov_\alpha(^\lceil\phi^\rceil)$ we can in fact interprete the whole of the new boxed language by the translation. 
+This is what we shall do, so formally $\alpha \vdash \phi$ (where $\phi$ might contain boxed sentences) is taken to mean $\alpha \vdash \phi*$ where $\phi*$ is obtained by replacing the boxed expressions with arithmetical formulae as above.
+
+There are a number of restrictions we must impose on $\alpha$ (and thus on $\Box$, the meaning of which is determined by $\alpha$). 
+These are known as Hilbert-Bernays derivability conditions and they are as follows
+
+\begin{itemize}
+ \item if $\alpha \vdash \phi$ then $\alpha \vdash \Box(\phi)$
+ \item $\alpha \vdash \Box(\phi) \rightarrow \Box\Box(\phi)$
+ \item $\alpha \vdash \Box(\phi \rightarrow \psi) \rightarrow (\Box\phi\rightarrow\Box\psi)$
+\end{itemize}
+
+A statement $Cons$ asserts the consistency of $\alpha$ if its equivalent to $\neg\Box(0=1)$. G\"odel's first incompleteness theorem shows that there is a sentence $B_k(k)$ for which the following is true $\neg\Box(0=1) \rightarrow \Diamond(B_k(k)) \wedge \Diamond(\neg(B_k(k))$, where $\Diamond$ is the dual of $\Box$, i.e. $\Diamond(\phi) \leftrightarrow \neg\Box(\neg\phi)$. A careful analysis reveals that this is {\em provable} in any $\alpha$ which satisfied the derivability conditions, i.e. $\alpha \vdash \neg\Box(0=1) \rightarrow \Diamond(B_k(k)) \wedge \Diamond(\neg(B_k(k))$. Assume now that $\alpha$ can prove $\neg\Box(0=1)$, i.e. that $\alpha$ can prove its own consistency. Then $\alpha$ can prove $\Diamond(B_k(k)) \wedge \Diamond(\neg(B_k(k))$. But this means that $\alpha$ can prove $B_k(k)$! Thus $\alpha$ is inconsistent.
+%%%%%
+%%%%%
+\end{document}

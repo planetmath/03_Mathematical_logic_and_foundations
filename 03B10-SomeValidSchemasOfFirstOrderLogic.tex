@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{SomeValidSchemasOfFirstOrderLogic}
+\pmcreated{2013-03-22 19:32:28}
+\pmmodified{2013-03-22 19:32:28}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{some valid schemas of first order logic}
+\pmrecord{11}{42520}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+In this entry, we record some valid schemas of first order logic FO$(\Sigma)$ based on the signature $\Sigma$:
+\begin{enumerate}
+\item $\forall x A \to \forall y A[y/x]$ if $y$ does not occur free, but free for $x$, in $A$
+\item $\forall y A[y/x] \to \forall x A$ if $y$ does not occur in $A$
+\item $\forall x A \leftrightarrow A$ if $x$ is not free in $A$
+\item $\exists x A \leftrightarrow A$ if $x$ is not free in $A$
+\item $\forall x \forall y A \to \forall y \forall x A$
+\item $\exists x \exists y A \to \exists y \exists x A$
+\item $\forall x (A\to B) \to (\forall x A \to \forall x B)$
+\item $(\forall x A \to \forall x B) \to \forall x (A\to B)$
+\item $\forall x (A\land B) \leftrightarrow \forall x A \land \forall x B$
+\item $\exists x (A\lor B) \leftrightarrow \exists x A \lor \exists x B$
+\item $\forall x (A \lor B) \leftrightarrow (\forall x A) \lor B$ if $x$ is not free in $B$
+\item $\exists x (A\land B) \leftrightarrow (\exists x A) \land B$ if $x$ is not free in $B$
+\end{enumerate}
+where $A,B$ are well-formed formulas (wff's) of FO$(\Sigma)$.
+
+%%%%%
+%%%%%
+\end{document}

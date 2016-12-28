@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Cofinality}
+\pmcreated{2013-03-22 12:23:55}
+\pmmodified{2013-03-22 12:23:55}
+\pmowner{yark}{2760}
+\pmmodifier{yark}{2760}
+\pmtitle{cofinality}
+\pmrecord{25}{32205}
+\pmprivacy{1}
+\pmauthor{yark}{2760}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E04}
+\pmdefines{cofinal}
+\pmdefines{regular cardinal}
+\pmdefines{singular cardinal}
+\pmdefines{regular}
+\pmdefines{singular}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\def\cf#1{\operatorname{cf}(#1)}
+\def\cof#1{\operatorname{cof}(#1)}
+\begin{document}
+\PMlinkescapeword{case}
+\PMlinkescapeword{cases}
+\PMlinkescapeword{contain}
+\PMlinkescapeword{inequality}
+\PMlinkescapeword{ordinal}
+\PMlinkescapeword{property}
+\PMlinkescapeword{satisfies}
+
+\section*{Definitions}
+
+Let $(P,\leq)$ be a poset. A subset $A\subseteq P$ is said to be \emph{cofinal} in $P$ if for every $x\in P$ there is a $y\in A$ such that $x\le y$.
+A function $f\colon X\to P$ is said to be \emph{cofinal} if $f(X)$ is cofinal in $P$.
+The least cardinality of a cofinal set of $P$ is called the \emph{cofinality} of $P$.
+Equivalently, the cofinality of $P$ is the least \PMlinkid{ordinal}{2787} $\alpha$ such that there is a cofinal function $f\colon\alpha\to P$.
+The cofinality of $P$ is written $\cf{P}$, or $\cof{P}$.
+
+\section*{Cofinality of totally ordered sets}
+
+If $(T,\leq)$ is a totally ordered set, then it must contain a well-ordered cofinal subset which is order-isomorphic to $\cf{T}$.
+Or, put another way, there is a cofinal function $f\colon\cf{T}\to T$ with the property that $f(x)<f(y)$ whenever $x<y$.
+
+For any ordinal $\beta$ we must have $\cf{\beta}\leq\beta$, because the identity map on $\beta$ is cofinal.
+In particular, this is true for cardinals, so any cardinal $\kappa$ either satisfies $\cf{\kappa}=\kappa$, in which case it is said to be \emph{regular}, or it satisfies $\cf{\kappa}<\kappa$, in which case it is said to be \emph{singular}.
+
+The cofinality of any totally ordered set is necessarily a regular cardinal.
+
+\section*{Cofinality of cardinals}
+
+$0$ and $1$ are regular cardinals. All other finite cardinals have cofinality $1$ and are therefore singular.
+
+It is easy to see that $\cf{\aleph_0}=\aleph_0$, so $\aleph_0$ is regular.
+
+$\aleph_1$ is regular, because the union of countably many countable sets is countable.
+More generally, all infinite successor cardinals are regular.
+
+The smallest infinite singular cardinal is $\aleph_{\omega}$.
+In fact, the function $f\colon\omega\to\aleph_{\omega}$ given by $f(n)=\omega_n$ is cofinal, so $\cf{\aleph_\omega}=\aleph_0$.
+More generally, for any nonzero limit ordinal $\delta$, the function $f\colon\delta\to\aleph_\delta$ given by $f(\alpha)=\omega_\alpha$ is cofinal, and this can be used to show that $\cf{\aleph_\delta}=\cf{\delta}$.
+
+Let $\kappa$ be an infinite cardinal.
+It can be shown that $\cf{\kappa}$ is 
+the least cardinal $\mu$ such that $\kappa$ is 
+the sum of $\mu$ cardinals each of which is less than $\kappa$.
+This fact together with K\"onig's theorem tells us that  
+$\kappa<\kappa^{\cf{\kappa}}$.
+Replacing $\kappa$ by $2^\kappa$ in this inequality 
+we can further deduce that $\kappa<\cf{2^\kappa}$.
+In particular, $\cf{2^{\aleph_0}}>\aleph_0$, from which it follows that $2^{\aleph_0}\neq\aleph_\omega$ (this being the smallest uncountable aleph which is provably not the cardinality of the continuum).
+%%%%%
+%%%%%
+\end{document}

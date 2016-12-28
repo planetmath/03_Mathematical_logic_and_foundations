@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FunctionalCompleteness}
+\pmcreated{2013-03-22 18:51:32}
+\pmmodified{2013-03-22 18:51:32}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{functional completeness}
+\pmrecord{11}{41671}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmsynonym{truth functional completeness}{FunctionalCompleteness}
+\pmsynonym{truth functionally complete}{FunctionalCompleteness}
+\pmdefines{functionally complete}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Recall that in classical propositional logic, well-formed formulas (wffs) can be built up (recursively) from propositional variables via logical connectives.  There are several choices for the logical connectives used:
+\begin{itemize}
+\item $F_1=\lbrace \neg, \vee \rbrace$,
+\item $F_2=\lbrace \neg, \wedge \rbrace$,
+\item $F_3=\lbrace \neg, \to \rbrace$,
+\item $F_4=\lbrace \neg, \vee, \wedge \rbrace$,
+\item $F_5=\lbrace \neg, \vee, \wedge, \to, \leftrightarrow \rbrace$.
+\end{itemize}
+For a given set $V$ of (propositional) variables, and a set $F$ of logical connectives, denote $\overline{V}(F)$ the set of all wffs built from $V$ with respect to $F$.  From the choices above, we see that $\overline{V}(F_i) \subset \overline{V}(F_5)$ for all $i<5$, and $\overline{V}(F_j) \subset \overline{V}(F_4)$ for all $j<3$.
+
+However, we know that, intuitively, some of the connectives are ``redundant'' in that they can be ``defined'' using existing connectives.  For example, the connective $\leftrightarrow$ can be defined in terms of $\to$ and $\vee$: $$p\leftrightarrow q:= (p\to q)\vee (q\to p),$$ and $\to$ can in turn be defined in terms of $\vee$ and $\neg$: $$p\to q:= (\neg p) \vee q,$$ etc...  This means that, although $\overline{V}(F_5)$ is a much larger set than, say, $\overline{V}(F_1)$, every extra wff in $\overline{V}(F_5)$ is in some way \emph{equivalent} to an wff in $\overline{V}(F_1)$.  This equivalence is the familiar semantic equivalence.  If fact, we can show that $\neg$ and $\vee$ are all we need: ``any'' logical connective can be ``defined'' in terms of them, not just the ones mentioned above.  This is the notion of \emph{truth functional completeness}, or \emph{functional completeness} for short.  To make this precise, we have the following:
+
+\textbf{Definition} A set $F$ of logical connectives is said to be \emph{truth functionally complete}, or \emph{functionally complete} if, given logical connective $\phi$, every wff in $\overline{V}(F \cup \lbrace \phi \rbrace)$ is semantically equivalent to a wff in $\overline{V}(F)$, considered as a subset of $\overline{V}(F \cup \lbrace \phi \rbrace)$.
+
+It is clear that if $F$ is functionally complete, so is any of its superset.  Also, given a set $F$ of logical connectives, if there is a functionally complete set $G$ of logical connectives such that every wff in $\overline{V}(G)$ is semantically equivalent to a wff in $\overline{V}(F)$, then $F$ is functionally complete.
+
+For example, it can be shown that $F_1$ above is functionally complete, and as an easy corollary, so is each of the rest of $F_i$ above.
+
+\begin{thebibliography}{7}
+\bibitem{dvd} D. van Dalen: {\em Logic and Structure}, Springer, 4th Ed., Berlin (2008).
+\bibitem{he} H. Enderton: {\em A Mathematical Introduction to Logic}, Academic Press, San Diego (1972).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

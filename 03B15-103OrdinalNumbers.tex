@@ -1,0 +1,483 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{103OrdinalNumbers}
+\pmcreated{2013-11-06 17:15:58}
+\pmmodified{2013-11-06 17:15:58}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{PMBookProject}{1000683}
+\pmtitle{10.3 Ordinal numbers}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{1000683}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\acc}{\ensuremath{\mathsf{acc}}} 
+\newcommand{\blank}{\mathord{\hspace{1pt}\text{--}\hspace{1pt}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\eqr}{\sim}         
+\def\exis#1{\exists (#1)\@ifnextchar\bgroup{.\,\exis}{.\,}}
+\def\fall#1{\forall (#1)\@ifnextchar\bgroup{.\,\fall}{.\,}}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\jdeq}{\equiv}      
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\narrowbreak}{}
+\newcommand{\narrowequation}[1]{$#1$}
+\newcommand{\ord}{\ensuremath{\mathsf{Ord}}\xspace}
+\newcommand{\ordsl}[2]{{#1}_{/#2}}
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\newcommand{\power}[1]{\mathcal{P}(#1)} 
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\prop}{\ensuremath{\mathsf{Prop}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\suc}{\mathsf{succ}}
+\newcommand{\supp}{\ensuremath\suppsym\xspace}
+\newcommand{\suppsym}{{\mathsf{sup}}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\ttt}{\ensuremath{\star}\xspace}
+\def\@twtype#1{\mathchoice{{\textstyle\mathsf{W}_{(#1)}}}{\mathsf{W}_{(#1)}}{\mathsf{W}_{(#1)}}{\mathsf{W}_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\uset}{\ensuremath{\mathcal{S}et}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\def\wtype#1{\@ifnextchar\bgroup  {\mathchoice{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}\wtype}  {\mathchoice{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}{\@twtype{#1}}}}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{10.3.\arabic{mathcount}}
+\newtheorem{predefn}{Definition}
+\newenvironment{defn}{\begin{predefn}}{\end{predefn}\addtocounter{mathcount}{1}}
+\renewcommand{\thepredefn}{10.3.\arabic{mathcount}}
+\newtheorem{preeg}{Example}
+\newenvironment{eg}{\begin{preeg}}{\end{preeg}\addtocounter{mathcount}{1}}
+\renewcommand{\thepreeg}{10.3.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{10.3.\arabic{mathcount}}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{10.3.\arabic{mathcount}}
+\let\autoref\cref
+\let\bbU\UU
+\let\nat\N
+\let\setof\Set    
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+\index{ordinal|(}%
+
+\begin{defn}\label{defn:accessibility}
+  Let $A$ be a set and
+  \[(\blank<\blank):A\to A\to \prop\]
+  a binary relation on $A$.
+  We define by induction what it means for an element $a:A$ to be \define{accessible}
+  \indexdef{accessibility}%
+  \indexsee{accessible}{accessibility}%
+  by $<$:
+  \begin{itemize}
+  \item If $b$ is accessible for every $b<a$, then $a$ is accessible.
+  \end{itemize}
+  We write $\acc(a)$ to mean that $a$ is accessible.
+\end{defn}
+
+It may seem that such an inductive definition can never get off the ground, but of course if $a$ has the property that there are \emph{no} $b$ such that $b<a$, then $a$ is vacuously accessible.
+
+Note that this is an inductive definition of a family of types, like the type of vectors considered in \autoref{sec:generalizations}.
+More precisely, it has one constructor, say $\acc_<$, with type
+\[ \acc_< : \prd{a:A} \Parens{\prd{b:A} (b<a) \to \acc(b)} \to \acc(a). \]
+\index{induction principle!for accessibility}%
+The induction principle for $\acc$ says that for any $P:\prd{a:A} \acc(a) \to \type$, if we have
+\[f:\prd{a:A}{h:\prd{b:A} (b<a) \to \acc(b)}
+\Parens{\prd{b:A}{l:b<a} P(b,h(b,l))} \to
+P(a,\acc_<(a,h)),
+\]
+then we have $g:\prd{a:A}{c:\acc(a)} P(a,c)$ defined by induction, with
+\[g(a,\acc_<(a,h)) \jdeq f(a,\,h,\,\lam{b}{l} g(b,h(b,l))).\]
+This is a mouthful, but generally we apply it only in the simpler case where $P:A\to\type$ depends only on $A$.
+In this case the second and third arguments of $f$ may be combined, so that what we have to prove is
+\[f:\prd{a:A} \Parens{\prd{b:A} (b<a) \to \acc(b) \times P(b)}
+\to P(a).
+\]
+That is, we assume every $b<a$ is accessible and $g(b):P(b)$ is defined, and from these define $g(a):P(a)$.
+
+The omission of the second argument of $P$ is justified by the following lemma, whose proof is the only place where we use the more general form of the induction principle.
+
+\begin{lem}
+  Accessibility\index{accessibility} is a mere property.
+\end{lem}
+\begin{proof}
+  We must show that for any $a:A$ and $s_1,s_2:\acc(a)$ we have $s_1=s_2$.
+  We prove this by induction on $s_1$, with
+  \[P_1(a,s_1) \defeq \prd{s_2:\acc(a)} (s_1=s_2). \]
+  Thus, we must show that for any $a:A$ and ${h_1:\prd{b:A} (b<a) \to \acc(b)}$ and
+  \[ k_1:{\prd{b:A}{l:b<a}{t:\acc(b)} h_1(b,l) = t},\]
+  we have $\acc_<(a,h) = s_2$ for any $s_2:\acc(a)$.
+  We regard this statement as $\prd{a:A}{s_2:\acc(a)} P_2(a,s_2)$, where
+  \[P_2(a,s_2) \defeq
+  \prd{h_1 : \cdots } %{h_1:\prd{b:A} (b<a) \to \acc(b)}
+  {k_1 : \cdots} % \Parens{\prd{b:A}{l:b<a}{t:\acc(b)} h_1(b,l) = t} \to
+  (\acc_<(a,h_1) = s_2);
+  \]
+  thus we may prove it by induction on $s_2$.
+  Therefore, we assume $h_2 : \prd{b:A} (b<a) \to \acc(b)$, and $k_2$ with a monstrous but irrelevant type,
+  % \begin{narrowmultline*}
+  %   k_2:\prd{b:A}{l:b<a}
+  %   \prd{h_1:\prd{b':A} (b'<b) \to \acc(b')}
+  %   \narrowbreak
+  %   \Parens{\prd{b':A}{l':b'<b}{t':\acc(b')} h_1(b',l') = t'} \to
+  %   (\acc_<(b,h_1) = h_2(b,l)).
+  % \end{narrowmultline*}
+  and must show that for any $h_1$ and $k_1$ with types as above,
+  we have $\acc_<(a,h_1) = \acc_<(a,h_2)$.
+  By function extensionality, it suffices to show $h_1(b,l) = h_2(b,l)$ for all $b:A$ and $l:b<a$.
+  This follows from $k_1$.
+\end{proof}
+
+\begin{defn}
+  A binary relation $<$ on a set $A$ is \define{well-founded}
+  \indexdef{relation!well-founded}%
+  \indexdef{well-founded!relation}%
+  if every element of $A$ is accessible.
+\end{defn}
+
+The point of well-foundedness is that for $P:A\to \type$, we can use the induction principle of $\acc$ to conclude $\prd{a:A} \acc(a) \to P(a)$, and then apply well-foundedness to conclude $\prd{a:A} P(a)$.
+In other words, if from $\fall{b:A} (b<a) \to P(b)$ we can prove $P(a)$, then $\fall{a:A} P(a)$.
+This is called \define{well-founded induction}\indexdef{well-founded!induction}.
+
+\begin{lem}
+  Well-foundedness is a mere property.
+\end{lem}
+\begin{proof}
+  Well-foundedness of $<$ is the type $\prd{a:A} \acc(a)$, which is a mere proposition since each $\acc(a)$ is.
+\end{proof}
+
+\begin{eg}\label{thm:nat-wf}
+  Perhaps the most familiar well-founded relation is the usual strict ordering on \nat.
+  To show that this is well-founded, we must show that $n$ is accessible for each $n:\nat$.
+  \index{strong!induction}%
+  This is just the usual proof of ``strong induction'' from ordinary induction on \nat.
+
+  Specifically, we prove by induction on $n:\nat$ that $k$ is accessible for all $k\le n$.
+  The base case is just that $0$ is accessible, which is vacuously true since nothing is strictly less than $0$.
+  For the inductive step, we assume that $k$ is accessible for all $k\le n$, which is to say for all $k<n+1$; hence by definition $n+1$ is also accessible.
+
+  A different relation on \nat which is also well-founded is obtained by setting only $n < \suc(n)$ for all $n:\nat$.
+  Well-foundedness of this relation is almost exactly the ordinary induction principle of \nat.
+\end{eg}
+
+\begin{eg}\label{thm:wtype-wf}
+  Let $A:\set$ and $B : A \to \set$ be a family of sets.
+  Recall from \autoref{sec:w-types} that the $W$-type $\wtype{a:A} B(a)$ is inductively generated by the single constructor
+  \begin{itemize}
+  \item $\supp : \prd{a:A} (B(a) \to \wtype{x:A} B(x)) \to \wtype{x:A} B(x)$
+  \end{itemize}
+  We define the relation $<$ on $\wtype{x:A} B(x)$ by recursion on its second argument:
+  \begin{itemize}
+  \item For any $a:A$ and $f:B(a) \to \wtype{x:A} B(x)$, we define $w<\supp(a,f)$ to mean that there merely exists a $b:B(a)$ such that $w = f(b)$.
+  \end{itemize}
+  Now we prove that every $w:\wtype{x:A} B(x)$ is accessible for this relation, using the usual induction principle for $\wtype{x:A}B(x)$.
+  This means we assume given $a:A$ and $f:B(a) \to \wtype{x:A} B(x)$, and also a lifting $f' : \prd{b:B(a)} \acc(f(b))$.
+  But then by definition of $<$, we have $\acc(w)$ for all $w<\supp(a,f)$; hence $\supp(a,f)$ is accessible.
+\end{eg}
+
+Well-foundedness allows us to define functions by recursion and prove statements by induction, such as for instance the following.
+Recall from \autoref{subsec:prop-subsets} that $\power B$ denotes the \emph{power set}\index{power set} $\power B \defeq (B\to\prop)$.
+
+\begin{lem}\label{thm:wfrec}
+  Suppose $B$ is a set and we have a function
+  \[ g : \power B \to B \]
+  Then if $<$ is a well-founded relation on $A$, there is a function $f:A\to B$ such that for all $a:A$ we have
+  \begin{equation*}
+    f(a) = g\Big(\setof{ f(a') | a'<a }\Big).
+  \end{equation*}
+\end{lem}
+\noindent
+(We are using the notation for images of subsets from \autoref{sec:image}.)
+\begin{proof}
+  We first define, for every $a:A$ and $s:\acc(a)$, an element $\bar f(a,s):B$.
+  By induction, it suffices to assume that $s$ is a function assigning to each $a'<a$ a witness $s(a'):\acc(a')$, and that moreover for each such $a'$ we have an element $\bar f(a',s(a')):B$.
+  In this case, we define
+  \begin{equation*}
+    \bar f(a,s) \defeq g\Big(\setof{ \bar f(a',s(a')) | a'<a }\Big).
+  \end{equation*}
+
+  Now since $<$ is well-founded, we have a function $w:\prd{a:A} \acc(a)$.
+  Thus, we can define $f(a)\defeq \bar f (a,w(a))$.
+\end{proof}
+
+In classical\index{mathematics!classical} logic, well-foundedness has a more well-known reformulation.
+In the following, we say that a subset $B: \power A$ is \define{nonempty}
+\indexdef{nonempty subset}
+if it is unequal to the empty subset $(\lam{x}\bot) : \power X$.
+We leave it to the reader to verify that assuming excluded middle, this is equivalent to mere inhabitation, i.e.\ to the condition $\exis{x:A} x\in B$.
+
+\begin{lem}\label{thm:wfmin}
+  \index{excluded middle}%
+  Assuming excluded middle, $<$ is well-founded if and only if every nonempty subset $B: \power A$ merely has a minimal element.
+\end{lem}
+\begin{proof}
+  Suppose first $<$ is well-founded, and suppose $B\subseteq A$ is a subset with no minimal element.
+  That is, for any $a:A$ with $a\in B$, there merely exists a $b:A$ with $b<a$ and $b\in B$.
+
+  We claim that for any $a:A$ and $s:\acc(a)$, we have $a\notin B$.
+  By induction, we may assume $s$ is a function assigning to each $a'<a$ a proof $s(a'):\acc(a)$, and that moreover for each such $a'$ we have $a'\notin B$.
+  If $a\in B$, then by assumption, there would merely exist a $b<a$ with $b\in B$, which contradicts this assumption.
+  Thus, $a\notin B$; this completes the induction.
+  Since $<$ is well-founded, we have $a\notin B$ for all $a:A$, i.e. $B$ is empty.
+
+  Now suppose each nonempty subset merely has a minimal element.
+  Let $B = \setof{ a:A | \neg \acc(a) }$.
+  Then if $B$ is nonempty, it merely has a minimal element.
+  Thus there merely exists an $a:A$ with $a\in B$ such that for all $b<a$, we have $\acc(b)$.
+  But then by definition (and induction on truncation), $a$ is merely accessible, and hence accessible, contradicting $a\in B$.
+  Thus, $B$ is empty, so $<$ is well-founded.
+\end{proof}
+
+\begin{defn}
+  A well-founded relation $<$ on a set $A$ is \define{extensional}
+  \indexdef{relation!extensional}%
+  \indexdef{extensional!relation}%
+  if for any $a,b:A$, we have
+  \[ \Parens{\fall{c:A} (c<a) \Leftrightarrow (c<b)} \to (a=b). \]
+\end{defn}
+
+Note that since $A$ is a set, extensionality is a mere proposition.
+This notion of ``extensionality'' is unrelated to function extensionality, and also unrelated to the extensionality of identity types.
+\index{axiom!of extensionality}%
+Rather, it is a ``local'' counterpart of the axiom of extensionality in classical set theory.
+
+\begin{thm}
+  The type of extensional well-founded relations is a set.
+\end{thm}
+\begin{proof}
+  By the univalence axiom, it suffices to show that if $(A,<)$ is extensional and well-founded and $f:(A,<) \cong (A,<)$, then $f=\idfunc[A]$.
+  \index{automorphism!of extensional well-founded relations}%
+  We prove by induction on $<$ that $f(a)=a$ for all $a:A$.
+  The inductive hypothesis is that for all $a'<a$, we have $f(a')=a'$.
+
+  Now since $A$ is extensional, to conclude $f(a)=a$ it is sufficient to show
+  \[\fall{c:A}(c<f(a)) \Leftrightarrow (c<a).\]
+  However, since $f$ is an automorphism, we have $(c<a) \Leftrightarrow (f(c)<f(a))$.
+  But $c<a$ implies $f(c)=c$ by the inductive hypothesis, so $(c<a) \to (c<f(a))$.
+  On the other hand, if $c<f(a)$, then $f^{-1}(c)<a$, and so $c = f(f^{-1}(c)) = f^{-1}(c)$ by the inductive hypothesis again; thus $c<a$.
+  Therefore, we have $(c<a) \Leftrightarrow (c<f(a))$ for any $c:A$, so $f(a)=a$.
+\end{proof}
+
+\begin{defn}\label{def:simulation}
+  If $(A,<)$ and $(B,<)$ are extensional and well-founded, a \define{simulation}
+  \indexdef{simulation}%
+  \indexsee{function!simulation}{simulation}%
+  is a function $f:A\to B$ such that
+  \begin{enumerate}
+  \item if $a<a'$, then $f(a)<f(a')$, and\label{item:sim1}
+  \item for all $a:A$ and $b:B$, if $b<f(a)$, then there merely exists an $a'<a$ with $f(a')=b$.\label{item:sim2}
+  \end{enumerate}
+\end{defn}
+
+\begin{lem}
+  Any simulation is injective.
+\end{lem}
+\begin{proof}
+  We prove by double well-founded induction that for any $a,b:A$, if $f(a)=f(b)$ then $a=b$.
+  The inductive hypothesis for $a:A$ says that for any $a'<a$, and any $b:B$, if $f(a')=f(b)$ then $a=b$.
+  The inner inductive hypothesis for $b:A$ says that for any $b'<b$, if $f(a)=f(b')$ then $a=b'$.
+
+  Suppose $f(a)=f(b)$; we must show $a=b$.
+  By extensionality, it suffices to show that for any $c:A$ we have $(c<a)\Leftrightarrow (c<b)$.
+  If $c<a$, then $f(c)<f(a)$ by \autoref{def:simulation}\ref{item:sim1}.
+  Hence $f(c)<f(b)$, so by \autoref{def:simulation}\ref{item:sim2} there merely exists $c':A$ with $c'<b$ and $f(c)=f(c')$.
+  By the inductive hypothesis for $a$, we have $c=c'$, hence $c<b$.
+  The dual argument is symmetrical.
+\end{proof}
+
+In particular, this implies that in \autoref{def:simulation}\ref{item:sim2} the word ``merely'' could be omitted without change of sense.
+
+\begin{cor}
+  If $f:A\to B$ is a simulation, then for all $a:A$ and $b:B$, if $b<f(a)$, there \emph{purely} exists an $a'<a$ with $f(a')=b$.
+\end{cor}
+\begin{proof}
+  Since $f$ is injective, $\sm{a:A} (f(a)=b)$ is a mere proposition.
+\end{proof}
+
+We say that a subset $C :\power B$ is an \define{initial segment}
+\indexdef{initial!segment}%
+\indexsee{segment, initial}{initial segment}%
+if $c\in C$ and $b<c$ imply $b\in C$.
+The image of a simulation must be an initial segment, while the inclusion of any initial segment is a simulation.
+Thus, by univalence, every simulation $A\to B$ is \emph{equal} to the inclusion of some initial segment of $B$.
+
+\begin{thm}
+  For a set $A$, let $P(A)$ be the type of extensional well-founded relations on $A$.
+  If $\mathord{<_A} : P(A)$ and $\mathord{<_B} : P(B)$ and $f:A\to B$, let $H_{\mathord{<_A}\mathord{<_B}}(f)$ be the mere proposition that $f$ is a simulation.
+  Then $(P,H)$ is a standard notion of structure over \uset in the sense of \autoref{sec:sip}.
+\end{thm}
+\begin{proof}
+  We leave it to the reader to verify that identities are simulations, and that composites of simulations are simulations.
+  Thus, we have a notion of structure.
+  For standardness, we must show that if $<$ and $\prec$ are two extensional well-founded relations on $A$, and $\idfunc[A]$ is a simulation in both directions, then $<$ and $\prec$ are equal.
+  Since extensionality and well-foundedness are mere propositions, for this it suffices to have $\fall{a,b:A} (a<b) \Leftrightarrow (a\prec b)$.
+  But this follows from \autoref{def:simulation}\ref{item:sim1} for $\idfunc[A]$.
+\end{proof}
+
+\begin{cor}\label{thm:wfcat}
+  There is a category whose objects are sets equipped with extensional well-founded relations, and whose morphisms are simulations.
+\end{cor}
+
+In fact, this category is a poset.
+
+\begin{lem}
+  For extensional and well-founded $(A,<)$ and $(B,<)$, there is at most one simulation $f:A\to B$.
+\end{lem}
+\begin{proof}
+  Suppose $f,g:A\to B$ are simulations.
+  Since being a simulation is a mere property, it suffices to show $\fall{a:A}(f(a)=g(a))$.
+  By induction on $<$, we may suppose $f(a')=g(a')$ for all $a'<a$.
+  And by extensionality of $B$, to have $f(a)=g(a)$ it suffices to have $\fall{b:B}(b<f(a)) \Leftrightarrow (b<g(a))$.
+
+  But since $f$ is a simulation, if $b<f(a)$, then we have $a'<a$ with $f(a')=b$.
+  By the inductive hypothesis, we have also $g(a')=b$, hence $b<g(a)$.
+  The dual argument is symmetrical.
+\end{proof}
+
+Thus, if $A$ and $B$ are equipped with extensional and well-founded relations, we may write $A\le B$ to mean there exists a simulation $f:A\to B$.
+\autoref{thm:wfcat} implies that if $A\le B$ and $B\le A$, then $A=B$.
+
+\begin{defn}
+  An \define{ordinal}
+  \indexdef{ordinal}%
+  \indexsee{number!ordinal}{ordinal}%
+  is a set $A$ with an extensional well-founded relation which is \emph{transitive}, i.e.\ satisfies $\fall{a,b,c:A}(a<b)\to (b<c) \to (a<c)$.
+\end{defn}
+
+\begin{eg}
+  Of course, the usual strict order on \nat is transitive.
+  It is easily seen to be extensional as well; thus it is an ordinal.
+  As usual, we denote this ordinal by $\omega$.
+\end{eg}
+
+\symlabel{ord}
+Let \ord denote the type of ordinals.
+By the previous results, \ord is a set and has a natural partial order.
+We now show that \ord also admits a well-founded relation.
+
+\symlabel{initial-segment}
+If $A$ is an ordinal and $a:A$, let $\ordsl A a \defeq \setof{ b:A | b<a}$ denote the initial segment.
+\index{initial!segment}%
+Note that if $\ordsl A a = \ordsl A b$ as ordinals, then that isomorphism must respect their inclusions into $A$ (since simulations form a poset), and hence they are equal as subsets of $A$.
+Therefore, since $A$ is extensional, $a=b$.
+Thus the function $a\mapsto \ordsl A a$ is an injection $A\to \ord$.
+
+\begin{defn}
+  For ordinals $A$ and $B$, a simulation $f:A\to B$ is said to be \define{bounded}
+  \indexdef{simulation!bounded}%
+  \indexdef{bounded!simulation}%
+  if there exists $b:B$ such that $A = \ordsl B b$.
+\end{defn}
+
+The remarks above imply that such a $b$ is unique when it exists, so that boundedness is a mere property.
+
+We write $A<B$ if there exists a bounded simulation from $A$ to $B$.
+Since simulations are unique, $A<B$ is also a mere proposition.
+
+\begin{thm}\label{thm:ordord}
+  $(\ord,<)$ is an ordinal.
+\end{thm}
+
+\noindent
+More precisely, this theorem says that the type $\ord_{\UU_i}$ of ordinals in one universe\index{universe level} is itself an ordinal in the next higher universe, i.e.\ $(\ord_{\UU_i},<):\ord_{\UU_{i+1}}$.
+
+\begin{proof}
+  Let $A$ be an ordinal; we first show that $\ordsl A a$ is accessible (in \ord) for all $a:A$.
+  By well-founded induction on $A$, suppose $\ordsl A b$ is accessible for all $b<a$.
+  By definition of accessibility, we must show that $B$ is accessible in \ord for all $B<\ordsl A a$.
+  However, if $B<\ordsl A a$ then there is some $b<a$ such that $B = \ordsl{(\ordsl A a)}{b} = \ordsl A b$, which is accessible by the inductive hypothesis.
+  Thus, $\ordsl A a$ is accessible for all $a:A$.
+
+  Now to show that $A$ is accessible in \ord, by definition we must show $B$ is accessible for all $B<A$.
+  But as before, $B<A$ means $B=\ordsl A a$ for some $a:A$, which is accessible as we just proved.
+  Thus, \ord is well-founded.
+
+  For extensionality, suppose $A$ and $B$ are ordinals such that
+  \narrowequation{\prd{C:\ord} (C<A) \Leftrightarrow (C<B).}
+  Then for every $a:A$, since $\ordsl A a<A$, we have $\ordsl A a<B$, hence there is $b:B$ with $\ordsl A a = \ordsl B b$.
+  Define $f:A\to B$ to take each $a$ to the corresponding $b$; it is straightforward to verify that $f$ is an isomorphism.
+  Thus $A\cong B$, hence $A=B$ by univalence.
+
+  Finally, it is easy to see that $<$ is transitive.
+\end{proof}
+
+Treating \ord as an ordinal is often very convenient, but it has its pitfalls as well.
+For instance, consider the following lemma, where we pay attention to how universes are used.
+
+\begin{lem}\label{thm:ordsucc}
+  Let \bbU be a universe.
+  For any $A:\ord_\bbU$, there is a $B:\ord_\bbU$ such that $A<B$.
+\end{lem}
+\begin{proof}
+  Let $B=A+\unit$, with the element $\ttt:\unit$ being greater than all elements of $A$.
+  Then $B$ is an ordinal and it is easy to see that $A\cong \ordsl B \ttt$.
+\end{proof}
+
+This lemma illustrates a potential pitfall of the ``typically ambiguous''\index{typical ambiguity} style of using \UU to denote an arbitrary, unspecified universe.
+Consider the following alternative proof of it.
+
+\begin{proof}[Another putative proof of \autoref{thm:ordsucc}]
+  Note that $C<A$ if and only if $C=\ordsl A a$ for some $a:A$.
+  This gives an isomorphism $A \cong \ordsl \ord A$, so that $A<\ord$.
+  Thus we may take $B\defeq\ord$.
+\end{proof}
+
+The second proof would be valid if we had stated \autoref{thm:ordsucc} in a typically ambiguous style.
+But the resulting lemma would be less useful, because the second proof would constrain the second ``\ord'' in the lemma statement to refer to a higher universe level than the first one.
+The first proof allows both universes to be the same.
+
+Similar remarks apply to the next lemma, which could be proved in a less useful way by observing that $A\le \ord$ for any $A:\ord$.
+
+\begin{lem}\label{thm:ordunion}
+  Let \bbU be a universe.
+  For any $X:\type$ and $F:X\to \ord_\bbU$, there exists $B:\ord_\bbU$ such that $Fx\le B$ for all $x:X$.
+\end{lem}
+\begin{proof}
+  Let $B$ be the quotient of the equivalence relation $\eqr$ on $\sm{x:X} Fx$ defined as follows:
+  \[ (x,y) \eqr (x',y')
+  \;\defeq\;
+  \Big(\ordsl{(Fx)}{y} \cong \ordsl{(Fx')}{y'}\Big).
+  \]
+  Define $(x,y)<(x',y')$ if $\ordsl{(Fx)}{y} < \ordsl{(Fx')}{y'}$.
+  This clearly descends to the quotient, and can be seen to make $B$ into an ordinal.
+  Moreover, for each $x:X$ the induced map $Fx\to B$ is a simulation.
+\end{proof}
+
+
+
+
+\end{document}

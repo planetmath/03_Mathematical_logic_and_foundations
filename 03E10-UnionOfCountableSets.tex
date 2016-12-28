@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{UnionOfCountableSets}
+\pmcreated{2013-03-22 19:02:56}
+\pmmodified{2013-03-22 19:02:56}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{union of countable sets}
+\pmrecord{11}{41927}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Result}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{tabls}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we prove a useful property of countability which will gives us many more examples of countable sets.
+
+\begin{prop}  $A\cup B$ is countable iff $A$ and $B$ are countable. \end{prop}
+\begin{proof}  Clearly, if $A\cup B$ is countable, then $A$ and $B$ are each countable, as they are subsets of a countable set.
+
+Conversely, suppose $f: \mathbb{N}\to A$ and $g:\mathbb{N}\to B$ are two surjections.  Let $C=A\cup B$.  Define $h:\mathbb{N} \to C$ as follows: $h(2n+1)=f(n)$ for $n=0,1,\ldots$, and $h(2n)=g(n)$, for $n=1,2,\ldots$.  Then $h$ is a well-defined function, for each $i\in \mathbb{N}$ is either even or odd, so $h(i)$ is defined in either case.  Finally, $h$ is onto, for if $c\in C$, then $c\in A$ or $c\in B$.  If $c\in A$, then $h(2p+1)=c$ for some $p$, and if $c\in B$, then $h(2q)=c$ for some $q$.  Hence $C$ is countable.
+\end{proof}
+The idea behind the above proof is to realize that we can list elements of $C$ in the following manner:
+\begin{center}
+\begin{tabular}{ c c c c c c }
+	$f(1)$ & $f(2)$ & $f(3)$ & $f(4)$ & $f(5)$ & $\cdots$ \\
+	$g(1)$ & $g(2)$ & $g(3)$ & $g(4)$ & $g(5)$ & $\cdots$ 
+\end{tabular}
+\end{center}
+Therefore, $h$ is defined so its first value is $f(1)$, its second value is $g(1)$, third is $f(2)$, fourth $g(2)$, etc... In the end, all of the elements of $C$ are exhausted by this way of counting.
+
+As a corollary, we have 
+
+\begin{cor} $A_1 \cup A_2 \cup \cdots \cup A_n$ is countable iff each $A_i$ is. \end{cor}
+\begin{proof} This is true by induction. \end{proof}
+
+The property can easily be extended to the countably infinite case, the proof of which is just a variant of the above methodology:
+
+\begin{prop} $\bigcup \lbrace A_i \mid i \in \mathbb{N} \rbrace$ is countable iff each $A_i$ is. \end{prop}
+\begin{proof}  Again, one direction is obvious, so we concentrate on the other direction.
+
+Let $A=A_1\cup A_2\cup \cdots$.  Suppose we have surjections $f_i:\mathbb{N} \to A_i$ for $i=1,2,\ldots$.  Then listing elements of $A$ in the following manner (table below on the left)
+\begin{center}
+\begin{tabular}{ c|c c c c }
+$i \backslash j$ & $1$ & $2$ & $3$ & $\cdots$ \\
+\hline
+$1$ &	$f_1(1)$ & $f_1(2)$ & $f_1(3)$ & $\cdots$ \\
+$2$ &	$f_2(1)$ & $f_2(2)$ & $f_2(3)$ & $\cdots$ \\
+$3$ &	$f_3(1)$ & $f_3(2)$ & $f_3(3)$ & $\cdots$ \\
+$\vdots$ &	$\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ 
+\end{tabular}
+\hspace{1.25cm}
+\begin{tabular}{ c|c c c c }
+$i \backslash j$ & $1$ & $2$ & $3$ & $\cdots$ \\
+\hline
+$1$ & $f(1)$ & $f(2)$ & $f(4)$ & $\cdots$ \\
+$2$ & $f(3)$ & $f(5)$ & $f(8)$ & $\cdots$ \\
+$3$ & $f(6)$ & $f(9)$ & $f(13)$ & $\cdots$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ 
+\end{tabular}
+\end{center}
+provides a surjection $f:\mathbb{N}\to A$ (table above on the right).  The first few values of $f$ are 
+$$f(1)=f_1(1),\quad f(2)=f_1(2), \quad f(3)=f_2(1),\quad f(4)=f_1(3), \quad f(5)= f_2(2), \quad \ldots$$
+\end{proof}
+Notice the similarity between the function $f$ above, and the pairing function used in the proof that $\mathbb{N}^2$ is countable \PMlinkname{here}{ProductOfCountableSets}.
+
+\textbf{Remark}. However, the property fails when there are uncountably many sets to deal with.  For example, the union of $\lbrace r\rbrace$ for each $r\in \mathbb{R}$ is uncountable.
+%%%%%
+%%%%%
+\end{document}

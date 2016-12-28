@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ModalLogicD}
+\pmcreated{2013-03-22 19:33:54}
+\pmmodified{2013-03-22 19:33:54}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{modal logic D}
+\pmrecord{13}{42551}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmrelated{ModalLogicT}
+\pmdefines{D}
+\pmdefines{serial}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+The modal logic \textbf{D} (for deontic) is the smallest normal modal logic containing the schema D:
+$$\square A \to \diamond A$$
+A binary relation $R$ on $W$ is \emph{serial} if for any $w\in W$, there is a $u\in W$ such that $w R u$.  In other words, $R$ is first order definable: $$\forall w \exists u (w R u).$$
+The Kripke frames corresponding to \textbf{D} are serial, in the following sense:
+
+\begin{prop} D is valid in a frame $\mathcal{F}$ iff $\mathcal{F}$ is serial. \end{prop}
+\begin{proof}  First, assume $D$ valid in a frame $\mathcal{F}:=(W,R)$, and $w\in W$.  Let $M$ be a model based on $\mathcal{F}$, with $V(p)=\lbrace u\mid w R u\rbrace$.  Then $\models_w \square p$, so that $\models_w \diamond p$.  This means there is a $v$ such that $w R v$, and hence $R$ is serial.
+
+Conversely, let $\mathcal{F}$ be a serial frame, $M$ a model based on $\mathcal{F}$, and $w$ a world in $M$.  Then there is a $u$ such that $w R u$.  Suppose $\models_w \square A$.  Then for all $v$ such that $w R v$, we have $\models_v A$.  In particular, $\models_u A$.  Therefore, $\models_w \diamond A$, whence $\models_w \square A \to \diamond A$.
+\end{proof}
+
+As a result,
+\begin{prop} \textbf{D} is sound in the class of serial frames. \end{prop}
+\begin{proof}  Since any theorem in \textbf{D} is deducible from a finite sequence consisting of tautologies, which are valid in any frame, instances of D, which are valid in serial frames by the proposition above, and applications of modus ponens and necessitation, both of which preserve validity in any frame, whence the result.
+\end{proof}
+
+In addition, using the canonical model of \textbf{D}, we have
+\begin{prop} \textbf{D} is complete in the class of serial frames. \end{prop}
+\begin{proof}  We show that the canonical frame $\mathcal{F}_{\textbf{D}}$ is serial.  Let $w$ be any maximally consistent set containing \textbf{D}.  For any $A \in \Delta_w:=\lbrace B \mid \square B \in w \rbrace$, we have $\square A \in w$, so that $\diamond A\in w$ by modus ponens on D.  This means that $\square \neg A \notin w$ since $w$ is maximal.  As a result, $\neg A \notin \Delta_w$, showing that $\Delta_w$ is consistent, and hence can be enlarged to a maximally consistent set $u$.  As a result, $A \in u$, whence $w R_{\textbf{D}} u$.
+\end{proof}
+
+\textbf{D} is a subsystem of \textbf{T}, for any reflexive relation is serial.  As a result, any theorem of \textbf{D} is valid in any serial frame, and therefore in any reflexive frame in particular, and as a result a theorem of \textbf{T} by the completeness of \textbf{T} in reflexive frames.
+
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ConstructionOfWellformedFormulas}
+\pmcreated{2013-03-22 18:52:20}
+\pmmodified{2013-03-22 18:52:20}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{construction of well-formed formulas}
+\pmrecord{10}{41719}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Feature}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Given a countable set $V$ of propositional variables, and a set $F$ of logical connectives disjoint from $V$, one can create the set of all finite strings (or words) over $V\cup F$.  
+
+\subsubsection*{Ways of Forming a Single Well-formed Formula}
+
+A well-formed formula, or wff for short, is then a special kind of finite string, sometimes called a term, formed in a specific, pre-determined manner:  
+\begin{enumerate}
+\item
+First, any propositional variable is always a wff.  A wff that is a propositional variable is sometimes called an \emph{atom}.  
+\item
+Once we have formed a set wffs, we may form new ones.  Given an $n$-ary connective $\alpha\in F$, and wffs $p_1, \ldots, p_n$, there are several methods to represent the newly formed wff, some of the common ones are:
+\begin{itemize}
+\item $\alpha p_1\cdots p_n$
+\item $p_1\cdots p_n \alpha$
+\item $(\alpha p_1 \cdots p_n)$
+\item $\alpha(p_1, \cdots, p_n)$
+\end{itemize}
+In particular, every nullary connective (constant) is a wff (with no additional wffs attached).
+\item
+The above two rules are the only rules of forming wffs.
+\end{enumerate}
+
+Using the first method, therefore, finite strings such as 
+$$v_2, \qquad \alpha v_1v_2, \qquad \mbox{and} \qquad \beta v_3 \alpha v_2 \beta v_1v_1v_3v_2$$ 
+are well-formed formulas, while 
+$$v_2v_3, \qquad v_1\alpha v_2v_1, \qquad \mbox{and} \qquad \beta v_2v_3$$ 
+are not, where $\alpha$ and $\beta$ are binary and ternary connectives respectively, and $v_i$ are atoms.
+
+Notice that in the last two methods, auxiliary symbols, such as the parentheses and the comma, are introduced to help the comprehensibility of wffs.  Therefore, the third wff above becomes $$(\beta v_3 (\alpha v_2 (\beta v_1v_1v_3))v_2)$$ using the second method, and $$\beta (v_3, \alpha( v_2, \beta( v_1,v_1,v_3)),v_2)$$ using the third method.
+
+\textbf{Remark}.  It is customary is to infix the connective between the two wffs, when the connective is binary, so that $(\alpha p q)$ or $\alpha(p,q)$ becomes $(p \alpha q)$.  Parentheses become necessary when using the infix notations, so as to avoid ambiguity.  For example, is $$p \vee q \wedge r$$
+constructed from $p\vee q$ and $r$ via $\wedge$, or $p$ and $q\wedge r$ via $\vee$?  Both are possible!
+
+\subsubsection*{Formation of All Well-formed Formulas}
+
+Pick a method of forming wffs above, say, the first method.  Rules 1 and 2 above suggest that if we were to construct the set $\overline{V}$ of all wffs, we need to start with the set $V$ of atoms.  From $V$, we next form the set of wffs of the form $\alpha p_1 \cdots p_n$, where each $p_i$ is an atom, and where $\alpha$ ($n$-ary) ranges over the entire set $F$.  This will go one indefinitely.  In other words, we construct $\overline{V}$ inductively as follows:
+\begin{enumerate}
+\item $V_0:=V$,
+\item $V_{i+1}:=V_i \cup \bigcup_{\alpha\in F} \lbrace \alpha p_1\cdots p_n \mid \alpha\mbox{ is }n\mbox{-ary and each }p_j\in V_i\rbrace$,
+\item $\overline{V}:=\bigcup_{i=0}^{\infty} V_i$.
+\end{enumerate}
+Notice that constants are in every $V_i$ where $i>0$.
+
+It can be shown that every wff can be uniquely written as $\alpha p_1 \cdots p_n$ for some $n$-ary connective and wffs $p_i$ in $\overline{V}$.  This is called the \emph{unique readability} of wffs.
+
+Furthermore, $\overline{V}$ has a natural algebraic structure, as we may associate each $\alpha \in F$ a finitary operation $[\alpha]$ on $\overline{V}$, given by $[\alpha](p_1,\ldots, p_n) = \alpha p_1 \cdots p_n$.  By defining $[F]:=\lbrace [\alpha] \mid \alpha \in F\rbrace$, we see that $\overline{V}$ is closed under each operation in $[F]$, or that $\overline{V}$ is an inductive set over $V$ with respect to $[F]$.  In fact, it is the smallest inductive set over $V$ (See Rule 3 above).
+
+Finally, if $F$ is finite, it is not hard to see that $\overline{V}$ is effectively enumerable, and there is an algorithm deciding whether a string is a wff or not.
+%%%%%
+%%%%%
+\end{document}

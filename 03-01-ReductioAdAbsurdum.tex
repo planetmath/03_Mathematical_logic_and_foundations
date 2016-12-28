@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ReductioAdAbsurdum}
+\pmcreated{2013-03-22 18:20:18}
+\pmmodified{2013-03-22 18:20:18}
+\pmowner{gribskoff}{21395}
+\pmmodifier{gribskoff}{21395}
+\pmtitle{reductio ad absurdum}
+\pmrecord{10}{40971}
+\pmprivacy{1}
+\pmauthor{gribskoff}{21395}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03-01}
+\pmsynonym{Indirect Method of Proof}{ReductioAdAbsurdum}
+%\pmkeywords{Reductio Hypothesis}
+%\pmkeywords{Classical Logic}
+%\pmkeywords{Intuitionistic Logic}
+\pmrelated{NotUniformlyContinuousFunction}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+\emph{Reductio ad Absurdum} is a process of inference by means of which one can derive a proposition $\neg X$ from the fact the the assumption of $X$ leads to a contradiction.
+
+The underlying ideia is the following: if a contradiction can be deduced from a proposition $X$ then $X$ can not be true and one can therefore assert $\neg X$. It is a useful method to derive negative statements. The hypothesis from which the contradiction is derived is known as "the reductio's hypothesis".
+
+In Gentzen's system of natural deduction the reductio's hypotheses differs from the other hypotheses by the fact that is not included in the set of premisses on which the conclusion depends and thus behaves like the assumption of a conditional proof.
+
+Assume that one has as hypothesis
+\[x_1 \to \neg x_1 \]
+and one aims at deriving
+\[\neg x_1. \]
+
+Using \emph{Reductio ad Absurdum} one can assume $x_1$ as the reductio's hypothesis and therefore by \emph{Modus Ponens} one gets $\neg x_1$. Thus one has
+\[x_1 \wedge \neg x_1 \]
+which is the contradiction that one is led to. Therefore one can assert $\neg x_1$.
+
+\vspace{3mm}
+
+The derivation looks liked this:
+
+\vspace{4mm}
+
+\begin{quote}
+\begin{tabular}{llll}
+1&(1)&$x_1 \to \neg x_1$&Hyp.\\
+2&(2)&$x_1$&Red. Hyp.\\
+1, 2&(3)&$\neg x_1$&1, 2, MP\\
+1, 2&(4)&$x_1 \land \neg x_1$&1, 2, 3, $\land$-Int.\\
+1&(5)&$\neg x_1$&Red. \emph{ad} Abs.
+\end{tabular}
+\end{quote}
+
+\vspace{4mm}
+
+In the \emph{Prior Analytics}, I, 23 (41-26) Aristotle compares the method of the \emph{Reductio ad Absurdum}, used by Euclid in his proof that the Square root of 2 is irrational with his own method of the \emph{Reductio ad Impossibile}, used in the reduction of the syllogisms $\bf Baroco$ and $\bf Bocardo$ to the First Figure.
+
+For these two syllogisms Aristotle's problem consists in the fact that both have a type 0 premiss, which converts neither by simple conversion nor by conversion per accidens. Both \emph{modi} must be reduced by the method of indirect reduction or reduction ad impossibile.
+
+\vspace{2mm}
+
+The $\bf Baroco$ syllogism has the form:
+
+\begin{quote}
+\begin{tabular}{ll}
+(S1)&All $X$ is $M$\\
+{}&Some $Y$ is $\neg M$\\
+{}&Ergo Some $Y$ is $\neg X$.
+\end{tabular}
+\end{quote}
+
+\vspace{2mm}
+
+To carry out the reduction one takes as premiss the negation of the conclusion of S1:
+
+All $Y$ is $X$
+
+together with the Major Premiss of S1:
+
+All $X$ is $M$.
+
+\vspace{2mm}
+
+One gets then a First Figure ($\bf Barbara$) syllogism:
+
+\begin{quote}
+\begin{tabular}{ll}
+(S2)&All $X$ is $M$\\
+{}&All $Y$ is $X$\\
+{}&Ergo All $Y$ is $M$.
+\end{tabular}
+\end{quote}
+
+\vspace{2mm}
+
+But the conclusion of S2 is the negation of the Minor Premiss of S1. Therefore the hypothesis that the conclusion of S1 is false leads to a contradiction and is considered to be established indirectly via the Barbara syllogism.
+
+This is a new meaning of the concept of reduction and it is in this new meaning that one says that Baroco syllogism can be reduced to Barbara. The same argument applies to the Bocardo type of syllogism.
+
+A very common form of the use of the \emph{Reductio ad Absurdum} consists in a proof of $X$ assuming as Reductio Hypothesis $\neg X$. When the contradiction is reached one is then entitled to reject the Reductio Hypothesis thus obtaining $\neg \neg X$.
+
+In classical logic this Double Negation implies $X$ and we have reached our goal. In Heyting's system this form of Double Negation is not accepted and therefore the \emph{Reductio ad Absurdum} or "Indirect Method of Proof" is not allowed in intuitionistic mathematics.
+
+It is instructive to consider a misformed proof by \emph{Reductio ad Absurdum}, such as John Kelley' proof that in 2-space two lines that do not intersect are parallel, on pg. 295 of his \emph{Algebra a Modern Introduction}. Due to a recurring misprint the negation signs have not been inserted and the proof seems to use as hypothesis the very assertion that he wants to prove.
+
+\vspace{2mm}
+
+\begin{thebibliography} {70}
+\bibitem{A} Aristotle, \emph{Prior and Posterior Analytics}, ed. by W.D. Ross, Oxford, 1949.
+\bibitem{AH} Heyting, A., \emph{Intuitionism: An Introduction}, North Holland, Amsterdam, 1956.
+\bibitem{WKMK} Kneale, W., M., \emph{The Development of Logic}, Oxford, 1962.
+\end{thebibliography}
+
+\end{document}
+%%%%%
+%%%%%
+\end{document}

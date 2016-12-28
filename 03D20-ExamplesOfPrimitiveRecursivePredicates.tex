@@ -1,0 +1,111 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ExamplesOfPrimitiveRecursivePredicates}
+\pmcreated{2013-03-22 19:05:43}
+\pmmodified{2013-03-22 19:05:43}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{examples of primitive recursive predicates}
+\pmrecord{9}{41986}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Example}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D20}
+\pmrelated{ExamplesOfPrimitiveRecursiveFunctions}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In this entry, we give some examples of primitive recursive predicates.  In particular, we will show that the predicate ``x is a prime number'' is primitive recursive.
+
+In the examples, we use $\Phi(\boldsymbol{x})$ to indicate a predicate (over the natural numbers $\mathbb{N}$).  First, two very simple examples:
+\begin{enumerate}
+\item $\Phi(x)$ given by ``$x=n$'' for a fixed $n \in \mathbb{N}$ is primitive recursive.  To see this, note that the set associated with $\Phi$ is $\lbrace n\rbrace$, and its associated characteristic function is primitive recursive by example 3(l) in \PMlinkname{this entry}{ExamplesOfPrimitiveRecursiveFunctions}.  As a result, $\Phi$ is primitive recursive.
+\item $\Phi(x,y)$ given by ``$x\le y$'' is primitive recursive.  The associated set is $\lbrace (x,y)\mid x\le y\rbrace$ whose characteristic function is $\operatorname{sgn}(s(y)\dot{-}x)$, which is primitive recursive.
+\end{enumerate}
+
+Before exhibiting more examples, we prove some basic facts about primitive recursive predicates:
+\begin{prop}  If $\Phi$ and $\Theta$ are primitive recursive predicates, then so are $\neg \Phi$ (negation), $\Phi \vee \Theta$ (disjunction), and $\Phi \wedge \Theta$ (conjunction). \end{prop}
+\begin{proof}
+Let $S,T$ be the sets associated with the predicates $\Phi$ and $\Theta$.  We may assume that $S,T\subseteq \mathbb{N}^k$ for some positive integer $k$.  Let $c_S$ and $c_T$ be the associated characteristic functions.  
+
+First, $1 \dot{-} c_S$ is the characteristic function of $\mathbb{N}^k - S$, which is the associated set of the predicate $\neg \Phi$.  Since $1 \dot{-} c_S$ is primitive recursive, so is $\neg \Phi$.
+
+Next, $\operatorname{mult}(C_S, C_T)$ is the characteristic function of $S\cap T$, which is the associated set of the predicate $\Phi\wedge \Theta$.  Since $\operatorname{mult}(C_S, C_T)$ is primitive recursive, so is $\Phi \wedge \Theta$.
+
+Finally, the set associated with $\Phi \vee \Theta$ is $S \cup T$, which is $\mathbb{N}^k - ((\mathbb{N}^k - S) \cap (\mathbb{N}^k - T))$, which is primitive recursive.  Hence $\Phi \vee \Theta$ is primitive recursive as well.
+\end{proof}
+
+In short, primitive recursiveness is preserved under Boolean operations on predicates.  By induction, we also see primitive recursiveness is preserved under finite disjunction and finite conjunction.
+
+Using this fact, we list three more examples: 
+\begin{enumerate}
+\item[3.] the predicate ``$x=y$'' is primitive recursive, since it is the conjunction of primitive recursive predicates ``$x\le y$'' and ``$y \le x$''.
+\item[4.] the predicate ``$y<x$'' is primitive recursive, since it is the conjunction ``$y\le x$'' and ``$\neg (x=y)$'', both of which are primitive recursive.
+\item[5.] the predicate ``$x \in S$'', where $S$ is a fixed finite set, is primitive recursive, as it is the disjunction of primitive predicates of the form ``$x=n$'', where $n$ ranges over $S$.  Since the disjunction operation is finitary, ``$x\in S$'' is primitive recursive also.
+\end{enumerate}
+
+Here's another useful fact about primitive recursive predicates:
+\begin{prop}  If $\Phi(x_1,\ldots,x_m)$ is primitive recursive, so is $\Theta(x_1,\ldots,x_n)$, defined by simultaneous substitution of the variables $x_i$ in $\Phi$ by $n$-ary primitive recursive functions $f_i$: 
+$$\Theta(x_1,\ldots,x_n):= \Phi(f_1(x_1,\ldots,x_n),\ldots, f_m(x_1,\ldots,x_n)).$$
+\end{prop}
+\begin{proof}
+Let $c_{\Phi}$ be the characteristic function of (the set associated with) $\Phi$, then $$c_{\Phi}(f_1(x_1,\ldots,x_n),\ldots, f_m(x_1,\ldots,x_n))$$ is $c_{\Theta}$, the characteristic function of $\Theta$.  Since $c_{\Phi}$, $f_i$ are primitive recursive, $c_{\Theta}$, obtained by functional composition, and hence $\Theta$, are primitive recursive too.
+\end{proof}
+
+Let us list two more examples:
+\begin{enumerate}
+\item[6.] the predicate ``$xy\ne z$'' is primitive recursive.
+\item[7.] the predicate ``$y< x!$'' is primitive recursive.
+\end{enumerate}
+
+Finite disjunctions and finite conjunctions of predicates can be thought of as special cases of \PMlinkname{bounded quantification}{BoundedQuantifier} on predicates.  In view of this, we have the following facts:
+\begin{prop}  If $\Phi(\boldsymbol{x},y)$ is primitive recursive, so are 
+$$\Theta(\boldsymbol{x},y):= \forall z\le y \: \Phi(\boldsymbol{x},z) \qquad \mbox{and} \qquad \Psi(\boldsymbol{x},y):=\exists z\le y \: \Phi(\boldsymbol{x},z).$$
+\end{prop}
+\begin{proof}
+The set associated with $\Theta(\boldsymbol{x},y)$ is $\lbrace (\boldsymbol{x},y)\mid \mbox{ for all }z\le y, \Phi(\boldsymbol{x},z)\rbrace$, which is just
+$$S := \lbrace (\boldsymbol{x},y)\mid \Phi(\boldsymbol{x},0)\rbrace \cap \lbrace (\boldsymbol{x},y)\mid \Phi(\boldsymbol{x},1)\rbrace \cap \cdots \cap \lbrace (\boldsymbol{x},y)\mid \Phi(\boldsymbol{x},y)\rbrace $$
+For each fixed $i$, let $\Phi_i(\boldsymbol{x}):=\Phi(\boldsymbol{x},i)$.  Then by proposition 2, $\Phi_i$ is primitive recursive.  Let $c_i$ be the characteristic function of $\Phi_i$, and $d$ the function such that $d(\boldsymbol{x},i)$ is $c_i(\boldsymbol{x})$ if $i\in \lbrace 0,\ldots, n\rbrace$, and $0$ otherwise.  So $d$ is primitive recursive (see \PMlinkname{this entry}{ExamplesOfPrimitiveRecursiveFunctions}).  Now, define function $c$ by
+$$c(\boldsymbol{x},y):=\prod_{i=0}^y d(\boldsymbol{x},i).$$
+So $1=d(\boldsymbol{x},i)=c_i(\boldsymbol{x})$ iff $\Phi_i(\boldsymbol{x})$ iff $(\boldsymbol{x},i)\in \lbrace (\boldsymbol{x},i)\mid \Phi(\boldsymbol{x},i)\rbrace$ iff $(\boldsymbol{x},y)\in \lbrace (\boldsymbol{x},y)\mid \Phi(\boldsymbol{x},i)\rbrace$. 
+
+As a result, $1=c(\boldsymbol{x},y)$ iff $(\boldsymbol{x},y)\in \lbrace (\boldsymbol{x},y)\mid \Phi(\boldsymbol{x},i)\rbrace$ for all $i\in \lbrace 0,\ldots, y\rbrace$ iff $(\boldsymbol{x},y)\in S$.  In other words, $c$ is the characteristic function of $S$.  Since $c$ is obtained from $d$ by bounded product, $c$ is primitive recursive.  This shows that $\Theta$ is primitive recursive as well.
+
+Next, since the characteristic function of $\Psi(\boldsymbol{x},y)$ is the same as the characteristic function of $\neg \forall z\le y \: (\neg \Phi(\boldsymbol{x},z))$, we conclude that $\Psi$ is primitive recursive by proposition 1 and what we have just proved.
+\end{proof}
+
+Our final example is the following:
+\begin{enumerate}
+\item[8.] $\Phi(x)$ given by ``$x$ is prime'' is primitive recursive.  One way to characterize $\Phi$ is the following: $1<x$, and $x$ can not be written as a product of two natural numbers, both greater than $1$.  In other words, $$\Phi(x) \equiv (1<x) \wedge \forall y (\forall z \neg (x=yz \wedge 1<y \wedge 1<z)),$$
+where $\equiv$ means ``can be characterized by'' (they share the same characteristic function).  Observe that since $x=yz$, both $y$ and $z$ are in fact bounded by $x$.  Therefore, 
+$$\Phi(x) \equiv (1<x) \wedge \forall y \le x(\forall z \le x \: \neg (x=yz \wedge 1<y \wedge 1<z)).$$
+As each of $x=yz, 1<y$, and $1<z$ is primitive recursive, so are their conjunction: $$x=yz \wedge 1<y \wedge 1<z,$$ the negation of which: $$\neg (x=yz \wedge 1<y \wedge 1<z),$$ two successive applications of bounded universal quantifiers: $$\forall y \le x(\forall z \le x \: \neg (x=yz \wedge 1<y \wedge 1<z)),$$ and finally its conjunction with the primitive recursive predicate $1<x$, which is just $\Phi(x)$.  Therefore, $\Phi(x)$ is primitive recursive.
+\end{enumerate}
+
+\textbf{Remark}.  The empty set $\varnothing$, corresponding to the predicate ``$x < x$'', is clearly primitive recursive.  However, $\varnothing$ as a function, is not primitive recursive.
+%%%%%
+%%%%%
+\end{document}

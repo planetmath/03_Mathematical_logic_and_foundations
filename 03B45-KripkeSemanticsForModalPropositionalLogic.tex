@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{KripkeSemanticsForModalPropositionalLogic}
+\pmcreated{2013-03-22 19:33:22}
+\pmmodified{2013-03-22 19:33:22}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Kripke semantics for modal propositional logic}
+\pmrecord{30}{42541}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B45}
+\pmrelated{ModalLogic}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+A \emph{Kripe model} for a modal propositional logic PL$_M$ is a triple $M:=(W,R,V)$, where 
+\begin{enumerate}
+\item $W$ is a set, whose elements are called \emph{possible worlds},
+\item $R$ is a binary relation on $W$, 
+\item $V$ is a function that takes each wff (well-formed formula) $A$ in PL$_M$ to a subset $V(A)$ of $W$, such that
+\begin{itemize}
+\item $V(\perp)=\varnothing$,
+\item $V(A\to B)=V(A)^c \cup V(B)$,
+\item $V(\square A)= V(A)^{\square}$, where $S^{\square}:=\lbrace s \mid\; \uparrow\!\! s \subseteq S \rbrace$, and $\uparrow\!\! s: =\lbrace t \mid s R t\rbrace$.
+\end{itemize}
+\end{enumerate}
+For derived connectives, we also have $V(A\land B)=V(A)\cap V(B)$, $V(A\lor B)=V(A)\cup V(B)$, $V(\neg A)=V(A)^c$, the complement of $V(A)$, and $V(\diamond A)=V(A)^{\diamond}:=V(A)^{c\square c}$.
+
+One can also define a \emph{satisfaction relation} $\models$ between $W$ and the set $L$ of wff's so that 
+$$\models_w A \qquad \mbox{iff} \qquad w\in V(A)$$
+for any $w\in W$ and $A\in L$.  It's easy to see that
+\begin{multicols}{2}
+\begin{itemize}
+\item $\not \models_w \perp$ for any $w\in W$,
+\item $\models_w A\to B$ iff $\models_w A$ implies $\models_w B$,
+\item $\models_w A\land B$ iff $\models_w A$ and $\models_w B$,
+\item $\models_w A\lor B$ iff $\models_w A$ or $\models_w B$,
+\item $\models_w \neg A$ iff $\not \models_w A$,
+\item $\models_w \square A$ iff for all $u$ such that $w R u$, we have $\models_u A$,
+\item $\models_w \diamond A$ iff there is a $u$ such that $w R u$ and $\models_u A$.
+\end{itemize}
+\end{multicols}
+When $\models_w A$, we say that $A$ is true at world $w$.
+
+The pair $\mathcal{F}:=(W,R)$ in a Kripke model $M:=(W,R,V)$ is also called a (Kripke) frame, and $M$ is said to be a model based on the frame $\mathcal{F}$.  The validity of a wff $A$ at different levels (in a model, a frame, a collection of frames) is defined in the \PMlinkname{parent entry}{KripkeSemantics}.
+
+For example, any tautology is valid in any model.
+
+Now, to prove that any tautology is valid, by the completeness of PL$_c$, every tautology is a theorem, which is in turn  the result of a deduction from axioms using modus ponens.
+
+First, modus ponens preserves validity: for suppose $\models_w A$ and $\models_w A\to B$.  Since $\models_w A$ implies $\models_w B$, and $\models_w A$ by assumption, we have $\models_w B$.  Now, $w$ is arbitrary, the result follows.
+
+Next, we show that each axiom of PL$_c$ is valid:
+\begin{itemize}
+\item $A\to (B\to A)$: If $\models_w A$ and $\models_w B$, then $\models_w A$, so $\models_w B\to A$.
+\item $(A\to (B\to C))\to ((A\to B)\to (A\to C))$: Suppose $\models_w A\to (B\to C)$, $\models_w A\to B$, and $\models_w A$.  Then $\models_w B\to C$ and $\models_w B$, and therefore $\models_w C$.
+\item $(\neg A\to \neg B)\to (B\to A)$: we use a different approach to show this: 
+\begin{eqnarray*}
+V((\neg A\to \neg B)\to (B\to A)) &=& V(\neg A\to \neg B)^c \cup V(B\to A) \\ &=& (V(\neg A)\cap V(\neg B)^c) \cup V(B)^c \cup V(A) \\ &=& (V(A)^c \cap V(B))\cup V(B)^c \cup V(A) \\ &=& (V(A)^c \cup V(B)^c) \cup V(A) = W.
+\end{eqnarray*}
+
+\end{itemize}
+
+In addition, the rule of necessitation preserves validity as well: suppose $\models_w A$ for all $w$, then certainly $\models_u A$ for all $u$ such that $w R u$, and therefore $\models_w \square A$.
+
+There are also valid formulas that are not tautologies.  Here's one: $$\square (A\to B) \to (\square A\to \square B)$$
+\begin{proof}  Let $w$ be any world in $M$.  Suppose $\models_w \square (A\to B)$.  Then for all $u$ such that $w R u$, $\models_u A\to B$, or $\models_u A$ implies $\models_u B$, or for all $u$ such that $w R u$, $\models_u A$, implies that for all $u$ such that $w R u$, $\models_u B$, or $\models_w \square A$ implies $\models_w \square B$, or $\models_w (\square A\to \square B)$.  Therefore, $\models_w \square (A\to B) \to (\square A\to \square B)$.
+\end{proof}
+
+From this, we see that Kripke semantics is appropriate only for normal modal logics.
+
+Below are some examples of Kripke frames and their corresponding validating logics:
+\begin{enumerate}
+\item $A \to \square A$ is valid in a frame $(W,R)$ iff $R$ weak identity: $w R u$ implies $w=u$.
+\begin{proof}  Let $(W,R)$ be a frame validating $A \to \square A$, and $M$ a model based on $(W,R)$, with $V(p)=\lbrace w \rbrace$.  Then $\models_w p$.  So $\models_w \square p$, or $\models_u p$ for all $u$ such that $w R u$.  But then $u\in V(p)$, or $u=w$.  Hence $R$ is the relation: if $w R u$, then $w=u$.
+
+Conversely, suppose $(W,R)$ is weak identity, $M$ based on $(W,R)$, and $w$ a world in $M$ with $\models_w A$.  If $w R u$, then $u=w$, which means $\models_u A$ for all $u$ such that $w R u$.  In other words, $\models_w \square A$, and therefore, $\models_w A\to \square A$.
+\end{proof}
+\item $\square A$ is valid in a frame $(W,R)$ iff $R=\varnothing$.
+\begin{proof}  First, suppose $\square A$ is valid in $(W,R)$, and $M$ a model based on $(W,R)$, with $V(p)=\varnothing$.  Since $\models_w \square p$, $\models_u p$ for any $u$ such that $w R u$.  Since no such $u$ exists, and $w$ is arbitrary, $R=\varnothing$.
+
+Conversely, given a model $M$ based on $(W,\varnothing)$, and a world $w$ in $M$, it is vacuously true that $\models_u A$ for any $u$ such that $w R u$, since no such $u$ exists.  Therefore $\models_w \square A$.
+\end{proof}
+\end{enumerate}
+
+A logic is said to be sound if every theorem is valid, and complete if every valid wff is a theorem.  Furthermore, a logic is said to have the finite model property if any wff in the class of finite frames is a theorem.
+
+%%%%%
+%%%%%
+\end{document}

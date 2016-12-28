@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CompleteHeytingAlgebra}
+\pmcreated{2013-03-22 19:31:42}
+\pmmodified{2013-03-22 19:31:42}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{complete Heyting algebra}
+\pmrecord{10}{42505}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G10}
+\pmclassification{msc}{06D20}
+\pmrelated{Locale}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+
+\begin{document}
+A Heyting algebra that is also a complete lattice is called a complete Heyting algebra.  In the following, we give a lattice characterization of complete Heyting algebras without the relative pseudocomplementation operator $\to$.
+
+\begin{prop}  Let $H$ be a complete Heyting algebra, then $$x\to y = \bigvee \lbrace z\mid z\wedge x \le y\rbrace$$ for any $x,y\in H$, and $$x \wedge \bigvee A = \bigvee (x\wedge A),$$ where $x\wedge A:=\lbrace x\wedge y\mid y\in A\rbrace$, for any $x\in H$, and any subset $A$ of $H$.
+\end{prop}
+\begin{proof} We first prove the identity $x \wedge \bigvee A = \bigvee (x\wedge A)$.  For any $y \in H$, we have 
+$x \wedge \bigvee A \le y$ iff $\bigvee A \le x\to y$ iff $a\le x\to y$ for all $a\in A$ iff $x\wedge a \le y$ for all $a\in A$ iff $\bigvee (x\wedge A) \le y$, hence $x\wedge \bigvee A = \bigvee (x\wedge A)$.
+
+Next, we show $x\to y = \bigvee \lbrace z\mid z\wedge x \le y \rbrace$.  For any $a\in H$, we have $a\le x\to y$ iff $a\wedge x\le y$ iff $a\in \lbrace z\mid z\wedge x\le y\rbrace$ iff $a\le \bigvee \lbrace z\mid z\wedge x\le y\rbrace$.
+\end{proof}
+
+The converse of the above is also true.
+
+\begin{prop}  Let $H$ be a complete lattice such that $$x \wedge \bigvee A = \bigvee (x\wedge A),$$ where $x\wedge A:=\lbrace x\wedge y\mid y\in A\rbrace$, for any $x\in H$, and any subset $A$ of $H$.  Then for any $x,y\in H$, defining $$x\to y: = \bigvee \lbrace z\mid z\wedge x \le y\rbrace$$ turns $H$ into a complete Heyting algebra.
+\end{prop}
+\begin{proof} We want to show that $a\le x\to y$ iff $a\wedge x\le y$ for any $a\in H$: $a\le x\to y$ iff $a\le \bigvee \lbrace z\mid z\wedge x\le y\rbrace$.  So $x\wedge a \le x \wedge \bigvee \lbrace z\mid z\wedge x\le y\rbrace = \bigvee \lbrace x\wedge z\mid z\wedge x\le y\rbrace \le \bigvee \lbrace y \rbrace = y$
+\end{proof}
+
+From this, one readily concludes that any finite distributive lattice is Heyting.
+
+\textbf{Remark}.  Since any complete lattice is bounded, a complete Brouwerian lattice is a complete Heyting algebra.  A complete Heyting algebra is also called a \emph{frame}.
+
+%%%%%
+%%%%%
+\end{document}

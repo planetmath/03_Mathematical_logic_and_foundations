@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{StateoutputMachine}
+\pmcreated{2013-03-22 18:59:49}
+\pmmodified{2013-03-22 18:59:49}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{state-output machine}
+\pmrecord{14}{41864}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmrelated{GeneralizedSequentialMachine}
+\pmrelated{Semiautomaton}
+\pmdefines{sequential machine}
+\pmdefines{complete machine}
+\pmdefines{incomplete machine}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+\subsubsection*{Definition}
+
+A \emph{state-output machine} can be thought of as state machine with an output feature: when a word is fed into the machine as input, the machine goes through a series of internal ``states'' where certain translations take place, and finally a set of words are produced as outputs.
+
+Formally, a \emph{state-output machine} $M$ is a five-tuple $(S,\Sigma,\Delta, \delta,\lambda)$ where
+\begin{enumerate}
+\item $(S,\Sigma,\delta)$ is a state machine (or semiautomaton),
+\item $\Delta$ is a non-empty set whose elements are called \emph{output symbols}, and
+\item $\lambda: S\times \Sigma \to P(\Delta)$ is a function called the \emph{output function}.
+\end{enumerate}
+The sets $S,\Sigma,$ and $\Delta$ are generally considered to be finite.  In the literature, a finite state-output machine is also known as \emph{transducer}.
+
+Note that there is no restrictions on the sizes of $\lambda(s,a)$ and $\delta(s,a)$.  Various classifications based on the cardinalities of $\lambda(s,a)$ and $\delta(s,a)$ are possible: for all $(s,a)\in S\times \Sigma$,
+\begin{itemize}
+\item $M$ is \emph{complete} if $|\lambda(s,a)|\ge 1$ and $|\delta(s,a)|\ge 1$; otherwise, it is \emph{incomplete};  
+\item $M$ is \emph{sequential} if $|\lambda(s,a)|\le 1$ and $|\delta(s,a)|\le 1$.
+\end{itemize}
+
+Both $\delta$ and $\lambda$ can be extended so its first component takes on a set $T$ of states: $$\delta(T,a):=\bigcup \lbrace \delta(t,a)\mid t\in T\rbrace \qquad \mbox{and} \qquad \lambda(T,a):=\bigcup \lbrace \lambda(t,a)\mid t\in T\rbrace.$$  Note that $\delta(\varnothing,a)=\lambda(\varnothing,a)=\varnothing$ for any input symbol $a\in \Sigma$.
+
+\subsubsection*{Words as Input}
+
+The transition and the output functions of a state-output machine $M$ are defined to work only over individual symbols in $\Sigma$ as inputs.  However, finite strings of symbols over $\Sigma$, or words, are usually fed to the $M$, instead of individual symbols.  Therefore, we would like modify $\delta$ and $\lambda$ in order to handle finite strings as well.
+\begin{description}
+\item[Extending $\delta$.]  When a machine $M$ receives an input word $u$, it reads $u$ one symbol at a time, starting from the left, until the last symbol is read.  After reading each symbol, the machine goes into a next state, dictated by the transition function $\delta$.  If $M$ is at state $s$ upon receiving $u$, we define a next state as a state that $M$ enters after reading the last symbol of $u$.  
+
+Based on the above discussion, we are ready to extend $\delta$ so it takes on words over $\Sigma$.  This is done inductively:
+\begin{itemize}
+\item $\delta'(s,\epsilon):=\lbrace s\rbrace$, where $\epsilon$ is the empty word, and $s$ is any state; 
+\item $\delta'(s, u a):= \delta(\delta'(s,u),a)$, where $a\in \Sigma$ and $u\in \Sigma^*$.
+\end{itemize}
+It is easy to see that $\delta'(s, uv)= \delta'(\delta'(s,u),v)$.
+\item[Extending $\lambda$.]  There are in general two ways to view output(s) for a given input word:
+\begin{enumerate}
+\item The first, more common, approach, is to view outputs as being produced after the last symbol of the input word is processed:
+\begin{itemize}
+\item $\lambda'(s, \epsilon):= \varnothing$, and
+\item $\lambda'(s, u a):= \lambda(\delta'(s,u),a)$, where $u$ is a word over $\Sigma$.
+\end{itemize}
+If $\lambda$ does not depend on input symbols, say $\lambda(s,a)=\beta(s)$ for all $(s,a)\in S\times \Sigma$, the above definition may be modified so that non-empty output(s) may be produced by the empty input word $\epsilon$:
+\begin{itemize}
+\item $\lambda'(s,u):= \beta(\delta'(s,u))$, where $u$ is any word over $\Sigma$.
+\end{itemize}
+It is easy to see that $\lambda(s,\epsilon)=\beta(s)$.  Note that this is not a true extension of the original output function, because the new output function now depends on inputs.
+\item Alternatively, outputs may be produced each time a transition occurs.  In other words, outputs are words over $\Delta$.  Thus, outputs are inductively as follows: 
+\begin{itemize}
+\item $\lambda'(s, \epsilon):= \lbrace \epsilon \rbrace$, where $\epsilon$ is the empty word, and 
+\item $\lambda'(s, u a):= \lambda'(s,u) \lambda(\delta'(s,u),a)$, where $a\in \Sigma$ and $u\in \Sigma^*$.
+\end{itemize}
+\end{enumerate}
+\end{description}
+When there is no confusion, we may continue to denote $\lambda$ and $\delta$ as the extensions of the original next-state and output functions.
+
+Given $M$, define an \emph{input configuration} as a pair $(s,u)$ for some $s\in S$ and $u\in \Sigma^*$, and an \emph{output configuration} as a pair $(t,v)$ for some $t\in S$ and $v\in \Delta^*$.  The set of output configurations for a given input configuration $(s,u)$ is given by $\delta(s,u)\times \lambda(s,u)$.
+
+\subsubsection*{Generator and Acceptor}
+
+One may treat a state-output machine $M=(S,\Sigma,\Delta, \delta,\lambda)$ as either a \emph{language generator} or a \emph{language acceptor}.  The idea is that a set of states and a set of words need to be specified as initial conditions, so that words can either be generated or accepted from these initial conditions.  The way this works is as follows:
+\begin{description}
+\item[$M$ as a generator.]  Fix a non-empty set $I\subseteq S$ of \emph{starting states}, and a non-empty set $G\subseteq \Sigma^*$.  The triple $(M,I,G)$ is called a \emph{generator}.  A string $b\in \Delta^*$ is \emph{generated by} $(M,I,G)$ if $b\in \lambda(s,a)$ for some $(s,a)\in I\times G$.  The set of all strings generated by $(M,I,G)$ is also denoted by $L(M,I,G)$.
+
+A typical example of a generator is a Post system: a state machine where the output alphabet is the input alphabet, and the set of states and the state function is suppressed ($S$ may be taken as a singleton).
+
+\item[$M$ as an acceptor.]  Dually, fix a non-empty set $F\subseteq S$ called the \emph{final states}, and a non-empty set $A\subseteq \Delta^*$.  The triple $(M,F,A)$ is called an \emph{acceptor}.  A string $a\in \Sigma^*$ is said to be accepted by $(M,F,A)$ if $\delta(s,a)\in F$ and $\lambda(s,a)\in A$ for some state $s\in S$.  The set of all strings accepted by $(M,F,A)$ is denoted by $L(M,F,A)$.  
+
+A typical example of an acceptor is an automaton: a state machine where the output alphabet and the output function are not essential ($\Delta^*$ may be taken as a singleton).
+\end{description}
+
+\textbf{Remark}.  Observe that the functions $\delta$ and $\lambda$ can be combined to form a single function $\tau: S\times \Sigma \to P(S)\times P(\Delta)$ such that $\tau=(\delta,\lambda)$.  One can generalize this so that $\tau$ is a function from $S\times \Sigma$ to $P(S\times \Delta)$, or more generally, to $P(S\times \Delta^*)$.  The resulting construct is commonly known as a \emph{generalized sequential machine}.
+
+\begin{thebibliography}{8}
+\bibitem{sg} S. Ginsburg, {\em An Introduction to Mathematical Machine Theory}, Addision-Wesley, (1962).
+\bibitem{ma} M. Arbib, \emph{Algebraic Theory of Machines, Languages, and Semigroups}, Academic Press, (1968).
+\bibitem{hs} J. Hartmanis, R.E. Stearns, \emph{Algebraic Structure Theory of Sequential Machines}, Prentice-Hall, (1966).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

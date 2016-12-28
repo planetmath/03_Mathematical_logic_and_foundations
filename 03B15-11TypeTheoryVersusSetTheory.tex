@@ -1,0 +1,219 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{11TypeTheoryVersusSetTheory}
+\pmcreated{2013-11-13 17:48:08}
+\pmmodified{2013-11-13 17:48:08}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.1 Type theory versus set theory}
+\pmrecord{21}{87536}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+
+% making logically defined graphics
+%\usepackage{xypic}
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\def\index#1{}
+\def\indexdef#1{}
+\def\indexsee#1{}
+\def\indexfoot#1{}
+\def\symlabel#1{}
+\def\define#1{\textbf{#1}}
+\usepackage{xspace}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\let\nat\N
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\jdeq}{\equiv}
+\newcommand{\vcentcolon}{܃\!\!}
+\newcommand{\defeq}{\vcentcolon\equiv} 
+
+%
+\begin{document}
+\index{type theory}
+Homotopy type theory is (among other things) a foundational language for mathematics, i.e., an alternative to Zermelo--Fraenkel\index{set theory!Zermelo--Fraenkel} set theory.
+However, it behaves differently from set theory in several important ways, and that can take some getting used to.
+Explaining these differences carefully requires us to be more formal here than we will be in the rest of the book.
+As stated in the introduction, our goal is to write type theory \emph{informally}; but for a mathematician accustomed to set theory, more precision at the beginning can help avoid some common misconceptions and mistakes.
+
+We note that a set-theoretic foundation has two ``layers'': the deductive system of first-order logic,\index{first-order!logic} and, formulated inside this system, the axioms of a particular theory, such as ZFC.
+Thus, set theory is not only about sets, but rather about the interplay between sets (the objects of the second layer) and propositions (the objects of the first layer).
+
+By contrast, type theory is its own deductive system: it need not be formulated inside any superstructure, such as first-order logic.
+Instead of the two basic notions of set theory, sets and propositions, type theory has one basic notion: \emph{types}.
+Propositions (statements which we can prove, disprove, assume, negate, and so on\footnote{Confusingly, it is also a common practice (dating
+back to Euclid) to use the word ``proposition'' synonymously with ``theorem''.
+  We will confine ourselves to the logician's usage, according to which a \emph{proposition} is a statement \emph{susceptible to} proof, whereas a \emph{theorem}\indexfoot{theorem} (or ``lemma''\indexfoot{lemma} or ``corollary''\indexfoot{corollary}) is such a statement that \emph{has been} proven.
+Thus ``$0=1$'' and its negation ``$\neg(0=1)$'' are both propositions, but only the latter is a theorem.}) are identified with particular types, via the correspondence shown in \PMlinkname{Table 1}{constructivity#S0.T1}.
+Thus, the mathematical activity of \emph{proving a theorem} is identified with a special case of the mathematical activity of \emph{constructing an object}---in this case, an inhabitant of a type that represents a proposition.
+
+This leads us to another difference between type theory and set theory, but to explain it we must say a little about deductive systems in general.
+Informally, a deductive system is a collection of \define{rules}
+\indexdef{rule}%
+for deriving things called \define{judgments}.
+\indexdef{judgment}%
+If we think of a deductive system as a formal game,
+\index{game!deductive system as}%
+then the judgments are the ``positions'' in the game which we reach by following the game rules.
+We can also think of a deductive system as a sort of algebraic theory, in which case the judgments are the elements (like the elements of a group) and the deductive rules are the operations (like the group multiplication).
+From a logical point of view, the judgments can be considered to be the ``external'' statements, living in the metatheory, as opposed to the ``internal'' statements of the theory itself.
+
+In the deductive system of first-order logic (on which set theory is based), there is only one kind of judgment: that a given proposition has a proof.
+That is, each proposition $A$ gives rise to a judgment ``$A$ has a proof'', and all judgments are of this form.
+A rule of first-order logic such as ``from $A$ and $B$ infer $A\wedge B$'' is actually a rule of ``proof construction'' which says that given the judgments ``$A$ has a proof'' and ``$B$ has a proof'', we may deduce that ``$A\wedge B$ has a proof''.
+Note that the judgment ``$A$ has a proof'' exists at a different level from the \emph{proposition} $A$ itself, which is an internal statement of the theory.
+% In particular, we cannot manipulate it to construct propositions such as ``if $A$ has a proof, then $B$ does not have a proof''---unless we are using our set-theoretic foundation as a meta-theory with which to talk about some other axiomatic system.
+
+The basic judgment of type theory, analogous to ``$A$ has a proof'', is written ``$a:A$'' and pronounced as ``the term $a$ has type $A$'', or more loosely ``$a$ is an element of $A$'' (or, in homotopy type theory, ``$a$ is a point of $A$'').
+\indexdef{term}%
+\indexdef{element}%
+\indexdef{point!of a type}%
+When $A$ is a type representing a proposition, then $a$ may be called a \emph{witness}\index{witness!to the truth of a proposition} to the provability of $A$, or \emph{evidence}\index{evidence, of the truth of a proposition} of the truth of $A$ (or even a \emph{proof}\index{proof} of $A$, but we will try to avoid this confusing terminology).
+In this case, the judgment $a:A$ is derivable in type theory (for some $a$) precisely when the analogous judgment ``$A$ has a proof'' is derivable in first-order logic (modulo differences in the axioms assumed and in the encoding of mathematics, as we will discuss throughout the book).
+ 
+On the other hand, if the type $A$ is being treated more like a set than like a proposition (although as we will see, the distinction can become blurry), then ``$a:A$'' may be regarded as analogous to the set-theoretic statement ``$a\in A$''.
+However, there is an essential difference in that ``$a:A$'' is a \emph{judgment} whereas ``$a\in A$'' is a \emph{proposition}.
+In particular, when working internally in type theory, we cannot make statements such as ``if $a:A$ then it is not the case that $b:B$'', nor can we ``disprove'' the judgment ``$a:A$''.
+
+A good way to think about this is that in set theory, ``membership'' is a relation which may or may not hold between two pre-existing objects ``$a$'' and ``$A$'', while in type theory we cannot talk about an element ``$a$'' in isolation: every element \emph{by its very nature} is an element of some type, and that type is (generally speaking) uniquely determined.
+Thus, when we say informally ``let $x$ be a natural number'', in set theory this is shorthand for ``let $x$ be a thing and assume that $x\in\nat$'', whereas in type theory ``let $x:\nat$'' is an atomic statement: we cannot introduce a variable without specifying its type.\index{membership}
+
+At first glance, this may seem an uncomfortable restriction, but it is arguably closer to the intuitive mathematical meaning of ``let $x$ be a natural number''.
+In practice, it seems that whenever we actually \emph{need} ``$a\in A$'' to be a proposition rather than a judgment, there is always an ambient set $B$ of which $a$ is known to be an element and $A$ is known to be a subset.
+This situation is also easy to represent in type theory, by taking $a$ to be an element of the type $B$, and $A$ to be a predicate on $B$; see \PMlinkname{\S 3.5}{35subsetsandpropositionalresizing}.
+
+A last difference between type theory and set theory is the treatment of equality.
+The familiar notion of equality in mathematics is a proposition: e.g.\ we can disprove an equality or assume an equality as a hypothesis.
+Since in type theory, propositions are types, this means that equality is a type: for elements $a,b:A$ (that is, both $a:A$ and $b:A$) we have a type ``$\id[A]ab$''.
+(In \emph{homotopy} type theory, of course, this equality proposition can behave in unfamiliar ways: see \PMlinkname{\S 1.12}{112identitytypes}, and the rest of the book).
+When $\id[A]ab$ is inhabited, we say that $a$ and $b$ are \define{(propositionally) equal}.
+\index{propositional!equality}%
+\index{equality!propositional}%
+
+However, in type theory there is also a need for an equality \emph{judgment}, existing at the same level as the judgment ``$x:A$''.\index{judgment}
+\symlabel{defn:judgmental-equality}%
+This is called \define{judgmental equality}
+\indexdef{equality!judgmental}%
+\indexdef{judgmental equality}%
+or \define{definitional equality},
+\indexdef{equality!definitional}%
+\indexsee{definitional equality}{equality, definitional}%
+and we write it as $a\jdeq b : A$ or simply $a \jdeq b$.
+It is helpful to think of this as meaning ``equal by definition''.
+For instance, if we define a function $f:\nat\to\nat$ by the equation $f(x)=x^2$, then the expression $f(3)$ is equal to $3^2$ \emph{by definition}.
+Inside the theory, it does not make sense to negate or assume an equality-by-definition; we cannot say ``if $x$ is equal to $y$ by definition, then $z$ is not equal to $w$ by definition''.
+Whether or not two expressions are equal by definition is just a matter of expanding out the definitions; in particular, it is algorithmically\index{algorithm} decidable (though the algorithm is necessarily meta-theoretic, not internal to the theory).\index{decidable!definitional equality}
+
+As type theory becomes more complicated, judgmental equality can get more subtle than this, but it is a good intuition to start from.
+Alternatively, if we regard a deductive system as an algebraic theory, then judgmental equality is simply the equality in that theory, analogous to the equality between elements of a group---the only potential for confusion is that there is \emph{also} an object \emph{inside} the deductive system of type theory (namely the type ``$a=b$'') which behaves internally as a notion of ``equality''.
+
+The reason we \emph{want} a judgmental notion of equality is so that it can control the other form of judgment, ``$a:A$''.
+For instance, suppose we have given a proof that $3^2=9$, i.e.\ we have derived the judgment $p:(3^2=9)$ for some $p$.
+Then the same witness $p$ ought to count as a proof that $f(3)=9$, since $f(3)$ is $3^2$ \emph{by definition}.
+The best way to represent this is with a rule saying that given the judgments $a:A$ and $A\jdeq B$, we may derive the judgment $a:B$.
+
+Thus, for us, type theory will be a deductive system based on two forms of judgment:
+\begin{center}
+\medskip
+\begin{tabular}{cl}
+  \hline
+  Judgment & Meaning\\
+  \hline
+  $a : A$ & ``$a$ is an object of type $A$''\\
+  $a \jdeq b : A$ & ``$a$ and $b$ are definitionally equal objects of type $A$''\\
+  \hline
+\end{tabular}
+\medskip
+\end{center}
+%
+\symlabel{defn:defeq}%
+When introducing a definitional equality, i.e., defining one thing to be equal to another, we will use the symbol ``$\defeq$''.
+Thus, the above definition of the function $f$ would be written as $f(x)\defeq x^2$.
+
+Because judgments cannot be put together into more complicated statements, the symbols ``$:$'' and ``$\jdeq$'' bind more loosely than anything else.%
+\footnote{In formalized\indexfoot{mathematics!formalized} type theory, commas and turnstiles can bind even more loosely.
+  For instance, $x:A,y:B\vdash c:C$ is parsed as $((x:A),(y:B))\vdash (c:C)$.
+  However, in this book we refrain from such notation until \autoref{cha:rules}.}
+Thus, for instance, ``$p:\id{x}{y}$'' should be parsed as ``$p:(\id{x}{y})$'', which makes sense since ``$\id{x}{y}$'' is a type, and not as ``$\id{(p:x)}{y}$'', which is senseless since ``$p:x$'' is a judgment and cannot be equal to anything.
+Similarly, ``$A\jdeq \id{x}{y}$'' can only be parsed as ``$A\jdeq(\id{x}{y})$'', although in extreme cases such as this, one ought to add parentheses anyway to aid reading comprehension.
+Moreover, later on we will fall into the common notation of chaining together equalities --- e.g.\ writing $a=b=c=d$ to mean ``$a=b$ and $b=c$ and $c=d$, hence $a=d$'' --- and we will also include judgmental equalities in such chains.
+Context usually suffices to make the intent clear.
+
+This is perhaps also an appropriate place to mention that the common mathematical notation ``$f:A\to B$'', expressing the fact that $f$ is a function from $A$ to $B$, can be regarded as a typing judgment, since we use ``$A\to B$'' as notation for the type of functions from $A$ to $B$ (as is standard practice in type theory; see \PMlinkname{\S 1.4}{14dependentfunctiontypes}).
+
+\index{assumption|(defstyle}%
+Judgments may depend on \emph{assumptions} of the form $x:A$, where $x$ is a variable
+\indexdef{variable}%
+and $A$ is a type.
+For example, we may construct an object $m + n : \nat$ under the assumptions that $m,n : \nat$.
+Another example is that assuming $A$ is a type, $x,y : A$, and $p : \id[A]{x}{y}$, we may construct an element $p^{-1} : \id[A]{y}{x}$.
+The collection of all such assumptions is called the \define{context};%
+\index{context}
+from a topological point of view it may be thought of as a ``parameter\index{parameter!space} space''.
+In fact, technically the context must be an ordered list of assumptions, since later assumptions may depend on previous ones: the assumption $x:A$ can only be made \emph{after} the assumptions of any variables appearing in the type $A$.
+
+If the type $A$ in an assumption $x:A$ represents a proposition, then the assumption is a type-theoretic version of a \emph{hypothesis}:
+\indexdef{hypothesis}%
+we assume that the proposition $A$ holds.
+When types are regarded as propositions, we may omit the names of their proofs.
+Thus, in the second example above we may instead say that assuming $\id[A]{x}{y}$, we can prove $\id[A]{y}{x}$.
+However, since we are doing ``proof-relevant'' mathematics,
+\index{mathematics!proof-relevant}%
+we will frequently refer back to proofs as objects.
+In the example above, for instance, we may want to establish that $p^{-1}$ together with the proofs of transitivity and reflexivity behave like a groupoid; see \PMlinkexternal{Chapter 2}{http://planetmath.org/node/87569}.
+
+Note that under this meaning of the word \emph{assumption}, we can assume a propositional equality (by assuming a variable $p:x=y$), but we cannot assume a judgmental equality $x\jdeq y$, since it is not a type that can have an element.
+However, we can do something else which looks kind of like assuming a judgmental equality: if we have a type or an element which involves a variable $x:A$, then we can \emph{substitute} any particular element $a:A$ for $x$ to obtain a more specific type or element.
+We will sometimes use language like ``now assume $x\jdeq a$'' to refer to this process of substitution, even though it is not an \emph{assumption} in the technical sense introduced above.
+\index{assumption|)}%
+
+By the same token, we cannot \emph{prove} a judgmental equality either, since it is not a type in which we can exhibit a witness.
+Nevertheless, we will sometimes state judgmental equalities as part of a theorem, e.g.\ ``there exists $f:A\to B$ such that $f(x)\jdeq y$''.
+This should be regarded as the making of two separate judgments: first we make the judgment $f:A\to B$ for some element $f$, then we make the additional judgment that $f(x)\jdeq y$.
+
+In the rest of this chapter, we attempt to give an informal presentation of type theory, sufficient for the purposes of this book; we give a more formal account in \PMlinkexternal{Appendix A}{http://planetmath.org/node/87881}.
+Aside from some fairly obvious rules (such as the fact that judgmentally equal things can always be substituted\index{substitution} for each other), the rules of type theory can be grouped into \emph{type formers}.
+Each type former consists of a way to construct types (possibly making use of previously constructed types), together with rules for the construction and behavior of elements of that type.
+In most cases, these rules follow a fairly predictable pattern, but we will not attempt to make this precise here; see however the beginning of \PMlinkname{\S 1.5}{15producttypes} and also \PMlinkexternal{Chapter 5}{http://planetmath.org/node/87578}.\index{type theory!informal}
+
+\index{axiom!versus rules}%
+\index{rule!versus axioms}%
+An important aspect of the type theory presented in this chapter is that it consists entirely of \emph{rules}, without any \emph{axioms}.
+In the description of deductive systems in terms of judgments, the \emph{rules} are what allow us to conclude one judgment from a collection of others, while the \emph{axioms} are the judgments we are given at the outset.
+If we think of a deductive system as a formal game, then the rules are the rules of the game, while the axioms are the starting position.
+And if we think of a deductive system as an algebraic theory, then the rules are the operations of the theory, while the axioms are the \emph{generators} for some particular free model of that theory.
+
+In set theory, the only rules are the rules of first-order logic (such as the rule allowing us to deduce ``$A\wedge B$ has a proof'' from ``$A$ has a proof'' and ``$B$ has a proof''): all the information about the behavior of sets is contained in the axioms.
+By contrast, in type theory, it is usually the \emph{rules} which contain all the information, with no axioms being necessary.
+For instance, in \PMlinkname{\S 1.05}{15producttypes} we will see that there is a rule allowing us to deduce the judgment ``$(a,b):A\times B$'' from ``$a:A$'' and ``$b:B$'', whereas in set theory the analogous statement would be (a consequence of) the pairing axiom.
+
+The advantage of formulating type theory using only rules is that rules are ``procedural''.
+In particular, this property is what makes possible (though it does not automatically ensure) the good computational properties of type theory, such as ``canonicity''.\index{canonicity}
+However, while this style works for traditional type theories, we do not yet understand how to formulate everything we need for \emph{homotopy} type theory in this way.
+In particular, in \PMlinkname{\S 2.9}{29pitypesandthefunctionextensionalityaxiom},\PMlinkname{\S 2.10}{210universesandtheunivalenceaxiom},\PMlinkexternal{Chapter 6}{http://planetmath.org/node/87579} we will have to augment the rules of type theory presented in this chapter by introducing additional axioms, notably the \emph{univalence axiom}.
+In this chapter, however, we confine ourselves to a traditional rule-based type theory.
+
+%%%%%%%
+
+\end{document}

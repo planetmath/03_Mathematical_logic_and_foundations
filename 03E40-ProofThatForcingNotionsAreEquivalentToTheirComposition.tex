@@ -1,0 +1,159 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofThatForcingNotionsAreEquivalentToTheirComposition}
+\pmcreated{2013-03-22 12:54:26}
+\pmmodified{2013-03-22 12:54:26}
+\pmowner{Henry}{455}
+\pmmodifier{Henry}{455}
+\pmtitle{proof that forcing notions are equivalent to their composition}
+\pmrecord{5}{33258}
+\pmprivacy{1}
+\pmauthor{Henry}{455}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E40}
+\pmclassification{msc}{03E35}
+\pmrelated{EquivalenceOfForcingNotions}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+%\PMlinkescapeword{theory}
+\begin{document}
+This is a long and complicated proof, the more so because the meaning of $Q$ shifts depending on what generic subset of $P$ is being used.  It is therefore broken into a number of steps.  The core of the proof is to prove that, given any generic subset $G$ of $P$ and a generic subset $H$ of $\hat{Q}[G]$ there is a corresponding generic subset $G*H$ of $P*Q$ such that $\mathfrak{M}[G][H]=\mathfrak{M}[G*H]$, and conversely, given any generic subset $G$ of $P*Q$ we can find some generic $G_P$ of $P$ and a generic $G_Q$ of $\hat{Q}[G_P]$ such that $\mathfrak{M}[G_P][G_Q]=\mathfrak{M}[G]$.
+
+We do this by constructing functions using operations which can be performed within the forced universes so that, for example, since $\mathfrak{M}[G][H]$ has both $G$ and $H$, $G*H$ can be calculated, proving that it contains $\mathfrak{M}[G*H]$.  To ensure equality, we will also have to ensure that our operations are inverses; that is, given $G$, $G_P*G_H=G$ and given $G$ and $H$, $(G*H)_P=P$ and $(G*H)_Q=H$.
+
+The remainder of the proof merely defines the precise operations, proves that they give generic sets, and proves that they are inverses.
+
+Before beginning, we prove a lemma which comes up several times:
+
+\subsection*{Lemma: If $G$ is generic in $P$ and $D$ is dense above some $p\in G$ then $G\cap D\neq\emptyset$}
+
+Let $D^\prime=\{p^\prime\in P\mid p^\prime\in D \vee p^\prime\text{ is incompatible with }p\}$.  This is dense, since if $p_0\in P$ then either $p_0$ is incompatible with $p$, in which case $p_0\in D^\prime$, or there is some $p_1$ such that $p_1\leq p,p_0$, and therefore there is some $p_2\leq p_1$ such that $p_2\in D$, and therefore $p_2\leq p_0$.  So $G$ intersects $D^\prime$.  But since a generic set is directed, no two elements are incompatible, so $G$ must contain an element of $D^\prime$ which is not incompatible with $p$, so it must contain an element of $D$.
+
+\subsection*{$G*H$ is a generic filter}
+
+First, given generic subsets $G$ and $H$ of $P$ and $\hat{Q}[G]$, we can define:
+
+$$G*H=\{\langle p,\hat{q}\rangle\mid p\in G \wedge \hat{q}[G]\in H\}$$
+
+\subsubsection*{$G*H$ is closed}
+
+Let $\langle p_1,\hat{q}_1\rangle\in G*H$ and let $\langle p_1,\hat{q}_1\rangle\leq\langle p_2,\hat{q}_2\rangle$.  Then we can conclude $p_1\in G$, $p_1\leq p_2$, $\hat{q}_1[G]\in H$, and $p_1\Vdash \hat{q}_1\leq\hat{q}_2$, so $p_2\in G$ (since $G$ is closed) and $\hat{q}_2[G]\in H$ since $p_1\in G$ and $p_1$ forces both $\hat{q}_1\leq\hat{q}_2$ and that $H$ is downward closed.  So $\langle p_2,\hat{q}_2\rangle\in G*H$.
+
+\subsubsection*{$G*H$ is directed}
+
+Suppose $\langle p_1,\hat{q}_1\rangle,\langle p_1,\hat{q}_1\rangle\in G*H$.  So $p_1,p_2\in G$, and since $G$ is directed, there is some $p_3\leq p_1,p_2$.  Since $\hat{q}_1[G],\hat{q}_2[G]\in H$ and $H$ is directed, there is some $\hat{q}_3[G]\leq\hat{q}_1[G],\hat{q}_2[G]$.  Therefore there is some $p_4\leq p_3$, $p_4\in G$, such that $p_4\Vdash \hat{q}_3\leq \hat{q}_1,\hat{q}_2$, so $\langle p_4,\hat{q}_3\rangle\leq\langle p_1,\hat{q}_1\rangle,\langle p_1,\hat{q}_1\rangle$ and $\langle p_4,\hat{q}_3\rangle\in G*H$.
+
+\subsubsection*{$G*H$ is generic}
+
+Suppose $D$ is a dense subset of $P*\hat{Q}$.  We can project it into a dense subset of $Q$ using $G$:
+
+$$D_Q=\{\hat{q}[G]\mid \langle p,\hat{q}\rangle\in D\} \text{ for some }p\in G$$
+
+\subsubsection*{Lemma: $D_Q$ is dense in $\hat{Q}[G]$}
+Given any $\hat{q}_0\in \hat{Q}$, take any $p_0\in G$.  Then we can define yet another dense subset, this one in $G$:
+
+$$D_{\hat{q}_0}=\{p\mid p\leq p_0 \wedge p\Vdash \hat{q}\leq \hat{q}_0 \wedge \langle p,\hat{q}\rangle\in D\} \text{ for some }\hat{q}\in\hat{Q}$$
+
+\subsubsection*{Lemma: $D_{\hat{q}_0}$ is dense above $p_0$ in $P$}
+
+Take any $p\in P$ such that $p\leq p_0$.  Then, since $D$ is dense in $P*\hat{Q}$, we have some $\langle p_1,\hat{q}_1\rangle\leq \langle p,\hat{q}_0\rangle$ such that $\langle p_1,\hat{q}_1\rangle\in D$.  Then by definition $p_1\leq p$ and $p_1\in D_{\hat{q}_0}$.
+
+\bigskip{}
+From this lemma, we can conclude that there is some $p_1\leq p_0$ such that $p_1\in G\cap D_{\hat{q}_0}$, and therefore some $\hat{q}_1$ such that $p_1\Vdash \hat{q}_1\leq\hat{q}_0$ where $\langle p_1,\hat{q}_1\rangle\in D$.  So $D_Q$ is indeed dense in $\hat{Q}[G]$.
+
+\bigskip{}
+Since $D_Q$ is dense in $\hat{Q}[G]$, there is some $\hat{q}$ such that $\hat{q}[G]\in D_Q\cap H$, and so some $p\in G$ such that $\langle p,\hat{q}\rangle\in D$.  But since $p\in G$ and $\hat{q}\in H$, $\langle p,\hat{q}\rangle\in G*H$, so $G*H$ is indeed generic.
+
+
+\section*{$G_P$ is a generic filter}
+
+Given some generic subset $G$ of $P*\hat{Q}$, let:
+
+$$G_P=\{p\in P\mid p^\prime\leq p \wedge \langle p^\prime,\hat{q}\rangle\in G\} \text{ for some }p^\prime\in P\text{ and some }\hat{q}\in Q$$
+
+\subsubsection*{$G_P$ is closed}
+
+Take any $p_1\in G_P$ and any $p_2$ such that $p_1\leq p_2$.  Then there is some $p^\prime\leq p_1$ satisfying the definition of $G_P$, and also $p^\prime\leq p_2$, so $p_2\in G_P$.
+
+\subsubsection*{$G_P$ is directed}
+
+Consider $p_1,p_2\in G_P$.  Then there is some $p^\prime_1$ and some $\hat{q}_1$ such that $\langle p^\prime_1,\hat{q}_1\rangle\in G$ and some $p^\prime_2$ and some $\hat{q}_2$ such that $\langle p^\prime_2,\hat{q}_2\rangle\in G$.  Since $G$ is directed, there is some $\langle p_3,\hat{q}_3\rangle\in G$ such that $\langle p_3,\hat{q}_3\rangle\leq \langle p^\prime_1,\hat{q}_1\rangle,\langle p^\prime_2,\hat{q}_2\rangle$, and therefore $p_3\in G_P$, $p_3\leq p_1,p_2$.
+
+\subsubsection*{$G_P$ is generic}
+
+Let $D$ be a dense subset of $P$.  Then $D^\prime=\{\langle p,\hat{q}\rangle\mid p\in D\}$.  Clearly this is dense, since if $\langle p,\hat{q}\rangle\in P*\hat{Q}$ then there is some $p^\prime\leq p$ such that $p^\prime\in D$, so $\langle p^\prime, \hat{q}\rangle\in D^\prime$ and $\langle p^\prime,\hat{q}\rangle\leq\langle p,\hat{q}\rangle$.  So there is some $\langle p,\hat{q}\rangle\in D^\prime\cap G$, and therefore $p\in D\cap G_P$.  So $G_P$ is generic.
+
+\section*{$G_Q$ is a generic filter}
+
+Given a generic subset $G\subseteq P*\hat{Q}$, define:
+
+$$G_Q=\{\hat{q}[G_P]\mid \langle p,\hat{q}\rangle\in G\} \text{ for some }p\in P$$
+
+(Notice that $G_Q$ is dependant on $G_P$, and is a subset of $\hat{Q}[G_P]$, that is, the forcing notion inside $\mathfrak{M}[G_P]$, as opposed to the set of names $Q$ which we've been primarily working with.)
+
+\subsubsection*{$G_Q$ is closed}
+
+Suppose $\hat{q}_1[G_P]\in G_Q$ and $\hat{q}_1[G_P]\leq\hat{q}_2[G_P]$.  Then there is some $p_1\in G_P$ such that $p_1\Vdash\hat{q}_1\leq\hat{q}_2$.  Since $p_1\in G_P$, there is some $p_2\leq p_1$ such that for some $\hat{q}_3$, $\langle p_2,\hat{q}_3\rangle\in G$.  By the definition of $G_Q$, there is some $p_3$ such that $\langle p_3,\hat{q}_1\rangle\in G$, and since $G$ is directed, there is some $\langle p_4,\hat{q}_4\rangle\in G$ and $\langle p_4,\hat{q}_4\rangle\leq \langle p_3,\hat{q}_1\rangle,\langle p_2,\hat{q}_3\rangle$.  Since $G$ is closed and $\langle p_4,\hat{q}_4\rangle\leq\langle p_4,\hat{q}_2\rangle$, we have $\hat{q}_2[G_P]\in G_Q$.
+
+\subsubsection*{$G_Q$ is directed}
+
+Suppose $\hat{q}_1[G_P],\hat{q}_2[G_P]\in G_Q$.  Then for some $p_1,p_2$, $\langle p_1,\hat{q}_1\rangle,\langle p_2,\hat{q}_2\rangle\in G$, and since $G$ is directed, there is some $\langle p_3,\hat{q}_3\rangle\in G$ such that $\langle p_3,\hat{q}_3\rangle\leq \langle p_1,\hat{q}_1\rangle,\langle p_2,\hat{q}_2\rangle$.  Then $\hat{q}_3[G_P]\in G_Q$ and since $p_3\in G$ and $p_3\Vdash \hat{q}_3\leq \hat{q}_1,\hat{q}_2$, we have $\hat{q}_3[G_P]\leq\hat{q}_1[G_P],\hat{q}_2[G_P]$.
+
+\subsubsection*{$G_Q$ is generic}
+
+Let $D$ be a dense subset of $Q[G_P]$ (in $\mathfrak{M}[G_P]$).  Let $\hat{D}$ be a $P$-name for $D$, and let $p_1\in G_P$ be a such that $p_1\Vdash \hat{D} $\texttt{ is dense}.  By the definition of $G_P$, there is some $p_2\leq p_1$ such that $\langle p_2,\hat{q}_2\rangle\in G$ for some $q_2$.  Then $D^\prime=\{\langle p,\hat{q}\rangle\mid p\Vdash \hat{q}\in D \wedge p\leq p_2\}$.
+
+\subsubsection*{Lemma: $D^\prime$ is dense (in $G$) above $\langle p_2,\hat{q}_2\rangle$}
+
+Take any $\langle p,\hat{q}\rangle\in P*Q$ such that $\langle p,\hat{q}\rangle\leq \langle p_2,\hat{q}_2\rangle$.  Then $p\Vdash \hat{D} $\texttt{ is dense}, and therefore there is some $\hat{q}_3$ such that $p\Vdash \hat{q}_3\in\hat{D}$ and $p\Vdash \hat{q}_3\leq\hat{q}$.  So $\langle p,\hat{q}_3\rangle\leq\langle p,\hat{q}\rangle$ and $\langle p,\hat{q}_3\rangle\in D^\prime$.
+
+\bigskip{}
+Take any $\langle p_3,\hat{q}_3\rangle\in D^\prime\cap G$.  Then $p_3\in G_P$, so $\hat{q}_3\in D$, and by the definition of $G_Q$, $\hat{q}_3\in G_Q$.
+
+\section*{$G_P*G_Q=G$}
+
+If $G$ is a generic subset of $P*Q$, observe that:
+
+$$G_P*G_Q=\{\langle p,\hat{q}\rangle\mid p^\prime\leq p \wedge \langle p^\prime,\hat{q}^\prime\rangle\in G \wedge \langle p_0,\hat{q}\rangle\in G\} \text{ for some }p^\prime,\hat{q}^\prime,p_0$$
+
+If $\langle p,\hat{q}\rangle\in G$ then obviously this holds, so $G\subseteq G_P*G_Q$.  Conversely, if $\langle p,\hat{q}\rangle\in G_P*G_Q$ then there exist $p^\prime,\hat{q}^\prime$ and $p_0$ such that $\langle p^\prime,\hat{q}^\prime\rangle,\langle p_0,\hat{q}\rangle\in G$, and since $G$ is directed, some $\langle p_1,\hat{q_1}\rangle\in G$ such that $\langle p_1,\hat{q}_1\rangle\leq\langle p^\prime,\hat{q}^\prime\rangle,\langle p_0,\hat{q}\rangle$.  But then $p_1\leq p$ and $p_1\Vdash \hat{q}_1\leq\hat{q}$, and since $G$ is closed, $\langle p,\hat{q}\rangle\in G$.
+
+\section*{$(G*H)_P=G$}
+
+Assume that $G$ is generic in $P$ and $H$ is generic in $Q[G]$.
+
+Suppose $p\in (G*H)_P$.  Then there is some $p^\prime\in P$ and some $\hat{q}\in Q$ such that $p^\prime\leq p$ and $\langle p^\prime,\hat{q}\rangle\in G*H$.  By the definition of $G*H$, $p^\prime\in G$, and then since $G$ is closed $p\in G$.
+
+Conversely, suppose $p\in G$.  Then (since $H$ is non-trivial), $\langle p,\hat{q}\rangle\in G*H$ for some $\hat{q}$, and therefore $p\in (G*H)_P$.
+
+\section*{$(G*H)_Q=H$}
+
+Assume that $G$ is generic in $P$ and $H$ is generic in $Q[G]$.
+
+Given any $q\in H$, there is some $\hat{q}\in Q$ such that $\hat{q}[G]=q$, and so there is some $p$ such that $\langle p,\hat{q}\rangle\in G*H$, and therefore $\hat{q}[G]\in H$.
+
+On the other hand, if $q\in (G*H)_Q$ then there is some $\langle p,\hat{q}\rangle\in G*H$, and therefore some $\hat{q}[G]\in H$.
+%%%%%
+%%%%%
+\end{document}

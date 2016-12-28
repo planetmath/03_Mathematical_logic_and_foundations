@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{EquivalentFormulationOfSubstitutability}
+\pmcreated{2013-03-22 19:35:57}
+\pmmodified{2013-03-22 19:35:57}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{equivalent formulation of substitutability}
+\pmrecord{6}{42590}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B05}
+\pmclassification{msc}{03B10}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{proof}
+\usepackage{bussproofs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tabls}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ex}{Example}
+
+\begin{document}
+\begin{prop} Suppose a variable $x$ occurs free in a wff $A$.  A term $t$ is free for $x$ in $A$ iff no variables in $t$ are bound by a quantifier in $A[t/x]$. \end{prop}
+\begin{proof} We do induction on the complexity of $A$.  
+\begin{itemize}
+\item If $A$ is atomic, then any $t$ is free for $x$ in $A$, and clearly $A[t/x]$ is just $A$, which has no bound variables.  
+\item If $A$ is of the form $B\to C$, then $t$ is free for $x$ in $A$ iff $t$ is free for $x$ in both $B$ and $C$ iff no variables in $t$ are bound in either $B$ or $C$ iff no variables in $t$ are bound in $A$.  
+\item Finally, suppose $A$ is of the form $\exists y B$.  Since $x$ is free in $A$, $x$ is not $y$, and $t$ is free for $x$ in $A$ iff $y$ is not in $t$ and $t$ is free for $x$ in $B$ iff, by induction, $y$ is not in $t$ and no variables of $t$ are bound in $B[t/x]$ iff no variables of $t$ are bound in $\exists y B[t/x]$, which is just $A[t/x]$ (since $x\ne y$).
+\end{itemize}
+\end{proof}
+If $x$ does not occur free in $A$ (either $x$ occurs bound in $A$ or not at all in $A$), then $t$ is obviously free for $x$ in $A$, but $A[t/x]$ is just $A$, and there is no guarantee that variables in $t$ are bound in $A$ or not.
+
+In the special case where $t$ is a variable $y$, we see that $y$ is free for $x$ in $A$ iff $y$ is not bound in $A[y/x]$, provided that $x$ occurs free in $A$.  In other words, $y$ is free for $x$ in $A$ iff no free occurrences of $x$ in $A$ are in the scope of $Qy$, where $Q$ is either $\exists$ or $\forall$.  So if $y$ is not bound in $A$, $y$ is free for $x$ in $A$, regardless of whether $x$ is free or bound in $A$.  Also, $x$ is always free for $x$ in $A$.
+
+%%%%%
+%%%%%
+\end{document}

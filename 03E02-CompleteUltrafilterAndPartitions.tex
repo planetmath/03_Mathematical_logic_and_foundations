@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CompleteUltrafilterAndPartitions}
+\pmcreated{2013-03-22 18:55:52}
+\pmmodified{2013-03-22 18:55:52}
+\pmowner{yesitis}{13730}
+\pmmodifier{yesitis}{13730}
+\pmtitle{complete ultrafilter and partitions}
+\pmrecord{4}{41784}
+\pmprivacy{1}
+\pmauthor{yesitis}{13730}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E02}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+\emph{If $U$ is an ultrafilter on a set $S$, then}
+
+\begin{center}
+\emph{$U$ is $\kappa$-complete $\Leftrightarrow$ there is no partition of $S$ into $\kappa$-many pieces for which each piece $X_\alpha$ of the partition is not in $U$.}
+\end{center}
+
+We prove the case of $\sigma$-completeness; the case of arbitrary infinite cardinality follows closely. For the $\Rightarrow$ direction, let $P$ be a partition of $S$ into $\omega$ many pieces, all of which do not belong to $U$, and write $S=\bigcup_{n=1}^\omega X_n$ to illustrate this partition. Now, $\varnothing=S^\complement=\bigcap_{n=1}^\omega X_n^\complement$. Since, by our assumption, each of the $X_n$ do not belong to $U$, we have $X_n^\complement\in U$ for each $n<\omega$ as $U$ is an ultrafilter. Thus, $\left(\bigcap_{n=1}^\omega X_n^\complement\right)\in U$ by $\sigma$-completeness. This, however, means $\varnothing\in U$, contradicting the definition of a filter.
+
+Note that the converse states that every partition $P$ of $S$ into $\omega$-many pieces has a (unique) piece $X_1\in U$. To prove this, let $Y_n$ be a collection of $\omega$ many members of $U$ and let $Y=\bigcap_{n=1}^\omega Y_n$. Now consider the partition $\{P_\iota:\iota\leq\omega\}$ of $S\setminus Y$:
+
+\begin{center}for each $s\in S\setminus Y$, put $s\in P_\iota$ if $\iota$ is the least index for which $s\not\in Y_\iota$.\end{center}
+
+It is easy to verify that each $s\in S\setminus Y$ belongs to a \emph{unique} $P_\iota$, the collection of $P_\iota$'s is indeed a partition of $S\setminus Y$.
+
+Along with $Y$, $\{P_\iota:\iota\leq\omega\}$ partitions $S$ into $\aleph_0=\omega$ many pieces. A (unique) piece of this partition belongs in $U$: $P_{\iota*}\in U$ or $Y\in U$. But, $P_\iota\cap Y_\iota=\varnothing\not\in U$ by the definition of $P_\iota$. This excludes the possibility for the former to belong in $U$ (cf. alternative characterization of filter) and so $Y\in U$.
+
+Thus, starting from an arbitrary collection $\{Y_n\}$ of $\omega$-many members of $U$, we have identified a partition of $S$ for which the unique piece which belongs to $U$ is $\cap Y_n$. Therefore, $U$ is $\sigma$-complete.
+
+%%%%%
+%%%%%
+\end{document}

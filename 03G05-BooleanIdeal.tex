@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{BooleanIdeal}
+\pmcreated{2013-03-22 17:01:59}
+\pmmodified{2013-03-22 17:01:59}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Boolean ideal}
+\pmrecord{10}{39319}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03G05}
+\pmclassification{msc}{03G10}
+\pmrelated{BooleanRing}
+\pmdefines{Boolean filter}
+\pmdefines{prime Boolean ideal}
+\pmdefines{maximal Boolean ideal}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Let $A$ be a Boolean algebra and $B$ a subset of $A$.  The following are equivalent:
+\begin{enumerate}
+\item If $A$ is interpreted as a Boolean ring, $B$ is a ring ideal.
+\item If $A$ is interpreted as a Boolean lattice, $B$ is a lattice ideal.
+\end{enumerate}
+Before proving this equivalence, we want to mention that a Boolean ring is equivalent to a Boolean lattice, and a more commonly used terminology is a Boolean algebra, which is also valid, as it is an algebra over the ring of integers.  The standard way of characterizing the ring structure from the lattice structure is by defining $a+b:=(a'\wedge b)\vee (a\wedge b')$ (called the symmetric difference) and $a\cdot b=a\wedge b$.  From this, we can ``solve'' for $\vee $ in terms of $+$ and $\cdot$: $a\vee b=a+b+a\cdot b$.
+
+\begin{proof}
+First, suppose $B$ is an ideal of the ``ring'' $A$.  If $a,b\in B$, then $a\vee b= a+b+a\cdot b\in B$.  Suppose now that $a\in B$ and $c\in A$ with $c\le a$.  Then $c=c\wedge a=c\cdot a \in B$ as well.  So $B$ is a lattice ideal of $A$.
+
+Next, suppose $B$ is an ideal of the ``lattice'' $A$.  If $a,b\in B$, then both $a'\wedge b$ and $a\wedge b'$ are in $B$ since the first one is less than or equal to $b$ and the second less than or equal to $a$, so their join is in $B$ as well, this means that $a-b=a+b=(a'\wedge b)\vee (a\wedge b')\in B$.  Furthermore, if $a\in B$ and $c\in A$, then $c\cdot a=c\wedge a\le a\in B$ as well.  As a result, $B$ is a ring ideal of $A$.
+\end{proof}
+
+A subset of a Boolean algebra satisfying the two equivalent conditions above is called a \emph{Boolean ideal}, or an \emph{ideal} for short.  A \emph{prime Boolean ideal} is a prime lattice ideal, and a \emph{maximal Boolean ideal} is a maximal lattice ideal.  Again, these notions and their ring theoretic counterparts match exactly.  In fact, one can say more about these ideals in the case of a Boolean algebra: prime ideals are precisely the maximal ideals.  If $A$ is a Boolean ring, and $M$ is a maximal ideal of $A$, then $A/M$ is isomorphic to $\lbrace 0,1\rbrace$.
+
+\textbf{Remark}.  The dual notion of a Boolean ideal is a \emph{Boolean filter}, or a filter for short.  A Boolean filter is just a lattice filter of the Boolean algebra when considered as a lattice.  To see the connection between a Boolean ideal and a Boolean lattice, let us define, for any subset $S$ of a Boolean algebra $A$, the set $S':=\lbrace a'\mid a\in S\rbrace$.  It is easy to see that $S''=S$.  Now, if $I$ is an ideal, then $I'$ is a filter.  Conversely, if $F$ is a filter, $F'$ is a ideal.  In fact, given any Boolean algebra, there is a Galois connection $$I\mapsto I',\qquad F\mapsto F'$$ between the set of Boolean ideals and the set of Boolean filters in $A$.  In addition, $I$ is prime iff $I'$ is.  As a result, a filter is prime iff it is an ultrafilter (maximal filter).
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{815TheHomotopytheoreticProof}
+\pmcreated{2013-11-06 2:37:26}
+\pmmodified{2013-11-06 2:37:26}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{8.1.5 The homotopy-theoretic proof}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\base}{\ensuremath{\mathsf{base}}\xspace}
+\newcommand{\code}{\ensuremath{\mathsf{code}}\xspace}
+\newcommand{\ct}{  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\encode}{\ensuremath{\mathsf{encode}}\xspace}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\Sn}{\mathbb{S}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\tsm#1{\@tsm{#1}\@ifnextchar\bgroup{\tsm}{}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+\newcommand{\unit}{\ensuremath{\mathbf{1}}\xspace}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcommand{\Zsuc}{\mathsf{succ}}
+\newcounter{mathcount}
+\setcounter{mathcount}{1}
+\newtheorem{precor}{Corollary}
+\newenvironment{cor}{\begin{precor}}{\end{precor}\addtocounter{mathcount}{1}}
+\renewcommand{\theprecor}{8.1.\arabic{mathcount}}
+\newtheorem{prelem}{Lemma}
+\newenvironment{lem}{\begin{prelem}}{\end{prelem}\addtocounter{mathcount}{1}}
+\renewcommand{\theprelem}{8.1.\arabic{mathcount}}
+\newtheorem{prethm}{Theorem}
+\newenvironment{thm}{\begin{prethm}}{\end{prethm}\addtocounter{mathcount}{1}}
+\renewcommand{\theprethm}{8.1.\arabic{mathcount}}
+\let\autoref\cref
+\let\type\UU
+\makeatother
+
+\begin{document}
+
+In \autoref{sec:pi1s1-universal-cover}, we defined the putative universal cover $\code:\Sn^1\to\type$ in type theory, and in \autoref{subsec:pi1s1-homotopy-theory} we defined a map $\encode : \prd{x:\Sn^1} (\base=x) \to \code(x)$ from the path fibration to the universal cover.
+What remains for the classical proof is to show that this map induces an equivalence on total spaces because both are contractible, and to deduce from this that it must be an equivalence on each fiber.
+
+\index{total!space}%
+In \autoref{thm:contr-paths} we saw that the total space $\sm{x:\Sn^1} (\base=x)$ is contractible.
+For the other, we have:
+
+\begin{lem}
+  The type $\sm{x:\Sn^1}\code(x)$ is contractible.
+\end{lem}
+\begin{proof}
+  We apply the flattening lemma (\autoref{thm:flattening}) with the following values:
+  \begin{itemize}
+  \item $A\defeq\unit$ and $B\defeq\unit$, with $f$ and $g$ the obvious functions.
+    Thus, the base higher inductive type $W$ in the flattening lemma is equivalent to $\Sn^1$.
+  \item $C:A\to\type$ is constant at \Z.
+  \item $D:\prd{b:B} (\eqv{\Z}{\Z})$ is constant at $\Zsuc$.
+  \end{itemize}
+  Then the type family $P:\Sn^1\to\type$ defined in the flattening lemma is equivalent to $\code:\Sn^1\to\type$.
+  Thus, the flattening lemma tells us that $\sm{x:\Sn^1}\code(x)$ is equivalent to a higher inductive type with the following generators, which we denote $R$:
+  \begin{itemize}
+  \item A function $\mathsf{c}: \Z \to R$.
+  \item For each $z:\Z$, a path $\mathsf{p}_z:\mathsf{c}(z) = \mathsf{c}(\Zsuc(z))$.
+  \end{itemize}
+  We might call this type the \define{homotopical reals};
+  \indexdef{real numbers!homotopical}%
+  it plays the same role as the topological space $\mathbb{R}$ in the classical proof.
+
+  Thus, it remains to show that $R$ is contractible.
+  As center of contraction we choose $\mathsf{c}(0)$; we must now show that $x=\mathsf{c}(0)$ for all $x:R$.
+  We do this by induction on $R$.
+  Firstly, when $x$ is $\mathsf{c}(z)$, we must give a path $q_z:\mathsf{c}(0) = \mathsf{c}(z)$, which we can do by induction on $z:\Z$:
+  \begin{align*}
+    q_0 &\defeq \refl{\mathsf{c}(0)}\\
+    q_{n+1} &\defeq q_n \ct \mathsf{p}_n & &\text{for $n\ge 0$}\\
+    q_{n-1} &\defeq q_n \ct \opp{\mathsf{p}_{n-1}} & &\text{for $n\le 0$.}
+  \end{align*}
+  Secondly, we must show that for any $z:\Z$, the path $q_z$ is transported along $\mathsf{p}_z$ to $q_{z+1}$.
+  By transport of paths, this means we want $q_z \ct \mathsf{p}_z = q_{z+1}$.
+  This is easy by induction on $z$, using the definition of $q_z$.
+  This completes the proof that $R$ is contractible, and thus so is $\sm{x:\Sn^1}\code(x)$.
+\end{proof}
+
+\begin{cor}\label{thm:encode-total-equiv}
+  The map induced by \encode:
+  \[ \tsm{x:\Sn^1} (\base=x) \to \tsm{x:\Sn^1}\code(x) \]
+  is an equivalence.
+\end{cor}
+\begin{proof}
+  Both types are contractible.
+\end{proof}
+
+\begin{thm}
+  $\eqv {\Omega(\Sn^1,\base)} {\Z}$.
+\end{thm}
+\begin{proof}
+  Apply \autoref{thm:total-fiber-equiv} to $\encode$, using \autoref{thm:encode-total-equiv}.
+\end{proof}
+
+In essence, the two proofs are not very different: the encode-decode one may be seen as a ``reduction'' or ``unpackaging'' of the homotopy-theoretic one.
+Each has its advantages; the interplay between the two points of view is part of the interest of the subject.
+\index{fundamental!group!of circle|)}
+
+
+
+\end{document}

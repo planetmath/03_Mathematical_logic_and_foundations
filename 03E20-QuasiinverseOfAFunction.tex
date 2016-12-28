@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{QuasiinverseOfAFunction}
+\pmcreated{2013-03-22 16:22:14}
+\pmmodified{2013-03-22 16:22:14}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{quasi-inverse of a function}
+\pmrecord{11}{38509}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+\pmsynonym{quasi-inverse}{QuasiinverseOfAFunction}
+\pmdefines{quasi-inverse function}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+
+\begin{document}
+Let $f:X\to Y$ be a function from sets $X$ to $Y$.  A \emph{quasi-inverse} $g$ of $f$ is a function $g$ such that 
+\begin{enumerate}
+\item $g:Z\to X$ where $\operatorname{ran}(f)\subseteq Z\subseteq Y$, and
+\item $f\circ g\circ f=f$, where $\circ$ denotes functional composition operation.
+\end{enumerate}
+
+Note that $\operatorname{ran}(f)$ is the range of $f$.
+
+\textbf{Examples.}
+\begin{enumerate}
+\item If $f$ is a real function given by $f(x)=x^2$.  Then $g(x)=\sqrt{x}$ defined on $[0,\infty)$ and $h(x)=-\sqrt{x}$ also defined on $[0,\infty)$ are both quasi-inverses of $f$.
+\item If $f(x)=1$ defined on $[0,1)$.  Then $g(x)=\frac{1}{2}$ defined on $\mathbb{R}$ is a quasi-inverse of $f$.  In fact, any $g(x)=a$ where $a\in [0,1)$ will do.  Also, note that $h(x)=x$ on $[0,1)$ is also a quasi-inverse of $f$.
+\item If $f(x)=[x]$, the step function on the reals.  Then by the previous example, $g(x)=[x]+a$, any $a\in[0,1)$, is a quasi-inverse of $f$. 
+\end{enumerate}
+
+\textbf{Remarks.}
+\begin{itemize}
+\item Every function has a quasi-inverse.  This is just another form of the Axiom of Choice.  In fact, if $f:X\to Y$, then for \emph{every} subset $Z$ of $Y$ such that $\operatorname{ran}(f)\subseteq Z$, there is a quasi-inverse $g$ of $f$ whose domain is $Z$.
+\item However, a quasi-inverse of a function is in general not unique, as illustrated by the above examples.  When it is unique, the function must be a bijection:
+\begin{quote}
+If $\operatorname{ran}(f)\ne Y$, then there are at least two quasi-inverses, one with domain $\operatorname{ran}(f)$ and one with domain $Y$.  So $f$ is onto.  To see that $f$ is one-to-one, let $g$ be the quasi-inverse of $f$.  Now suppose $f(x_1)=f(x_2)=z$.  Let $g(z)=x_3$ and assume $x_3\ne x_1$.  Define $h:Y\to X$ by $h(y)=g(y)$ if $y\ne z$, and $h(z)=x_1$.  Then $h$ is easily verified as a quasi-inverse of $f$ that is different from $g$.  This is a contradition.  So $x_3=x_1$.  Similarly, $x_3=x_2$ and therefore $x_1=x_2$.
+\end{quote}
+\item Conversely, if $f$ is a bijection, then the inverse of $f$ is a quasi-inverse of $f$.  In fact, $f$ has only one quasi-inverse.
+\item The relation of being quasi-inverse is not symmetric.  In other words, if $g$ is a quasi-inverse of $f$, $f$ need not be a quasi-inverse of $g$.  In the second example above, $h$ is a quasi-inverse of $f$, but not vice versa: $h(0)=0$, but $hfh(0)=hf(0)=h(1)=1\ne h(0)$.
+\item Let $g$ be a quasi-inverse of $f$, then the restriction of $g$ to $\operatorname{ran}(f)$ is one-to-one.  If $g$ and $f$ are quasi-inverses of one another, and $\operatorname{g}$ strictly includes $\operatorname{ran}(f)$, then $g$ is \emph{not} one-to-one.
+\item The set of real functions, with addition defined element-wise and multiplication defined as functional composition, is a ring.  By remark 2, it is in fact a Von Neumann regular ring, as any quasi-inverse of a real function is also its pseudo-inverse as an element of the ring.  Any space whose ring of continuous functions is Von Neumann regular is a P-space.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{ss} B. Schweizer, A. Sklar, \emph{Probabilistic Metric Spaces}, Elsevier Science Publishing Company, (1983).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

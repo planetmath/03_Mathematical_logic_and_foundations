@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MooreMachine}
+\pmcreated{2013-03-22 18:59:57}
+\pmmodified{2013-03-22 18:59:57}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{Moore machine}
+\pmrecord{9}{41867}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03D05}
+\pmclassification{msc}{68Q45}
+\pmrelated{MealyMachine}
+\pmrelated{EquivalentMachines}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+A \emph{Moore machine} $M$ is a five-tuple $(S,\Sigma,\Delta,\sigma,\lambda)$, where
+\begin{enumerate}
+\item $S$ is an alphabet whose elements are called \emph{states},
+\item $\Sigma$ is an alphabet whose elements are called \emph{input symbols},
+\item $\Delta$ is an alphabet whose elements are called \emph{output symbols},
+\item $\sigma: S\times \Sigma \to S$ is a function called the \emph{state transition function},
+\item $\lambda: S \to \Delta$ is a function called the \emph{output function}.
+\end{enumerate}
+Given an a pair $(s,a)$ of state $s$ and input symbol $a$, the value $\sigma(s,a)$ is the \emph{next state} of $(s,a)$ and $\lambda(s)$ is the \emph{output} of $(s,a)$.
+
+A Moore machine can be thought of as a Mealy machine, where that the output function does not depend on the input.  Suppose $M=(S,\Sigma,\Delta,\sigma,\lambda)$ is a Moore machine, then $M'=(S,\Sigma, \Delta,\sigma,\lambda')$ where $\lambda':S\times \Sigma \to \Delta$, given by $\lambda'(s,a)=\lambda(s)$, is a Mealy machine.
+
+Like a Mealy machine, a Moore machine also has two visual presentations: via a \emph{flow table}, which describes the transitions to the next states and the outputs, or via a \emph{state diagram}.
+
+For example, consider a Moore machine $M$ where $S=\lbrace s,t\rbrace$, $\Sigma = \lbrace a,b\rbrace$, and $\Delta = \lbrace x,y\rbrace$.  The state transition function $\sigma$ and the output function $\lambda$ are defined by the following table:
+
+\begin{center}
+\begin{tabular}{|c||c|c||c|}
+\hline
+& $a$ & $b$ &  \\
+\hline\hline
+$s$ & $t$ & $s$ & $y$  \\
+\hline
+$t$ & $s$ & $t$ & $x$  \\
+\hline
+\end{tabular}
+\end{center}
+The first column represents all the states of $M$; the second and third columns are the next states corresponding to the input symbols specified on the top row; and the last column shows the corresponding output symbols.
+
+In addition, one can visualize a Moore machine $M$ by way its state diagram $G_M$, which is just a (labeled) directed graph.  $G_M$ is constructed as follows: the vertices of $G_M$ represent the states of $M$, and each is labeled $s|x$, where $s$ is some state of $M$, and $x=\lambda(s)$.  An edge from vertices $(s,x)$ to $(t,y)$ is constructed iff there is an input $a$ such that $\sigma(s,a)=t$, in which case the edge is labeled $a$.  In the example above, the state diagram $G_M$ of $M$ is the following
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.80]{moore.eps}
+\end{figure}
+
+Let $M$ be a Moore machine.  Since $M$ is a special type of a Mealy machine, modification of the transition and output functions of $M$ to handle input words could be defined much the same way as if we were treating $M$ as a Mealy machine.  But the downside is is that no output can correspond to the empty input word $\epsilon$.  Because the output function $\lambda$ of $M$ is input-independent, a slightly different approach to modification gets rid of the problem:
+
+First, define the extension of the transition function $\sigma$ of $M$ as if it were a Mealy machine:
+$$\sigma(s,\epsilon):=s, \mbox{ and } \sigma(s,ua):=\sigma(\sigma(s,u),a), \mbox{ where }s\in S, u\in \Sigma^*, a\in \Sigma.$$  
+Next, define a function $\beta: S\times \Sigma^* \to \Delta$ as follows: 
+$$\beta(s,u):=\lambda(\sigma(s,u)), \mbox{ where }s\in S, u\in \Sigma^*.$$  
+Call $\beta$ the output function on input \emph{words} for $M$.  Notice that $\beta$ is not an extension of $\lambda$, since $\beta$ is \emph{input-dependent}, whereas $\lambda$ is not.  Furthermore, $\beta(s,\epsilon) = \lambda(s)$.
+
+The approach above shows that the mechanism of a Moore machine for handling inputs/outputs is different from that of a Mealy machine, even though a Moore machine is really just a Mealy machine.
+
+\begin{thebibliography}{8}
+\bibitem{sg} S. Ginsburg, {\em An Introduction to Mathematical Machine Theory}, Addision-Wesley, (1962).
+\bibitem{ma} M. Arbib, \emph{Algebraic Theory of Machines, Languages, and Semigroups}, Academic Press, (1968).
+\bibitem{hs} J. Hartmanis, R.E. Stearns, \emph{Algebraic Structure Theory of Sequential Machines}, Prentice-Hall, (1966).
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

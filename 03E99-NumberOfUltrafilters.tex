@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{NumberOfUltrafilters}
+\pmcreated{2013-03-22 15:51:49}
+\pmmodified{2013-03-22 15:51:49}
+\pmowner{yark}{2760}
+\pmmodifier{yark}{2760}
+\pmtitle{number of ultrafilters}
+\pmrecord{14}{37853}
+\pmprivacy{1}
+\pmauthor{yark}{2760}
+\pmtype{Theorem}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E99}
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{cor*}{Corollary}
+\def\powerset#1{\mathcal{P}(#1)}
+\begin{document}
+\PMlinkescapeword{finite}
+\PMlinkescapeword{infinite}
+\PMlinkescapeword{intersection}
+\PMlinkescapeword{necessary}
+\PMlinkescapeword{number}
+\PMlinkescapeword{proof}
+\PMlinkescapeword{subset}
+\PMlinkescapeword{subsets}
+\PMlinkescapeword{theorem}
+\PMlinkescapeword{ultrafilter}
+\PMlinkescapeword{ultrafilters}
+
+\begin{thm*}
+Let $X$ be a set.
+The \PMlinkname{number}{CardinalNumber} of \PMlinkname{ultrafilters}{Ultrafilter} on $X$ is $|X|$ if $X$ is \PMlinkname{finite}{Finite},
+and $2^{2^{|X|}}$ if $X$ is \PMlinkname{infinite}{Infinite}.
+\end{thm*}
+
+\begin{proof}
+If $X$ is finite then each ultrafilter on $X$ is principal,
+and so there are exactly $|X|$ ultrafilters.
+In the rest of the proof we will assume that $X$ is infinite.
+
+Let $F$ be the set of all finite subsets of $X$,
+and let $\Phi$ be the set of all finite subsets of $F$.
+
+For each $A\subseteq X$ define
+$B_A=\{(f,\phi)\in F\times\Phi\mid A\cap f\in\phi\}$,
+and $B_A^\complement=(F\times\Phi)\setminus B_A$.
+For each ${\cal S}\subseteq\powerset{X}$ 
+define ${\cal B}_{\cal S}=
+\{B_A\mid A\in{\cal S}\}\cup\{B_A^\complement\mid A\notin{\cal S}\}$.
+
+Let ${\cal S}\subseteq\powerset{X}$,
+and suppose $A_1,\dots,A_m\in\cal S$
+and $D_1,\dots,D_n\in\powerset{X}\setminus\cal S$,
+so that we have
+$B_{A_1},\dots,B_{A_m},B_{D_1}^\complement,\dots,
+B_{D_n}^\complement\!\!\!\in{\cal B}_{\cal S}$.
+For $i\in\{1,\dots,m\}$ and $j\in\{1,\dots,n\}$
+let $a_{i,j}$ be such that
+either $a_{i,j}\in A_i\setminus D_j$ or $a_{i,j}\in D_j\setminus A_i$.
+This is always possible, since $A_i\ne D_j$.
+Let $f=\{a_{i,j}\mid1\le i\le m,\,1\le j\le n\}$,
+and put $\phi=\{A_i\cap f\mid1\le i\le m\}$.
+Then $(f,\phi)\in B_{A_i}$, for $i=1,\dots,m$.
+If for some $j\in\{1,\dots,n\}$ we have $D_j\cap f\in\phi$ ,
+then $D_j\cap f=A_i\cap f$ for some $i\in\{1,\dots,m\}$,
+which is impossible,
+as $a_{i,j}$ is in one of these sets but not the other.
+So $D_j\cap f\notin\phi$,
+and therefore $(f,\phi)\in B_{D_j}^\complement$.
+So $(f,\phi)\in B_{A_1}\cap\cdots\cap B_{A_m}\cap
+B_{D_1}^\complement\cap\cdots\cap B_{D_n}^\complement$.
+This shows that any finite subset  of ${\cal B}_{\cal S}$ 
+has nonempty intersection,
+and therefore ${\cal B}_{\cal S}$ 
+can be extended to an ultrafilter ${\cal U}_{\cal S}$.
+
+Suppose ${\cal R},{\cal S}\subseteq\powerset{X}$ are distinct.
+Then, relabelling if necessary, ${\cal R}\setminus {\cal S}$ is nonempty.
+Let $A\in{\cal R}\setminus {\cal S}$.
+Then $B_A\in{\cal U}_{\cal R}$,
+but $B_A\notin{\cal U}_{\cal S}$ since $B_A^\complement\in{\cal U}_{\cal S}$.
+So ${\cal U}_{\cal R}$ and ${\cal U}_{\cal S}$ are distinct
+for distinct $\cal R$ and $\cal S$.
+Therefore $\{{\cal U}_{\cal S}\mid{\cal S}\subseteq\powerset{X}\}$ is
+a set of $2^{2^{|X|}}$ ultrafilters on $F\times\Phi$.
+But $|F\times\Phi|=|X|$,
+so $F\times\Phi$ has the same number of ultrafilters as $X$.
+So there are at least $2^{2^{|X|}}$ ultrafilters on $X$,
+and there cannot be more than $2^{2^{|X|}}$
+as each ultrafilter is an element of $\powerset{\powerset{X}}$.
+\end{proof}
+
+\begin{cor*}
+The number of topologies on an infinite set $X$ is $2^{2^{|X|}}$.
+\end{cor*}
+
+\begin{proof}
+Let $X$ be an infinite set.
+By the theorem, there are $2^{2^{|X|}}$ ultrafilters on $X$.
+If $\mathcal{U}$ is an ultrafilter on $X$,
+then $\mathcal{U}\cup\{\varnothing\}$ is a topology on $X$.
+So there are at least $2^{2^{|X|}}$ topologies on $X$,
+and there cannot be more than $2^{2^{|X|}}$
+as each topology is an element of $\powerset{\powerset{X}}$.
+\end{proof}
+
+%%%%%
+%%%%%
+\end{document}

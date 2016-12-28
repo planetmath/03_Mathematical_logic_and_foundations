@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FormalSystem}
+\pmcreated{2013-03-22 19:12:25}
+\pmmodified{2013-03-22 19:12:25}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{formal system}
+\pmrecord{15}{42122}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Topic}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03B99}
+\pmsynonym{logical system}{FormalSystem}
+\pmrelated{DeductiveSystem}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+In mathematical logic, a \emph{formal system} is a ``set-up'' to study the syntactic structures of statements that we see in everyday mathematics.  Thus, instead of looking at the meaning of the statement $1+1=2$, one looks at the expression made up of symbols $1,+,1,=$, and $2$.
+
+Formally, a formal system $S$ consists of the following:
+\begin{enumerate}
+\item the language of $S$, which is formed by 
+\begin{enumerate}
+\item a set $\Sigma$ of symbols; finite sequences of these symbols are called \emph{words} or \emph{expressions} over $\Sigma$;
+\item a set of expressions called \emph{well-formed formulas}, or simply \emph{formulas}; 
+\item a set of rules that specify how these words are generated; the set is called the \emph{syntax of the language}; typically, the rules are
+\begin{itemize}
+\item certain expressions are singled out, which are called atoms, or atomic formulas
+\item a set of rules (inductive in nature) showing how formulas can be formed from other formulas that have already been formed
+\end{itemize}
+\end{enumerate}
+\item a \emph{deductive system} (or \emph{proof system}) associated with $S$, which consists of
+\begin{enumerate}
+\item a set of axioms; each axiom is usually (but not always) a formula;
+\item a set of rules called rules of inference on $S$; the rules of inferences are used to generate formulas, which are known as \emph{theorems} of $S$; typically, 
+\begin{itemize}
+\item an axiom is a theorem,
+\item a formula that can be formed (or deduced) from other theorems by a rule of inference is a theorem.
+\end{itemize}
+\end{enumerate}
+\end{enumerate}
+
+Thus, in a formal system $S$, one starts with a set $\Sigma$ of symbol.  Three sets are associated: $$\Sigma^* \supseteq \operatorname{Fmla}(S) \supseteq \operatorname{Thm}(S)$$
+where $\Sigma^*$ is the set of all expressions over $\Sigma$, $\operatorname{Fmla}(S)$ is the set of all (well-formed) formulas obtained by a set of formula formation rules, and $\operatorname{Thm}(S)$ is the set of all theorems obtained from the formulas by a set of rules of inference.
+
+Here's an example of a formal system: the (classical) propositional logic $PROP$.  The symbols of $PROP$ consists of $$\to, \neg, (, ),$$ (not including $,$ the symbol for commas, and a set of elements called propositional variables.  Formulas of $PROP$ are generated as follows: 
+\begin{itemize}
+\item propositional variables are formulas; and 
+\item if $\alpha,\beta$ are formulas, so are $$(\neg \alpha)\qquad\mbox{and}\qquad (\alpha \vee \beta).$$  
+\end{itemize}
+A deduction system for $PROP$ may consist the following: 
+\begin{itemize}
+\item all formulas of the forms $$(\alpha \to (\alpha \to \beta)),\quad ((\alpha \to (\beta\to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))), \quad ((\neg (\neg \alpha)) \to \alpha)$$ for all formulas $\alpha,\beta$, and 
+\item $\gamma$, and the (only) rule of inference is modus ponens: from $\alpha$ and $(\alpha \to \beta)$, we may infer (or deduce) $\beta$.
+\end{itemize}
+
+The (classical) first-order logic is another example of a formal system.  Group theory, number theory (a la Peano arithmetic), theory of partially ordered sets, and set theory (a la ZFC) are other examples of formal systems that are extensively studied.
+
+\textbf{Remark}.  A formal system is sometimes called a \emph{logical system}, although the latter term usually either refers to a formal system where the deducibility relation $\vdash$ arising out of the associated deductive system satisfies certain properties (for example, $A\vdash A$ for all wffs, etc...), or a formal system together with a semantical structure.
+
+\begin{thebibliography}{0}
+\bibitem{RS}
+R. M. Smullyan,
+{\it Theory of Formal Systems}, Princeton University Press, 1961
+\bibitem{JS}
+J. R. Shoenfield,
+{\it Mathematical Logic}, AK Peters, 2001
+\end{thebibliography}
+%%%%%
+%%%%%
+\end{document}

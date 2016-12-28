@@ -1,0 +1,144 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{112IdentityTypes}
+\pmcreated{2013-11-13 20:34:41}
+\pmmodified{2013-11-13 20:34:41}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{1.12 Identity types}
+\pmrecord{7}{87548}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{xspace}
+\makeatletter
+
+\newcommand{\defeq}{\vcentcolon\equiv}  
+\newcommand{\define}[1]{\textbf{#1}}
+\def\dprd#1{\@dprd{#1}\@ifnextchar\bgroup{\dprd}{}}
+\def\@dprd#1{\prod_{(#1)}\,}
+\def\@dprd@noparens#1{\prod_{#1}\,}
+\def\@dsm#1{\sum_{(#1)}\,}
+\def\@dsm@noparens#1{\sum_{#1}\,}
+\def\@eatprd\prd{\prd@parens}
+\def\@eatsm\sm{\sm@parens}
+\newcommand{\id}[3][]{\ensuremath{#2 =_{#1} #3}\xspace}
+\newcommand{\idfunc}[1][]{\ensuremath{\mathsf{id}_{#1}}\xspace}
+\newcommand{\idtype}[3][]{\ensuremath{\mathsf{Id}_{#1}(#2,#3)}\xspace}
+\newcommand{\idtypevar}[1]{\ensuremath{\mathsf{Id}_{#1}}\xspace}
+\newcommand{\ind}[1]{\mathsf{ind}_{#1}}
+\newcommand{\indexdef}[1]{\index{#1|defstyle}}   
+\newcommand{\indexsee}[2]{\index{#1|see{#2}}}    
+\newcommand{\indid}[1]{\ind{=_{#1}}} 
+\newcommand{\indidb}[1]{\ind{=_{#1}}'} 
+\newcommand{\jdeq}{\equiv}      
+
+\def\lam#1{{\lambda}\@lamarg#1:\@endlamarg\@ifnextchar\bgroup{.\,\lam}{.\,}}
+\def\@lamarg#1:#2\@endlamarg{\if\relax\detokenize{#2}\relax #1\else\@lamvar{\@lameatcolon#2},#1\@endlamvar\fi}
+\def\@lameatcolon#1:{#1}
+\def\lamu#1{{\lambda}\@lamuarg#1:\@endlamuarg\@ifnextchar\bgroup{.\,\lamu}{.\,}}
+\def\@lamuarg#1:#2\@endlamuarg{#1}
+\def\@lamvar#1,#2\@endlamvar{(#2\,{:}\,#1)}
+\newcommand{\mentalpause}{\medskip} 
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+
+\newcommand{\Parens}[1]{\Bigl(#1\Bigr)}
+\def\prd#1{\@ifnextchar\bgroup{\prd@parens{#1}}{\@ifnextchar\sm{\prd@parens{#1}\@eatsm}{\prd@noparens{#1}}}}
+\def\prd@noparens#1{\mathchoice{\@dprd@noparens{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}
+\def\prd@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\prd@parens}  {\@ifnextchar\sm    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}\@eatsm}    {\mathchoice{\@dprd{#1}}{\@tprd{#1}}{\@tprd{#1}}{\@tprd{#1}}}}}
+\newcommand{\rec}[1]{\mathsf{rec}_{#1}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{refl}_{#1}}\xspace}
+\def\sm#1{\@ifnextchar\bgroup{\sm@parens{#1}}{\@ifnextchar\prd{\sm@parens{#1}\@eatprd}{\sm@noparens{#1}}}}
+\def\sm@noparens#1{\mathchoice{\@dsm@noparens{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}
+\def\sm@parens#1{\@ifnextchar\bgroup  {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\sm@parens}  {\@ifnextchar\prd    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}\@eatprd}    {\mathchoice{\@dsm{#1}}{\@tsm{#1}}{\@tsm{#1}}{\@tsm{#1}}}}}
+\newcommand{\suc}{\mathsf{succ}}
+\newcommand{\symlabel}[1]{\refstepcounter{symindex}\label{#1}}
+\def\tprd#1{\@tprd{#1}\@ifnextchar\bgroup{\tprd}{}}
+\def\@tprd#1{\mathchoice{{\textstyle\prod_{(#1)}}}{\prod_{(#1)}}{\prod_{(#1)}}{\prod_{(#1)}}}
+\def\@tsm#1{\mathchoice{{\textstyle\sum_{(#1)}}}{\sum_{(#1)}}{\sum_{(#1)}}{\sum_{(#1)}}}
+
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\vcentcolon}{:\!\!}
+\makeatother
+
+\newcommand{\narrowbreak}{}
+\newcommand{\narrowequation}[1]{$#1$}
+\newenvironment{narrowmultline}{\csname equation\endcsname}{\csname endequation\endcsname}
+\newenvironment{narrowmultline*}{\csname equation*\endcsname}{\csname endequation*\endcsname}
+
+\let\nat\N
+\let\judgeq\jdeq
+\let\autoref\cref
+\let\type\UU
+
+\begin{document}
+%2
+\index{type!identity|(defstyle}%
+\indexsee{identity!type}{type, identity}%
+\indexsee{type!equality}{type, identity}%
+\indexsee{equality!type}{type, identity}%
+While the previous constructions can be seen as generalizations of
+standard set theoretic constructions, our way of handling identity  seems to be
+specific to type theory.
+According to the propositions-as-types conception, the \emph{proposition} that two elements of the same type $a,b:A$ are equal must correspond to some \emph{type}.
+Since this proposition depends on what $a$ and $b$ are, these \define{equality types} or \define{identity types} must be type families dependent on two copies of $A$.
+
+We may write the family as $\idtypevar{A}:A\to A\to\type$, so that $\idtype[A]ab$ is the type representing the proposition of equality between $a$ and $b$.
+Once we are familiar with propositions-as-types, however, it is convenient to also use the standard equality symbol for this; thus ``$\id{a}{b}$'' will also be a notation for the \emph{type} $\idtype[A]ab$ corresponding to the proposition that $a$ equals $b$.
+For clarity, we may also write ``$\id[A]{a}{b}$'' to specify the type $A$.
+If we have an element of $\id[A]{a}{b}$, we may say that $a$ and $b$ are \define{equal}, or sometimes \define{propositionally equal} if we want to emphasize that this is different from the judgmental equality $a\jdeq b$ discussed in \PMlinkname{\S 1.1}{11typetheoryversussettheory}.
+\indexdef{equality!propositional}%
+\indexdef{propositional!equality}%
+
+Just as we remarked in \PMlinkname{\S 1.11}{111propositionsastypes} that the propositions-as-types versions of ``or'' and ``there exists'' can include more information than just the fact that the proposition is true, nothing prevents  the type $\id{a}{b}$ from also including more information.
+Indeed, this is the cornerstone of the homotopical interpretation, where we regard witnesses of $\id{a}{b}$ as \emph{paths}\indexdef{path} or \emph{equivalences} between $a$ and $b$ in the space $A$.  Just as there can be more than one path between two points of a space, there can be more than one witness that two objects are equal.  Put differently, we may regard $\id{a}{b}$ as the type of \emph{identifications}\indexdef{identification} of $a$ and $b$, and there may be many different ways in which $a$ and $b$ can be identified.
+We will return to the interpretation in \PMlinkexternal{Chapter 2}{http://planetmath.org/node/87569}; for now we focus on the basic rules for the identity type.
+Just like all the other types considered in this chapter, it will have rules for formation, introduction, elimination, and computation, which behave formally in exactly the same way.
+
+The formation rule says that given a type $A:\UU$ and two elements $a,b:A$, we can form the type $(\id[A]{a}{b}):\UU$ in the same universe.
+The basic way to construct an element of $\id{a}{b}$ is to know that $a$ and $b$ are the same.
+Thus, the introduction rule is a dependent function
+\[\refl{} : \prd{a:A} (\id[A]{a}{a})\]
+called \define{reflexivity},
+\indexdef{reflexivity!of equality}%
+which says that every element of $A$ is equal to itself (in a specified way).  We regard $\refl{a}$ as being the
+constant path\indexdef{path!constant}\indexsee{loop!constant}{path, constant}
+at the point $a$.
+
+In particular, this means that if $a$ and $b$ are \emph{judgmentally} equal, $a\jdeq b$, then we also have an element $\refl{a} : \id[A]{a}{b}$.
+This is well-typed because $a\jdeq b$ means that also the type $\id[A]{a}{b}$ is judgmentally equal to $\id[A]{a}{a}$, which is the type of $\refl{a}$.
+
+The induction principle (i.e.\ the elimination rule) for the identity types is one of the most subtle parts of type theory, and crucial to the homotopy interpretation.
+We begin by considering an important consequence of it, the principle that ``equals may be substituted for equals,'' as expressed by the following:
+\index{indiscernability of identicals}%
+\index{equals may be substituted for equals}%
+\begin{description}
+\item[Indiscernability of identicals:]
+For every family 
+\[
+C : A \to \UU
+\]
+there is a function
+\[
+f : \prd{x,y:A}{p:\id[A] x y} C(x) \to C(y)
+\]
+such that
+\[
+f(x,x,\refl{x}) \defeq \idfunc[C(x)].
+\]
+\end{description}
+This says that every family of types $C$ respects equality, in the sense that applying $C$ to \emph{equal} elements of $A$ also results in a function between the resulting types. The displayed equality states that the function associated to reflexivity is the identity function (and we shall see that, in general, the function $f(x,y,p): C(x) \to C(y)$ is always an equivalence of types).
+
+Indiscernability of identicals can be regarded as a recursion principle for the identity type, analogous to those given for booleans and natural numbers above.
+Just as $\rec{\nat}$ gives a specified map $\nat\to C$ for any other type $C$ of a certain sort, indiscernability of identicals gives a specified map from $\id[A] x y$ to certain other reflexive, binary relations on $A$, namely those of the form $C(x) \to C(y)$ for some unary predicate $C(x)$.
+We could also formulate a more general recursion principle with respect to reflexive relations of the more general form $C(x,y)$.
+However, in order to fully characterize the identity type, we must generalize this recursion principle to an induction principle, which not only considers maps out of $\id[A] x y$ but also families over it.
+Put differently, we consider not only allowing equals to be substituted for equals, but also taking into account the evidence $p$ for the equality.
+  
+\end{document}

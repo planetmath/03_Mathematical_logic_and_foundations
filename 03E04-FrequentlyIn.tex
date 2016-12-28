@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{FrequentlyIn}
+\pmcreated{2013-03-22 17:14:23}
+\pmmodified{2013-03-22 17:14:23}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{frequently in}
+\pmrecord{6}{39569}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E04}
+\pmsynonym{clusters at}{FrequentlyIn}
+\pmdefines{cluster point of a net}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+\usepackage{psfrag}
+
+% define commands here
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+Recall that a net is a function $x$ from a directed set $D$ to a set $X$.  The value of $x$ at $i\in D$ is usually denoted by $x_i$.  Let $A$ be a subset of $X$.  We say that a net $x$ is \emph{frequently in} $A$ if for every $i\in D$, there is a $j\in D$ such that $i\le j$ and $x_j\in A$.
+
+Suppose a net $x$ is frequently in $A\subseteq X$.  Let $E:=\lbrace j\in D\mid x_j\in A\rbrace$.  Then $E$ is a cofinal subset of $D$, for if $i\in D$, then by definition of $A$, there is $i\le j\in D$ such that $x_j\in A$, and therefore $j\in E$.
+
+The notion of ``frequently in'' is related to the notion of ``eventually in'' in the following sense: a net $x$ is eventually in a set $A\subseteq X$ iff it is not frequently in $A^{\complement}$, its complement.  Suppose $x$ is eventually in $A$.  There is $j\in D$ such that $x_k\in A$ for all $k\ge j$, or equivalently, $x_k\in A^{\complement}$ for no $k\ge j$.  The converse is can be argued by tracing the previous statements backwards.
+
+In a topological space $X$, a point $a\in X$ is said to be a \emph{cluster point of a net} $x$ (or, occasionally, $x$ \emph{clusters at} $a$) if $x$ is frequently in every neighborhood of $a$.  In this general definition, a limit point is always a cluster point.  But a cluster point need not be a limit point.  As an example, take the sequence $0,2,0,4,0,6,0,8,\ldots,0,2n,0,\ldots$ has $0$ as a cluster point.  But clearly $0$ is not a limit point, as the sequence diverges in $\mathbb{R}$.
+%%%%%
+%%%%%
+\end{document}

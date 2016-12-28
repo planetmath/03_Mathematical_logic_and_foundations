@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{ProofOfInverseFunctionTheorem}
+\pmcreated{2013-03-22 13:31:20}
+\pmmodified{2013-03-22 13:31:20}
+\pmowner{paolini}{1187}
+\pmmodifier{paolini}{1187}
+\pmtitle{proof of inverse function theorem}
+\pmrecord{6}{34112}
+\pmprivacy{1}
+\pmauthor{paolini}{1187}
+\pmtype{Proof}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E20}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\newcommand{\R}{\mathbb R}
+\begin{document}
+Since $\det Df(a)\neq 0$ the Jacobian matrix $Df(a)$ is invertible:
+let $A=(Df(a))^{-1}$ be its inverse.
+Choose $r>0$ and $\rho>0$ such that
+\[
+  B=\overline{B_\rho(a)} \subset E,
+\]
+\[
+  \Vert Df(x) - Df(a)\Vert \le \frac{1}{2n\Vert A \Vert}\quad
+\forall x \in B,
+\]
+\[
+  r\le \frac{\rho}{2\Vert A\Vert}.
+\]
+
+Let $y\in B_r(f(a))$ and consider the mapping
+\[
+  T_y \colon B \to \R^n
+\]
+\[
+  T_y(x) = x + A\cdot(y-f(x)).
+\]
+If $x\in B$ we have
+\[
+  \Vert D T_y(x)\Vert = \Vert 1- A\cdot Df(x)\Vert
+  \le \Vert A\Vert \cdot \Vert Df(a) - Df(x)\Vert \le \frac{1}{2n}.
+\]
+Let us verify that $T_y$ is a contraction mapping. Given $x_1,x_2\in B$, by the Mean-value Theorem on $\R^n$ we have
+\[
+  \vert T_y(x_1) - T_y(x_2)\vert \le 
+   \sup_{x\in[x_1,x_2]} n \Vert DT_y(x)\Vert \cdot
+  \vert x_1 - x_2\vert \le \frac 1 2 \vert x_1 -x_2\vert.
+\]
+Also notice that $T_y(B)\subset B$. In fact, given $x\in B$,
+\[
+ \vert T_y(x)-a\vert 
+\le \vert T_y(x) - T_y(a)\vert + \vert T_y(a)-a\vert
+\le \frac 1 2 \vert x -a\vert + \vert A\cdot (y-f(a))\vert
+\le \frac \rho 2 + \Vert A\Vert r \le \rho.
+\]
+
+So $T_y\colon B\to B$ is a contraction mapping and hence by the contraction principle there exists one and only one solution to the equation
+\[
+  T_y(x)=x,
+\]
+i.e. $x$ is the only point in $B$ such that $f(x)=y$.
+
+Hence given any $y\in B_r(f(a))$ 
+we can find $x\in B$ which solves $f(x)=y$. Let us
+call $g\colon B_r(f(a))\to B$ the mapping which gives this solution, i.e. 
+\[
+  f(g(y))=y.
+\]
+
+Let $V=B_r(f(a))$ and $U=g(V)$. Clearly $f\colon U \to V$ is one to one and the inverse of $f$ is $g$. We have to prove that $U$ is a neighbourhood of $a$.
+However since $f$ is continuous in $a$ we know that there exists a ball $B_\delta(a)$ such that $f(B_\delta(a))\subset B_r(y_0)$ and hence 
+we have $B_\delta(a)\subset U$.
+
+We now want to study the differentiability of $g$. Let $y\in V$ be any point, take $w\in \R^n$ and $\epsilon>0$ so small that $y+\epsilon w\in V$.
+Let $x=g(y)$ and define $v(\epsilon)=g(y+\epsilon w)-g(y)$.
+
+First of all notice that being
+\[
+ \vert T_y(x+v(\epsilon)) - T_y(x)\vert \le \frac 1 2 \vert v(\epsilon)\vert
+\]
+we have
+\[
+  \frac 1 2 \vert v(\epsilon) \ge \vert v(\epsilon)-\epsilon A\cdot w\vert
+  \ge \vert v(\epsilon)\vert - \epsilon\Vert A\Vert\cdot \vert w\vert
+\] 
+and hence
+\[
+  \vert v(\epsilon)\vert \le 2\epsilon \Vert A\Vert\cdot\vert w\vert.
+\]
+On the other hand we know that $f$ is differentiable in $x$ that is we know that
+for all $v$ it holds
+\[
+  f(x+v)-f(x) = Df(x)\cdot v + h(v)
+\]
+with $\lim_{v\to 0} h(v)/\vert v\vert = 0$. So we get
+\[
+  \frac{\vert h(v(\epsilon))\vert}{\epsilon}
+\le \frac{2\Vert A\Vert\cdot \vert w\vert\cdot \vert h(v(\epsilon))\vert}
+{v(\epsilon)} \to 0 \qquad\mathrm{when}\ \epsilon\to 0.
+\]
+So
+\[
+  \lim_{\epsilon\to 0} \frac {g(y+\epsilon)-g(y)}{\epsilon}
+  =\lim_{\epsilon\to 0} \frac {v(\epsilon)}{\epsilon}
+  = \lim_{\epsilon\to 0} Df(x)^{-1}\cdot \frac{\epsilon w - h(v(\epsilon))}{\epsilon}
+  = Df(x)^{-1}\cdot w
+\]
+that is
+\[
+  Dg(y)=Df(x)^{-1}.
+\]
+%%%%%
+%%%%%
+\end{document}

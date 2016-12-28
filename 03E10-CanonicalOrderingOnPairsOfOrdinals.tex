@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{CanonicalOrderingOnPairsOfOrdinals}
+\pmcreated{2013-03-22 18:50:02}
+\pmmodified{2013-03-22 18:50:02}
+\pmowner{CWoo}{3771}
+\pmmodifier{CWoo}{3771}
+\pmtitle{canonical ordering on pairs of ordinals}
+\pmrecord{8}{41638}
+\pmprivacy{1}
+\pmauthor{CWoo}{3771}
+\pmtype{Definition}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+\pmclassification{msc}{06A05}
+\pmsynonym{canonical well-ordering}{CanonicalOrderingOnPairsOfOrdinals}
+\pmrelated{IdempotencyOfInfiniteCardinals}
+\pmdefines{canonical ordering}
+
+\usepackage{amssymb,amscd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+\usepackage{amsthm}
+% making logically defined graphics
+%%\usepackage{xypic}
+\usepackage{pst-plot}
+
+% define commands here
+\newcommand*{\abs}[1]{\left\lvert #1\right\rvert}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{ex}{Example}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\mpdiff}[3]{\frac{\partial^#1 #2}{\partial #3^#1}}
+\begin{document}
+The lexicographic ordering on \textbf{On}$\times$\textbf{On}, the class of all pairs of ordinals, is a well-order in the broad sense, in that every subclass of \textbf{On}$\times$\textbf{On} has a least element, as proposition 2 of the parent entry readily shows.  However, with this type of ordering, we get initial segments which are not sets.  For example, the initial segment of $(1,0)$ consists of all ordinal pairs of the form $(0,\alpha)$, where $\alpha\in$ \textbf{On}, and is easily seen to be a proper class.  So the questions is: is there a way to order \textbf{On}$\times$\textbf{On} such that every initial segment of \textbf{On}$\times$\textbf{On} is a set?  The answer is yes.  The construction of such a well-ordering in the following discussion is what is known as the \emph{canonical well-ordering} of \textbf{On}$\times$\textbf{On}.
+
+To begin, let us consider a strictly linearly ordered set $(A,<)$.  We construct a binary relation $\prec$ on $A\times A$ as follows:
+\begin{displaymath}
+(a_1,a_2) \prec (b_1,b_2) \quad \mbox{iff} \quad \left\{
+\begin{array}{ll}
+\max \lbrace a_1,a_2\rbrace < \max \lbrace b_1, b_2\rbrace, \mbox{ or }\\
+\max \lbrace a_1,a_2\rbrace = \max \lbrace b_1, b_2\rbrace, \mbox{ and } a_1 < b_1, \mbox{ or } \\
+\max \lbrace a_1,a_2\rbrace = \max \lbrace b_1, b_2\rbrace, \mbox{ and } a_1 = b_1, \mbox{ and } a_2 < b_2.
+\end{array}
+\right.
+\end{displaymath}
+
+For example, consider the usual ordering on $\mathbb{Z}$.  Given $(p,q)\in \mathbb{Z}\times \mathbb{Z}$.  Suppose $p\le q$.  Then the set of all $(m,n) \in \mathbb{Z}\times \mathbb{Z}$ such that $(m,n)\prec (p,q)$ is the union of the three pairwise disjoint sets $\lbrace (m,n)\mid \max\lbrace m,n\rbrace < q\rbrace \cup \lbrace (m,q)\mid m < p \rbrace \cup \lbrace (p,n)\mid n < q\rbrace$.
+
+\begin{prop}.  $\prec$ is a strict linear ordering on $A\times A$.  \end{prop}
+\begin{proof}  It is irreflexive because $(a_1,a_2)$ is never comparable with itself.  It is linear because, first of all, given $(a_1,a_2)\ne (b_1,b_2)$, exactly one of the three conditions is true, and hence either $(a_1,a_2)\prec (b_1,b_2)$, or $(b_1,b_2)\prec (a_1,a_2)$.  It remains to show that $\prec$ is transitive, suppose $(a_1,a_2)\prec (b_1,b_2)$ and $(b_1,b_2)\prec (c_1,c_2)$.
+
+The two cases 
+\begin{enumerate}
+\item $\max \lbrace a_1,a_2\rbrace < \max \lbrace b_1, b_2\rbrace$ and $\max \lbrace b_1,b_2\rbrace \le \max \lbrace c_1, c_2\rbrace$, 
+\item $\max \lbrace a_1,a_2\rbrace \le \max \lbrace b_1, b_2\rbrace$ and $\max \lbrace b_1,b_2\rbrace < \max \lbrace c_1, c_2\rbrace$,
+\end{enumerate}
+produce $\max \lbrace a_1,a_2\rbrace < \max \lbrace c_1, c_2\rbrace$.  Now, assume $\max \lbrace a_1,a_2\rbrace = \max \lbrace b_1, b_2\rbrace = \max \lbrace c_1, c_2\rbrace$, which result in three more cases
+\begin{enumerate}
+\item $a_1 < b_1$ and $b_1 \le c_1$, 
+\item $a_1 \le b_1$ and $b_1 < c_1$,
+\item $a_1=b_1=c_1$, and $a_2 < b_2$ and $b_2 < c_2$,
+\end{enumerate}
+the first two produce $a_1 < c_1$, and the last $a_1=c_1$ and $a_2<c_2$.  In all cases, we get $(a_1,a_2)\prec (c_1,c_2)$.
+\end{proof}
+
+\begin{prop}  If $<$ is a well-order on $A$, then so is $\prec$ on $A\times A$. \end{prop}
+\begin{proof} 
+Let $R\subseteq A\times A$ be non-empty.  Let $$B:=\lbrace \max \lbrace b_1,b_2\rbrace \mid (b_1,b_2)\in R\rbrace.$$  Then $\varnothing \ne B \subseteq A$, and therefore has a least element $b$, since $<$ is a well-order on $A$.  Next, let $$C:=\lbrace c_1 \mid \max\lbrace c_1, c_2 \rbrace = b, \mbox{ where }(c_1,c_2)\in R \rbrace.$$  Then $C\ne \varnothing$, and has a least element $c$.  Finally, let $$D:=\lbrace d_2 \mid \max \lbrace c,d_2\rbrace = b, \mbox{ where }(c,d_2)\in R\rbrace.$$  Again, $D\ne \varnothing$, so has a least element $d$.  So $(c,d)\in R$.  We want to show that $(c,d)$ is the least element of $R$. 
+
+Pick any $(x,y)\in R$ distinct from $(c,d)$.  Then $\max \lbrace x, y\rbrace \in B$ is at least $b = \max\lbrace c,d\rbrace$.  If $b<\max \lbrace x, y\rbrace$, then $(c,d) \prec (x,y)$.  Otherwise, $b=\max \lbrace x, y\rbrace$, so that $x\in C$ is at least $c$.  If $c < x$, then again we have $(c,d) \prec (x,y)$.  But if $c=x$, then $y\in D$, so that $d \le y$.  Since $(x,y)\ne (c,d)$, and $x=c$, $y\ne d$.  Therefore $d < y$, and $(c,d)\prec (x,y)$ as a result.
+\end{proof}
+
+The ordering relation above can be generalized to arbitrary classes.  Since \textbf{On} is well-ordered by $\in$, the canonical ordering on \textbf{On}$\times$\textbf{On} is a well-ordering by proposition 2.  Moreover, 
+\begin{prop} Given the canonical ordering $\prec$ on \textbf{On}$\times$\textbf{On}, every initial segment is a set. \end{prop}
+\begin{proof}  Given ordinals $\alpha, \beta\in $\textbf{On}, suppose $\lambda = \max\lbrace \alpha,\beta\rbrace$.  The initial segment of $(\alpha,\beta)$ is the union of the following collections 
+\begin{enumerate}
+\item $\lbrace (\gamma,\delta)\mid \max\lbrace \gamma,\delta\rbrace < \lambda \rbrace$, which is a subcollection of $\lambda \times \lambda$, 
+\item $\lbrace (\gamma,\delta) \mid \max\lbrace \gamma,\delta\rbrace = \lambda, \mbox{ and }\gamma < \alpha \rbrace$, which again is a subcollection $\lambda\times \lambda$, and 
+\item $\lbrace (\alpha,\delta) \mid \max\lbrace \alpha,\delta \rbrace = \lambda, \mbox{ and }\delta < \beta \rbrace$, which is a subcollection of $\lbrace \alpha \rbrace \times \beta $.
+\end{enumerate}
+Since $\lambda\times \lambda$ and $\lbrace \alpha \rbrace \times \beta $ are both sets, so is the initial segment of $(\alpha,\beta)$.
+\end{proof}
+
+\textbf{Remark}.  The canonical well-ordering on \textbf{On}$\times$\textbf{On} can be used to prove a well-known property of alephs: $\aleph_{\alpha} \cdot \aleph_{\alpha} = \aleph_{\alpha}$, for any ordinal $\alpha$.
+%%%%%
+%%%%%
+\end{document}

@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{MotivationForVonNeumannOrdinals}
+\pmcreated{2013-03-22 16:50:40}
+\pmmodified{2013-03-22 16:50:40}
+\pmowner{yark}{2760}
+\pmmodifier{yark}{2760}
+\pmtitle{motivation for von Neumann ordinals}
+\pmrecord{13}{39089}
+\pmprivacy{1}
+\pmauthor{yark}{2760}
+\pmtype{Derivation}
+\pmcomment{trigger rebuild}
+\pmclassification{msc}{03E10}
+
+% this is the default PlanetMath preamble.  as your knowledge
+% of TeX increases, you will probably want to edit this, but
+% it should be fine as is for beginners.
+
+% almost certainly you want these
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% used for TeXing text within eps files
+%\usepackage{psfrag}
+% need this for including graphics (\includegraphics)
+%\usepackage{graphicx}
+% for neatly defining theorems and propositions
+%\usepackage{amsthm}
+% making logically defined graphics
+%%%\usepackage{xypic}
+
+% there are many more packages, add them here as you need them
+
+% define commands here
+
+\begin{document}
+The idea of the von Neumann ordinal can be traced back to the following
+well-known fact: for any natural number $n$, there are exactly $n$ 
+natural numbers which are less than $n$.  For instance, the set
+\[
+\{ 0, 1, 2, 3, 4 \}
+\]
+has $5$ elements, the set
+\[
+\{0, 1, 2, 3, 4, 5, 6 \}
+\]
+has $7$ elements, etc.
+
+To obtain von Neumann ordinals, we turn this idea around.  Instead of
+taking it for granted that numbers exist (and have certain properties),
+we want to start with the more primitive notion of set and define
+numbers (and derive their properties).  The way to define a number is
+as a set of objects which have that number of elements.  For instance,
+consider counting on fingers --- in that case, a set of fingers stands
+for a number.  We will apply the same idea here in a more sophisticated
+form --- the counters we will use are not going to be fingers or beads 
+on an abacus, but abstract elements of an abstract set.
+
+To do this, we turn the observation made earlier around and
+\emph{define} a natural number to be the set of all natural numbers
+less than it.  At first sight, this definition appears circular, but
+upon closer examination, we see that it is legitimate.  The reason
+is that to define a particular number, we only need to make use
+of the numbers smaller than it as counters, so cn use our definition
+repeatedly to express numbers as sets.
+
+To begin, we notice that, since there are no natural numbers smaller
+than zero, we represent zero by the empty set.  Next, since the only
+number smaller than $1$, is zero, which corresponds to the empty set,
+we see that $1$ corresponds to the set whose only element is the
+empty set, i.e. $1 = \{ 0 \} = \{ \emptyset \}$.  Then we can go on to
+express all other numbers in terms of the empty set in a manner which
+may be explained with a typical example:
+\begin{align*}
+4 &= \{ 0, 1, 2, 3 \} \\
+&= \{ \emptyset, \{ 0 \}, \{ 0, 1 \}, \{ 0, 1, 2 \} \} \\
+& = \{ \emptyset,
+    \{ \emptyset \},
+    \{ \emptyset, \{ \emptyset \} \},
+    \{ 0, 1, \{ 0, 1 \} \} \\
+&= \{ \emptyset, 
+   \{ \emptyset \},
+   \{ \emptyset, \{ \emptyset \} \},
+   \{ \emptyset, \{ \emptyset \} , \{ \emptyset, \{ \emptyset \} \} \}.
+\end{align*}
+As we already see in this example, this representation of integers 
+in terms of the empty set is extremely clumsy.  While it is of little
+use in practical application (even tally marks or Roman numerals are
+more concise) it is of use theoretically because it is easy to 
+define the basic operations on numbers in terms of set-theoretical
+operations.
+
+As an example of such a definition, we note that the ordering relation ---
+given two numbers $m$ and $n$, we have $m < n$ exactly when $m \subset n$
+as sets.  As it turns out, our numbers are totally ordered, in fact
+well-ordered under this relation, so our numbers are ordinal numbers,
+hence the name ``von Neumann ordinals''.
+
+Another important example is the successor function.  Thinking for a
+minute about how we define a number as the set of numbers smaller
+than itself, we see that the next number is gotten by adding the 
+set denoting the previous element to itself as an element, in symbols,
+$n + 1 = n \cup \{ n \}$.  For example, we have
+\[
+4 + 1 =
+4 \cup \{ 4 \} =
+\{ 0, 1, 2, 3 \} \cup \{ 4 \} =
+\{ 0, 1, 2, 3, 4 \} =
+5.
+\]
+Using this definition, one may do things like derive the Peano
+axioms from the axioms of set theory.  From a foundational point
+of view, that derivation is important because it shows that it is
+not necessary to separately postulate natural numbers, but that
+they arise naturally from set theory.
+
+Finally, this definition applies equally well to transfinite numbers.
+For instance, consider the first transfinite ordinal $\omega$.  By 
+definition, this is the ordinal number of the ordered set of natural
+numbers.  In our scheme, we simply define $\omega$ to be the set of
+all natural numbers.  Furthermore, given \emph{any} well-ordered set,
+one can show by transfinite induction that it is isomorphic to some
+von Neumann ordinal, so all ordinal numbers are represented.
+%%%%%
+%%%%%
+\end{document}

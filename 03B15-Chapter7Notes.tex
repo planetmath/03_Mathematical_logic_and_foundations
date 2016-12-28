@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\usepackage{pmmeta}
+\pmcanonicalname{Chapter7Notes}
+\pmcreated{2013-11-06 2:03:22}
+\pmmodified{2013-11-06 2:03:22}
+\pmowner{PMBookProject}{1000683}
+\pmmodifier{rspuzio}{6075}
+\pmtitle{Chapter 7 Notes}
+\pmrecord{1}{}
+\pmprivacy{1}
+\pmauthor{PMBookProject}{6075}
+\pmtype{Feature}
+\pmclassification{msc}{03B15}
+
+\usepackage{xspace}
+\usepackage{amssyb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\makeatletter
+\newcommand{\sectionNotes}{\phantomsection\section*{Notes}\addcontentsline{toc}{section}{Notes}\markright{\textsc{\@chapapp{} \thechapter{} Notes}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\let\autoref\cref
+\makeatother
+\begin{document}
+The notion of homotopy $n$-type in classical homotopy theory is quite old.
+It was Voevodsky who realized that the notion can be defined recursively in homotopy type theory, starting from contractibility.
+
+\index{axiom!Streicher's Axiom K}%
+The property ``Axiom K'' was so named by Thomas Streicher, as a property of identity types which comes after J, the latter being the traditional name for the eliminator of identity types.
+\autoref{thm:hedberg} is due to Hedberg~\cite{hedberg1998coherence}; \cite{krausgeneralizations} contains more information and generalizations.
+
+The notions of $n$-connected spaces and functions are also classical in homotopy theory, although as mentioned before, our indexing for connectedness of functions is off by one from the classical indexing.
+The importance of the resulting factorization system has been emphasized by recent work in higher topos theory by Rezk, Lurie, and others.%
+\index{.infinity1-topos@$(\infty,1)$-topos}
+In particular, the results of this chapter should be compared with~\cite[\S6.5.1]{lurie:higher-topoi}.
+In \autoref{sec:freudenthal}, the theory of $n$-connected maps will be crucial to our proof of the Freudenthal suspension theorem.
+
+Modal operators\index{modal!operator} in \emph{simple} type theory have been studied extensively; see e.g.~\cite{modalTT}.  In the setting of dependent type theory, \cite{ab:bracket-types} treats the special case of propositional truncation ($(-1)$-truncation) as a modal operator\index{modal!operator}.  The development presented here greatly extends and generalizes this work, while drawing also on ideas from topos theory.\index{topos}
+
+Generally, modal operators\index{modal!operator} come in (at least) two flavors: those such as $\diamond$ (``possibly'') for which $A\Rightarrow \diamond A$, and those such as $\Box$ (``necessarily'') for which $\Box A \Rightarrow A$.
+When they are also \emph{idempotent} (i.e.\ $\diamond A = \diamond{\diamond A}$ or $\Box A = \Box{\Box A}$), the former may be identified with reflective subcategories (or equivalently, idempotent monads), and the latter with coreflective subcategories (or idempotent comonads).
+\index{monad}
+\index{comonad}
+However, in dependent type theory it is trickier to deal with the comonadic sort, since they are more rarely stable under pullback, and thus cannot be interpreted as operations on the universe \UU.
+Sometimes there are ways around this (see e.g.~\cite{QGFTinCHoTT12}), but for simplicity, here we stick to the monadic sort.
+
+On the computational side, monads (and hence modalities\index{modality}) are used to model computational effects in functional programming~\cite{Moggi89}.%
+\index{programming}%
+\index{computational effect}%
+A computation is said to be \emph{pure} if its execution results in no side effects (such as printing a message to the screen, playing music, or sending data over the Internet).
+There exist ``purely functional'' programming languages, such as Haskell\index{Haskell}, in which it is technically only possible to write pure functions: side effects are represented by applying ``monads'' to output types.
+For instance, a function of type $\mathsf{Int}\to\mathsf{Int}$ is pure, while a function of type $\mathsf{Int}\to \mathsf{IO}(\mathsf{Int})$ may perform input and output along the way to computing its result; the operation $\mathsf{IO}$ is a monad.
+\index{purely}%
+(This is the origin of our use of the adverb ``purely'' for the identity monad, since it corresponds computationally to pure functions with no side-effects.)
+The modalities we have considered in this chapter are all idempotent, whereas those used in functional programming rarely are, but the ideas are still closely related.
+
+
+
+\end{document}
