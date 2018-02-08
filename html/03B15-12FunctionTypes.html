@@ -1,0 +1,310 @@
+<!DOCTYPE html><html>
+<head>
+<title>1.2 Function types</title>
+<!--Generated on Thu Feb  8 19:32:16 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">1.2 Function types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Given types <math id="p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, we can construct the type <math id="p1.m3" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math> of <span class="ltx_text ltx_font_bold">functions</span>
+with domain <math id="p1.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and codomain <math id="p1.m5" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.
+We also sometimes refer to functions as <span class="ltx_text ltx_font_bold">maps</span>.
+Unlike in set theory, functions are not defined as
+functional relations; rather they are a primitive concept in type theory.
+We explain the function type by prescribing what we can do with functions,
+how to construct them and what equalities they induce.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Given a function <math id="p2.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> and an element of the domain <math id="p2.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, we
+can <span class="ltx_text ltx_font_bold">apply</span>
+
+the function to obtain an element of the codomain <math id="p2.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>,
+denoted <math id="p2.m4" class="ltx_Math" alttext="f(a)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> and called the <span class="ltx_text ltx_font_bold">value</span> of <math id="p2.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> at <math id="p2.m6" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.
+It is common in type theory to omit the parentheses and denote <math id="p2.m7" class="ltx_Math" alttext="f(a)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> simply by <math id="p2.m8" class="ltx_Math" alttext="f\,a" display="inline"><mrow><mpadded width="+1.7pt"><mi>f</mi></mpadded><mo>⁢</mo><mi>a</mi></mrow></math>, and we will sometimes do this as well.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">But how can we construct elements of <math id="p3.m1" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math>? There are two equivalent ways:
+either by direct definition or by using
+<math id="p3.m2" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction. Introducing a function by definition
+means that
+we introduce a function by giving it a name — let’s say, <math id="p3.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> — and saying
+we define <math id="p3.m4" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> by giving an equation</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="f(x)܃\!\!\equiv\Phi" display="block"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mi mathvariant="normal">Φ</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(1.2.1)</span></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p3.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is a variable
+and <math id="p3.m6" class="ltx_Math" alttext="\Phi" display="inline"><mi mathvariant="normal">Φ</mi></math> is an expression which may use <math id="p3.m7" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>.
+In order for this to be valid, we have to check that <math id="p3.m8" class="ltx_Math" alttext="\Phi:B" display="inline"><mrow><mi mathvariant="normal">Φ</mi><mo>:</mo><mi>B</mi></mrow></math> assuming <math id="p3.m9" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Now we can compute <math id="p4.m1" class="ltx_Math" alttext="f(a)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> by replacing the variable <math id="p4.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in <math id="p4.m3" class="ltx_Math" alttext="\Phi" display="inline"><mi mathvariant="normal">Φ</mi></math> with
+<math id="p4.m4" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>. As an example, consider the function <math id="p4.m5" class="ltx_Math" alttext="f:\mathbb{N}\to\mathbb{N}" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mi>ℕ</mi></mrow></mrow></math> which is
+defined by <math id="p4.m6" class="ltx_Math" alttext="f(x)܃\!\!\equiv x+x" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>x</mi><mo>+</mo><mi>x</mi></mrow></mrow></math>. (We will define <math id="p4.m7" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> and <math id="p4.m8" class="ltx_Math" alttext="+" display="inline"><mo>+</mo></math> in §1.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/19thenaturalnumbers</span>).)
+Then <math id="p4.m9" class="ltx_Math" alttext="f(2)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mrow></math> is judgmentally equal to <math id="p4.m10" class="ltx_Math" alttext="2+2" display="inline"><mrow><mn>2</mn><mo>+</mo><mn>2</mn></mrow></math>.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">If we don’t want to introduce a name for the function, we can use
+<math id="p5.m1" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math><span class="ltx_text ltx_font_bold">-abstraction</span>.
+Given an expression <math id="p5.m2" class="ltx_Math" alttext="\Phi" display="inline"><mi mathvariant="normal">Φ</mi></math> of type <math id="p5.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> which may use <math id="p5.m4" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>, as above, we write <math id="p5.m5" class="ltx_Math" alttext="{\lambda}(x\,{:}\,A).\,\Phi" display="inline"><mrow><mi>λ</mi><mrow><mo stretchy="false">(</mo><mpadded width="+1.7pt"><mi>x</mi></mpadded><mo rspace="4.2pt">:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi mathvariant="normal">Φ</mi></mrow></math> to indicate the same function defined by (<a href="#S0.E1" title="(1.2.1) ‣ 1.2 Function types" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1.2.1</span></a>).
+Thus, we have</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="({\lambda}(x\,{:}\,A).\,\Phi):A\to B." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>λ</mi><mrow><mo stretchy="false">(</mo><mpadded width="+1.7pt"><mi>x</mi></mpadded><mo rspace="4.2pt">:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">For the example in the previous paragraph, we have the typing judgment</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="({\lambda}(x\,{:}\,\mathbb{N}).\,x+x):\mathbb{N}\to\mathbb{N}." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>λ</mi><mrow><mo stretchy="false">(</mo><mpadded width="+1.7pt"><mi>x</mi></mpadded><mo rspace="4.2pt">:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>x</mi><mo>+</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>ℕ</mi><mo>→</mo><mi>ℕ</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">As another example, for any types <math id="p5.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p5.m7" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> and any element <math id="p5.m8" class="ltx_Math" alttext="y:B" display="inline"><mrow><mi>y</mi><mo>:</mo><mi>B</mi></mrow></math>, we have a <span class="ltx_text ltx_font_bold">constant function</span>
+<math id="p5.m9" class="ltx_Math" alttext="({\lambda}(x\,{:}\,A).\,y):A\to B" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>λ</mi><mrow><mo stretchy="false">(</mo><mpadded width="+1.7pt"><mi>x</mi></mpadded><mo rspace="4.2pt">:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math>.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">We generally omit the type of the variable <math id="p6.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in a <math id="p6.m2" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction and write <math id="p6.m3" class="ltx_Math" alttext="{\lambda}x.\,\Phi" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mi mathvariant="normal">Φ</mi></mrow></math>, since the typing <math id="p6.m4" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math> is inferable from the judgment that the function <math id="p6.m5" class="ltx_Math" alttext="{\lambda}x.\,\Phi" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mi mathvariant="normal">Φ</mi></mrow></math> has type <math id="p6.m6" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math>.
+By convention, the “scope”
+of the variable binding “<math id="p6.m7" class="ltx_Math" alttext="{\lambda}x.\," display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo></mrow></math>” is the entire rest of the expression, unless delimited with parentheses.
+Thus, for instance, <math id="p6.m8" class="ltx_Math" alttext="{\lambda}x.\,x+x" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>x</mi><mo>+</mo><mi>x</mi></mrow></mrow></math> should be parsed as <math id="p6.m9" class="ltx_Math" alttext="{\lambda}x.\,(x+x)" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, not as <math id="p6.m10" class="ltx_Math" alttext="({\lambda}x.\,x)+x" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>+</mo><mi>x</mi></mrow></math> (which would, in this case, be ill-typed anyway).</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Another equivalent notation is</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="(x\mapsto\Phi):A\to B." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>↦</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We may also sometimes use a blank “<math id="p7.m1" class="ltx_Math" alttext="\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}" display="inline"><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></math>” in the expression <math id="p7.m2" class="ltx_Math" alttext="\Phi" display="inline"><mi mathvariant="normal">Φ</mi></math> in place of a variable, to denote an implicit <math id="p7.m3" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction.
+For instance, <math id="p7.m4" class="ltx_Math" alttext="g(x,\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})" display="inline"><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow></mrow></math> is another way to write <math id="p7.m5" class="ltx_Math" alttext="{\lambda}y.\,g(x,y)" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>y</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Now a <math id="p8.m1" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction is a function, so we can apply it to an argument <math id="p8.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>.
+We then have the following <span class="ltx_text ltx_font_bold">computation rule<span class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">1</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">1</sup><span class="ltx_text ltx_font_medium">Use of this equality is often referred to as </span><math id="p8.m3" class="ltx_Math" alttext="\beta" display="inline"><mi>β</mi></math>-conversion<span class="ltx_text ltx_font_medium">
+</span><span class="ltx_text ltx_font_medium">or </span><math id="p8.m4" class="ltx_Math" alttext="\beta" display="inline"><mi>β</mi></math>-reduction<span class="ltx_text ltx_font_medium">.</span></span></span></span></span>, which is a definitional equality:</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="({\lambda}x.\,\Phi)(a)\equiv\Phi^{\prime}" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>≡</mo><msup><mi mathvariant="normal">Φ</mi><mo>′</mo></msup></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p8.m5" class="ltx_Math" alttext="\Phi^{\prime}" display="inline"><msup><mi mathvariant="normal">Φ</mi><mo>′</mo></msup></math> is the
+expression <math id="p8.m6" class="ltx_Math" alttext="\Phi" display="inline"><mi mathvariant="normal">Φ</mi></math> in which all occurrences of <math id="p8.m7" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> have been replaced by <math id="p8.m8" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.
+Continuing the above example, we have</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="({\lambda}x.\,x+x)(2)\equiv 2+2." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>x</mi><mo>+</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><mo>≡</mo><mn>2</mn><mo>+</mo><mn>2</mn><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Note that from any function <math id="p8.m9" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math>, we can construct a lambda abstraction function <math id="p8.m10" class="ltx_Math" alttext="{\lambda}x.\,f(x)" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Since this is by definition “the function that applies <math id="p8.m11" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to its argument” we consider it to be definitionally equal to <math id="p8.m12" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>:<span class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">2</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">2</sup>Use of this equality is often referred to as <math id="p8.m13" class="ltx_Math" alttext="\eta" display="inline"><mi>η</mi></math><span class="ltx_text ltx_font_bold">-conversion</span>
+or <math id="p8.m14" class="ltx_Math" alttext="\eta" display="inline"><mi>η</mi></math><span class="ltx_text ltx_font_bold">-expansion.
+</span></span></span></span></p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="f\equiv({\lambda}x.\,f(x))." display="block"><mrow><mi>f</mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This equality is the <span class="ltx_text ltx_font_bold">uniqueness principle for function types</span>, because it shows that <math id="p8.m15" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is uniquely determined by its values.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">The introduction of functions by definitions with explicit parameters can be reduced
+to simple definitions by using <math id="p9.m1" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction: i.e., we can read
+a definition of <math id="p9.m2" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> by</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="f(x)܃\!\!\equiv\Phi" display="block"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mi mathvariant="normal">Φ</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">as</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="f܃\!\!\equiv{\lambda}x.\,\Phi." display="block"><mrow><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mi mathvariant="normal">Φ</mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">When doing calculations involving variables, we have to be
+careful when replacing a variable with an expression that also involves
+variables, because we want to preserve the binding structure of
+expressions. By the <em class="ltx_emph ltx_font_italic">binding structure</em> we mean the
+invisible link generated by binders such as <math id="p10.m1" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>, <math id="p10.m2" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math> and
+<math id="p10.m3" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math> (the latter we are going to meet soon) between the place where the variable is introduced and where it is used. As an example, consider <math id="p10.m4" class="ltx_Math" alttext="f:\mathbb{N}\to(\mathbb{N}\to\mathbb{N})" display="inline"><mrow><mi>f</mi><mo>:</mo><mi>ℕ</mi><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>ℕ</mi><mo>→</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+defined as</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="f(x)܃\!\!\equiv{\lambda}y.\,x+y." display="block"><mrow><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>y</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Now if we have assumed somewhere that <math id="p10.m5" class="ltx_Math" alttext="y:\mathbb{N}" display="inline"><mrow><mi>y</mi><mo>:</mo><mi>ℕ</mi></mrow></math>, then what is <math id="p10.m6" class="ltx_Math" alttext="f(y)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>? It would be wrong to just naively replace <math id="p10.m7" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> by <math id="p10.m8" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> everywhere in the expression “<math id="p10.m9" class="ltx_Math" alttext="{\lambda}y.\,x+y" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>y</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mrow></math>” defining <math id="p10.m10" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, obtaining <math id="p10.m11" class="ltx_Math" alttext="{\lambda}y.\,y+y" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>y</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>y</mi><mo>+</mo><mi>y</mi></mrow></mrow></math>, because this means that <math id="p10.m12" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> gets <span class="ltx_text ltx_font_bold">captured</span>.
+Previously, the substituted <math id="p10.m13" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> was referring to our assumption, but now it is referring to the argument of the <math id="p10.m14" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction. Hence, this naive substitution would destroy the binding structure, allowing us to perform calculations which are semantically unsound.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">But what <em class="ltx_emph ltx_font_italic">is</em> <math id="p11.m1" class="ltx_Math" alttext="f(y)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> in this example? Note that bound (or “dummy”)
+variables
+such as <math id="p11.m2" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> in the expression <math id="p11.m3" class="ltx_Math" alttext="{\lambda}y.\,x+y" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>y</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mrow></math>
+have only a local meaning, and can be consistently replaced by any
+other variable, preserving the binding structure. Indeed, <math id="p11.m4" class="ltx_Math" alttext="{\lambda}y.\,x+y" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>y</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mrow></math> is declared to be judgmentally equal<span class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">3</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">3</sup>Use of this equality is often referred to as <math id="p11.m5" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math><span class="ltx_text ltx_font_bold">-conversion.
+<span class="ltx_ERROR undefined">\indexfoot</span>alpha-conversion@<math id="p11.m6" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math>-conversion
+
+</span></span></span></span> to
+<math id="p11.m7" class="ltx_Math" alttext="{\lambda}z.\,x+z" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>z</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>x</mi><mo>+</mo><mi>z</mi></mrow></mrow></math>. It follows that
+<math id="p11.m8" class="ltx_Math" alttext="f(y)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> is judgmentally equal to <math id="p11.m9" class="ltx_Math" alttext="{\lambda}z.\,y+z" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>z</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>y</mi><mo>+</mo><mi>z</mi></mrow></mrow></math>, and that answers our question. (Instead of <math id="p11.m10" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>,
+any variable distinct from <math id="p11.m11" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> could have been used, yielding an equal result.)</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Of course, this should all be familiar to any mathematician: it is the same phenomenon as the fact that if <math id="p12.m1" class="ltx_Math" alttext="f(x)܃\!\!\equiv\int_{1}^{2}\frac{dt}{x-t}" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mn>1</mn><mn>2</mn></msubsup><mfrac><mrow><mi>d</mi><mo>⁢</mo><mi>t</mi></mrow><mrow><mi>x</mi><mo>-</mo><mi>t</mi></mrow></mfrac></mrow></mrow></math>, then <math id="p12.m2" class="ltx_Math" alttext="f(t)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mrow></math> is not <math id="p12.m3" class="ltx_Math" alttext="\int_{1}^{2}\frac{dt}{t-t}" display="inline"><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mn>1</mn><mn>2</mn></msubsup><mfrac><mrow><mi>d</mi><mo>⁢</mo><mi>t</mi></mrow><mrow><mi>t</mi><mo>-</mo><mi>t</mi></mrow></mfrac></mrow></math> but rather <math id="p12.m4" class="ltx_Math" alttext="\int_{1}^{2}\frac{ds}{t-s}" display="inline"><mrow><msubsup><mo largeop="true" symmetric="true">∫</mo><mn>1</mn><mn>2</mn></msubsup><mfrac><mrow><mi>d</mi><mo>⁢</mo><mi>s</mi></mrow><mrow><mi>t</mi><mo>-</mo><mi>s</mi></mrow></mfrac></mrow></math>.
+A <math id="p12.m5" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction binds a dummy variable in exactly the same way that an integral does.</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">We have seen how to define functions in one variable. One
+way to define functions in several variables would be to use the
+cartesian product, which will be introduced later; a function with
+parameters <math id="p13.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p13.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> and results in <math id="p13.m3" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math> would be given the type
+<math id="p13.m4" class="ltx_Math" alttext="f:A\times B\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow><mo>→</mo><mi>C</mi></mrow></mrow></math>. However, there is another choice that avoids
+using product types, which is called <span class="ltx_text ltx_font_bold">currying</span>
+(after the mathematician Haskell Curry).</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">The idea of currying is to represent a function of two inputs <math id="p14.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p14.m2" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math> as a function which takes <em class="ltx_emph ltx_font_italic">one</em> input <math id="p14.m3" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and returns <em class="ltx_emph ltx_font_italic">another function</em>, which then takes a second input <math id="p14.m4" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math> and returns the result.
+That is, we consider two-variable functions to belong to an iterated function type, <math id="p14.m5" class="ltx_Math" alttext="f:A\to(B\to C)" display="inline"><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+We may also write this without the parentheses, as <math id="p14.m6" class="ltx_Math" alttext="f:A\to B\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi><mo>→</mo><mi>C</mi></mrow></mrow></math>, with
+associativity to the right as the default convention. Then given <math id="p14.m7" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p14.m8" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math>,
+we can apply <math id="p14.m9" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to <math id="p14.m10" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and then apply the result to <math id="p14.m11" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math>, obtaining
+<math id="p14.m12" class="ltx_Math" alttext="f(a)(b):C" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mi>C</mi></mrow></math>. To avoid the proliferation of parentheses, we allow ourselves to
+write <math id="p14.m13" class="ltx_Math" alttext="f(a)(b)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> as <math id="p14.m14" class="ltx_Math" alttext="f(a,b)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> even though there are no products
+involved.
+When omitting parentheses around function arguments entirely, we write <math id="p14.m15" class="ltx_Math" alttext="f\,a\,b" display="inline"><mrow><mpadded width="+1.7pt"><mi>f</mi></mpadded><mo>⁢</mo><mpadded width="+1.7pt"><mi>a</mi></mpadded><mo>⁢</mo><mi>b</mi></mrow></math> for <math id="p14.m16" class="ltx_Math" alttext="(f\,a)\,b" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mpadded width="+1.7pt"><mi>f</mi></mpadded><mo>⁢</mo><mi>a</mi></mrow><mo rspace="4.2pt" stretchy="false">)</mo></mrow><mo>⁢</mo><mi>b</mi></mrow></math>, with the default associativity now being to the left so that <math id="p14.m17" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is applied to its arguments in the correct order.</p>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">Our notation for definitions with explicit parameters extends to
+this situation: we can define a named function <math id="p15.m1" class="ltx_Math" alttext="f:A\to B\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi><mo>→</mo><mi>C</mi></mrow></mrow></math> by
+giving an equation</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="f(x,y)܃\!\!\equiv\Phi" display="block"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mi mathvariant="normal">Φ</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p15.m2" class="ltx_Math" alttext="\Phi:C" display="inline"><mrow><mi mathvariant="normal">Φ</mi><mo>:</mo><mi>C</mi></mrow></math> assuming <math id="p15.m3" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p15.m4" class="ltx_Math" alttext="y:B" display="inline"><mrow><mi>y</mi><mo>:</mo><mi>B</mi></mrow></math>. Using <math id="p15.m5" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction this
+corresponds to</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="f܃\!\!\equiv{\lambda}x.\,{\lambda}y.\,\Phi," display="block"><mrow><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>y</mi></mrow><mo rspace="4.2pt">.</mo><mi mathvariant="normal">Φ</mi></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">which may also be written as</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="f܃\!\!\equiv x\mapsto y\mapsto\Phi." display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mi>x</mi><mo>↦</mo><mi>y</mi><mo>↦</mo><mi mathvariant="normal">Φ</mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We can also implicitly abstract over multiple variables by writing multiple blanks, e.g. <math id="p15.m6" class="ltx_Math" alttext="g(\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt},\mathord{\hskip 1.0pt\text{--}%
+\hskip 1.0pt})" display="inline"><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow></mrow></math> means <math id="p15.m7" class="ltx_Math" alttext="{\lambda}x.\,{\lambda}y.\,g(x,y)" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>y</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Currying a function of three or more arguments is a straightforward extension of what we have just described.</p>
+</div>
+<div id="p16" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">1.2 Function types</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">12FunctionTypes</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-11-07 19:39:53</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-11-07 19:39:53</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">PMBookProject (1000683)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">rspuzio (6075)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">14</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">PMBookProject (6075)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Feature</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">msc 03B15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:32:16 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

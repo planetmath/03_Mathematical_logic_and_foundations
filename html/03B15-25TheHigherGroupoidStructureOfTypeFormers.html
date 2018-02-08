@@ -1,0 +1,105 @@
+<!DOCTYPE html><html>
+<head>
+<title>2.5 The higher groupoid structure of type formers</title>
+<!--Generated on Thu Feb  8 19:34:07 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="axiom, extensionality, of functions, function extensionality, judgmental equality, univalence axiom, versus rules">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">2.5 The higher groupoid structure of type formers</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">In <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87533</span>Chapter 1, we introduced many ways to form new types: cartesian products, disjoint unions, dependent products, dependent sums, etc.
+In §2.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids</span>),§2.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/22functionsarefunctors</span>),§2.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/23typefamiliesarefibrations</span>), we saw that <em class="ltx_emph ltx_font_italic">all</em> types in homotopy type theory behave like spaces or higher groupoids.
+Our goal in the rest of the chapter is to make explicit how this higher structure behaves in the case of the particular types defined in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87533</span>Chapter 1.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">It turns out that for many types <math id="p2.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, the equality types <math id="p2.m2" class="ltx_Math" alttext="x=_{A}y" display="inline"><mrow><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi></mrow></math> can be characterized, up to equivalence, in terms of whatever data was used to construct <math id="p2.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+For example, if <math id="p2.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a cartesian product <math id="p2.m5" class="ltx_Math" alttext="B\times C" display="inline"><mrow><mi>B</mi><mo>×</mo><mi>C</mi></mrow></math>, and <math id="p2.m6" class="ltx_Math" alttext="x\equiv(b,c)" display="inline"><mrow><mi>x</mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p2.m7" class="ltx_Math" alttext="y\equiv(b^{\prime},c^{\prime})" display="inline"><mrow><mi>y</mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><msup><mi>b</mi><mo>′</mo></msup><mo>,</mo><msup><mi>c</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math>, then we have an equivalence
+</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="\big{(}(b,c)=(b^{\prime},c^{\prime})\big{)}\simeq\big{(}(b=b^{\prime})\times(c%
+=c^{\prime})\big{)}." display="block"><mrow><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><msup><mi>b</mi><mo>′</mo></msup><mo>,</mo><msup><mi>c</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>≃</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>=</mo><msup><mi>b</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>=</mo><msup><mi>c</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.5.1)</span></td>
+</tr>
+</table>
+<p class="ltx_p">In more traditional language, two ordered pairs are equal just when their components are equal (but the equivalence (<a href="#S0.E1" title="(2.5.1) ‣ 2.5 The higher groupoid structure of type formers" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.5.1</span></a>) says rather more than this).
+The higher structure of the identity types can also be expressed in terms of these equivalences; for instance, concatenating two equalities between pairs corresponds to pairwise concatenation.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Similarly, when a type family <math id="p3.m1" class="ltx_Math" alttext="P:A\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> is built up fiberwise using the type forming rules from <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87533</span>Chapter 1, the operation <math id="p3.m2" class="ltx_Math" alttext="\mathsf{transport}^{P}(p,\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>P</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow></mrow></math> can be characterized, up to homotopy, in terms of the corresponding operations on the data that went into <math id="p3.m3" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>.
+For instance, if <math id="p3.m4" class="ltx_Math" alttext="P(x)\equiv B(x)\times C(x)" display="inline"><mrow><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>×</mo><mi>C</mi></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then we have</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathsf{transport}^{P}(p,(b,c))=\big{(}\mathsf{transport}^{B}(p,b),\mathsf{%
+transport}^{C}(p,c)\big{)}." display="block"><mrow><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>P</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>B</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>C</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Finally, the type forming rules are also functorial, and if a function <math id="p4.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is built from this functoriality, then the operations <math id="p4.m2" class="ltx_Math" alttext="\mathsf{ap}_{f}" display="inline"><msub><mi>𝖺𝗉</mi><mi>f</mi></msub></math> and <math id="p4.m3" class="ltx_Math" alttext="\mathsf{apd}_{f}" display="inline"><msub><mi>𝖺𝗉𝖽</mi><mi>f</mi></msub></math> can be computed based on the corresponding ones on the data going into <math id="p4.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+For instance, if <math id="p4.m5" class="ltx_Math" alttext="g:B\to B^{\prime}" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><msup><mi>B</mi><mo>′</mo></msup></mrow></mrow></math> and <math id="p4.m6" class="ltx_Math" alttext="h:C\to C^{\prime}" display="inline"><mrow><mi>h</mi><mo>:</mo><mrow><mi>C</mi><mo>→</mo><msup><mi>C</mi><mo>′</mo></msup></mrow></mrow></math> and we define <math id="p4.m7" class="ltx_Math" alttext="f:B\times C\to B^{\prime}\times C^{\prime}" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>B</mi><mo>×</mo><mi>C</mi></mrow><mo>→</mo><mrow><msup><mi>B</mi><mo>′</mo></msup><mo>×</mo><msup><mi>C</mi><mo>′</mo></msup></mrow></mrow></mrow></math> by <math id="p4.m8" class="ltx_Math" alttext="f(b,c):\!\!\equiv(g(b),h(c))" display="inline"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, then modulo the equivalence (<a href="#S0.E1" title="(2.5.1) ‣ 2.5 The higher groupoid structure of type formers" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.5.1</span></a>), we can identify <math id="p4.m9" class="ltx_Math" alttext="\mathsf{ap}_{f}" display="inline"><msub><mi>𝖺𝗉</mi><mi>f</mi></msub></math> with “<math id="p4.m10" class="ltx_Math" alttext="(\mathsf{ap}_{g},\mathsf{ap}_{h})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>𝖺𝗉</mi><mi>g</mi></msub><mo>,</mo><msub><mi>𝖺𝗉</mi><mi>h</mi></msub><mo stretchy="false">)</mo></mrow></math>”.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">The next few sections (§2.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/26cartesianproducttypes</span>) to §2.13 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers</span>)) will be devoted to stating and proving theorems of this sort for all the basic type forming rules, with one section for each basic type former.
+Here we encounter a certain apparent deficiency in currently available type theories;
+as will become clear in later chapters, it would seem to be more convenient and intuitive if these characterizations of identity types, transport, and so on were <em class="ltx_emph ltx_font_italic">judgmental</em> equalities.
+However, in the theory presented in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87533</span>Chapter 1, the identity types are defined uniformly for all types by their induction principle, so we cannot “redefine” them to be different things at different types.
+Thus, the characterizations for particular types to be discussed in this chapter are, for the most part, <em class="ltx_emph ltx_font_italic">theorems</em> which we have to discover and prove, if possible.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Actually, the type theory of <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87533</span>Chapter 1 is insufficient to prove the desired theorems for two of the type formers: <math id="p6.m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types and universes.
+For this reason, we are forced to introduce axioms into our type theory, in order to make those “theorems” true.
+Type-theoretically, an <em class="ltx_emph ltx_font_italic">axiom</em> (c.f. §1.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/11typetheoryversussettheory</span>)) is an “atomic” element that is declared to inhabit some specified type, without there being any rules governing its behavior other than those pertaining to the type it inhabits.
+</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The axiom for <math id="p7.m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types (§2.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom</span>)) is familiar to type theorists: it is called <em class="ltx_emph ltx_font_italic">function extensionality</em>, and states (roughly) that if two functions are homotopic in the sense of §2.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/24homotopiesandequivalences</span>), then they are equal.
+The axiom for universes (§2.10 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/210universesandtheunivalenceaxiom</span>)), however, is a new contribution of homotopy type theory due to Voevodsky: it is called the <em class="ltx_emph ltx_font_italic">univalence axiom</em>, and states (roughly) that if two types are equivalent in the sense of §2.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/24homotopiesandequivalences</span>), then they are equal.
+We have already remarked on this axiom in the introduction; it will play a very important role in this book.<span class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">1</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">1</sup>We have chosen to introduce these principles as axioms, but there are potentially other ways to formulate a type theory in which they hold.
+See the Notes to this chapter.</span></span></span></p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">It is important to note that not <em class="ltx_emph ltx_font_italic">all</em> identity types can be “determined” by induction over the construction of types.
+Counterexamples include most nontrivial higher inductive types (see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87579</span>Chapter 6,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87582</span>Chapter 8).
+For instance, calculating the identity types of the types <math id="p8.m1" class="ltx_Math" alttext="\mathbb{S}^{n}" display="inline"><msup><mi>𝕊</mi><mi>n</mi></msup></math> (see §6.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/64circlesandspheres</span>)) is equivalent to calculating the higher homotopy groups of spheres, a deep and important field of research in algebraic topology.</p>
+</div>
+<div id="p9" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">2.5 The higher groupoid structure of type formers</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:34:07 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html><html>
+<head>
+<title>Chapter 1 notes</title>
+<!--Generated on Thu Feb  8 19:44:44 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , Lawvere, Russell-style, Streicher’s Axiom K, Tarski-style, UIP, assistant, axiom, coercion, universe-raising, extensional, for function types, for product types, function extensionality, functionality, intensional, intensional type theory, of identity proofs, pattern matching, pointwise, principle, proof, type, type theory, uniqueness, universe">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">Chapter 1 notes</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">The type theory presented here is a version of Martin-Löf’s intuitionistic type
+theory <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib14" title="" class="ltx_ref">14</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib16" title="" class="ltx_ref">16</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib18" title="" class="ltx_ref">18</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib20" title="" class="ltx_ref">20</a>]</cite>, which itself is based on and influenced
+by the foundational work of Brouwer <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib1" title="" class="ltx_ref">1</a>]</cite>, Heyting <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib8" title="" class="ltx_ref">8</a>]</cite>, Scott <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">scott70</span>]</cite>, de
+Bruijn <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib7" title="" class="ltx_ref">7</a>]</cite>, Howard <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib10" title="" class="ltx_ref">10</a>]</cite>, Tait <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib26" title="" class="ltx_ref">26</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib28" title="" class="ltx_ref">28</a>]</cite>, and Lawvere <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib11" title="" class="ltx_ref">11</a>]</cite>.
+Three principal variants of Martin-Löf’s type theory underlie the <span class="ltx_text ltx_font_smallcaps">NuPRL</span> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib3" title="" class="ltx_ref">3</a>]</cite>, <span class="ltx_text ltx_font_smallcaps">Coq</span> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib5" title="" class="ltx_ref">5</a>]</cite>, and
+<span class="ltx_text ltx_font_smallcaps">Agda</span> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib23" title="" class="ltx_ref">23</a>]</cite> computer implementations of type theory. The theory given here differs from these formulations in a number
+of respects, some of which are critical to the homotopy interpretation, while others are technical conveniences or involve concepts that
+have not yet been studied in the homotopical setting.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Most significantly, the type theory described here is derived from the <em class="ltx_emph ltx_font_italic">intensional</em> version of Martin-Löf’s type
+theory <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib16" title="" class="ltx_ref">16</a>]</cite>, rather than the <em class="ltx_emph ltx_font_italic">extensional</em> version <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib18" title="" class="ltx_ref">18</a>]</cite>. Whereas the extensional theory makes no
+distinction between judgmental and propositional equality, the intensional theory regards judgmental equality as purely definitional, and
+admits a much broader, proof-relevant interpretation of the identity type that is central to the homotopy interpretation. From the
+homotopical perspective, extensional type theory confines itself to homotopically discrete sets (see §3.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/31setsandntypes</span>)), whereas the
+intensional theory admits types with higher-dimensional structure. The <span class="ltx_text ltx_font_smallcaps">NuPRL</span> system <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib3" title="" class="ltx_ref">3</a>]</cite> is extensional, whereas
+both <span class="ltx_text ltx_font_smallcaps">Coq</span> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib5" title="" class="ltx_ref">5</a>]</cite> and <span class="ltx_text ltx_font_smallcaps">Agda</span> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib23" title="" class="ltx_ref">23</a>]</cite> are intensional. Among intensional type theories, there are a number of variants
+that differ in the structure of identity proofs. The most liberal interpretation, on which we rely here, admits a <em class="ltx_emph ltx_font_italic">proof-relevant</em>
+interpretation of equality, whereas more restricted variants impose restrictions such as <em class="ltx_emph ltx_font_italic">uniqueness of identity proofs
+(UIP)</em> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib25" title="" class="ltx_ref">25</a>]</cite>,
+stating that any two proofs of equality are judgmentally equal, and <em class="ltx_emph ltx_font_italic">Axiom K</em> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib25" title="" class="ltx_ref">25</a>]</cite>,
+
+stating that
+the only proof of equality is reflexivity (up to judgmental equality). These additional requirements may be selectively imposed in the <span class="ltx_text ltx_font_smallcaps">Coq</span> and <span class="ltx_text ltx_font_smallcaps">Agda</span> systems.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Another point of variation among intensional theories is the strength of judgmental equality, particularly as regards objects of function type. Here we include the uniqueness principle (<math id="p3.m1" class="ltx_Math" alttext="\eta" display="inline"><mi>η</mi></math>-conversion) <math id="p3.m2" class="ltx_Math" alttext="f\equiv{\lambda}x.\,f(x)" display="inline"><mrow><mrow><mi>f</mi><mo>≡</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, as a principle of judgmental equality. This principle is used, for example, in §4.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/49univalenceimpliesfunctionextensionality</span>), to show that univalence implies propositional function extensionality. Uniqueness principles are sometimes considered for other types.
+For instance, the uniqueness principle for cartesian products would be a judgmental version of the propositional equality <math id="p3.m3" class="ltx_Math" alttext="\mathsf{uppt}" display="inline"><mi>𝗎𝗉𝗉𝗍</mi></math> which we constructed in §1.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/15producttypes</span>), saying that <math id="p3.m4" class="ltx_Math" alttext="u\equiv(\mathsf{pr}_{1}(u),\mathsf{pr}_{2}(u))" display="inline"><mrow><mi>u</mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+This and the corresponding version for dependent pairs would be reasonable choices (which we did not make), but we cannot include all such rules, because the corresponding uniqueness principle for identity types would trivialize all the higher homotopical structure. So we are <em class="ltx_emph ltx_font_italic">forced</em> to leave it out, and the question then becomes where to draw the line. With regards to inductive types, we discuss these points further in §5.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/55homotopyinductivetypes</span>).</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">It is important for our purposes that (propositional) equality of functions is taken to be <em class="ltx_emph ltx_font_italic">extensional</em> (in a different sense than that used above!).
+This is not a consequence of the rules in this chapter; it will be expressed by Axiom 1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#Thmaxiom1</span>).
+This decision is significant for our purposes, because it specifies that equality of functions is as expected in mathematics. Although we include Axiom 1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#Thmaxiom1</span>) as an axiom, it may be derived from the univalence axiom and the uniqueness principle for functions (see §4.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/49univalenceimpliesfunctionextensionality</span>)), as well as from the existence of an interval type (see Lemma 6.3.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/63theinterval#Thmprelem2</span>)).</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Regarding inductive types such as products, <math id="p5.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types, coproducts, natural numbers, and so on (see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87578</span>Chapter 5), there are additional choices regarding precisely how to formulate induction and recursion.
+Formally, one may describe type theory by taking either <em class="ltx_emph ltx_font_italic">pattern matching</em> or <em class="ltx_emph ltx_font_italic">induction principles</em> as basic and deriving the other; see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87881</span>Appendix A.
+However, pattern matching in general is not yet well understood from the homotopical perspective (in particular, “nested” or “deep” pattern matching is difficult to make general sense of for higher inductive types).
+Moreover, it can be dangerous unless sufficient care is taken: for instance, the form of pattern matching implemented by default in <span class="ltx_text ltx_font_smallcaps">Agda</span> allows proving Axiom K.
+For these reasons, we have chosen to regard the induction principle as the basic property of an inductive definition, with pattern matching justified in terms of induction.
+</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Unlike the type theory of <span class="ltx_text ltx_font_smallcaps">Coq</span>, we do not include a primitive type of propositions. Instead, as discussed in §1.11 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/111propositionsastypes</span>), we embrace
+the <em class="ltx_emph ltx_font_italic">propositions-as-types (PAT)</em> principle, identifying propositions with types.
+This was suggested originally by de Bruijn <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib7" title="" class="ltx_ref">7</a>]</cite>, Howard <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib10" title="" class="ltx_ref">10</a>]</cite>, Tait <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib28" title="" class="ltx_ref">28</a>]</cite>, and Martin-Löf <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib14" title="" class="ltx_ref">14</a>]</cite>.
+(Our decision is explained more fully in §3.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/32propositionsastypes</span>),§3.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/33merepropositions</span>).)</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">We do, however, include a full cumulative hierarchy of universes, so that the type formation and equality judgments become instances of the membership and equality judgments for a universe.
+As a convenience, we regard objects of a universe as types, rather than as codes for types; in the terminology of <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib20" title="" class="ltx_ref">20</a>]</cite>, this means we use “Russell-style universes” rather than “Tarski-style universes”.
+An alternative would be to use Tarski-style universes, with an explicit coercion function required to make an element <math id="p7.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> of a universe into a type <math id="p7.m2" class="ltx_Math" alttext="\mathsf{El}(A)" display="inline"><mrow><mi>𝖤𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and just say that the coercion is omitted when working informally.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">We also treat the universe hierarchy as cumulative, in that every type in <math id="p8.m1" class="ltx_Math" alttext="\mathcal{U}_{i}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></math> is also in <math id="p8.m2" class="ltx_Math" alttext="\mathcal{U}_{j}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>j</mi></msub></math> for each <math id="p8.m3" class="ltx_Math" alttext="j\geq i" display="inline"><mrow><mi>j</mi><mo>≥</mo><mi>i</mi></mrow></math>.
+There are different ways to implement cumulativity formally: the simplest is just to include a rule that if <math id="p8.m4" class="ltx_Math" alttext="A:\mathcal{U}_{i}" display="inline"><mrow><mi>A</mi><mo>:</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></mrow></math> then <math id="p8.m5" class="ltx_Math" alttext="A:\mathcal{U}_{j}" display="inline"><mrow><mi>A</mi><mo>:</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>j</mi></msub></mrow></math>.
+However, this has the annoying consequence that for a type family <math id="p8.m6" class="ltx_Math" alttext="B:A\to\mathcal{U}_{i}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></mrow></mrow></math> we cannot conclude <math id="p8.m7" class="ltx_Math" alttext="B:A\to\mathcal{U}_{j}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>j</mi></msub></mrow></mrow></math>, although we can conclude <math id="p8.m8" class="ltx_Math" alttext="{\lambda}a.\,B(a):A\to\mathcal{U}_{j}" display="inline"><mrow><mi>λ</mi><mi>a</mi><mo rspace="4.2pt">.</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>A</mi><mo>→</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>j</mi></msub></mrow></math>.
+A more sophisticated approach that solves this problem is to introduce a judgmental subtyping relation <math id="p8.m9" class="ltx_Math" alttext="&lt;:" display="inline"><mrow><mi></mi><mo>&lt;</mo><mo>:</mo></mrow></math> generated by <math id="p8.m10" class="ltx_Math" alttext="\mathcal{U}_{i}&lt;:\mathcal{U}_{j}" display="inline"><mrow><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub><mo>&lt;</mo><mo>:</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>j</mi></msub></mrow></math>, but this makes the type theory more complicated to study.
+Another alternative would be to include an explicit coercion function <math id="p8.m11" class="ltx_Math" alttext="\uparrow:\mathcal{U}_{i}\to\mathcal{U}_{j}" display="inline"><mrow><mo>↑</mo><mo>:</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub><mo>→</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>j</mi></msub></mrow></math>, which could be omitted when working informally.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">It is also not necessary that the universes be indexed by natural numbers and linearly ordered.
+For some purposes, it is more appropriate to assume only that every universe is an element of some larger universe, together with a “directedness” property that any two universes are jointly contained in some larger one.
+There are many other possible variations, such as including a universe “<math id="p9.m1" class="ltx_Math" alttext="\mathcal{U}_{\omega}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>ω</mi></msub></math>” that contains all <math id="p9.m2" class="ltx_Math" alttext="\mathcal{U}_{i}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></math> (or even higher “large cardinal” type universes), or by internalizing the hierarchy into a type family <math id="p9.m3" class="ltx_Math" alttext="{\lambda}i.\,\mathcal{U}_{i}" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>i</mi></mrow><mo rspace="4.2pt">.</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></mrow></math>.
+The latter is in fact done in <span class="ltx_text ltx_font_smallcaps">Agda</span>.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">The path induction principle for identity types was formulated by Martin-Löf <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib14" title="" class="ltx_ref">14</a>]</cite>.
+The based path induction rule in the setting of Martin-Löf type theory is due to Paulin-Mohring <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib21" title="" class="ltx_ref">21</a>]</cite>; it can be seen as an intensional generalization of the concept of “pointwise functionality” for hypothetical judgments from <span class="ltx_text ltx_font_smallcaps">NuPRL</span> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib3" title="" class="ltx_ref">3</a>, Section 8.1]</cite>.
+The fact that Martin-Löf’s rule implies Paulin-Mohring’s was proved by Streicher using Axiom K (see §7.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem</span>)), by Altenkirch and Goguen as in §1.12 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/112identitytypes</span>), and finally by Hofmann without universes (as in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87560</span>Exercise 1.7); see <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib25" title="" class="ltx_ref">25</a>]</cite>, §1.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/13universesandfamilies</span>) and Addendum.</p>
+</div>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul class="ltx_biblist">
+      
+<li id="bib.bib1" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">1</span>
+        
+<span class="ltx_bibblock"> Beeson,Michael, <em class="ltx_emph ltx_font_italic">Foundations of Constructive Mathematics</em> Springer,1985
+
+</span>
+      </li>
+      
+<li id="bib.bib2" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">2</span>
+        
+<span class="ltx_bibblock"> Robert L. Constable and Stuart F. Allen and H. M. Bromley and W. R. Cleaveland and J. F. Cremer and Robert W. Harper and Douglas J. Howe and T. B. Knoblock and N. P. Mendler and P. Panangaden and James T. Sasaki and Scott F. Smith, <em class="ltx_emph ltx_font_italic">Implementing Mathematics with the NuPRL Proof Development System</em> Prentice Hall,1986
+
+</span>
+      </li>
+      
+<li id="bib.bib3" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">3</span>
+        
+<span class="ltx_bibblock"> Robert L. Constable and Stuart F. Allen and H. M. Bromley and W. R. Cleaveland and J. F. Cremer and Robert W. Harper and Douglas J. Howe and T. B. Knoblock and N. P. Mendler and P. Panangaden and James T. Sasaki and Scott F. Smith, <em class="ltx_emph ltx_font_italic">Implementing Mathematics with the NuPRL Proof Development System</em> Prentice Hall,1986
+
+</span>
+      </li>
+      
+<li id="bib.bib4" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">4</span>
+        
+<span class="ltx_bibblock"> Coq Development Team, <em class="ltx_emph ltx_font_italic">The Coq Proof Assistant Reference Manual</em> INRIA-Rocquencourt,2012
+
+</span>
+      </li>
+      
+<li id="bib.bib5" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">5</span>
+        
+<span class="ltx_bibblock"> Coq Development Team, <em class="ltx_emph ltx_font_italic">The Coq Proof Assistant Reference Manual</em> INRIA-Rocquencourt,2012
+
+</span>
+      </li>
+      
+<li id="bib.bib6" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">6</span>
+        
+<span class="ltx_bibblock"> de Bruijn,Nicolaas Govert, <em class="ltx_emph ltx_font_italic">AUTOMATH,a language for mathematics</em> Les Presses de l’Université de Montréal,Montreal,Quebec,1973
+
+</span>
+      </li>
+      
+<li id="bib.bib7" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">7</span>
+        
+<span class="ltx_bibblock"> de Bruijn,Nicolaas Govert, <em class="ltx_emph ltx_font_italic">AUTOMATH,a language for mathematics</em> Les Presses de l’Université de Montréal,Montreal,Quebec,1973
+
+</span>
+      </li>
+      
+<li id="bib.bib8" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">8</span>
+        
+<span class="ltx_bibblock"> Heyting,Arend, <em class="ltx_emph ltx_font_italic">Intuitionism: an introduction</em> North-Holland Pub. Co.,1966
+
+</span>
+      </li>
+      
+<li id="bib.bib9" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">9</span>
+        
+<span class="ltx_bibblock"> Howard,William A.. The formulae-as-types notion of construction. In <em class="ltx_emph ltx_font_italic">To H.B. Curry: Essays on Combinatory Logic,Lambda Calculus and Formalism</em>,pages 479–490. Academic Press, 1980.
+
+</span>
+      </li>
+      
+<li id="bib.bib10" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">10</span>
+        
+<span class="ltx_bibblock"> Howard,William A.. The formulae-as-types notion of construction. In <em class="ltx_emph ltx_font_italic">To H.B. Curry: Essays on Combinatory Logic,Lambda Calculus and Formalism</em>,pages 479–490. Academic Press, 1980.
+
+</span>
+      </li>
+      
+<li id="bib.bib11" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">11</span>
+        
+<span class="ltx_bibblock"> F. William Lawvere. Adjointness in Foundations. <em class="ltx_emph ltx_font_italic">Reprints in Theory and Applications of Categories</em>, 16:1–16 2006
+
+</span>
+      </li>
+      
+<li id="bib.bib12" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">12</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. An intuitionistic theory of types. In <em class="ltx_emph ltx_font_italic">Twenty-five years of constructive type theory (Venice,1995)</em>,volume 36 of Oxford Logic Guides, pages 127–172. Oxford University Press, 1998.
+
+</span>
+      </li>
+      
+<li id="bib.bib13" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">13</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. An intuitionistic theory of types. In <em class="ltx_emph ltx_font_italic">Twenty-five years of constructive type theory (Venice,1995)</em>,volume 36 of Oxford Logic Guides, pages 127–172. Oxford University Press, 1998.
+
+</span>
+      </li>
+      
+<li id="bib.bib14" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">14</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. An intuitionistic theory of types. In <em class="ltx_emph ltx_font_italic">Twenty-five years of constructive type theory (Venice,1995)</em>,volume 36 of Oxford Logic Guides, pages 127–172. Oxford University Press, 1998.
+
+</span>
+      </li>
+      
+<li id="bib.bib15" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">15</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. An intuitionistic theory of types: predicative part. In <em class="ltx_emph ltx_font_italic">Logic Colloquium ’73,Proceedings of the Logic Colloquium</em>,volume 80 of Studies in Logic and the Foundations of Mathematics, pages 73–118. North-Holland, 1975.
+
+</span>
+      </li>
+      
+<li id="bib.bib16" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">16</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. An intuitionistic theory of types: predicative part. In <em class="ltx_emph ltx_font_italic">Logic Colloquium ’73,Proceedings of the Logic Colloquium</em>,volume 80 of Studies in Logic and the Foundations of Mathematics, pages 73–118. North-Holland, 1975.
+
+</span>
+      </li>
+      
+<li id="bib.bib17" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">17</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. Constructive mathematics and computer programming. In <em class="ltx_emph ltx_font_italic">Logic,Methodology and Philosophy of Science VI,Proceedings of the Sixth International Congress of Logic,Methodology and Philosophy of Science,Hannover 1979</em>,volume 104 of Studies in Logic and the Foundations of Mathematics, pages 153–175. North-Holland, 1982.
+
+</span>
+      </li>
+      
+<li id="bib.bib18" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">18</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. Constructive mathematics and computer programming. In <em class="ltx_emph ltx_font_italic">Logic,Methodology and Philosophy of Science VI,Proceedings of the Sixth International Congress of Logic,Methodology and Philosophy of Science,Hannover 1979</em>,volume 104 of Studies in Logic and the Foundations of Mathematics, pages 153–175. North-Holland, 1982.
+
+</span>
+      </li>
+      
+<li id="bib.bib19" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">19</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per, <em class="ltx_emph ltx_font_italic">Intuitionistic type theory</em> Bibliopolis,1984
+
+</span>
+      </li>
+      
+<li id="bib.bib20" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">20</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per, <em class="ltx_emph ltx_font_italic">Intuitionistic type theory</em> Bibliopolis,1984
+
+</span>
+      </li>
+      
+<li id="bib.bib21" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">21</span>
+        
+<span class="ltx_bibblock"> Christine Paulin-Mohring. Inductive Definitions in the System Coq - Rules and Properties. In emphProceedings of the conference Typed Lambda Calculi and Applications, .
+
+</span>
+      </li>
+      
+<li id="bib.bib22" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">22</span>
+        
+<span class="ltx_bibblock"> Norell,Ulf. <em class="ltx_emph ltx_font_italic">Towards a practical programming language based on dependent type theory</em>. PhD thesis, Chalmers,Göteborg University, 2007.
+
+</span>
+      </li>
+      
+<li id="bib.bib23" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">23</span>
+        
+<span class="ltx_bibblock"> Norell,Ulf. <em class="ltx_emph ltx_font_italic">Towards a practical programming language based on dependent type theory</em>. PhD thesis, Chalmers,Göteborg University, 2007.
+
+</span>
+      </li>
+      
+<li id="bib.bib24" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">24</span>
+        
+<span class="ltx_bibblock"> Thomas Streicher. Investigations into intensional type theory, 1993. Habilitationsschrift,Ludwig-Maximilians-Universität München.
+
+</span>
+      </li>
+      
+<li id="bib.bib25" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">25</span>
+        
+<span class="ltx_bibblock"> Thomas Streicher. Investigations into intensional type theory, 1993. Habilitationsschrift,Ludwig-Maximilians-Universität München.
+
+</span>
+      </li>
+      
+<li id="bib.bib26" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">26</span>
+        
+<span class="ltx_bibblock"> Tait,William W.. Intensional interpretations of functionals of finite type. I. <em class="ltx_emph ltx_font_italic">The Journal of Symbolic Logic</em>, 32:198–212 1967
+
+</span>
+      </li>
+      
+<li id="bib.bib27" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">27</span>
+        
+<span class="ltx_bibblock"> Tait,William W.. Constructive reasoning. In <em class="ltx_emph ltx_font_italic">Logic,Methodology and Philos. Sci. III (Proc. Third Internat. Congr.,Amsterdam,1967)</em>,pages 185–199. North-Holland, 1968.
+
+</span>
+      </li>
+      
+<li id="bib.bib28" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">28</span>
+        
+<span class="ltx_bibblock"> Tait,William W.. Constructive reasoning. In <em class="ltx_emph ltx_font_italic">Logic,Methodology and Philos. Sci. III (Proc. Third Internat. Congr.,Amsterdam,1967)</em>,pages 185–199. North-Holland, 1968.
+
+</span>
+      </li>
+    
+</ul>
+</section>
+<div id="p11" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">Chapter 1 notes</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:44:44 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

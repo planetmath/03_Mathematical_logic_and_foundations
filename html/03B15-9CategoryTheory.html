@@ -1,0 +1,103 @@
+<!DOCTYPE html><html>
+<head>
+<title>9. Category theory</title>
+<!--Generated on Thu Feb  8 19:43:16 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-category, Rezk, axiom, category, category theory, classical, completion, mathematics, of choice, strict, universe level">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">9. Category theory</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Of the branches of mathematics, category theory is one which perhaps fits the least comfortably in set theoretic foundations.
+One problem is that most of category theory is invariant under weaker notions of “sameness” than equality, such as isomorphism in a category or equivalence of categories, in a way which set theory fails to capture.
+But this is the same sort of problem that the univalence axiom solves for types, by identifying equality with equivalence.
+Thus, in univalent foundations it makes sense to consider a notion of “category” in which equality of objects is identified with isomorphism in a similar way.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Ignoring size issues, in set-based mathematics a category consists of a <em class="ltx_emph ltx_font_italic">set</em> <math id="p3.m1" class="ltx_Math" alttext="A_{0}" display="inline"><msub><mi>A</mi><mn>0</mn></msub></math> of objects and, for each <math id="p3.m2" class="ltx_Math" alttext="x,y\in A_{0}" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>∈</mo><msub><mi>A</mi><mn>0</mn></msub></mrow></math>, a <em class="ltx_emph ltx_font_italic">set</em> <math id="p3.m3" class="ltx_Math" alttext="\hom_{A}(x,y)" display="inline"><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> of morphisms.
+Under univalent foundations, a “naive” definition of category would simply mimic this with a <em class="ltx_emph ltx_font_italic">type</em> of objects and <em class="ltx_emph ltx_font_italic">types</em> of morphisms.
+If we allowed these types to contain arbitrary higher homotopy, then we ought to impose higher coherence conditions, leading to some notion of <math id="p3.m4" class="ltx_Math" alttext="(\infty,1)" display="inline"><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">∞</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>-category,
+but at present our goal is more modest.
+We consider only 1-categories, and therefore we restrict the types <math id="p3.m6" class="ltx_Math" alttext="\hom_{A}(x,y)" display="inline"><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> to be sets, i.e. 0-types.
+If we impose no further conditions, we will call this notion a <em class="ltx_emph ltx_font_italic">precategory</em>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">If we add the requirement that the type <math id="p4.m1" class="ltx_Math" alttext="A_{0}" display="inline"><msub><mi>A</mi><mn>0</mn></msub></math> of objects is a set, then we end up with a definition that behaves much like the traditional set-theoretic one.
+Following Toby Bartels, we call this notion a <em class="ltx_emph ltx_font_italic">strict category</em>.
+But we can also require a generalized version of the univalence axiom, identifying <math id="p4.m2" class="ltx_Math" alttext="(x=_{A_{0}}y)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><msub><mo>=</mo><msub><mi>A</mi><mn>0</mn></msub></msub><mi>y</mi></mrow><mo stretchy="false">)</mo></mrow></math> with the type <math id="p4.m3" class="ltx_Math" alttext="\mathsf{iso}(x,y)" display="inline"><mrow><mi>𝗂𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> of isomorphisms from <math id="p4.m4" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> to <math id="p4.m5" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>.
+Since we regard this as usually the “correct” definition, we will call it simply a <em class="ltx_emph ltx_font_italic">category</em>.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">A good example of the difference between the three notions of category is provided by the statement “every fully faithful and essentially surjective functor is an equivalence of categories”, which in classical set-based category theory is equivalent to the axiom of choice.
+</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">For strict categories, this is still equivalent to the axiom of choice.</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">For precategories, there is no consistent axiom of choice which can make it true.</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p">For categories, it is provable <em class="ltx_emph ltx_font_italic">without</em> any axiom of choice.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">We will prove the latter statement in this chapter, as well as other pleasant properties of categories, e.g. that equivalent categories are equal (as elements of the type of categories).
+We will also describe a universal way of “saturating” a precategory <math id="p5.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> into a category <math id="p5.m2" class="ltx_Math" alttext="\widehat{A}" display="inline"><mover accent="true"><mi>A</mi><mo>^</mo></mover></math>, which we call its <em class="ltx_emph ltx_font_italic">Rezk completion</em>,
+although it could also reasonably be called the <em class="ltx_emph ltx_font_italic">stack completion</em> (see the Notes).</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">The Rezk completion also sheds further light on the notion of equivalence of categories.
+For instance, the functor <math id="p6.m1" class="ltx_Math" alttext="A\to\widehat{A}" display="inline"><mrow><mi>A</mi><mo>→</mo><mover accent="true"><mi>A</mi><mo>^</mo></mover></mrow></math> is always fully faithful and essentially surjective, hence a “weak equivalence”.
+It follows that a precategory is a category exactly when it “sees” all fully faithful and essentially surjective functors as equivalences; thus our notion of “category” is already inherent in the notion of “fully faithful and essentially surjective functor”.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">We assume the reader has some basic familiarity with classical category theory.
+Recall that whenever we write <math id="p7.m1" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> it denotes some universe of types, but perhaps a different one at different times; everything we say remains true for any consistent choice of universe levels.
+We will use the basic notions of homotopy type theory from <span class="ltx_ERROR undefined">\autoref</span>cha:typetheory,<span class="ltx_ERROR undefined">\autoref</span>cha:basics and the propositional truncation from <span class="ltx_ERROR undefined">\autoref</span>cha:logic, but not much else from <span class="ltx_ERROR undefined">\autoref</span>part:foundations, except that our second construction of the Rezk completion will use a higher inductive type.</p>
+</div>
+<div id="p8" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">9. Category theory</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:43:16 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

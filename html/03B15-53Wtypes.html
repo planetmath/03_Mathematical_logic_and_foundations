@@ -1,0 +1,792 @@
+<!DOCTYPE html><html>
+<head>
+<title>5.3 W-types</title>
+<!--Generated on Thu Feb  8 19:36:31 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , -, -type, arity, computation rule, constructor of a , empty, encoded as a , for , induction principle, natural numbers, of lists, predecessor, successor, supremum, tree, well-founded, type, unit, variable, zero">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">5.3 W-types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Inductive types are very general, which is excellent for their usefulness and applicability, but makes them difficult to study as a whole.
+Fortunately, they can all be formally reduced to a few special cases.
+It is beyond the scope of this book to discuss this reduction — which is anyway irrelevant to the mathematician using type theory in practice — but we will take a little time to discuss the one of the basic special cases that we have not yet met.
+These are Martin-Löf’s <em class="ltx_emph ltx_font_italic"><math id="p2.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi mathvariant="normal">W</mi></math>-types</em>, also known as the types of <em class="ltx_emph ltx_font_italic">well-founded trees</em>.
+<math id="p2.m2" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types are a generalization of such types as natural numbers, lists, and binary trees, which are sufficiently general to encapsulate the “recursion” aspect of <em class="ltx_emph ltx_font_italic">any</em> inductive type.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">A particular <math id="p3.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type is specified by giving two parameters <math id="p3.m2" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and <math id="p3.m3" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, in which case the resulting <math id="p3.m4" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type is written <math id="p3.m5" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf{W}_{(a:A)}}{%
+\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(a%
+:A)}}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a%
+:A)}}{\mathsf{W}_{(a:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf%
+{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}B(a)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+The type <math id="p3.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> represents the type of <em class="ltx_emph ltx_font_italic">labels</em> for <math id="p3.m7" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf{W}_{(a:A)}}{%
+\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(a%
+:A)}}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a%
+:A)}}{\mathsf{W}_{(a:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf%
+{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}B(a)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, which function as constructors (however, we reserve that word for the actual functions which arise in inductive definitions). For instance, when defining natural numbers as a <math id="p3.m8" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type,
+the type <math id="p3.m10" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> would be the type <math id="p3.m11" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> inhabited by the two elements <math id="p3.m12" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> and <math id="p3.m13" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math>, since there are precisely two ways to obtain a natural number — either it will be zero or a successor of another natural number.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">The type family <math id="p4.m1" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> is used to record the arity of labels: a label <math id="p4.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> will take a family of inductive arguments, indexed over <math id="p4.m3" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>. We can therefore think of the “<math id="p4.m4" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>-many” arguments of <math id="p4.m5" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>. These arguments are represented by a function <math id="p4.m6" class="ltx_Math" alttext="f:B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf{W}_{(%
+a:A)}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}{\mathchoice{{\textstyle\mathsf%
+{W}_{(a:A)}}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a%
+:A)}}{\mathsf{W}_{(a:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf%
+{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}B(a)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, with the understanding that for any <math id="p4.m7" class="ltx_Math" alttext="b:B(a)" display="inline"><mrow><mi>b</mi><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, <math id="p4.m8" class="ltx_Math" alttext="f(b)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the “<math id="p4.m9" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math>-th” argument to the label <math id="p4.m10" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>. The <math id="p4.m11" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type <math id="p4.m12" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf{W}_{(a:A)}}{%
+\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(a%
+:A)}}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a%
+:A)}}{\mathsf{W}_{(a:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(a:A)}}}{\mathsf%
+{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}{\mathsf{W}_{(a:A)}}}B(a)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> can thus be thought of as the type of well-founded trees, where nodes are labeled by elements of <math id="p4.m13" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and each node labeled by <math id="p4.m14" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> has <math id="p4.m15" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>-many branches.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">In the case of natural numbers, the label <math id="p5.m1" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> has arity 0, since it constructs the constant zero; the label <math id="p5.m2" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math> has arity 1, since it constructs the successor of its argument. We can capture this by using simple elimination on <math id="p5.m3" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> to define a function <math id="p5.m4" class="ltx_Math" alttext="\mathsf{rec}_{\mathbf{2}}(\mathcal{U},\mathbf{0},\mathbf{1})" display="inline"><mrow><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo><mn>𝟎</mn><mo>,</mo><mn>𝟏</mn><mo stretchy="false">)</mo></mrow></mrow></math> into a universe of types; this function returns the empty type <math id="p5.m5" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> for <math id="p5.m6" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> and the unit type <math id="p5.m7" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn>𝟏</mn></math> for <math id="p5.m8" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math>. We can thus define
+
+</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathbf{N^{w}}:\!\!\equiv\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(b:%
+\mathbf{2})}}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}{%
+\mathsf{W}_{(b:\mathbf{2})}}}{\mathchoice{{\textstyle\mathsf{W}_{(b:\mathbf{2}%
+)}}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:%
+\mathbf{2})}}}{\mathchoice{{\textstyle\mathsf{W}_{(b:\mathbf{2})}}}{\mathsf{W}%
+_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(b:\mathbf{2})}}}{\mathsf{W}_{(b:\mathbf{2}%
+)}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}}\mathsf{rec}_{%
+\mathbf{2}}(\mathcal{U},\mathbf{0},\mathbf{1})" display="block"><mrow><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow></msub><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo><mn>𝟎</mn><mo>,</mo><mn>𝟏</mn><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where the superscript <math id="p5.m9" class="ltx_Math" alttext="\mathbf{w}" display="inline"><mi>𝐰</mi></math> serves to distinguish this version of natural numbers from the previously used one.
+Similarly, we can define the type of lists over <math id="p5.m10" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> as a <math id="p5.m11" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type with <math id="p5.m12" class="ltx_Math" alttext="\mathbf{1}+A" display="inline"><mrow><mn>𝟏</mn><mo>+</mo><mi>A</mi></mrow></math> many labels: one nullary label for the empty list, plus one unary label for each <math id="p5.m13" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, corresponding to appending <math id="p5.m14" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> to the head of a list:</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\mathsf{List}(A):\!\!\equiv\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:%
+\mathbf{1}+A)}}}{\mathsf{W}_{(x:\mathbf{1}+A)}}{\mathsf{W}_{(x:\mathbf{1}+A)}}%
+{\mathsf{W}_{(x:\mathbf{1}+A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:\mathbf%
+{1}+A)}}}{\mathsf{W}_{(x:\mathbf{1}+A)}}{\mathsf{W}_{(x:\mathbf{1}+A)}}{%
+\mathsf{W}_{(x:\mathbf{1}+A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:\mathbf{%
+1}+A)}}}{\mathsf{W}_{(x:\mathbf{1}+A)}}{\mathsf{W}_{(x:\mathbf{1}+A)}}{\mathsf%
+{W}_{(x:\mathbf{1}+A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:\mathbf{1}+A)}}%
+}{\mathsf{W}_{(x:\mathbf{1}+A)}}{\mathsf{W}_{(x:\mathbf{1}+A)}}{\mathsf{W}_{(x%
+:\mathbf{1}+A)}}}\mathsf{rec}_{\mathbf{1}+A}(\mathcal{U},\;\mathbf{0},\;{%
+\lambda}a.\,\mathbf{1})." display="block"><mrow><mi>𝖫𝗂𝗌𝗍</mi><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mn>𝟏</mn><mo>+</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><msub><mi>𝗋𝖾𝖼</mi><mrow><mn>𝟏</mn><mo>+</mo><mi>A</mi></mrow></msub><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo><mn mathvariant="bold"> 0</mn><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>a</mi><mn mathvariant="bold">. 1</mn><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">In general, the <math id="p5.m18" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type <math id="p5.m19" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> specified by <math id="p5.m20" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and <math id="p5.m21" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> is the inductive type generated by the following constructor:
+</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="{\mathsf{sup}}:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}%
+}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_%
+{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}\Big{(}%
+B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:%
+A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W%
+}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)\Big{)}\to\mathchoice%
+{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(%
+x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><mi>𝗌𝗎𝗉</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo maxsize="160%" minsize="160%">(</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">The constructor <math id="p5.m22" class="ltx_Math" alttext="{\mathsf{sup}}" display="inline"><mi>𝗌𝗎𝗉</mi></math> (short for supremum) takes a label <math id="p5.m24" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and a function <math id="p5.m25" class="ltx_Math" alttext="f:B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(%
+x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf%
+{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> representing the arguments to <math id="p5.m26" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>, and constructs a new element of <math id="p5.m27" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>. Using our previous encoding of natural numbers as <math id="p5.m28" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types, we can for instance define</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="0^{\mathbf{w}}:\!\!\equiv{\mathsf{sup}}({0_{\mathbf{2}}},\;{\lambda}x.\,%
+\mathsf{rec}_{\mathbf{0}}(\mathbf{N^{w}},x))." display="block"><mrow><msup><mn>0</mn><mi>𝐰</mi></msup><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖼</mi><mn>𝟎</mn></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Put differently, we use the label <math id="p5.m29" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> to construct <math id="p5.m30" class="ltx_Math" alttext="0^{\mathbf{w}}" display="inline"><msup><mn>0</mn><mi>𝐰</mi></msup></math>. Then, <math id="p5.m31" class="ltx_Math" alttext="\mathsf{rec}_{\mathbf{2}}(\mathcal{U},\mathbf{0},\mathbf{1},{0_{\mathbf{2}}})" display="inline"><mrow><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo><mn>𝟎</mn><mo>,</mo><mn>𝟏</mn><mo>,</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math> evaluates to <math id="p5.m32" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>, as it should since <math id="p5.m33" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> is a nullary label. Thus, we need to construct a function <math id="p5.m34" class="ltx_Math" alttext="f:\mathbf{0}\to\mathbf{N^{w}}" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mn>𝟎</mn><mo>→</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup></mrow></mrow></math>, which represents the (zero) arguments supplied to <math id="p5.m35" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math>. This is of course trivial, using simple elimination on <math id="p5.m36" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> as shown. Similarly, we can define</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\displaystyle 1^{\mathbf{w}}" display="inline"><msup><mn>1</mn><mi>𝐰</mi></msup></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv{\mathsf{sup}}({1_{\mathbf{2}}},\;{\lambda}x.\,0^{%
+\mathbf{w}})" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>x</mi><msup><mn>. 0</mn><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\displaystyle 2^{\mathbf{w}}" display="inline"><msup><mn>2</mn><mi>𝐰</mi></msup></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv{\mathsf{sup}}({1_{\mathbf{2}}},\;{\lambda}x.\,1^{%
+\mathbf{w}})" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>x</mi><msup><mn>. 1</mn><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and so on.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">We have the following induction principle for <math id="p6.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types:</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">When proving a statement <math id="I2.i1.p1.m1" class="ltx_Math" alttext="E:\big{(}\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(%
+x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf%
+{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)\big{)}\to\mathcal{U}" display="inline"><mrow><mi>E</mi><mo>:</mo><mrow><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> about <em class="ltx_emph ltx_font_italic">all</em> elements of the <math id="I2.i1.p1.m2" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type <math id="I2.i1.p1.m3" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, it suffices to prove it for <math id="I2.i1.p1.m4" class="ltx_Math" alttext="{\mathsf{sup}}(a,f)" display="inline"><mrow><mi>𝗌𝗎𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math>, assuming it holds for all <math id="I2.i1.p1.m5" class="ltx_Math" alttext="f(b)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> with <math id="I2.i1.p1.m6" class="ltx_Math" alttext="b:B(a)" display="inline"><mrow><mi>b</mi><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+In other words, it suffices to give a proof</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="e:\mathchoice{\prod_{(a:A)}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}\mathchoice{\prod_{(f:B(a)%
+\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}%
+{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(%
+x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}\,}{\mathchoice{{%
+\textstyle\prod_{(f:B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A%
+)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{%
+{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(%
+x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf%
+{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)%
+)}}}{\prod_{(f:B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{%
+\prod_{(f:B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{%
+\prod_{(f:B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{%
+\mathchoice{{\textstyle\prod_{(f:B(a)\to\mathchoice{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}B(x))}}}{\prod_{(f:B(a)\to\mathchoice{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}B(x))}}{\prod_{(f:B(a)\to\mathchoice{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}B(x))}}{\prod_{(f:B(a)\to\mathchoice{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}B(x))}}}{\mathchoice{{\textstyle\prod_{(f:B(a)\to\mathchoice{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{\prod_{(f:B(a)\to\mathchoice{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(f:B(a)\to\mathchoice{\mathchoice%
+{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(%
+x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf%
+{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(f:B(a)\to\mathchoice{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}\mathchoice{\prod_{(g:\mathchoice{\prod_{b:B%
+(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:%
+B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b%
+:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b%
+:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))}\,}{%
+\mathchoice{{\textstyle\prod_{(g:\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(%
+a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B%
+(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))}}}{\prod_{(g:\mathchoice{%
+\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}E(f(b)))}}{\prod_{(g:\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(%
+a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B%
+(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))}}{\prod_{(g:\mathchoice{%
+\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}E(f(b)))}}}{\mathchoice{{\textstyle\prod_{(g:\mathchoice{\prod_{b:B(a)}\,%
+}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}%
+}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))%
+}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))%
+}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))}}}{\prod_{(%
+g:\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{%
+\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle%
+\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}E(f(b)))}}{\prod_{(g:\mathchoice{\prod_{b:B(a)}\,}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}%
+}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))}}{\prod_{(g:%
+\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_%
+{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_%
+{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}E(f(b)))}}}{\mathchoice{{\textstyle\prod_{(g:\mathchoice{%
+\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}E(f(b)))}}}{\prod_{(g:\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(%
+a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B%
+(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))}}{\prod_{(g:\mathchoice{%
+\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}E(f(b)))}}{\prod_{(g:\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(%
+a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B%
+(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))}}}E({\mathsf{sup}}(a,f))" display="block"><mrow><mi>e</mi><mo>:</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>:</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>E</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The variable <math id="p7.m1" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> represents our inductive hypothesis, namely that all arguments of <math id="p7.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> satisfy <math id="p7.m3" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math>. To state this, we quantify over all elements of type <math id="p7.m4" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, since each <math id="p7.m5" class="ltx_Math" alttext="b:B(a)" display="inline"><mrow><mi>b</mi><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> corresponds to one argument <math id="p7.m6" class="ltx_Math" alttext="f(b)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> of <math id="p7.m7" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">How would we define the function <math id="p8.m1" class="ltx_Math" alttext="\mathsf{double}" display="inline"><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi></math> on natural numbers encoded as a <math id="p8.m2" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type? We would like to use the recursion principle of <math id="p8.m3" class="ltx_Math" alttext="\mathbf{N^{w}}" display="inline"><msup><mi>𝐍</mi><mi>𝐰</mi></msup></math> with a codomain of <math id="p8.m4" class="ltx_Math" alttext="\mathbf{N^{w}}" display="inline"><msup><mi>𝐍</mi><mi>𝐰</mi></msup></math> itself. We thus need to construct a suitable function</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="e:\mathchoice{\prod_{(a:\mathbf{2})}\,}{\mathchoice{{\textstyle\prod_{(a:%
+\mathbf{2})}}}{\prod_{(a:\mathbf{2})}}{\prod_{(a:\mathbf{2})}}{\prod_{(a:%
+\mathbf{2})}}}{\mathchoice{{\textstyle\prod_{(a:\mathbf{2})}}}{\prod_{(a:%
+\mathbf{2})}}{\prod_{(a:\mathbf{2})}}{\prod_{(a:\mathbf{2})}}}{\mathchoice{{%
+\textstyle\prod_{(a:\mathbf{2})}}}{\prod_{(a:\mathbf{2})}}{\prod_{(a:\mathbf{2%
+})}}{\prod_{(a:\mathbf{2})}}}\mathchoice{\prod_{(f:B(a)\to\mathbf{N^{w}})}\,}{%
+\mathchoice{{\textstyle\prod_{(f:B(a)\to\mathbf{N^{w}})}}}{\prod_{(f:B(a)\to%
+\mathbf{N^{w}})}}{\prod_{(f:B(a)\to\mathbf{N^{w}})}}{\prod_{(f:B(a)\to\mathbf{%
+N^{w}})}}}{\mathchoice{{\textstyle\prod_{(f:B(a)\to\mathbf{N^{w}})}}}{\prod_{(%
+f:B(a)\to\mathbf{N^{w}})}}{\prod_{(f:B(a)\to\mathbf{N^{w}})}}{\prod_{(f:B(a)%
+\to\mathbf{N^{w}})}}}{\mathchoice{{\textstyle\prod_{(f:B(a)\to\mathbf{N^{w}})}%
+}}{\prod_{(f:B(a)\to\mathbf{N^{w}})}}{\prod_{(f:B(a)\to\mathbf{N^{w}})}}{\prod%
+_{(f:B(a)\to\mathbf{N^{w}})}}}\mathchoice{\prod_{(g:B(a)\to\mathbf{N^{w}})}\,}%
+{\mathchoice{{\textstyle\prod_{(g:B(a)\to\mathbf{N^{w}})}}}{\prod_{(g:B(a)\to%
+\mathbf{N^{w}})}}{\prod_{(g:B(a)\to\mathbf{N^{w}})}}{\prod_{(g:B(a)\to\mathbf{%
+N^{w}})}}}{\mathchoice{{\textstyle\prod_{(g:B(a)\to\mathbf{N^{w}})}}}{\prod_{(%
+g:B(a)\to\mathbf{N^{w}})}}{\prod_{(g:B(a)\to\mathbf{N^{w}})}}{\prod_{(g:B(a)%
+\to\mathbf{N^{w}})}}}{\mathchoice{{\textstyle\prod_{(g:B(a)\to\mathbf{N^{w}})}%
+}}{\prod_{(g:B(a)\to\mathbf{N^{w}})}}{\prod_{(g:B(a)\to\mathbf{N^{w}})}}{\prod%
+_{(g:B(a)\to\mathbf{N^{w}})}}}\mathbf{N^{w}}" display="block"><mrow><mi>e</mi><mo>:</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>:</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>:</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></munder></mpadded><msup><mi>𝐍</mi><mi>𝐰</mi></msup></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">which will represent the recurrence for the <math id="p8.m5" class="ltx_Math" alttext="\mathsf{double}" display="inline"><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi></math> function; for simplicity we denote the type family <math id="p8.m6" class="ltx_Math" alttext="\mathsf{rec}_{\mathbf{2}}(\mathcal{U},\mathbf{0},\mathbf{1})" display="inline"><mrow><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo><mn>𝟎</mn><mo>,</mo><mn>𝟏</mn><mo stretchy="false">)</mo></mrow></mrow></math> by <math id="p8.m7" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Clearly, <math id="p9.m1" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math> will be a function taking <math id="p9.m2" class="ltx_Math" alttext="a:\mathbf{2}" display="inline"><mrow><mi>a</mi><mo>:</mo><mn>𝟐</mn></mrow></math> as its first argument. The next step is to perform case analysis on <math id="p9.m3" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and proceed based on whether it is <math id="p9.m4" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> or <math id="p9.m5" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math>. This suggests the following form</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="e:\!\!\equiv{\lambda}a.\,\mathsf{rec}_{\mathbf{2}}(C,e_{0},e_{1},a)" display="block"><mrow><mi>e</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>λ</mi><mi>a</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><msub><mi>e</mi><mn>0</mn></msub><mo>,</mo><msub><mi>e</mi><mn>1</mn></msub><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="C:\!\!\equiv\mathchoice{\prod_{(f:B(a)\to\mathbf{N^{w}})}\,}{\mathchoice{{%
+\textstyle\prod_{(f:B(a)\to\mathbf{N^{w}})}}}{\prod_{(f:B(a)\to\mathbf{N^{w}})%
+}}{\prod_{(f:B(a)\to\mathbf{N^{w}})}}{\prod_{(f:B(a)\to\mathbf{N^{w}})}}}{%
+\mathchoice{{\textstyle\prod_{(f:B(a)\to\mathbf{N^{w}})}}}{\prod_{(f:B(a)\to%
+\mathbf{N^{w}})}}{\prod_{(f:B(a)\to\mathbf{N^{w}})}}{\prod_{(f:B(a)\to\mathbf{%
+N^{w}})}}}{\mathchoice{{\textstyle\prod_{(f:B(a)\to\mathbf{N^{w}})}}}{\prod_{(%
+f:B(a)\to\mathbf{N^{w}})}}{\prod_{(f:B(a)\to\mathbf{N^{w}})}}{\prod_{(f:B(a)%
+\to\mathbf{N^{w}})}}}\mathchoice{\prod_{(g:B(a)\to\mathbf{N^{w}})}\,}{%
+\mathchoice{{\textstyle\prod_{(g:B(a)\to\mathbf{N^{w}})}}}{\prod_{(g:B(a)\to%
+\mathbf{N^{w}})}}{\prod_{(g:B(a)\to\mathbf{N^{w}})}}{\prod_{(g:B(a)\to\mathbf{%
+N^{w}})}}}{\mathchoice{{\textstyle\prod_{(g:B(a)\to\mathbf{N^{w}})}}}{\prod_{(%
+g:B(a)\to\mathbf{N^{w}})}}{\prod_{(g:B(a)\to\mathbf{N^{w}})}}{\prod_{(g:B(a)%
+\to\mathbf{N^{w}})}}}{\mathchoice{{\textstyle\prod_{(g:B(a)\to\mathbf{N^{w}})}%
+}}{\prod_{(g:B(a)\to\mathbf{N^{w}})}}{\prod_{(g:B(a)\to\mathbf{N^{w}})}}{\prod%
+_{(g:B(a)\to\mathbf{N^{w}})}}}\mathbf{N^{w}}" display="block"><mrow><mi>C</mi><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>:</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>:</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></munder></mpadded><msup><mi>𝐍</mi><mi>𝐰</mi></msup></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">If <math id="p9.m6" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is <math id="p9.m7" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math>, the type <math id="p9.m8" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> becomes <math id="p9.m9" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>. Thus, given <math id="p9.m10" class="ltx_Math" alttext="f:\mathbf{0}\to\mathbf{N^{w}}" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mn>𝟎</mn><mo>→</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup></mrow></mrow></math> and <math id="p9.m11" class="ltx_Math" alttext="g:\mathbf{0}\to\mathbf{N^{w}}" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mn>𝟎</mn><mo>→</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup></mrow></mrow></math>, we want to construct an element of <math id="p9.m12" class="ltx_Math" alttext="\mathbf{N^{w}}" display="inline"><msup><mi>𝐍</mi><mi>𝐰</mi></msup></math>. Since the label <math id="p9.m13" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> represents <math id="p9.m14" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>, it needs zero inductive arguments and the variables <math id="p9.m15" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> and <math id="p9.m16" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> are irrelevant. We return <math id="p9.m17" class="ltx_Math" alttext="0^{\mathbf{w}}" display="inline"><msup><mn>0</mn><mi>𝐰</mi></msup></math> as a result:</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="e_{0}:\!\!\equiv{\lambda}f.\,{\lambda}g.\,0^{\mathbf{w}}" display="block"><mrow><msub><mi>e</mi><mn>0</mn></msub><mo rspace="0pt">:</mo><mo>≡</mo><mi>λ</mi><mi>f</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>g</mi><msup><mn>. 0</mn><mi>𝐰</mi></msup></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Analogously, if <math id="p9.m18" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is <math id="p9.m19" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math>, the type <math id="p9.m20" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> becomes <math id="p9.m21" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn>𝟏</mn></math>.
+Since the label <math id="p9.m22" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math> represents the successor operator, it needs one inductive argument — the predecessor — which is represented by the variable <math id="p9.m23" class="ltx_Math" alttext="f:\mathbf{1}\to\mathbf{N^{w}}" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mn>𝟏</mn><mo>→</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup></mrow></mrow></math>.
+The value of the recursive call on the predecessor is represented by the variable <math id="p9.m24" class="ltx_Math" alttext="g:\mathbf{1}\to\mathbf{N^{w}}" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mn>𝟏</mn><mo>→</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup></mrow></mrow></math>.
+Thus, taking this value (namely <math id="p9.m25" class="ltx_Math" alttext="g(\star)" display="inline"><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mo>⋆</mo><mo stretchy="false">)</mo></mrow></mrow></math>) and applying the successor operator twice thus yields the desired result:</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="e_{1}:\!\!\equiv\;{\lambda}f.\,{\lambda}g.\,{\mathsf{sup}}({1_{\mathbf{2}}},({%
+\lambda}x.\,{\mathsf{sup}}({1_{\mathbf{2}}},({\lambda}y.\,g(\star)))))." display="block"><mrow><msub><mi>e</mi><mn>1</mn></msub><mo rspace="0pt">:</mo><mo rspace="5.3pt">≡</mo><mi>λ</mi><mi>f</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>g</mi><mo rspace="4.2pt">.</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>y</mi><mo rspace="4.2pt">.</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mo>⋆</mo><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Putting this together, we thus have</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="\mathsf{double}:\!\!\equiv\mathsf{rec}_{\mathbf{N^{w}}}(\mathbf{N^{w}},e)" display="block"><mrow><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖼</mi><msup><mi>𝐍</mi><mi>𝐰</mi></msup></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with <math id="p9.m26" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math> as defined above.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">The associated computation rule for the function <math id="p10.m1" class="ltx_Math" alttext="\mathsf{rec}_{\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{%
+W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)}(E,e):%
+\mathchoice{\prod_{w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)}\,}{%
+\mathchoice{{\textstyle\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}%
+_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}B(x))}}}{\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{%
+\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{%
+(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{\mathchoice{{%
+\textstyle\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{%
+\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{%
+(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{\mathchoice{{%
+\textstyle\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{%
+\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{%
+(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}E(w)" display="inline"><mrow><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> is as follows.
+</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">For any <math id="I3.i1.p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="I3.i1.p1.m2" class="ltx_Math" alttext="f:B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(%
+x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf%
+{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> we have</p>
+<table id="S0.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex13.m1" class="ltx_Math" alttext="\mathsf{rec}_{\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{%
+W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)}(E,e,{\mathsf%
+{sup}}(a,f))\equiv e(a,f,\big{(}{\lambda}b.\,\mathsf{rec}_{\mathchoice{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)}(E,f(b))\big{)})." display="block"><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>,</mo><mi>e</mi><mo>,</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>≡</mo><mi>e</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo>,</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖼</mi><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+<p class="ltx_p">In other words, the function <math id="p10.m3" class="ltx_Math" alttext="\mathsf{rec}_{\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{%
+W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)}(E,e)" display="inline"><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></mrow></math> satisfies the recurrence <math id="p10.m4" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math>.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">By the above computation rule, the function <math id="p11.m1" class="ltx_Math" alttext="\mathsf{double}" display="inline"><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi></math> behaves as expected:</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex14" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\displaystyle\mathsf{double}(0^{\mathbf{w}})" display="inline"><mrow><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mn>0</mn><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex14.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathsf{rec}_{\mathbf{N^{w}}}(\mathbf{N^{w}},e,{\mathsf{sup%
+}}({0_{\mathbf{2}}},\;{\lambda}x.\,\mathsf{rec}_{\mathbf{0}}(\mathbf{N^{w}},x)))" display="inline"><mrow><mo>≡</mo><msub><mi>𝗋𝖾𝖼</mi><msup><mi>𝐍</mi><mi>𝐰</mi></msup></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>e</mi><mo>,</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖼</mi><mn>𝟎</mn></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex15" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex15.m2" class="ltx_Math" alttext="\displaystyle\equiv e({0_{\mathbf{2}}},\big{(}{\lambda}x.\,\mathsf{rec}_{%
+\mathbf{0}}(\mathbf{N^{w}},x)\big{)},\big{(}{\lambda}x.\,\mathsf{double}(%
+\mathsf{rec}_{\mathbf{0}}(\mathbf{N^{w}},x))\big{)})" display="inline"><mrow><mo>≡</mo><mi>e</mi><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖼</mi><mn>𝟎</mn></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>,</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖼</mi><mn>𝟎</mn></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex16" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex16.m2" class="ltx_Math" alttext="\displaystyle\equiv e_{t}(\big{(}{\lambda}x.\,\mathsf{rec}_{\mathbf{0}}(%
+\mathbf{N^{w}},x)\big{)},\big{(}{\lambda}x.\,\mathsf{double}(\mathsf{rec}_{%
+\mathbf{0}}(\mathbf{N^{w}},x))\big{)})" display="inline"><mrow><mo>≡</mo><msub><mi>e</mi><mi>t</mi></msub><mrow><mo stretchy="false">(</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖼</mi><mn>𝟎</mn></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>,</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖼</mi><mn>𝟎</mn></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex17" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex17.m2" class="ltx_Math" alttext="\displaystyle\equiv 0^{\mathbf{w}}" display="inline"><mrow><mi></mi><mo>≡</mo><msup><mn>0</mn><mi>𝐰</mi></msup></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr class="ltx_eqn_row ltx_align_baseline"><td class="ltx_eqn_cell ltx_align_left" style="white-space:normal;" colspan="5">and</td></tr>
+<tr id="S0.Ex19" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex19.m1" class="ltx_Math" alttext="\displaystyle\mathsf{double}(1^{\mathbf{w}})" display="inline"><mrow><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mn>1</mn><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex19.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathsf{rec}_{\mathbf{N^{w}}}(\mathbf{N^{w}},e,{\mathsf{sup%
+}}({1_{\mathbf{2}}},\;{\lambda}x.\,0^{\mathbf{w}}))" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><msub><mi>𝗋𝖾𝖼</mi><msup><mi>𝐍</mi><mi>𝐰</mi></msup></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>e</mi><mo>,</mo><mrow><mi>𝗌𝗎𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo rspace="5.3pt">,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi><mo>⁢</mo><msup><mn>. 0</mn><mi>𝐰</mi></msup></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex20" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex20.m2" class="ltx_Math" alttext="\displaystyle\equiv e({1_{\mathbf{2}}},\big{(}{\lambda}x.\,0^{\mathbf{w}}\big{%
+)},\big{(}{\lambda}x.\,\mathsf{double}(0^{\mathbf{w}})\big{)})" display="inline"><mrow><mo>≡</mo><mi>e</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>x</mi><msup><mn>. 0</mn><mi>𝐰</mi></msup><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>,</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mrow><mo stretchy="false">(</mo><msup><mn>0</mn><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex21" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex21.m2" class="ltx_Math" alttext="\displaystyle\equiv e_{f}(\big{(}{\lambda}x.\,0^{\mathbf{w}}\big{)},\big{(}{%
+\lambda}x.\,\mathsf{double}(0^{\mathbf{w}})\big{)})" display="inline"><mrow><mo>≡</mo><msub><mi>e</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>x</mi><msup><mn>. 0</mn><mi>𝐰</mi></msup><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>,</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mrow><mo stretchy="false">(</mo><msup><mn>0</mn><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex22" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex22.m2" class="ltx_Math" alttext="\displaystyle\equiv{\mathsf{sup}}({1_{\mathbf{2}}},({\lambda}x.\,{\mathsf{sup}%
+}({1_{\mathbf{2}}},({\lambda}y.\,\mathsf{double}(0^{\mathbf{w}})))))" display="inline"><mrow><mo>≡</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>y</mi><mo rspace="4.2pt">.</mo><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mrow><mo stretchy="false">(</mo><msup><mn>0</mn><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex23" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex23.m2" class="ltx_Math" alttext="\displaystyle\equiv{\mathsf{sup}}({1_{\mathbf{2}}},({\lambda}x.\,{\mathsf{sup}%
+}({1_{\mathbf{2}}},({\lambda}y.\,0^{\mathbf{w}}))))" display="inline"><mrow><mo>≡</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>y</mi><msup><mn>. 0</mn><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex24" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex24.m2" class="ltx_Math" alttext="\displaystyle\equiv 2^{\mathbf{w}}" display="inline"><mrow><mi></mi><mo>≡</mo><msup><mn>2</mn><mi>𝐰</mi></msup></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and so on.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Just as for natural numbers, we can prove a uniqueness theorem for
+<math id="p12.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types:</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 5.3.1</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="g,h:\mathchoice{\prod_{w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}%
+}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)}\,}{%
+\mathchoice{{\textstyle\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}%
+_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}B(x))}}}{\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{%
+\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{%
+(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{\mathchoice{{%
+\textstyle\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{%
+\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{%
+(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{\mathchoice{{%
+\textstyle\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf%
+{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}{%
+\prod_{(w:\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{%
+(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}{\prod_{(w:%
+\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))}}}E(w)" display="inline"><mrow><mrow><mi>g</mi><mo mathvariant="normal">,</mo><mi>h</mi></mrow><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>w</mi><mo mathvariant="normal">:</mo><msub><mi mathvariant="normal">W</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mi>B</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>E</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>w</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> be two functions which satisfy the recurrence</span></p>
+<table id="S0.Ex25" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex25.m1" class="ltx_Math" alttext="e:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,%
+f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a%
+,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}\Bigl{(}\mathchoice{\prod_%
+{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_%
+{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod%
+_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod%
+_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b))%
+\Bigr{)}\to E({\mathsf{sup}}(a,f))," display="block"><mrow><mrow><mi>e</mi><mo>:</mo><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>,</mo><mi>f</mi></mrow></munder></mpadded><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>b</mi><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></munder></mpadded><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow><mo>→</mo><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">i.e., such that</span></p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_gather ltx_eqn_table">
+
+<tr id="S0.Ex26" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex26.m1" class="ltx_Math" alttext="\displaystyle\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}%
+{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(%
+a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}g({\mathsf{sup}}(%
+a,f))=e(a,f,{\lambda}b.\,g(f(b)))," display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>,</mo><mi>f</mi></mrow></munder></mpadded><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>e</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex27" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex27.m1" class="ltx_Math" alttext="\displaystyle\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}%
+{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(%
+a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}h({\mathsf{sup}}(%
+a,f))=e(a,f,{\lambda}b.\,h(f(b)))." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>,</mo><mi>f</mi></mrow></munder></mpadded><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>e</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Then <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> and <math id="Thmprethm1.p1.m3" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> are equal.</span></p>
+</div>
+</div>
+<div id="p13" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">5.3 W-types</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:36:31 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

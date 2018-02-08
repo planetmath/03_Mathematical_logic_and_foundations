@@ -1,0 +1,221 @@
+<!DOCTYPE html><html>
+<head>
+<title>importance of primitive recursion</title>
+<!--Generated on Thu Feb  8 20:03:45 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">importance of primitive recursion</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">In this entry, we show that the operation of primitive recursion is an important ingredient in the definition of primitive recursive functions. Very basic arithmetic functions, such as addition, depend on primitive recursion in an essential way. One can not go very far without it.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">One way to prove this is to come up with a property on those functions which are derivable from the initial functions using functional composition alone, and then find a primitive recursive function that fails this property. Thus, we begin with the following definition:</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. Let <math id="p3.m1" class="ltx_Math" alttext="\mathcal{PR}_{0}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>0</mn></msub></mrow></math> be the smallest subset of the set <math id="p3.m2" class="ltx_Math" alttext="\mathcal{PR}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><mi class="ltx_font_mathcaligraphic">ℛ</mi></mrow></math> of primitive recursive functions such that</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">(initial functions): <math id="I1.i1.p1.m1" class="ltx_Math" alttext="z,s,p_{m}^{k}\in\mathcal{PR}_{0}" display="inline"><mrow><mrow><mi>z</mi><mo>,</mo><mi>s</mi><mo>,</mo><msubsup><mi>p</mi><mi>m</mi><mi>k</mi></msubsup></mrow><mo>∈</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>0</mn></msub></mrow></mrow></math> for all positive integers <math id="I1.i1.p1.m2" class="ltx_Math" alttext="m,k" display="inline"><mrow><mi>m</mi><mo>,</mo><mi>k</mi></mrow></math> with <math id="I1.i1.p1.m3" class="ltx_Math" alttext="m\leq k" display="inline"><mrow><mi>m</mi><mo>≤</mo><mi>k</mi></mrow></math>.</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">(closure under functional composition): if <math id="I1.i2.p1.m1" class="ltx_Math" alttext="f,g_{1},\ldots,g_{m}\in\mathcal{PR}_{0}" display="inline"><mrow><mrow><mi>f</mi><mo>,</mo><msub><mi>g</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>g</mi><mi>m</mi></msub></mrow><mo>∈</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>0</mn></msub></mrow></mrow></math> with <math id="I1.i2.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> <math id="I1.i2.p1.m3" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>-ary and <math id="I1.i2.p1.m4" class="ltx_Math" alttext="g_{i}" display="inline"><msub><mi>g</mi><mi>i</mi></msub></math> <math id="I1.i2.p1.m5" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-ary, then the <math id="I1.i2.p1.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-ary function <math id="I1.i2.p1.m7" class="ltx_Math" alttext="h:=f(g_{1},\ldots,g_{m})\in\mathcal{PR}_{0}" display="inline"><mrow><mi>h</mi><mo>:=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>g</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>g</mi><mi>m</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>0</mn></msub></mrow></mrow></math> as well.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">From the definition above, we observe that any function <math id="p4.m1" class="ltx_Math" alttext="f(x_{1},\ldots,x_{n})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> obtained without the use of the successor function <math id="p4.m2" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> must be bounded by <math id="p4.m3" class="ltx_Math" alttext="\max\{x_{1},\ldots,x_{n}\}" display="inline"><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></mrow></math>. Now, since one application of <math id="p4.m4" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> increments the input by <math id="p4.m5" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math>, a finite applications of <math id="p4.m6" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> in the construction of <math id="p4.m7" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> results in <math id="p4.m8" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> being bounded by <math id="p4.m9" class="ltx_Math" alttext="\max\{x_{1},\ldots,x_{n}\}" display="inline"><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></mrow></math> plus some fixed integer. This is the property we seek, and we prove it formally:</p>
+</div>
+<div id="Thmprop1" class="ltx_theorem ltx_theorem_prop">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Proposition 1</span>.</h6>
+<div id="Thmprop1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmprop1.p1.m1" class="ltx_Math" alttext="f\in\mathcal{PR}_{0}" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">∈</mo><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">P</mi><mo mathvariant="italic">⁢</mo><msub><mi class="ltx_font_mathcaligraphic" mathvariant="normal">R</mi><mn mathvariant="normal">0</mn></msub></mrow></mrow></math> with arity <math id="Thmprop1.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, the following condition is satisfied:</span></p>
+<blockquote class="ltx_quote">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">(*) there is an integer </span><math id="Thmprop1.p1.m3" class="ltx_Math" alttext="r\geq 0" display="inline"><mrow><mi>r</mi><mo>≥</mo><mn>0</mn></mrow></math><span class="ltx_text ltx_font_italic"> such that </span><math id="Thmprop1.p1.m4" class="ltx_Math" alttext="f(x_{1},\ldots,x_{n})\leq\max\{x_{1},\ldots,x_{n}\}+r" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mrow><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></mrow><mo>+</mo><mi>r</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</blockquote>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">For each integer <math id="p5.m1" class="ltx_Math" alttext="n\geq 0" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>0</mn></mrow></math>, let <math id="p5.m2" class="ltx_Math" alttext="\mathcal{X}_{n}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mi>n</mi></msub></math> be the subset of <math id="p5.m3" class="ltx_Math" alttext="\mathcal{PR}_{0}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>0</mn></msub></mrow></math> that contains all the initial functions, as well as functions derivable from the initial functions by applying functional composition at most <math id="p5.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> times. The following facts are clear:</p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i1.p1.m1" class="ltx_Math" alttext="\mathcal{X}_{0}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mn>0</mn></msub></math> is the set of all initial functions,</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i2.p1.m1" class="ltx_Math" alttext="\mathcal{X}_{n}\subseteq\mathcal{X}_{n+1}" display="inline"><mrow><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mi>n</mi></msub><mo>⊆</mo><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></math>,</p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p">and <math id="I2.i3.p1.m1" class="ltx_Math" alttext="\mathcal{PR}_{0}=\bigcup\{\mathcal{X}_{n}\mid n\in\mathbb{N}\}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>0</mn></msub></mrow><mo>=</mo><mrow><mo largeop="true" mathsize="160%" stretchy="false" symmetric="true">⋃</mo><mrow><mo stretchy="false">{</mo><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mi>n</mi></msub><mo>∣</mo><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><mo stretchy="false">}</mo></mrow></mrow></mrow></math>, where <math id="I2.i3.p1.m2" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> contains <math id="I2.i3.p1.m3" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math> in this context.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">We prove our assertion by induction on <math id="p6.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>. In fact, we will prove a stronger assertion:</p>
+<blockquote class="ltx_quote">
+<p class="ltx_p">in the conditon (*) above, <math id="p6.m2" class="ltx_Math" alttext="r=n+1" display="inline"><mrow><mi>r</mi><mo>=</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mrow></math> can be picked for every function in <math id="p6.m3" class="ltx_Math" alttext="\mathcal{X}_{n}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mi>n</mi></msub></math>.</p>
+</blockquote>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">For <math id="I3.i1.p1.m1" class="ltx_Math" alttext="n=0" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow></math>, it is clear that all initial functions have the desired property: <math id="I3.i1.p1.m2" class="ltx_Math" alttext="r=0" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>0</mn></mrow></math> for <math id="I3.i1.p1.m3" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> and <math id="I3.i1.p1.m4" class="ltx_Math" alttext="p_{m}^{k}" display="inline"><msubsup><mi>p</mi><mi>m</mi><mi>k</mi></msubsup></math>, and <math id="I3.i1.p1.m5" class="ltx_Math" alttext="r=1" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>1</mn></mrow></math> for <math id="I3.i1.p1.m6" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math>. In either case, we can pick <math id="I3.i1.p1.m7" class="ltx_Math" alttext="r=1" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>1</mn></mrow></math>.</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p">Suppose now that we can pick <math id="I3.i2.p1.m1" class="ltx_Math" alttext="r=i+1" display="inline"><mrow><mi>r</mi><mo>=</mo><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></mrow></math> for any function in <math id="I3.i2.p1.m2" class="ltx_Math" alttext="\mathcal{X}_{i}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mi>i</mi></msub></math>.</p>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p">Let <math id="I3.i3.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> be an <math id="I3.i3.p1.m2" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-ary function in <math id="I3.i3.p1.m3" class="ltx_Math" alttext="\mathcal{X}_{i+1}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math>. If <math id="I3.i3.p1.m4" class="ltx_Math" alttext="f\in\mathcal{X}_{i}" display="inline"><mrow><mi>f</mi><mo>∈</mo><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mi>i</mi></msub></mrow></math>, then <math id="I3.i3.p1.m5" class="ltx_Math" alttext="r=i+1" display="inline"><mrow><mi>r</mi><mo>=</mo><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></mrow></math> can be picked by assumption. Otherwise, <math id="I3.i3.p1.m6" class="ltx_Math" alttext="f=h(g_{1},\ldots,g_{m})" display="inline"><mrow><mi>f</mi><mo>=</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>g</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>g</mi><mi>m</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, where <math id="I3.i3.p1.m7" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> is <math id="I3.i3.p1.m8" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>-ary, and each <math id="I3.i3.p1.m9" class="ltx_Math" alttext="g_{j}" display="inline"><msub><mi>g</mi><mi>j</mi></msub></math> is <math id="I3.i3.p1.m10" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-ary. Furthermore, <math id="I3.i3.p1.m11" class="ltx_Math" alttext="g_{j}\in\mathcal{X}_{i_{j}}" display="inline"><mrow><msub><mi>g</mi><mi>j</mi></msub><mo>∈</mo><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><msub><mi>i</mi><mi>j</mi></msub></msub></mrow></math>, each <math id="I3.i3.p1.m12" class="ltx_Math" alttext="i_{j}\leq i" display="inline"><mrow><msub><mi>i</mi><mi>j</mi></msub><mo>≤</mo><mi>i</mi></mrow></math>, and <math id="I3.i3.p1.m13" class="ltx_Math" alttext="h\in\mathcal{X}_{t}" display="inline"><mrow><mi>h</mi><mo>∈</mo><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mi>t</mi></msub></mrow></math>, where <math id="I3.i3.p1.m14" class="ltx_Math" alttext="t=i-\max\{i_{1},\ldots,i_{m}\}" display="inline"><mrow><mi>t</mi><mo>=</mo><mrow><mi>i</mi><mo>-</mo><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">{</mo><msub><mi>i</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>i</mi><mi>m</mi></msub><mo stretchy="false">}</mo></mrow></mrow></mrow></mrow></math>. Then, by assumption <math id="I3.i3.p1.m15" class="ltx_Math" alttext="g_{j}(x_{1},\ldots,x_{k})\leq x+i_{j}+1\leq x+\ell+1" display="inline"><mrow><mrow><msub><mi>g</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>k</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mrow><mi>x</mi><mo>+</mo><msub><mi>i</mi><mi>j</mi></msub><mo>+</mo><mn>1</mn></mrow><mo>≤</mo><mrow><mi>x</mi><mo>+</mo><mi mathvariant="normal">ℓ</mi><mo>+</mo><mn>1</mn></mrow></mrow></math> for all <math id="I3.i3.p1.m16" class="ltx_Math" alttext="j\in\{1,\ldots,m\}" display="inline"><mrow><mi>j</mi><mo>∈</mo><mrow><mo stretchy="false">{</mo><mn>1</mn><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>m</mi><mo stretchy="false">}</mo></mrow></mrow></math>, where <math id="I3.i3.p1.m17" class="ltx_Math" alttext="x=\max\{x_{1},\ldots,x_{k}\}" display="inline"><mrow><mi>x</mi><mo>=</mo><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>k</mi></msub><mo stretchy="false">}</mo></mrow></mrow></mrow></math> and <math id="I3.i3.p1.m18" class="ltx_Math" alttext="\ell=\max\{i_{1},\ldots,i_{m}\}" display="inline"><mrow><mi mathvariant="normal">ℓ</mi><mo>=</mo><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">{</mo><msub><mi>i</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>i</mi><mi>m</mi></msub><mo stretchy="false">}</mo></mrow></mrow></mrow></math>. As a result,</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_eqnarray ltx_eqn_table">
+
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle f(x_{1},\ldots,x_{k})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>k</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle=" display="inline"><mo>=</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m3" class="ltx_Math" alttext="\displaystyle h(g_{1}(x_{1},\ldots,x_{k}),\ldots,g_{m}(x_{1},\ldots,x_{k}))" display="inline"><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>g</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>k</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><msub><mi>g</mi><mi>m</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>k</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr class="ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle\leq" display="inline"><mo>≤</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m3" class="ltx_Math" alttext="\displaystyle\max\{g_{j}(x_{1},\ldots,x_{k})\mid j=1,\ldots,m\}+t+1" display="inline"><mrow><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">{</mo><mrow><msub><mi>g</mi><mi>j</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>k</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>∣</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>m</mi><mo stretchy="false">}</mo></mrow></mrow><mo>+</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr class="ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle\leq" display="inline"><mo>≤</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m3" class="ltx_Math" alttext="\displaystyle(x+\ell+1)+t+1=x+(i+1)+1." display="inline"><mrow><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mi mathvariant="normal">ℓ</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>+</mo><mi>t</mi><mo>+</mo><mn>1</mn></mrow><mo>=</mo><mrow><mi>x</mi><mo>+</mo><mrow><mo stretchy="false">(</mo><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>+</mo><mn>1</mn></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This proves the stronger assertion.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Now, if we pick any <math id="p6.m4" class="ltx_Math" alttext="f\in\mathcal{PR}_{0}" display="inline"><mrow><mi>f</mi><mo>∈</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>0</mn></msub></mrow></mrow></math>, then <math id="p6.m5" class="ltx_Math" alttext="f\in\mathcal{X}_{m}" display="inline"><mrow><mi>f</mi><mo>∈</mo><msub><mi class="ltx_font_mathcaligraphic">𝒳</mi><mi>m</mi></msub></mrow></math> for some <math id="p6.m6" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math> by the third fact above. The proof is now complete by setting <math id="p6.m7" class="ltx_Math" alttext="r=m+1" display="inline"><mrow><mi>r</mi><mo>=</mo><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Now, we show the following:</p>
+</div>
+<div id="Thmprop2" class="ltx_theorem ltx_theorem_prop">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Proposition 2</span>.</h6>
+<div id="Thmprop2.p1" class="ltx_para">
+<p class="ltx_p"><math id="Thmprop2.p1.m1" class="ltx_Math" alttext="\mathcal{PR}_{0}\subset\mathcal{PR}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>0</mn></msub></mrow><mo>⊂</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><mi class="ltx_font_mathcaligraphic">ℛ</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">We prove that <math id="p8.m1" class="ltx_Math" alttext="\operatorname{add}(x,y)=x+y" display="inline"><mrow><mrow><mi>add</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mrow></math> does not have property (*) above. But if it does, then <math id="p8.m2" class="ltx_Math" alttext="\operatorname{add}(x,y)\leq\max\{x,y\}+r" display="inline"><mrow><mrow><mi>add</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mrow><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">{</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">}</mo></mrow></mrow><mo>+</mo><mi>r</mi></mrow></mrow></math> for some non-negative integer <math id="p8.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>. Then, for an arbitrary non-negative integer <math id="p8.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, <math id="p8.m5" class="ltx_Math" alttext="2n=\operatorname{add}(n,n)\leq\max\{n,n\}+r=n+r" display="inline"><mrow><mrow><mn>2</mn><mo>⁢</mo><mi>n</mi></mrow><mo>=</mo><mrow><mi>add</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mrow><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">{</mo><mi>n</mi><mo>,</mo><mi>n</mi><mo stretchy="false">}</mo></mrow></mrow><mo>+</mo><mi>r</mi></mrow><mo>=</mo><mrow><mi>n</mi><mo>+</mo><mi>r</mi></mrow></mrow></math>, so that <math id="p8.m6" class="ltx_Math" alttext="n\leq r" display="inline"><mrow><mi>n</mi><mo>≤</mo><mi>r</mi></mrow></math>, a contradiction (pick <math id="p8.m7" class="ltx_Math" alttext="n=r+1" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mi>r</mi><mo>+</mo><mn>1</mn></mrow></mrow></math>)! ∎</p>
+</div>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">In fact, the above proof shows the function <math id="p9.m1" class="ltx_Math" alttext="f(x)=2x" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mn>2</mn><mo>⁢</mo><mi>x</mi></mrow></mrow></math>, simpler than addition in the sense that <math id="p9.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is unary, can not be defined in terms of the initial functions and functional composition alone. Primitive recursion is required at least once to define <math id="p9.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Remark</span>. In fact, one can obtain an infinite chain of subsets of <math id="p10.m1" class="ltx_Math" alttext="\mathcal{PR}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><mi class="ltx_font_mathcaligraphic">ℛ</mi></mrow></math> in the following manner: <math id="p10.m2" class="ltx_Math" alttext="\mathcal{PR}_{n}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mi>n</mi></msub></mrow></math> is the smallest set of all primitive recursive functions generated by the initial functions, closed under functional composition, and at most <math id="p10.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> applications of primitive recursion. Then</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathcal{PR}_{n}\subset\mathcal{PR}_{n+1}\qquad\mbox{and}\qquad\mathcal{PR}=%
+\bigcup_{i=0}^{\infty}\mathcal{PR}_{i}" display="block"><mrow><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mi>n</mi></msub></mrow><mo>⊂</mo><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>and</mtext></mrow></mrow><mo mathvariant="italic" separator="true">  </mo><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><mi class="ltx_font_mathcaligraphic">ℛ</mi></mrow><mo>=</mo><mrow><munderover><mo largeop="true" mathsize="160%" movablelimits="false" stretchy="false" symmetric="true">⋃</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mi>i</mi></msub></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">For example, addition is in <math id="p10.m4" class="ltx_Math" alttext="\mathcal{PR}_{1}-\mathcal{PR}_{0}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>1</mn></msub></mrow><mo>-</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>0</mn></msub></mrow></mrow></math>, as was shown earlier. Furthermore, it is not hard to show that multiplication is in <math id="p10.m5" class="ltx_Math" alttext="\mathcal{PR}_{2}-\mathcal{PR}_{1}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>2</mn></msub></mrow><mo>-</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>1</mn></msub></mrow></mrow></math>, and exponentiation is in <math id="p10.m6" class="ltx_Math" alttext="\mathcal{PR}_{3}-\mathcal{PR}_{2}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>3</mn></msub></mrow><mo>-</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>2</mn></msub></mrow></mrow></math>. In fact, the Ackermann function can be utilized to show that each <math id="p10.m7" class="ltx_Math" alttext="\mathcal{PR}_{n}\subset\mathcal{PR}_{n+1}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mi>n</mi></msub></mrow><mo>⊂</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></mrow></math> is proper. Using this technique, it is possible to show that the Ackermann function is a total recursive function that is not primitive recursive. With respect to the set <math id="p10.m8" class="ltx_Math" alttext="\mathcal{ER}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">ℰ</mi><mo>⁢</mo><mi class="ltx_font_mathcaligraphic">ℛ</mi></mrow></math> of elementary recursive functions, it can be shown that <math id="p10.m9" class="ltx_Math" alttext="\mathcal{ER}=\mathcal{PR}_{3}" display="inline"><mrow><mrow><mi class="ltx_font_mathcaligraphic">ℰ</mi><mo>⁢</mo><mi class="ltx_font_mathcaligraphic">ℛ</mi></mrow><mo>=</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><msub><mi class="ltx_font_mathcaligraphic">ℛ</mi><mn>3</mn></msub></mrow></mrow></math>.
+</p>
+<table class="ltx_tabular ltx_align_right ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">importance of primitive recursion</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">ImportanceOfPrimitiveRecursion</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:05:21</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:05:21</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">12</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Feature</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">msc 03D20</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p ltx_align_right"></p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:03:45 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

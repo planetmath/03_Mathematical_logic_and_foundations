@@ -1,0 +1,478 @@
+<!DOCTYPE html><html>
+<head>
+<title>9.1 Categories and precategories</title>
+<!--Generated on Thu Feb  8 19:42:19 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , , , , , , , , , (pre)category of types, antisymmetric, category, classical, discrete, fundamental, gaunt, gaunt category, groupoid, homotopy, inverse, isomorphism, mathematics, of types, partial order, poset, precategory, pregroupoid, pregroupoid, fundamental, preorder, relation, skeletal, skeletal category, small">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">9.1 Categories and precategories</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">In classical mathematics, there are many equivalent definitions of a category.
+In our case, since we have dependent types, it is natural to choose the arrows to be a type family indexed by the objects.
+This matches the way hom-types are always used in category theory: we never even consider comparing two arrows unless we know their domains and codomains agree.
+Furthermore, it seems clear that for a theory of 1-categories, the hom-types should all be sets.
+This leads us to the following definition.</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 9.1.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A <span class="ltx_text ltx_font_bold">precategory</span>
+
+<math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> consists of the following.</span></p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A type </span><math id="I1.i1.p1.m1" class="ltx_Math" alttext="A_{0}" display="inline"><msub><mi>A</mi><mn>0</mn></msub></math><span class="ltx_text ltx_font_italic"> of </span><span class="ltx_text ltx_font_bold ltx_font_italic">objects</span><span class="ltx_text ltx_font_italic">.
+We write </span><math id="I1.i1.p1.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic"> for </span><math id="I1.i1.p1.m3" class="ltx_Math" alttext="a:A_{0}" display="inline"><mrow><mi>a</mi><mo>:</mo><msub><mi>A</mi><mn>0</mn></msub></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For each </span><math id="I1.i2.p1.m1" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic">, a set </span><math id="I1.i2.p1.m2" class="ltx_Math" alttext="\hom_{A}(a,b)" display="inline"><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> of </span><span class="ltx_text ltx_font_bold ltx_font_italic">arrows</span><span class="ltx_text ltx_font_italic"> or </span><span class="ltx_text ltx_font_bold ltx_font_italic">morphisms</span><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For each </span><math id="I1.i3.p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic">, a morphism </span><math id="I1.i3.p1.m2" class="ltx_Math" alttext="1_{a}:\hom_{A}(a,a)" display="inline"><mrow><msub><mn>1</mn><mi>a</mi></msub><mo>:</mo><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">.
+</span></p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For each </span><math id="I1.i4.p1.m1" class="ltx_Math" alttext="a,b,c:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi></mrow><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic">, a function
+</span></p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\hom_{A}(b,c)\to\hom_{A}(a,b)\to\hom_{A}(a,c)" display="block"><mrow><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">denoted infix by </span><math id="I1.i4.p1.m2" class="ltx_Math" alttext="g\mapsto f\mapsto g\circ f" display="inline"><mrow><mi>g</mi><mo>↦</mo><mi>f</mi><mo>↦</mo><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, or sometimes simply by </span><math id="I1.i4.p1.m3" class="ltx_Math" alttext="gf" display="inline"><mrow><mi>g</mi><mo>⁢</mo><mi>f</mi></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">5.</span></span> 
+<div id="I1.i5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For each </span><math id="I1.i5.p1.m1" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I1.i5.p1.m2" class="ltx_Math" alttext="f:\hom_{A}(a,b)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">, we have </span><math id="I1.i5.p1.m3" class="ltx_Math" alttext="f=1_{b}\circ f" display="inline"><mrow><mi>f</mi><mo>=</mo><mrow><msub><mn>1</mn><mi>b</mi></msub><mo>∘</mo><mi>f</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I1.i5.p1.m4" class="ltx_Math" alttext="f=f\circ 1_{a}" display="inline"><mrow><mi>f</mi><mo>=</mo><mrow><mi>f</mi><mo>∘</mo><msub><mn>1</mn><mi>a</mi></msub></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">6.</span></span> 
+<div id="I1.i6.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For each </span><math id="I1.i6.p1.m1" class="ltx_Math" alttext="a,b,c,d:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>d</mi></mrow><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic"> and</span></p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="f:\hom_{A}(a,b),\qquad g:\hom_{A}(b,c),\qquad h:\hom_{A}(c,d)," display="block"><mrow><mrow><mi>f</mi><mo>:</mo><mrow><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="22.5pt">,</mo><mi>g</mi></mrow><mo>:</mo><mrow><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="22.5pt">,</mo><mi>h</mi></mrow><mo>:</mo><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">we have </span><math id="I1.i6.p1.m2" class="ltx_Math" alttext="h\circ(g\circ f)=(h\circ g)\circ f" display="inline"><mrow><mrow><mi>h</mi><mo>∘</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>h</mi><mo>∘</mo><mi>g</mi></mrow><mo stretchy="false">)</mo></mrow><mo>∘</mo><mi>f</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">The problem with the notion of precategory is that for objects <math id="p3.m1" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math>, we have two possibly-different notions of “sameness”.
+On the one hand, we have the type <math id="p3.m2" class="ltx_Math" alttext="(a=_{A_{0}}b)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>a</mi><msub><mo>=</mo><msub><mi>A</mi><mn>0</mn></msub></msub><mi>b</mi></mrow><mo stretchy="false">)</mo></mrow></math>.
+But on the other hand, there is the standard categorical notion of <em class="ltx_emph ltx_font_italic">isomorphism</em>.</p>
+</div>
+<div id="Thmpredefn2" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 9.1.2</span>.</h6>
+<div id="Thmpredefn2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A morphism <math id="Thmpredefn2.p1.m1" class="ltx_Math" alttext="f:\hom_{A}(a,b)" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">hom</mi><mi>A</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> is an <span class="ltx_text ltx_font_bold">isomorphism</span>
+if there is a morphism <math id="Thmpredefn2.p1.m2" class="ltx_Math" alttext="g:\hom_{A}(b,a)" display="inline"><mrow><mi>g</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">hom</mi><mi>A</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>b</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> such that <math id="Thmpredefn2.p1.m3" class="ltx_Math" alttext="g\circ f=1_{a}" display="inline"><mrow><mrow><mi>g</mi><mo mathvariant="normal">∘</mo><mi>f</mi></mrow><mo mathvariant="normal">=</mo><msub><mn mathvariant="normal">1</mn><mi>a</mi></msub></mrow></math> and <math id="Thmpredefn2.p1.m4" class="ltx_Math" alttext="f\circ g=1_{b}" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="normal">∘</mo><mi>g</mi></mrow><mo mathvariant="normal">=</mo><msub><mn mathvariant="normal">1</mn><mi>b</mi></msub></mrow></math>.
+We write <math id="Thmpredefn2.p1.m5" class="ltx_Math" alttext="a\cong b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">≅</mo><mi>b</mi></mrow></math> for the type of such isomorphisms.</span></p>
+</div>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 9.1.3</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="f:\hom_{A}(a,b)" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">hom</mi><mi>A</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>, the type “<math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is an isomorphism” is a mere proposition.
+Therefore, for any <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> the type <math id="Thmprelem1.p1.m4" class="ltx_Math" alttext="a\cong b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">≅</mo><mi>b</mi></mrow></math> is a set.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Suppose given <math id="p4.m1" class="ltx_Math" alttext="g:\hom_{A}(b,a)" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p4.m2" class="ltx_Math" alttext="\eta:(1_{a}=g\circ f)" display="inline"><mrow><mi>η</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mi>a</mi></msub><mo>=</mo><mi>g</mi><mo>∘</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p4.m3" class="ltx_Math" alttext="\epsilon:(f\circ g=1_{b})" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∘</mo><mi>g</mi><mo>=</mo><msub><mn>1</mn><mi>b</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>, and similarly <math id="p4.m4" class="ltx_Math" alttext="g^{\prime}" display="inline"><msup><mi>g</mi><mo>′</mo></msup></math>, <math id="p4.m5" class="ltx_Math" alttext="\eta^{\prime}" display="inline"><msup><mi>η</mi><mo>′</mo></msup></math>, and <math id="p4.m6" class="ltx_Math" alttext="\epsilon^{\prime}" display="inline"><msup><mi>ϵ</mi><mo>′</mo></msup></math>.
+We must show <math id="p4.m7" class="ltx_Math" alttext="(g,\eta,\epsilon)=(g^{\prime},\eta^{\prime},\epsilon^{\prime})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>η</mi><mo>,</mo><mi>ϵ</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><msup><mi>g</mi><mo>′</mo></msup><mo>,</mo><msup><mi>η</mi><mo>′</mo></msup><mo>,</mo><msup><mi>ϵ</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math>.
+But since all hom-sets are sets, their identity types are mere propositions, so it suffices to show <math id="p4.m8" class="ltx_Math" alttext="g=g^{\prime}" display="inline"><mrow><mi>g</mi><mo>=</mo><msup><mi>g</mi><mo>′</mo></msup></mrow></math>.
+For this we have</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="g^{\prime}=1_{a}\circ g^{\prime}=(g\circ f)\circ g^{\prime}=g\circ(f\circ g^{%
+\prime})=g\circ 1_{b}=g" display="block"><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>=</mo><mrow><msub><mn>1</mn><mi>a</mi></msub><mo>∘</mo><msup><mi>g</mi><mo>′</mo></msup></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow><mo stretchy="false">)</mo></mrow><mo>∘</mo><msup><mi>g</mi><mo>′</mo></msup></mrow><mo>=</mo><mrow><mi>g</mi><mo>∘</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>∘</mo><msup><mi>g</mi><mo>′</mo></msup></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>g</mi><mo>∘</mo><msub><mn>1</mn><mi>b</mi></msub></mrow><mo>=</mo><mi>g</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">using <math id="p4.m9" class="ltx_Math" alttext="\eta" display="inline"><mi>η</mi></math> and <math id="p4.m10" class="ltx_Math" alttext="\epsilon^{\prime}" display="inline"><msup><mi>ϵ</mi><mo>′</mo></msup></math>.
+∎</p>
+</div>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">If <math id="p5.m1" class="ltx_Math" alttext="f:a\cong b" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>a</mi><mo>≅</mo><mi>b</mi></mrow></mrow></math>, then we write <math id="p5.m2" class="ltx_Math" alttext="{f}^{-1}" display="inline"><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> for its inverse, which by <span class="ltx_ERROR undefined">\autoref</span>ct:isoprop is uniquely determined.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">The only relationship between these two notions of sameness that we have in a precategory is the following.</p>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 9.1.4</span> (<span class="ltx_text ltx_font_sansserif">idtoiso</span>).</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmprelem2.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a precategory and <math id="Thmprelem2.p1.m2" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>, then</span></p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="(a=b)\to(a\cong b)." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>≅</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">By induction on identity, we may assume <math id="p7.m1" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and <math id="p7.m2" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> are the same.
+But then we have <math id="p7.m3" class="ltx_Math" alttext="1_{a}:\hom_{A}(a,a)" display="inline"><mrow><msub><mn>1</mn><mi>a</mi></msub><mo>:</mo><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, which is clearly an isomorphism.
+∎</p>
+</div>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Evidently, this situation is analogous to the issue that motivated us to introduce the univalence axiom.
+In fact, we have the following:</p>
+</div>
+<div id="Thmpreeg1" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 9.1.5</span>.</h6>
+<div id="Thmpreeg1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">There is a precategory <math id="Thmpreeg1.p1.m1" class="ltx_Math" alttext="\mathcal{S}et" display="inline"><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">S</mi><mo mathvariant="italic">⁢</mo><mi>e</mi><mo mathvariant="italic">⁢</mo><mi>t</mi></mrow></math>, whose type of objects is <span class="ltx_ERROR undefined">\set</span>, and with <math id="Thmpreeg1.p1.m2" class="ltx_Math" alttext="\hom_{\mathcal{S}et}(A,B):\!\!\equiv(A\to B)" display="inline"><mrow><msub><mi mathvariant="normal">hom</mi><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">S</mi><mo mathvariant="italic">⁢</mo><mi>e</mi><mo mathvariant="italic">⁢</mo><mi>t</mi></mrow></msub><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>B</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">→</mo><mi>B</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.
+The identity morphisms are identity functions and the composition is function composition.
+For this precategory, <span class="ltx_ERROR undefined">\autoref</span>ct:idtoiso is equal to (the restriction to sets of) the map <math id="Thmpreeg1.p1.m3" class="ltx_Math" alttext="\mathsf{idtoeqv}" display="inline"><mi mathvariant="normal">idtoeqv</mi></math> from <span class="ltx_ERROR undefined">\autoref</span>sec:compute-universe.</span></p>
+</div>
+<div id="Thmpreeg1.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Of course, to be more precise we should call this category <math id="Thmpreeg1.p2.m1" class="ltx_Math" alttext="\mathcal{S}et_{\mathcal{U}}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">S</mi><mo mathvariant="italic">⁢</mo><mi>e</mi><mo mathvariant="italic">⁢</mo><msub><mi>t</mi><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></msub></mrow></math>, since its objects are only the <em class="ltx_emph ltx_font_upright">small sets</em>
+relative to a universe <math id="Thmpreeg1.p2.m2" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></math>.</span></p>
+</div>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Thus, it is natural to make the following definition.</p>
+</div>
+<div id="Thmpredefn3" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 9.1.6</span>.</h6>
+<div id="Thmpredefn3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A <span class="ltx_text ltx_font_bold">category</span>
+
+is a precategory such that for all <math id="Thmpredefn3.p1.m1" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>, the function <math id="Thmpredefn3.p1.m2" class="ltx_Math" alttext="\mathsf{idtoiso}_{a,b}" display="inline"><msub><mi mathvariant="normal">idtoiso</mi><mrow><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi></mrow></msub></math> from <span class="ltx_ERROR undefined">\autoref</span>ct:idtoiso is an equivalence.</span></p>
+</div>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">In particular, in a category, if <math id="p10.m1" class="ltx_Math" alttext="a\cong b" display="inline"><mrow><mi>a</mi><mo>≅</mo><mi>b</mi></mrow></math>, then <math id="p10.m2" class="ltx_Math" alttext="a=b" display="inline"><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow></math>.</p>
+</div>
+<div id="Thmpreeg2" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 9.1.7</span>.</h6>
+<div id="Thmpreeg2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The univalence axiom implies immediately that <math id="Thmpreeg2.p1.m1" class="ltx_Math" alttext="\mathcal{S}et" display="inline"><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">S</mi><mo mathvariant="italic">⁢</mo><mi>e</mi><mo mathvariant="italic">⁢</mo><mi>t</mi></mrow></math> is a category.
+One can also show, using univalence, that any precategory of set-level structures such as groups, rings, topological spaces, etc. is a category; see <span class="ltx_ERROR undefined">\autoref</span>sec:sip.</span></p>
+</div>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">We also note the following.</p>
+</div>
+<div id="Thmprelem3" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 9.1.8</span>.</h6>
+<div id="Thmprelem3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In a category, the type of objects is a 1-type.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">It suffices to show that for any <math id="p12.m1" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math>, the type <math id="p12.m2" class="ltx_Math" alttext="a=b" display="inline"><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow></math> is a set.
+But <math id="p12.m3" class="ltx_Math" alttext="a=b" display="inline"><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow></math> is equivalent to <math id="p12.m4" class="ltx_Math" alttext="a\cong b" display="inline"><mrow><mi>a</mi><mo>≅</mo><mi>b</mi></mrow></math>, which is a set.
+∎</p>
+</div>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">We write <math id="p13.m1" class="ltx_Math" alttext="\mathsf{isotoid}" display="inline"><mi>𝗂𝗌𝗈𝗍𝗈𝗂𝖽</mi></math> for the inverse <math id="p13.m2" class="ltx_Math" alttext="(a\cong b)\to(a=b)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>≅</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> of the map <math id="p13.m3" class="ltx_Math" alttext="\mathsf{idtoiso}" display="inline"><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi></math> from <span class="ltx_ERROR undefined">\autoref</span>ct:idtoiso.
+The following relationship between the two is important.</p>
+</div>
+<div id="Thmprelem4" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 9.1.9</span>.</h6>
+<div id="Thmprelem4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For <math id="Thmprelem4.p1.m1" class="ltx_Math" alttext="p:a=a^{\prime}" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>a</mi><mo mathvariant="normal">=</mo><msup><mi>a</mi><mo mathvariant="normal">′</mo></msup></mrow></mrow></math> and <math id="Thmprelem4.p1.m2" class="ltx_Math" alttext="q:b=b^{\prime}" display="inline"><mrow><mi>q</mi><mo mathvariant="normal">:</mo><mrow><mi>b</mi><mo mathvariant="normal">=</mo><msup><mi>b</mi><mo mathvariant="normal">′</mo></msup></mrow></mrow></math> and <math id="Thmprelem4.p1.m3" class="ltx_Math" alttext="f:\hom_{A}(a,b)" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">hom</mi><mi>A</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>, we have
+</span></p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="{(p,q)}_{*}\mathopen{}\left({f}\right)\mathclose{}=\mathsf{idtoiso}(q)\circ f%
+\circ{\mathsf{idtoiso}(p)}^{-1}." display="block"><mrow><msub><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>f</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>∘</mo><mi>f</mi><mo>∘</mo><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(9.1.9)</span></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">By induction, we may assume <math id="p14.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> and <math id="p14.m2" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> are <math id="p14.m3" class="ltx_Math" alttext="\mathsf{refl}_{a}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></math> and <math id="p14.m4" class="ltx_Math" alttext="\mathsf{refl}_{b}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>b</mi></msub></math> respectively.
+Then the left-hand side of (<a href="#S0.E1" title="(9.1.9) ‣ Lemma 9.1.9. ‣ 9.1 Categories and precategories" class="ltx_ref"><span class="ltx_text ltx_ref_tag">9.1.9</span></a>) is simply <math id="p14.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+But by definition, <math id="p14.m6" class="ltx_Math" alttext="\mathsf{idtoiso}(\mathsf{refl}_{a})" display="inline"><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="p14.m7" class="ltx_Math" alttext="1_{a}" display="inline"><msub><mn>1</mn><mi>a</mi></msub></math>, and <math id="p14.m8" class="ltx_Math" alttext="\mathsf{idtoiso}(\mathsf{refl}_{b})" display="inline"><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>b</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="p14.m9" class="ltx_Math" alttext="1_{b}" display="inline"><msub><mn>1</mn><mi>b</mi></msub></math>, so the right-hand side of (<a href="#S0.E1" title="(9.1.9) ‣ Lemma 9.1.9. ‣ 9.1 Categories and precategories" class="ltx_ref"><span class="ltx_text ltx_ref_tag">9.1.9</span></a>) is <math id="p14.m10" class="ltx_Math" alttext="1_{b}\circ f\circ 1_{a}" display="inline"><mrow><msub><mn>1</mn><mi>b</mi></msub><mo>∘</mo><mi>f</mi><mo>∘</mo><msub><mn>1</mn><mi>a</mi></msub></mrow></math>, which is equal to <math id="p14.m11" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+∎</p>
+</div>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">Similarly, we can show</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_gather ltx_eqn_table">
+
+<tbody id="S0.E2"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E2.m1" class="ltx_Math" alttext="\displaystyle\mathsf{idtoiso}(\mathord{{p}^{-1}})={(\mathsf{idtoiso}(p))}^{-1}" display="block"><mrow><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(9.1.11)</span></td>
+</tr></tbody>
+<tbody id="S0.E3"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E3.m1" class="ltx_Math" alttext="\displaystyle\mathsf{idtoiso}(p\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}q)=\mathsf{idtoiso}(q)\circ%
+\mathsf{idtoiso}(p)" display="block"><mrow><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>q</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∘</mo><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(9.1.11)</span></td>
+</tr></tbody>
+<tbody id="S0.E4"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E4.m1" class="ltx_Math" alttext="\displaystyle\mathsf{isotoid}(f\circ e)=\mathsf{isotoid}(e)\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{%
+isotoid}(f)" display="block"><mrow><mrow><mi>𝗂𝗌𝗈𝗍𝗈𝗂𝖽</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>∘</mo><mi>e</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>𝗂𝗌𝗈𝗍𝗈𝗂𝖽</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>𝗂𝗌𝗈𝗍𝗈𝗂𝖽</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(9.1.11)</span></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">and so on.</p>
+</div>
+<div id="Thmpreeg3" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 9.1.11</span>.</h6>
+<div id="Thmpreeg3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A precategory in which each set <math id="Thmpreeg3.p1.m1" class="ltx_Math" alttext="\hom_{A}(a,b)" display="inline"><mrow><msub><mi mathvariant="normal">hom</mi><mi>A</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a mere proposition is equivalently a type <math id="Thmpreeg3.p1.m2" class="ltx_Math" alttext="A_{0}" display="inline"><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></math> equipped with a mere relation “<math id="Thmpreeg3.p1.m3" class="ltx_Math" alttext="\leq" display="inline"><mo mathvariant="normal">≤</mo></math>” that is reflexive (<math id="Thmpreeg3.p1.m4" class="ltx_Math" alttext="a\leq a" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">≤</mo><mi>a</mi></mrow></math>) and transitive (if <math id="Thmpreeg3.p1.m5" class="ltx_Math" alttext="a\leq b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">≤</mo><mi>b</mi></mrow></math> and <math id="Thmpreeg3.p1.m6" class="ltx_Math" alttext="b\leq c" display="inline"><mrow><mi>b</mi><mo mathvariant="normal">≤</mo><mi>c</mi></mrow></math>, then <math id="Thmpreeg3.p1.m7" class="ltx_Math" alttext="a\leq c" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">≤</mo><mi>c</mi></mrow></math>).
+We call this a <span class="ltx_text ltx_font_bold">preorder</span>.
+
+</span></p>
+</div>
+<div id="Thmpreeg3.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In a preorder, a witness <math id="Thmpreeg3.p2.m1" class="ltx_Math" alttext="f:a\leq b" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>a</mi><mo mathvariant="normal">≤</mo><mi>b</mi></mrow></mrow></math> is an isomorphism just when there exists some witness <math id="Thmpreeg3.p2.m2" class="ltx_Math" alttext="g:b\leq a" display="inline"><mrow><mi>g</mi><mo mathvariant="normal">:</mo><mrow><mi>b</mi><mo mathvariant="normal">≤</mo><mi>a</mi></mrow></mrow></math>.
+Thus, <math id="Thmpreeg3.p2.m3" class="ltx_Math" alttext="a\cong b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">≅</mo><mi>b</mi></mrow></math> is the mere proposition that <math id="Thmpreeg3.p2.m4" class="ltx_Math" alttext="a\leq b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">≤</mo><mi>b</mi></mrow></math> and <math id="Thmpreeg3.p2.m5" class="ltx_Math" alttext="b\leq a" display="inline"><mrow><mi>b</mi><mo mathvariant="normal">≤</mo><mi>a</mi></mrow></math>.
+Therefore, a preorder <math id="Thmpreeg3.p2.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a category just when (1) each type <math id="Thmpreeg3.p2.m7" class="ltx_Math" alttext="a=b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">=</mo><mi>b</mi></mrow></math> is a mere proposition, and (2) for any <math id="Thmpreeg3.p2.m8" class="ltx_Math" alttext="a,b:A_{0}" display="inline"><mrow><mrow><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi></mrow><mo mathvariant="normal">:</mo><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></mrow></math> there exists a function <math id="Thmpreeg3.p2.m9" class="ltx_Math" alttext="(a\cong b)\to(a=b)" display="inline"><mrow><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">≅</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">=</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.
+In other words, <math id="Thmpreeg3.p2.m10" class="ltx_Math" alttext="A_{0}" display="inline"><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></math> must be a set, and <math id="Thmpreeg3.p2.m11" class="ltx_Math" alttext="\leq" display="inline"><mo mathvariant="normal">≤</mo></math> must be antisymmetric (if <math id="Thmpreeg3.p2.m12" class="ltx_Math" alttext="a\leq b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">≤</mo><mi>b</mi></mrow></math> and <math id="Thmpreeg3.p2.m13" class="ltx_Math" alttext="b\leq a" display="inline"><mrow><mi>b</mi><mo mathvariant="normal">≤</mo><mi>a</mi></mrow></math>, then <math id="Thmpreeg3.p2.m14" class="ltx_Math" alttext="a=b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">=</mo><mi>b</mi></mrow></math>).
+We call this a <span class="ltx_text ltx_font_bold">(partial) order</span> or a <span class="ltx_text ltx_font_bold">poset</span>.
+</span></p>
+</div>
+</div>
+<div id="Thmpreeg4" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 9.1.12</span>.</h6>
+<div id="Thmpreeg4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmpreeg4.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a category, then <math id="Thmpreeg4.p1.m2" class="ltx_Math" alttext="A_{0}" display="inline"><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></math> is a set if and only if for any <math id="Thmpreeg4.p1.m3" class="ltx_Math" alttext="a,b:A_{0}" display="inline"><mrow><mrow><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi></mrow><mo mathvariant="normal">:</mo><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></mrow></math>, the type <math id="Thmpreeg4.p1.m4" class="ltx_Math" alttext="a\cong b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">≅</mo><mi>b</mi></mrow></math> is a mere proposition.
+This is equivalent to saying that every isomorphism in <math id="Thmpreeg4.p1.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an identity; thus it is rather stronger than the classical notion of “skeletal” category.
+Categories of this sort are sometimes called <span class="ltx_text ltx_font_bold">gaunt</span> <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">bsp12infncats</span>]</cite>.
+There is not really any notion of “skeletality” for our categories, unless one considers <span class="ltx_ERROR undefined">\autoref</span>ct:category itself to be such.</span></p>
+</div>
+</div>
+<div id="Thmpreeg5" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 9.1.13</span>.</h6>
+<div id="Thmpreeg5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any 1-type <math id="Thmpreeg5.p1.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>, there is a category with <math id="Thmpreeg5.p1.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> as its type of objects and with <math id="Thmpreeg5.p1.m3" class="ltx_Math" alttext="\hom(x,y):\!\!\equiv(x=y)" display="inline"><mrow><mi mathvariant="normal">hom</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.
+If <math id="Thmpreeg5.p1.m4" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a set, we call this the <span class="ltx_text ltx_font_bold">discrete</span>
+category on <math id="Thmpreeg5.p1.m5" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>.
+In general, we call it a <span class="ltx_text ltx_font_bold">groupoid</span>
+
+(see <span class="ltx_ERROR undefined">\autoref</span>ct:groupoids).</span></p>
+</div>
+</div>
+<div id="Thmpreeg6" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 9.1.14</span>.</h6>
+<div id="Thmpreeg6.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For <em class="ltx_emph ltx_font_upright">any</em> type <math id="Thmpreeg6.p1.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>, there is a precategory with <math id="Thmpreeg6.p1.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> as its type of objects and with <math id="Thmpreeg6.p1.m3" class="ltx_Math" alttext="\hom(x,y):\!\!\equiv\mathopen{}\left\|x=y\right\|_{0}\mathclose{}" display="inline"><mrow><mi mathvariant="normal">hom</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi><msub><mo mathvariant="normal">∥</mo><mn mathvariant="normal">0</mn></msub><mi></mi></mrow></mrow></math>.
+The composition operation</span></p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\mathopen{}\left\|y=z\right\|_{0}\mathclose{}\to\mathopen{}\left\|x=y\right\|_%
+{0}\mathclose{}\to\mathopen{}\left\|x=z\right\|_{0}\mathclose{}" display="block"><mrow><mrow><mi></mi><mo>∥</mo><mi>y</mi><mo>=</mo><mi>z</mi><msub><mo>∥</mo><mn>0</mn></msub><mi></mi></mrow><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>x</mi><mo>=</mo><mi>y</mi><msub><mo>∥</mo><mn>0</mn></msub><mi></mi></mrow><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>x</mi><mo>=</mo><mi>z</mi><msub><mo>∥</mo><mn>0</mn></msub><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">is defined by induction on truncation from concatenation <math id="Thmpreeg6.p1.m4" class="ltx_Math" alttext="(y=z)\to(x=y)\to(x=z)" display="inline"><mrow><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>y</mi><mo mathvariant="normal">=</mo><mi>z</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">=</mo><mi>z</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.
+We call this the <span class="ltx_text ltx_font_bold">fundamental pregroupoid</span>
+of <math id="Thmpreeg6.p1.m5" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>.
+(In fact, we have met it already in <span class="ltx_ERROR undefined">\autoref</span>sec:van-kampen; see also <span class="ltx_ERROR undefined">\autoref</span>ex:rezk-vankampen.)</span></p>
+</div>
+</div>
+<div id="Thmpreeg7" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 9.1.15</span>.</h6>
+<div id="Thmpreeg7.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">There is a precategory whose type of objects is <math id="Thmpreeg7.p1.m1" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></math> and with <math id="Thmpreeg7.p1.m2" class="ltx_Math" alttext="\hom(X,Y):\!\!\equiv\mathopen{}\left\|X\to Y\right\|_{0}\mathclose{}" display="inline"><mrow><mi mathvariant="normal">hom</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>X</mi><mo mathvariant="normal">,</mo><mi>Y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>X</mi><mo mathvariant="normal">→</mo><mi>Y</mi><msub><mo mathvariant="normal">∥</mo><mn mathvariant="normal">0</mn></msub><mi></mi></mrow></mrow></math>, and composition defined by induction on truncation from ordinary composition <math id="Thmpreeg7.p1.m3" class="ltx_Math" alttext="(Y\to Z)\to(X\to Y)\to(X\to Z)" display="inline"><mrow><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>Y</mi><mo mathvariant="normal">→</mo><mi>Z</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>X</mi><mo mathvariant="normal">→</mo><mi>Y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>X</mi><mo mathvariant="normal">→</mo><mi>Z</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.
+We call this the <span class="ltx_text ltx_font_bold">homotopy precategory of types</span>.
+</span></p>
+</div>
+</div>
+<div id="Thmpreeg8" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 9.1.16</span>.</h6>
+<div id="Thmpreeg8.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmpreeg8.p1.m1" class="ltx_Math" alttext="\mathcal{R}el" display="inline"><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">R</mi><mo mathvariant="italic">⁢</mo><mi>e</mi><mo mathvariant="italic">⁢</mo><mi>l</mi></mrow></math> be the following precategory:</span></p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Its objects are sets.</span></p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i2.p1.m1" class="ltx_Math" alttext="\hom_{\mathcal{R}el}(X,Y)=X\to Y\to\mathsf{Prop}" display="inline"><mrow><mrow><msub><mi>hom</mi><mrow><mi class="ltx_font_mathcaligraphic">ℛ</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><mi>l</mi></mrow></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>X</mi><mo>→</mo><mi>Y</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For a set </span><math id="I2.i3.p1.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math><span class="ltx_text ltx_font_italic">, we have </span><math id="I2.i3.p1.m2" class="ltx_Math" alttext="1_{X}(x,x^{\prime}):\!\!\equiv(x=x^{\prime})" display="inline"><mrow><msub><mn>1</mn><mi>X</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I2.i4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For </span><math id="I2.i4.p1.m1" class="ltx_Math" alttext="R:\hom_{\mathcal{R}el}(X,Y)" display="inline"><mrow><mi>R</mi><mo>:</mo><mrow><msub><mi>hom</mi><mrow><mi class="ltx_font_mathcaligraphic">ℛ</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><mi>l</mi></mrow></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I2.i4.p1.m2" class="ltx_Math" alttext="S:\hom_{\mathcal{R}el}(Y,Z)" display="inline"><mrow><mi>S</mi><mo>:</mo><mrow><msub><mi>hom</mi><mrow><mi class="ltx_font_mathcaligraphic">ℛ</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><mi>l</mi></mrow></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">, their composite is defined by</span></p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="(S\circ R)(x,z):\!\!\equiv\Bigl{\|}\mathchoice{\sum_{y:Y}\,}{\mathchoice{{%
+\textstyle\sum_{(y:Y)}}}{\sum_{(y:Y)}}{\sum_{(y:Y)}}{\sum_{(y:Y)}}}{%
+\mathchoice{{\textstyle\sum_{(y:Y)}}}{\sum_{(y:Y)}}{\sum_{(y:Y)}}{\sum_{(y:Y)}%
+}}{\mathchoice{{\textstyle\sum_{(y:Y)}}}{\sum_{(y:Y)}}{\sum_{(y:Y)}}{\sum_{(y:%
+Y)}}}R(x,y)\times S(y,z)\Bigr{\|}." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>∘</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>y</mi><mo>:</mo><mi>Y</mi></mrow></munder></mpadded><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>×</mo><mi>S</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose <math id="Thmpreeg8.p1.m2" class="ltx_Math" alttext="R:\hom_{\mathcal{R}el}(X,Y)" display="inline"><mrow><mi>R</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">hom</mi><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">R</mi><mo mathvariant="italic">⁢</mo><mi>e</mi><mo mathvariant="italic">⁢</mo><mi>l</mi></mrow></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>X</mi><mo mathvariant="normal">,</mo><mi>Y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> is an isomorphism, with inverse <math id="Thmpreeg8.p1.m3" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math>.
+We observe the following.</span></p>
+<ol id="I3" class="ltx_enumerate">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If </span><math id="I3.i1.p1.m1" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i1.p1.m2" class="ltx_Math" alttext="S(y^{\prime},x)" display="inline"><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>y</mi><mo>′</mo></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="I3.i1.p1.m3" class="ltx_Math" alttext="(R\circ S)(y^{\prime},y)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>R</mi><mo>∘</mo><mi>S</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>y</mi><mo>′</mo></msup><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">, and hence </span><math id="I3.i1.p1.m4" class="ltx_Math" alttext="y^{\prime}=y" display="inline"><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mi>y</mi></mrow></math><span class="ltx_text ltx_font_italic">.
+Similarly, if </span><math id="I3.i1.p1.m5" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i1.p1.m6" class="ltx_Math" alttext="S(y,x^{\prime})" display="inline"><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="I3.i1.p1.m7" class="ltx_Math" alttext="x=x^{\prime}" display="inline"><mrow><mi>x</mi><mo>=</mo><msup><mi>x</mi><mo>′</mo></msup></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any </span><math id="I3.i2.p1.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math><span class="ltx_text ltx_font_italic">, we have </span><math id="I3.i2.p1.m2" class="ltx_Math" alttext="x=x" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>x</mi></mrow></math><span class="ltx_text ltx_font_italic">, hence </span><math id="I3.i2.p1.m3" class="ltx_Math" alttext="(S\circ R)(x,x)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>S</mi><mo>∘</mo><mi>R</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.
+Thus, there merely exists a </span><math id="I3.i2.p1.m4" class="ltx_Math" alttext="y:Y" display="inline"><mrow><mi>y</mi><mo>:</mo><mi>Y</mi></mrow></math><span class="ltx_text ltx_font_italic"> such that </span><math id="I3.i2.p1.m5" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i2.p1.m6" class="ltx_Math" alttext="S(y,x)" display="inline"><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose </span><math id="I3.i3.p1.m1" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.
+By </span><a href="#I3.i2" title="2. ‣ Example 9.1.16. ‣ 9.1 Categories and precategories" class="ltx_ref ltx_font_italic"><span class="ltx_text ltx_ref_tag">2</span></a><span class="ltx_text ltx_font_italic">, there merely exists a </span><math id="I3.i3.p1.m2" class="ltx_Math" alttext="y^{\prime}" display="inline"><msup><mi>y</mi><mo>′</mo></msup></math><span class="ltx_text ltx_font_italic"> with </span><math id="I3.i3.p1.m3" class="ltx_Math" alttext="R(x,y^{\prime})" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i3.p1.m4" class="ltx_Math" alttext="S(y^{\prime},x)" display="inline"><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>y</mi><mo>′</mo></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.
+But then by </span><a href="#I3.i1" title="1. ‣ Example 9.1.16. ‣ 9.1 Categories and precategories" class="ltx_ref ltx_font_italic"><span class="ltx_text ltx_ref_tag">1</span></a><span class="ltx_text ltx_font_italic">, merely </span><math id="I3.i3.p1.m5" class="ltx_Math" alttext="y^{\prime}=y" display="inline"><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mi>y</mi></mrow></math><span class="ltx_text ltx_font_italic">, and hence </span><math id="I3.i3.p1.m6" class="ltx_Math" alttext="y^{\prime}=y" display="inline"><mrow><msup><mi>y</mi><mo>′</mo></msup><mo>=</mo><mi>y</mi></mrow></math><span class="ltx_text ltx_font_italic"> since </span><math id="I3.i3.p1.m7" class="ltx_Math" alttext="Y" display="inline"><mi>Y</mi></math><span class="ltx_text ltx_font_italic"> is a set.
+Therefore, by transporting </span><math id="I3.i3.p1.m8" class="ltx_Math" alttext="S(y^{\prime},x)" display="inline"><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>y</mi><mo>′</mo></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> along this equality, we have </span><math id="I3.i3.p1.m9" class="ltx_Math" alttext="S(y,x)" display="inline"><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.
+In conclusion, </span><math id="I3.i3.p1.m10" class="ltx_Math" alttext="R(x,y)\to S(y,x)" display="inline"><mrow><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">.
+Similarly, </span><math id="I3.i3.p1.m11" class="ltx_Math" alttext="S(y,x)\to R(x,y)" display="inline"><mrow><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I3.i4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If </span><math id="I3.i4.p1.m1" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i4.p1.m2" class="ltx_Math" alttext="R(x,y^{\prime})" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">, then by </span><a href="#I3.i3" title="3. ‣ Example 9.1.16. ‣ 9.1 Categories and precategories" class="ltx_ref ltx_font_italic"><span class="ltx_text ltx_ref_tag">3</span></a><span class="ltx_text ltx_font_italic">, </span><math id="I3.i4.p1.m3" class="ltx_Math" alttext="S(y^{\prime},x)" display="inline"><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>y</mi><mo>′</mo></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">, so that by </span><a href="#I3.i1" title="1. ‣ Example 9.1.16. ‣ 9.1 Categories and precategories" class="ltx_ref ltx_font_italic"><span class="ltx_text ltx_ref_tag">1</span></a><span class="ltx_text ltx_font_italic">, </span><math id="I3.i4.p1.m4" class="ltx_Math" alttext="y=y^{\prime}" display="inline"><mrow><mi>y</mi><mo>=</mo><msup><mi>y</mi><mo>′</mo></msup></mrow></math><span class="ltx_text ltx_font_italic">.
+Thus, for any </span><math id="I3.i4.p1.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math><span class="ltx_text ltx_font_italic"> there is at most one </span><math id="I3.i4.p1.m6" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math><span class="ltx_text ltx_font_italic"> such that </span><math id="I3.i4.p1.m7" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.
+And by </span><a href="#I3.i2" title="2. ‣ Example 9.1.16. ‣ 9.1 Categories and precategories" class="ltx_ref ltx_font_italic"><span class="ltx_text ltx_ref_tag">2</span></a><span class="ltx_text ltx_font_italic">, there merely exists such a </span><math id="I3.i4.p1.m8" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math><span class="ltx_text ltx_font_italic">, hence there exists such a </span><math id="I3.i4.p1.m9" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ol>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In conclusion, if <math id="Thmpreeg8.p1.m4" class="ltx_Math" alttext="R:\hom_{\mathcal{R}el}(X,Y)" display="inline"><mrow><mi>R</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">hom</mi><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">R</mi><mo mathvariant="italic">⁢</mo><mi>e</mi><mo mathvariant="italic">⁢</mo><mi>l</mi></mrow></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>X</mi><mo mathvariant="normal">,</mo><mi>Y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> is an isomorphism, then for each <math id="Thmpreeg8.p1.m5" class="ltx_Math" alttext="x:X" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>X</mi></mrow></math> there is exactly one <math id="Thmpreeg8.p1.m6" class="ltx_Math" alttext="y:Y" display="inline"><mrow><mi>y</mi><mo mathvariant="normal">:</mo><mi>Y</mi></mrow></math> such that <math id="Thmpreeg8.p1.m7" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>, and dually.
+Thus, there is a function <math id="Thmpreeg8.p1.m8" class="ltx_Math" alttext="f:X\to Y" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>X</mi><mo mathvariant="normal">→</mo><mi>Y</mi></mrow></mrow></math> sending each <math id="Thmpreeg8.p1.m9" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> to this <math id="Thmpreeg8.p1.m10" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>, which is an equivalence; hence <math id="Thmpreeg8.p1.m11" class="ltx_Math" alttext="X=Y" display="inline"><mrow><mi>X</mi><mo mathvariant="normal">=</mo><mi>Y</mi></mrow></math>.
+With a little more work, we conclude that <math id="Thmpreeg8.p1.m12" class="ltx_Math" alttext="\mathcal{R}el" display="inline"><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">R</mi><mo mathvariant="italic">⁢</mo><mi>e</mi><mo mathvariant="italic">⁢</mo><mi>l</mi></mrow></math> is a category.</span></p>
+</div>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">We might now restrict ourselves to considering categories rather than precategories.
+Instead, we will develop many concepts for precategories as well as categories, in order to emphasize how much better-behaved categories are, as compared both to precategories and to ordinary categories in classical mathematics.
+</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">We will also see in <span class="ltx_ERROR undefined">\crefrange</span>sec:strict-categoriessec:dagger-categories that in slightly more exotic contexts, there are uses for certain kinds of precategories other than categories, each of which “fixes” the equality of objects in different ways.
+This emphasizes the “pre”-ness of precategories: they are the raw material out of which multiple important categorical structures can be defined.</p>
+</div>
+<div id="p18" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">9.1 Categories and precategories</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:42:19 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

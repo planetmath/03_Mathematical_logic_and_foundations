@@ -1,0 +1,78 @@
+<!DOCTYPE html><html>
+<head>
+<title>Chapter 7 Notes</title>
+<!--Generated on Thu Feb  8 19:45:00 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-topos, Haskell, Streicher’s Axiom K, axiom, comonad, computational effect, modal, modality, monad, operator, programming, purely, topos">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">Chapter 7 Notes</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">The notion of homotopy <math id="p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type in classical homotopy theory is quite old.
+It was Voevodsky who realized that the notion can be defined recursively in homotopy type theory, starting from contractibility.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">The property “Axiom K” was so named by Thomas Streicher, as a property of identity types which comes after J, the latter being the traditional name for the eliminator of identity types.
+<span class="ltx_ERROR undefined">\autoref</span>thm:hedberg is due to Hedberg <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">hedberg1998coherence</span>]</cite>; <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">krausgeneralizations</span>]</cite> contains more information and generalizations.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">The notions of <math id="p3.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-connected spaces and functions are also classical in homotopy theory, although as mentioned before, our indexing for connectedness of functions is off by one from the classical indexing.
+The importance of the resulting factorization system has been emphasized by recent work in higher topos theory by Rezk, Lurie, and others.
+In particular, the results of this chapter should be compared with <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">lurie:higher-topoi</span>, §6.5.1]</cite>.
+In <span class="ltx_ERROR undefined">\autoref</span>sec:freudenthal, the theory of <math id="p3.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-connected maps will be crucial to our proof of the Freudenthal suspension theorem.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Modal operators in <em class="ltx_emph ltx_font_italic">simple</em> type theory have been studied extensively; see e.g. <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">modalTT</span>]</cite>. In the setting of dependent type theory, <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">ab:bracket-types</span>]</cite> treats the special case of propositional truncation (<math id="p4.m1" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-truncation) as a modal operator. The development presented here greatly extends and generalizes this work, while drawing also on ideas from topos theory.
+</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Generally, modal operators come in (at least) two flavors: those such as <math id="p5.m1" class="ltx_Math" alttext="\diamond" display="inline"><mo>⋄</mo></math> (“possibly”) for which <math id="p5.m2" class="ltx_Math" alttext="A\Rightarrow\diamond A" display="inline"><mrow><mi>A</mi><mo>⇒</mo><mrow><mo>⋄</mo><mi>A</mi></mrow></mrow></math>, and those such as <math id="p5.m3" class="ltx_Math" alttext="\Box" display="inline"><mi mathvariant="normal">□</mi></math> (“necessarily”) for which <math id="p5.m4" class="ltx_Math" alttext="\Box A\Rightarrow A" display="inline"><mrow><mrow><mi mathvariant="normal">□</mi><mo>⁢</mo><mi>A</mi></mrow><mo>⇒</mo><mi>A</mi></mrow></math>.
+When they are also <em class="ltx_emph ltx_font_italic">idempotent</em> (i.e. <math id="p5.m5" class="ltx_Math" alttext="\diamond A=\diamond{\diamond A}" display="inline"><mrow><mo>⋄</mo><mi>A</mi><mo>=</mo><mo>⋄</mo><mo>⋄</mo><mi>A</mi></mrow></math> or <math id="p5.m6" class="ltx_Math" alttext="\Box A=\Box{\Box A}" display="inline"><mrow><mrow><mi mathvariant="normal">□</mi><mo>⁢</mo><mi>A</mi></mrow><mo>=</mo><mrow><mi mathvariant="normal">□</mi><mo>⁢</mo><mi mathvariant="normal">□</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math>), the former may be identified with reflective subcategories (or equivalently, idempotent monads), and the latter with coreflective subcategories (or idempotent comonads).
+
+
+However, in dependent type theory it is trickier to deal with the comonadic sort, since they are more rarely stable under pullback, and thus cannot be interpreted as operations on the universe <math id="p5.m7" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math>.
+Sometimes there are ways around this (see e.g. <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">QGFTinCHoTT12</span>]</cite>), but for simplicity, here we stick to the monadic sort.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">On the computational side, monads (and hence modalities) are used to model computational effects in functional programming <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">Moggi89</span>]</cite>.A computation is said to be <em class="ltx_emph ltx_font_italic">pure</em> if its execution results in no side effects (such as printing a message to the screen, playing music, or sending data over the Internet).
+There exist “purely functional” programming languages, such as Haskell, in which it is technically only possible to write pure functions: side effects are represented by applying “monads” to output types.
+For instance, a function of type <math id="p6.m1" class="ltx_Math" alttext="\mathsf{Int}\to\mathsf{Int}" display="inline"><mrow><mi>𝖨𝗇𝗍</mi><mo>→</mo><mi>𝖨𝗇𝗍</mi></mrow></math> is pure, while a function of type <math id="p6.m2" class="ltx_Math" alttext="\mathsf{Int}\to\mathsf{IO}(\mathsf{Int})" display="inline"><mrow><mi>𝖨𝗇𝗍</mi><mo>→</mo><mrow><mi>𝖨𝖮</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝖨𝗇𝗍</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> may perform input and output along the way to computing its result; the operation <math id="p6.m3" class="ltx_Math" alttext="\mathsf{IO}" display="inline"><mi>𝖨𝖮</mi></math> is a monad.
+(This is the origin of our use of the adverb “purely” for the identity monad, since it corresponds computationally to pure functions with no side-effects.)
+The modalities we have considered in this chapter are all idempotent, whereas those used in functional programming rarely are, but the ideas are still closely related.
+</p>
+</div>
+<div id="p7" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">Chapter 7 Notes</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:45:00 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

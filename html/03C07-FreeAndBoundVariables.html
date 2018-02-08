@@ -1,0 +1,248 @@
+<!DOCTYPE html><html>
+<head>
+<title>free and bound variables</title>
+<!--Generated on Thu Feb  8 19:55:06 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">free and bound variables</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">In the entry first-order language (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/TermsAndFormulas</span>), I have mentioned the use of variables without mentioning what variables really are. A variable is a symbol that is supposed to range over the universe of discourse. Unlike a constant, it has no fixed value.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">There are two ways in which a variable can occur in a formula: <span class="ltx_text ltx_font_bold">free</span> or <span class="ltx_text ltx_font_bold">bound</span>. Informally, a variable is said to occur <span class="ltx_text ltx_font_italic">free</span> in a formula <math id="p3.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> if and only if it is not within the “scope” of a quantifier. For instance, <math id="p3.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> occurs free in <math id="p3.m3" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> if and only if it occurs in it as a symbol, and no subformula of <math id="p3.m4" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is of the form <math id="p3.m5" class="ltx_Math" alttext="\exists x.\psi" display="inline"><mrow><mrow><mo>∃</mo><mi>x</mi></mrow><mo>.</mo><mi>ψ</mi></mrow></math>. Here the <math id="p3.m6" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> after the <math id="p3.m7" class="ltx_Math" alttext="\exists" display="inline"><mo>∃</mo></math> is to be taken literally : it is <math id="p3.m8" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and no other symbol.</p>
+</div>
+<section id="S0.SS0.SSSx1" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Variables in Terms</h2>
+
+<div id="S0.SS0.SSSx1.p1" class="ltx_para">
+<p class="ltx_p">To formally define free (resp. bound) variables in a formula, we start by defining variables occurring in terms, which can be easily done inductively: let <math id="S0.SS0.SSSx1.p1.m1" class="ltx_Math" alttext="{t}" display="inline"><mi>t</mi></math> be a term (in a first-order language), then <math id="S0.SS0.SSSx1.p1.m2" class="ltx_Math" alttext="\operatorname{Var}(t)" display="inline"><mrow><mi>Var</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mrow></math> is</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I1.i1.p1.m1" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math> is a variable <math id="I1.i1.p1.m2" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math>, then <math id="I1.i1.p1.m3" class="ltx_Math" alttext="\operatorname{Var}(t)" display="inline"><mrow><mi>Var</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I1.i1.p1.m4" class="ltx_Math" alttext="\{v\}" display="inline"><mrow><mo stretchy="false">{</mo><mi>v</mi><mo stretchy="false">}</mo></mrow></math></p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I1.i2.p1.m1" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math> is <math id="I1.i2.p1.m2" class="ltx_Math" alttext="f(t_{1},\ldots,t_{n})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>t</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>t</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>, where <math id="I1.i2.p1.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is a function symbol of arity <math id="I1.i2.p1.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, and each <math id="I1.i2.p1.m5" class="ltx_Math" alttext="t_{i}" display="inline"><msub><mi>t</mi><mi>i</mi></msub></math> is a term, then <math id="I1.i2.p1.m6" class="ltx_Math" alttext="\operatorname{Var}(t)" display="inline"><mrow><mi>Var</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the union of all the <math id="I1.i2.p1.m7" class="ltx_Math" alttext="\operatorname{Var}(t_{i})" display="inline"><mrow><mi>Var</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S0.SS0.SSSx2" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Free Variables</h2>
+
+<div id="S0.SS0.SSSx2.p1" class="ltx_para">
+<p class="ltx_p">Now, let <math id="S0.SS0.SSSx2.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> be a formula. Then the set <math id="S0.SS0.SSSx2.p1.m2" class="ltx_Math" alttext="\operatorname{FV}(\varphi)" display="inline"><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> of <em class="ltx_emph ltx_font_italic">free variables</em> of <math id="S0.SS0.SSSx2.p1.m3" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is now defined inductively as follows:</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i1.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is <math id="I2.i1.p1.m2" class="ltx_Math" alttext="t_{1}=t_{2}" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub><mo>=</mo><msub><mi>t</mi><mn>2</mn></msub></mrow></math>, then <math id="I2.i1.p1.m3" class="ltx_Math" alttext="\operatorname{FV}(\varphi)" display="inline"><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I2.i1.p1.m4" class="ltx_Math" alttext="\operatorname{Var}(t_{1})\cup\operatorname{Var}(t_{2})" display="inline"><mrow><mrow><mi>Var</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>t</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>∪</mo><mrow><mi>Var</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>t</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i2.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is <math id="I2.i2.p1.m2" class="ltx_Math" alttext="R(t_{1},\ldots,t_{n})" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>t</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>t</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>, then <math id="I2.i2.p1.m3" class="ltx_Math" alttext="\operatorname{FV}(\varphi)" display="inline"><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I2.i2.p1.m4" class="ltx_Math" alttext="\operatorname{Var}(t_{1})\cup\cdots\cup\operatorname{Var}(t_{n})" display="inline"><mrow><mrow><mi>Var</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>t</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>∪</mo><mi mathvariant="normal">⋯</mi><mo>∪</mo><mrow><mi>Var</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>t</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math></p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i3.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is <math id="I2.i3.p1.m2" class="ltx_Math" alttext="\neg\psi" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>ψ</mi></mrow></math>, then <math id="I2.i3.p1.m3" class="ltx_Math" alttext="\operatorname{FV}(\varphi)" display="inline"><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I2.i3.p1.m4" class="ltx_Math" alttext="\operatorname{FV}(\psi)" display="inline"><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>ψ</mi><mo stretchy="false">)</mo></mrow></mrow></math></p>
+</div>
+</li>
+<li id="I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i4.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i4.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is <math id="I2.i4.p1.m2" class="ltx_Math" alttext="\psi\vee\sigma" display="inline"><mrow><mi>ψ</mi><mo>∨</mo><mi>σ</mi></mrow></math>, then <math id="I2.i4.p1.m3" class="ltx_Math" alttext="\operatorname{FV}(\varphi)" display="inline"><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I2.i4.p1.m4" class="ltx_Math" alttext="\operatorname{FV}(\psi)\cup\operatorname{FV}(\sigma)" display="inline"><mrow><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>ψ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∪</mo><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>σ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and</p>
+</div>
+</li>
+<li id="I2.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i5.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i5.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is <math id="I2.i5.p1.m2" class="ltx_Math" alttext="\exists x\psi" display="inline"><mrow><mo>∃</mo><mrow><mi>x</mi><mo>⁢</mo><mi>ψ</mi></mrow></mrow></math>, then <math id="I2.i5.p1.m3" class="ltx_Math" alttext="\operatorname{FV}(\varphi)" display="inline"><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I2.i5.p1.m4" class="ltx_Math" alttext="\operatorname{FV}(\psi)-\{x\}" display="inline"><mrow><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>ψ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>-</mo><mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="S0.SS0.SSSx2.p2" class="ltx_para">
+<p class="ltx_p">If <math id="S0.SS0.SSSx2.p2.m1" class="ltx_Math" alttext="\operatorname{FV}(\varphi)\neq\varnothing" display="inline"><mrow><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mi mathvariant="normal">∅</mi></mrow></math>, it is customary to write <math id="S0.SS0.SSSx2.p2.m2" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> as <math id="S0.SS0.SSSx2.p2.m3" class="ltx_Math" alttext="\varphi(x_{1},\ldots,x_{n})," display="inline"><mrow><mrow><mi>φ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo></mrow></math> in order to stress the fact that there are some free variables left in <math id="S0.SS0.SSSx2.p2.m4" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math>, and that those free variables are among <math id="S0.SS0.SSSx2.p2.m5" class="ltx_Math" alttext="x_{1},\ldots,x_{n}" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></math>. When <math id="S0.SS0.SSSx2.p2.m6" class="ltx_Math" alttext="x_{1},\ldots,x_{n}" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></math> appear free in <math id="S0.SS0.SSSx2.p2.m7" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math>, then they are considered as <span class="ltx_text ltx_font_bold">place-holders</span>, and it is understood that we will have to supply “values” for them, when we want to determine the truth of <math id="S0.SS0.SSSx2.p2.m8" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math>. If <math id="S0.SS0.SSSx2.p2.m9" class="ltx_Math" alttext="\operatorname{FV}(\varphi)=\varnothing" display="inline"><mrow><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi mathvariant="normal">∅</mi></mrow></math>, then <math id="S0.SS0.SSSx2.p2.m10" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is called a <span class="ltx_text ltx_font_bold">sentence</span>. Another name for a sentence is a <em class="ltx_emph ltx_font_italic">closed formula</em>. A formula that is not closed is said to be <em class="ltx_emph ltx_font_italic">open</em>.</p>
+</div>
+</section>
+<section id="S0.SS0.SSSx3" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Bound Variables</h2>
+
+<div id="S0.SS0.SSSx3.p1" class="ltx_para">
+<p class="ltx_p">Bound variables in formulas are inductively defined as well: let <math id="S0.SS0.SSSx3.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> be a formula. Then the set <math id="S0.SS0.SSSx3.p1.m2" class="ltx_Math" alttext="\operatorname{BV}(\varphi)" display="inline"><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> of <em class="ltx_emph ltx_font_italic">bound variables</em> of <math id="S0.SS0.SSSx3.p1.m3" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math></p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I3.i1.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is an atomic formula, then <math id="I3.i1.p1.m2" class="ltx_Math" alttext="\operatorname{BV}(\varphi)" display="inline"><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I3.i1.p1.m3" class="ltx_Math" alttext="\varnothing" display="inline"><mi mathvariant="normal">∅</mi></math>, the empty set,</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I3.i2.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is <math id="I3.i2.p1.m2" class="ltx_Math" alttext="\neg\psi" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>ψ</mi></mrow></math>, then <math id="I3.i2.p1.m3" class="ltx_Math" alttext="\operatorname{BV}(\varphi)" display="inline"><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I3.i2.p1.m4" class="ltx_Math" alttext="\operatorname{BV}(\psi)" display="inline"><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>ψ</mi><mo stretchy="false">)</mo></mrow></mrow></math></p>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I3.i3.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is <math id="I3.i3.p1.m2" class="ltx_Math" alttext="\psi\vee\sigma" display="inline"><mrow><mi>ψ</mi><mo>∨</mo><mi>σ</mi></mrow></math>, then <math id="I3.i3.p1.m3" class="ltx_Math" alttext="\operatorname{BV}(\varphi)" display="inline"><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I3.i3.p1.m4" class="ltx_Math" alttext="\operatorname{BV}(\psi)\cup\operatorname{BV}(\sigma)" display="inline"><mrow><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>ψ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∪</mo><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>σ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and</p>
+</div>
+</li>
+<li id="I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i4.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I3.i4.p1.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is <math id="I3.i4.p1.m2" class="ltx_Math" alttext="\exists x\psi" display="inline"><mrow><mo>∃</mo><mrow><mi>x</mi><mo>⁢</mo><mi>ψ</mi></mrow></mrow></math>, then <math id="I3.i4.p1.m3" class="ltx_Math" alttext="\operatorname{BV}(\varphi)" display="inline"><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I3.i4.p1.m4" class="ltx_Math" alttext="\operatorname{BV}(\psi)\cup\{x\}" display="inline"><mrow><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>ψ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∪</mo><mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Thus, a variable <math id="S0.SS0.SSSx3.p1.m4" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is bound in <math id="S0.SS0.SSSx3.p1.m5" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> if and only if <math id="S0.SS0.SSSx3.p1.m6" class="ltx_Math" alttext="\exists x\psi" display="inline"><mrow><mo>∃</mo><mrow><mi>x</mi><mo>⁢</mo><mi>ψ</mi></mrow></mrow></math> is a subformula of <math id="S0.SS0.SSSx3.p1.m7" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> for some formula <math id="S0.SS0.SSSx3.p1.m8" class="ltx_Math" alttext="\psi" display="inline"><mi>ψ</mi></math>.</p>
+</div>
+<div id="S0.SS0.SSSx3.p2" class="ltx_para">
+<p class="ltx_p">The set of all variables occurring in a formula <math id="S0.SS0.SSSx3.p2.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> is denoted <math id="S0.SS0.SSSx3.p2.m2" class="ltx_Math" alttext="\operatorname{Var}(\varphi)" display="inline"><mrow><mi>Var</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and is <math id="S0.SS0.SSSx3.p2.m3" class="ltx_Math" alttext="\operatorname{FV}(\varphi)\cup\operatorname{BV}(\varphi)" display="inline"><mrow><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∪</mo><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="S0.SS0.SSSx3.p3" class="ltx_para">
+<p class="ltx_p">Note that it is possible for a variable to be both free and bound. In other words, <math id="S0.SS0.SSSx3.p3.m1" class="ltx_Math" alttext="\operatorname{FV}(\varphi)" display="inline"><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="S0.SS0.SSSx3.p3.m2" class="ltx_Math" alttext="\operatorname{BV}(\varphi)" display="inline"><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></math> are not necessarily disjoint. For example, consider the following formula <math id="S0.SS0.SSSx3.p3.m3" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> of the lenguage <math id="S0.SS0.SSSx3.p3.m4" class="ltx_Math" alttext="\{+,\cdot,0,1\}" display="inline"><mrow><mo stretchy="false">{</mo><mo>+</mo><mo>,</mo><mo>⋅</mo><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow></math> of ring theory :</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="x+1=0\wedge\exists x(x+y=1)" display="block"><mrow><mi>x</mi><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn><mo>∧</mo><mo>∃</mo><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then <math id="S0.SS0.SSSx3.p3.m5" class="ltx_Math" alttext="\operatorname{FV}(\varphi)=\{x,y\}" display="inline"><mrow><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">{</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">}</mo></mrow></mrow></math> and <math id="S0.SS0.SSSx3.p3.m6" class="ltx_Math" alttext="\operatorname{BV}(\varphi)=\{x\}" display="inline"><mrow><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo></mrow></mrow></math>: the variable <math id="S0.SS0.SSSx3.p3.m7" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> occurs both free and bound. However, the following lemma tells us that we can always avoid this situation :</p>
+</div>
+<div id="S0.SS0.SSSx3.p4" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Lemma 1. </span>
+It is possible to rename the bound variables without affecting the truth of a formula. In other words, if <math id="S0.SS0.SSSx3.p4.m1" class="ltx_Math" alttext="\varphi=\exists x(\psi)" display="inline"><mrow><mi>φ</mi><mo>=</mo><mrow><mo>∃</mo><mrow><mi>x</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ψ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, or <math id="S0.SS0.SSSx3.p4.m2" class="ltx_Math" alttext="\forall x(\psi)" display="inline"><mrow><mo>∀</mo><mrow><mi>x</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ψ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and <math id="S0.SS0.SSSx3.p4.m3" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> is a variable not occurring in <math id="S0.SS0.SSSx3.p4.m4" class="ltx_Math" alttext="\psi" display="inline"><mi>ψ</mi></math>, then <math id="S0.SS0.SSSx3.p4.m5" class="ltx_Math" alttext="\vdash\varphi\Leftrightarrow\exists z(\psi[z/x])" display="inline"><mrow><mo>⊢</mo><mi>φ</mi><mo>⇔</mo><mo>∃</mo><mi>z</mi><mrow><mo stretchy="false">(</mo><mi>ψ</mi><mrow><mo stretchy="false">[</mo><mi>z</mi><mo>/</mo><mi>x</mi><mo stretchy="false">]</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, where <math id="S0.SS0.SSSx3.p4.m6" class="ltx_Math" alttext="\psi[z/x]" display="inline"><mrow><mi>ψ</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><mi>z</mi><mo>/</mo><mi>x</mi></mrow><mo stretchy="false">]</mo></mrow></mrow></math> is the formula obtained from <math id="S0.SS0.SSSx3.p4.m7" class="ltx_Math" alttext="\psi" display="inline"><mi>ψ</mi></math> by replacing every free occurrence of <math id="S0.SS0.SSSx3.p4.m8" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> by <math id="S0.SS0.SSSx3.p4.m9" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>.</p>
+</div>
+<div id="S0.SS0.SSSx3.p5" class="ltx_para">
+<p class="ltx_p">As a result of the lemma above, we see that every formula is logically equivalent to a formula <math id="S0.SS0.SSSx3.p5.m1" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> such that <math id="S0.SS0.SSSx3.p5.m2" class="ltx_Math" alttext="\operatorname{FV}(\varphi)\cap\operatorname{BV}(\varphi)=\varnothing" display="inline"><mrow><mrow><mrow><mi>FV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∩</mo><mrow><mi>BV</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>φ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mi mathvariant="normal">∅</mi></mrow></math>.</p>
+</div>
+<div id="S0.SS0.SSSx3.p6" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">free and bound variables</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Canonical name</td>
+<td class="ltx_td ltx_align_left ltx_border_r">FreeAndBoundVariables</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Date of creation</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 12:42:57</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified on</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 12:42:57</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Owner</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified by</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Numerical id</td>
+<td class="ltx_td ltx_align_left ltx_border_r">24</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Author</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Entry type</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03C07</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03B10</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">occur free</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">occur bound</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">closed</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">open</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Related topic</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Substitutability</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">free variable</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">bound variable</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">free occurrence</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">bound occurrence</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">occurs free</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">occurs bound</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:55:06 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

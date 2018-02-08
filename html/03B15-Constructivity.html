@@ -1,0 +1,374 @@
+<!DOCTYPE html><html>
+<head>
+<title>Constructivity</title>
+<!--Generated on Thu Feb  8 19:45:09 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-type, Kan complex, Lawvere, Postnikov tower, algorithm, as types, automorphism, axiom, classical, consistency, constructive, constructive vs classical, constructivity, discrete, excluded middle, extraction of algorithms, fixed-point-free, inaccessible cardinal, intuitionistic, logic, mathematics, of choice, programming, proposition, space, topos, univalence axiom">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">Constructivity</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">One of the most striking differences between classical foundations and type theory is the idea of <em class="ltx_emph ltx_font_italic">proof relevance</em>, according to which mathematical statements, and even their proofs, become first-class mathematical objects.
+In type theory, we represent mathematical statements by types, which can be regarded simultaneously as both mathematical constructions and mathematical assertions, a conception also known as <em class="ltx_emph ltx_font_italic">propositions as types</em>.
+Accordingly, we can regard a term <math id="p2.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> as both an element of the type <math id="p2.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> (or in homotopy type theory, a point of the space <math id="p2.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>), and at the same time, a proof of the proposition <math id="p2.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+To take an example, suppose we have sets <math id="p2.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p2.m6" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> (discrete spaces),
+and consider the statement “<math id="p2.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is isomorphic to <math id="p2.m8" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.”
+In type theory, this can be rendered as:</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathsf{Iso}(A,B):\!\!\equiv\mathchoice{\sum_{(f:A\to B)}\,}{\mathchoice{{%
+\textstyle\sum_{(f:A\to B)}}}{\sum_{(f:A\to B)}}{\sum_{(f:A\to B)}}{\sum_{(f:A%
+\to B)}}}{\mathchoice{{\textstyle\sum_{(f:A\to B)}}}{\sum_{(f:A\to B)}}{\sum_{%
+(f:A\to B)}}{\sum_{(f:A\to B)}}}{\mathchoice{{\textstyle\sum_{(f:A\to B)}}}{%
+\sum_{(f:A\to B)}}{\sum_{(f:A\to B)}}{\sum_{(f:A\to B)}}}\mathchoice{\sum_{(g:%
+B\to A)}\,}{\mathchoice{{\textstyle\sum_{(g:B\to A)}}}{\sum_{(g:B\to A)}}{\sum%
+_{(g:B\to A)}}{\sum_{(g:B\to A)}}}{\mathchoice{{\textstyle\sum_{(g:B\to A)}}}{%
+\sum_{(g:B\to A)}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)}}}{\mathchoice{{%
+\textstyle\sum_{(g:B\to A)}}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)}}{\sum_{(g:B%
+\to A)}}}\Big{(}\big{(}\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}g(f(x))=x\big{)}\times\big{(}\mathchoice{{%
+\textstyle\prod_{(y:B)}}}{\prod_{(y:B)}}{\prod_{(y:B)}}{\prod_{(y:B)}}\,f(g(y)%
+)=y\big{)}\Big{)}." display="block"><mrow><mi>𝖨𝗌𝗈</mi><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>:</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>x</mi><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>×</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mpadded width="+1.7pt"><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub></mstyle></mpadded><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>y</mi><mo maxsize="120%" minsize="120%">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Reading the type constructors <math id="p2.m9" class="ltx_Math" alttext="\Sigma,\Pi,\times" display="inline"><mrow><mi mathvariant="normal">Σ</mi><mo>,</mo><mi mathvariant="normal">Π</mi><mo>,</mo><mo>×</mo></mrow></math> here as “there exists”, “for all”, and “and” respectively yields the usual formulation of “<math id="p2.m10" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p2.m11" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are isomorphic”; on the other hand, reading them as sums and products yields the <em class="ltx_emph ltx_font_italic">type of all isomorphisms</em> between <math id="p2.m12" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p2.m13" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>! To prove that <math id="p2.m14" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p2.m15" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are isomorphic, one constructs a proof <math id="p2.m16" class="ltx_Math" alttext="p:\mathsf{Iso}(A,B)" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>𝖨𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, which is therefore the same as constructing an isomorphism between <math id="p2.m17" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p2.m18" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, i.e., exhibiting a pair of functions <math id="p2.m19" class="ltx_Math" alttext="f,g" display="inline"><mrow><mi>f</mi><mo>,</mo><mi>g</mi></mrow></math> together with <em class="ltx_emph ltx_font_italic">proofs</em> that their composites are the respective identity maps. The latter proofs, in turn, are nothing but homotopies of the appropriate sorts. In this way, <em class="ltx_emph ltx_font_italic">proving a proposition is the same as constructing an element of some particular type.</em></p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">In particular, to prove a statement of the form “<math id="p3.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p3.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>” is just to prove <math id="p3.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and to prove <math id="p3.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, i.e., to give an element of the type <math id="p3.m5" class="ltx_Math" alttext="A\times B" display="inline"><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow></math>.
+And to prove that <math id="p3.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> implies <math id="p3.m7" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is just to find an element of <math id="p3.m8" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math>, i.e. a function from <math id="p3.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> to <math id="p3.m10" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> (determining a mapping of proofs of <math id="p3.m11" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> to proofs of <math id="p3.m12" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>).
+This “constructive” conception (for more on which, see <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib3" title="" class="ltx_ref">3</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib10" title="" class="ltx_ref">10</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib11" title="" class="ltx_ref">11</a>]</cite>) is what gives type theory its good
+computational character.
+For instance, every proof that something exists carries with it enough information to actually find such an object; and from a proof that “<math id="p3.m13" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or <math id="p3.m14" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>” holds, one can extract either a proof that <math id="p3.m15" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> holds or one that <math id="p3.m16" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> holds.
+Thus, from every proof we can automatically extract an algorithm;  this can be very useful in applications to computer programming.
+</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">However, this conception of logic does behave in ways that are unfamiliar to most mathematicians.
+On one hand, a naive translation of the <em class="ltx_emph ltx_font_italic">axiom of choice</em> yields a statement that we can simply prove.
+Essentially, this notion of “there exists” is strong enough to ensure that, by showing that for every <math id="p4.m1" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math> there exists a <math id="p4.m2" class="ltx_Math" alttext="y:B" display="inline"><mrow><mi>y</mi><mo>:</mo><mi>B</mi></mrow></math> such that <math id="p4.m3" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>, we automatically construct a function <math id="p4.m4" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> such that, for all <math id="p4.m5" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>, we have <math id="p4.m6" class="ltx_Math" alttext="R(x,f(x))" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">On the other hand, this notion of “or” is so strong that a naive translation of the <em class="ltx_emph ltx_font_italic">law of excluded middle</em> is inconsistent with the univalence axiom.
+For if we assume “for all <math id="p5.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, either <math id="p5.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or not <math id="p5.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>”, then since proving “<math id="p5.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>” means exhibiting an element of it, we would have a uniform way of selecting an element from every nonempty type — a sort of Hilbertian choice operator.
+However, univalence implies that the element of <math id="p5.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> selected by such a choice operator must be invariant under all self-equivalences of <math id="p5.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, since these are identified with self-identities and every operation must respect identity.
+But clearly some types have automorphisms with no fixed points, e.g. we can swap the elements of a two-element type.
+</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Thus, the logic of “proposition as types” suggested by traditional type theory is not the “classical” logic familiar to most mathematicians.
+But it is also different from the logic sometimes called “intuitionistic”, which may lack <em class="ltx_emph ltx_font_italic">both</em> the law of excluded middle and the axiom of choice. For present purposes, it may be called <em class="ltx_emph ltx_font_italic">constructive logic</em>
+(but one should be aware that the terms “intuitionistic” and “constructive” are often used differently).
+</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The computational advantages of constructive logic imply that we should not discard it lightly; but for some purposes in classical mathematics, its non-classical character can be problematic.
+Many mathematicians are, of course, accustomed to rely on the law of excluded middle; while the “axiom of choice” that is available in constructive logic looks superficially similar to its classical namesake, but does not have all of its strong consequences.
+Fortunately, homotopy type theory gives a finer analysis of this situation, allowing various different kinds of logic to coexist and intermix.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">The new insight that makes this possible is that the system of all types, just like spaces in classical homotopy theory, is “stratified” according to the dimensions in which their higher homotopy structure exists or collapses.
+In particular, Voevodsky has found a purely type-theoretic definition of <em class="ltx_emph ltx_font_italic">homotopy <math id="p8.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types</em>, corresponding to spaces with no nontrivial homotopy information above dimension <math id="p8.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+(The <math id="p8.m3" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math>-types are the “sets” mentioned previously as satisfying Lawvere’s axioms.)
+Moreover, with higher inductive types, we can universally “truncate” a type into an <math id="p8.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type; in classical homotopy theory this would be its <math id="p8.m5" class="ltx_Math" alttext="n^{\mathrm{th}}" display="inline"><msup><mi>n</mi><mi>th</mi></msup></math> Postnikov section.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">With these notions in hand, the homotopy <math id="p9.m1" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-types, which we call <em class="ltx_emph ltx_font_italic">(mere) propositions</em>, support a logic that is much more like traditional “intuitionistic” logic.
+(Classically, every <math id="p9.m2" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-type is empty or contractible; we interpret these possibilities as the truth values “false” and “true” respectively.)
+The “<math id="p9.m3" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-truncated axiom of choice” is not automatically true, but is a strong assumption with the same sorts of consequences as its counterpart in classical set theory.
+Similarly, the “<math id="p9.m4" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-truncated law of excluded middle” may be assumed, with many of the same consequences as in classical mathematics.
+Thus, the homotopical perspective reveals that classical and constructive logic can coexist, as endpoints of a spectrum of different systems, with an infinite number of possibilities in between (the homotopy <math id="p9.m5" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types for <math id="p9.m6" class="ltx_Math" alttext="-1&lt;n&lt;\infty" display="inline"><mrow><mrow><mo>-</mo><mn>1</mn></mrow><mo>&lt;</mo><mi>n</mi><mo>&lt;</mo><mi mathvariant="normal">∞</mi></mrow></math>).
+We may speak of “<math id="p9.m7" class="ltx_Math" alttext="\mathsf{LEM}_{n}" display="inline"><msub><mi>𝖫𝖤𝖬</mi><mi>n</mi></msub></math>” and “<math id="p9.m8" class="ltx_Math" alttext="\mathsf{AC}_{n}" display="inline"><msub><mi>𝖠𝖢</mi><mi>n</mi></msub></math>”, with <math id="p9.m9" class="ltx_Math" alttext="\mathsf{AC}_{\infty}" display="inline"><msub><mi>𝖠𝖢</mi><mi mathvariant="normal">∞</mi></msub></math> being provable and <math id="p9.m10" class="ltx_Math" alttext="\mathsf{LEM}_{\infty}" display="inline"><msub><mi>𝖫𝖤𝖬</mi><mi mathvariant="normal">∞</mi></msub></math> inconsistent with univalence, while <math id="p9.m11" class="ltx_Math" alttext="\mathsf{AC}_{-1}" display="inline"><msub><mi>𝖠𝖢</mi><mrow><mo>-</mo><mn>1</mn></mrow></msub></math> and <math id="p9.m12" class="ltx_Math" alttext="\mathsf{LEM}_{-1}" display="inline"><msub><mi>𝖫𝖤𝖬</mi><mrow><mo>-</mo><mn>1</mn></mrow></msub></math> are the versions familiar to classical mathematicians (hence in most cases it is appropriate to assume the subscript <math id="p9.m13" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math> when none is given). Indeed, one can even have useful systems in which only <em class="ltx_emph ltx_font_italic">certain</em> types satisfy such further “classical” principles, while types in general remain “constructive.”</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">It is worth emphasizing that univalent foundations does not <em class="ltx_emph ltx_font_italic">require</em> the use of constructive or intuitionistic logic. Most of classical mathematics which depends on the law of excluded middle and the axiom of choice can be performed in univalent foundations, simply by assuming that these two principles hold (in their proper, <math id="p10.m1" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-truncated, form).
+However, type theory does encourage avoiding these principles when they are unnecessary, for several reasons.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">First of all, every mathematician knows that a theorem is more powerful when proven using fewer assumptions, since it applies to more examples.
+The situation with <math id="p11.m1" class="ltx_Math" alttext="\mathsf{AC}" display="inline"><mi>𝖠𝖢</mi></math> and <math id="p11.m2" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math> is no different:
+type theory admits many interesting “nonstandard” models, such as in sheaf toposes, where classicality principles such as <math id="p11.m3" class="ltx_Math" alttext="\mathsf{AC}" display="inline"><mi>𝖠𝖢</mi></math> and <math id="p11.m4" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math> tend to fail.
+Homotopy type theory admits similar models in higher toposes, such as are studied in <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib9" title="" class="ltx_ref">9</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib8" title="" class="ltx_ref">8</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib7" title="" class="ltx_ref">7</a>]</cite>.
+Thus, if we avoid using these principles, the theorems we prove will be valid internally to all such models.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Secondly, one of the additional virtues of type theory is its computable character.
+In addition to being a foundation for mathematics, type theory is a formal theory of computation, and can be treated as a powerful programming language.
+From this perspective, the rules of the system cannot be chosen arbitrarily the way set-theoretic axioms can: there must be a harmony between them which allows all proofs to be “executed” as programs.
+We do not yet fully understand the new principles introduced by homotopy type theory, such as univalence and higher inductive types, from
+this point of view, but the basic outlines are emerging; see, for example, <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib5" title="" class="ltx_ref">5</a>]</cite>.
+It has been known for a long time, however, that principles such as <math id="p12.m1" class="ltx_Math" alttext="\mathsf{AC}" display="inline"><mi>𝖠𝖢</mi></math> and <math id="p12.m2" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math> are fundamentally antithetical to computability, since they assert baldly that certain things exist without giving any way to compute them.
+Thus, avoiding them is necessary to maintain the character of type theory as a theory of computation.</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">Fortunately, constructive reasoning is not as hard as it may seem.
+In some cases, simply by rephrasing some definitions, a theorem can be made constructive and its proof more elegant.
+Moreover, in univalent foundations this seems to happen more often.
+For instance:</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">In set-theoretic foundations, at various points in homotopy theory and category theory one needs the axiom of choice to perform transfinite constructions.
+But with higher inductive types, we can encode these constructions directly and constructively.
+In particular, none of the “synthetic” homotopy theory in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87582</span>Chapter 8 requires <math id="I1.i1.p1.m1" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math> or <math id="I1.i1.p1.m2" class="ltx_Math" alttext="\mathsf{AC}" display="inline"><mi>𝖠𝖢</mi></math>.</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">In set-theoretic foundations, the statement “every fully faithful and essentially surjective functor is an equivalence of categories” is equivalent to the axiom of choice.
+But with the univalence axiom, it is just <em class="ltx_emph ltx_font_italic">true</em>; see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87583</span>Chapter 9.</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p">In set theory, various circumlocutions are required to obtain notions of “cardinal number” and “ordinal number” which canonically represent isomorphism classes of sets and well-ordered sets, respectively — possibly involving the axiom of choice or the axiom of foundation.
+But with univalence and higher inductive types, we can obtain such representatives directly by truncating the universe; see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87584</span>Chapter 10.</p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p">In set-theoretic foundations, the definition of the real numbers as equivalence classes of Cauchy sequences requires either the law of excluded middle or the axiom of (countable) choice to be well-behaved.
+But with higher inductive types, we can give a version of this definition which is well-behaved and avoids any choice principles; see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87585</span>Chapter 11.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">Of course, these simplifications could as well be taken as evidence that the new methods will not, ultimately, prove to be really constructive. However, we emphasize again that the reader does not have to care, or worry, about constructivity in order to read this book. The point is that in all of the above examples, the version of the theory we give has independent advantages, whether or not <math id="p13.m1" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math> and <math id="p13.m2" class="ltx_Math" alttext="\mathsf{AC}" display="inline"><mi>𝖠𝖢</mi></math> are assumed to be available. Constructivity, if attained, will be an added bonus.</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">Given this discussion of adding new principles such as univalence, higher inductive types, <math id="p14.m1" class="ltx_Math" alttext="\mathsf{AC}" display="inline"><mi>𝖠𝖢</mi></math>, and <math id="p14.m2" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math>, one may wonder whether the resulting system remains consistent.
+(One of the original virtues of type theory, relative to set theory, was that it can be seen to be consistent by proof-theoretic means).
+As with any foundational system, consistency is a relative question: “consistent with respect to what?”
+The short answer is that all of the constructions and axioms considered in this book have a model in the category of Kan complexes, due to Voevodsky <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib2" title="" class="ltx_ref">2</a>]</cite> (see <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib6" title="" class="ltx_ref">6</a>]</cite> for higher inductive types).
+Thus, they are known to be consistent relative to ZFC (with as many inaccessible cardinals
+as we need nested univalent universes).
+Giving a more traditionally type-theoretic account of this consistency is work in progress (see,
+e.g., <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib5" title="" class="ltx_ref">5</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib1" title="" class="ltx_ref">1</a>]</cite>).</p>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">We summarize the different points of view of the type-theoretic operations in Table 1.</p>
+</div>
+<figure id="S0.T1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Types</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Logic</th>
+<td class="ltx_td ltx_align_left ltx_border_t">Sets</td>
+<td class="ltx_td ltx_align_left ltx_border_t">Homotopy</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><math id="S0.T1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">proposition</th>
+<td class="ltx_td ltx_align_left ltx_border_t">set</td>
+<td class="ltx_td ltx_align_left ltx_border_t">space</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">proof</th>
+<td class="ltx_td ltx_align_left">element</td>
+<td class="ltx_td ltx_align_left">point</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m3" class="ltx_Math" alttext="B(x)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">predicate</th>
+<td class="ltx_td ltx_align_left">family of sets</td>
+<td class="ltx_td ltx_align_left">fibration</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m4" class="ltx_Math" alttext="b(x):B(x)" display="inline"><mrow><mrow><mi>b</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">conditional proof</th>
+<td class="ltx_td ltx_align_left">family of elements</td>
+<td class="ltx_td ltx_align_left">section</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m5" class="ltx_Math" alttext="\mathbf{0},\mathbf{1}" display="inline"><mrow><mn>𝟎</mn><mo>,</mo><mn>𝟏</mn></mrow></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m6" class="ltx_Math" alttext="\bot,\top" display="inline"><mrow><mo>⊥</mo><mo>,</mo><mo>⊤</mo></mrow></math></th>
+<td class="ltx_td ltx_align_left"><math id="S0.T1.m7" class="ltx_Math" alttext="\emptyset,\{\emptyset\}" display="inline"><mrow><mi mathvariant="normal">∅</mi><mo>,</mo><mrow><mo stretchy="false">{</mo><mi mathvariant="normal">∅</mi><mo stretchy="false">}</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left"><math id="S0.T1.m8" class="ltx_Math" alttext="\emptyset,*" display="inline"><mrow><mi mathvariant="normal">∅</mi><mo>,</mo><mo>*</mo></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m9" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m10" class="ltx_Math" alttext="A\vee B" display="inline"><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow></math></th>
+<td class="ltx_td ltx_align_left">disjoint union</td>
+<td class="ltx_td ltx_align_left">coproduct</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m11" class="ltx_Math" alttext="A\times B" display="inline"><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m12" class="ltx_Math" alttext="A\wedge B" display="inline"><mrow><mi>A</mi><mo>∧</mo><mi>B</mi></mrow></math></th>
+<td class="ltx_td ltx_align_left">set of pairs</td>
+<td class="ltx_td ltx_align_left">product space</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m13" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m14" class="ltx_Math" alttext="A\Rightarrow B" display="inline"><mrow><mi>A</mi><mo>⇒</mo><mi>B</mi></mrow></math></th>
+<td class="ltx_td ltx_align_left">set of functions</td>
+<td class="ltx_td ltx_align_left">function space</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m15" class="ltx_Math" alttext="\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x%
+:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m16" class="ltx_Math" alttext="\exists_{x:A}B(x)" display="inline"><mrow><msub><mo>∃</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></th>
+<td class="ltx_td ltx_align_left">disjoint sum</td>
+<td class="ltx_td ltx_align_left">total space</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m17" class="ltx_Math" alttext="\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)%
+}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod%
+_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}%
+}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}B(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><math id="S0.T1.m18" class="ltx_Math" alttext="\forall_{x:A}B(x)" display="inline"><mrow><msub><mo>∀</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></th>
+<td class="ltx_td ltx_align_left">product</td>
+<td class="ltx_td ltx_align_left">space of sections</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b"><math id="S0.T1.m19" class="ltx_Math" alttext="\mathsf{Id}_{A}" display="inline"><msub><mi>𝖨𝖽</mi><mi>A</mi></msub></math></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b">equality <math id="S0.T1.m20" class="ltx_Math" alttext="=" display="inline"><mo>=</mo></math>
+</th>
+<td class="ltx_td ltx_align_left ltx_border_b"><math id="S0.T1.m21" class="ltx_Math" alttext="\{{\mathopen{}(x,x)\mathclose{}}|x\in A\}" display="inline"><mrow><mo stretchy="false">{</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo stretchy="false">|</mo><mi>x</mi><mo>∈</mo><mi>A</mi><mo stretchy="false">}</mo></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_border_b">path space <math id="S0.T1.m22" class="ltx_Math" alttext="A^{I}" display="inline"><msup><mi>A</mi><mi>I</mi></msup></math>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_table">Table 1: </span>Comparing points of view on type-theoretic operations</figcaption>
+</figure>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul class="ltx_biblist">
+      
+<li id="bib.bib1" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">1</span>
+        
+<span class="ltx_bibblock"> Bruno Barras and Thierry Coquand and Simon Huber. A Generalization of Takeuti-Gandy Interpretation. <span class="ltx_ERROR undefined">\url</span>http://uf-ias-2012.wikispaces.com/file/view/semi.pdf, 2013.
+
+</span>
+      </li>
+      
+<li id="bib.bib2" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">2</span>
+        
+<span class="ltx_bibblock"> Chris Kapulkin and Peter LeFanu Lumsdaine and Vladimir Voevodsky. The Simplicial Model of Univalent Foundations, 2012. <span class="ltx_ERROR undefined">\href</span>http://arxiv.org/abs/1211.2851/arXiv:1211.2851.
+
+</span>
+      </li>
+      
+<li id="bib.bib3" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">3</span>
+        
+<span class="ltx_bibblock"> Andrey Kolmogorov. Zur Deutung der intuitionistischen Logik. <em class="ltx_emph ltx_font_italic">Mathematische Zeitschrift</em>, 35:58–65 1932
+
+</span>
+      </li>
+      
+<li id="bib.bib4" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">4</span>
+        
+<span class="ltx_bibblock"> Licata,Daniel R. and Harper,Robert. Canonicity for 2-dimensional type theory. In emphProceedings of the 39th annual ACM SIGPLAN-SIGACT symposium on Principles of programming languages, pages 337–348ACM, .
+
+</span>
+      </li>
+      
+<li id="bib.bib5" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">5</span>
+        
+<span class="ltx_bibblock"> Licata,Daniel R. and Harper,Robert. Canonicity for 2-dimensional type theory. In emphProceedings of the 39th annual ACM SIGPLAN-SIGACT symposium on Principles of programming languages, pages 337–348ACM, .
+
+</span>
+      </li>
+      
+<li id="bib.bib6" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">6</span>
+        
+<span class="ltx_bibblock"> Peter LeFanu Lumsdaine and Michael Shulman. Higher inductive types. In preparation, 2013.
+
+</span>
+      </li>
+      
+<li id="bib.bib7" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">7</span>
+        
+<span class="ltx_bibblock"> Jacob Lurie, <em class="ltx_emph ltx_font_italic">Higher topos theory</em> Princeton University Press,2009
+
+</span>
+      </li>
+      
+<li id="bib.bib8" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">8</span>
+        
+<span class="ltx_bibblock"> Charles Rezk. Toposes and homotopy toposes. <span class="ltx_ERROR undefined">\url</span>http://www.math.uiuc.edu/ rezk/homotopy-topos-sketch.pdf, 2005.
+
+</span>
+      </li>
+      
+<li id="bib.bib9" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">9</span>
+        
+<span class="ltx_bibblock"> Bertrand Toën and Gabriele Vezzosi. Homotopical Algebraic Geometry I: Topos theory, 2002. <span class="ltx_ERROR undefined">\href</span>http://arxiv.org/abs/math/0207028/arXiv:math/0207028.
+
+</span>
+      </li>
+      
+<li id="bib.bib10" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">10</span>
+        
+<span class="ltx_bibblock"> Troelstra,Anne Sjerp and van Dalen,Dirk, <em class="ltx_emph ltx_font_italic">Constructivism in mathematics. Vol. I</em> North-Holland Publishing Co.,1988
+
+</span>
+      </li>
+      
+<li id="bib.bib11" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">11</span>
+        
+<span class="ltx_bibblock"> Troelstra,Anne Sjerp and van Dalen,Dirk, <em class="ltx_emph ltx_font_italic">Constructivism in mathematics. Vol. II</em> North-Holland Publishing Co.,1988
+
+</span>
+      </li>
+    
+</ul>
+</section>
+<div id="p16" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">Constructivity</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:45:09 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

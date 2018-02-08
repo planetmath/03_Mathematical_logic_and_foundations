@@ -1,0 +1,215 @@
+<!DOCTYPE html><html>
+<head>
+<title>1.7 Coproduct types</title>
+<!--Generated on Thu Feb  8 19:32:38 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", case analysis, computation rule, coproduct, disjoint, empty, empty type, for coproduct, for coproduct type, for empty type, induction principle, nullary, recursion principle, sum, type, union">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">1.7 Coproduct types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Given <math id="p2.m1" class="ltx_Math" alttext="A,B:\mathcal{U}" display="inline"><mrow><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>, we introduce their <span class="ltx_text ltx_font_bold">coproduct</span> type <math id="p2.m2" class="ltx_Math" alttext="A+B:\mathcal{U}" display="inline"><mrow><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>.
+This corresponds to the <em class="ltx_emph ltx_font_italic">disjoint union</em> in set theory, and we may also use that name for it.
+In type theory, as was the case with functions and products, the coproduct must be a fundamental construction, since there is no previously given notion of “union of types”.
+We also introduce a
+nullary version: the <span class="ltx_text ltx_font_bold">empty type <math id="p2.m3" class="ltx_Math" alttext="\mathbf{0}:\mathcal{U}" display="inline"><mrow><mn>𝟎</mn><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math></span>.
+</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">There are two ways to construct elements of <math id="p3.m1" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math>, either as <math id="p3.m2" class="ltx_Math" alttext="{\mathsf{inl}}(a):A+B" display="inline"><mrow><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></mrow></math> for <math id="p3.m3" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, or as
+<math id="p3.m4" class="ltx_Math" alttext="{\mathsf{inr}}(b):A+B" display="inline"><mrow><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></mrow></math> for <math id="p3.m5" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math>. There are no ways to construct elements of the empty type.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">To construct a non-dependent function <math id="p4.m1" class="ltx_Math" alttext="f:A+B\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mo>→</mo><mi>C</mi></mrow></mrow></math>, we need
+functions <math id="p4.m2" class="ltx_Math" alttext="g_{0}:A\to C" display="inline"><mrow><msub><mi>g</mi><mn>0</mn></msub><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>C</mi></mrow></mrow></math> and <math id="p4.m3" class="ltx_Math" alttext="g_{1}:B\to C" display="inline"><mrow><msub><mi>g</mi><mn>1</mn></msub><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>C</mi></mrow></mrow></math>. Then <math id="p4.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is defined
+via the defining equations</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle f({\mathsf{inl}}(a))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv g_{0}(a)," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>g</mi><mn>0</mn></msub><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle f({\mathsf{inr}}(b))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv g_{1}(b)." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>g</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">That is, the function <math id="p4.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is defined by <span class="ltx_text ltx_font_bold">case analysis</span>.
+As before, we can derive the recursor:
+</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\mathsf{rec}_{A+B}:\prod_{(C:\mathcal{U})}\,(A\to C)\to(B\to C)\to A+B\to C" display="block"><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></msub><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo>→</mo><mi>C</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with the defining equations</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\displaystyle\mathsf{rec}_{A+B}(C,g_{0},g_{1},{\mathsf{inl}}(a))" display="inline"><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><msub><mi>g</mi><mn>0</mn></msub><mo>,</mo><msub><mi>g</mi><mn>1</mn></msub><mo>,</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv g_{0}(a)," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>g</mi><mn>0</mn></msub><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\displaystyle\mathsf{rec}_{A+B}(C,g_{0},g_{1},{\mathsf{inr}}(b))" display="inline"><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><msub><mi>g</mi><mn>0</mn></msub><mo>,</mo><msub><mi>g</mi><mn>1</mn></msub><mo>,</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv g_{1}(b)." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>g</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">We can always construct a function <math id="p5.m1" class="ltx_Math" alttext="f:\mathbf{0}\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mn>𝟎</mn><mo>→</mo><mi>C</mi></mrow></mrow></math> without
+having to give any defining equations, because there are no elements of <math id="p5.m2" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> on which to define <math id="p5.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+Thus, the recursor for <math id="p5.m4" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> is</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\mathsf{rec}_{\mathbf{0}}:\mathchoice{{\textstyle\prod_{(C:\mathcal{U})}}}{%
+\prod_{(C:\mathcal{U})}}{\prod_{(C:\mathcal{U})}}{\prod_{(C:\mathcal{U})}}%
+\mathbf{0}\to C," display="block"><mrow><mrow><msub><mi>𝗋𝖾𝖼</mi><mn>𝟎</mn></msub><mo>:</mo><mrow><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mn>𝟎</mn></mrow><mo>→</mo><mi>C</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">which constructs the canonical function from the empty type to any other type.
+Logically, it corresponds to the principle <span class="ltx_text ltx_font_italic">ex falso quodlibet</span>.
+
+</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">To construct a dependent function <math id="p6.m1" class="ltx_Math" alttext="f:\mathchoice{\prod_{x:A+B}\,}{\mathchoice{{\textstyle\prod_{(x:A+B)}}}{\prod_%
+{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}}{\mathchoice{{\textstyle\prod_{(x%
+:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}%
+}C(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> out of a coproduct, we assume as given the family
+<math id="p6.m2" class="ltx_Math" alttext="C:(A+B)\to\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, and
+require</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\displaystyle g_{0}" display="inline"><msub><mi>g</mi><mn>0</mn></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}%
+}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{%
+(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle%
+\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}C({\mathsf{inl}}(%
+a))," display="inline"><mrow><mrow><mi></mi><mo>:</mo><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder></mstyle></mpadded><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\displaystyle g_{1}" display="inline"><msub><mi>g</mi><mn>1</mn></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle:\mathchoice{\prod_{b:B}\,}{\mathchoice{{\textstyle\prod_{(b:B)}}%
+}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{%
+(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle%
+\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}C({\mathsf{inr}}(%
+b))." display="inline"><mrow><mrow><mi></mi><mo>:</mo><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></munder></mstyle></mpadded><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This yields <math id="p6.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> with the defining equations:
+</p>
+<table id="S0.EGx4" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex9" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\displaystyle f({\mathsf{inl}}(a))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex9.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv g_{0}(a)," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>g</mi><mn>0</mn></msub><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex10" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\displaystyle f({\mathsf{inr}}(b))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex10.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv g_{1}(b)." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>g</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We package this scheme into the induction principle for coproducts:</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\mathsf{ind}_{A+B}:\prod_{(C:(A+B)\to\mathcal{U})}\,\Bigl{(}\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}C({%
+\mathsf{inl}}(a))\Bigr{)}\to\Bigl{(}\mathchoice{{\textstyle\prod_{(b:B)}}}{%
+\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}C({\mathsf{inr}}(b))\Bigr{)}\to%
+\mathchoice{{\textstyle\prod_{(x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{%
+\prod_{(x:A+B)}}C(x)." display="block"><mrow><mrow><msub><mi>𝗂𝗇𝖽</mi><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></msub><mo>:</mo><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow><mo>→</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">As before, the recursor arises in the case that the family <math id="p6.m4" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math> is
+constant.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The induction principle for the empty type</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="\mathsf{ind}_{\mathbf{0}}:\mathchoice{\prod_{(C:\mathbf{0}\to\mathcal{U})}\,}{%
+\mathchoice{{\textstyle\prod_{(C:\mathbf{0}\to\mathcal{U})}}}{\prod_{(C:%
+\mathbf{0}\to\mathcal{U})}}{\prod_{(C:\mathbf{0}\to\mathcal{U})}}{\prod_{(C:%
+\mathbf{0}\to\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(C:\mathbf{0}\to%
+\mathcal{U})}}}{\prod_{(C:\mathbf{0}\to\mathcal{U})}}{\prod_{(C:\mathbf{0}\to%
+\mathcal{U})}}{\prod_{(C:\mathbf{0}\to\mathcal{U})}}}{\mathchoice{{\textstyle%
+\prod_{(C:\mathbf{0}\to\mathcal{U})}}}{\prod_{(C:\mathbf{0}\to\mathcal{U})}}{%
+\prod_{(C:\mathbf{0}\to\mathcal{U})}}{\prod_{(C:\mathbf{0}\to\mathcal{U})}}}%
+\mathchoice{\prod_{(z:\mathbf{0})}\,}{\mathchoice{{\textstyle\prod_{(z:\mathbf%
+{0})}}}{\prod_{(z:\mathbf{0})}}{\prod_{(z:\mathbf{0})}}{\prod_{(z:\mathbf{0})}%
+}}{\mathchoice{{\textstyle\prod_{(z:\mathbf{0})}}}{\prod_{(z:\mathbf{0})}}{%
+\prod_{(z:\mathbf{0})}}{\prod_{(z:\mathbf{0})}}}{\mathchoice{{\textstyle\prod_%
+{(z:\mathbf{0})}}}{\prod_{(z:\mathbf{0})}}{\prod_{(z:\mathbf{0})}}{\prod_{(z:%
+\mathbf{0})}}}C(z)" display="block"><mrow><msub><mi>𝗂𝗇𝖽</mi><mn>𝟎</mn></msub><mo>:</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>:</mo><mn>𝟎</mn><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo>:</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">gives us a way to define a trivial dependent function out of the
+empty type. </p>
+</div>
+<div id="p8" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">1.7 Coproduct types</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:32:38 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

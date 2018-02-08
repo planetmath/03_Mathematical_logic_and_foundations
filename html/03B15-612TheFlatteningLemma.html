@@ -1,0 +1,875 @@
+<!DOCTYPE html><html>
+<head>
+<title>6.12 The flattening lemma</title>
+<!--Generated on Thu Feb  8 19:37:45 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-topos, Grothendieck construction, and descent, coequalizer, flattening, flattening lemma, lax colimit, lemma, mathematics, of dependent pair type, proof-relevant, property, stability, type, universal">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">6.12 The flattening lemma</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">As we will see in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87582</span>Chapter 8, amazing things happen when we combine higher inductive types with univalence.
+The principal way this comes about is that if <math id="p1.m1" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> is a higher inductive type and <math id="p1.m2" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> is a type universe, then we can define a type family <math id="p1.m3" class="ltx_Math" alttext="P:W\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> by using the recursion principle for <math id="p1.m4" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>.
+When we come to the clauses of the recursion principle dealing with the path constructors of <math id="p1.m5" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>, we will need to supply paths in <math id="p1.m6" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math>, and this is where univalence comes in.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">For example, suppose we have a type <math id="p2.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> and a self-equivalence <math id="p2.m2" class="ltx_Math" alttext="e:X\simeq X" display="inline"><mrow><mi>e</mi><mo>:</mo><mrow><mi>X</mi><mo>≃</mo><mi>X</mi></mrow></mrow></math>.
+Then we can define a type family <math id="p2.m3" class="ltx_Math" alttext="P:\mathbb{S}^{1}\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><msup><mi>𝕊</mi><mn>1</mn></msup><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> by using <math id="p2.m4" class="ltx_Math" alttext="\mathbb{S}^{1}" display="inline"><msup><mi>𝕊</mi><mn>1</mn></msup></math>-recursion:</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="P(\mathsf{base}):\!\!\equiv X\qquad\text{and}\qquad{P}\mathopen{}\left({%
+\mathsf{loop}}\right)\mathclose{}:=\mathsf{ua}(e)." display="block"><mrow><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>X</mi><mo mathvariant="italic" separator="true">  </mo><mtext>and</mtext><mo mathvariant="italic" separator="true">  </mo><mi>P</mi><mrow><mi></mi><mrow><mo>(</mo><mi>𝗅𝗈𝗈𝗉</mi><mo>)</mo></mrow><mi></mi></mrow><mo>:=</mo><mi>𝗎𝖺</mi><mrow><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The type <math id="p2.m5" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> thus appears as the fiber <math id="p2.m6" class="ltx_Math" alttext="P(\mathsf{base})" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow></mrow></math> of <math id="p2.m7" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math> over the basepoint.
+The self-equivalence <math id="p2.m8" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math> is a little more hidden in <math id="p2.m9" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>, but the following lemma says that it can be extracted by transporting along <math id="p2.m10" class="ltx_Math" alttext="\mathsf{loop}" display="inline"><mi>𝗅𝗈𝗈𝗉</mi></math>.</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 6.12.1</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> and <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>, with a path <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi></mrow></mrow></math> and an equivalence <math id="Thmprelem1.p1.m4" class="ltx_Math" alttext="e:P(x)\simeq P(y)" display="inline"><mrow><mi>e</mi><mo mathvariant="normal">:</mo><mrow><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">≃</mo><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> such that <math id="Thmprelem1.p1.m5" class="ltx_Math" alttext="{B}\mathopen{}\left({p}\right)\mathclose{}=\mathsf{ua}(e)" display="inline"><mrow><mi>B</mi><mrow><mi></mi><mrow><mo mathvariant="normal">(</mo><mi>p</mi><mo mathvariant="normal">)</mo></mrow><mi></mi></mrow><mo mathvariant="normal">=</mo><mi mathvariant="normal">ua</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>e</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>, then for any <math id="Thmprelem1.p1.m6" class="ltx_Math" alttext="u:P(x)" display="inline"><mrow><mi>u</mi><mo mathvariant="normal">:</mo><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> we have</span></p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle\mathsf{transport}^{B}(p,u)" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>B</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle=e(u)." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>e</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Applying Lemma 2.10.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/210universesandtheunivalenceaxiom#Thmprelem2</span>), we have</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle\mathsf{transport}^{B}(p,u)" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>B</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{idtoeqv}({B}\mathopen{}\left({p}\right)\mathclose{})(u)" display="inline"><mrow><mo>=</mo><mi>𝗂𝖽𝗍𝗈𝖾𝗊𝗏</mi><mrow><mo stretchy="false">(</mo><mi>B</mi><mrow><mi></mi><mrow><mo>(</mo><mi>p</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{idtoeqv}(\mathsf{ua}(e))(u)" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mi>𝗂𝖽𝗍𝗈𝖾𝗊𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗎𝖺</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle=e(u).\qed" display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>e</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo><mo mathvariant="italic" separator="true">∎</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">We have seen type families defined by recursion before: in §2.12 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/212coproducts</span>),§2.13 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers</span>) we used them to characterize the identity types of (ordinary) inductive types.
+In <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87582</span>Chapter 8, we will use similar ideas to calculate homotopy groups of higher inductive types.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">In this section, we describe a general lemma about type families of this sort which will be useful later on.
+We call it the <span class="ltx_text ltx_font_bold">flattening lemma</span>:
+it says that if <math id="p5.m1" class="ltx_Math" alttext="P:W\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> is defined recursively as above, then its total space <math id="p5.m2" class="ltx_Math" alttext="\mathchoice{\sum_{x:W}\,}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x:W)}}{%
+\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x:W)%
+}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x%
+:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}P(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is equivalent to a “flattened” higher inductive type, whose constructors may be deduced from those of <math id="p5.m3" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> and the definition of <math id="p5.m4" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>.
+From a category-theoretic point of view, <math id="p5.m5" class="ltx_Math" alttext="\mathchoice{\sum_{x:W}\,}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x:W)}}{%
+\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x:W)%
+}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x%
+:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}P(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is the “Grothendieck construction” of <math id="p5.m6" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>, and this expresses its universal property as a “lax colimit”.
+</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">We prove here one general case of the flattening lemma, which directly implies many particular cases and suggests the method to prove others.
+Suppose we have <math id="p6.m1" class="ltx_Math" alttext="A,B:\mathcal{U}" display="inline"><mrow><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and <math id="p6.m2" class="ltx_Math" alttext="f,g:B\to{}A" display="inline"><mrow><mrow><mi>f</mi><mo>,</mo><mi>g</mi></mrow><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>A</mi></mrow></mrow></math>, and that the higher inductive type <math id="p6.m3" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> is generated by</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="\mathsf{c}:A\to{}W" display="inline"><mrow><mi>𝖼</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>W</mi></mrow></mrow></math> and</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i2.p1.m1" class="ltx_Math" alttext="\mathsf{p}:\mathchoice{\prod_{b:B}\,}{\mathchoice{{\textstyle\prod_{(b:B)}}}{%
+\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{(b%
+:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle%
+\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}(\mathsf{c}(f(b))%
+=_{W}\mathsf{c}(g(b)))" display="inline"><mrow><mi>𝗉</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>𝖼</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><msub><mo>=</mo><mi>W</mi></msub><mi>𝖼</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Thus, <math id="p6.m4" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> is the <span class="ltx_text ltx_font_bold">(homotopy) coequalizer</span>
+of <math id="p6.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> and <math id="p6.m6" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math>.
+Using binary sums (coproducts) and dependent sums (<math id="p6.m7" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types), a lot of interesting nonrecursive higher
+inductive types can be represented in this form. All point constructors have to
+be bundled in the type <math id="p6.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and all path constructors in the type <math id="p6.m9" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.
+For instance:</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">The circle <math id="I2.i1.p1.m1" class="ltx_Math" alttext="\mathbb{S}^{1}" display="inline"><msup><mi>𝕊</mi><mn>1</mn></msup></math> can be represented by taking <math id="I2.i1.p1.m2" class="ltx_Math" alttext="A:\!\!\equiv\mathbf{1}" display="inline"><mrow><mi>A</mi><mo rspace="0pt">:</mo><mo>≡</mo><mn>𝟏</mn></mrow></math> and <math id="I2.i1.p1.m3" class="ltx_Math" alttext="B:\!\!\equiv\mathbf{1}" display="inline"><mrow><mi>B</mi><mo rspace="0pt">:</mo><mo>≡</mo><mn>𝟏</mn></mrow></math>, with <math id="I2.i1.p1.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> and <math id="I2.i1.p1.m5" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> the identity.</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">The pushout of <math id="I2.i2.p1.m1" class="ltx_Math" alttext="j:X\to Y" display="inline"><mrow><mi>j</mi><mo>:</mo><mrow><mi>X</mi><mo>→</mo><mi>Y</mi></mrow></mrow></math> and <math id="I2.i2.p1.m2" class="ltx_Math" alttext="k:X\to Z" display="inline"><mrow><mi>k</mi><mo>:</mo><mrow><mi>X</mi><mo>→</mo><mi>Z</mi></mrow></mrow></math> can be represented by taking <math id="I2.i2.p1.m3" class="ltx_Math" alttext="A:\!\!\equiv Y+Z" display="inline"><mrow><mi>A</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>Y</mi><mo>+</mo><mi>Z</mi></mrow></math> and <math id="I2.i2.p1.m4" class="ltx_Math" alttext="B:\!\!\equiv X" display="inline"><mrow><mi>B</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>X</mi></mrow></math>, with <math id="I2.i2.p1.m5" class="ltx_Math" alttext="f:\!\!\equiv{\mathsf{inl}}\circ j" display="inline"><mrow><mi>f</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝗂𝗇𝗅</mi><mo>∘</mo><mi>j</mi></mrow></math> and <math id="I2.i2.p1.m6" class="ltx_Math" alttext="g:\!\!\equiv{\mathsf{inr}}\circ k" display="inline"><mrow><mi>g</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝗂𝗇𝗋</mi><mo>∘</mo><mi>k</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Now suppose in addition that</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i1.p1.m1" class="ltx_Math" alttext="C:A\to\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> is a family of types over <math id="I3.i1.p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, and</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i2.p1.m1" class="ltx_Math" alttext="D:\mathchoice{\prod_{b:B}\,}{\mathchoice{{\textstyle\prod_{(b:B)}}}{\prod_{(b:%
+B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{(b:B)}}}{%
+\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{(b%
+:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}C(f(b))\simeq C(g(b))" display="inline"><mrow><mi>D</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>≃</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> is a family of equivalences over <math id="I3.i2.p1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Define a type family <math id="p6.m10" class="ltx_Math" alttext="P:W\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> inductively by</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\displaystyle P(\mathsf{c}(a))" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex6.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv C(a)" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\displaystyle{P}\mathopen{}\left({\mathsf{p}(b)}\right)\mathclose{}" display="inline"><mrow><mi>P</mi><mrow><mi></mi><mrow><mo>(</mo><mi>𝗉</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle:=\mathsf{ua}(D(b))." display="inline"><mrow><mrow><mi></mi><mo>:=</mo><mrow><mi>𝗎𝖺</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Let <math id="p6.m11" class="ltx_Math" alttext="\widetilde{W}" display="inline"><mover accent="true"><mi>W</mi><mo>~</mo></mover></math> be the higher inductive type generated by</p>
+<ul id="I4" class="ltx_itemize">
+<li id="I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I4.i1.p1.m1" class="ltx_Math" alttext="\widetilde{\mathsf{c}}:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod%
+_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}C(a)\to\widetilde{W}" display="inline"><mrow><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mover accent="true"><mi>W</mi><mo>~</mo></mover></mrow></mrow></math> and</p>
+</div>
+</li>
+<li id="I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I4.i2.p1.m1" class="ltx_Math" alttext="\widetilde{\mathsf{p}}:\mathchoice{\prod_{(b:B)}\,}{\mathchoice{{\textstyle%
+\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{%
+\textstyle\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{%
+\mathchoice{{\textstyle\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b%
+:B)}}}\mathchoice{\prod_{(y:C(f(b)))}\,}{\mathchoice{{\textstyle\prod_{(y:C(f(%
+b)))}}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}}{%
+\mathchoice{{\textstyle\prod_{(y:C(f(b)))}}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(%
+f(b)))}}{\prod_{(y:C(f(b)))}}}{\mathchoice{{\textstyle\prod_{(y:C(f(b)))}}}{%
+\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}}(\widetilde{%
+\mathsf{c}}(f(b),y)=_{\widetilde{W}}\widetilde{\mathsf{c}}(g(b),D(b)(y)))" display="inline"><mrow><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><msub><mo>=</mo><mover accent="true"><mi>W</mi><mo>~</mo></mover></msub><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The flattening lemma is:</p>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 6.12.2</span> (Flattening lemma).</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In the above situation, we have</span></p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\Bigl{(}\mathchoice{\sum_{x:W}\,}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{%
+(x:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{%
+\sum_{(x:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}%
+}}{\sum_{(x:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}P(x)\Bigr{)}\;\simeq\;\widetilde{%
+W}." display="block"><mrow><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>x</mi><mo>:</mo><mi>W</mi></mrow></munder></mpadded><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="160%" minsize="160%" rspace="5.3pt">)</mo></mrow><mo rspace="5.3pt">≃</mo><mover accent="true"><mi>W</mi><mo>~</mo></mover></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">As remarked above, this equivalence can be seen as expressing the universal property of <math id="p8.m1" class="ltx_Math" alttext="\mathchoice{\sum_{x:W}\,}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x:W)}}{%
+\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x:W)%
+}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x%
+:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}P(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> as a “lax colimit” of <math id="p8.m2" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math> over <math id="p8.m3" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>.
+It can also be seen as part of the <em class="ltx_emph ltx_font_italic">stability and descent</em> property of colimits, which characterizes higher toposes.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">The proof of Lemma 6.12.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem2</span>) occupies the rest of this section.
+It is somewhat technical and can be skipped on a first reading.
+But it is also a good example of “proof-relevant mathematics”,
+so we recommend it on a second reading.
+</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">The idea is to show that <math id="p10.m1" class="ltx_Math" alttext="\mathchoice{\sum_{x:W}\,}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x:W)}}{%
+\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x:W)%
+}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_{(x%
+:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}P(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> has the same universal property as <math id="p10.m2" class="ltx_Math" alttext="\widetilde{W}" display="inline"><mover accent="true"><mi>W</mi><mo>~</mo></mover></math>.
+We begin by showing that it comes with analogues of the constructors <math id="p10.m3" class="ltx_Math" alttext="\widetilde{\mathsf{c}}" display="inline"><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover></math> and <math id="p10.m4" class="ltx_Math" alttext="\widetilde{\mathsf{p}}" display="inline"><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover></math>.</p>
+</div>
+<div id="Thmprelem3" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 6.12.3</span>.</h6>
+<div id="Thmprelem3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">There are functions</span></p>
+<ul id="I5" class="ltx_itemize">
+<li id="I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I5.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I5.i1.p1.m1" class="ltx_Math" alttext="\widetilde{\mathsf{c}}^{\prime}:\mathchoice{\prod_{a:A}\,}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}C(a)\to\mathchoice{\sum_{x:W}\,}{\mathchoice{{\textstyle\sum_{(%
+x:W)}}}{\sum_{(x:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum%
+_{(x:W)}}}{\sum_{(x:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle%
+\sum_{(x:W)}}}{\sum_{(x:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}P(x)" display="inline"><mrow><msup><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>′</mo></msup><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and</span></p>
+</div>
+</li>
+<li id="I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I5.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I5.i2.p1.m1" class="ltx_Math" alttext="\widetilde{\mathsf{p}}^{\prime}:\mathchoice{\prod_{(b:B)}\,}{\mathchoice{{%
+\textstyle\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{%
+\mathchoice{{\textstyle\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b%
+:B)}}}{\mathchoice{{\textstyle\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{%
+\prod_{(b:B)}}}\mathchoice{\prod_{(y:C(f(b)))}\,}{\mathchoice{{\textstyle\prod%
+_{(y:C(f(b)))}}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}%
+}}{\mathchoice{{\textstyle\prod_{(y:C(f(b)))}}}{\prod_{(y:C(f(b)))}}{\prod_{(y%
+:C(f(b)))}}{\prod_{(y:C(f(b)))}}}{\mathchoice{{\textstyle\prod_{(y:C(f(b)))}}}%
+{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}}\Big{(}%
+\widetilde{\mathsf{c}}^{\prime}(f(b),y)=_{\mathchoice{\sum_{w:W}\,}{%
+\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}%
+}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:%
+W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{%
+(w:W)}}}P(w)}\widetilde{\mathsf{c}}^{\prime}(g(b),D(b)(y))\Big{)}" display="inline"><mrow><msup><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>′</mo></msup><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mo maxsize="160%" minsize="160%">(</mo><msup><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>′</mo></msup><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><msub><mo>=</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></msub><msup><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>′</mo></msup><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">The first is easy; define <math id="p11.m1" class="ltx_Math" alttext="\widetilde{\mathsf{c}}^{\prime}(a,x):\!\!\equiv(\mathsf{c}(a),x)" display="inline"><mrow><msup><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>′</mo></msup><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>𝖼</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> and note that by definition <math id="p11.m2" class="ltx_Math" alttext="P(\mathsf{c}(a))\equiv C(a)" display="inline"><mrow><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+For the second, suppose given <math id="p11.m3" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math> and <math id="p11.m4" class="ltx_Math" alttext="y:C(f(b))" display="inline"><mrow><mi>y</mi><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>; we must give an equality</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="(\mathsf{c}(f(b)),y)=(\mathsf{c}(g(b),D(b)(y)))." display="block"><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Since we have <math id="p11.m5" class="ltx_Math" alttext="\mathsf{p}(b):f(b)=g(b)" display="inline"><mrow><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, by equalities in <math id="p11.m6" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types it suffices to give an equality <math id="p11.m7" class="ltx_Math" alttext="{\mathsf{p}(b)}_{*}\mathopen{}\left({y}\right)\mathclose{}=D(b)(y)" display="inline"><mrow><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+But this follows from Lemma 6.12.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem1</span>), using the definition of <math id="p11.m8" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>.
+∎</p>
+</div>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Now the following lemma says to define a section of a type family over <math id="p12.m1" class="ltx_Math" alttext="\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{%
+\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)%
+}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w%
+:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, it suffices to give analogous data as in the case of <math id="p12.m2" class="ltx_Math" alttext="\widetilde{W}" display="inline"><mover accent="true"><mi>W</mi><mo>~</mo></mover></math>.</p>
+</div>
+<div id="Thmprelem4" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 6.12.4</span>.</h6>
+<div id="Thmprelem4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose <math id="Thmprelem4.p1.m1" class="ltx_Math" alttext="Q:\big{(}\mathchoice{\sum_{x:W}\,}{\mathchoice{{\textstyle\sum_{(x:W)}}}{\sum_%
+{(x:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}}}{%
+\sum_{(x:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}{\mathchoice{{\textstyle\sum_{(x:W)}%
+}}{\sum_{(x:W)}}{\sum_{(x:W)}}{\sum_{(x:W)}}}P(x)\big{)}\to\mathcal{U}" display="inline"><mrow><mi>Q</mi><mo mathvariant="normal">:</mo><mrow><mrow><mo mathvariant="normal" maxsize="120%" minsize="120%">(</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>W</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal" maxsize="120%" minsize="120%">)</mo></mrow><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> is a type family and that we have</span></p>
+<ul id="I6" class="ltx_itemize">
+<li id="I6.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I6.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I6.i1.p1.m1" class="ltx_Math" alttext="c:\mathchoice{\prod_{(a:A)}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}\mathchoice{\prod_{(x:C(a)%
+)}\,}{\mathchoice{{\textstyle\prod_{(x:C(a))}}}{\prod_{(x:C(a))}}{\prod_{(x:C(%
+a))}}{\prod_{(x:C(a))}}}{\mathchoice{{\textstyle\prod_{(x:C(a))}}}{\prod_{(x:C%
+(a))}}{\prod_{(x:C(a))}}{\prod_{(x:C(a))}}}{\mathchoice{{\textstyle\prod_{(x:C%
+(a))}}}{\prod_{(x:C(a))}}{\prod_{(x:C(a))}}{\prod_{(x:C(a))}}}Q(\widetilde{%
+\mathsf{c}}^{\prime}(a,x))" display="inline"><mrow><mi>c</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and</span></p>
+</div>
+</li>
+<li id="I6.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I6.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I6.i2.p1.m1" class="ltx_Math" alttext="p:\mathchoice{\prod_{(b:B)}\,}{\mathchoice{{\textstyle\prod_{(b:B)}}}{\prod_{(%
+b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{(b:B)}}}{%
+\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{(b%
+:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}\mathchoice{\prod_{(y:C(f(%
+b)))}\,}{\mathchoice{{\textstyle\prod_{(y:C(f(b)))}}}{\prod_{(y:C(f(b)))}}{%
+\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}}{\mathchoice{{\textstyle\prod_{(y:C(%
+f(b)))}}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}}{%
+\mathchoice{{\textstyle\prod_{(y:C(f(b)))}}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(%
+f(b)))}}{\prod_{(y:C(f(b)))}}}\Big{(}{\widetilde{\mathsf{p}}^{\prime}(b,y)}_{*%
+}\mathopen{}\left({c(f(b),y)}\right)\mathclose{}=c(g(b),D(b)(y))\Big{)}" display="inline"><mrow><mi>p</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mo maxsize="160%" minsize="160%">(</mo><msup><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>′</mo></msup><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">. </span></p>
+</div>
+</li>
+</ul>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Then there exists <math id="Thmprelem4.p1.m2" class="ltx_Math" alttext="f:\mathchoice{\prod_{z:\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{%
+(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle%
+\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{%
+\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w)}\,}{%
+\mathchoice{{\textstyle\prod_{(z:\mathchoice{\sum_{w:W}\,}{\mathchoice{{%
+\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{%
+\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}%
+}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:%
+W)}}}P(w))}}}{\prod_{(z:\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_%
+{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle%
+\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{%
+\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w))}}{%
+\prod_{(z:\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum%
+_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{%
+\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}%
+}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w))}}{\prod_{(z:\mathchoice{%
+\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}%
+}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:%
+W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{%
+(w:W)}}{\sum_{(w:W)}}}P(w))}}}{\mathchoice{{\textstyle\prod_{(z:\mathchoice{%
+\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}%
+}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:%
+W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{%
+(w:W)}}{\sum_{(w:W)}}}P(w))}}}{\prod_{(z:\mathchoice{\sum_{w:W}\,}{\mathchoice%
+{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{%
+\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}%
+}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:%
+W)}}}P(w))}}{\prod_{(z:\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{%
+(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle%
+\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{%
+\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w))}}{%
+\prod_{(z:\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum%
+_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{%
+\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}%
+}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w))}}}{\mathchoice{{\textstyle%
+\prod_{(z:\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum%
+_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{%
+\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}%
+}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w))}}}{\prod_{(z:\mathchoice{%
+\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}%
+}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:%
+W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{%
+(w:W)}}{\sum_{(w:W)}}}P(w))}}{\prod_{(z:\mathchoice{\sum_{w:W}\,}{\mathchoice{%
+{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{%
+\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}%
+}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:%
+W)}}}P(w))}}{\prod_{(z:\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{%
+(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle%
+\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{%
+\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w))}}}Q(z)" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>z</mi><mo mathvariant="normal">:</mo><mstyle displaystyle="false"><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>w</mi><mo mathvariant="normal">:</mo><mi>W</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub></mstyle><mi>P</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>w</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>Q</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>z</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> such that <math id="Thmprelem4.p1.m3" class="ltx_Math" alttext="f(\widetilde{\mathsf{c}}^{\prime}(a,x))\equiv c(a,x)" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msup><mover accent="true"><mi mathvariant="normal">c</mi><mo mathvariant="normal">~</mo></mover><mo mathvariant="normal">′</mo></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">≡</mo><mrow><mi>c</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">Suppose given <math id="p13.m1" class="ltx_Math" alttext="w:W" display="inline"><mrow><mi>w</mi><mo>:</mo><mi>W</mi></mrow></math> and <math id="p13.m2" class="ltx_Math" alttext="x:P(w)" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>; we must produce an element <math id="p13.m3" class="ltx_Math" alttext="f(w,x):Q(w,x)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+By induction on <math id="p13.m4" class="ltx_Math" alttext="w" display="inline"><mi>w</mi></math>, it suffices to consider two cases.
+When <math id="p13.m5" class="ltx_Math" alttext="w\equiv\mathsf{c}(a)" display="inline"><mrow><mi>w</mi><mo>≡</mo><mrow><mi>𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then we have <math id="p13.m6" class="ltx_Math" alttext="x:C(a)" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and so <math id="p13.m7" class="ltx_Math" alttext="c(a,x):Q(\mathsf{c}(a),x)" display="inline"><mrow><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> as desired.
+(This part of the definition also ensures that the stated computational rule holds.)</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">Now we must show that this definition is preserved by transporting along <math id="p14.m1" class="ltx_Math" alttext="\mathsf{p}(b)" display="inline"><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> for any <math id="p14.m2" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math>.
+Since what we are defining, for all <math id="p14.m3" class="ltx_Math" alttext="w:W" display="inline"><mrow><mi>w</mi><mo>:</mo><mi>W</mi></mrow></math>, is a function of type <math id="p14.m4" class="ltx_Math" alttext="\mathchoice{\prod_{x:P(w)}\,}{\mathchoice{{\textstyle\prod_{(x:P(w))}}}{\prod_%
+{(x:P(w))}}{\prod_{(x:P(w))}}{\prod_{(x:P(w))}}}{\mathchoice{{\textstyle\prod_%
+{(x:P(w))}}}{\prod_{(x:P(w))}}{\prod_{(x:P(w))}}{\prod_{(x:P(w))}}}{%
+\mathchoice{{\textstyle\prod_{(x:P(w))}}}{\prod_{(x:P(w))}}{\prod_{(x:P(w))}}{%
+\prod_{(x:P(w))}}}Q(w,x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, by Lemma 2.9.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#Thmprelem2</span>) it suffices to show that for any <math id="p14.m5" class="ltx_Math" alttext="y:C(f(b))" display="inline"><mrow><mi>y</mi><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, we have</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\mathsf{transport}^{Q}(\mathsf{pair}^{\mathord{=}}(\mathsf{p}(b),\mathsf{refl}%
+_{{\mathsf{p}(b)}_{*}\mathopen{}\left({y}\right)\mathclose{}}),c(f(b),y))=c(g(%
+b),{\mathsf{p}(b)}_{*}\mathopen{}\left({y}\right)\mathclose{})." display="block"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>Q</mi></msup><mrow><mo stretchy="false">(</mo><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mrow><mo stretchy="false">(</mo><mi>𝗉</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Let <math id="p14.m6" class="ltx_Math" alttext="q:{\mathsf{p}(b)}_{*}\mathopen{}\left({y}\right)\mathclose{}=D(b)(y)" display="inline"><mrow><mi>q</mi><mo>:</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> be the path obtained from Lemma 6.12.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem1</span>).
+Then we have</p>
+<table id="S0.EGx4" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S0.Ex11"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\displaystyle c(g(b),{\mathsf{p}(b)}_{*}\mathopen{}\left({y}\right)\mathclose{})" display="inline"><mrow><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex11.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{x\mapsto Q(c(g(b),x))}(\mathord{{q}^{-1}},c(%
+g(b),D(b)(y))){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>x</mi><mo>↦</mo><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>q</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>,</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by $\mathsf{apd}_{x\mapstoc(g(b),x)}(\mathord{{q}^{-1}})$)</span></td>
+</tr></tbody>
+<tbody id="S0.Ex12"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex12.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{Q}(\mathsf{ap}_{x\mapsto c(g(b),x)}(\mathord%
+{{q}^{-1}}),c(g(b),D(b)(y))){}." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>Q</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>x</mi><mo>↦</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>q</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by Lemma 2.3.10 (http://planetmath.org/23typefamiliesarefibrationshmprelem7))</span></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Thus, it suffices to show</p>
+<table class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="p14.m7" class="ltx_Math" alttext="\displaystyle\mathsf{transport}^{Q}\Big{(}\mathsf{pair}^{\mathord{=}}(\mathsf{%
+p}(b),\mathsf{refl}_{{\mathsf{p}(b)}_{*}\mathopen{}\left({y}\right)\mathclose{%
+}}),\,c(f(b),y)\Big{)}=\\
+\displaystyle\mathsf{transport}^{Q}\Big{(}\mathsf{ap}_{x\mapsto c(g(b),x)}(%
+\mathord{{q}^{-1}}),\,c(g(b),D(b)(y))\Big{)}." display="block"><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="left"><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>Q</mi></msup><mo>⁢</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo rspace="4.2pt">,</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow><mo>=</mo><mi></mi></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>Q</mi></msup><mo>⁢</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>x</mi><mo>↦</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>q</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></mrow><mo rspace="4.2pt">,</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow><mo>.</mo></mrow></mtd></mtr></mtable></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Moving the right-hand transport to the other side, and combining two transports, this is equivalent to</p>
+<table id="S0.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex13.m1" class="ltx_Math" alttext="\mathsf{transport}^{Q}\Big{(}\mathsf{ap}_{x\mapsto c(g(b),x)}(q)\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{%
+pair}^{\mathord{=}}(\mathsf{p}(b),\mathsf{refl}_{{\mathsf{p}(b)}_{*}\mathopen{%
+}\left({y}\right)\mathclose{}}),\,c(f(b),y)\Big{)}=c(g(b),D(b)(y))." display="block"><mrow><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>Q</mi></msup><mo>⁢</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>x</mi><mo>↦</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo rspace="4.2pt">,</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow><mo>=</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">However, we have</p>
+<table class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="p14.m8" class="ltx_Math" alttext="\displaystyle\mathsf{ap}_{x\mapsto c(g(b),x)}(q)\mathchoice{\mathbin{\raisebox%
+{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}%
+}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{%
+\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{pair}^{\mathord%
+{=}}(\mathsf{p}(b),\mathsf{refl}_{{\mathsf{p}(b)}_{*}\mathopen{}\left({y}%
+\right)\mathclose{}})=\\
+\displaystyle\mathsf{pair}^{\mathord{=}}(\mathsf{refl}_{g(b)},q)\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{%
+pair}^{\mathord{=}}(\mathsf{p}(b),\mathsf{refl}_{{\mathsf{p}(b)}_{*}\mathopen{%
+}\left({y}\right)\mathclose{}})=\mathsf{pair}^{\mathord{=}}(\mathsf{p}(b),q)=%
+\widetilde{\mathsf{p}}^{\prime}(b,y)" display="block"><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="left"><mrow><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>x</mi><mo>↦</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi></mi></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mrow><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mtd></mtr></mtable></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">so the construction is completed by the assumption <math id="p14.m9" class="ltx_Math" alttext="p(b,y)" display="inline"><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> of type</p>
+<table id="S0.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\mathsf{transport}^{Q}(\widetilde{\mathsf{p}}^{\prime}(b,y),c(f(b),y))=c(g(b),%
+D(b)(y)).\qed" display="block"><mrow><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>Q</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo><mo mathvariant="italic" separator="true">∎</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">Lemma 6.12.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem4</span>) <em class="ltx_emph ltx_font_italic">almost</em> gives <math id="p15.m1" class="ltx_Math" alttext="\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{%
+\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)%
+}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w%
+:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> the same induction principle as <math id="p15.m2" class="ltx_Math" alttext="\widetilde{W}" display="inline"><mover accent="true"><mi>W</mi><mo>~</mo></mover></math>.
+The missing bit is the equality <math id="p15.m3" class="ltx_Math" alttext="\mathsf{apd}_{f}(\widetilde{\mathsf{p}}^{\prime}(b,y))=p(b,y)" display="inline"><mrow><mrow><msub><mi>𝖺𝗉𝖽</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+In order to prove this, we would need to analyze the proof of Lemma 6.12.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem4</span>), which of course is the definition of <math id="p15.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">It should be possible to do this, but it turns out that we only need the computation rule for the non-dependent recursion principle.
+Thus, we now give a somewhat simpler direct construction of the recursor, and a proof of its computation rule.</p>
+</div>
+<div id="Thmprelem5" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 6.12.5</span>.</h6>
+<div id="Thmprelem5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose <math id="Thmprelem5.p1.m1" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> is a type and that we have</span></p>
+<ul id="I7" class="ltx_itemize">
+<li id="I7.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I7.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I7.i1.p1.m1" class="ltx_Math" alttext="c:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:%
+A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}C(a)\to Q" display="inline"><mrow><mi>c</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi>Q</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and</span></p>
+</div>
+</li>
+<li id="I7.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I7.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I7.i2.p1.m1" class="ltx_Math" alttext="p:\mathchoice{\prod_{(b:B)}\,}{\mathchoice{{\textstyle\prod_{(b:B)}}}{\prod_{(%
+b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{(b:B)}}}{%
+\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{(b%
+:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}\mathchoice{\prod_{(y:C(f(%
+b)))}\,}{\mathchoice{{\textstyle\prod_{(y:C(f(b)))}}}{\prod_{(y:C(f(b)))}}{%
+\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}}{\mathchoice{{\textstyle\prod_{(y:C(%
+f(b)))}}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(f(b)))}}}{%
+\mathchoice{{\textstyle\prod_{(y:C(f(b)))}}}{\prod_{(y:C(f(b)))}}{\prod_{(y:C(%
+f(b)))}}{\prod_{(y:C(f(b)))}}}\Big{(}c(f(b),y)=_{Q}c(g(b),D(b)(y))\Big{)}" display="inline"><mrow><mi>p</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mo maxsize="160%" minsize="160%">(</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><msub><mo>=</mo><mi>Q</mi></msub><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ul>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Then there exists <math id="Thmprelem5.p1.m2" class="ltx_Math" alttext="f:\big{(}\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_%
+{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{%
+\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}%
+}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w)\big{)}\to Q" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mrow><mo mathvariant="normal" maxsize="120%" minsize="120%">(</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>w</mi><mo mathvariant="normal">:</mo><mi>W</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>w</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal" maxsize="120%" minsize="120%">)</mo></mrow><mo mathvariant="normal">→</mo><mi>Q</mi></mrow></mrow></math> such that <math id="Thmprelem5.p1.m3" class="ltx_Math" alttext="f(\widetilde{\mathsf{c}}^{\prime}(a,x))\equiv c(a,x)" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msup><mover accent="true"><mi mathvariant="normal">c</mi><mo mathvariant="normal">~</mo></mover><mo mathvariant="normal">′</mo></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">≡</mo><mrow><mi>c</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">As in Lemma 6.12.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem4</span>), we define <math id="p17.m1" class="ltx_Math" alttext="f(w,x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> by induction on <math id="p17.m2" class="ltx_Math" alttext="w:W" display="inline"><mrow><mi>w</mi><mo>:</mo><mi>W</mi></mrow></math>.
+When <math id="p17.m3" class="ltx_Math" alttext="w\equiv\mathsf{c}(a)" display="inline"><mrow><mi>w</mi><mo>≡</mo><mrow><mi>𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, we define <math id="p17.m4" class="ltx_Math" alttext="f(\mathsf{c}(a),x):\!\!\equiv c(a,x)" display="inline"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>𝖼</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Now by Lemma 2.9.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#Thmprelem1</span>), it suffices to consider, for <math id="p17.m5" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math> and <math id="p17.m6" class="ltx_Math" alttext="y:C(f(b))" display="inline"><mrow><mi>y</mi><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, the composite path</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="\mathsf{transport}^{x\mapsto Q}(\mathsf{p}(b),c(f(b),y))=c(g(b),\mathsf{%
+transport}^{P}(\mathsf{p}(b),y))" display="block"><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>x</mi><mo>↦</mo><mi>Q</mi></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>P</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(6.12.6)</span></td>
+</tr>
+</table>
+<p class="ltx_p">defined as the composition</p>
+<table id="S0.EGx5" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S0.Ex15"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex15.m1" class="ltx_Math" alttext="\displaystyle\mathsf{transport}^{x\mapsto Q}(\mathsf{p}(b),c(f(b),y))" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>x</mi><mo>↦</mo><mi>Q</mi></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex15.m2" class="ltx_Math" alttext="\displaystyle=c(f(b),y){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by Lemma 2.3.5 (http://planetmath.org/23typefamiliesarefibrationshmprelem4))</span></td>
+</tr></tbody>
+<tbody id="S0.Ex16"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex16.m2" class="ltx_Math" alttext="\displaystyle=c(g(b),D(b)(y)){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by $p(b,y)$)</span></td>
+</tr></tbody>
+<tbody id="S0.Ex17"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex17.m2" class="ltx_Math" alttext="\displaystyle=c(g(b),\mathsf{transport}^{P}(\mathsf{p}(b),y)).{}" display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>P</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by Lemma 6.12.1 (http://planetmath.org/612theflatteninglemmahmprelem1))</span></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">The computation rule <math id="p17.m7" class="ltx_Math" alttext="f(\widetilde{\mathsf{c}}^{\prime}(a,x))\equiv c(a,x)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> follows by definition, as before.
+∎</p>
+</div>
+</div>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">For the second computation rule, we need the following lemma.</p>
+</div>
+<div id="Thmprelem6" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 6.12.7</span>.</h6>
+<div id="Thmprelem6.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmprelem6.p1.m1" class="ltx_Math" alttext="Y:X\to\mathcal{U}" display="inline"><mrow><mi>Y</mi><mo mathvariant="normal">:</mo><mrow><mi>X</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> be a type family and let <math id="Thmprelem6.p1.m2" class="ltx_Math" alttext="f:(\mathchoice{\sum_{x:X}\,}{\mathchoice{{\textstyle\sum_{(x:X)}}}{\sum_{(x:X)%
+}}{\sum_{(x:X)}}{\sum_{(x:X)}}}{\mathchoice{{\textstyle\sum_{(x:X)}}}{\sum_{(x%
+:X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}{\mathchoice{{\textstyle\sum_{(x:X)}}}{\sum_%
+{(x:X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}Y(x))\to Z" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>X</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>Y</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mi>Z</mi></mrow></mrow></math> be defined componentwise by <math id="Thmprelem6.p1.m3" class="ltx_Math" alttext="f(x,y):\!\!\equiv d(x)(y)" display="inline"><mrow><mi>f</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><mi>d</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> for a curried function <math id="Thmprelem6.p1.m4" class="ltx_Math" alttext="d:\mathchoice{\prod_{x:X}\,}{\mathchoice{{\textstyle\prod_{(x:X)}}}{\prod_{(x:%
+X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}{\mathchoice{{\textstyle\prod_{(x:X)}}}{%
+\prod_{(x:X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}{\mathchoice{{\textstyle\prod_{(x%
+:X)}}}{\prod_{(x:X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}Y(x)\to Z" display="inline"><mrow><mi>d</mi><mo mathvariant="normal">:</mo><mrow><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>X</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>Y</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal">→</mo><mi>Z</mi></mrow></mrow></math>.
+Then for any <math id="Thmprelem6.p1.m5" class="ltx_Math" alttext="s:x_{1}=_{X}x_{2}" display="inline"><mrow><mi>s</mi><mo mathvariant="normal">:</mo><mrow><msub><mi>x</mi><mn mathvariant="normal">1</mn></msub><msub><mo mathvariant="normal">=</mo><mi>X</mi></msub><msub><mi>x</mi><mn mathvariant="normal">2</mn></msub></mrow></mrow></math> and any <math id="Thmprelem6.p1.m6" class="ltx_Math" alttext="y_{1}:P(x_{1})" display="inline"><mrow><msub><mi>y</mi><mn mathvariant="normal">1</mn></msub><mo mathvariant="normal">:</mo><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>x</mi><mn mathvariant="normal">1</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="Thmprelem6.p1.m7" class="ltx_Math" alttext="y_{2}:P(x_{2})" display="inline"><mrow><msub><mi>y</mi><mn mathvariant="normal">2</mn></msub><mo mathvariant="normal">:</mo><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>x</mi><mn mathvariant="normal">2</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> with a path <math id="Thmprelem6.p1.m8" class="ltx_Math" alttext="r:{s}_{*}\mathopen{}\left({y_{1}}\right)\mathclose{}=y_{2}" display="inline"><mrow><mi>r</mi><mo mathvariant="normal">:</mo><msub><mi>s</mi><mo mathvariant="normal">*</mo></msub><mrow><mi></mi><mrow><mo mathvariant="normal">(</mo><msub><mi>y</mi><mn mathvariant="normal">1</mn></msub><mo mathvariant="normal">)</mo></mrow><mi></mi></mrow><mo mathvariant="normal">=</mo><msub><mi>y</mi><mn mathvariant="normal">2</mn></msub></mrow></math>, the path</span></p>
+<table id="S0.Ex18" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex18.m1" class="ltx_Math" alttext="\mathsf{ap}_{f}(\mathsf{pair}^{\mathord{=}}(s,r)):f(x_{1},y_{1})=f(x_{2},y_{2})" display="block"><mrow><mrow><msub><mi>𝖺𝗉</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>y</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>y</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">is equal to the composite</span></p>
+<table id="S0.EGx6" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex19" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex19.m1" class="ltx_Math" alttext="\displaystyle f(x_{1},y_{1})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>y</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex19.m2" class="ltx_Math" alttext="\displaystyle\equiv d(x_{1})(y_{1})" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tbody id="S0.Ex20"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex20.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{x\mapsto Q}(s,d(x_{1})(y_{1})){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>x</mi><mo>↦</mo><mi>Q</mi></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by $\mathord{{\text{(Lemma 2.3.5 ({http://planetmath.org/23typefamiliesarefibrationshmprelem4}))}}^{-1}}$)</span></td>
+</tr></tbody>
+<tr id="S0.Ex21" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex21.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{x\mapsto Q}(s,d(x_{1})({\mathord{{s}^{-1}}}_%
+{*}\mathopen{}\left({{s}_{*}\mathopen{}\left({y_{1}}\right)\mathclose{}}\right%
+)\mathclose{}))" display="inline"><mrow><mo>=</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>x</mi><mo>↦</mo><mi>Q</mi></mrow></msup><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>d</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mmultiscripts><mi>s</mi><none></none><mrow><mo>-</mo><mn>1</mn></mrow><mo>*</mo><none></none></mmultiscripts><mrow><mi></mi><mrow><mo>(</mo><msub><mi>s</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>)</mo></mrow><mi></mi></mrow><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tbody id="S0.Ex22"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex22.m2" class="ltx_Math" alttext="\displaystyle=\big{(}\mathsf{transport}^{x\mapsto(Y(x)\to Z)}(s,d(x_{1}))\big{%
+)}({s}_{*}\mathopen{}\left({y_{1}}\right)\mathclose{}){}" display="inline"><mrow><mo>=</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>x</mi><mo>↦</mo><mrow><mo stretchy="false">(</mo><mi>Y</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow></mrow></msup><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>d</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mrow><mo stretchy="false">(</mo><msub><mi>s</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by (2.9.4) (http://planetmath.org/29pitypesandthefunctionextensionalityaxiom0.E3))</span></td>
+</tr></tbody>
+<tbody id="S0.Ex23"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex23.m2" class="ltx_Math" alttext="\displaystyle=d(x_{2})({s}_{*}\mathopen{}\left({y_{1}}\right)\mathclose{}){}" display="inline"><mrow><mo>=</mo><mi>d</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><msub><mi>s</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by $\mathsf{happly}(\mathsf{apd}_{d}(s))({s}_{*}\mathopen{}\left({y_{1}}\right)\mathclose{}$)</span></td>
+</tr></tbody>
+<tbody id="S0.Ex24"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex24.m2" class="ltx_Math" alttext="\displaystyle=d(x_{2})(y_{2}){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by $\mathsf{ap}_{d(x_{2})}(r)$)</span></td>
+</tr></tbody>
+<tr id="S0.Ex25" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex25.m2" class="ltx_Math" alttext="\displaystyle\equiv f(x_{2},y_{2})." display="inline"><mrow><mrow><mi></mi><mo>≡</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>y</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p19" class="ltx_para">
+<p class="ltx_p">After path induction on <math id="p19.m1" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> and <math id="p19.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, both equalities reduce to reflexivities.
+∎</p>
+</div>
+</div>
+<div id="p20" class="ltx_para">
+<p class="ltx_p">At first it may seem surprising that Lemma 6.12.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem6</span>) has such a complicated statement, while it can be proven so simply.
+The reason for the complication is to ensure that the statement is well-typed: <math id="p20.m1" class="ltx_Math" alttext="\mathsf{ap}_{f}(\mathsf{pair}^{\mathord{=}}(s,r))" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math> and the composite path it is claimed to be equal to must both have the same start and end points.
+Once we have managed this, the proof is easy by path induction.</p>
+</div>
+<div id="Thmprelem7" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 6.12.8</span>.</h6>
+<div id="Thmprelem7.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In the situation of Lemma 6.12.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem5</span>), we have <math id="Thmprelem7.p1.m1" class="ltx_Math" alttext="\mathsf{ap}_{f}(\widetilde{\mathsf{p}}^{\prime}(b,y))=p(b,y)" display="inline"><mrow><mrow><msub><mi mathvariant="normal">ap</mi><mi>f</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msup><mover accent="true"><mi mathvariant="normal">p</mi><mo mathvariant="normal">~</mo></mover><mo mathvariant="normal">′</mo></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>b</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mrow><mi>p</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>b</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p21" class="ltx_para">
+<p class="ltx_p">Recall that <math id="p21.m1" class="ltx_Math" alttext="\widetilde{\mathsf{p}}^{\prime}(b,y):\!\!\equiv\mathsf{pair}^{\mathord{=}}(%
+\mathsf{p}(b),q)" display="inline"><mrow><msup><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>′</mo></msup><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mrow><mo stretchy="false">(</mo><mi>𝗉</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></math> where <math id="p21.m2" class="ltx_Math" alttext="q:{\mathsf{p}(b)}_{*}\mathopen{}\left({y}\right)\mathclose{}=D(b)(y)" display="inline"><mrow><mi>q</mi><mo>:</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> comes from Lemma 6.12.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem1</span>).
+Thus, since <math id="p21.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is defined componentwise, we may compute <math id="p21.m4" class="ltx_Math" alttext="\mathsf{ap}_{f}(\widetilde{\mathsf{p}}^{\prime}(b,y))" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math> by Lemma 6.12.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem6</span>), with</p>
+<table id="S0.EGx7" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex26" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex26.m1" class="ltx_Math" alttext="\displaystyle x_{1}" display="inline"><msub><mi>x</mi><mn>1</mn></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex26.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathsf{c}(f(b))" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝖼</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex26.m3" class="ltx_Math" alttext="\displaystyle y_{1}" display="inline"><msub><mi>y</mi><mn>1</mn></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex26.m4" class="ltx_Math" alttext="\displaystyle:\!\!\equiv y" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>y</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex27" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex27.m1" class="ltx_Math" alttext="\displaystyle x_{2}" display="inline"><msub><mi>x</mi><mn>2</mn></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex27.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathsf{c}(g(b))" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝖼</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex27.m3" class="ltx_Math" alttext="\displaystyle y_{2}" display="inline"><msub><mi>y</mi><mn>2</mn></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex27.m4" class="ltx_Math" alttext="\displaystyle:\!\!\equiv D(b)(y)" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex28" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex28.m1" class="ltx_Math" alttext="\displaystyle s" display="inline"><mi>s</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex28.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathsf{p}(b)" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝗉</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex28.m3" class="ltx_Math" alttext="\displaystyle r" display="inline"><mi>r</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex28.m4" class="ltx_Math" alttext="\displaystyle:\!\!\equiv q." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>q</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The curried function <math id="p21.m5" class="ltx_Math" alttext="d:\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:%
+W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{%
+\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w%
+:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}P(w)\to Q" display="inline"><mrow><mi>d</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi>Q</mi></mrow></mrow></math> was defined by induction on <math id="p21.m6" class="ltx_Math" alttext="w:W" display="inline"><mrow><mi>w</mi><mo>:</mo><mi>W</mi></mrow></math>;
+to apply Lemma 6.12.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem6</span>) we need to understand <math id="p21.m7" class="ltx_Math" alttext="\mathsf{ap}_{d(x_{2})}(r)" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p21.m8" class="ltx_Math" alttext="\mathsf{happly}(\mathsf{apd}_{d}(s),{s}_{*}\mathopen{}\left({y_{1}}\right)%
+\mathclose{})" display="inline"><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><msub><mi>𝖺𝗉𝖽</mi><mi>d</mi></msub><mrow><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><msub><mi>s</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p22" class="ltx_para">
+<p class="ltx_p">For the first, since <math id="p22.m1" class="ltx_Math" alttext="d(\mathsf{c}(a),x)\equiv c(a,x)" display="inline"><mrow><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, we have</p>
+<table id="S0.Ex29" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex29.m1" class="ltx_Math" alttext="\mathsf{ap}_{d(x_{2})}(r)\equiv\mathsf{ap}_{c(g(b),-)}(q)." display="block"><mrow><mrow><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mo>-</mo><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">For the second, the computation rule for the induction principle of <math id="p22.m2" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> tells us that <math id="p22.m3" class="ltx_Math" alttext="\mathsf{apd}_{d}(\mathsf{p}(b))" display="inline"><mrow><msub><mi>𝖺𝗉𝖽</mi><mi>d</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math> is equal to the composite (<a href="#S0.E1" title="(6.12.6) ‣ 6.12 The flattening lemma" class="ltx_ref"><span class="ltx_text ltx_ref_tag">6.12.6</span></a>), passed across the equivalence of Lemma 2.9.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#Thmprelem1</span>).
+Thus, the computation rule given in Lemma 2.9.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#Thmprelem1</span>) implies that <math id="p22.m4" class="ltx_Math" alttext="\mathsf{happly}(\mathsf{apd}_{d}(\mathsf{p}(b)),{\mathsf{p}(b)}_{*}\mathopen{}%
+\left({y}\right)\mathclose{})" display="inline"><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><msub><mi>𝖺𝗉𝖽</mi><mi>d</mi></msub><mrow><mo stretchy="false">(</mo><mi>𝗉</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> is equal to the composite</p>
+<table id="S0.EGx8" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S0.Ex30"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex30.m1" class="ltx_Math" alttext="\displaystyle\big{(}{\mathsf{p}(b)}_{*}\mathopen{}\left({c(f(b),-)}\right)%
+\mathclose{}\big{)}({\mathsf{p}(b)}_{*}\mathopen{}\left({y}\right)\mathclose{})" display="inline"><mrow><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mo>-</mo><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex30.m2" class="ltx_Math" alttext="\displaystyle={\mathsf{p}(b)}_{*}\mathopen{}\left({c(f(b),{\mathord{{\mathsf{p%
+}(b)}^{-1}}}_{*}\mathopen{}\left({{\mathsf{p}(b)}_{*}\mathopen{}\left({y}%
+\right)\mathclose{}}\right)\mathclose{})}\right)\mathclose{}{}" display="inline"><mrow><mo>=</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><msub><mrow><mi>𝗉</mi><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by (2.9.4) (http://planetmath.org/29pitypesandthefunctionextensionalityaxiom0.E3))</span></td>
+</tr></tbody>
+<tr id="S0.Ex31" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex31.m2" class="ltx_Math" alttext="\displaystyle={\mathsf{p}(b)}_{*}\mathopen{}\left({c(f(b),y)}\right)\mathclose{}" display="inline"><mrow><mo>=</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tbody id="S0.Ex32"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex32.m2" class="ltx_Math" alttext="\displaystyle=c(f(b),y){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by Lemma 2.3.5 (http://planetmath.org/23typefamiliesarefibrationshmprelem4))</span></td>
+</tr></tbody>
+<tbody id="S0.Ex33"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex33.m2" class="ltx_Math" alttext="\displaystyle=c(f(b),D(b)(y)){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by $p(b,y)$)</span></td>
+</tr></tbody>
+<tbody id="S0.Ex34"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex34.m2" class="ltx_Math" alttext="\displaystyle=c(f(b),{\mathsf{p}(b)}_{*}\mathopen{}\left({y}\right)\mathclose{%
+}).{}" display="inline"><mrow><mo>=</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>𝗉</mi><msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by $\mathord{{\mathsf{ap}_{c(g(b),-)}(q)}^{-1}}$)</span></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">Finally, substituting these values of <math id="p22.m5" class="ltx_Math" alttext="\mathsf{ap}_{d(x_{2})}(r)" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p22.m6" class="ltx_Math" alttext="\mathsf{happly}(\mathsf{apd}_{d}(s),{s}_{*}\mathopen{}\left({y_{1}}\right)%
+\mathclose{})" display="inline"><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><msub><mi>𝖺𝗉𝖽</mi><mi>d</mi></msub><mrow><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><msub><mi>s</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> into Lemma 6.12.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem6</span>), we see that all the paths cancel out in pairs, leaving only <math id="p22.m7" class="ltx_Math" alttext="p(b,y)" display="inline"><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p23" class="ltx_para">
+<p class="ltx_p">Now we are finally ready to prove the flattening lemma.</p>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof of Lemma 6.12.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem2</span>).</h6>
+<div id="p24" class="ltx_para">
+<p class="ltx_p">We define <math id="p24.m1" class="ltx_Math" alttext="h:\widetilde{W}\to\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)%
+}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w%
+:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_%
+{(w:W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w)" display="inline"><mrow><mi>h</mi><mo>:</mo><mrow><mover accent="true"><mi>W</mi><mo>~</mo></mover><mo>→</mo><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math> by using the recursion principle for <math id="p24.m2" class="ltx_Math" alttext="\widetilde{W}" display="inline"><mover accent="true"><mi>W</mi><mo>~</mo></mover></math>, with <math id="p24.m3" class="ltx_Math" alttext="\widetilde{\mathsf{c}}^{\prime}" display="inline"><msup><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>′</mo></msup></math> and <math id="p24.m4" class="ltx_Math" alttext="\widetilde{\mathsf{p}}^{\prime}" display="inline"><msup><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>′</mo></msup></math> as input data.
+Similarly, we define <math id="p24.m5" class="ltx_Math" alttext="k:(\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)%
+}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w%
+:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_%
+{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w))\to\widetilde{W}" display="inline"><mrow><mi>k</mi><mo>:</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mover accent="true"><mi>W</mi><mo>~</mo></mover></mrow></mrow></math> by using the recursion principle of Lemma 6.12.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem5</span>), with <math id="p24.m6" class="ltx_Math" alttext="\widetilde{\mathsf{c}}" display="inline"><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover></math> and <math id="p24.m7" class="ltx_Math" alttext="\widetilde{\mathsf{p}}" display="inline"><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover></math> as input data.</p>
+</div>
+<div id="p25" class="ltx_para">
+<p class="ltx_p">On the one hand, we must show that for any <math id="p25.m1" class="ltx_Math" alttext="z:\widetilde{W}" display="inline"><mrow><mi>z</mi><mo>:</mo><mover accent="true"><mi>W</mi><mo>~</mo></mover></mrow></math>, we have <math id="p25.m2" class="ltx_Math" alttext="k(h(z))=z" display="inline"><mrow><mrow><mi>k</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>z</mi></mrow></math>.
+By induction on <math id="p25.m3" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>, it suffices to consider the two constructors of <math id="p25.m4" class="ltx_Math" alttext="\widetilde{W}" display="inline"><mover accent="true"><mi>W</mi><mo>~</mo></mover></math>.
+But we have</p>
+<table id="S0.Ex35" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex35.m1" class="ltx_Math" alttext="k(h(\widetilde{\mathsf{c}}(a,x)))\equiv k(\widetilde{\mathsf{c}}^{\prime}(a,x)%
+)\equiv\widetilde{\mathsf{c}}(a,x)" display="block"><mrow><mrow><mi>k</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>k</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mover accent="true"><mi>𝖼</mi><mo>~</mo></mover><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">by definition, while similarly</p>
+<table id="S0.Ex36" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex36.m1" class="ltx_Math" alttext="{k}\mathopen{}\left({{h}\mathopen{}\left({\widetilde{\mathsf{p}}(b,y)}\right)%
+\mathclose{}}\right)\mathclose{}={k}\mathopen{}\left({\widetilde{\mathsf{p}}^{%
+\prime}(b,y)}\right)\mathclose{}=\widetilde{\mathsf{p}}(b,y)" display="block"><mrow><mi>k</mi><mrow><mi></mi><mrow><mo>(</mo><mi>h</mi><mrow><mi></mi><mrow><mo>(</mo><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>k</mi><mrow><mi></mi><mrow><mo>(</mo><msup><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mo>′</mo></msup><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mover accent="true"><mi>𝗉</mi><mo>~</mo></mover><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">using the propositional computation rule for <math id="p25.m5" class="ltx_Math" alttext="\widetilde{W}" display="inline"><mover accent="true"><mi>W</mi><mo>~</mo></mover></math> and Lemma 6.12.8 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem7</span>).</p>
+</div>
+<div id="p26" class="ltx_para">
+<p class="ltx_p">On the other hand, we must show that for any <math id="p26.m1" class="ltx_Math" alttext="z:\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}%
+}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:%
+W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{%
+(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w)" display="inline"><mrow><mi>z</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, we have <math id="p26.m2" class="ltx_Math" alttext="h(k(z))=z" display="inline"><mrow><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>k</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>z</mi></mrow></math>.
+But this is essentially identical, using Lemma 6.12.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/612theflatteninglemma#Thmprelem4</span>) for “induction on <math id="p26.m3" class="ltx_Math" alttext="\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)}}{%
+\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w:W)%
+}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}}}{\sum_{(w%
+:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}P(w)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>” and the same computation rules.
+∎</p>
+</div>
+</div>
+<div id="p27" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">6.12 The flattening lemma</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:37:45 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

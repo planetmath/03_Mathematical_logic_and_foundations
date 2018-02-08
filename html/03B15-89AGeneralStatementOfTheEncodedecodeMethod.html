@@ -1,0 +1,265 @@
+<!DOCTYPE html><html>
+<head>
+<title>8.9 A general statement of the encode-decode method</title>
+<!--Generated on Thu Feb  8 19:42:07 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", encode-decode method">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">8.9 A general statement of the encode-decode method</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">We have used the encode-decode method to characterize the path spaces
+of various types, including coproducts (<span class="ltx_ERROR undefined">\cref</span>thm:path-coprod), natural
+numbers (<span class="ltx_ERROR undefined">\cref</span>thm:path-nat), truncations (<span class="ltx_ERROR undefined">\cref</span>thm:path-truncation),
+the circle (<span class="ltx_ERROR undefined">\cref</span>cor:omega-s1), suspensions (<span class="ltx_ERROR undefined">\autoref</span>thm:freudenthal), and pushouts
+(<span class="ltx_ERROR undefined">\cref</span>thm:van-Kampen). Variants of this technique are used in the
+proofs of many of the other theorems mentioned in the introduction to
+this chapter, such as a direct proof of <math id="p2.m1" class="ltx_Math" alttext="\pi_{n}(\mathbb{S}^{n})" display="inline"><mrow><msub><mi>π</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mi>n</mi></msup><mo stretchy="false">)</mo></mrow></mrow></math>, the Blakers–Massey theorem, and the construction of Eilenberg–Mac Lane spaces.
+While it is tempting to try to
+abstract the method into a lemma, this is difficult because
+slightly different variants are needed for different problems. For
+example, different variations on the same method can be used to
+characterize a loop space (as in <span class="ltx_ERROR undefined">\cref</span>thm:path-coprod,cor:omega-s1) or
+a whole path space (as in <span class="ltx_ERROR undefined">\cref</span>thm:path-nat), to give a complete
+characterization of a loop space (e.g. <math id="p2.m2" class="ltx_Math" alttext="\Omega^{1}(\mathbb{S}^{1})" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mn>1</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>1</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math>) or only to
+characterize some truncation of it (e.g. van Kampen), and to calculate
+homotopy groups or to prove that a map is <math id="p2.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-connected (e.g. Freudenthal and
+Blakers–Massey).</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">However, we can state lemmas for specific variants of the method.
+The proofs of these lemmas are almost trivial; the main point is to
+clarify the method by stating them in generality. The simplest
+case is using an encode-decode method to characterize the loop space of a
+type, as in <span class="ltx_ERROR undefined">\cref</span>thm:path-coprod and <span class="ltx_ERROR undefined">\cref</span>cor:omega-s1.</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 8.9.1</span> (Encode-decode for Loop Spaces).</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given a pointed type <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="(A,a_{0})" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> and a fibration
+<math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="\mathsf{code}:A\to\mathcal{U}" display="inline"><mrow><mi mathvariant="normal">code</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>, if</span></p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="c_{0}:\mathsf{code}(a_{0})" display="inline"><mrow><msub><mi>c</mi><mn>0</mn></msub><mo>:</mo><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i2.p1.m1" class="ltx_Math" alttext="\mathsf{decode}:\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)%
+}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod%
+_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}\mathsf%
+{code}(x)\to(a_{0}=x)" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for all </span><math id="I1.i3.p1.m1" class="ltx_Math" alttext="c:\mathsf{code}(a_{0})" display="inline"><mrow><mi>c</mi><mo>:</mo><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">, </span><math id="I1.i3.p1.m2" class="ltx_Math" alttext="\mathsf{transport}^{\mathsf{code}}(\mathsf{decode}(c),c_{0})=c" display="inline"><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>c</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>c</mi></mrow></math><span class="ltx_text ltx_font_italic">, and</span></p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i4.p1.m1" class="ltx_Math" alttext="\mathsf{decode}(c_{0})=\mathsf{refl}" display="inline"><mrow><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>𝗋𝖾𝖿𝗅</mi></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+</ol>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">then <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="(a_{0}=a_{0})" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">=</mo><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is equivalent to <math id="Thmprelem1.p1.m4" class="ltx_Math" alttext="\mathsf{code}(a_{0})" display="inline"><mrow><mi mathvariant="normal">code</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Define
+<math id="p4.m1" class="ltx_Math" alttext="\mathsf{encode}:\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)%
+}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod%
+_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}(a_{0}=%
+x)\to\mathsf{code}(x)" display="inline"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> by</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathsf{encode}_{x}(\alpha)=\mathsf{transport}^{\mathsf{code}}(\alpha,c_{0})." display="block"><mrow><mrow><mrow><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mi>x</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><msub><mi>c</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We show that <math id="p4.m2" class="ltx_Math" alttext="\mathsf{encode}_{a_{0}}" display="inline"><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><msub><mi>a</mi><mn>0</mn></msub></msub></math> and <math id="p4.m3" class="ltx_Math" alttext="\mathsf{decode}_{a_{0}}" display="inline"><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><msub><mi>a</mi><mn>0</mn></msub></msub></math> are quasi-inverses.
+The composition <math id="p4.m4" class="ltx_Math" alttext="\mathsf{encode}_{a_{0}}\circ\mathsf{decode}_{a_{0}}" display="inline"><mrow><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>∘</mo><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><msub><mi>a</mi><mn>0</mn></msub></msub></mrow></math> is immediate by
+assumption <a href="#I1.i3" title="3. ‣ Lemma 8.9.1 (Encode-decode for Loop Spaces). ‣ 8.9 A general statement of the encode-decode method" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>. For the other composition, we show</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(x:A)}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:%
+A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x%
+:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}\mathchoice{\prod_{(p:a_{0%
+}=x)}\,}{\mathchoice{{\textstyle\prod_{(p:a_{0}=x)}}}{\prod_{(p:a_{0}=x)}}{%
+\prod_{(p:a_{0}=x)}}{\prod_{(p:a_{0}=x)}}}{\mathchoice{{\textstyle\prod_{(p:a_%
+{0}=x)}}}{\prod_{(p:a_{0}=x)}}{\prod_{(p:a_{0}=x)}}{\prod_{(p:a_{0}=x)}}}{%
+\mathchoice{{\textstyle\prod_{(p:a_{0}=x)}}}{\prod_{(p:a_{0}=x)}}{\prod_{(p:a_%
+{0}=x)}}{\prod_{(p:a_{0}=x)}}}\mathsf{decode}_{x}(\mathsf{encode}_{x}p)=p." display="block"><mrow><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mi>x</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mi>x</mi></msub><mo>⁢</mo><mi>p</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>=</mo><mi>p</mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">By path induction, it suffices to show
+<math id="p4.m5" class="ltx_Math" alttext="{\mathsf{decode}_{{a_{0}}}(\mathsf{encode}_{{a_{o}}}\mathsf{refl})}=\mathsf{refl}" display="inline"><mrow><mrow><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><msub><mi>a</mi><mi>o</mi></msub></msub><mo>⁢</mo><mi>𝗋𝖾𝖿𝗅</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>𝗋𝖾𝖿𝗅</mi></mrow></math>.
+After reducing the <math id="p4.m6" class="ltx_Math" alttext="\mathsf{transport}" display="inline"><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi></math>, it suffices to show
+<math id="p4.m7" class="ltx_Math" alttext="{\mathsf{decode}_{{a_{0}}}(c_{0})}=\mathsf{refl}" display="inline"><mrow><mrow><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>𝗋𝖾𝖿𝗅</mi></mrow></math>, which is assumption <a href="#I1.i4" title="4. ‣ Lemma 8.9.1 (Encode-decode for Loop Spaces). ‣ 8.9 A general statement of the encode-decode method" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>.
+∎</p>
+</div>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">If a fiberwise equivalence between <math id="p5.m1" class="ltx_Math" alttext="(a_{0}=\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})" display="inline"><mrow><mo stretchy="false">(</mo><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></mrow><mo stretchy="false">)</mo></mrow></math> and <math id="p5.m2" class="ltx_Math" alttext="\mathsf{code}" display="inline"><mi>𝖼𝗈𝖽𝖾</mi></math> is desired,
+it suffices to strengthen condition (iii) to</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(x:A)}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:%
+A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x%
+:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}\mathchoice{\prod_{(c:%
+\mathsf{code}(x))}\,}{\mathchoice{{\textstyle\prod_{(c:\mathsf{code}(x))}}}{%
+\prod_{(c:\mathsf{code}(x))}}{\prod_{(c:\mathsf{code}(x))}}{\prod_{(c:\mathsf{%
+code}(x))}}}{\mathchoice{{\textstyle\prod_{(c:\mathsf{code}(x))}}}{\prod_{(c:%
+\mathsf{code}(x))}}{\prod_{(c:\mathsf{code}(x))}}{\prod_{(c:\mathsf{code}(x))}%
+}}{\mathchoice{{\textstyle\prod_{(c:\mathsf{code}(x))}}}{\prod_{(c:\mathsf{%
+code}(x))}}{\prod_{(c:\mathsf{code}(x))}}{\prod_{(c:\mathsf{code}(x))}}}%
+\mathsf{encode}_{x}(\mathsf{decode}_{x}(c))=c.a" display="block"><mrow><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>:</mo><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mi>x</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mi>x</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>=</mo><mi>c</mi></mrow><mo>.</mo><mi>a</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">However, to calculate a loop space (e.g. <math id="p5.m3" class="ltx_Math" alttext="\Omega(\mathbb{S}^{1})" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>1</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math>), this
+stronger assumption is not necessary.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Another variation, which comes up often when calculating homotopy
+groups, characterizes the truncation of a loop space:</p>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 8.9.2</span> (Encode-decode for Truncations of Loop Spaces).</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Assume a pointed type <math id="Thmprelem2.p1.m1" class="ltx_Math" alttext="(A,a_{0})" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> and a fibration
+<math id="Thmprelem2.p1.m2" class="ltx_Math" alttext="\mathsf{code}:A\to\mathcal{U}" display="inline"><mrow><mi mathvariant="normal">code</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>, where for every <math id="Thmprelem2.p1.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>, <math id="Thmprelem2.p1.m4" class="ltx_Math" alttext="\mathsf{code}(x)" display="inline"><mrow><mi mathvariant="normal">code</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a <math id="Thmprelem2.p1.m5" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-type.
+Define</span></p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathsf{encode}:\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)%
+}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod%
+_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}%
+\mathopen{}\left\|a_{0}=x\right\|_{k}\mathclose{}\to\mathsf{code}(x)." display="block"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mi></mi><mo>∥</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>x</mi><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow><mo>→</mo><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">by truncation recursion (using the fact
+that <math id="Thmprelem2.p1.m6" class="ltx_Math" alttext="\mathsf{code}(x)" display="inline"><mrow><mi mathvariant="normal">code</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a <math id="Thmprelem2.p1.m7" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-type), mapping <math id="Thmprelem2.p1.m8" class="ltx_Math" alttext="\alpha:a_{0}=x" display="inline"><mrow><mi>α</mi><mo mathvariant="normal">:</mo><mrow><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">=</mo><mi>x</mi></mrow></mrow></math> to
+<math id="Thmprelem2.p1.m9" class="ltx_Math" alttext="\mathsf{transport}^{\mathsf{code}}(\alpha,c_{0})" display="inline"><mrow><msup><mi mathvariant="normal">transport</mi><mi mathvariant="normal">code</mi></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>α</mi><mo mathvariant="normal">,</mo><msub><mi>c</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>. Suppose:</span></p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i1.p1.m1" class="ltx_Math" alttext="c_{0}:\mathsf{code}(a_{0})" display="inline"><mrow><msub><mi>c</mi><mn>0</mn></msub><mo>:</mo><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i2.p1.m1" class="ltx_Math" alttext="\mathsf{decode}:\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)%
+}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod%
+_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}\mathsf%
+{code}(x)\to\mathopen{}\left\|a_{0}=x\right\|_{k}\mathclose{}" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mi></mi><mo>∥</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>x</mi><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i3.p1.m1" class="ltx_Math" alttext="\mathsf{encode}_{a_{0}}(\mathsf{decode}_{a0}(c))=c" display="inline"><mrow><mrow><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mrow><mi>a</mi><mo>⁢</mo><mn>0</mn></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>c</mi></mrow></math><span class="ltx_text ltx_font_italic"> for all </span><math id="I2.i3.p1.m2" class="ltx_Math" alttext="c:\mathsf{code}(a_{0})" display="inline"><mrow><mi>c</mi><mo>:</mo><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">, and</span></p>
+</div>
+</li>
+<li id="I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I2.i4.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i4.p1.m1" class="ltx_Math" alttext="\mathsf{decode}(c_{0})=\mathopen{}\left|\mathsf{refl}\right|\mathclose{}" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>𝗋𝖾𝖿𝗅</mi><mo>|</mo><mi></mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ol>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Then <math id="Thmprelem2.p1.m10" class="ltx_Math" alttext="\mathopen{}\left\|a_{0}=a_{0}\right\|_{k}\mathclose{}" display="inline"><mrow><mi></mi><mo mathvariant="normal">∥</mo><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">=</mo><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><msub><mo mathvariant="normal">∥</mo><mi>k</mi></msub><mi></mi></mrow></math> is equivalent to <math id="Thmprelem2.p1.m11" class="ltx_Math" alttext="\mathsf{code}(a_{0})" display="inline"><mrow><mi mathvariant="normal">code</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">That <math id="p7.m1" class="ltx_Math" alttext="\mathsf{decode}\circ\mathsf{encode}" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>∘</mo><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi></mrow></math> is identity is immediate by <a href="#I2.i3" title="3. ‣ Lemma 8.9.2 (Encode-decode for Truncations of Loop Spaces). ‣ 8.9 A general statement of the encode-decode method" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>.
+To prove <math id="p7.m2" class="ltx_Math" alttext="\mathsf{encode}\circ\mathsf{decode}" display="inline"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>∘</mo><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi></mrow></math>, we first do a truncation induction, by
+which it suffices to show</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(x:A)}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:%
+A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x%
+:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}\mathchoice{\prod_{(p:a_{0%
+}=x)}\,}{\mathchoice{{\textstyle\prod_{(p:a_{0}=x)}}}{\prod_{(p:a_{0}=x)}}{%
+\prod_{(p:a_{0}=x)}}{\prod_{(p:a_{0}=x)}}}{\mathchoice{{\textstyle\prod_{(p:a_%
+{0}=x)}}}{\prod_{(p:a_{0}=x)}}{\prod_{(p:a_{0}=x)}}{\prod_{(p:a_{0}=x)}}}{%
+\mathchoice{{\textstyle\prod_{(p:a_{0}=x)}}}{\prod_{(p:a_{0}=x)}}{\prod_{(p:a_%
+{0}=x)}}{\prod_{(p:a_{0}=x)}}}\mathsf{decode}_{x}(\mathsf{encode}_{x}(%
+\mathopen{}\left|p\right|_{k}\mathclose{}))=\mathopen{}\left|p\right|_{k}%
+\mathclose{}." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mi>x</mi></msub><mrow><mo stretchy="false">(</mo><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mi>x</mi></msub><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>p</mi><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>p</mi><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The truncation induction is allowed because paths in a <math id="p7.m3" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-type are a
+<math id="p7.m4" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-type. To show this type, we do a path induction, and after reducing
+the <math id="p7.m5" class="ltx_Math" alttext="\mathsf{encode}" display="inline"><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi></math>, use assumption <a href="#I2.i4" title="4. ‣ Lemma 8.9.2 (Encode-decode for Truncations of Loop Spaces). ‣ 8.9 A general statement of the encode-decode method" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>.
+∎</p>
+</div>
+</div>
+<div id="p8" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">8.9 A general statement of the encode-decode method</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:42:07 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

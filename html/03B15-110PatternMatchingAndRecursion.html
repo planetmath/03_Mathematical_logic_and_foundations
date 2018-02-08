@@ -1,0 +1,181 @@
+<!DOCTYPE html><html>
+<head>
+<title>1.10 Pattern matching and recursion</title>
+<!--Generated on Thu Feb  8 19:30:06 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-abstraction, by pattern matching, definition, matching, pattern matching, variable">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">1.10 Pattern matching and recursion</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">The natural numbers introduce an additional subtlety over the types considered up until now.
+In the case of coproducts, for instance, we could define a function <math id="p2.m1" class="ltx_Math" alttext="f:A+B\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mo>→</mo><mi>C</mi></mrow></mrow></math> either with the recursor:</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="f:\!\!\equiv\mathsf{rec}_{A+B}(C,g_{0},g_{1})" display="block"><mrow><mi>f</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖼</mi><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></msub><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><msub><mi>g</mi><mn>0</mn></msub><mo>,</mo><msub><mi>g</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">or by giving the defining equations:</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle f({\mathsf{inl}}(a))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv g_{0}(a)" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>g</mi><mn>0</mn></msub><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle f({\mathsf{inr}}(b))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv g_{1}(b)." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>g</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">To go from the former expression of <math id="p2.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to the latter, we simply use the computation rules for the recursor.
+Conversely, given any defining equations</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\displaystyle f({\mathsf{inl}}(a))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\Phi_{0}" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi mathvariant="normal">Φ</mi><mn>0</mn></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\displaystyle f({\mathsf{inr}}(b))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\Phi_{1}" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi mathvariant="normal">Φ</mi><mn>1</mn></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p2.m3" class="ltx_Math" alttext="\Phi_{0}" display="inline"><msub><mi mathvariant="normal">Φ</mi><mn>0</mn></msub></math> and <math id="p2.m4" class="ltx_Math" alttext="\Phi_{1}" display="inline"><msub><mi mathvariant="normal">Φ</mi><mn>1</mn></msub></math> are expressions that may involve the variables
+<math id="p2.m5" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and <math id="p2.m6" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> respectively, we can express these equations equivalently in terms of the recursor by using <math id="p2.m7" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction:
+</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="f:\!\!\equiv\mathsf{rec}_{A+B}(C,{\lambda}a.\,\Phi_{0},{\lambda}b.\,\Phi_{1})." display="block"><mrow><mi>f</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖼</mi><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></msub><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>λ</mi><mi>a</mi><mo rspace="4.2pt">.</mo><msub><mi mathvariant="normal">Φ</mi><mn>0</mn></msub><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><msub><mi mathvariant="normal">Φ</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">In the case of the natural numbers, however, the “defining equations” of a function such as <math id="p2.m9" class="ltx_Math" alttext="\mathsf{double}" display="inline"><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi></math>:</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S0.E1"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.E1.m1" class="ltx_Math" alttext="\displaystyle\mathsf{double}(0)" display="inline"><mrow><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.E1.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv 0" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mn>0</mn></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(1)</span></td>
+</tr></tbody>
+<tbody id="S0.E2"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.E2.m1" class="ltx_Math" alttext="\displaystyle\mathsf{double}(\mathsf{succ}(n))" display="inline"><mrow><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.E2.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathsf{succ}(\mathsf{succ}(\mathsf{double}(n)))" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝗌𝗎𝖼𝖼</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝖼𝖼</mi><mrow><mo stretchy="false">(</mo><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2)</span></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">involve <em class="ltx_emph ltx_font_italic">the function <math id="p2.m10" class="ltx_Math" alttext="\mathsf{double}" display="inline"><mi mathvariant="normal">double</mi></math> itself</em> on the right-hand side.
+However, we would still like to be able to give these equations, rather than (<span class="ltx_ref ltx_missing_label ltx_ref_self">LABEL:eq:dbl-as-rec</span>), as the definition of <math id="p2.m11" class="ltx_Math" alttext="\mathsf{double}" display="inline"><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi></math>, since they are much more convenient and readable.
+The solution is to read the expression “<math id="p2.m12" class="ltx_Math" alttext="\mathsf{double}(n)" display="inline"><mrow><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math>” on the right-hand side of (<a href="#S0.E2" title="(2) ‣ 1.10 Pattern matching and recursion" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a>) as standing in for the result of the recursive call, which in a definition of the form <math id="p2.m13" class="ltx_Math" alttext="\mathsf{double}:\!\!\equiv\mathsf{rec}_{\mathbb{N}}(\mathbb{N},c_{0},c_{s})" display="inline"><mrow><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖼</mi><mi>ℕ</mi></msub><mrow><mo stretchy="false">(</mo><mi>ℕ</mi><mo>,</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo><msub><mi>c</mi><mi>s</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> would be the second argument of <math id="p2.m14" class="ltx_Math" alttext="c_{s}" display="inline"><msub><mi>c</mi><mi>s</mi></msub></math>.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">More generally, if we have a “definition” of a function <math id="p3.m1" class="ltx_Math" alttext="f:\mathbb{N}\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mi>C</mi></mrow></mrow></math> such as</p>
+<table id="S0.EGx4" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\displaystyle f(0)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\Phi_{0}" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi mathvariant="normal">Φ</mi><mn>0</mn></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\displaystyle f(\mathsf{succ}(n))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\Phi_{s}" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi mathvariant="normal">Φ</mi><mi>s</mi></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p3.m2" class="ltx_Math" alttext="\Phi_{0}" display="inline"><msub><mi mathvariant="normal">Φ</mi><mn>0</mn></msub></math> is an expression of type <math id="p3.m3" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math>, and <math id="p3.m4" class="ltx_Math" alttext="\Phi_{s}" display="inline"><msub><mi mathvariant="normal">Φ</mi><mi>s</mi></msub></math> is an expression of type <math id="p3.m5" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math> which may involve the variable <math id="p3.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> and also the symbol “<math id="p3.m7" class="ltx_Math" alttext="f(n)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math>”, we may translate it to a definition</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="f:\!\!\equiv\mathsf{rec}_{\mathbb{N}}(C,\,\Phi_{0},\,{\lambda}n.\,{\lambda}r.%
+\,\Phi_{s}^{\prime})" display="block"><mrow><mi>f</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖼</mi><mi>ℕ</mi></msub><mrow><mo stretchy="false">(</mo><mi>C</mi><mo rspace="4.2pt">,</mo><msub><mi mathvariant="normal">Φ</mi><mn>0</mn></msub><mo rspace="4.2pt">,</mo><mi>λ</mi><mi>n</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>r</mi><mo rspace="4.2pt">.</mo><msubsup><mi mathvariant="normal">Φ</mi><mi>s</mi><mo>′</mo></msubsup><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p3.m8" class="ltx_Math" alttext="\Phi_{s}^{\prime}" display="inline"><msubsup><mi mathvariant="normal">Φ</mi><mi>s</mi><mo>′</mo></msubsup></math> is obtained from <math id="p3.m9" class="ltx_Math" alttext="\Phi_{s}" display="inline"><msub><mi mathvariant="normal">Φ</mi><mi>s</mi></msub></math> by replacing all occurrences of “<math id="p3.m10" class="ltx_Math" alttext="f(n)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math>” by the new variable <math id="p3.m11" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">This style of defining functions by recursion (or, more generally, dependent functions by induction) is so convenient that we frequently adopt it.
+It is called definition by <span class="ltx_text ltx_font_bold">pattern matching</span>.
+Of course, it is very similar to how a computer programmer may define a recursive function with a body that literally contains recursive calls to itself.
+However, unlike the programmer, we are restricted in what sort of recursive calls we can make: in order for such a definition to be re-expressible using the recursion principle, the function <math id="p4.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> being defined can only appear in the body of <math id="p4.m2" class="ltx_Math" alttext="f(\mathsf{succ}(n))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math> as part of the composite symbol “<math id="p4.m3" class="ltx_Math" alttext="f(n)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math>”.
+Otherwise, we could write nonsense functions such as</p>
+<table id="S0.EGx5" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex10" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\displaystyle f(0)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex10.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv 0" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mn>0</mn></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex11" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\displaystyle f(\mathsf{succ}(n))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex11.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv f(\mathsf{succ}(\mathsf{succ}(n)))." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝖼𝖼</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝖼𝖼</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">If a programmer wrote such a function, it would simply call itself forever on any positive input, going into an infinite loop and never returning a value.
+In mathematics, however, to be worthy of the name, a <em class="ltx_emph ltx_font_italic">function</em> must always associate a unique output value to every input value, so this would be unacceptable.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">This point will be even more important when we introduce more complicated inductive types in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87578</span>Chapter 5,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87579</span>Chapter 6,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87585</span>Chapter 11.
+Whenever we introduce a new kind of inductive definition, we always begin by deriving its induction principle.
+Only then do we introduce an appropriate sort of “pattern matching” which can be justified as a shorthand for the induction principle.</p>
+</div>
+<div id="p6" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">1.10 Pattern matching and recursion</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:30:06 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

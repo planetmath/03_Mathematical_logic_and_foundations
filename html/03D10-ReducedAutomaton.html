@@ -1,0 +1,219 @@
+<!DOCTYPE html><html>
+<head>
+<title>reduced automaton</title>
+<!--Generated on Thu Feb  8 20:01:40 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">reduced automaton</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Besides eliminating useless states that do not contribute to word acceptance, what else can we do to “clean up” an automaton? In other words, we would like to reduce the number of states in an automaton to as small as possible without affecting its power of accepting words.
+</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">The next thing we can do is to look to find states that do the same thing and combine them into one state. Two states do the same thing if, acting as starting states, when an arbitrary word is fed into the automaton, they lead to the same conclusion: either both accept the word, or both reject it. Arbitrary automata are too general to ensure definite conclusions, so we restrict our attention to deterministic finite automata.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. Let <math id="p3.m1" class="ltx_Math" alttext="A=(S,\Sigma,\delta,q_{0},F)" display="inline"><mrow><mi>A</mi><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mi mathvariant="normal">Σ</mi><mo>,</mo><mi>δ</mi><mo>,</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow></mrow></math> be an automaton with a single start state <math id="p3.m2" class="ltx_Math" alttext="q_{0}" display="inline"><msub><mi>q</mi><mn>0</mn></msub></math>. For any state <math id="p3.m3" class="ltx_Math" alttext="s\in S" display="inline"><mrow><mi>s</mi><mo>∈</mo><mi>S</mi></mrow></math>, define <math id="p3.m4" class="ltx_Math" alttext="A_{s}" display="inline"><msub><mi>A</mi><mi>s</mi></msub></math> to be the automaton obtained from <math id="p3.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> by replacing <math id="p3.m6" class="ltx_Math" alttext="q_{0}" display="inline"><msub><mi>q</mi><mn>0</mn></msub></math> by <math id="p3.m7" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math>. In other words, <math id="p3.m8" class="ltx_Math" alttext="A_{s}:=(S,\Sigma,\delta,s,F)" display="inline"><mrow><msub><mi>A</mi><mi>s</mi></msub><mo>:=</mo><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mi mathvariant="normal">Σ</mi><mo>,</mo><mi>δ</mi><mo>,</mo><mi>s</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow></mrow></math>. Two states <math id="p3.m9" class="ltx_Math" alttext="s,t\in S" display="inline"><mrow><mrow><mi>s</mi><mo>,</mo><mi>t</mi></mrow><mo>∈</mo><mi>S</mi></mrow></math> are said to be <em class="ltx_emph ltx_font_italic">indistinguishable</em> if <math id="p3.m10" class="ltx_Math" alttext="L(A_{s})=L(A_{t})" display="inline"><mrow><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>s</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Let us write <math id="p4.m1" class="ltx_Math" alttext="s\approx t" display="inline"><mrow><mi>s</mi><mo>≈</mo><mi>t</mi></mrow></math> to mean that <math id="p4.m2" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> and <math id="p4.m3" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math> are indistinguishable. Then <math id="p4.m4" class="ltx_Math" alttext="\approx" display="inline"><mo>≈</mo></math> is an equivalence relation on <math id="p4.m5" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math>. For each <math id="p4.m6" class="ltx_Math" alttext="s\in S" display="inline"><mrow><mi>s</mi><mo>∈</mo><mi>S</mi></mrow></math>, write <math id="p4.m7" class="ltx_Math" alttext="[s]" display="inline"><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow></math> the equivalence class containing <math id="p4.m8" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math>. Let <math id="p4.m9" class="ltx_Math" alttext="S/\approx" display="inline"><mrow><mi>S</mi><mo>/</mo><mo>≈</mo></mrow></math> be the set of equivalence classes.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">If <math id="p5.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a DFA, <math id="p5.m2" class="ltx_Math" alttext="s\approx t" display="inline"><mrow><mi>s</mi><mo>≈</mo><mi>t</mi></mrow></math> is the same as saying that, for all words <math id="p5.m3" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> over <math id="p5.m4" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>, <math id="p5.m5" class="ltx_Math" alttext="\delta(s,u)\in F" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mi>F</mi></mrow></math> iff <math id="p5.m6" class="ltx_Math" alttext="\delta(t,u)\in F" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mi>F</mi></mrow></math>. For the following discussion, we shall assume that <math id="p5.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a DFA, unless otherwise specified.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Here are two basic observations:</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I1.i1.p1.m1" class="ltx_Math" alttext="[s]=[t]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo></mrow></mrow></math>, then <math id="I1.i1.p1.m2" class="ltx_Math" alttext="[\delta(s,a)]=[\delta(t,a)]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></math>: Let <math id="I1.i1.p1.m3" class="ltx_Math" alttext="p=\delta(s,a)" display="inline"><mrow><mi>p</mi><mo>=</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="I1.i1.p1.m4" class="ltx_Math" alttext="q=\delta(t,a)" display="inline"><mrow><mi>q</mi><mo>=</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. Given any <math id="I1.i1.p1.m5" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> over <math id="I1.i1.p1.m6" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>, we have that <math id="I1.i1.p1.m7" class="ltx_Math" alttext="\delta(p,u)=\delta(\delta(s,a),u)=\delta(s,au)" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mrow><mi>a</mi><mo>⁢</mo><mi>u</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, which is in <math id="I1.i1.p1.m8" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> iff <math id="I1.i1.p1.m9" class="ltx_Math" alttext="\delta(t,au)=\delta(\delta(t,a),u)=\delta(q,u)" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>,</mo><mrow><mi>a</mi><mo>⁢</mo><mi>u</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is in <math id="I1.i1.p1.m10" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math>. Hence <math id="I1.i1.p1.m11" class="ltx_Math" alttext="p\approx q" display="inline"><mrow><mi>p</mi><mo>≈</mo><mi>q</mi></mrow></math>.</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I1.i2.p1.m1" class="ltx_Math" alttext="[s]=[t]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo></mrow></mrow></math> and <math id="I1.i2.p1.m2" class="ltx_Math" alttext="t\in F" display="inline"><mrow><mi>t</mi><mo>∈</mo><mi>F</mi></mrow></math>, then <math id="I1.i2.p1.m3" class="ltx_Math" alttext="s\in F" display="inline"><mrow><mi>s</mi><mo>∈</mo><mi>F</mi></mrow></math>: as <math id="I1.i2.p1.m4" class="ltx_Math" alttext="\delta(t,\lambda)=t\in F" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>,</mo><mi>λ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>t</mi><mo>∈</mo><mi>F</mi></mrow></math> shows that <math id="I1.i2.p1.m5" class="ltx_Math" alttext="s=\delta(s,\lambda)\in F" display="inline"><mrow><mi>s</mi><mo>=</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>λ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mi>F</mi></mrow></math>. As a result of this, <math id="I1.i2.p1.m6" class="ltx_Math" alttext="p\in F" display="inline"><mrow><mi>p</mi><mo>∈</mo><mi>F</mi></mrow></math> iff <math id="I1.i2.p1.m7" class="ltx_Math" alttext="[p]\in F^{\prime}" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mi>p</mi><mo stretchy="false">]</mo></mrow><mo>∈</mo><msup><mi>F</mi><mo>′</mo></msup></mrow></math>.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Define <math id="p7.m1" class="ltx_Math" alttext="A^{\prime}=(S^{\prime},\Sigma,\delta^{\prime},q_{0}^{\prime},F^{\prime})" display="inline"><mrow><msup><mi>A</mi><mo>′</mo></msup><mo>=</mo><mrow><mo stretchy="false">(</mo><msup><mi>S</mi><mo>′</mo></msup><mo>,</mo><mi mathvariant="normal">Σ</mi><mo>,</mo><msup><mi>δ</mi><mo>′</mo></msup><mo>,</mo><msubsup><mi>q</mi><mn>0</mn><mo>′</mo></msubsup><mo>,</mo><msup><mi>F</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math> as follows: <math id="p7.m2" class="ltx_Math" alttext="S^{\prime}:=S/\approx" display="inline"><mrow><msup><mi>S</mi><mo>′</mo></msup><mo>:=</mo><mi>S</mi><mo>/</mo><mo>≈</mo></mrow></math>, <math id="p7.m3" class="ltx_Math" alttext="q_{0}^{\prime}:=[q_{0}]" display="inline"><mrow><msubsup><mi>q</mi><mn>0</mn><mo>′</mo></msubsup><mo>:=</mo><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mn>0</mn></msub><mo stretchy="false">]</mo></mrow></mrow></math>, <math id="p7.m4" class="ltx_Math" alttext="F^{\prime}:=\{[t]\mid t\in F\}" display="inline"><mrow><msup><mi>F</mi><mo>′</mo></msup><mo>:=</mo><mrow><mo stretchy="false">{</mo><mrow><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo></mrow><mo>∣</mo><mrow><mi>t</mi><mo>∈</mo><mi>F</mi></mrow><mo stretchy="false">}</mo></mrow></mrow></math>, and <math id="p7.m5" class="ltx_Math" alttext="\delta^{\prime}([s],a):=[\delta(s,a)]" display="inline"><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></math>, for any <math id="p7.m6" class="ltx_Math" alttext="a\in\Sigma" display="inline"><mrow><mi>a</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Now, <math id="p8.m1" class="ltx_Math" alttext="\delta^{\prime}" display="inline"><msup><mi>δ</mi><mo>′</mo></msup></math> is a well-defined function from the first observation above, so that <math id="p8.m2" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math> is a well-defined automaton. It has the following property: for any word <math id="p8.m3" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> over <math id="p8.m4" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>:</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\delta^{\prime}([s],u)=[\delta(s,u)]." display="block"><mrow><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This can be proved by induction on the length of <math id="p8.m5" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>:</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i1.p1.m1" class="ltx_Math" alttext="\delta^{\prime}([s],\lambda)=[s]=[\delta(s,\lambda)]" display="inline"><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>λ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>λ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></math></p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">suppose <math id="I2.i2.p1.m1" class="ltx_Math" alttext="\delta^{\prime}([s],u)=[\delta(s,u)]" display="inline"><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></math>, then for any <math id="I2.i2.p1.m2" class="ltx_Math" alttext="a\in\Sigma" display="inline"><mrow><mi>a</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow></math>,</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\delta^{\prime}([s],ua)=\delta^{\prime}(\delta^{\prime}([s],u),a)=\delta^{%
+\prime}([\delta(s,u)],a)=[\delta(\delta(s,u),a)]=[\delta(s,ua)]." display="block"><mrow><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>,</mo><mrow><mi>u</mi><mo>⁢</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mrow><mi>u</mi><mo>⁢</mo><mi>a</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">It also has the property that for if two states are indistinguishable, they are in fact the same state: suppose <math id="p9.m1" class="ltx_Math" alttext="[s]\approx[t]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>≈</mo><mrow><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo></mrow></mrow></math>, then for every <math id="p9.m2" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> over <math id="p9.m3" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>, <math id="p9.m4" class="ltx_Math" alttext="\delta^{\prime}([s],u)\in F^{\prime}" display="inline"><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><msup><mi>F</mi><mo>′</mo></msup></mrow></math> iff <math id="p9.m5" class="ltx_Math" alttext="\delta^{\prime}([t],u)\in F^{\prime}" display="inline"><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><msup><mi>F</mi><mo>′</mo></msup></mrow></math>, or <math id="p9.m6" class="ltx_Math" alttext="[\delta(s,u)]\in F^{\prime}" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>∈</mo><msup><mi>F</mi><mo>′</mo></msup></mrow></math> iff <math id="p9.m7" class="ltx_Math" alttext="[\delta(t,u)]\in F^{\prime}" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>∈</mo><msup><mi>F</mi><mo>′</mo></msup></mrow></math>, which is the same as saying <math id="p9.m8" class="ltx_Math" alttext="\delta(s,u)\in F" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mi>F</mi></mrow></math> iff <math id="p9.m9" class="ltx_Math" alttext="\delta(t,u)\in F" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mi>F</mi></mrow></math>, or <math id="p9.m10" class="ltx_Math" alttext="s\approx t" display="inline"><mrow><mi>s</mi><mo>≈</mo><mi>t</mi></mrow></math>, or <math id="p9.m11" class="ltx_Math" alttext="[s]=[t]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. An finite automaton with a single start state is said to be <em class="ltx_emph ltx_font_italic">reduced</em> or <em class="ltx_emph ltx_font_italic">minimal</em> if <math id="p10.m1" class="ltx_Math" alttext="s\approx t" display="inline"><mrow><mi>s</mi><mo>≈</mo><mi>t</mi></mrow></math> implies <math id="p10.m2" class="ltx_Math" alttext="s=t" display="inline"><mrow><mi>s</mi><mo>=</mo><mi>t</mi></mrow></math>, where <math id="p10.m3" class="ltx_Math" alttext="\approx" display="inline"><mo>≈</mo></math> is the indistinguishable relation on its state set.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">Thus <math id="p11.m1" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math> constructed above is reduced.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Below are state diagrams of an automaton <math id="p12.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> (not deterministic) and its reduction <math id="p12.m2" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math>:</p>
+</div>
+<figure id="fig1" class="ltx_figure">
+<p class="ltx_p ltx_align_center"><svg version="1.1" height="20" width="50" fragid="pic1" viewBox="-5 -1 45 19" overflow="visible"><g transform="translate(0,9.0)"><g transform="scale(1 -1)"><g transform="scale(1.0)"><g transform="scale(1 -1) translate(-5,-10)"><foreignObject width="50" height="20" overflow="visible"><img src="automaton3.eps" id="pic1.g1" class="ltx_graphics" alt=""></foreignObject></g></g></g></g></svg></p>
+</figure>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">Note that <math id="p13.m1" class="ltx_Math" alttext="p\approx q" display="inline"><mrow><mi>p</mi><mo>≈</mo><mi>q</mi></mrow></math>, as <math id="p13.m2" class="ltx_Math" alttext="L(A_{p})=L(A_{q})=\{aa,ab,ba,bb\}" display="inline"><mrow><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>p</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>q</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">{</mo><mrow><mi>a</mi><mo>⁢</mo><mi>a</mi></mrow><mo>,</mo><mrow><mi>a</mi><mo>⁢</mo><mi>b</mi></mrow><mo>,</mo><mrow><mi>b</mi><mo>⁢</mo><mi>a</mi></mrow><mo>,</mo><mrow><mi>b</mi><mo>⁢</mo><mi>b</mi></mrow><mo stretchy="false">}</mo></mrow></mrow></math>, and are combined into one state <math id="p13.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>. Similarly, <math id="p13.m4" class="ltx_Math" alttext="r\approx s" display="inline"><mrow><mi>r</mi><mo>≈</mo><mi>s</mi></mrow></math>, as <math id="p13.m5" class="ltx_Math" alttext="L(A_{r})=L(A_{s})=\{a,b\}" display="inline"><mrow><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>r</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>A</mi><mi>s</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">{</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">}</mo></mrow></mrow></math>, and are combined into <math id="p13.m6" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>. Finally, note that <math id="p13.m7" class="ltx_Math" alttext="L(A)=L(A^{\prime})=\{u\mid|u|=3\}" display="inline"><mrow><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>A</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">{</mo><mi>u</mi><mo>∣</mo><mrow><mrow><mo stretchy="false">|</mo><mi>u</mi><mo stretchy="false">|</mo></mrow><mo>=</mo><mn>3</mn></mrow><mo stretchy="false">}</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">With respect to DFA’s, the following is true:</p>
+</div>
+<div id="Thmprop1" class="ltx_theorem ltx_theorem_prop">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Proposition 1</span>.</h6>
+<div id="Thmprop1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Every DFA <math id="Thmprop1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is equivalent to a reduced DFA <math id="Thmprop1.p1.m2" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo mathvariant="normal">′</mo></msup></math>. Furthermore, if <math id="Thmprop1.p1.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is accessible (or simplified), so is <math id="Thmprop1.p1.m4" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo mathvariant="normal">′</mo></msup></math>. Finally, two equivalent reduced accessible automata are isomorphic.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">We have already shown that given a DFA <math id="p15.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, the automaton <math id="p15.m2" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math> constructed above is reduced. Next, we see that <math id="p15.m3" class="ltx_Math" alttext="u\in L(A)" display="inline"><mrow><mi>u</mi><mo>∈</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> iff <math id="p15.m4" class="ltx_Math" alttext="\delta(q_{0},u)\in F" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mi>F</mi></mrow></math> iff <math id="p15.m5" class="ltx_Math" alttext="[\delta(q_{0},u)]\in F^{\prime}" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>∈</mo><msup><mi>F</mi><mo>′</mo></msup></mrow></math> iff <math id="p15.m6" class="ltx_Math" alttext="\delta^{\prime}([q_{0}],u)\in F^{\prime}" display="inline"><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mn>0</mn></msub><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><msup><mi>F</mi><mo>′</mo></msup></mrow></math> iff <math id="p15.m7" class="ltx_Math" alttext="u\in L(A^{\prime})" display="inline"><mrow><mi>u</mi><mo>∈</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>A</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. Therefore, <math id="p15.m8" class="ltx_Math" alttext="L(A)=L(A^{\prime})" display="inline"><mrow><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>A</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">Next, suppose <math id="p16.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is accessible, we want to show that <math id="p16.m2" class="ltx_Math" alttext="[p]" display="inline"><mrow><mo stretchy="false">[</mo><mi>p</mi><mo stretchy="false">]</mo></mrow></math> is accessible for any <math id="p16.m3" class="ltx_Math" alttext="p\in S" display="inline"><mrow><mi>p</mi><mo>∈</mo><mi>S</mi></mrow></math>. Since <math id="p16.m4" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is accessible, <math id="p16.m5" class="ltx_Math" alttext="p=\delta(q_{0},u)" display="inline"><mrow><mi>p</mi><mo>=</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for some word <math id="p16.m6" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> over <math id="p16.m7" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>. So <math id="p16.m8" class="ltx_Math" alttext="\delta([q_{0}],u)=[\delta(q_{0},u)]=[p]" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mn>0</mn></msub><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mi>p</mi><mo stretchy="false">]</mo></mrow></mrow></math> is accessible as well. This proves that <math id="p16.m9" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math> is accessible.</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">Suppose now that <math id="p17.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is simplified. Pick any <math id="p17.m2" class="ltx_Math" alttext="s\in S" display="inline"><mrow><mi>s</mi><mo>∈</mo><mi>S</mi></mrow></math>, we want to show that <math id="p17.m3" class="ltx_Math" alttext="[s]" display="inline"><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow></math> is useful. Since <math id="p17.m4" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> is useful, there are words <math id="p17.m5" class="ltx_Math" alttext="u,v" display="inline"><mrow><mi>u</mi><mo>,</mo><mi>v</mi></mrow></math> over <math id="p17.m6" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math> such that <math id="p17.m7" class="ltx_Math" alttext="\delta(q_{0},u)=s" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>s</mi></mrow></math> and <math id="p17.m8" class="ltx_Math" alttext="\delta(s,v)\in F" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∈</mo><mi>F</mi></mrow></math>, or equivalently <math id="p17.m9" class="ltx_Math" alttext="\delta^{\prime}([q_{0}],u)=[\delta(q_{0},u)]=[s]" display="inline"><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mn>0</mn></msub><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow></mrow></math> and <math id="p17.m10" class="ltx_Math" alttext="\delta^{\prime}([s],v)=[\delta(s,v)]\in F^{\prime}" display="inline"><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">[</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow><mo>∈</mo><msup><mi>F</mi><mo>′</mo></msup></mrow></math>, so that <math id="p17.m11" class="ltx_Math" alttext="[s]\in S^{\prime}" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo></mrow><mo>∈</mo><msup><mi>S</mi><mo>′</mo></msup></mrow></math> is useful. This shows that <math id="p17.m12" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math> is simplified.</p>
+</div>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">Finally, if <math id="p18.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p18.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are both accessible and reduced such that <math id="p18.m3" class="ltx_Math" alttext="L(A)=L(B)=R" display="inline"><mrow><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>R</mi></mrow></math>. Then the Myhill-Nerode relations induced by <math id="p18.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p18.m5" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are both equal to the Nerode equivalence <math id="p18.m6" class="ltx_Math" alttext="\mathcal{N}_{R}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒩</mi><mi>R</mi></msub></math> of <math id="p18.m7" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>. As a result, <math id="p18.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p18.m9" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are both isomorphic to the automaton generated by <math id="p18.m10" class="ltx_Math" alttext="\mathcal{N}_{R}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒩</mi><mi>R</mi></msub></math>.
+∎</p>
+</div>
+</div>
+<div id="p19" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Remark</span>. The proposition above is not true in general for non-deterministic finite automata: two equivalent simplified reduced NDFA may not be isomorphic. However, there exist reduction techniques for NDFA such that the reduced automata produced using these techniques are unique up to isomorphism.
+</p>
+<table class="ltx_tabular ltx_align_right ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">reduced automaton</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Canonical name</td>
+<td class="ltx_td ltx_align_left ltx_border_r">ReducedAutomaton</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Date of creation</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:01:56</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified on</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:01:56</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Owner</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified by</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Numerical id</td>
+<td class="ltx_td ltx_align_left ltx_border_r">14</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Author</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Entry type</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03D10</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 68Q42</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 68Q05</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">minimal automaton</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Related topic</td>
+<td class="ltx_td ltx_align_left ltx_border_r">SimplifiedAutomaton</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">indistinguishable</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">reduced</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">minimal</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p ltx_align_right"></p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:01:40 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

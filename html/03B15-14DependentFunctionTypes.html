@@ -1,0 +1,206 @@
+<!DOCTYPE html><html>
+<head>
+<title>1.4 Dependent function types</title>
+<!--Generated on Thu Feb  8 19:32:22 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">1.4 Dependent function types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">In type theory we often use a more general version of function
+types, called a <math id="p1.m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math><span class="ltx_text ltx_font_bold">-type</span> or <span class="ltx_text ltx_font_bold">dependent function type</span>. The elements of
+a <math id="p1.m2" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-type are functions
+whose codomain type can vary depending on the
+element of the domain to which the function is applied, called <span class="ltx_text ltx_font_bold">dependent functions</span>. The name “<math id="p1.m3" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-type”
+is used because this type can also be regarded as the cartesian
+product over a given type.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Given a type <math id="p2.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and a family <math id="p2.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, we may construct
+the type of dependent functions <math id="p2.m3" class="ltx_Math" alttext="\textstyle\prod_{(x:A)}B(x):\mathcal{U}" display="inline"><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>.
+There are many alternative notations for this type, such as</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\textstyle\prod_{(x:A)}B(x)\qquad\prod_{(x:A)}\,B(x)\qquad\prod({\textstyle x:%
+A}),\ B(x)." display="block"><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true">  </mo><mpadded width="+1.7pt"><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle></mpadded><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true">  </mo><mstyle displaystyle="false"><mo largeop="true" symmetric="true">∏</mo></mstyle><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="7.5pt">,</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">If <math id="p2.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is a constant family, then the dependent product type is the ordinary function type:
+</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\textstyle\prod_{(x:A)}B\equiv(A\to B)." display="block"><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Indeed, all the constructions of <math id="p2.m5" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types are generalizations of the corresponding constructions on ordinary function types.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">We can introduce dependent functions by explicit definitions: to
+define <math id="p3.m1" class="ltx_Math" alttext="f:\textstyle\prod_{(x:A)}B(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, where <math id="p3.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is the name of a dependent function to be
+defined, we need an expression <math id="p3.m3" class="ltx_Math" alttext="\Phi:B(x)" display="inline"><mrow><mi mathvariant="normal">Φ</mi><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> possibly involving the variable <math id="p3.m4" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>,
+and we write</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="f(x)܃\!\!\equiv\Phi\qquad\mbox{for $x:A$}." display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi mathvariant="normal">Φ</mi><mo mathvariant="italic" separator="true">  </mo><mrow><mtext>for </mtext><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Alternatively, we can use <math id="p3.m5" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math><span class="ltx_text ltx_font_bold">-abstraction</span></p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="{\lambda}x:A:{.\,}\Phi\ :\ \textstyle\prod_{(x:A)}B(x)." display="block"><mrow><mi>λ</mi><mi>x</mi><mo>:</mo><mi>A</mi><mo>:</mo><mo rspace="4.2pt">.</mo><mpadded width="+5pt"><mi mathvariant="normal">Φ</mi></mpadded><mo rspace="7.5pt">:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(1.4.1)</span></td>
+</tr>
+</table>
+<p class="ltx_p">As with non-dependent functions, we can <span class="ltx_text ltx_font_bold">apply</span> a dependent function <math id="p3.m6" class="ltx_Math" alttext="f:\textstyle\prod_{(x:A)}B(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> to an argument <math id="p3.m7" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> to obtain an element <math id="p3.m8" class="ltx_Math" alttext="f(a):B(a)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+The equalities are the same as for the ordinary function type, i.e. we have the computation rule
+given <math id="p3.m9" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> we have <math id="p3.m10" class="ltx_Math" alttext="f(a)\equiv\Phi^{\prime}" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><msup><mi mathvariant="normal">Φ</mi><mo>′</mo></msup></mrow></math> and
+<math id="p3.m11" class="ltx_Math" alttext="({\lambda}x:A:{.\,}\Phi)(a)\equiv\Phi^{\prime}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>:</mo><mi>A</mi><mo>:</mo><mo rspace="4.2pt">.</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>≡</mo><msup><mi mathvariant="normal">Φ</mi><mo>′</mo></msup></mrow></math>, where <math id="p3.m12" class="ltx_Math" alttext="\Phi^{\prime}" display="inline"><msup><mi mathvariant="normal">Φ</mi><mo>′</mo></msup></math> is obtained by replacing all
+occurrences of <math id="p3.m13" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in <math id="p3.m14" class="ltx_Math" alttext="\Phi" display="inline"><mi mathvariant="normal">Φ</mi></math> by <math id="p3.m15" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> (avoiding variable capture, as always).
+Similarly, we have the uniqueness principle <math id="p3.m16" class="ltx_Math" alttext="f\equiv({\lambda}x{.\,}f(x))" display="inline"><mrow><mi>f</mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> for any <math id="p3.m17" class="ltx_Math" alttext="f:\textstyle\prod_{(x:A)}B(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.
+</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">As an example, recall from §1.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/13universesandfamilies</span>) that there is a type family <math id="p4.m1" class="ltx_Math" alttext="\mathsf{Fin}:\mathbb{N}\to\mathcal{U}" display="inline"><mrow><mi>𝖥𝗂𝗇</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> whose values are the standard finite sets, with elements <math id="p4.m2" class="ltx_Math" alttext="0_{n},1_{n},\dots,(n-1)_{n}:\mathsf{Fin}(n)" display="inline"><mrow><mrow><msub><mn>0</mn><mi>n</mi></msub><mo>,</mo><msub><mn>1</mn><mi>n</mi></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mi>n</mi></msub></mrow><mo>:</mo><mrow><mi>𝖥𝗂𝗇</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+There is then a dependent function <math id="p4.m3" class="ltx_Math" alttext="\mathsf{fmax}:\textstyle\prod_{(n:\mathbb{N})}\mathsf{Fin}(n+1)" display="inline"><mrow><mi>𝖿𝗆𝖺𝗑</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>𝖥𝗂𝗇</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>
+which returns the “largest” element of each nonempty finite type, <math id="p4.m4" class="ltx_Math" alttext="\mathsf{fmax}(n)܃\!\!\equiv n_{n+1}" display="inline"><mrow><mrow><mi>𝖿𝗆𝖺𝗑</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><msub><mi>n</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></math>.
+As was the case for <math id="p4.m5" class="ltx_Math" alttext="\mathsf{Fin}" display="inline"><mi>𝖥𝗂𝗇</mi></math> itself, we cannot define <math id="p4.m6" class="ltx_Math" alttext="\mathsf{fmax}" display="inline"><mi>𝖿𝗆𝖺𝗑</mi></math> yet, but we will be able to soon; see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87562</span>Exercise 1.9.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Another important class of dependent function types, which we can define now, are functions which are <span class="ltx_text ltx_font_bold">polymorphic</span>
+over a given universe.
+A polymorphic function is one which takes a type as one of its arguments, and then acts on elements of that type (or other types constructed from it).
+An example is the polymorphic identity function <math id="p5.m1" class="ltx_Math" alttext="\mathsf{id}:\textstyle\prod_{(A:\mathcal{U})}A\to A" display="inline"><mrow><mi>𝗂𝖽</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub><mi>A</mi></mrow><mo>→</mo><mi>A</mi></mrow></mrow></math>, which we define by <math id="p5.m2" class="ltx_Math" alttext="\mathsf{id}{}܃\!\!\equiv{\lambda}(A\,{:}\,\mathcal{U}){.\,}{x:A}x" display="inline"><mrow><mi>𝗂𝖽</mi><mi>Ü</mi><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded><mo>≡</mo><mi>λ</mi><mrow><mo stretchy="false">(</mo><mpadded width="+1.7pt"><mi>A</mi></mpadded><mo rspace="4.2pt">:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>x</mi><mo>:</mo><mi>A</mi><mi>x</mi></mrow></math>.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">We sometimes write some arguments of a dependent function as subscripts.
+For instance, we might equivalently define the polymorphic identity function by <math id="p6.m1" class="ltx_Math" alttext="\mathsf{id}_{A}(x)܃\!\!\equiv x" display="inline"><mrow><mrow><msub><mi>𝗂𝖽</mi><mi>A</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mi>x</mi></mrow></math>.
+Moreover, if an argument can be inferred from context, we may omit it altogether.
+For instance, if <math id="p6.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, then writing <math id="p6.m3" class="ltx_Math" alttext="\mathsf{id}(a)" display="inline"><mrow><mi>𝗂𝖽</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> is unambiguous, since <math id="p6.m4" class="ltx_Math" alttext="\mathsf{id}" display="inline"><mi>𝗂𝖽</mi></math> must mean <math id="p6.m5" class="ltx_Math" alttext="\mathsf{id}_{A}" display="inline"><msub><mi>𝗂𝖽</mi><mi>A</mi></msub></math> in order for it to be applicable to <math id="p6.m6" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Another, less trivial, example of a polymorphic function is the “swap” operation that switches the order of the arguments of a (curried) two-argument function:</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathsf{swap}:\textstyle\prod_{(A:\mathcal{U})}{B:\mathcal{U}}{C:\mathcal{U}}(%
+A\to B\to C)\to(B\to A\to C)" display="block"><mrow><mi>𝗌𝗐𝖺𝗉</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>C</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We can define this by</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\mathsf{swap}(A,B,C,g)܃\!\!\equiv{\lambda}b{.\,}{a}g(a)(b)." display="block"><mrow><mrow><mrow><mrow><mi>𝗌𝗐𝖺𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi><mo>,</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>b</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mi>a</mi><mo>⁢</mo><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We might also equivalently write the type arguments as subscripts:</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\mathsf{swap}_{A,B,C}(g)(b,a)܃\!\!\equiv g(a,b)." display="block"><mrow><mrow><mrow><msub><mi>𝗌𝗐𝖺𝗉</mi><mrow><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Note that as we did for ordinary functions, we use currying to define dependent functions with
+several arguments (such as <math id="p8.m1" class="ltx_Math" alttext="\mathsf{swap}" display="inline"><mi>𝗌𝗐𝖺𝗉</mi></math>). However, in the dependent case the second domain may
+depend on the first one, and the codomain may depend on both. That is,
+given <math id="p8.m2" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and type families <math id="p8.m3" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> and <math id="p8.m4" class="ltx_Math" alttext="C:\textstyle\prod_{(x:A)}B(x)\to\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, we may construct
+the type <math id="p8.m5" class="ltx_Math" alttext="\textstyle\prod_{(x:A)}{y:B(x)}C(x,y)" display="inline"><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>y</mi></mrow><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> of functions with two
+arguments.
+(Like <math id="p8.m6" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstractions, <math id="p8.m7" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>s automatically scope over the rest of the expression unless delimited; thus <math id="p8.m8" class="ltx_Math" alttext="C:\textstyle\prod_{(x:A)}B(x)\to\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> means <math id="p8.m9" class="ltx_Math" alttext="C:\textstyle\prod_{(x:A)}(B(x)\to\mathcal{U})" display="inline"><mrow><mi>C</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></mrow></math>.)
+In the case when <math id="p8.m10" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is constant and equal to <math id="p8.m11" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, we may condense the notation and write <math id="p8.m12" class="ltx_Math" alttext="\textstyle\prod_{(x,y:A)}" display="inline"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></math>; for instance, the type of <math id="p8.m13" class="ltx_Math" alttext="\mathsf{swap}" display="inline"><mi>𝗌𝗐𝖺𝗉</mi></math> could also be written as</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\mathsf{swap}:\textstyle\prod_{(A,B,C:\mathcal{U})}(A\to B\to C)\to(B\to A\to C)." display="block"><mrow><mi>𝗌𝗐𝖺𝗉</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Finally, given <math id="p8.m14" class="ltx_Math" alttext="f:\textstyle\prod_{(x:A)}{y:B(x)}C(x,y)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>y</mi></mrow><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and arguments <math id="p8.m15" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p8.m16" class="ltx_Math" alttext="b:B(a)" display="inline"><mrow><mi>b</mi><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, we have <math id="p8.m17" class="ltx_Math" alttext="f(a)(b):C(a,b)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, which,
+as before, we write as <math id="p8.m18" class="ltx_Math" alttext="f(a,b):C(a,b)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p9" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">1.4 Dependent function types</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">14DependentFunctionTypes</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-11-07 20:32:18</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-11-07 20:32:18</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">PMBookProject (1000683)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">rspuzio (6075)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">23</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">PMBookProject (6075)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Feature</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">msc 03B15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:32:22 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

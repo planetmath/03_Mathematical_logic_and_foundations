@@ -1,0 +1,394 @@
+<!DOCTYPE html><html>
+<head>
+<title>9.8 The structure identity principle</title>
+<!--Generated on Thu Feb  8 19:43:00 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , , , -, -structure, arity, first-order, homomorphism of , identity principle, natural, notion of, of , of , precategory, precategory of , signature, standard notion of, structure, transformation">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">9.8 The structure identity principle</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">The <em class="ltx_emph ltx_font_italic">structure identity principle</em> is an informal principle
+that expresses that isomorphic structures are identical. We aim to
+prove a general abstract result which can be applied to a wide family
+of notions of structure, where structures may be many-sorted or even
+dependently-sorted, infinitary, or even higher order.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">The simplest kind of single-sorted structure consists of a type with
+no additional structure. The univalence axiom expresses the structure identity principle for that
+notion of structure in a strong form: for types <math id="p3.m1" class="ltx_Math" alttext="A,B" display="inline"><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow></math>, the
+canonical function <math id="p3.m2" class="ltx_Math" alttext="(A=B)\to(A\simeq B)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>=</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>≃</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow></math> is an equivalence.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">We start with a precategory <math id="p4.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>. In our application to
+single-sorted first order structures, <math id="p4.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> will be the category of <math id="p4.m3" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math>-small sets, where <math id="p4.m4" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> is a univalent type universe.</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 9.8.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A <span class="ltx_text ltx_font_bold">notion of structure</span>
+<math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>P</mi><mo mathvariant="normal">,</mo><mi>H</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> over <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> consists of the following.</span></p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A type family </span><math id="I1.i1.p1.m1" class="ltx_Math" alttext="P:X_{0}\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><msub><mi>X</mi><mn>0</mn></msub><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.
+For each </span><math id="I1.i1.p1.m2" class="ltx_Math" alttext="x:X_{0}" display="inline"><mrow><mi>x</mi><mo>:</mo><msub><mi>X</mi><mn>0</mn></msub></mrow></math><span class="ltx_text ltx_font_italic"> the elements of </span><math id="I1.i1.p1.m3" class="ltx_Math" alttext="Px" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mi>x</mi></mrow></math><span class="ltx_text ltx_font_italic"> are called </span><math id="I1.i1.p1.m4" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_bold ltx_font_italic">-structures</span><span class="ltx_text ltx_font_italic">
+on </span><math id="I1.i1.p1.m7" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For </span><math id="I1.i2.p1.m1" class="ltx_Math" alttext="x,y:X_{0}" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><msub><mi>X</mi><mn>0</mn></msub></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I1.i2.p1.m2" class="ltx_Math" alttext="\alpha:Px" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mi>x</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, </span><math id="I1.i2.p1.m3" class="ltx_Math" alttext="\;\beta:Py" display="inline"><mrow><mpadded lspace="2.8pt" width="+2.8pt"><mi>β</mi></mpadded><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mi>y</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, to each </span><math id="I1.i2.p1.m4" class="ltx_Math" alttext="f:\hom_{X}(x,y)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mi>hom</mi><mi>X</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic"> a mere proposition</span></p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="H_{\alpha\beta}(f)." display="block"><mrow><mrow><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If </span><math id="I1.i2.p1.m5" class="ltx_Math" alttext="H_{\alpha\beta}(f)" display="inline"><mrow><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> is true, we say that </span><math id="I1.i2.p1.m6" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math><span class="ltx_text ltx_font_italic"> is a </span><math id="I1.i2.p1.m7" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_bold ltx_font_italic">-homomorphism</span><span class="ltx_text ltx_font_italic">
+from </span><math id="I1.i2.p1.m8" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math><span class="ltx_text ltx_font_italic"> to </span><math id="I1.i2.p1.m9" class="ltx_Math" alttext="\beta" display="inline"><mi>β</mi></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For </span><math id="I1.i3.p1.m1" class="ltx_Math" alttext="x:X_{0}" display="inline"><mrow><mi>x</mi><mo>:</mo><msub><mi>X</mi><mn>0</mn></msub></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I1.i3.p1.m2" class="ltx_Math" alttext="\alpha:Px" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mi>x</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, we have </span><math id="I1.i3.p1.m3" class="ltx_Math" alttext="H_{\alpha\alpha}(1_{x})" display="inline"><mrow><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>α</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For </span><math id="I1.i4.p1.m1" class="ltx_Math" alttext="x,y,z:X_{0}" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></mrow><mo>:</mo><msub><mi>X</mi><mn>0</mn></msub></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I1.i4.p1.m2" class="ltx_Math" alttext="\alpha:Px" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mi>x</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, </span><math id="I1.i4.p1.m3" class="ltx_Math" alttext="\;\beta:Py" display="inline"><mrow><mpadded lspace="2.8pt" width="+2.8pt"><mi>β</mi></mpadded><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mi>y</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, </span><math id="I1.i4.p1.m4" class="ltx_Math" alttext="\;\gamma:Pz" display="inline"><mrow><mpadded lspace="2.8pt" width="+2.8pt"><mi>γ</mi></mpadded><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mi>z</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">,
+if </span><math id="I1.i4.p1.m5" class="ltx_Math" alttext="f:\hom_{X}(x,y)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mi>hom</mi><mi>X</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">, we have</span></p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="H_{\alpha\beta}(f)\to H_{\beta\gamma}(g)\to H_{\alpha\gamma}(g\circ f)." display="block"><mrow><mrow><mrow><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msub><mi>H</mi><mrow><mi>β</mi><mo>⁢</mo><mi>γ</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>γ</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">When <math id="Thmpredefn1.p1.m3" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>P</mi><mo mathvariant="normal">,</mo><mi>H</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is a notion of structure, for <math id="Thmpredefn1.p1.m4" class="ltx_Math" alttext="\alpha,\beta:Px" display="inline"><mrow><mrow><mi>α</mi><mo mathvariant="normal">,</mo><mi>β</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mi>x</mi></mrow></mrow></math> we define</span></p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="(\alpha\leq_{x}\beta):\!\!\equiv H_{\alpha\beta}(1_{x})." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>α</mi><msub><mo>≤</mo><mi>x</mi></msub><mi>β</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></msub><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">By <a href="#I1.i3" title="3. ‣ Definition 9.8.1. ‣ 9.8 The structure identity principle" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> and <a href="#I1.i4" title="4. ‣ Definition 9.8.1. ‣ 9.8 The structure identity principle" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>, this is a preorder (<span class="ltx_ERROR undefined">\autoref</span>ct:orders) with <math id="Thmpredefn1.p1.m5" class="ltx_Math" alttext="Px" display="inline"><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mi>x</mi></mrow></math> its type of objects.
+We say that <math id="Thmpredefn1.p1.m6" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>P</mi><mo mathvariant="normal">,</mo><mi>H</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is a <span class="ltx_text ltx_font_bold">standard notion of structure</span>
+if this preorder is in fact a partial order, for all <math id="Thmpredefn1.p1.m7" class="ltx_Math" alttext="x:X" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>X</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Note that for a standard notion of structure, each type <math id="p5.m1" class="ltx_Math" alttext="Px" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mi>x</mi></mrow></math> must actually be a set.
+We now define, for any notion of structure <math id="p5.m2" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></math>, a <span class="ltx_text ltx_font_bold">precategory of <math id="p5.m3" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>P</mi><mo mathvariant="normal">,</mo><mi>H</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math>-structures</span>,
+<math id="p5.m6" class="ltx_Math" alttext="A=\mathsf{Str}_{(P,H)}(X)" display="inline"><mrow><mi>A</mi><mo>=</mo><mrow><msub><mi>𝖲𝗍𝗋</mi><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">The type of objects of <math id="I2.i1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is the type <math id="I2.i1.p1.m2" class="ltx_Math" alttext="A_{0}:\!\!\equiv\mathchoice{\sum_{x:X}\,}{\mathchoice{{\textstyle\sum_{(x:X)}}%
+}{\sum_{(x:X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}{\mathchoice{{\textstyle\sum_{(x:X%
+)}}}{\sum_{(x:X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}{\mathchoice{{\textstyle\sum_{(%
+x:X)}}}{\sum_{(x:X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}Px" display="inline"><mrow><msub><mi>A</mi><mn>0</mn></msub><mo rspace="0pt">:</mo><mo>≡</mo><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><mi>P</mi><mi>x</mi></mrow></math>.
+If <math id="I2.i1.p1.m3" class="ltx_Math" alttext="a\equiv(x,\alpha):A_{0}" display="inline"><mrow><mrow><mi>a</mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><msub><mi>A</mi><mn>0</mn></msub></mrow></math>, we may write <math id="I2.i1.p1.m4" class="ltx_Math" alttext="|a|:\!\!\equiv x" display="inline"><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo><mo rspace="0pt">:</mo><mo>≡</mo><mi>x</mi></mrow></math>.
+</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">For <math id="I2.i2.p1.m1" class="ltx_Math" alttext="(x,\alpha):A_{0}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><msub><mi>A</mi><mn>0</mn></msub></mrow></math> and <math id="I2.i2.p1.m2" class="ltx_Math" alttext="(y,\beta):A_{0}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><msub><mi>A</mi><mn>0</mn></msub></mrow></math>, we define</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\hom_{A}((x,\alpha),(y,\beta)):\!\!\equiv\setof{f:x\to y|H_{\alpha\beta}(f)}." display="block"><mrow><msub><mi>hom</mi><mi>A</mi></msub><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><merror class="ltx_ERROR undefined undefined"><mtext>\setof</mtext></merror><mi>f</mi><mo>:</mo><mi>x</mi><mo>→</mo><mi>y</mi><mo stretchy="false">|</mo><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+<p class="ltx_p">The composition and identities are inherited from <math id="p5.m7" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>; conditions <a href="#I1.i3" title="3. ‣ Definition 9.8.1. ‣ 9.8 The structure identity principle" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> and <a href="#I1.i4" title="4. ‣ Definition 9.8.1. ‣ 9.8 The structure identity principle" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a> ensure that these lift to <math id="p5.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 9.8.2</span> (Structure identity principle).</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a category and <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>P</mi><mo mathvariant="normal">,</mo><mi>H</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is a standard notion of structure over <math id="Thmprethm1.p1.m3" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>, then the precategory <math id="Thmprethm1.p1.m4" class="ltx_Math" alttext="\mathsf{Str}_{(P,H)}(X)" display="inline"><mrow><msub><mi mathvariant="normal">Str</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>P</mi><mo mathvariant="normal">,</mo><mi>H</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>X</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a category.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">By the definition of equality in dependent pair types, to give an equality <math id="p6.m1" class="ltx_Math" alttext="(x,\alpha)=(y,\beta)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow></mrow></math> consists of</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">An equality <math id="I3.i1.p1.m1" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math>, and</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p">An equality <math id="I3.i2.p1.m1" class="ltx_Math" alttext="{p}_{*}\mathopen{}\left({\alpha}\right)\mathclose{}=\beta" display="inline"><mrow><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>α</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>β</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Since <math id="p6.m2" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math> is set-valued, the latter is a mere proposition.
+On the other hand, it is easy to see that an isomorphism <math id="p6.m3" class="ltx_Math" alttext="(x,\alpha)\cong(y,\beta)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mo>≅</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow></mrow></math> in <math id="p6.m4" class="ltx_Math" alttext="\mathsf{Str}_{(P,H)}(X)" display="inline"><mrow><msub><mi>𝖲𝗍𝗋</mi><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mrow></math> consists of</p>
+<ul id="I4" class="ltx_itemize">
+<li id="I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i1.p1" class="ltx_para">
+<p class="ltx_p">An isomorphism <math id="I4.i1.p1.m1" class="ltx_Math" alttext="f:x\cong y" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>x</mi><mo>≅</mo><mi>y</mi></mrow></mrow></math> in <math id="I4.i1.p1.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>, such that</p>
+</div>
+</li>
+<li id="I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I4.i2.p1.m1" class="ltx_Math" alttext="H_{\alpha\beta}(f)" display="inline"><mrow><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="I4.i2.p1.m2" class="ltx_Math" alttext="H_{\beta\alpha}({f}^{-1})" display="inline"><mrow><msub><mi>H</mi><mrow><mi>β</mi><mo>⁢</mo><mi>α</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Of course, the second of these is also a mere proposition.
+And since <math id="p6.m5" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a category, the function <math id="p6.m6" class="ltx_Math" alttext="(x=y)\to(x\cong y)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>≅</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> is an equivalence.
+Thus, it will suffice to show that for any <math id="p6.m7" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math> and for any <math id="p6.m8" class="ltx_Math" alttext="(\alpha:Px)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>α</mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mi>x</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></math>, <math id="p6.m9" class="ltx_Math" alttext="(\beta:Py)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>β</mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mi>y</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></math>, we have <math id="p6.m10" class="ltx_Math" alttext="{p}_{*}\mathopen{}\left({\alpha}\right)\mathclose{}=\beta" display="inline"><mrow><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>α</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>β</mi></mrow></math> if and only if both <math id="p6.m11" class="ltx_Math" alttext="H_{\alpha\beta}(\mathsf{idtoiso}(p))" display="inline"><mrow><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p6.m12" class="ltx_Math" alttext="H_{\beta\alpha}({\mathsf{idtoiso}(p)}^{-1})" display="inline"><mrow><msub><mi>H</mi><mrow><mi>β</mi><mo>⁢</mo><mi>α</mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The “only if” direction is just the existence of the function <math id="p7.m1" class="ltx_Math" alttext="\mathsf{idtoiso}" display="inline"><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi></math> for the category <math id="p7.m2" class="ltx_Math" alttext="\mathsf{Str}_{(P,H)}(X)" display="inline"><mrow><msub><mi>𝖲𝗍𝗋</mi><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+For the “if” direction, by induction on <math id="p7.m3" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> we may assume that <math id="p7.m4" class="ltx_Math" alttext="y\equiv x" display="inline"><mrow><mi>y</mi><mo>≡</mo><mi>x</mi></mrow></math> and <math id="p7.m5" class="ltx_Math" alttext="p\equiv\mathsf{refl}_{x}" display="inline"><mrow><mi>p</mi><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>.
+However, in this case <math id="p7.m6" class="ltx_Math" alttext="\mathsf{idtoiso}(p)\equiv 1_{x}" display="inline"><mrow><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><msub><mn>1</mn><mi>x</mi></msub></mrow></math> and therefore <math id="p7.m7" class="ltx_Math" alttext="{\mathsf{idtoiso}(p)}^{-1}=1_{x}" display="inline"><mrow><mrow><mi>𝗂𝖽𝗍𝗈𝗂𝗌𝗈</mi><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow><mo>=</mo><msub><mn>1</mn><mi>x</mi></msub></mrow></math>.
+Thus, <math id="p7.m8" class="ltx_Math" alttext="\alpha\leq_{x}\beta" display="inline"><mrow><mi>α</mi><msub><mo>≤</mo><mi>x</mi></msub><mi>β</mi></mrow></math> and <math id="p7.m9" class="ltx_Math" alttext="\beta\leq_{x}\alpha" display="inline"><mrow><mi>β</mi><msub><mo>≤</mo><mi>x</mi></msub><mi>α</mi></mrow></math>, which implies <math id="p7.m10" class="ltx_Math" alttext="\alpha=\beta" display="inline"><mrow><mi>α</mi><mo>=</mo><mi>β</mi></mrow></math> since <math id="p7.m11" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></math> is a standard notion of structure.
+∎</p>
+</div>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">As an example, this methodology gives an alternative way to express the proof of <span class="ltx_ERROR undefined">\autoref</span>ct:functor-cat.</p>
+</div>
+<div id="Thmpreeg1" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 9.8.3</span>.</h6>
+<div id="Thmpreeg1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmpreeg1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> be a precategory and <math id="Thmpreeg1.p1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> a category.
+There is a precategory <math id="Thmpreeg1.p1.m3" class="ltx_Math" alttext="B^{A_{0}}" display="inline"><msup><mi>B</mi><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></msup></math> whose objects are functions <math id="Thmpreeg1.p1.m4" class="ltx_Math" alttext="A_{0}\to B_{0}" display="inline"><mrow><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">→</mo><msub><mi>B</mi><mn mathvariant="normal">0</mn></msub></mrow></math>, and whose set of morphisms from <math id="Thmpreeg1.p1.m5" class="ltx_Math" alttext="F_{0}:A_{0}\to B_{0}" display="inline"><mrow><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">:</mo><mrow><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">→</mo><msub><mi>B</mi><mn mathvariant="normal">0</mn></msub></mrow></mrow></math> to <math id="Thmpreeg1.p1.m6" class="ltx_Math" alttext="G_{0}:A_{0}\to B_{0}" display="inline"><mrow><msub><mi>G</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">:</mo><mrow><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">→</mo><msub><mi>B</mi><mn mathvariant="normal">0</mn></msub></mrow></mrow></math> is <math id="Thmpreeg1.p1.m7" class="ltx_Math" alttext="\mathchoice{\prod_{a:A_{0}}\,}{\mathchoice{{\textstyle\prod_{(a:A_{0})}}}{%
+\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}}{\mathchoice{{%
+\textstyle\prod_{(a:A_{0})}}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}{\prod_{(a:%
+A_{0})}}}{\mathchoice{{\textstyle\prod_{(a:A_{0})}}}{\prod_{(a:A_{0})}}{\prod_%
+{(a:A_{0})}}{\prod_{(a:A_{0})}}}\hom_{B}(F_{0}a,G_{0}a)" display="inline"><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><msub><mi mathvariant="normal">hom</mi><mi>B</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="italic">⁢</mo><mi>a</mi></mrow><mo mathvariant="normal">,</mo><mrow><msub><mi>G</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="italic">⁢</mo><mi>a</mi></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Composition and identities are inherited directly from those in <math id="Thmpreeg1.p1.m8" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.
+It is easy to show that <math id="Thmpreeg1.p1.m9" class="ltx_Math" alttext="\gamma:\hom_{B^{A_{0}}}(F_{0},G_{0})" display="inline"><mrow><mi>γ</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">hom</mi><msup><mi>B</mi><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></msup></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">,</mo><msub><mi>G</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> is an isomorphism exactly when each component <math id="Thmpreeg1.p1.m10" class="ltx_Math" alttext="\gamma_{a}" display="inline"><msub><mi>γ</mi><mi>a</mi></msub></math> is an isomorphism, so that we have <math id="Thmpreeg1.p1.m11" class="ltx_Math" alttext="(F_{0}\cong G_{0})\simeq\mathchoice{\prod_{a:A_{0}}\,}{\mathchoice{{\textstyle%
+\prod_{(a:A_{0})}}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}}{%
+\mathchoice{{\textstyle\prod_{(a:A_{0})}}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})%
+}}{\prod_{(a:A_{0})}}}{\mathchoice{{\textstyle\prod_{(a:A_{0})}}}{\prod_{(a:A_%
+{0})}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}}(F_{0}a\cong G_{0}a)" display="inline"><mrow><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">≅</mo><msub><mi>G</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">≃</mo><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mi>a</mi><mo mathvariant="normal">≅</mo><msub><mi>G</mi><mn mathvariant="normal">0</mn></msub><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.
+Moreover, the map <math id="Thmpreeg1.p1.m12" class="ltx_Math" alttext="\mathsf{idtoiso}:(F_{0}=G_{0})\to(F_{0}\cong G_{0})" display="inline"><mrow><mi mathvariant="normal">idtoiso</mi><mo mathvariant="normal">:</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">=</mo><msub><mi>G</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">≅</mo><msub><mi>G</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> of <math id="Thmpreeg1.p1.m13" class="ltx_Math" alttext="B^{A_{0}}" display="inline"><msup><mi>B</mi><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></msup></math> is equal to the composite</span></p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="(F_{0}=G_{0})\longrightarrow\mathchoice{\prod_{a:A_{0}}\,}{\mathchoice{{%
+\textstyle\prod_{(a:A_{0})}}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}{\prod_{(a:%
+A_{0})}}}{\mathchoice{{\textstyle\prod_{(a:A_{0})}}}{\prod_{(a:A_{0})}}{\prod_%
+{(a:A_{0})}}{\prod_{(a:A_{0})}}}{\mathchoice{{\textstyle\prod_{(a:A_{0})}}}{%
+\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}}(F_{0}a=G_{0}a)%
+\longrightarrow\mathchoice{\prod_{a:A_{0}}\,}{\mathchoice{{\textstyle\prod_{(a%
+:A_{0})}}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}}{%
+\mathchoice{{\textstyle\prod_{(a:A_{0})}}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})%
+}}{\prod_{(a:A_{0})}}}{\mathchoice{{\textstyle\prod_{(a:A_{0})}}}{\prod_{(a:A_%
+{0})}}{\prod_{(a:A_{0})}}{\prod_{(a:A_{0})}}}(F_{0}a\cong G_{0}a)%
+\longrightarrow(F_{0}\cong G_{0})" display="block"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>F</mi><mn>0</mn></msub><mo>=</mo><msub><mi>G</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>⟶</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><msub><mi>A</mi><mn>0</mn></msub></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><msub><mi>F</mi><mn>0</mn></msub><mi>a</mi><mo>=</mo><msub><mi>G</mi><mn>0</mn></msub><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⟶</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><msub><mi>A</mi><mn>0</mn></msub></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><msub><mi>F</mi><mn>0</mn></msub><mi>a</mi><mo>≅</mo><msub><mi>G</mi><mn>0</mn></msub><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⟶</mo><mrow><mo stretchy="false">(</mo><msub><mi>F</mi><mn>0</mn></msub><mo>≅</mo><msub><mi>G</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">in which the first map is an equivalence by function extensionality, the second because it is a dependent product of equivalences (since <math id="Thmpreeg1.p1.m14" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is a category), and the third as remarked above.
+Thus, <math id="Thmpreeg1.p1.m15" class="ltx_Math" alttext="B^{A_{0}}" display="inline"><msup><mi>B</mi><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></msup></math> is a category.</span></p>
+</div>
+<div id="Thmpreeg1.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Now we define a notion of structure on <math id="Thmpreeg1.p2.m1" class="ltx_Math" alttext="B^{A_{0}}" display="inline"><msup><mi>B</mi><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></msup></math> for which <math id="Thmpreeg1.p2.m2" class="ltx_Math" alttext="P(F_{0})" display="inline"><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is the type of operations <math id="Thmpreeg1.p2.m3" class="ltx_Math" alttext="F:\mathchoice{\prod_{a,a^{\prime}:A_{0}}\,}{\mathchoice{{\textstyle\prod_{(a,a%
+^{\prime}:A_{0})}}}{\prod_{(a,a^{\prime}:A_{0})}}{\prod_{(a,a^{\prime}:A_{0})}%
+}{\prod_{(a,a^{\prime}:A_{0})}}}{\mathchoice{{\textstyle\prod_{(a,a^{\prime}:A%
+_{0})}}}{\prod_{(a,a^{\prime}:A_{0})}}{\prod_{(a,a^{\prime}:A_{0})}}{\prod_{(a%
+,a^{\prime}:A_{0})}}}{\mathchoice{{\textstyle\prod_{(a,a^{\prime}:A_{0})}}}{%
+\prod_{(a,a^{\prime}:A_{0})}}{\prod_{(a,a^{\prime}:A_{0})}}{\prod_{(a,a^{%
+\prime}:A_{0})}}}\hom_{A}(a,a^{\prime})\to\hom_{B}(F_{0}a,F_{0}a^{\prime})" display="inline"><mrow><mi>F</mi><mo mathvariant="normal">:</mo><mrow><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><msup><mi>a</mi><mo mathvariant="normal">′</mo></msup><mo mathvariant="normal">:</mo><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><msub><mi mathvariant="normal">hom</mi><mi>A</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><msup><mi>a</mi><mo mathvariant="normal">′</mo></msup><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal">→</mo><mrow><msub><mi mathvariant="normal">hom</mi><mi>B</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="italic">⁢</mo><mi>a</mi></mrow><mo mathvariant="normal">,</mo><mrow><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="italic">⁢</mo><msup><mi>a</mi><mo mathvariant="normal">′</mo></msup></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> which extend <math id="Thmpreeg1.p2.m4" class="ltx_Math" alttext="F_{0}" display="inline"><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub></math> to a functor (i.e. preserve composition and identities).
+This is a set since each <math id="Thmpreeg1.p2.m5" class="ltx_Math" alttext="\hom_{B}(\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt},\mathord{\hskip 1.0pt%
+\text{--}\hskip 1.0pt})" display="inline"><mrow><msub><mi mathvariant="normal">hom</mi><mi>B</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded><mo mathvariant="normal">,</mo><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is so.
+Given such <math id="Thmpreeg1.p2.m6" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> and <math id="Thmpreeg1.p2.m7" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math>, we define <math id="Thmpreeg1.p2.m8" class="ltx_Math" alttext="\gamma:\hom_{B^{A_{0}}}(F_{0},G_{0})" display="inline"><mrow><mi>γ</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">hom</mi><msup><mi>B</mi><msub><mi>A</mi><mn mathvariant="normal">0</mn></msub></msup></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">,</mo><msub><mi>G</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> to be a homomorphism if it forms a natural transformation.
+In <span class="ltx_ERROR undefined">\autoref</span>ct:functor-precat we essentially verified that this is a notion of structure.
+Moreover, if <math id="Thmpreeg1.p2.m9" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> and <math id="Thmpreeg1.p2.m10" class="ltx_Math" alttext="F^{\prime}" display="inline"><msup><mi>F</mi><mo mathvariant="normal">′</mo></msup></math> are both structures on <math id="Thmpreeg1.p2.m11" class="ltx_Math" alttext="F_{0}" display="inline"><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub></math> and the identity is a natural transformation from <math id="Thmpreeg1.p2.m12" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> to <math id="Thmpreeg1.p2.m13" class="ltx_Math" alttext="F^{\prime}" display="inline"><msup><mi>F</mi><mo mathvariant="normal">′</mo></msup></math>, then for any <math id="Thmpreeg1.p2.m14" class="ltx_Math" alttext="f:\hom_{A}(a,a^{\prime})" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">hom</mi><mi>A</mi></msub><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><msup><mi>a</mi><mo mathvariant="normal">′</mo></msup><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> we have <math id="Thmpreeg1.p2.m15" class="ltx_Math" alttext="F^{\prime}f=F^{\prime}f\circ 1_{F_{0}a}=1_{F_{0}a}\circ Ff=Ff" display="inline"><mrow><mrow><msup><mi>F</mi><mo mathvariant="normal">′</mo></msup><mo mathvariant="italic">⁢</mo><mi>f</mi></mrow><mo mathvariant="normal">=</mo><mrow><mrow><msup><mi>F</mi><mo mathvariant="normal">′</mo></msup><mo mathvariant="italic">⁢</mo><mi>f</mi></mrow><mo mathvariant="normal">∘</mo><msub><mn mathvariant="normal">1</mn><mrow><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="italic">⁢</mo><mi>a</mi></mrow></msub></mrow><mo mathvariant="normal">=</mo><mrow><mrow><msub><mn mathvariant="normal">1</mn><mrow><msub><mi>F</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="italic">⁢</mo><mi>a</mi></mrow></msub><mo mathvariant="normal">∘</mo><mi>F</mi></mrow><mo mathvariant="italic">⁢</mo><mi>f</mi></mrow><mo mathvariant="normal">=</mo><mrow><mi>F</mi><mo mathvariant="italic">⁢</mo><mi>f</mi></mrow></mrow></math>.
+Applying function extensionality, we conclude <math id="Thmpreeg1.p2.m16" class="ltx_Math" alttext="F=F^{\prime}" display="inline"><mrow><mi>F</mi><mo mathvariant="normal">=</mo><msup><mi>F</mi><mo mathvariant="normal">′</mo></msup></mrow></math>.
+Thus, we have a <em class="ltx_emph ltx_font_upright">standard</em> notion of structure, and so by <span class="ltx_ERROR undefined">\autoref</span>thm:sip, the precategory <math id="Thmpreeg1.p2.m17" class="ltx_Math" alttext="B^{A}" display="inline"><msup><mi>B</mi><mi>A</mi></msup></math> is a category.
+</span></p>
+</div>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">As another example, we consider categories of structures for a first-order signature.
+We define a <span class="ltx_text ltx_font_bold">first-order signature</span>,
+<math id="p9.m1" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math>, to consist of sets <math id="p9.m2" class="ltx_Math" alttext="\Omega_{0}" display="inline"><msub><mi mathvariant="normal">Ω</mi><mn>0</mn></msub></math> and <math id="p9.m3" class="ltx_Math" alttext="\Omega_{1}" display="inline"><msub><mi mathvariant="normal">Ω</mi><mn>1</mn></msub></math> of function symbols, <math id="p9.m4" class="ltx_Math" alttext="\omega:\Omega_{0}" display="inline"><mrow><mi>ω</mi><mo>:</mo><msub><mi mathvariant="normal">Ω</mi><mn>0</mn></msub></mrow></math>, and relation symbols, <math id="p9.m5" class="ltx_Math" alttext="\omega:\Omega_{1}" display="inline"><mrow><mi>ω</mi><mo>:</mo><msub><mi mathvariant="normal">Ω</mi><mn>1</mn></msub></mrow></math>, each having an arity <math id="p9.m6" class="ltx_Math" alttext="|\omega|" display="inline"><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></math> that is a set.
+An <math id="p9.m7" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math><span class="ltx_text ltx_font_bold">-structure</span>
+<math id="p9.m10" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> consists of a set <math id="p9.m11" class="ltx_Math" alttext="|a|" display="inline"><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow></math> together with an assignment of an <math id="p9.m12" class="ltx_Math" alttext="|\omega|" display="inline"><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></math>-ary function <math id="p9.m13" class="ltx_Math" alttext="\omega^{a}:|a|^{|\omega|}\to|a|" display="inline"><mrow><msup><mi>ω</mi><mi>a</mi></msup><mo>:</mo><mrow><msup><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></msup><mo>→</mo><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow></mrow></mrow></math> on <math id="p9.m14" class="ltx_Math" alttext="|a|" display="inline"><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow></math> to each function symbol, <math id="p9.m15" class="ltx_Math" alttext="\omega" display="inline"><mi>ω</mi></math>, and an assignment of an <math id="p9.m16" class="ltx_Math" alttext="|\omega|" display="inline"><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></math>-ary relation <math id="p9.m17" class="ltx_Math" alttext="\omega^{a}" display="inline"><msup><mi>ω</mi><mi>a</mi></msup></math> on <math id="p9.m18" class="ltx_Math" alttext="|a|" display="inline"><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow></math>, assigning a mere proposition <math id="p9.m19" class="ltx_Math" alttext="\omega^{a}x" display="inline"><mrow><msup><mi>ω</mi><mi>a</mi></msup><mo>⁢</mo><mi>x</mi></mrow></math> to each <math id="p9.m20" class="ltx_Math" alttext="x:|a|^{|\omega|}" display="inline"><mrow><mi>x</mi><mo>:</mo><msup><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></msup></mrow></math>, to each relation symbol.
+And given <math id="p9.m21" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math>-structures <math id="p9.m22" class="ltx_Math" alttext="a,b" display="inline"><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow></math>, a function <math id="p9.m23" class="ltx_Math" alttext="f:|a|\to|b|" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow><mo>→</mo><mrow><mo stretchy="false">|</mo><mi>b</mi><mo stretchy="false">|</mo></mrow></mrow></mrow></math> is a <span class="ltx_text ltx_font_bold">homomorphism <math id="p9.m24" class="ltx_Math" alttext="a\to b" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">→</mo><mi>b</mi></mrow></math></span>
+if it preserves the structure; i.e. if for each symbol <math id="p9.m27" class="ltx_Math" alttext="\omega" display="inline"><mi>ω</mi></math> of the signature and each <math id="p9.m28" class="ltx_Math" alttext="x:|a|^{|\omega|}" display="inline"><mrow><mi>x</mi><mo>:</mo><msup><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></msup></mrow></math>,</p>
+<ol id="I5" class="ltx_enumerate">
+<li id="I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I5.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I5.i1.p1.m1" class="ltx_Math" alttext="f(\omega^{a}x)=\omega^{b}(f\circ x)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>ω</mi><mi>a</mi></msup><mo>⁢</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>ω</mi><mi>b</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>∘</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math> if <math id="I5.i1.p1.m2" class="ltx_Math" alttext="\omega:\Omega_{0}" display="inline"><mrow><mi>ω</mi><mo>:</mo><msub><mi mathvariant="normal">Ω</mi><mn>0</mn></msub></mrow></math>, and</p>
+</div>
+</li>
+<li id="I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I5.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I5.i2.p1.m1" class="ltx_Math" alttext="\omega^{a}x\to\omega^{b}(f\circ x)" display="inline"><mrow><mrow><msup><mi>ω</mi><mi>a</mi></msup><mo>⁢</mo><mi>x</mi></mrow><mo>→</mo><mrow><msup><mi>ω</mi><mi>b</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>∘</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math> if <math id="I5.i2.p1.m2" class="ltx_Math" alttext="\omega:\Omega_{1}" display="inline"><mrow><mi>ω</mi><mo>:</mo><msub><mi mathvariant="normal">Ω</mi><mn>1</mn></msub></mrow></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">Note that each <math id="p9.m29" class="ltx_Math" alttext="x:|a|^{|\omega|}" display="inline"><mrow><mi>x</mi><mo>:</mo><msup><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></msup></mrow></math> is a function <math id="p9.m30" class="ltx_Math" alttext="x:|\omega|\to|a|" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow><mo>→</mo><mrow><mo stretchy="false">|</mo><mi>a</mi><mo stretchy="false">|</mo></mrow></mrow></mrow></math> so that <math id="p9.m31" class="ltx_Math" alttext="f\circ x:b^{\omega}" display="inline"><mrow><mrow><mi>f</mi><mo>∘</mo><mi>x</mi></mrow><mo>:</mo><msup><mi>b</mi><mi>ω</mi></msup></mrow></math>.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">Now we assume given a (univalent) universe <math id="p10.m1" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> and a <math id="p10.m2" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math>-small signature <math id="p10.m3" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math>; i.e. <math id="p10.m4" class="ltx_Math" alttext="|\Omega|" display="inline"><mrow><mo stretchy="false">|</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">|</mo></mrow></math> is a <math id="p10.m5" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math>-small set and, for each <math id="p10.m6" class="ltx_Math" alttext="\omega:|\Omega|" display="inline"><mrow><mi>ω</mi><mo>:</mo><mrow><mo stretchy="false">|</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">|</mo></mrow></mrow></math>, the set <math id="p10.m7" class="ltx_Math" alttext="|\omega|" display="inline"><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></math> is <math id="p10.m8" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math>-small.
+Then we have the category <math id="p10.m9" class="ltx_Math" alttext="\mathcal{S}et_{\mathcal{U}}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒮</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><msub><mi>t</mi><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub></mrow></math> of <math id="p10.m10" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math>-small sets. We want to define the precategory of <math id="p10.m11" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math>-small <math id="p10.m12" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math>-structures over <math id="p10.m13" class="ltx_Math" alttext="\mathcal{S}et_{\mathcal{U}}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒮</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><msub><mi>t</mi><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub></mrow></math> and use <span class="ltx_ERROR undefined">\autoref</span>thm:sip to show that it is a category.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">We use the first order signature <math id="p11.m1" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math> to give us a standard notion of structure <math id="p11.m2" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></math> over <math id="p11.m3" class="ltx_Math" alttext="\mathcal{S}et_{\mathcal{U}}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒮</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><msub><mi>t</mi><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub></mrow></math>.
+</p>
+</div>
+<div id="Thmpredefn2" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 9.8.4</span>.</h6>
+<div id="Thmpredefn2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic"></span></p>
+<ol id="I6" class="ltx_enumerate">
+<li id="I6.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I6.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For each </span><math id="I6.i1.p1.m1" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math><span class="ltx_text ltx_font_italic">-small set </span><math id="I6.i1.p1.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math><span class="ltx_text ltx_font_italic"> define</span></p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="Px:\!\!\equiv P_{0}x\times P_{1}x." display="block"><mrow><mi>P</mi><mi>x</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>P</mi><mn>0</mn></msub><mi>x</mi><mo>×</mo><msub><mi>P</mi><mn>1</mn></msub><mi>x</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Here</span></p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\displaystyle P_{0}x" display="inline"><mrow><msub><mi>P</mi><mn>0</mn></msub><mo>⁢</mo><mi>x</mi></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathchoice{\prod_{\omega:\Omega_{0}}\,}{\mathchoice{{%
+\textstyle\prod_{(\omega:\Omega_{0})}}}{\prod_{(\omega:\Omega_{0})}}{\prod_{(%
+\omega:\Omega_{0})}}{\prod_{(\omega:\Omega_{0})}}}{\mathchoice{{\textstyle%
+\prod_{(\omega:\Omega_{0})}}}{\prod_{(\omega:\Omega_{0})}}{\prod_{(\omega:%
+\Omega_{0})}}{\prod_{(\omega:\Omega_{0})}}}{\mathchoice{{\textstyle\prod_{(%
+\omega:\Omega_{0})}}}{\prod_{(\omega:\Omega_{0})}}{\prod_{(\omega:\Omega_{0})}%
+}{\prod_{(\omega:\Omega_{0})}}}x^{|\omega|}\to x,\mbox{ and }" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>ω</mi><mo>:</mo><msub><mi mathvariant="normal">Ω</mi><mn>0</mn></msub></mrow></munder></mstyle></mpadded><msup><mi>x</mi><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></msup><mo>→</mo><mi>x</mi><mo>,</mo><mtext mathvariant="italic"> and</mtext></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\displaystyle P_{1}x" display="inline"><mrow><msub><mi>P</mi><mn>1</mn></msub><mo>⁢</mo><mi>x</mi></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathchoice{\prod_{\omega:\Omega_{1}}\,}{\mathchoice{{%
+\textstyle\prod_{(\omega:\Omega_{1})}}}{\prod_{(\omega:\Omega_{1})}}{\prod_{(%
+\omega:\Omega_{1})}}{\prod_{(\omega:\Omega_{1})}}}{\mathchoice{{\textstyle%
+\prod_{(\omega:\Omega_{1})}}}{\prod_{(\omega:\Omega_{1})}}{\prod_{(\omega:%
+\Omega_{1})}}{\prod_{(\omega:\Omega_{1})}}}{\mathchoice{{\textstyle\prod_{(%
+\omega:\Omega_{1})}}}{\prod_{(\omega:\Omega_{1})}}{\prod_{(\omega:\Omega_{1})}%
+}{\prod_{(\omega:\Omega_{1})}}}x^{|\omega|}\to\mathsf{Prop}_{\mathcal{U}}," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>ω</mi><mo>:</mo><msub><mi mathvariant="normal">Ω</mi><mn>1</mn></msub></mrow></munder></mstyle></mpadded><msup><mi>x</mi><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></msup><mo>→</mo><msub><mi>𝖯𝗋𝗈𝗉</mi><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I6.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I6.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For </span><math id="I6.i2.p1.m1" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math><span class="ltx_text ltx_font_italic">-small sets </span><math id="I6.i2.p1.m2" class="ltx_Math" alttext="x,y" display="inline"><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow></math><span class="ltx_text ltx_font_italic"> and
+</span><math id="I6.i2.p1.m3" class="ltx_Math" alttext="\alpha:P^{\omega}x,\;\beta:P^{\omega}y,\;f:x\to y" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mrow><msup><mi>P</mi><mi>ω</mi></msup><mo>⁢</mo><mi>x</mi></mrow><mo rspace="5.3pt">,</mo><mi>β</mi></mrow><mo>:</mo><mrow><mrow><msup><mi>P</mi><mi>ω</mi></msup><mo>⁢</mo><mi>y</mi></mrow><mo rspace="5.3pt">,</mo><mi>f</mi></mrow><mo>:</mo><mrow><mi>x</mi><mo>→</mo><mi>y</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, define</span></p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="H_{\alpha\beta}(f):\!\!\equiv H_{0,\alpha\beta}(f)\wedge H_{1,\alpha\beta}(f)." display="block"><mrow><msub><mi>H</mi><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>H</mi><mrow><mn>0</mn><mo>,</mo><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo>∧</mo><msub><mi>H</mi><mrow><mn>1</mn><mo>,</mo><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Here</span></p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex10" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\displaystyle H_{0,\alpha\beta}(f)" display="inline"><mrow><msub><mi>H</mi><mrow><mn>0</mn><mo>,</mo><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex10.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\forall(\omega:\Omega_{0}).\,\forall(u:x^{|\omega|}).%
+\,f(\alpha u)=\;\beta(f\circ u),\mbox{ and }" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>ω</mi><mo>:</mo><msub><mi mathvariant="normal">Ω</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>:</mo><msup><mi>x</mi><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></msup><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>α</mi><mi>u</mi><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">=</mo><mi>β</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∘</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mtext mathvariant="italic"> and</mtext></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex11" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\displaystyle H_{1,\alpha\beta}(f)" display="inline"><mrow><msub><mi>H</mi><mrow><mn>1</mn><mo>,</mo><mrow><mi>α</mi><mo>⁢</mo><mi>β</mi></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex11.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\forall(\omega:\Omega_{1}).\,\forall(u:x^{|\omega|}).%
+\,\alpha u\to\beta(f\circ u)." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>ω</mi><mo>:</mo><msub><mi mathvariant="normal">Ω</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>:</mo><msup><mi>x</mi><mrow><mo stretchy="false">|</mo><mi>ω</mi><mo stretchy="false">|</mo></mrow></msup><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>α</mi><mi>u</mi><mo>→</mo><mi>β</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∘</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">It is now routine to check that <math id="p12.m1" class="ltx_Math" alttext="(P,H)" display="inline"><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></math> is a standard notion of structure over <math id="p12.m2" class="ltx_Math" alttext="\mathcal{S}et_{\mathcal{U}}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒮</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><msub><mi>t</mi><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub></mrow></math> and hence we may use <span class="ltx_ERROR undefined">\autoref</span>thm:sip to get that the precategory <math id="p12.m3" class="ltx_Math" alttext="Str_{(P,H)}(\mathcal{S}et_{\mathcal{U}})" display="inline"><mrow><mi>S</mi><mo>⁢</mo><mi>t</mi><mo>⁢</mo><msub><mi>r</mi><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒮</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><msub><mi>t</mi><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></math> is a category. It only remains to observe that this is essentially the same as the precategory of <math id="p12.m4" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math>-small <math id="p12.m5" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math>-structures over <math id="p12.m6" class="ltx_Math" alttext="\mathcal{S}et_{\mathcal{U}}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒮</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><msub><mi>t</mi><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub></mrow></math>.
+
+</p>
+</div>
+<div id="p13" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">9.8 The structure identity principle</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:43:00 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

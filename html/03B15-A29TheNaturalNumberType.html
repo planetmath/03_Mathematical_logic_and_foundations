@@ -1,0 +1,120 @@
+<!DOCTYPE html><html>
+<head>
+<title>A.2.9 The natural number type</title>
+<!--Generated on Thu Feb  8 19:44:13 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="natural numbers">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">A.2.9 The natural number type</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">We give the rules for natural numbers, following §1.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/19thenaturalnumbers</span>).</p>
+</div>
+<span class="ltx_ERROR undefined">{mathparpagebreakable}</span><span class="ltx_ERROR undefined">\inferrule</span>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">*[right=<math id="p3.m1" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>-<span class="ltx_text ltx_font_smallcaps">form</span>]
+Γ <math id="p3.m2" class="ltx_Math" alttext="\mathsf{ctx}" display="inline"><mi>𝖼𝗍𝗑</mi></math>
+Γ ⊢<math id="p3.m3" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> : <math id="p3.m4" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> _i
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m5" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>-<span class="ltx_text ltx_font_smallcaps">intro<math id="p3.m6" class="ltx_Math" alttext="{}_{1}" display="inline"><msub><mi></mi><mn mathvariant="normal">1</mn></msub></math></span>]
+Γ <math id="p3.m7" class="ltx_Math" alttext="\mathsf{ctx}" display="inline"><mi>𝖼𝗍𝗑</mi></math>
+Γ ⊢0 : <math id="p3.m8" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m9" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>-<span class="ltx_text ltx_font_smallcaps">intro<math id="p3.m10" class="ltx_Math" alttext="{}_{2}" display="inline"><msub><mi></mi><mn mathvariant="normal">2</mn></msub></math></span>]
+Γ ⊢n : <math id="p3.m11" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>
+Γ ⊢<span class="ltx_text ltx_font_sansserif">succ</span>(n) : <math id="p3.m12" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m13" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>-<span class="ltx_text ltx_font_smallcaps">elim</span>]
+
+Γ,x : <math id="p3.m14" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> ⊢C : <math id="p3.m15" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> _i 
+<br class="ltx_break">Γ ⊢c_0 : C[0/x] 
+<br class="ltx_break">Γ,x : <math id="p3.m16" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>,y : C ⊢c_s : C[<span class="ltx_text ltx_font_sansserif">succ</span>(x)/x]
+<br class="ltx_break">Γ ⊢n : <math id="p3.m17" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>
+Γ ⊢<span class="ltx_text ltx_font_sansserif">ind</span>_<math id="p3.m18" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>(x.C,c_0,x.y.c_s,n) : C[n/x]
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m19" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>-<span class="ltx_text ltx_font_smallcaps">comp<math id="p3.m20" class="ltx_Math" alttext="{}_{1}" display="inline"><msub><mi></mi><mn mathvariant="normal">1</mn></msub></math></span>]
+
+Γ,x : <math id="p3.m21" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> ⊢C : <math id="p3.m22" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> _i 
+<br class="ltx_break">Γ ⊢c_0 : C[0/x] 
+<br class="ltx_break">Γ,x : <math id="p3.m23" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>,y : C ⊢c_s : C[<span class="ltx_text ltx_font_sansserif">succ</span>(x)/x]
+Γ ⊢<span class="ltx_text ltx_font_sansserif">ind</span>_<math id="p3.m24" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>(x.C,c_0,x.y.c_s,0) ≡c_0 : C[0/x]
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m25" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>-<span class="ltx_text ltx_font_smallcaps">comp<math id="p3.m26" class="ltx_Math" alttext="{}_{2}" display="inline"><msub><mi></mi><mn mathvariant="normal">2</mn></msub></math></span>]
+
+Γ,x : <math id="p3.m27" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> ⊢C : <math id="p3.m28" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> _i 
+<br class="ltx_break">Γ ⊢c_0 : C[0/x] 
+<br class="ltx_break">Γ,x : <math id="p3.m29" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>,y : C ⊢c_s : C[<span class="ltx_text ltx_font_sansserif">succ</span>(x)/x]
+<br class="ltx_break">Γ ⊢n : <math id="p3.m30" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>
+Γ⊢
+<span class="ltx_tabular">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left" style="padding-left:0pt;padding-right:0pt;"><span class="ltx_text ltx_font_sansserif">ind
+                
+                  <math id="p3.m31" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi mathsize="70%">ℕ</mi></math>
+                
+              </span>(x.C,c
+              
+                <span class="ltx_text" style="font-size:70%;">0</span>
+              
+            ,x.y.c
+              
+                <span class="ltx_text" style="font-size:70%;">s</span>
+              
+            ,<span class="ltx_text ltx_font_sansserif">succ</span>(n))</span></span>
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left" style="padding-left:0pt;padding-right:0pt;"> ≡c
+              
+                <span class="ltx_text" style="font-size:70%;">s</span>
+              
+            [n,<span class="ltx_text ltx_font_sansserif">ind
+                
+                  <math id="p3.m32" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi mathsize="70%">ℕ</mi></math>
+                
+              </span>(x.C,c
+              
+                <span class="ltx_text" style="font-size:70%;">0</span>
+              
+            ,x.y.c
+              
+                <span class="ltx_text" style="font-size:70%;">s</span>
+              
+            ,n)/x,y] : C[<span class="ltx_text ltx_font_sansserif">succ</span>(n)/x]</span></span>
+</span>
+
+In <math id="p3.m33" class="ltx_Math" alttext="\mathsf{ind}_{\mathbb{N}}" display="inline"><msub><mi>𝗂𝗇𝖽</mi><mi>ℕ</mi></msub></math>, <math id="p3.m34" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is bound in <math id="p3.m35" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math>, and <math id="p3.m36" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p3.m37" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> are bound in <math id="p3.m38" class="ltx_Math" alttext="c_{s}" display="inline"><msub><mi>c</mi><mi>s</mi></msub></math>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Other inductively defined types follow the same general scheme.</p>
+</div>
+<div id="p5" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">A.2.9 The natural number type</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:44:13 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

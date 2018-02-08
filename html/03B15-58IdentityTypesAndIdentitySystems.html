@@ -1,0 +1,894 @@
+<!DOCTYPE html><html>
+<head>
+<title>5.8 Identity types and identity systems</title>
+<!--Generated on Thu Feb  8 19:37:11 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , , , , , , -groupoid, Yoneda, as inductive, at a point, free, generation, generation of an inductive type, identity, lemma, of a type, inductive, system, system, identity, type, univalence axiom">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">5.8 Identity types and identity systems</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">We now wish to point out that the <em class="ltx_emph ltx_font_italic">identity types</em>, which play so central a role in homotopy type theory, may also be considered to be defined inductively.
+Specifically, they are an “inductive family” with indices, in the sense of §5.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/57generalizationsofinductivetypes</span>).
+In fact, there are <em class="ltx_emph ltx_font_italic">two</em> ways to describe identity types as an
+inductive family, resulting in the two induction principles described in
+<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87533</span>Chapter 1, path induction and based path induction.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">In both definitions, the type <math id="p3.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a parameter.
+For the first definition, we inductively define a family <math id="p3.m2" class="ltx_Math" alttext="=_{A}:A\to A\to\mathcal{U}" display="inline"><mrow><msub><mo>=</mo><mi>A</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>, with two indices belonging to <math id="p3.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, by the following constructor:</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">for any <math id="I1.i1.p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, an element <math id="I1.i1.p1.m2" class="ltx_Math" alttext="\mathsf{refl}_{A}:a=_{A}a" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>A</mi></msub><mo>:</mo><mrow><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>a</mi></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">By analogy with the other inductive families, we may extract the induction principle from this definition.
+It states that given any <math id="p3.m4" class="ltx_Math" alttext="C:\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_%
+{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}(a=_{A}b)\to\mathcal{U}," display="inline"><mrow><mi>C</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo></mrow></math> along with <math id="p3.m5" class="ltx_Math" alttext="d:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:%
+A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}C(a,a,\mathsf{refl}_{a})" display="inline"><mrow><mi>d</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>a</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, there exists <math id="p3.m6" class="ltx_Math" alttext="f:\mathchoice{\prod_{(a,b:A)}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle%
+\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}}\mathchoice{\prod_{(p:a=_{A}b)}\,}{\mathchoice{{\textstyle%
+\prod_{(p:a=_{A}b)}}}{\prod_{(p:a=_{A}b)}}{\prod_{(p:a=_{A}b)}}{\prod_{(p:a=_{%
+A}b)}}}{\mathchoice{{\textstyle\prod_{(p:a=_{A}b)}}}{\prod_{(p:a=_{A}b)}}{%
+\prod_{(p:a=_{A}b)}}{\prod_{(p:a=_{A}b)}}}{\mathchoice{{\textstyle\prod_{(p:a=%
+_{A}b)}}}{\prod_{(p:a=_{A}b)}}{\prod_{(p:a=_{A}b)}}{\prod_{(p:a=_{A}b)}}}C(a,b%
+,p)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>b</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math> such that <math id="p3.m7" class="ltx_Math" alttext="f(a,a,\mathsf{refl}_{a})\equiv d(a)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>a</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+This is exactly the path induction principle for identity types.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">For the second definition, we consider one element <math id="p4.m1" class="ltx_Math" alttext="a_{0}:A" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>:</mo><mi>A</mi></mrow></math> to be a parameter along with <math id="p4.m2" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>, and we inductively define a family <math id="p4.m3" class="ltx_Math" alttext="(a_{0}=_{A}\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}):A\to\mathcal{U}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><msub><mo>=</mo><mi>A</mi></msub><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>, with <em class="ltx_emph ltx_font_italic">one</em> index belonging to <math id="p4.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, by the following constructor:</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">an element <math id="I2.i1.p1.m1" class="ltx_Math" alttext="\mathsf{refl}_{a_{0}}:a_{0}=_{A}a_{0}" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>:</mo><mrow><msub><mi>a</mi><mn>0</mn></msub><msub><mo>=</mo><mi>A</mi></msub><msub><mi>a</mi><mn>0</mn></msub></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Note that because <math id="p4.m5" class="ltx_Math" alttext="a_{0}:A" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>:</mo><mi>A</mi></mrow></math> was fixed as a parameter, the constructor <math id="p4.m6" class="ltx_Math" alttext="\mathsf{refl}_{a_{0}}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub></math> does not appear inside the inductive definition as a function, but only an element.
+The induction principle for this definition says that given <math id="p4.m7" class="ltx_Math" alttext="C:\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:%
+A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{%
+\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}(a_{0}=_{A}b)\to\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><msub><mo>=</mo><mi>A</mi></msub><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> along with an element <math id="p4.m8" class="ltx_Math" alttext="d:C(a_{0},\mathsf{refl}_{a_{0}})" display="inline"><mrow><mi>d</mi><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, there exists <math id="p4.m9" class="ltx_Math" alttext="f:\mathchoice{\prod_{(b:A)}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(%
+b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{%
+\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}\mathchoice{\prod_{(p:a_{0%
+}=_{A}b)}\,}{\mathchoice{{\textstyle\prod_{(p:a_{0}=_{A}b)}}}{\prod_{(p:a_{0}=%
+_{A}b)}}{\prod_{(p:a_{0}=_{A}b)}}{\prod_{(p:a_{0}=_{A}b)}}}{\mathchoice{{%
+\textstyle\prod_{(p:a_{0}=_{A}b)}}}{\prod_{(p:a_{0}=_{A}b)}}{\prod_{(p:a_{0}=_%
+{A}b)}}{\prod_{(p:a_{0}=_{A}b)}}}{\mathchoice{{\textstyle\prod_{(p:a_{0}=_{A}b%
+)}}}{\prod_{(p:a_{0}=_{A}b)}}{\prod_{(p:a_{0}=_{A}b)}}{\prod_{(p:a_{0}=_{A}b)}%
+}}C(b,p)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><msub><mi>a</mi><mn>0</mn></msub><msub><mo>=</mo><mi>A</mi></msub><mi>b</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math> with <math id="p4.m10" class="ltx_Math" alttext="f(a_{0},\mathsf{refl}_{a_{0}})\equiv d" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mi>d</mi></mrow></math>.
+This is exactly the based path induction principle for identity types.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">The view of identity types as inductive types has historically caused some confusion, because of the intuition mentioned in §5.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/51introductiontoinductivetypes</span>) that all the elements of an inductive type should be obtained by repeatedly applying its constructors.
+For ordinary inductive types such as <math id="p5.m1" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> and <math id="p5.m2" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>, this is the case: we saw in  (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/18thetypeofbooleans#1 </span>) that indeed every element of <math id="p5.m3" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> is either <math id="p5.m4" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> or <math id="p5.m5" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math>, and similarly one can prove that every element of <math id="p5.m6" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> is either <math id="p5.m7" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math> or a successor.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">However, this is <em class="ltx_emph ltx_font_italic">not</em> true for identity types: there is only one constructor <math id="p6.m1" class="ltx_Math" alttext="\mathsf{refl}" display="inline"><mi>𝗋𝖾𝖿𝗅</mi></math>, but not every path is equal to the constant path.
+More precisely, we cannot prove, using only the induction principle for identity types (either one), that every inhabitant of <math id="p6.m2" class="ltx_Math" alttext="a=_{A}a" display="inline"><mrow><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>a</mi></mrow></math> is equal to <math id="p6.m3" class="ltx_Math" alttext="\mathsf{refl}_{a}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></math>.
+In order to actually exhibit a counterexample, we need some additional principle such as the univalence axiom — recall that in Example 3.1.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/31setsandntypes#Thmpreeg6</span>) we used univalence to exhibit a particular path <math id="p6.m4" class="ltx_Math" alttext="\mathbf{2}=_{\mathcal{U}}\mathbf{2}" display="inline"><mrow><mn>𝟐</mn><msub><mo>=</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub><mn>𝟐</mn></mrow></math> which is not equal to <math id="p6.m5" class="ltx_Math" alttext="\mathsf{refl}_{\mathbf{2}}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mn>𝟐</mn></msub></math>.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The point is that, as validated by the study of homotopy-initial algebras, an inductive definition should be regarded as <em class="ltx_emph ltx_font_italic">freely generated</em> by its constructors.
+Of course, a freely generated structure may contain elements other than its generators: for instance, the free group on two symbols <math id="p7.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p7.m2" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> contains not only <math id="p7.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p7.m4" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> but also words such as <math id="p7.m5" class="ltx_Math" alttext="xy" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi>y</mi></mrow></math>, <math id="p7.m6" class="ltx_Math" alttext="yx^{-1}y" display="inline"><mrow><mi>y</mi><mo>⁢</mo><msup><mi>x</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mi>y</mi></mrow></math>, and <math id="p7.m7" class="ltx_Math" alttext="x^{3}y^{2}x^{-2}yx" display="inline"><mrow><msup><mi>x</mi><mn>3</mn></msup><mo>⁢</mo><msup><mi>y</mi><mn>2</mn></msup><mo>⁢</mo><msup><mi>x</mi><mrow><mo>-</mo><mn>2</mn></mrow></msup><mo>⁢</mo><mi>y</mi><mo>⁢</mo><mi>x</mi></mrow></math>.
+In general, the elements of a free structure are obtained by applying not only the generators, but also the operations of the ambient structure, such as the group operations if we are talking about free groups.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">In the case of inductive types, we are talking about freely generated <em class="ltx_emph ltx_font_italic">types</em> — so what are the “operations” of the structure of a type?
+If types are viewed as like <em class="ltx_emph ltx_font_italic">sets</em>, as was traditionally the case in type theory, then there are no such operations, and hence we expect there to be no elements in an inductive type other than those resulting from its constructors.
+In homotopy type theory, we view types as like <em class="ltx_emph ltx_font_italic">spaces</em> or <math id="p8.m1" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoids,
+in which case there are many operations on the <em class="ltx_emph ltx_font_italic">paths</em> (concatenation, inversion, etc.) — this will be important in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87579</span>Chapter 6 — but there are still no operations on the <em class="ltx_emph ltx_font_italic">objects</em> (elements).
+Thus, it is still true for us that, e.g., every element of <math id="p8.m3" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> is either <math id="p8.m4" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> or <math id="p8.m5" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math>, and every element of <math id="p8.m6" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> is either <math id="p8.m7" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math> or a successor.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">However, as we saw in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87569</span>Chapter 2, viewing types as <math id="p9.m1" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoids entails also viewing functions as functors, and this includes type families <math id="p9.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>.
+Thus, the identity type <math id="p9.m3" class="ltx_Math" alttext="(a_{0}=_{A}\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})" display="inline"><mrow><mo stretchy="false">(</mo><mrow><msub><mi>a</mi><mn>0</mn></msub><msub><mo>=</mo><mi>A</mi></msub><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></mrow><mo stretchy="false">)</mo></mrow></math>, viewed as an inductive type family, is actually a <em class="ltx_emph ltx_font_italic">freely generated functor</em> <math id="p9.m4" class="ltx_Math" alttext="A\to\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>.
+Specifically, it is the functor <math id="p9.m5" class="ltx_Math" alttext="F:A\to\mathcal{U}" display="inline"><mrow><mi>F</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> freely generated by one element <math id="p9.m6" class="ltx_Math" alttext="\mathsf{refl}_{a_{0}}:F(a_{0})" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>:</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+And a functor does have operations on objects, namely the action of the morphisms (paths) of <math id="p9.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">In category theory, the <em class="ltx_emph ltx_font_italic">Yoneda lemma</em> tells us that for any category <math id="p10.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and object <math id="p10.m2" class="ltx_Math" alttext="a_{0}" display="inline"><msub><mi>a</mi><mn>0</mn></msub></math>, the functor freely generated by an element of <math id="p10.m3" class="ltx_Math" alttext="F(a_{0})" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math> is the representable functor <math id="p10.m4" class="ltx_Math" alttext="\hom_{A}(a_{0},\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})" display="inline"><mrow><msub><mi>hom</mi><mi>A</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow></mrow></math>.
+Thus, we should expect the identity type <math id="p10.m5" class="ltx_Math" alttext="(a_{0}=_{A}\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})" display="inline"><mrow><mo stretchy="false">(</mo><mrow><msub><mi>a</mi><mn>0</mn></msub><msub><mo>=</mo><mi>A</mi></msub><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></mrow><mo stretchy="false">)</mo></mrow></math> to be this representable functor, and this is indeed exactly how we view it: <math id="p10.m6" class="ltx_Math" alttext="(a_{0}=_{A}b)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><msub><mi>a</mi><mn>0</mn></msub><msub><mo>=</mo><mi>A</mi></msub><mi>b</mi></mrow><mo stretchy="false">)</mo></mrow></math> is the space of morphisms (paths) in <math id="p10.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> from <math id="p10.m8" class="ltx_Math" alttext="a_{0}" display="inline"><msub><mi>a</mi><mn>0</mn></msub></math> to <math id="p10.m9" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math>.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">One reason for viewing identity types as inductive families is to apply the uniqueness principles of §5.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/52uniquenessofinductivetypes</span>),§5.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/55homotopyinductivetypes</span>).
+Specifically, we can characterize the family of identity types of a type <math id="p11.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, up to equivalence, by giving another family of types over <math id="p11.m2" class="ltx_Math" alttext="A\times A" display="inline"><mrow><mi>A</mi><mo>×</mo><mi>A</mi></mrow></math> satisfying the same induction principle.
+This suggests the following definitions and theorem.</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 5.8.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> be a type and <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="a_{0}:A" display="inline"><mrow><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> an element.</span></p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A </span><span class="ltx_text ltx_font_bold ltx_font_italic">pointed predicate</span><span class="ltx_text ltx_font_italic">
+over </span><math id="I3.i1.p1.m1" class="ltx_Math" alttext="(A,a_{0})" display="inline"><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_italic"> is a family </span><math id="I3.i1.p1.m2" class="ltx_Math" alttext="R:A\to\mathcal{U}" display="inline"><mrow><mi>R</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic"> equipped with an element </span><math id="I3.i1.p1.m3" class="ltx_Math" alttext="r_{0}:R(a_{0})" display="inline"><mrow><msub><mi>r</mi><mn>0</mn></msub><mo>:</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For pointed predicates </span><math id="I3.i2.p1.m1" class="ltx_Math" alttext="(R,r_{0})" display="inline"><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i2.p1.m2" class="ltx_Math" alttext="(S,s_{0})" display="inline"><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_italic">, a family of maps </span><math id="I3.i2.p1.m3" class="ltx_Math" alttext="g:\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:%
+A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{%
+\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to S(b)" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic"> is </span><span class="ltx_text ltx_font_bold ltx_font_italic">pointed</span><span class="ltx_text ltx_font_italic"> if </span><math id="I3.i2.p1.m4" class="ltx_Math" alttext="g(a_{0},r_{0})=s_{0}" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub></mrow></math><span class="ltx_text ltx_font_italic">.
+We have</span></p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathsf{ppmap}(R,S):\!\!\equiv\mathchoice{\sum_{g:\mathchoice{\prod_{b:A}\,}{%
+\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b%
+:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{%
+\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(%
+b:A)}}{\prod_{(b:A)}}}R(b)\to S(b)}\,}{\mathchoice{{\textstyle\sum_{(g:%
+\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)%
+}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod%
+_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}%
+}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to S(b))}}}{\sum_{(g:%
+\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)%
+}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod%
+_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}%
+}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to S(b))}}{\sum_{(g:%
+\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)%
+}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod%
+_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}%
+}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to S(b))}}{\sum_{(g:%
+\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)%
+}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod%
+_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}%
+}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to S(b))}}}{\mathchoice{{%
+\textstyle\sum_{(g:\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle%
+\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to
+S%
+(b))}}}{\sum_{(g:\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A%
+)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle%
+\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to
+S%
+(b))}}{\sum_{(g:\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)%
+}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod%
+_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to
+S%
+(b))}}{\sum_{(g:\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)%
+}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod%
+_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to
+S%
+(b))}}}{\mathchoice{{\textstyle\sum_{(g:\mathchoice{\prod_{b:A}\,}{\mathchoice%
+{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{%
+\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b%
+:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{%
+\prod_{(b:A)}}}R(b)\to S(b))}}}{\sum_{(g:\mathchoice{\prod_{b:A}\,}{%
+\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b%
+:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{%
+\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(%
+b:A)}}{\prod_{(b:A)}}}R(b)\to S(b))}}{\sum_{(g:\mathchoice{\prod_{b:A}\,}{%
+\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b%
+:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{%
+\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(%
+b:A)}}{\prod_{(b:A)}}}R(b)\to S(b))}}{\sum_{(g:\mathchoice{\prod_{b:A}\,}{%
+\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b%
+:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{%
+\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(%
+b:A)}}{\prod_{(b:A)}}}R(b)\to S(b))}}}(g(a_{0},r_{0})=s_{0})." display="block"><mrow><mi>𝗉𝗉𝗆𝖺𝗉</mi><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>g</mi><mo>:</mo><mrow><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">An </span><span class="ltx_text ltx_font_bold ltx_font_italic">identity system at <math id="I3.i3.p1.m1" class="ltx_Math" alttext="a_{0}" display="inline"><msub><mi mathvariant="normal">a</mi><mn mathvariant="normal">0</mn></msub></math></span><span class="ltx_text ltx_font_italic">
+is a pointed predicate </span><math id="I3.i3.p1.m2" class="ltx_Math" alttext="(R,r_{0})" display="inline"><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_italic"> such that for any type family </span><math id="I3.i3.p1.m3" class="ltx_Math" alttext="D:\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:%
+A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{%
+\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to\mathcal{U}" display="inline"><mrow><mi>D</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i3.p1.m4" class="ltx_Math" alttext="d:D(a_{0},r_{0})" display="inline"><mrow><mi>d</mi><mo>:</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">, there exists a function </span><math id="I3.i3.p1.m5" class="ltx_Math" alttext="f:\mathchoice{\prod_{(b:A)}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(%
+b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{%
+\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}\mathchoice{\prod_{(r:R(b)%
+)}\,}{\mathchoice{{\textstyle\prod_{(r:R(b))}}}{\prod_{(r:R(b))}}{\prod_{(r:R(%
+b))}}{\prod_{(r:R(b))}}}{\mathchoice{{\textstyle\prod_{(r:R(b))}}}{\prod_{(r:R%
+(b))}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}}{\mathchoice{{\textstyle\prod_{(r:R%
+(b))}}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}}D(b,r)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic"> such that </span><math id="I3.i3.p1.m6" class="ltx_Math" alttext="f(a_{0},r_{0})=d" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>d</mi></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 5.8.2</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For a pointed predicate <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="(R,r_{0})" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>R</mi><mo mathvariant="normal">,</mo><msub><mi>r</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></math>, the following are logically equivalent.</span></p>
+<ol id="I4" class="ltx_enumerate">
+<li id="I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I4.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I4.i1.p1.m1" class="ltx_Math" alttext="(R,r_{0})" display="inline"><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_italic"> is an identity system at </span><math id="I4.i1.p1.m2" class="ltx_Math" alttext="a_{0}" display="inline"><msub><mi>a</mi><mn>0</mn></msub></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I4.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any pointed predicate </span><math id="I4.i2.p1.m1" class="ltx_Math" alttext="(S,s_{0})" display="inline"><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_italic">, the type </span><math id="I4.i2.p1.m2" class="ltx_Math" alttext="\mathsf{ppmap}(R,S)" display="inline"><mrow><mi>𝗉𝗉𝗆𝖺𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>S</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> is contractible.</span></p>
+</div>
+</li>
+<li id="I4.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I4.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any </span><math id="I4.i3.p1.m1" class="ltx_Math" alttext="b:A" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic">, the function </span><math id="I4.i3.p1.m2" class="ltx_Math" alttext="\mathsf{transport}^{R}(\mathord{\hskip 1.0pt\underline{\hskip 4.3pt}\hskip 1.0%
+pt},r_{0}):(a_{0}=_{A}b)\to R(b)" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>R</mi></msup><mrow><mo stretchy="false">(</mo><mpadded lspace="1pt" width="+2pt"><munder accentunder="true"><mi></mi><mo>¯</mo></munder></mpadded><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><msub><mo>=</mo><mi>A</mi></msub><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> is an equivalence.</span></p>
+</div>
+</li>
+<li id="I4.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I4.i4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The type </span><math id="I4.i4.p1.m1" class="ltx_Math" alttext="\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b%
+:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic"> is contractible.</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Note that the equivalences <a href="#I4.i1" title="1. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a><math id="p12.m1" class="ltx_Math" alttext="\Leftrightarrow" display="inline"><mo>⇔</mo></math><a href="#I4.i2" title="2. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a><math id="p12.m2" class="ltx_Math" alttext="\Leftrightarrow" display="inline"><mo>⇔</mo></math><a href="#I4.i3" title="3. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> are a version of Lemma 5.5.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/55homotopyinductivetypes#Thmprelem1</span>) for identity types <math id="p12.m3" class="ltx_Math" alttext="a_{0}=_{A}\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub><msub><mo>=</mo><mi>A</mi></msub><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></mrow></math>, regarded as inductive families varying over one element of <math id="p12.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+Of course, <a href="#I4.i2" title="2. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a>–<a href="#I4.i4" title="4. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a> are mere propositions, so that logical equivalence implies actual equivalence.
+(Condition <a href="#I4.i1" title="1. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> is also a mere proposition, but we will not prove this.)
+</p>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">First, assume <a href="#I4.i1" title="1. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> and let <math id="p13.m1" class="ltx_Math" alttext="(S,s_{0})" display="inline"><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></math> be a pointed predicate.
+Define <math id="p13.m2" class="ltx_Math" alttext="D(b,r):\!\!\equiv S(b)" display="inline"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>S</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p13.m3" class="ltx_Math" alttext="d:\!\!\equiv s_{0}:S(a_{0})\equiv D(a_{0},r_{0})" display="inline"><mrow><mi>d</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>s</mi><mn>0</mn></msub><mo>:</mo><mi>S</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>≡</mo><mi>D</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math>.
+Since <math id="p13.m4" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> is an identity system, we have <math id="p13.m5" class="ltx_Math" alttext="f:\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:%
+A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{%
+\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to S(b)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> with <math id="p13.m6" class="ltx_Math" alttext="f(a_{0},r_{0})=s_{0}" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub></mrow></math>; hence <math id="p13.m7" class="ltx_Math" alttext="\mathsf{ppmap}(R,S)" display="inline"><mrow><mi>𝗉𝗉𝗆𝖺𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>S</mi><mo stretchy="false">)</mo></mrow></mrow></math> is inhabited.
+Now suppose <math id="p13.m8" class="ltx_Math" alttext="(f,f_{r}),(g,g_{r}):\mathsf{ppmap}(R,S)" display="inline"><mrow><mrow><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><msub><mi>f</mi><mi>r</mi></msub><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><msub><mi>g</mi><mi>r</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>𝗉𝗉𝗆𝖺𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>S</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and define <math id="p13.m9" class="ltx_Math" alttext="D(b,r):\!\!\equiv(f(b,r)=g(b,r))" display="inline"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, and let <math id="p13.m10" class="ltx_Math" alttext="d:\!\!\equiv f_{r}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathord{{g_{r}}^{-1}}:f(a_{0},r_{0})=s_{0%
+}=g(a_{0},r_{0})" display="inline"><mrow><mi>d</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>f</mi><mi>r</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mmultiscripts><mi>g</mi><mi>r</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>:</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math>.
+Then again since <math id="p13.m11" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> is an identity system, we have <math id="p13.m12" class="ltx_Math" alttext="h:\mathchoice{\prod_{(b:A)}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(%
+b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{%
+\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}\mathchoice{\prod_{(r:R(b)%
+)}\,}{\mathchoice{{\textstyle\prod_{(r:R(b))}}}{\prod_{(r:R(b))}}{\prod_{(r:R(%
+b))}}{\prod_{(r:R(b))}}}{\mathchoice{{\textstyle\prod_{(r:R(b))}}}{\prod_{(r:R%
+(b))}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}}{\mathchoice{{\textstyle\prod_{(r:R%
+(b))}}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}}D(b,r)" display="inline"><mrow><mi>h</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math> such that <math id="p13.m13" class="ltx_Math" alttext="h(a_{0},r_{0})=f_{r}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathord{{g_{r}}^{-1}}" display="inline"><mrow><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>f</mi><mi>r</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mmultiscripts><mi>g</mi><mi>r</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts></mrow></mrow></math>.
+By the characterization of paths in <math id="p13.m14" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types and path types, these data yield an equality <math id="p13.m15" class="ltx_Math" alttext="(f,f_{r})=(g,g_{r})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><msub><mi>f</mi><mi>r</mi></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><msub><mi>g</mi><mi>r</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>.
+Hence <math id="p13.m16" class="ltx_Math" alttext="\mathsf{ppmap}(R,S)" display="inline"><mrow><mi>𝗉𝗉𝗆𝖺𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>S</mi><mo stretchy="false">)</mo></mrow></mrow></math> is an inhabited mere proposition, and thus contractible; so <a href="#I4.i2" title="2. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a> holds.</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">Now suppose <a href="#I4.i2" title="2. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a>, and define <math id="p14.m1" class="ltx_Math" alttext="S(b):\!\!\equiv(a_{0}=b)" display="inline"><mrow><mi>S</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> with <math id="p14.m2" class="ltx_Math" alttext="s_{0}:\!\!\equiv\mathsf{refl}_{a_{0}}:S(a_{0})" display="inline"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>:</mo><mi>S</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math>.
+Then <math id="p14.m3" class="ltx_Math" alttext="(S,s_{0})" display="inline"><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></math> is a pointed predicate, and <math id="p14.m4" class="ltx_Math" alttext="{\lambda}b.\,{\lambda}p.\,\mathsf{transport}^{R}(p,r):\mathchoice{\prod_{b:A}%
+\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod%
+_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}%
+}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:A)}}{\prod_%
+{(b:A)}}{\prod_{(b:A)}}}S(b)\to R(b)" display="inline"><mrow><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>p</mi><mo rspace="4.2pt">.</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>R</mi></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>S</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> is a pointed family of maps from <math id="p14.m5" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> to <math id="p14.m6" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>.
+By assumption, <math id="p14.m7" class="ltx_Math" alttext="\mathsf{ppmap}(R,S)" display="inline"><mrow><mi>𝗉𝗉𝗆𝖺𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>S</mi><mo stretchy="false">)</mo></mrow></mrow></math> is contractible, hence inhabited, so there also exists a pointed family of maps from <math id="p14.m8" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> to <math id="p14.m9" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math>.
+And the composites in either direction are pointed families of maps from <math id="p14.m10" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> to <math id="p14.m11" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> and from <math id="p14.m12" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> to <math id="p14.m13" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math>, respectively, hence equal to identities since <math id="p14.m14" class="ltx_Math" alttext="\mathsf{ppmap}(R,R)" display="inline"><mrow><mi>𝗉𝗉𝗆𝖺𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p14.m15" class="ltx_Math" alttext="\mathsf{ppmap}(S,S)" display="inline"><mrow><mi>𝗉𝗉𝗆𝖺𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mi>S</mi><mo stretchy="false">)</mo></mrow></mrow></math> are contractible.
+Thus <a href="#I4.i3" title="3. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> holds.</p>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">Now supposing <a href="#I4.i3" title="3. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a>, condition <a href="#I4.i4" title="4. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a> follows from Lemma 3.11.8 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/311contractibility#Thmprelem5</span>), using the fact that <math id="p15.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types respect equivalences (the “if” direction of Theorem 4.7.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/47closurepropertiesofequivalences#Thmprethm4</span>)).</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">Finally, assume <a href="#I4.i4" title="4. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>, and let <math id="p16.m1" class="ltx_Math" alttext="D:\mathchoice{\prod_{b:A}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(b:%
+A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{%
+\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}R(b)\to\mathcal{U}" display="inline"><mrow><mi>D</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> and <math id="p16.m2" class="ltx_Math" alttext="d:D(a_{0},r_{0})" display="inline"><mrow><mi>d</mi><mo>:</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+We can equivalently express <math id="p16.m3" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math> as a family <math id="p16.m4" class="ltx_Math" alttext="D^{\prime}:(\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:%
+A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))\to\mathcal{U}" display="inline"><mrow><msup><mi>D</mi><mo>′</mo></msup><mo>:</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>.
+Now since <math id="p16.m5" class="ltx_Math" alttext="\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b%
+:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is contractible, we have</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="p:\mathchoice{\prod_{u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{%
+(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle%
+\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b)}\,}{%
+\mathchoice{{\textstyle\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{%
+\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}}R(b))}}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_%
+{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle%
+\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}{%
+\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum%
+_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}{\prod_{(u:\mathchoice{%
+\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{%
+(b:A)}}{\sum_{(b:A)}}}R(b))}}}{\mathchoice{{\textstyle\prod_{(u:\mathchoice{%
+\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{%
+(b:A)}}{\sum_{(b:A)}}}R(b))}}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice%
+{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{%
+\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}}R(b))}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{%
+(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle%
+\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}{%
+\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum%
+_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}}{\mathchoice{{\textstyle%
+\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum%
+_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}}{\prod_{(u:\mathchoice{%
+\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{%
+(b:A)}}{\sum_{(b:A)}}}R(b))}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{%
+{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{%
+\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}}R(b))}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{%
+(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle%
+\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}}(a_%
+{0},r_{0})=u." display="block"><mrow><mrow><mi>p</mi><mo>:</mo><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>u</mi><mo>:</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>u</mi></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Moreover, since the path types of a contractible type are again contractible, we have <math id="p16.m6" class="ltx_Math" alttext="p((a_{0},r_{0}))=\mathsf{refl}_{(a_{0},r_{0})}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></msub></mrow></math>.
+Define <math id="p16.m7" class="ltx_Math" alttext="f(u):\!\!\equiv\mathsf{transport}^{D^{\prime}}(p(u),d)" display="inline"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><msup><mi>D</mi><mo>′</mo></msup></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></mrow></math>, yielding <math id="p16.m8" class="ltx_Math" alttext="f:\mathchoice{\prod_{u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{%
+(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle%
+\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b)}\,}{%
+\mathchoice{{\textstyle\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{%
+\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}}R(b))}}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_%
+{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle%
+\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}{%
+\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum%
+_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}{\prod_{(u:\mathchoice{%
+\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{%
+(b:A)}}{\sum_{(b:A)}}}R(b))}}}{\mathchoice{{\textstyle\prod_{(u:\mathchoice{%
+\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{%
+(b:A)}}{\sum_{(b:A)}}}R(b))}}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice%
+{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{%
+\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}}R(b))}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{%
+(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle%
+\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}{%
+\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum%
+_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}}{\mathchoice{{\textstyle%
+\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum%
+_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}}{\prod_{(u:\mathchoice{%
+\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{%
+(b:A)}}{\sum_{(b:A)}}}R(b))}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{%
+{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{%
+\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}%
+}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:%
+A)}}}R(b))}}{\prod_{(u:\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{%
+(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle%
+\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{%
+\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(b))}}}D^{%
+\prime}(u)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><msup><mi>D</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, or equivalently <math id="p16.m9" class="ltx_Math" alttext="f:\mathchoice{\prod_{(b:A)}\,}{\mathchoice{{\textstyle\prod_{(b:A)}}}{\prod_{(%
+b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b:A)}}}{%
+\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}{\mathchoice{{\textstyle\prod_{(b%
+:A)}}}{\prod_{(b:A)}}{\prod_{(b:A)}}{\prod_{(b:A)}}}\mathchoice{\prod_{(r:R(b)%
+)}\,}{\mathchoice{{\textstyle\prod_{(r:R(b))}}}{\prod_{(r:R(b))}}{\prod_{(r:R(%
+b))}}{\prod_{(r:R(b))}}}{\mathchoice{{\textstyle\prod_{(r:R(b))}}}{\prod_{(r:R%
+(b))}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}}{\mathchoice{{\textstyle\prod_{(r:R%
+(b))}}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}}D(b,r)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math>.
+Finally, we have
+</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="f(a_{0},r_{0})\equiv\mathsf{transport}^{D^{\prime}}(p((a_{0},r_{0})),d)=%
+\mathsf{transport}^{D^{\prime}}(\mathsf{refl}_{(a_{0},r_{0})},d)=d." display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><msup><mi>D</mi><mo>′</mo></msup></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><msup><mi>D</mi><mo>′</mo></msup></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></msub><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>d</mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Thus, <a href="#I4.i1" title="1. ‣ Theorem 5.8.2. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> holds.
+∎</p>
+</div>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">We can deduce a similar result for identity types <math id="p17.m1" class="ltx_Math" alttext="=_{A}" display="inline"><msub><mo>=</mo><mi>A</mi></msub></math>, regarded as a family varying over two elements of <math id="p17.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.</p>
+</div>
+<div id="Thmpredefn2" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 5.8.3</span>.</h6>
+<div id="Thmpredefn2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">An <span class="ltx_text ltx_font_bold">identity system</span>
+over a type <math id="Thmpredefn2.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a family <math id="Thmpredefn2.p1.m2" class="ltx_Math" alttext="R:A\to A\to\mathcal{U}" display="inline"><mrow><mi>R</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> equipped with a function <math id="Thmpredefn2.p1.m3" class="ltx_Math" alttext="r_{0}:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_%
+{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}%
+{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(%
+a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}R(a,a)" display="inline"><mrow><msub><mi>r</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> such that for any type family <math id="Thmpredefn2.p1.m4" class="ltx_Math" alttext="D:\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_%
+{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}R(a,b)\to\mathcal{U}" display="inline"><mrow><mi>D</mi><mo mathvariant="normal">:</mo><mrow><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> and <math id="Thmpredefn2.p1.m5" class="ltx_Math" alttext="d:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:%
+A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}D(a,a,r_{0}(a))" display="inline"><mrow><mi>d</mi><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>D</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal">,</mo><mrow><msub><mi>r</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, there exists a function <math id="Thmpredefn2.p1.m6" class="ltx_Math" alttext="f:\mathchoice{\prod_{(a,b:A)}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle%
+\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}}\mathchoice{\prod_{(r:R(b))}\,}{\mathchoice{{\textstyle\prod_%
+{(r:R(b))}}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}}{%
+\mathchoice{{\textstyle\prod_{(r:R(b))}}}{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}{%
+\prod_{(r:R(b))}}}{\mathchoice{{\textstyle\prod_{(r:R(b))}}}{\prod_{(r:R(b))}}%
+{\prod_{(r:R(b))}}{\prod_{(r:R(b))}}}D(a,b,r)" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>r</mi><mo mathvariant="normal">:</mo><mi>R</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>D</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal">,</mo><mi>r</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math> such that <math id="Thmpredefn2.p1.m7" class="ltx_Math" alttext="f(a,a,r_{0}(a))=d(a)" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal">,</mo><mrow><msub><mi>r</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mrow><mi>d</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> for all <math id="Thmpredefn2.p1.m8" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="Thmprethm2" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 5.8.4</span>.</h6>
+<div id="Thmprethm2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For <math id="Thmprethm2.p1.m1" class="ltx_Math" alttext="R:A\to A\to\mathcal{U}" display="inline"><mrow><mi>R</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> equipped with <math id="Thmprethm2.p1.m2" class="ltx_Math" alttext="r_{0}:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_%
+{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}%
+{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(%
+a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}R(a,a)" display="inline"><mrow><msub><mi>r</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, the following are logically equivalent.</span></p>
+<ol id="I5" class="ltx_enumerate">
+<li id="I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I5.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I5.i1.p1.m1" class="ltx_Math" alttext="(R,r_{0})" display="inline"><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_italic"> is an identity system over </span><math id="I5.i1.p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I5.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For all </span><math id="I5.i2.p1.m1" class="ltx_Math" alttext="a_{0}:A" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic">, the pointed predicate </span><math id="I5.i2.p1.m2" class="ltx_Math" alttext="(R(a_{0}),r_{0}(a_{0}))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msub><mi>r</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math><span class="ltx_text ltx_font_italic"> is an identity system at </span><math id="I5.i2.p1.m3" class="ltx_Math" alttext="a_{0}" display="inline"><msub><mi>a</mi><mn>0</mn></msub></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I5.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I5.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any </span><math id="I5.i3.p1.m1" class="ltx_Math" alttext="S:A\to A\to\mathcal{U}" display="inline"><mrow><mi>S</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I5.i3.p1.m2" class="ltx_Math" alttext="s_{0}:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_%
+{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}%
+{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(%
+a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}S(a,a)" display="inline"><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>S</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">, the type</span></p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathchoice{\sum_{(g:\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod%
+_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}}R(a,b)\to S(a,b))}\,}{\mathchoice{{\textstyle\sum_{(g:%
+\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(%
+a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b%
+:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}R(a,b)\to S(a,b))}}}{\sum_{(g:\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}R(a,b)\to S(a,b))}}{\sum_{(g:\mathchoice{%
+\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle%
+\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}R(a,b)\to
+S%
+(a,b))}}{\sum_{(g:\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(%
+a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}}R(a,b)\to S(a,b))}}}{\mathchoice{{\textstyle\sum_{(g:%
+\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(%
+a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b%
+:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}R(a,b)\to S(a,b))}}}{\sum_{(g:\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}R(a,b)\to S(a,b))}}{\sum_{(g:\mathchoice{%
+\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle%
+\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}R(a,b)\to
+S%
+(a,b))}}{\sum_{(g:\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(%
+a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}}R(a,b)\to S(a,b))}}}{\mathchoice{{\textstyle\sum_{(g:%
+\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(%
+a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b%
+:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}R(a,b)\to S(a,b))}}}{\sum_{(g:\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}R(a,b)\to S(a,b))}}{\sum_{(g:\mathchoice{%
+\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{%
+\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle%
+\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}R(a,b)\to
+S%
+(a,b))}}{\sum_{(g:\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(%
+a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{%
+\prod_{(a,b:A)}}}R(a,b)\to S(a,b))}}}\mathchoice{\prod_{(a:A)}\,}{\mathchoice{%
+{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}g(a,a,r_{0}(a))=s_{0}(a)" display="block"><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>S</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>a</mi><mo>,</mo><mrow><msub><mi>r</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>=</mo><mrow><msub><mi>s</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">is contractible.</span></p>
+</div>
+</li>
+<li id="I5.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I5.i4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any </span><math id="I5.i4.p1.m1" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic">, the map </span><math id="I5.i4.p1.m2" class="ltx_Math" alttext="\mathsf{transport}^{R(a)}(\mathord{\hskip 1.0pt\underline{\hskip 4.3pt}\hskip 1%
+.0pt},r_{0}(a)):(a=_{A}b)\to R(a,b)" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></msup><mrow><mo stretchy="false">(</mo><mpadded lspace="1pt" width="+2pt"><munder accentunder="true"><mi></mi><mo>¯</mo></munder></mpadded><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> is an equivalence.</span></p>
+</div>
+</li>
+<li id="I5.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">5.</span></span> 
+<div id="I5.i5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any </span><math id="I5.i5.p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic">, the type </span><math id="I5.i5.p1.m2" class="ltx_Math" alttext="\mathchoice{\sum_{b:A}\,}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)}}{%
+\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b:A)%
+}}{\sum_{(b:A)}}{\sum_{(b:A)}}}{\mathchoice{{\textstyle\sum_{(b:A)}}}{\sum_{(b%
+:A)}}{\sum_{(b:A)}}{\sum_{(b:A)}}}R(a,b)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic"> is contractible.
+</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">The equivalence <a href="#I5.i1" title="1. ‣ Theorem 5.8.4. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a><math id="p18.m1" class="ltx_Math" alttext="\Leftrightarrow" display="inline"><mo>⇔</mo></math><a href="#I5.i2" title="2. ‣ Theorem 5.8.4. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a> follows exactly the proof of equivalence between the path induction and based path induction principles for identity types; see §1.12 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/112identitytypes</span>).
+The equivalence with <a href="#I5.i4" title="4. ‣ Theorem 5.8.4. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a> and <a href="#I5.i5" title="5. ‣ Theorem 5.8.4. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5</span></a> then follows from Theorem 5.8.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/58identitytypesandidentitysystems#Thmprethm1</span>), while <a href="#S0.Ex4" title="3. ‣ Theorem 5.8.4. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> is straightforward.
+∎</p>
+</div>
+</div>
+<div id="p19" class="ltx_para">
+<p class="ltx_p">One reason this characterization is interesting is that it provides an alternative way to state univalence and function extensionality.
+The univalence axiom for a universe <math id="p19.m1" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> says exactly that the type family</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="(\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}\simeq\mathord{\hskip 1.0pt\text{-%
+-}\hskip 1.0pt}):\mathcal{U}\to\mathcal{U}\to\mathcal{U}" display="block"><mrow><mrow><mo stretchy="false">(</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo>≃</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">together with <math id="p19.m2" class="ltx_Math" alttext="\mathsf{id}:\mathchoice{\prod_{A:\mathcal{U}}\,}{\mathchoice{{\textstyle\prod_%
+{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(%
+A:\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}{\mathchoice{%
+{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}(A\simeq A)" display="inline"><mrow><mi>𝗂𝖽</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>≃</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> satisfies Theorem 5.8.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/58identitytypesandidentitysystems#Thmprethm2</span>)<a href="#I5.i4" title="4. ‣ Theorem 5.8.4. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>.
+Therefore, it is equivalent to the corresponding version of <a href="#I5.i1" title="1. ‣ Theorem 5.8.4. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>, which we can state as follows.</p>
+</div>
+<div id="Thmprecor1" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 5.8.5</span> (Equivalence induction).</h6>
+<div id="Thmprecor1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given any type family <math id="Thmprecor1.p1.m1" class="ltx_Math" alttext="D:\mathchoice{\prod_{A,B:\mathcal{U}}\,}{\mathchoice{{\textstyle\prod_{(A,B:%
+\mathcal{U})}}}{\prod_{(A,B:\mathcal{U})}}{\prod_{(A,B:\mathcal{U})}}{\prod_{(%
+A,B:\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(A,B:\mathcal{U})}}}{\prod_{%
+(A,B:\mathcal{U})}}{\prod_{(A,B:\mathcal{U})}}{\prod_{(A,B:\mathcal{U})}}}{%
+\mathchoice{{\textstyle\prod_{(A,B:\mathcal{U})}}}{\prod_{(A,B:\mathcal{U})}}{%
+\prod_{(A,B:\mathcal{U})}}{\prod_{(A,B:\mathcal{U})}}}(A\simeq B)\to\mathcal{U}" display="inline"><mrow><mi>D</mi><mo mathvariant="normal">:</mo><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>B</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">≃</mo><mi>B</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> and function <math id="Thmprecor1.p1.m2" class="ltx_Math" alttext="d:\mathchoice{\prod_{A:\mathcal{U}}\,}{\mathchoice{{\textstyle\prod_{(A:%
+\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}{\mathchoice{%
+{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}D(A,A,\mathsf{id}_{A})" display="inline"><mrow><mi>d</mi><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>D</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>A</mi><mo mathvariant="normal">,</mo><msub><mi mathvariant="normal">id</mi><mi>A</mi></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, there exists <math id="Thmprecor1.p1.m3" class="ltx_Math" alttext="f:\mathchoice{\prod_{(A,B:\mathcal{U})}\,}{\mathchoice{{\textstyle\prod_{(A,B:%
+\mathcal{U})}}}{\prod_{(A,B:\mathcal{U})}}{\prod_{(A,B:\mathcal{U})}}{\prod_{(%
+A,B:\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(A,B:\mathcal{U})}}}{\prod_{%
+(A,B:\mathcal{U})}}{\prod_{(A,B:\mathcal{U})}}{\prod_{(A,B:\mathcal{U})}}}{%
+\mathchoice{{\textstyle\prod_{(A,B:\mathcal{U})}}}{\prod_{(A,B:\mathcal{U})}}{%
+\prod_{(A,B:\mathcal{U})}}{\prod_{(A,B:\mathcal{U})}}}\mathchoice{\prod_{(e:A%
+\simeq B)}\,}{\mathchoice{{\textstyle\prod_{(e:A\simeq B)}}}{\prod_{(e:A\simeq
+B%
+)}}{\prod_{(e:A\simeq B)}}{\prod_{(e:A\simeq B)}}}{\mathchoice{{\textstyle%
+\prod_{(e:A\simeq B)}}}{\prod_{(e:A\simeq B)}}{\prod_{(e:A\simeq B)}}{\prod_{(%
+e:A\simeq B)}}}{\mathchoice{{\textstyle\prod_{(e:A\simeq B)}}}{\prod_{(e:A%
+\simeq B)}}{\prod_{(e:A\simeq B)}}{\prod_{(e:A\simeq B)}}}D(A,B,e)" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>B</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>e</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal">≃</mo><mi>B</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>D</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>B</mi><mo mathvariant="normal">,</mo><mi>e</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math> such that <math id="Thmprecor1.p1.m4" class="ltx_Math" alttext="f(A,A,\mathsf{id}_{A})=d(A)" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>A</mi><mo mathvariant="normal">,</mo><msub><mi mathvariant="normal">id</mi><mi>A</mi></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mrow><mi>d</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> for all <math id="Thmprecor1.p1.m5" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="p20" class="ltx_para">
+<p class="ltx_p">In other words, to prove something about all equivalences, it suffices to prove it about identity maps.
+We have already used this principle (without stating it in generality) in Lemma 4.1.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/41quasiinverses#Thmprelem1</span>).</p>
+</div>
+<div id="p21" class="ltx_para">
+<p class="ltx_p">Similarly, function extensionality says that for any <math id="p21.m1" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, the type family</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="(\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}\sim\mathord{\hskip 1.0pt\text{--}%
+\hskip 1.0pt}):\Bigl{(}\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod%
+_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}B(a)\Bigr{)}\to\Bigl{(}\mathchoice{\prod_{a:A}\,}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}B(a)\Bigr{)}\to\mathcal{U}" display="block"><mrow><mrow><mo stretchy="false">(</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo>∼</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">together with <math id="p21.m2" class="ltx_Math" alttext="{\lambda}f.\,{\lambda}a.\,\mathsf{refl}_{f(a)}" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>f</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>a</mi></mrow><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></msub></mrow></math> satisfies Theorem 5.8.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/58identitytypesandidentitysystems#Thmprethm2</span>)<a href="#I5.i4" title="4. ‣ Theorem 5.8.4. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>.
+Thus, it is also equivalent to the corresponding version of <a href="#I5.i1" title="1. ‣ Theorem 5.8.4. ‣ 5.8 Identity types and identity systems" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>.</p>
+</div>
+<div id="Thmprecor2" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 5.8.6</span> (Homotopy induction).</h6>
+<div id="Thmprecor2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given any <math id="Thmprecor2.p1.m1" class="ltx_Math" alttext="D:\mathchoice{\prod_{f,g:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle%
+\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}B(a)}\,}{\mathchoice{{\textstyle\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}}{\mathchoice{{\textstyle\prod_{(f,g:\mathchoice{%
+\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}}{\prod_{(f,g:\mathchoice{\prod_{a%
+:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}}{\mathchoice{{\textstyle\prod_{(f,g:\mathchoice{%
+\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}}{\prod_{(f,g:\mathchoice{\prod_{a%
+:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}}(f\sim g)\to\mathcal{U}" display="inline"><mrow><mi>D</mi><mo mathvariant="normal">:</mo><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mo mathvariant="normal">,</mo><mi>g</mi><mo mathvariant="normal">:</mo><mstyle displaystyle="false"><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mo mathvariant="normal">∼</mo><mi>g</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> and <math id="Thmprecor2.p1.m2" class="ltx_Math" alttext="d:\mathchoice{\prod_{f:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod%
+_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}B(a)}\,}{\mathchoice{{\textstyle\prod_{(f:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}}{\prod_{(f:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f:\mathchoice{\prod_{a:A}\,}{\mathchoice%
+{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}B(a))}}{\prod_{(f:\mathchoice{\prod_{a:A}\,}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}B(a))}}}{\mathchoice{{\textstyle\prod_{(f:\mathchoice{\prod_{a:%
+A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}}{\prod_{(f:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f:\mathchoice{\prod_{a:A}\,}{\mathchoice%
+{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}B(a))}}{\prod_{(f:\mathchoice{\prod_{a:A}\,}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}B(a))}}}{\mathchoice{{\textstyle\prod_{(f:\mathchoice{\prod_{a:%
+A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}}{\prod_{(f:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f:\mathchoice{\prod_{a:A}\,}{\mathchoice%
+{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}B(a))}}{\prod_{(f:\mathchoice{\prod_{a:A}\,}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}B(a))}}}D(f,f,{\lambda}x.\,\mathsf{refl}_{f(x)})" display="inline"><mrow><mi>d</mi><mo mathvariant="normal">:</mo><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mo mathvariant="normal">:</mo><mstyle displaystyle="false"><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mi>D</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mo mathvariant="normal">,</mo><mi>f</mi><mo mathvariant="normal">,</mo><mi>λ</mi><mi>x</mi><mo mathvariant="normal" rspace="4.2pt">.</mo><msub><mi mathvariant="normal">refl</mi><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>, there exists</span></p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="k:\mathchoice{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle%
+\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}B(a))}\,}{\mathchoice{{\textstyle\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}}{\mathchoice{{\textstyle\prod_{(f,g:\mathchoice{%
+\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}}{\prod_{(f,g:\mathchoice{\prod_{a%
+:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}}{\mathchoice{{\textstyle\prod_{(f,g:\mathchoice{%
+\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}}{\prod_{(f,g:\mathchoice{\prod_{a%
+:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}{\prod_{(f,g:\mathchoice{\prod_{a:A}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}B(a))}}}\mathchoice{\prod_{(h:f\sim g)}\,}{\mathchoice{{%
+\textstyle\prod_{(h:f\sim g)}}}{\prod_{(h:f\sim g)}}{\prod_{(h:f\sim g)}}{%
+\prod_{(h:f\sim g)}}}{\mathchoice{{\textstyle\prod_{(h:f\sim g)}}}{\prod_{(h:f%
+\sim g)}}{\prod_{(h:f\sim g)}}{\prod_{(h:f\sim g)}}}{\mathchoice{{\textstyle%
+\prod_{(h:f\sim g)}}}{\prod_{(h:f\sim g)}}{\prod_{(h:f\sim g)}}{\prod_{(h:f%
+\sim g)}}}D(f,g,h)" display="block"><mrow><mi>k</mi><mo>:</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>g</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>h</mi><mo>:</mo><mi>f</mi><mo>∼</mo><mi>g</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>g</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">such that <math id="Thmprecor2.p1.m3" class="ltx_Math" alttext="k(f,f,{\lambda}x.\,\mathsf{refl}_{f(x)})=d(f)" display="inline"><mrow><mi>k</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mo mathvariant="normal">,</mo><mi>f</mi><mo mathvariant="normal">,</mo><mi>λ</mi><mi>x</mi><mo mathvariant="normal" rspace="4.2pt">.</mo><msub><mi mathvariant="normal">refl</mi><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">=</mo><mi>d</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> for all <math id="Thmprecor2.p1.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.</span></p>
+</div>
+</div>
+<div id="p22" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">5.8 Identity types and identity systems</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:37:11 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

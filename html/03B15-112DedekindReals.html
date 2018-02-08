@@ -1,0 +1,242 @@
+<!DOCTYPE html><html>
+<head>
+<title>11.2 Dedekind reals</title>
+<!--Generated on Thu Feb  8 19:30:49 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-frame, Dedekind, Dedekind cut, classical, constructive, cut, excluded middle, existential, in a lattice, initial, join, lattice, locatedness, mathematics, open, propositional, quantifier, real numbers, resizing, rounded, typical ambiguity, universe level">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">11.2 Dedekind reals</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Let us first recall the basic idea of Dedekind’s construction. We use two-sided Dedekind
+cuts, as opposed to an often used one-sided version, because the symmetry makes
+constructions more elegant, and it works constructively as well as classically.
+A <em class="ltx_emph ltx_font_italic">Dedekind cut</em> consists of a pair <math id="p2.m1" class="ltx_Math" alttext="(L,U)" display="inline"><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo></mrow></math> of subsets <math id="p2.m2" class="ltx_Math" alttext="L,U\subseteq\mathbb{Q}" display="inline"><mrow><mrow><mi>L</mi><mo>,</mo><mi>U</mi></mrow><mo>⊆</mo><mi>ℚ</mi></mrow></math>, called the
+<em class="ltx_emph ltx_font_italic">lower</em> and <em class="ltx_emph ltx_font_italic">upper cut</em> respectively, which are:</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">inhabited:</em> there are <math id="I1.i1.p1.m1" class="ltx_Math" alttext="q\in L" display="inline"><mrow><mi>q</mi><mo>∈</mo><mi>L</mi></mrow></math> and <math id="I1.i1.p1.m2" class="ltx_Math" alttext="r\in U" display="inline"><mrow><mi>r</mi><mo>∈</mo><mi>U</mi></mrow></math>,</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">rounded:</em> <math id="I1.i2.p1.m1" class="ltx_Math" alttext="q\in L\Leftrightarrow\exists(r\in\mathbb{Q}).\,q&lt;r\land r\in L" display="inline"><mrow><mi>q</mi><mo>∈</mo><mi>L</mi><mo>⇔</mo><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>∈</mo><mi>ℚ</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>q</mi><mo>&lt;</mo><mi>r</mi><mo>∧</mo><mi>r</mi><mo>∈</mo><mi>L</mi></mrow></math>
+and <math id="I1.i2.p1.m2" class="ltx_Math" alttext="r\in U\Leftrightarrow\exists(q\in\mathbb{Q}).\,q\in U\land q&lt;r" display="inline"><mrow><mi>r</mi><mo>∈</mo><mi>U</mi><mo>⇔</mo><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>∈</mo><mi>ℚ</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>q</mi><mo>∈</mo><mi>U</mi><mo>∧</mo><mi>q</mi><mo>&lt;</mo><mi>r</mi></mrow></math>,
+
+</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">disjoint:</em> <math id="I1.i3.p1.m1" class="ltx_Math" alttext="\lnot(q\in L\land q\in U)" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>q</mi><mo>∈</mo><mrow><mi>L</mi><mo>∧</mo><mi>q</mi></mrow><mo>∈</mo><mi>U</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, and</p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">located:</em> <math id="I1.i4.p1.m1" class="ltx_Math" alttext="q&lt;r\Rightarrow q\in L\lor r\in U" display="inline"><mrow><mi>q</mi><mo>&lt;</mo><mi>r</mi><mo>⇒</mo><mi>q</mi><mo>∈</mo><mrow><mi>L</mi><mo>∨</mo><mi>r</mi></mrow><mo>∈</mo><mi>U</mi></mrow></math>.
+</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">Reading the roundedness condition from left to right tells us that cuts are <em class="ltx_emph ltx_font_italic">open</em>,
+and from right to left that they are <em class="ltx_emph ltx_font_italic">lower</em>, respectively <em class="ltx_emph ltx_font_italic">upper</em>, sets. The
+locatedness condition states that there is no large gap between <math id="p2.m3" class="ltx_Math" alttext="L" display="inline"><mi>L</mi></math> and <math id="p2.m4" class="ltx_Math" alttext="U" display="inline"><mi>U</mi></math>. Because cuts
+are always open, they never include the “point in between”, even when it is rational. A
+typical Dedekind cut looks like this:</p>
+<span class="ltx_ERROR ltx_centering undefined">{tikzpicture}</span>
+<p class="ltx_p ltx_align_center">[x=]
+<span class="ltx_ERROR undefined">\draw</span>[¡-),line width=0.75pt] (0,0) – (0.297,0) node[anchor=south east]<math id="p2.m5" class="ltx_Math" alttext="L\ " display="inline"><mpadded width="+5pt"><mi>L</mi></mpadded></math>;
+<span class="ltx_ERROR undefined">\draw</span>[(-¿,line width=0.75pt] (0.300, 0) node[anchor=south west]<math id="p2.m6" class="ltx_Math" alttext="\ U" display="inline"><mpadded lspace="5pt" width="+5pt"><mi>U</mi></mpadded></math> – (0.9, 0) ;</p>
+<p class="ltx_p">We might naively translate the informal definition into type theory by saying that a cut
+is a pair of maps <math id="p2.m7" class="ltx_Math" alttext="L,U:\mathbb{Q}\to\mathsf{Prop}" display="inline"><mrow><mrow><mi>L</mi><mo>,</mo><mi>U</mi></mrow><mo>:</mo><mrow><mi>ℚ</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></math>. But we saw in <span class="ltx_ERROR undefined">\autoref</span>subsec:prop-subsets that
+<math id="p2.m8" class="ltx_Math" alttext="\mathsf{Prop}" display="inline"><mi>𝖯𝗋𝗈𝗉</mi></math> is an ambiguous notation for <math id="p2.m9" class="ltx_Math" alttext="\mathsf{Prop}_{\mathcal{U}_{i}}" display="inline"><msub><mi>𝖯𝗋𝗈𝗉</mi><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></msub></math> where <math id="p2.m10" class="ltx_Math" alttext="\mathcal{U}_{i}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></math> is a universe. Once we
+use a particular <math id="p2.m11" class="ltx_Math" alttext="\mathcal{U}_{i}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></math> to define cuts, the type of reals will reside in the next
+universe <math id="p2.m12" class="ltx_Math" alttext="\mathcal{U}_{i+1}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math>, a property of reals two levels higher in <math id="p2.m13" class="ltx_Math" alttext="\mathcal{U}_{i+2}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mrow><mi>i</mi><mo>+</mo><mn>2</mn></mrow></msub></math>, a property of
+subsets of reals in <math id="p2.m14" class="ltx_Math" alttext="\mathcal{U}_{i+3}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mrow><mi>i</mi><mo>+</mo><mn>3</mn></mrow></msub></math>, etc. In principle we should be able to keep track of the
+universe levels, especially with the help of a proof assistant, but doing so here would
+just burden us with bureaucracy that we prefer to avoid. We shall therefore make a
+simplifying assumption that a single type of propositions <math id="p2.m15" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math> is sufficient for all
+our purposes.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">In fact, the construction of the Dedekind reals is quite resilient to logical
+manipulations. There are several ways in which we can make sense of using a single type
+<math id="p3.m1" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math>:</p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">We could identify <math id="I2.i1.p1.m1" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math> with the ambiguous <math id="I2.i1.p1.m2" class="ltx_Math" alttext="\mathsf{Prop}" display="inline"><mi>𝖯𝗋𝗈𝗉</mi></math> and track all the universes
+that appear in definitions and constructions.</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">We could assume the propositional resizing axiom,
+as in <span class="ltx_ERROR undefined">\autoref</span>subsec:prop-subsets, which essentially collapses the <math id="I2.i2.p1.m1" class="ltx_Math" alttext="\mathsf{Prop}_{\mathcal{U}_{i}}" display="inline"><msub><mi>𝖯𝗋𝗈𝗉</mi><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></msub></math>’s to the
+lowest level, which we call <math id="I2.i2.p1.m2" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math>.</p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p">A classical mathematician who is not interested in the intricacies of type-theoretic
+universes or computation may simply assume the law of excluded middle (<span class="ltx_ref ltx_missing_label ltx_ref_self">LABEL:eq:lem</span>) for
+mere propositions so that <math id="I2.i3.p1.m1" class="ltx_Math" alttext="\Omega\equiv\mathbf{2}" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>≡</mo><mn>𝟐</mn></mrow></math>.
+
+This not only eradicates questions about
+levels of <math id="I2.i3.p1.m2" class="ltx_Math" alttext="\mathsf{Prop}" display="inline"><mi>𝖯𝗋𝗈𝗉</mi></math>, but also turns everything we do into the standard classical
+construction of real numbers.
+</p>
+</div>
+</li>
+<li id="I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I2.i4.p1" class="ltx_para">
+<p class="ltx_p">On the other end of the spectrum one might ask for a minimal requirement that makes
+the constructions work. The condition that a mere predicate be a Dedekind cut is
+expressible using only conjunctions, disjunctions, and existential quantifiers over <math id="I2.i4.p1.m1" class="ltx_Math" alttext="\mathbb{Q}" display="inline"><mi>ℚ</mi></math>, which
+is a countable set. Thus we could take <math id="I2.i4.p1.m2" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math> to be the initial <em class="ltx_emph ltx_font_italic"><math id="I2.i4.p1.m3" class="ltx_Math" alttext="\sigma" display="inline"><mi>σ</mi></math>-frame</em>,
+i.e., a lattice with countable joins in which binary meets distribute over countable
+joins. (The initial <math id="I2.i4.p1.m6" class="ltx_Math" alttext="\sigma" display="inline"><mi>σ</mi></math>-frame cannot be the two-point lattice <math id="I2.i4.p1.m7" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> because
+<math id="I2.i4.p1.m8" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> is not closed under countable joins, unless we assume excluded middle.) This
+would lead to a construction of <math id="I2.i4.p1.m9" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math> as a higher inductive-inductive type, but one
+experiment of this kind in <span class="ltx_ERROR undefined">\autoref</span>sec:cauchy-reals is enough.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">In all of the above cases <math id="p4.m1" class="ltx_Math" alttext="\Omega" display="inline"><mi mathvariant="normal">Ω</mi></math> is a set.
+Without further ado, we translate the informal definition into type theory.
+Throughout this chapter, we use the
+logical notation from <span class="ltx_ERROR undefined">\autoref</span>defn:logical-notation.</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 11.2.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A <span class="ltx_text ltx_font_bold">Dedekind cut</span>
+is a pair <math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="(L,U)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>L</mi><mo mathvariant="normal">,</mo><mi>U</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> of mere predicates <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="L:\mathbb{Q}\to\Omega" display="inline"><mrow><mi>L</mi><mo mathvariant="normal">:</mo><mrow><mi mathvariant="normal">Q</mi><mo mathvariant="normal">→</mo><mi mathvariant="normal">Ω</mi></mrow></mrow></math> and <math id="Thmpredefn1.p1.m3" class="ltx_Math" alttext="U:\mathbb{Q}\to\Omega" display="inline"><mrow><mi>U</mi><mo mathvariant="normal">:</mo><mrow><mi mathvariant="normal">Q</mi><mo mathvariant="normal">→</mo><mi mathvariant="normal">Ω</mi></mrow></mrow></math> which is:</span></p>
+<ol id="I3" class="ltx_enumerate">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">inhabited:</em><span class="ltx_text ltx_font_italic"> </span><math id="I3.i1.p1.m1" class="ltx_Math" alttext="\exists(q:\mathbb{Q}).\,L(q)" display="inline"><mrow><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>ℚ</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>L</mi><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i1.p1.m2" class="ltx_Math" alttext="\exists(r:Q).\,U(r)" display="inline"><mrow><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>Q</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>U</mi><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">rounded:</em><span class="ltx_text ltx_font_italic"> for all </span><math id="I3.i2.p1.m1" class="ltx_Math" alttext="q,r:\mathbb{Q}" display="inline"><mrow><mrow><mi>q</mi><mo>,</mo><mi>r</mi></mrow><mo>:</mo><mi>ℚ</mi></mrow></math><span class="ltx_text ltx_font_italic">,
+
+</span></p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle L(q)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle\Leftrightarrow\exists(r:\mathbb{Q}).\,(q&lt;r)\land L(r)\qquad\text%
+{and}" display="inline"><mrow><mo>⇔</mo><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>ℚ</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>&lt;</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>∧</mo><mi>L</mi><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>𝑎𝑛𝑑</mtext></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle U(r)" display="inline"><mrow><mi>U</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle\Leftrightarrow\exists(q:\mathbb{Q}).\,(q&lt;r)\land U(q)," display="inline"><mrow><mo>⇔</mo><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>ℚ</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>&lt;</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>∧</mo><mi>U</mi><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">disjoint:</em><span class="ltx_text ltx_font_italic"> </span><math id="I3.i3.p1.m1" class="ltx_Math" alttext="\lnot(L(q)\land U(q))" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∧</mo><mrow><mi>U</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> for all </span><math id="I3.i3.p1.m2" class="ltx_Math" alttext="q:\mathbb{Q}" display="inline"><mrow><mi>q</mi><mo>:</mo><mi>ℚ</mi></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I3.i4.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">located:</em><span class="ltx_text ltx_font_italic"> </span><math id="I3.i4.p1.m1" class="ltx_Math" alttext="(q&lt;r)\Rightarrow L(q)\lor U(r)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>&lt;</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>⇒</mo><mi>L</mi><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>∨</mo><mi>U</mi><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> for all </span><math id="I3.i4.p1.m2" class="ltx_Math" alttext="q,r:\mathbb{Q}" display="inline"><mrow><mrow><mi>q</mi><mo>,</mo><mi>r</mi></mrow><mo>:</mo><mi>ℚ</mi></mrow></math><span class="ltx_text ltx_font_italic">.
+</span></p>
+</div>
+</li>
+</ol>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We let <math id="Thmpredefn1.p1.m4" class="ltx_Math" alttext="\mathsf{isCut}(L,U)" display="inline"><mrow><mi mathvariant="normal">isCut</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>L</mi><mo mathvariant="normal">,</mo><mi>U</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> denote the conjunction of these conditions. The type of
+<span class="ltx_text ltx_font_bold">Dedekind reals</span> is
+</span></p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{d}}:\!\!\equiv\setof{(L,U):(\mathbb{Q}\to\Omega)\times(%
+\mathbb{Q}\to\Omega)|\mathsf{isCut}(L,U)}." display="block"><mrow><msub><mi>ℝ</mi><mi>𝖽</mi></msub><mo rspace="0pt">:</mo><mo>≡</mo><merror class="ltx_ERROR undefined undefined"><mtext>\setof</mtext></merror><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>ℚ</mi><mo>→</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mi>ℚ</mi><mo>→</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">|</mo><mi>𝗂𝗌𝖢𝗎𝗍</mi><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">It is apparent that <math id="p5.m1" class="ltx_Math" alttext="\mathsf{isCut}(L,U)" display="inline"><mrow><mi>𝗂𝗌𝖢𝗎𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo></mrow></mrow></math> is a mere proposition, and since <math id="p5.m2" class="ltx_Math" alttext="\mathbb{Q}\to\Omega" display="inline"><mrow><mi>ℚ</mi><mo>→</mo><mi mathvariant="normal">Ω</mi></mrow></math> is a
+set the Dedekind reals form a set too. See
+<span class="ltx_ERROR undefined">\autoref</span>ex:RD-extended-reals,ex:RD-lower-cuts,ex:RD-interval-arithmetic for variants of
+Dedekind cuts which lead to extended reals, lower and upper reals, and the interval
+domain.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">There is an embedding <math id="p6.m1" class="ltx_Math" alttext="\mathbb{Q}\to\mathbb{R}_{\mathsf{d}}" display="inline"><mrow><mi>ℚ</mi><mo>→</mo><msub><mi>ℝ</mi><mi>𝖽</mi></msub></mrow></math> which associates with each rational <math id="p6.m2" class="ltx_Math" alttext="q:\mathbb{Q}" display="inline"><mrow><mi>q</mi><mo>:</mo><mi>ℚ</mi></mrow></math> the cut
+<math id="p6.m3" class="ltx_Math" alttext="(L_{q},U_{q})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>L</mi><mi>q</mi></msub><mo>,</mo><msub><mi>U</mi><mi>q</mi></msub><mo stretchy="false">)</mo></mrow></math> where</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="L_{q}(r):\!\!\equiv(r&lt;q)\qquad\text{and}\qquad U_{q}(r):\!\!\equiv(q&lt;r)." display="block"><mrow><msub><mi>L</mi><mi>q</mi></msub><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>&lt;</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>and</mtext><mo mathvariant="italic" separator="true">  </mo><msub><mi>U</mi><mi>q</mi></msub><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>&lt;</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We shall simply write <math id="p6.m4" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> for the cut <math id="p6.m5" class="ltx_Math" alttext="(L_{q},U_{q})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>L</mi><mi>q</mi></msub><mo>,</mo><msub><mi>U</mi><mi>q</mi></msub><mo stretchy="false">)</mo></mrow></math> associated with a rational number.</p>
+</div>
+<div id="p7" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">11.2 Dedekind reals</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:30:49 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

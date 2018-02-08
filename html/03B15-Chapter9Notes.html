@@ -1,0 +1,83 @@
+<!DOCTYPE html><html>
+<head>
+<title>Chapter 9 Notes</title>
+<!--Generated on Thu Feb  8 19:45:05 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-category, -topos, Segal, Segal space, category, complete, completion, evil, fibrant replacement, invariance under, isomorphism, sets, simplicial, space, stack, topos">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">Chapter 9 Notes</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">The original definition of categories, of course, was in set-theoretic foundations, so that the collection of objects of a category formed a set (or, for large categories, a class).
+Over time, it became clear that all “category-theoretic” properties of objects were invariant under isomorphism, and that equality of objects in a category was not usually a very useful notion.
+Numerous authors <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">blanc:eqv-log</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">freyd:invar-eqv</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">makkai:folds</span>, <span class="ltx_ref ltx_missing_citation ltx_ref_self">makkai:comparing</span>]</cite> discovered that a dependently typed logic enabled formulating the definition of category without invoking any notion of equality for objects, and that the statements provable in this logic are precisely the “category-theoretic” ones that are invariant under isomorphism.
+</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Although most of category theory appears to be invariant under isomorphism of objects and under equivalence of categories, there are some interesting exceptions, which have led to philosophical discussions about what it means to be “category-theoretic”.
+For instance, <span class="ltx_ERROR undefined">\autoref</span>ct:galois was brought up by Peter May on the categories mailing list in May 2010, as a case where it matters that two categories (defined as usual in set theory) are isomorphic rather than only equivalent.
+The case of <math id="p2.m1" class="ltx_Math" alttext="\dagger" display="inline"><mo>†</mo></math>-categories was also somewhat confounding to those advocating an isomorphism-invariant version of category theory, since the “correct” notion of sameness between objects of a <math id="p2.m2" class="ltx_Math" alttext="\dagger" display="inline"><mo>†</mo></math>-category is not ordinary isomorphism but <em class="ltx_emph ltx_font_italic">unitary</em> isomorphism.
+</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">The fact that categories satisfying the “saturation” or “univalence” principle as in <span class="ltx_ERROR undefined">\autoref</span>ct:category are a good notion of category in univalent foundations occurred independently to Voevodsky, Shulman, and perhaps others around the same time, and was formalized by Ahrens and Kapulkin <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">aks:rezk</span>]</cite>.
+This framework puts all the above examples in a unified context: some precategories are categories, others are strict categories, and so on.
+A general theorem that “isomorphism implies equality” for a large class of algebraic structures (assuming the univalence axiom) was proven by Coquand and Danielsson; the formulation of the structure identity principle in <span class="ltx_ERROR undefined">\autoref</span>sec:sip is due to Aczel.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Independently of philosophical considerations about category theory, Rezk <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">rezk01css</span>]</cite> discovered that when defining a notion of <math id="p4.m1" class="ltx_Math" alttext="(\infty,1)" display="inline"><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">∞</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>-category,
+it was very convenient to use not merely a <em class="ltx_emph ltx_font_italic">set</em> of objects with spaces of morphisms between them, but a <em class="ltx_emph ltx_font_italic">space</em> of objects incorporating all the equivalences and homotopies between them.
+This yields a very well-behaved sort of model for <math id="p4.m3" class="ltx_Math" alttext="(\infty,1)" display="inline"><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">∞</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>-categories as particular simplicial spaces, which Rezk called <em class="ltx_emph ltx_font_italic">complete Segal spaces</em>.
+One especially good aspect of this model is the analogue of <span class="ltx_ERROR undefined">\autoref</span>ct:eqv-levelwise: a map of complete Segal spaces is an equivalence just when it is a levelwise equivalence of simplicial spaces.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">When interpreted in Voevodsky’s simplicial set model of univalent foundations, our precategories are similar to a truncated analogue of Rezk’s “Segal spaces”, while our categories correspond to his “complete Segal spaces”.
+Strict categories correspond instead to (a weakened and truncated version of) what are called “Segal categories”.
+It is known that Segal categories and complete Segal spaces are equivalent models for <math id="p5.m1" class="ltx_Math" alttext="(\infty,1)" display="inline"><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">∞</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>-categories (see e.g. <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">bergner:infty-one</span>]</cite>), so that in the simplicial set model, categories and strict categories yield “equivalent” category theories—although as we have seen, the former still have many advantages.
+However, in the more general categorical semantics of a higher topos,
+a strict category corresponds to an internal category (in the traditional sense) in the corresponding 1-topos of sheaves, while a category corresponds to a <em class="ltx_emph ltx_font_italic">stack</em>.
+The latter are generally a more appropriate sort of “category” relative to a topos.
+</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">In Rezk’s context, what we have called the “Rezk completion” corresponds to fibrant replacement
+
+in the model category for complete Segal spaces.
+Since this is built using a transfinite induction argument, it most closely matches our second construction as a higher inductive type.
+However, in higher topos models of homotopy type theory, the Rezk completion corresponds to <em class="ltx_emph ltx_font_italic">stack completion</em>, which can be constructed either with a transfinite induction <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">jt:strong-stacks</span>]</cite> or using a Yoneda embedding <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">bunge:stacks-morita-internal</span>]</cite>.</p>
+</div>
+<div id="p7" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">Chapter 9 Notes</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:45:05 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

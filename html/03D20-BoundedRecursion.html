@@ -1,0 +1,153 @@
+<!DOCTYPE html><html>
+<head>
+<title>bounded recursion</title>
+<!--Generated on Thu Feb  8 20:02:30 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">bounded recursion</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">In this entry, the following notations are used:</p>
+<blockquote class="ltx_quote">
+<p class="ltx_p"><math id="p1.m1" class="ltx_Math" alttext="\mathcal{F}=\bigcup\{F_{k}\mid k\in\mathbb{N}\}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>=</mo><mrow><mo largeop="true" mathsize="160%" stretchy="false" symmetric="true">⋃</mo><mrow><mo stretchy="false">{</mo><msub><mi>F</mi><mi>k</mi></msub><mo>∣</mo><mrow><mi>k</mi><mo>∈</mo><mi>ℕ</mi></mrow><mo stretchy="false">}</mo></mrow></mrow></mrow></math>, where for each <math id="p1.m2" class="ltx_Math" alttext="k\in\mathbb{N}" display="inline"><mrow><mi>k</mi><mo>∈</mo><mi>ℕ</mi></mrow></math>, and <math id="p1.m3" class="ltx_Math" alttext="F_{k}=\{f\mid f\colon\mathbb{N}^{k}\to\mathbb{N}\}" display="inline"><mrow><msub><mi>F</mi><mi>k</mi></msub><mo>=</mo><mrow><mo stretchy="false">{</mo><mi>f</mi><mo>∣</mo><mrow><mi>f</mi><mo>:</mo><mrow><msup><mi>ℕ</mi><mi>k</mi></msup><mo>→</mo><mi>ℕ</mi></mrow></mrow><mo stretchy="false">}</mo></mrow></mrow></math>.</p>
+</blockquote>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. A function <math id="p2.m1" class="ltx_Math" alttext="f\in F_{m+1}" display="inline"><mrow><mi>f</mi><mo>∈</mo><msub><mi>F</mi><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></math> is said to be defined by <em class="ltx_emph ltx_font_italic">bounded recursion</em> via functions <math id="p2.m2" class="ltx_Math" alttext="g\in F_{m}" display="inline"><mrow><mi>g</mi><mo>∈</mo><msub><mi>F</mi><mi>m</mi></msub></mrow></math>, <math id="p2.m3" class="ltx_Math" alttext="h\in F_{m+2}" display="inline"><mrow><mi>h</mi><mo>∈</mo><msub><mi>F</mi><mrow><mi>m</mi><mo>+</mo><mn>2</mn></mrow></msub></mrow></math>, and <math id="p2.m4" class="ltx_Math" alttext="k\in F_{m+1}" display="inline"><mrow><mi>k</mi><mo>∈</mo><msub><mi>F</mi><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></math> if, for any <math id="p2.m5" class="ltx_Math" alttext="\boldsymbol{x}\in\mathbb{N}^{m}" display="inline"><mrow><mi>𝒙</mi><mo>∈</mo><msup><mi>ℕ</mi><mi>m</mi></msup></mrow></math> and <math id="p2.m6" class="ltx_Math" alttext="y\in\mathbb{N}" display="inline"><mrow><mi>y</mi><mo>∈</mo><mi>ℕ</mi></mrow></math>,</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is defined by primitive recursion via <math id="I1.i1.p1.m2" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> and <math id="I1.i1.p1.m3" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math>:</p>
+<ul id="I1.I1" class="ltx_itemize">
+<li id="I1.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I1.I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.I1.i1.p1.m1" class="ltx_Math" alttext="f(\boldsymbol{x},0)=g(\boldsymbol{x})" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝒙</mi><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝒙</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I1.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I1.I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.I1.i2.p1.m1" class="ltx_Math" alttext="f(\boldsymbol{x},y+1)=h(\boldsymbol{x},y,f(\boldsymbol{x},y))" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝒙</mi><mo>,</mo><mrow><mi>y</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝒙</mi><mo>,</mo><mi>y</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝒙</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>;</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i2.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is bounded from above by <math id="I1.i2.p1.m2" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>:</p>
+<ul id="I1.I2" class="ltx_itemize">
+<li id="I1.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I1.I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.I2.i1.p1.m1" class="ltx_Math" alttext="f(\boldsymbol{x},y)\leq k(\boldsymbol{x},y)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝒙</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mrow><mi>k</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝒙</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Clearly, a function that is defined by bounded recursion is defined by primitive recursion. Conversely, a function is defined by primitive recursion, it is also defined by bounded recursion, since it is bounded by itself. However, the two concepts are not exactly the same. To make this precise, we first define what it means for a set of number-theoretic functions be closed under bounded recursion:</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. A set <math id="p4.m1" class="ltx_Math" alttext="\mathcal{B}\subseteq\mathcal{F}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">ℬ</mi><mo>⊆</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi></mrow></math> is said to be <em class="ltx_emph ltx_font_italic">closed under bounded recursion</em> if, for any <math id="p4.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> defined by bounded recursion via <math id="p4.m3" class="ltx_Math" alttext="g,h,k\in\mathcal{B}" display="inline"><mrow><mrow><mi>g</mi><mo>,</mo><mi>h</mi><mo>,</mo><mi>k</mi></mrow><mo>∈</mo><mi class="ltx_font_mathcaligraphic">ℬ</mi></mrow></math>, then <math id="p4.m4" class="ltx_Math" alttext="f\in\mathcal{B}" display="inline"><mrow><mi>f</mi><mo>∈</mo><mi class="ltx_font_mathcaligraphic">ℬ</mi></mrow></math>.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">It is clear that <math id="p5.m1" class="ltx_Math" alttext="\mathcal{F}" display="inline"><mi class="ltx_font_mathcaligraphic">ℱ</mi></math> is closed under both primitive recursion and bounded recursion, and so are <math id="p5.m2" class="ltx_Math" alttext="\mathcal{PR}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><mi class="ltx_font_mathcaligraphic">ℛ</mi></mrow></math>, the set of all primitive recursive functions, as well as <math id="p5.m3" class="ltx_Math" alttext="\mathcal{R}\cap\mathcal{F}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">ℛ</mi><mo>∩</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi></mrow></math>, the set of all total recursive functions. However,</p>
+</div>
+<div id="Thmprop1" class="ltx_theorem ltx_theorem_prop">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Proposition 1</span>.</h6>
+<div id="Thmprop1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The set <math id="Thmprop1.p1.m1" class="ltx_Math" alttext="\mathcal{ER}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">E</mi><mo mathvariant="italic">⁢</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">R</mi></mrow></math> of all elementary recursive functions is closed under bounded recursion, but not primitive recursion.</span></p>
+</div>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Since the exponential function, the <math id="p6.m1" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>-th prime function, and the function <math id="p6.m2" class="ltx_Math" alttext="(x)_{y}" display="inline"><msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mi>y</mi></msub></math> (the exponent of <math id="p6.m3" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> in <math id="p6.m4" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>) are elementary recursive, we have the following corollary:</p>
+</div>
+<div id="Thmcor1" class="ltx_theorem ltx_theorem_cor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 1</span>.</h6>
+<div id="Thmcor1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmcor1.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is defined by course-of-values recursion via an elementary recursive function <math id="Thmcor1.p1.m2" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math>, and <math id="Thmcor1.p1.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is bounded from above by an elementary recursive function <math id="Thmcor1.p1.m4" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>, then <math id="Thmcor1.p1.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is elementary recursive.</span></p>
+</div>
+</div>
+<div id="p7" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">bounded recursion</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">BoundedRecursion</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:07:01</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:07:01</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">5</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03D20</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Synonym</th>
+<td class="ltx_td ltx_align_left ltx_border_r">bounded primitive recursion</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Related topic</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">ElementaryRecursiveFunction</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"></p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:02:30 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

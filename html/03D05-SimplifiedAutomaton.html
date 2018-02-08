@@ -1,0 +1,180 @@
+<!DOCTYPE html><html>
+<head>
+<title>simplified automaton</title>
+<!--Generated on Thu Feb  8 19:59:49 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">simplified automaton</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Word acceptance is the primary function of an automaton. When a word is fed into an automaton at an initial state, it is accepted exactly when a final state is reached upon reading the last symbol of the word. So when a state does not contribute in anyway to word acceptance, it may be tossed out without changing the accepting power of the automaton.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. Let <math id="p2.m1" class="ltx_Math" alttext="A=(S,\Sigma,\delta,I,F)" display="inline"><mrow><mi>A</mi><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mi mathvariant="normal">Σ</mi><mo>,</mo><mi>δ</mi><mo>,</mo><mi>I</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow></mrow></math> be an automaton. A state <math id="p2.m2" class="ltx_Math" alttext="s\in S" display="inline"><mrow><mi>s</mi><mo>∈</mo><mi>S</mi></mrow></math> is said to be <em class="ltx_emph ltx_font_italic">reachable</em> from a state <math id="p2.m3" class="ltx_Math" alttext="t\in S" display="inline"><mrow><mi>t</mi><mo>∈</mo><mi>S</mi></mrow></math>, if for some word <math id="p2.m4" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> over <math id="p2.m5" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>, <math id="p2.m6" class="ltx_Math" alttext="t\in\delta(s,u)" display="inline"><mrow><mi>t</mi><mo>∈</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. A state is said to be <em class="ltx_emph ltx_font_italic">accessible</em> if it is reachable from a start state. A state is <em class="ltx_emph ltx_font_italic">live</em> or <em class="ltx_emph ltx_font_italic">coaccessible</em> if a final state can be reached from it. If a state is both accessible and live, then it is called <em class="ltx_emph ltx_font_italic">useful</em>.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Clearly, every start state is accessible, and every final state is live. The following is the state diagram of an automaton that illustrates the concepts defined above.</p>
+</div>
+<figure id="fig1" class="ltx_figure">
+<p class="ltx_p ltx_align_center"><svg version="1.1" height="20" width="50" fragid="pic1" viewBox="-5 -1 45 19" overflow="visible"><g transform="translate(0,9.0)"><g transform="scale(1 -1)"><g transform="scale(1.0)"><g transform="scale(1 -1) translate(-5,-10)"><foreignObject width="50" height="20" overflow="visible"><img src="automaton.eps" id="pic1.g1" class="ltx_graphics" alt=""></foreignObject></g></g></g></g></svg></p>
+</figure>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">States <math id="p4.m1" class="ltx_Math" alttext="\sigma,p,r,s" display="inline"><mrow><mi>σ</mi><mo>,</mo><mi>p</mi><mo>,</mo><mi>r</mi><mo>,</mo><mi>s</mi></mrow></math> are accessible, while states <math id="p4.m2" class="ltx_Math" alttext="\sigma,p,q" display="inline"><mrow><mi>σ</mi><mo>,</mo><mi>p</mi><mo>,</mo><mi>q</mi></mrow></math> are live. So the useful states are <math id="p4.m3" class="ltx_Math" alttext="\sigma" display="inline"><mi>σ</mi></math> and <math id="p4.m4" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">The automaton <math id="p5.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is said to be <em class="ltx_emph ltx_font_italic">accessible</em> if every state in <math id="p5.m2" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> is accessible, and is <em class="ltx_emph ltx_font_italic">live</em> if every state is live. <math id="p5.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is called <em class="ltx_emph ltx_font_italic">simplified</em> or <em class="ltx_emph ltx_font_italic">trim</em> if it is both accessible and live (every state is useful).</p>
+</div>
+<div id="Thmprop1" class="ltx_theorem ltx_theorem_prop">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Proposition 1</span>.</h6>
+<div id="Thmprop1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">An automaton is equivalent (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/EquivalentAutomata</span>) to a simplified automaton iff it accepts at least one word.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Suppose an automaton <math id="p6.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is equivalent to a simplified automaton <math id="p6.m2" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math>. Then the set of start states of <math id="p6.m3" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math> is non-empty, say containing a state <math id="p6.m4" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>. So <math id="p6.m5" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> is live, which means there is a word <math id="p6.m6" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> such that <math id="p6.m7" class="ltx_Math" alttext="\delta(p,u)" display="inline"><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></math> contains a final state, or that <math id="p6.m8" class="ltx_Math" alttext="u\in L(A^{\prime})=L(A)" display="inline"><mrow><mi>u</mi><mo>∈</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>A</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Conversely, suppose an automaton <math id="p7.m1" class="ltx_Math" alttext="A=(S,\Sigma,\delta,I,F)" display="inline"><mrow><mi>A</mi><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mi mathvariant="normal">Σ</mi><mo>,</mo><mi>δ</mi><mo>,</mo><mi>I</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow></mrow></math> accepts a word <math id="p7.m2" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>. This means that there is a start state <math id="p7.m3" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> and a final state <math id="p7.m4" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> such that <math id="p7.m5" class="ltx_Math" alttext="r\in\delta(q,u)" display="inline"><mrow><mi>r</mi><mo>∈</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, so that both <math id="p7.m6" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> and <math id="p7.m7" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> are useful. Now, let <math id="p7.m8" class="ltx_Math" alttext="S^{\prime}" display="inline"><msup><mi>S</mi><mo>′</mo></msup></math> be the subset (of <math id="p7.m9" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math>) all useful states in <math id="p7.m10" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, and let <math id="p7.m11" class="ltx_Math" alttext="I^{\prime}=I\cap S^{\prime}" display="inline"><mrow><msup><mi>I</mi><mo>′</mo></msup><mo>=</mo><mrow><mi>I</mi><mo>∩</mo><msup><mi>S</mi><mo>′</mo></msup></mrow></mrow></math>, <math id="p7.m12" class="ltx_Math" alttext="F^{\prime}=F\cap S^{\prime}" display="inline"><mrow><msup><mi>F</mi><mo>′</mo></msup><mo>=</mo><mrow><mi>F</mi><mo>∩</mo><msup><mi>S</mi><mo>′</mo></msup></mrow></mrow></math>. Then neither <math id="p7.m13" class="ltx_Math" alttext="I^{\prime}" display="inline"><msup><mi>I</mi><mo>′</mo></msup></math> nor <math id="p7.m14" class="ltx_Math" alttext="F^{\prime}" display="inline"><msup><mi>F</mi><mo>′</mo></msup></math> is empty. Finally, let <math id="p7.m15" class="ltx_Math" alttext="\delta^{\prime}" display="inline"><msup><mi>δ</mi><mo>′</mo></msup></math> be the restriction of <math id="p7.m16" class="ltx_Math" alttext="\delta" display="inline"><mi>δ</mi></math> on the set <math id="p7.m17" class="ltx_Math" alttext="S^{\prime}\times\Sigma" display="inline"><mrow><msup><mi>S</mi><mo>′</mo></msup><mo>×</mo><mi mathvariant="normal">Σ</mi></mrow></math>, such that</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\delta^{\prime}(s,a):=\delta(s,a)\cap S^{\prime}." display="block"><mrow><mrow><mrow><msup><mi>δ</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∩</mo><msup><mi>S</mi><mo>′</mo></msup></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then the five-tuple <math id="p7.m18" class="ltx_Math" alttext="A^{\prime}:=(S^{\prime},\Sigma,\delta^{\prime},I^{\prime},F^{\prime})" display="inline"><mrow><msup><mi>A</mi><mo>′</mo></msup><mo>:=</mo><mrow><mo stretchy="false">(</mo><msup><mi>S</mi><mo>′</mo></msup><mo>,</mo><mi mathvariant="normal">Σ</mi><mo>,</mo><msup><mi>δ</mi><mo>′</mo></msup><mo>,</mo><msup><mi>I</mi><mo>′</mo></msup><mo>,</mo><msup><mi>F</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math> is an automaton. Obviously, <math id="p7.m19" class="ltx_Math" alttext="L(A^{\prime})\subseteq L(A)" display="inline"><mrow><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>A</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>⊆</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. On the other hand, the word <math id="p7.m20" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> above is accepted by <math id="p7.m21" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math>. Since <math id="p7.m22" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> is arbitrary, we see that <math id="p7.m23" class="ltx_Math" alttext="L(A^{\prime})=L(A)" display="inline"><mrow><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>A</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> as a result.
+∎</p>
+</div>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Remark</span>. If we allow the start state set of an automaton to be empty, then every automaton can be simplified, whether or not it accepts any words.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">In the example above, the automaton is equivalent to the following simplified automaton:</p>
+</div>
+<figure id="fig2" class="ltx_figure">
+<p class="ltx_p ltx_align_center"><svg version="1.1" height="20" width="50" fragid="pic2" viewBox="-5 -1 45 19" overflow="visible"><g transform="translate(0,9.0)"><g transform="scale(1 -1)"><g transform="scale(1.0)"><g transform="scale(1 -1) translate(-5,-10)"><foreignObject width="50" height="20" overflow="visible"><img src="automaton2.eps" id="pic2.g1" class="ltx_graphics" alt=""></foreignObject></g></g></g></g></svg></p>
+</figure>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">However, the construction in the proof shows that, given a deterministic automaton <math id="p10.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, the simplified automaton <math id="p10.m2" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math> may not be determinstic. In the example above, <math id="p10.m3" class="ltx_Math" alttext="A^{\prime}" display="inline"><msup><mi>A</mi><mo>′</mo></msup></math> is not deterministic because <math id="p10.m4" class="ltx_Math" alttext="\delta(\sigma,b)=\varnothing" display="inline"><mrow><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>σ</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi mathvariant="normal">∅</mi></mrow></math>. With respect to deterministic automata, the best we can do is the following:</p>
+</div>
+<div id="Thmprop2" class="ltx_theorem ltx_theorem_prop">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Proposition 2</span>.</h6>
+<div id="Thmprop2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A deterministic automaton is equivalent (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/EquivalentAutomata</span>) to a deterministic accessible automaton.</span></p>
+</div>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">The proof of this is very similar to the one given above, except <math id="p11.m1" class="ltx_Math" alttext="S^{\prime},I^{\prime}" display="inline"><mrow><msup><mi>S</mi><mo>′</mo></msup><mo>,</mo><msup><mi>I</mi><mo>′</mo></msup></mrow></math>, and <math id="p11.m2" class="ltx_Math" alttext="F^{\prime}" display="inline"><msup><mi>F</mi><mo>′</mo></msup></math> now consist of all accessible states, and <math id="p11.m3" class="ltx_Math" alttext="\delta^{\prime}" display="inline"><msup><mi>δ</mi><mo>′</mo></msup></math> is just a restriction on the domain of <math id="p11.m4" class="ltx_Math" alttext="\delta" display="inline"><mi>δ</mi></math>, since if a state <math id="p11.m5" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> is accessible, so is any state in <math id="p11.m6" class="ltx_Math" alttext="\delta(s,a)" display="inline"><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> for any <math id="p11.m7" class="ltx_Math" alttext="a\in\Sigma" display="inline"><mrow><mi>a</mi><mo>∈</mo><mi mathvariant="normal">Σ</mi></mrow></math>.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Again, referring the example above, <math id="p12.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is deterministic, and it is equivalent to the following deterministic accessible automaton:</p>
+</div>
+<figure id="fig3" class="ltx_figure">
+<p class="ltx_p ltx_align_center"><svg version="1.1" height="20" width="50" fragid="pic3" viewBox="-5 -1 45 19" overflow="visible"><g transform="translate(0,9.0)"><g transform="scale(1 -1)"><g transform="scale(1.0)"><g transform="scale(1 -1) translate(-5,-10)"><foreignObject width="50" height="20" overflow="visible"><img src="automaton1.eps" id="pic3.g1" class="ltx_graphics" alt=""></foreignObject></g></g></g></g></svg></p>
+</figure>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">The language accepted by the automaton is represented by the regular expression <math id="p13.m1" class="ltx_Math" alttext="a(ab)^{*}" display="inline"><mrow><mi>a</mi><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mrow><mi>a</mi><mo>⁢</mo><mi>b</mi></mrow><mo stretchy="false">)</mo></mrow><mo>*</mo></msup></mrow></math>.
+</p>
+<table class="ltx_tabular ltx_align_right ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">simplified automaton</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Canonical name</td>
+<td class="ltx_td ltx_align_left ltx_border_r">SimplifiedAutomaton</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Date of creation</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:01:51</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified on</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:01:51</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Owner</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified by</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Numerical id</td>
+<td class="ltx_td ltx_align_left ltx_border_r">8</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Author</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Entry type</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03D05</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 68Q45</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">trim automaton</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">coaccessible</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Related topic</td>
+<td class="ltx_td ltx_align_left ltx_border_r">ReducedAutomaton</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">reachable</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">accessible</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">live</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">useful</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p ltx_align_right"></p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:59:49 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

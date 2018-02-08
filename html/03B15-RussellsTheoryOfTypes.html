@@ -1,0 +1,191 @@
+<!DOCTYPE html><html>
+<head>
+<title>Russell’s theory of types</title>
+<!--Generated on Thu Feb  8 19:45:51 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">Russell’s theory of types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">After the discovery of the paradoxes of set theory (notably Russell’s paradox), it become apparent that naive set theory must be replaced by something in which the paradoxes can’t arise. Two solutions were proposed: type theory and axiomatic set theory based on a limitation of size principle (see the entries class and von Neumann-Bernays-Gödel set theory).</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Type theory is based on the idea that impredicative definitions are the root of all evil. Bertrand Russell and various other logicians in the beginning of the 20th century proposed an analysis of the paradoxes that singled out so called vicious circles as the culprits. A vicious circle arises when one attempts to define a class by quantifying over a totality of classes including the class being defined. For example, Russell’s class <math id="p2.m1" class="ltx_Math" alttext="R=\{x\mid x\not\in x\}" display="inline"><mrow><mi>R</mi><mo>=</mo><mrow><mo stretchy="false">{</mo><mi>x</mi><mo>∣</mo><mrow><mi>x</mi><mo>∉</mo><mi>x</mi></mrow><mo stretchy="false">}</mo></mrow></mrow></math> contains a variable <math id="p2.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> that ranges over all classes.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Russell’s type theory, which is found in its mature form in the momentous <span class="ltx_text ltx_font_italic">Principia Mathematica</span> avoids the paradoxes by two devices. First, Frege’s fifth axiom is abandoned entirely: the extensions of predicates do not appear among the objects. Secondly, the predicates themselves are ordered into a ramified hierarchy so that the predicates at the lowest level can be defined by speaking of objects only, the predicates at the next level by speaking of objects and of predicates at the previous level and so forth.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">The first of these principles has drastic implications to mathematics. For example, the predicate “has the same cardinality” seemingly can’t be defined at all. For predicates apply only to objects, and not to other predicates. In Frege’s system this is easy to overcome: the equicardinality predicate is defined for <span class="ltx_text ltx_font_italic">extensions</span> of predicates, which are objects. In order to overcome this, Russell introduced the notion of types (which are today known as degrees). Predicates of degree 1 apply only to objects, predicates of degree 2 apply to predicates of degree 1, and so forth.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Type theoretic universe may seem quite odd to someone familiar with the cumulative hierarchy of set theory. For example, the empty set appears anew in all degrees, as do various other familiar structures, such as the natural numbers. Because of this, it is common to indicate only the relative differences in degrees when writing down a formula of type theory, instead of the absolute degrees. Thus instead of writing</p>
+</div>
+<div id="p6" class="ltx_para">
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\exists P_{1}\forall x_{0}(x_{0}\in P_{1}\leftrightarrow x_{0}\neq x_{0})" display="block"><mrow><mo>∃</mo><msub><mi>P</mi><mn>1</mn></msub><mo>∀</mo><msub><mi>x</mi><mn>0</mn></msub><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>0</mn></msub><mo>∈</mo><msub><mi>P</mi><mn>1</mn></msub><mo>↔</mo><msub><mi>x</mi><mn>0</mn></msub><mo>≠</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">one writes</p>
+</div>
+<div id="p8" class="ltx_para">
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\exists P_{i+1}\forall x_{i}(x_{i}\in P_{i+1}\leftrightarrow x_{i}\neq x_{i})" display="block"><mrow><mo>∃</mo><msub><mi>P</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>∀</mo><msub><mi>x</mi><mi>i</mi></msub><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>∈</mo><msub><mi>P</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>↔</mo><msub><mi>x</mi><mi>i</mi></msub><mo>≠</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">to indicate that the formula holds for any <math id="p9.m1" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>. Another possibility is simply to drop the subscripts indicating degree and let the degrees be determined implicitly (this can usually be done since we know that <math id="p9.m2" class="ltx_Math" alttext="x\in y" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>y</mi></mrow></math> implies that if <math id="p9.m3" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> is of degree <math id="p9.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, then <math id="p9.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is of degree <math id="p9.m6" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math>). A formula for which there is an assignment of types (degrees) to the variables and constants so that it accords to the restrictions of type theory is said to be stratified.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">The second device implies another dimension in which the predicates are ordered. In any given degree, there appears a hierarchy of levels. At first level of degree <math id="p10.m1" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> one has predicates that apply to elements of degree <math id="p10.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> and which can be defined with reference only to predicates of degree <math id="p10.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>. At second level there appear all the predicates that can be defined with reference to predicates of degree <math id="p10.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> and to predicates of degree <math id="p10.m5" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> of level 1, and so forth.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">This second principle makes virtually all mathematics break down. For example, when speaking of real number system and its completeness, one wishes to quantify over all predicates of real numbers (this is possible at degree <math id="p11.m1" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> if the predicates of real numbers appear at degree <math id="p11.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>), not only of those of a given level. In order to overcome this, Russell and Whitehead introduced in PM the so-called axiom of reducibility, which states that if a predicate <math id="p11.m3" class="ltx_Math" alttext="P_{n}" display="inline"><msub><mi>P</mi><mi>n</mi></msub></math> occurs at some level <math id="p11.m4" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> (i.e. <math id="p11.m5" class="ltx_Math" alttext="P_{n}" display="inline"><msub><mi>P</mi><mi>n</mi></msub></math> = <math id="p11.m6" class="ltx_Math" alttext="P_{n}^{k}" display="inline"><msubsup><mi>P</mi><mi>n</mi><mi>k</mi></msubsup></math>), it occurs already on the first level.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">The philosopher and logician Frank Plumpton Ramsey (1903-1930) was the first to notice that the axiom of reducibility in effect collapses the hierarchy of levels, so that the hierarchy is entirely superfluous in presence of the axiom. The original form of type theory is known as ramified type theory, and the simpler alternative with no second hierarchy of levels is known as unramified type theory or simply as simple type theory.</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">One descendant of type theory is W. v. Quine’s system of set theory known as NF (New Foundations), which differs considerably from the more familiar set theories (ZFC, NBG, Morse-Kelley). In NF there is a class comprehension axiom saying that to any stratified formula there corresponds a set of elements satisfying the formula. The Russell class is not a set, since it contains the formula <math id="p13.m1" class="ltx_Math" alttext="x\in x" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>x</mi></mrow></math>, which can’t be stratified, but the universal class is a set: <math id="p13.m2" class="ltx_Math" alttext="x=x" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>x</mi></mrow></math> is perfectly legal in type theory, as we can assign to <math id="p13.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> any degree and get a well-formed formula of type theory. It is not known if NF axiomatises any extensor (see the entry class) based on a limitation of size principle, like the more familiar set theories do.</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">In the modern variants of type theory, one usually has a more general supply of types. Beginning with some set <math id="p14.m1" class="ltx_Math" alttext="\tau" display="inline"><mi>τ</mi></math> of types (presumably a division of the simple objects into some natural categories), one defines the set of types <math id="p14.m2" class="ltx_Math" alttext="T" display="inline"><mi>T</mi></math> by setting</p>
+</div>
+<div id="p15" class="ltx_para">
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I1.i1.p1.m1" class="ltx_Math" alttext="a,b\in T" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>∈</mo><mi>T</mi></mrow></math>, then <math id="I1.i1.p1.m2" class="ltx_Math" alttext="(a\rightarrow b)\in T" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>→</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>∈</mo><mi>T</mi></mrow></math></p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">for all <math id="I1.i2.p1.m1" class="ltx_Math" alttext="t\in\tau" display="inline"><mrow><mi>t</mi><mo>∈</mo><mi>τ</mi></mrow></math>, <math id="I1.i2.p1.m2" class="ltx_Math" alttext="t\in T" display="inline"><mrow><mi>t</mi><mo>∈</mo><mi>T</mi></mrow></math></p>
+</div>
+</li>
+</ul>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">One way to proceed to get something familiar is to have <math id="p16.m1" class="ltx_Math" alttext="\tau" display="inline"><mi>τ</mi></math> contain a type <math id="p16.m2" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math> for truth values. Then sentences are objects of type <math id="p16.m3" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math>, open formulae of one variable are of type <math id="p16.m4" class="ltx_Math" alttext="\mathbf{Object}\rightarrow t" display="inline"><mrow><mi>𝐎𝐛𝐣𝐞𝐜𝐭</mi><mo>→</mo><mi>t</mi></mrow></math> and so forth. This sort of type system is often found in the study of typed lambda calculus and also in intensional logics, which are often based on the former.
+</p>
+<table class="ltx_tabular ltx_align_right ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">Russell’s theory of types</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Canonical name</td>
+<td class="ltx_td ltx_align_left ltx_border_r">RussellsTheoryOfTypes</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Date of creation</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 13:49:27</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified on</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 13:49:27</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Owner</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Aatu (2569)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified by</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Aatu (2569)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Numerical id</td>
+<td class="ltx_td ltx_align_left ltx_border_r">10</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Author</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Aatu (2569)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Entry type</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03B15</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Related topic</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Class</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Related topic</td>
+<td class="ltx_td ltx_align_left ltx_border_r">HilbertsVarepsilonOperator</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">type theory</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">ramified type theory</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">simple type theory</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">axiom of reducibility</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">stratification</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">NF</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">theory of types</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">simple theory of types</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">ramified theory of types</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:45:51 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

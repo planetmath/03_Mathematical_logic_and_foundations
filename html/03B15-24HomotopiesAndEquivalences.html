@@ -1,0 +1,488 @@
+<!DOCTYPE html><html>
+<head>
+<title>2.4 Homotopies and Equivalences</title>
+<!--Generated on Thu Feb  8 19:34:03 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", adjoint, bijection, diagram, equivalence, function, homotopy, isomorphism, mathematics, natural, of sets, proof-relevant, quasi-inverse, quasi-inverse of, “continuity” of functions in type theory, “functoriality” of functions in type theory, “naturality” of homotopies">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">2.4 Homotopies and Equivalences</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">So far, we have seen how the identity type <math id="p2.m1" class="ltx_Math" alttext="x=_{A}y" display="inline"><mrow><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi></mrow></math> can be regarded as a type of <em class="ltx_emph ltx_font_italic">identifications</em>, <em class="ltx_emph ltx_font_italic">paths</em>, or <em class="ltx_emph ltx_font_italic">equivalences</em> between two elements <math id="p2.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p2.m3" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> of a type <math id="p2.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+Now we investigate the appropriate notions of “identification” or “sameness” between <em class="ltx_emph ltx_font_italic">functions</em> and between <em class="ltx_emph ltx_font_italic">types</em>.
+In §2.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom</span>),§2.10 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/210universesandtheunivalenceaxiom</span>), we will see that homotopy type theory allows us to identify these with instances of the identity type, but before we can do that we need to understand them in their own right.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Traditionally, we regard two functions as the same if they take equal values on all inputs.
+Under the propositions-as-types interpretation, this suggests that two functions <math id="p3.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> and <math id="p3.m2" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> (perhaps dependently typed) should be the same if the type <math id="p3.m3" class="ltx_Math" alttext="\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)%
+}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod%
+_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}%
+}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}(f(x)=g(x))" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> is inhabited.
+Under the homotopical interpretation, this dependent function type consists of <em class="ltx_emph ltx_font_italic">continuous</em> paths or <em class="ltx_emph ltx_font_italic">functorial</em> equivalences, and thus may be regarded as the type of <em class="ltx_emph ltx_font_italic">homotopies</em> or of <em class="ltx_emph ltx_font_italic">natural isomorphisms</em>.We will adopt the topological terminology for this.
+</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 2.4.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="f,g:\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(%
+x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x%
+:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}P(x)" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="normal">,</mo><mi>g</mi></mrow><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> be two sections of a type family <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="P:A\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>.
+A <span class="ltx_text ltx_font_bold">homotopy</span>
+from <math id="Thmpredefn1.p1.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to <math id="Thmpredefn1.p1.m4" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> is a dependent function of type</span></p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="(f\sim g):\!\!\equiv\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(%
+x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}(f(x)=g%
+(x))." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∼</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Note that a homotopy is not the same as an identification <math id="p4.m1" class="ltx_Math" alttext="(f=g)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>=</mo><mi>g</mi></mrow><mo stretchy="false">)</mo></mrow></math>.
+However, in §2.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom</span>) we will introduce an axiom making homotopies and identifications “equivalent”.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">The following proofs are left to the reader.</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 2.4.2</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Homotopy is an equivalence relation on each function type <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>B</mi></mrow></math>.
+That is, we have elements of the types</span></p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_gather ltx_eqn_table">
+
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle\mathchoice{\prod_{f:A\to B}\,}{\mathchoice{{\textstyle\prod_{(f:%
+A\to B)}}}{\prod_{(f:A\to B)}}{\prod_{(f:A\to B)}}{\prod_{(f:A\to B)}}}{%
+\mathchoice{{\textstyle\prod_{(f:A\to B)}}}{\prod_{(f:A\to B)}}{\prod_{(f:A\to
+B%
+)}}{\prod_{(f:A\to B)}}}{\mathchoice{{\textstyle\prod_{(f:A\to B)}}}{\prod_{(f%
+:A\to B)}}{\prod_{(f:A\to B)}}{\prod_{(f:A\to B)}}}(f\sim f)" display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∼</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle\mathchoice{\prod_{f,g:A\to B}\,}{\mathchoice{{\textstyle\prod_{(%
+f,g:A\to B)}}}{\prod_{(f,g:A\to B)}}{\prod_{(f,g:A\to B)}}{\prod_{(f,g:A\to B)%
+}}}{\mathchoice{{\textstyle\prod_{(f,g:A\to B)}}}{\prod_{(f,g:A\to B)}}{\prod_%
+{(f,g:A\to B)}}{\prod_{(f,g:A\to B)}}}{\mathchoice{{\textstyle\prod_{(f,g:A\to
+B%
+)}}}{\prod_{(f,g:A\to B)}}{\prod_{(f,g:A\to B)}}{\prod_{(f,g:A\to B)}}}(f\sim g%
+)\to(g\sim f)" display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mrow><mi>f</mi><mo>,</mo><mi>g</mi></mrow><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∼</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>∼</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\displaystyle\mathchoice{\prod_{f,g,h:A\to B}\,}{\mathchoice{{\textstyle\prod_%
+{(f,g,h:A\to B)}}}{\prod_{(f,g,h:A\to B)}}{\prod_{(f,g,h:A\to B)}}{\prod_{(f,g%
+,h:A\to B)}}}{\mathchoice{{\textstyle\prod_{(f,g,h:A\to B)}}}{\prod_{(f,g,h:A%
+\to B)}}{\prod_{(f,g,h:A\to B)}}{\prod_{(f,g,h:A\to B)}}}{\mathchoice{{%
+\textstyle\prod_{(f,g,h:A\to B)}}}{\prod_{(f,g,h:A\to B)}}{\prod_{(f,g,h:A\to B%
+)}}{\prod_{(f,g,h:A\to B)}}}(f\sim g)\to(g\sim h)\to(f\sim h)." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mrow><mi>f</mi><mo>,</mo><mi>g</mi><mo>,</mo><mi>h</mi></mrow><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∼</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>∼</mo><mi>h</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∼</mo><mi>h</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Just as functions in type theory are automatically “functors”, homotopies are automatically
+“natural transformations”, in the following sense.
+Recall that for <math id="p6.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> and <math id="p6.m2" class="ltx_Math" alttext="p:x=_{A}y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi></mrow></mrow></math>, we may write <math id="p6.m3" class="ltx_Math" alttext="{f}\mathopen{}\left({p}\right)\mathclose{}" display="inline"><mrow><mi>f</mi><mrow><mi></mi><mrow><mo>(</mo><mi>p</mi><mo>)</mo></mrow><mi></mi></mrow></mrow></math> to mean <math id="p6.m4" class="ltx_Math" alttext="\mathsf{ap}_{f}(p)" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 2.4.3</span>.</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose <math id="Thmprelem2.p1.m1" class="ltx_Math" alttext="H:f\sim g" display="inline"><mrow><mi>H</mi><mo mathvariant="normal">:</mo><mrow><mi>f</mi><mo mathvariant="normal">∼</mo><mi>g</mi></mrow></mrow></math> is a homotopy between functions <math id="Thmprelem2.p1.m2" class="ltx_Math" alttext="f,g:A\to B" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="normal">,</mo><mi>g</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>B</mi></mrow></mrow></math> and let <math id="Thmprelem2.p1.m3" class="ltx_Math" alttext="p:x=_{A}y" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>x</mi><msub><mo mathvariant="normal">=</mo><mi>A</mi></msub><mi>y</mi></mrow></mrow></math>. Then we have</span></p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="H(x)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}{g}\mathopen{}\left({p}\right)\mathclose{}={f}\mathopen{}%
+\left({p}\right)\mathclose{}\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}H(y)." display="block"><mrow><mi>H</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>g</mi><mrow><mi></mi><mrow><mo>(</mo><mi>p</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>f</mi><mrow><mi></mi><mrow><mo>(</mo><mi>p</mi><mo>)</mo></mrow><mi></mi></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>H</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We may also draw this as a commutative diagram:
+</span></p>
+</div>
+<figure id="Thmprelem2.fig1" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center"><span class="ltx_text ltx_font_italic">HoTT_fig_2.4.1.png</span></p>
+</figure>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">By induction, we may assume <math id="p7.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is <math id="p7.m2" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>.
+Since <math id="p7.m3" class="ltx_Math" alttext="\mathsf{ap}_{f}" display="inline"><msub><mi>𝖺𝗉</mi><mi>f</mi></msub></math> and <math id="p7.m4" class="ltx_Math" alttext="\mathsf{ap}_{g}" display="inline"><msub><mi>𝖺𝗉</mi><mi>g</mi></msub></math> compute on reflexivity, in this case what we must show is</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="H(x)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\mathsf{refl}_{g(x)}=\mathsf{refl}_{f(x)}\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}H(x)." display="block"><mrow><mrow><mrow><mi>H</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub></mrow><mo>=</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>H</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">But this follows since both sides are equal to <math id="p7.m5" class="ltx_Math" alttext="H(x)" display="inline"><mrow><mi>H</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmprecor1" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 2.4.4</span>.</h6>
+<div id="Thmprecor1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmprecor1.p1.m1" class="ltx_Math" alttext="H:f\sim\mathsf{id}_{A}" display="inline"><mrow><mi>H</mi><mo mathvariant="normal">:</mo><mrow><mi>f</mi><mo mathvariant="normal">∼</mo><msub><mi mathvariant="normal">id</mi><mi>A</mi></msub></mrow></mrow></math> be a homotopy, with <math id="Thmprecor1.p1.m2" class="ltx_Math" alttext="f:A\to A" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>A</mi></mrow></mrow></math>. Then for any <math id="Thmprecor1.p1.m3" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> we have</span></p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="H(f(x))={f}\mathopen{}\left({H(x)}\right)\mathclose{}." display="block"><mrow><mi>H</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mi></mi><mrow><mo>(</mo><mi>H</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Here <math id="p8.m1" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> denotes the ordinary application of <math id="p8.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to <math id="p8.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>, while <math id="p8.m4" class="ltx_Math" alttext="{f}\mathopen{}\left({H(x)}\right)\mathclose{}" display="inline"><mrow><mi>f</mi><mrow><mi></mi><mrow><mo>(</mo><mi>H</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow></mrow></math> denotes <math id="p8.m5" class="ltx_Math" alttext="\mathsf{ap}_{f}(H(x))" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>H</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">By naturality of <math id="p9.m1" class="ltx_Math" alttext="H" display="inline"><mi>H</mi></math>, the following diagram of paths commutes:</p>
+</div>
+<figure id="fig1" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center">HoTT_fig_2.4.2.png</p>
+</figure>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">That is, <math id="p10.m1" class="ltx_Math" alttext="{f}\mathopen{}\left({Hx}\right)\mathclose{}\mathchoice{\mathbin{\raisebox{2.15%
+pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}Hx=H(fx)\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}Hx" display="inline"><mrow><mi>f</mi><mrow><mi></mi><mrow><mo>(</mo><mi>H</mi><mi>x</mi><mo>)</mo></mrow><mi></mi></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>H</mi><mi>x</mi><mo>=</mo><mi>H</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>H</mi><mi>x</mi></mrow></math>.
+We can now whisker by <math id="p10.m2" class="ltx_Math" alttext="\mathord{{(Hx)}^{-1}}" display="inline"><msup><mrow><mo stretchy="false">(</mo><mrow><mi>H</mi><mo>⁢</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> to cancel <math id="p10.m3" class="ltx_Math" alttext="Hx" display="inline"><mrow><mi>H</mi><mo>⁢</mo><mi>x</mi></mrow></math>, obtaining</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="{f}\mathopen{}\left({Hx}\right)\mathclose{}={f}\mathopen{}\left({Hx}\right)%
+\mathclose{}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}%
+}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}Hx\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathord{{(Hx)}^{-1}}=H(fx)\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}Hx%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\mathord{{(Hx)}^{-1}}=H(fx)" display="block"><mrow><mi>f</mi><mrow><mi></mi><mrow><mo>(</mo><mi>H</mi><mi>x</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>f</mi><mrow><mi></mi><mrow><mo>(</mo><mi>H</mi><mi>x</mi><mo>)</mo></mrow><mi></mi></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>H</mi><mi>x</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><msup><mrow><mo stretchy="false">(</mo><mrow><mi>H</mi><mo>⁢</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>=</mo><mi>H</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>H</mi><mi>x</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><msup><mrow><mo stretchy="false">(</mo><mrow><mi>H</mi><mo>⁢</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>=</mo><mi>H</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">as desired (with some associativity paths suppressed).
+∎</p>
+</div>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">Of course, like the functoriality of functions (Lemma 2.2.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/22functionsarefunctors#Thmprelem2</span>)), the equality in Lemma 2.4.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/24homotopiesandequivalences#Thmprelem2</span>) is a path which satisfies its own coherence laws, and so on.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Moving on to types, from a traditional perspective one may say that a function <math id="p12.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> is an <em class="ltx_emph ltx_font_italic">isomorphism</em> if there is a function <math id="p12.m2" class="ltx_Math" alttext="g:B\to A" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>A</mi></mrow></mrow></math> such that both composites <math id="p12.m3" class="ltx_Math" alttext="f\circ g" display="inline"><mrow><mi>f</mi><mo>∘</mo><mi>g</mi></mrow></math> and <math id="p12.m4" class="ltx_Math" alttext="g\circ f" display="inline"><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow></math> are pointwise equal to the identity, i.e. such that <math id="p12.m5" class="ltx_Math" alttext="f\circ g\sim\mathsf{id}_{B}" display="inline"><mrow><mrow><mi>f</mi><mo>∘</mo><mi>g</mi></mrow><mo>∼</mo><msub><mi>𝗂𝖽</mi><mi>B</mi></msub></mrow></math> and <math id="p12.m6" class="ltx_Math" alttext="g\circ f\sim\mathsf{id}_{A}" display="inline"><mrow><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow><mo>∼</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub></mrow></math>.
+A homotopical perspective suggests that this should be called a <em class="ltx_emph ltx_font_italic">homotopy equivalence</em>, and from a categorical one, it should be called an <em class="ltx_emph ltx_font_italic">equivalence of (higher) groupoids</em>.
+However, when doing proof-relevant mathematics,
+the corresponding type
+</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="\mathchoice{\sum_{g:B\to A}\,}{\mathchoice{{\textstyle\sum_{(g:B\to A)}}}{\sum%
+_{(g:B\to A)}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)}}}{\mathchoice{{\textstyle%
+\sum_{(g:B\to A)}}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)}}}{%
+\mathchoice{{\textstyle\sum_{(g:B\to A)}}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)%
+}}{\sum_{(g:B\to A)}}}\big{(}(f\circ g\sim\mathsf{id}_{B})\times(g\circ f\sim%
+\mathsf{id}_{A})\big{)}" display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>g</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>A</mi></mrow></mrow></munder></mpadded><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∘</mo><mi>g</mi><mo>∼</mo><msub><mi>𝗂𝖽</mi><mi>B</mi></msub><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>∘</mo><mi>f</mi><mo>∼</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.4.5)</span></td>
+</tr>
+</table>
+<p class="ltx_p">is poorly behaved.
+For instance, for a single function <math id="p12.m7" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> there may be multiple unequal inhabitants of (<a href="#S0.E1" title="(2.4.5) ‣ 2.4 Homotopies and Equivalences" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.4.5</span></a>).
+(This is closely related to the observation in higher category theory that often one needs to consider <em class="ltx_emph ltx_font_italic">adjoint</em> equivalences rather than plain equivalences.)
+For this reason, we give (<a href="#S0.E1" title="(2.4.5) ‣ 2.4 Homotopies and Equivalences" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.4.5</span></a>) the following historically accurate, but slightly derogatory-sounding name instead.</p>
+</div>
+<div id="Thmpredefn2" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 2.4.6</span>.</h6>
+<div id="Thmpredefn2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For a function <math id="Thmpredefn2.p1.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>B</mi></mrow></mrow></math>, a <span class="ltx_text ltx_font_bold">quasi-inverse</span>
+of <math id="Thmpredefn2.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is a triple <math id="Thmpredefn2.p1.m3" class="ltx_Math" alttext="(g,\alpha,\beta)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>g</mi><mo mathvariant="normal">,</mo><mi>α</mi><mo mathvariant="normal">,</mo><mi>β</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> consisting of a function <math id="Thmpredefn2.p1.m4" class="ltx_Math" alttext="g:B\to A" display="inline"><mrow><mi>g</mi><mo mathvariant="normal">:</mo><mrow><mi>B</mi><mo mathvariant="normal">→</mo><mi>A</mi></mrow></mrow></math> and homotopies
+<math id="Thmpredefn2.p1.m5" class="ltx_Math" alttext="\alpha:f\circ g\sim\mathsf{id}_{B}" display="inline"><mrow><mi>α</mi><mo mathvariant="normal">:</mo><mrow><mrow><mi>f</mi><mo mathvariant="normal">∘</mo><mi>g</mi></mrow><mo mathvariant="normal">∼</mo><msub><mi mathvariant="normal">id</mi><mi>B</mi></msub></mrow></mrow></math> and <math id="Thmpredefn2.p1.m6" class="ltx_Math" alttext="\beta:g\circ f\sim\mathsf{id}_{A}" display="inline"><mrow><mi>β</mi><mo mathvariant="normal">:</mo><mrow><mrow><mi>g</mi><mo mathvariant="normal">∘</mo><mi>f</mi></mrow><mo mathvariant="normal">∼</mo><msub><mi mathvariant="normal">id</mi><mi>A</mi></msub></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">Thus, (<a href="#S0.E1" title="(2.4.5) ‣ 2.4 Homotopies and Equivalences" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.4.5</span></a>) is <em class="ltx_emph ltx_font_italic">the type of quasi-inverses of <math id="p13.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math></em>; we may denote it by <math id="p13.m2" class="ltx_Math" alttext="\mathsf{qinv}(f)" display="inline"><mrow><mi>𝗊𝗂𝗇𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="Thmpreeg1" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 2.4.7</span>.</h6>
+<div id="Thmpreeg1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The identity function <math id="Thmpreeg1.p1.m1" class="ltx_Math" alttext="\mathsf{id}_{A}:A\to A" display="inline"><mrow><msub><mi mathvariant="normal">id</mi><mi>A</mi></msub><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>A</mi></mrow></mrow></math> has a quasi-inverse given by <math id="Thmpreeg1.p1.m2" class="ltx_Math" alttext="\mathsf{id}_{A}" display="inline"><msub><mi mathvariant="normal">id</mi><mi>A</mi></msub></math> itself, together with homotopies defined by <math id="Thmpreeg1.p1.m3" class="ltx_Math" alttext="\alpha(y):\!\!\equiv\mathsf{refl}_{y}" display="inline"><mrow><mi>α</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><msub><mi mathvariant="normal">refl</mi><mi>y</mi></msub></mrow></math> and <math id="Thmpreeg1.p1.m4" class="ltx_Math" alttext="\beta(x):\!\!\equiv\mathsf{refl}_{x}" display="inline"><mrow><mi>β</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><msub><mi mathvariant="normal">refl</mi><mi>x</mi></msub></mrow></math>.</span></p>
+</div>
+</div>
+<div id="Thmpreeg2" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 2.4.8</span>.</h6>
+<div id="Thmpreeg2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmpreeg2.p1.m1" class="ltx_Math" alttext="p:x=_{A}y" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>x</mi><msub><mo mathvariant="normal">=</mo><mi>A</mi></msub><mi>y</mi></mrow></mrow></math> and <math id="Thmpreeg2.p1.m2" class="ltx_Math" alttext="z:A" display="inline"><mrow><mi>z</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>, the functions
+</span></p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex9" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\displaystyle(p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot%
+$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded></mrow><mo stretchy="false">)</mo></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex9.m2" class="ltx_Math" alttext="\displaystyle:(y=_{A}z)\to(x=_{A}z)\qquad\text{and}" display="inline"><mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><msub><mo>=</mo><mi>A</mi></msub><mi>z</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>z</mi><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>𝑎𝑛𝑑</mtext></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex10" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\displaystyle(\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}p)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>p</mi></mrow><mo stretchy="false">)</mo></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex10.m2" class="ltx_Math" alttext="\displaystyle:(z=_{A}x)\to(z=_{A}y)" display="inline"><mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><msub><mo>=</mo><mi>A</mi></msub><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">have quasi-inverses given by <math id="Thmpreeg2.p1.m3" class="ltx_Math" alttext="(\mathord{{p}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msup><mi>p</mi><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow></msup><mo mathvariant="italic">⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo mathvariant="italic">⁢</mo><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> and <math id="Thmpreeg2.p1.m4" class="ltx_Math" alttext="(\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}\mathchoice{\mathbin{\raisebox{2.1%
+5pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathord{{p}^{-1}})" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded><mo mathvariant="italic">⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo mathvariant="italic">⁢</mo><msup><mi>p</mi><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow></msup></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></math>, respectively; see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87637</span>Exercise 2.6.</span></p>
+</div>
+</div>
+<div id="Thmpreeg3" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 2.4.9</span>.</h6>
+<div id="Thmpreeg3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmpreeg3.p1.m1" class="ltx_Math" alttext="p:x=_{A}y" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>x</mi><msub><mo mathvariant="normal">=</mo><mi>A</mi></msub><mi>y</mi></mrow></mrow></math> and <math id="Thmpreeg3.p1.m2" class="ltx_Math" alttext="P:A\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>, the function</span></p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\mathsf{transport}^{P}(p,\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}):P(x)\to P%
+(y)" display="block"><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>P</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">has a quasi-inverse given by <math id="Thmpreeg3.p1.m3" class="ltx_Math" alttext="\mathsf{transport}^{P}(\mathord{{p}^{-1}},\mathord{\hskip 1.0pt\text{--}\hskip
+1%
+.0pt})" display="inline"><mrow><msup><mi mathvariant="normal">transport</mi><mi>P</mi></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msup><mi>p</mi><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow></msup><mo mathvariant="normal">,</mo><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>; this follows from Lemma 2.3.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/23typefamiliesarefibrations#Thmprelem6</span>).</span></p>
+</div>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">In general, we will only use the word <em class="ltx_emph ltx_font_italic">isomorphism</em>
+
+(and similar words such as <em class="ltx_emph ltx_font_italic">bijection</em>)
+
+in the special case when the types <math id="p14.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p14.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> “behave like sets” (see §3.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/31setsandntypes</span>)).
+In this case, the type (<a href="#S0.E1" title="(2.4.5) ‣ 2.4 Homotopies and Equivalences" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.4.5</span></a>) is unproblematic.
+We will reserve the word <em class="ltx_emph ltx_font_italic">equivalence</em> for an improved notion <math id="p14.m3" class="ltx_Math" alttext="\mathsf{isequiv}(f)" display="inline"><mrow><mi>𝗂𝗌𝖾𝗊𝗎𝗂𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math> with the following properties:</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">For each <math id="I1.i1.p1.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> there is a function <math id="I1.i1.p1.m2" class="ltx_Math" alttext="\mathsf{qinv}(f)\to\mathsf{isequiv}(f)" display="inline"><mrow><mrow><mi>𝗊𝗂𝗇𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>𝗂𝗌𝖾𝗊𝗎𝗂𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">Similarly, for each <math id="I1.i2.p1.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> we have <math id="I1.i2.p1.m2" class="ltx_Math" alttext="\mathsf{isequiv}(f)\to\mathsf{qinv}(f)" display="inline"><mrow><mrow><mi>𝗂𝗌𝖾𝗊𝗎𝗂𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>𝗊𝗂𝗇𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>; thus the two are logically equivalent (see §1.11 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/111propositionsastypes</span>)).</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p">For any two inhabitants <math id="I1.i3.p1.m1" class="ltx_Math" alttext="e_{1},e_{2}:\mathsf{isequiv}(f)" display="inline"><mrow><mrow><msub><mi>e</mi><mn>1</mn></msub><mo>,</mo><msub><mi>e</mi><mn>2</mn></msub></mrow><mo>:</mo><mrow><mi>𝗂𝗌𝖾𝗊𝗎𝗂𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> we have <math id="I1.i3.p1.m2" class="ltx_Math" alttext="e_{1}=e_{2}" display="inline"><mrow><msub><mi>e</mi><mn>1</mn></msub><mo>=</mo><msub><mi>e</mi><mn>2</mn></msub></mrow></math>.
+</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">In <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87577</span>Chapter 4 we will see that there are many different definitions of <math id="p14.m4" class="ltx_Math" alttext="\mathsf{isequiv}(f)" display="inline"><mrow><mi>𝗂𝗌𝖾𝗊𝗎𝗂𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math> which satisfy these three properties, but that all of them are equivalent.
+For now, to convince the reader that such things exist, we mention only the easiest such definition:</p>
+<table id="S0.E2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E2.m1" class="ltx_Math" alttext="\mathsf{isequiv}(f)\;:\!\!\equiv\;\Bigl{(}\mathchoice{\sum_{g:B\to A}\,}{%
+\mathchoice{{\textstyle\sum_{(g:B\to A)}}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)%
+}}{\sum_{(g:B\to A)}}}{\mathchoice{{\textstyle\sum_{(g:B\to A)}}}{\sum_{(g:B%
+\to A)}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)}}}{\mathchoice{{\textstyle\sum_{(%
+g:B\to A)}}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)}}{\sum_{(g:B\to A)}}}(f\circ g%
+\sim\mathsf{id}_{B})\Bigr{)}\times\Bigl{(}\mathchoice{\sum_{h:B\to A}\,}{%
+\mathchoice{{\textstyle\sum_{(h:B\to A)}}}{\sum_{(h:B\to A)}}{\sum_{(h:B\to A)%
+}}{\sum_{(h:B\to A)}}}{\mathchoice{{\textstyle\sum_{(h:B\to A)}}}{\sum_{(h:B%
+\to A)}}{\sum_{(h:B\to A)}}{\sum_{(h:B\to A)}}}{\mathchoice{{\textstyle\sum_{(%
+h:B\to A)}}}{\sum_{(h:B\to A)}}{\sum_{(h:B\to A)}}{\sum_{(h:B\to A)}}}(h\circ f%
+\sim\mathsf{id}_{A})\Bigr{)}." display="block"><mrow><mi>𝗂𝗌𝖾𝗊𝗎𝗂𝗏</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo rspace="5.3pt">≡</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>g</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>A</mi></mrow></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∘</mo><mi>g</mi><mo>∼</mo><msub><mi>𝗂𝖽</mi><mi>B</mi></msub><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>×</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>h</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>A</mi></mrow></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>h</mi><mo>∘</mo><mi>f</mi><mo>∼</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.4.10)</span></td>
+</tr>
+</table>
+<p class="ltx_p">We can show <a href="#I1.i1" title="1. ‣ 2.4 Homotopies and Equivalences" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a> and <a href="#I1.i2" title="2. ‣ 2.4 Homotopies and Equivalences" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2</span></a> for this definition now.
+A function <math id="p14.m5" class="ltx_Math" alttext="\mathsf{qinv}(f)\to\mathsf{isequiv}(f)" display="inline"><mrow><mrow><mi>𝗊𝗂𝗇𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>𝗂𝗌𝖾𝗊𝗎𝗂𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is easy to define by taking <math id="p14.m6" class="ltx_Math" alttext="(g,\alpha,\beta)" display="inline"><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>α</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow></math> to <math id="p14.m7" class="ltx_Math" alttext="(g,\alpha,g,\beta)" display="inline"><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>α</mi><mo>,</mo><mi>g</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow></math>.
+In the other direction, given <math id="p14.m8" class="ltx_Math" alttext="(g,\alpha,h,\beta)" display="inline"><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>α</mi><mo>,</mo><mi>h</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow></math>, let <math id="p14.m9" class="ltx_Math" alttext="\gamma" display="inline"><mi>γ</mi></math> be the composite homotopy</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="g\overset{\beta}{\sim}h\circ f\circ g\overset{\alpha}{\sim}h" display="block"><mrow><mrow><mrow><mi>g</mi><mo>⁢</mo><mover accent="true"><mo>∼</mo><mo>𝛽</mo></mover><mo>⁢</mo><mi>h</mi></mrow><mo>∘</mo><mi>f</mi><mo>∘</mo><mi>g</mi></mrow><mo>⁢</mo><mover accent="true"><mo>∼</mo><mo>𝛼</mo></mover><mo>⁢</mo><mi>h</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and let <math id="p14.m10" class="ltx_Math" alttext="\beta^{\prime}:g\circ f\sim\mathsf{id}_{A}" display="inline"><mrow><msup><mi>β</mi><mo>′</mo></msup><mo>:</mo><mrow><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow><mo>∼</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub></mrow></mrow></math> be obtained from <math id="p14.m11" class="ltx_Math" alttext="\gamma" display="inline"><mi>γ</mi></math> and <math id="p14.m12" class="ltx_Math" alttext="\beta" display="inline"><mi>β</mi></math>.
+Then <math id="p14.m13" class="ltx_Math" alttext="(g,\alpha,\beta^{\prime}):\mathsf{qinv}(f)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>α</mi><mo>,</mo><msup><mi>β</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mi>𝗊𝗂𝗇𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">Property <a href="#I1.i3" title="3. ‣ 2.4 Homotopies and Equivalences" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> for this definition is not too hard to prove either, but it requires identifying the identity types of cartesian products and dependent pair types, which we will discuss in §2.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/26cartesianproducttypes</span>),§2.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/27sigmatypes</span>).
+Thus, we postpone it as well; see §4.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/43biinvertiblemaps</span>).
+At this point, the main thing to take away is that there is a well-behaved type which we can pronounce as “<math id="p15.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is an equivalence”, and that we can prove <math id="p15.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to be an equivalence by exhibiting a quasi-inverse to it.
+In practice, this is the most common way to prove that a function is an equivalence.</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">In accord with the proof-relevant philosophy,
+<em class="ltx_emph ltx_font_italic">an equivalence</em> from <math id="p16.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> to <math id="p16.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is defined to be a function <math id="p16.m3" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> together with an inhabitant of <math id="p16.m4" class="ltx_Math" alttext="\mathsf{isequiv}(f)" display="inline"><mrow><mi>𝗂𝗌𝖾𝗊𝗎𝗂𝗏</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math>, i.e. a proof that it is an equivalence.
+We write <math id="p16.m5" class="ltx_Math" alttext="(A\simeq B)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>≃</mo><mi>B</mi></mrow><mo stretchy="false">)</mo></mrow></math> for the type of equivalences from <math id="p16.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> to <math id="p16.m7" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, i.e. the type
+</p>
+<table id="S0.E3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E3.m1" class="ltx_Math" alttext="(A\simeq B):\!\!\equiv\mathchoice{\sum_{f:A\to B}\,}{\mathchoice{{\textstyle%
+\sum_{(f:A\to B)}}}{\sum_{(f:A\to B)}}{\sum_{(f:A\to B)}}{\sum_{(f:A\to B)}}}{%
+\mathchoice{{\textstyle\sum_{(f:A\to B)}}}{\sum_{(f:A\to B)}}{\sum_{(f:A\to B)%
+}}{\sum_{(f:A\to B)}}}{\mathchoice{{\textstyle\sum_{(f:A\to B)}}}{\sum_{(f:A%
+\to B)}}{\sum_{(f:A\to B)}}{\sum_{(f:A\to B)}}}\mathsf{isequiv}(f)." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>≃</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></munder></mpadded><mi>𝗂𝗌𝖾𝗊𝗎𝗂𝗏</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.4.11)</span></td>
+</tr>
+</table>
+<p class="ltx_p">Property <a href="#I1.i3" title="3. ‣ 2.4 Homotopies and Equivalences" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3</span></a> above will ensure that if two equivalences are equal as functions (that is, the underlying elements of <math id="p16.m8" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math> are equal), then they are also equal as equivalences (see §2.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/27sigmatypes</span>)).
+Thus, we often abuse notation by denoting an equivalence by the same letter as its underlying function.</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">We conclude by observing:</p>
+</div>
+<div id="Thmprelem3" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 2.4.12</span>.</h6>
+<div id="Thmprelem3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Type equivalence is an equivalence relation on <math id="Thmprelem3.p1.m1" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></math>.
+More specifically:</span></p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any </span><math id="I2.i1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math><span class="ltx_text ltx_font_italic">, the identity function </span><math id="I2.i1.p1.m2" class="ltx_Math" alttext="\mathsf{id}_{A}" display="inline"><msub><mi>𝗂𝖽</mi><mi>A</mi></msub></math><span class="ltx_text ltx_font_italic"> is an equivalence; hence </span><math id="I2.i1.p1.m3" class="ltx_Math" alttext="A\simeq A" display="inline"><mrow><mi>A</mi><mo>≃</mo><mi>A</mi></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any </span><math id="I2.i2.p1.m1" class="ltx_Math" alttext="f:A\simeq B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>≃</mo><mi>B</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, we have an equivalence </span><math id="I2.i2.p1.m2" class="ltx_Math" alttext="f^{-1}:B\simeq A" display="inline"><mrow><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>:</mo><mrow><mi>B</mi><mo>≃</mo><mi>A</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any </span><math id="I2.i3.p1.m1" class="ltx_Math" alttext="f:A\simeq B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>≃</mo><mi>B</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I2.i3.p1.m2" class="ltx_Math" alttext="g:B\simeq C" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mi>B</mi><mo>≃</mo><mi>C</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, we have </span><math id="I2.i3.p1.m3" class="ltx_Math" alttext="g\circ f:A\simeq C" display="inline"><mrow><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow><mo>:</mo><mrow><mi>A</mi><mo>≃</mo><mi>C</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">The identity function is clearly its own quasi-inverse; hence it is an equivalence.</p>
+</div>
+<div id="p19" class="ltx_para">
+<p class="ltx_p">If <math id="p19.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> is an equivalence, then it has a quasi-inverse, say <math id="p19.m2" class="ltx_Math" alttext="f^{-1}:B\to A" display="inline"><mrow><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>A</mi></mrow></mrow></math>.
+Then <math id="p19.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is also a quasi-inverse of <math id="p19.m4" class="ltx_Math" alttext="f^{-1}" display="inline"><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math>, so <math id="p19.m5" class="ltx_Math" alttext="f^{-1}" display="inline"><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> is an equivalence <math id="p19.m6" class="ltx_Math" alttext="B\to A" display="inline"><mrow><mi>B</mi><mo>→</mo><mi>A</mi></mrow></math>.</p>
+</div>
+<div id="p20" class="ltx_para">
+<p class="ltx_p">Finally, given <math id="p20.m1" class="ltx_Math" alttext="f:A\simeq B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>≃</mo><mi>B</mi></mrow></mrow></math> and <math id="p20.m2" class="ltx_Math" alttext="g:B\simeq C" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mi>B</mi><mo>≃</mo><mi>C</mi></mrow></mrow></math> with quasi-inverses <math id="p20.m3" class="ltx_Math" alttext="f^{-1}" display="inline"><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> and <math id="p20.m4" class="ltx_Math" alttext="g^{-1}" display="inline"><msup><mi>g</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math>, say, then for any <math id="p20.m5" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> we have <math id="p20.m6" class="ltx_Math" alttext="f^{-1}g^{-1}gfa=f^{-1}fa=a" display="inline"><mrow><mrow><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><msup><mi>g</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mi>g</mi><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mi>a</mi></mrow><mo>=</mo><mrow><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mi>f</mi><mo>⁢</mo><mi>a</mi></mrow><mo>=</mo><mi>a</mi></mrow></math>, and for any <math id="p20.m7" class="ltx_Math" alttext="c:C" display="inline"><mrow><mi>c</mi><mo>:</mo><mi>C</mi></mrow></math> we have <math id="p20.m8" class="ltx_Math" alttext="gff^{-1}g^{-1}c=gg^{-1}c=c" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mi>f</mi><mo>⁢</mo><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><msup><mi>g</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mi>c</mi></mrow><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><msup><mi>g</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mi>c</mi></mrow><mo>=</mo><mi>c</mi></mrow></math>.
+Thus <math id="p20.m9" class="ltx_Math" alttext="f^{-1}\circ g^{-1}" display="inline"><mrow><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>∘</mo><msup><mi>g</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></math> is a quasi-inverse to <math id="p20.m10" class="ltx_Math" alttext="g\circ f" display="inline"><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow></math>, hence the latter is an equivalence.
+∎</p>
+</div>
+</div>
+<div id="p21" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">2.4 Homotopies and Equivalences</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:34:03 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

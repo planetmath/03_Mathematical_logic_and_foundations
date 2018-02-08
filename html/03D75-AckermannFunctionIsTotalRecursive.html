@@ -1,0 +1,317 @@
+<!DOCTYPE html><html>
+<head>
+<title>Ackermann function is total recursive</title>
+<!--Generated on Thu Feb  8 20:05:58 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">Ackermann function is total recursive</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">In this entry, we give a formal proof that the Ackermann function <math id="p1.m1" class="ltx_Math" alttext="A(x,y)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>, given by</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="A(0,y)=y+1,\qquad A(x+1,0)=A(x,1),\qquad A(x+1,y+1)=A(x,A(x+1,y))" display="block"><mrow><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>y</mi><mo>+</mo><mn>1</mn></mrow></mrow><mo rspace="22.5pt">,</mo><mrow><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></mrow><mo rspace="22.5pt">,</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mrow><mi>y</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">is both a total function and a recursive function. Actually, the fact that <math id="p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is total is proved in this entry (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/PropertiesOfAckermannFunction</span>). It remains to show that <math id="p1.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is recursive.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Recall that the computation of <math id="p2.m1" class="ltx_Math" alttext="A(x,y)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>, given <math id="p2.m2" class="ltx_Math" alttext="x,y" display="inline"><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow></math>, can be thought of as an iterated operation performed on finite sequences of integers, starting with <math id="p2.m3" class="ltx_Math" alttext="x,y" display="inline"><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow></math> and ending with <math id="p2.m4" class="ltx_Math" alttext="z=A(x,y)" display="inline"><mrow><mi>z</mi><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> (see this entry (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/ComputingTheAckermannFunction</span>)). It is this process we will utilize to prove that <math id="p2.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is recursive.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">In the proof below, the following notations and definitions are used to simplify matters:</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I1.i1.p1.m1" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> is the sequence <math id="I1.i1.p1.m2" class="ltx_Math" alttext="r_{1},\ldots,r_{m}" display="inline"><mrow><msub><mi>r</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>r</mi><mi>m</mi></msub></mrow></math>, then <math id="I1.i1.p1.m3" class="ltx_Math" alttext="E(s)" display="inline"><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></mrow></math> or <math id="I1.i1.p1.m4" class="ltx_Math" alttext="\langle r_{1},\ldots,r_{m}\rangle" display="inline"><mrow><mo stretchy="false">⟨</mo><msub><mi>r</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>r</mi><mi>m</mi></msub><mo stretchy="false">⟩</mo></mrow></math> denote the code number of <math id="I1.i1.p1.m5" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> given the encoding <math id="I1.i1.p1.m6" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math>;</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i2.p1.m1" class="ltx_Math" alttext="\operatorname{lh}(n)" display="inline"><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the length of the sequence whose code number is <math id="I1.i2.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>;</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i3.p1.m1" class="ltx_Math" alttext="(n)_{i}" display="inline"><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mi>i</mi></msub></math> is the <math id="I1.i3.p1.m2" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>-th number in the sequence whose code number is <math id="I1.i3.p1.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>;</p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i4.p1.m1" class="ltx_Math" alttext="(n)_{-i}" display="inline"><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mi>i</mi></mrow></msub></math> is the <math id="I1.i4.p1.m2" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>-th to the last number in the sequence whose code number is <math id="I1.i4.p1.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> (so that <math id="I1.i4.p1.m4" class="ltx_Math" alttext="(n)_{-1}" display="inline"><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msub></math> is the last number in the sequence whose code number is <math id="I1.i4.p1.m5" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>);</p>
+</div>
+</li>
+<li id="I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i5.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i5.p1.m1" class="ltx_Math" alttext="\operatorname{red}(n)" display="inline"><mrow><mi>red</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the code number of the sequence obtained by deleting the last number of the sequence whose code number is <math id="I1.i5.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>;</p>
+</div>
+</li>
+<li id="I1.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i6.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i6.p1.m1" class="ltx_Math" alttext="\operatorname{ext}(n,a)" display="inline"><mrow><mi>ext</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the code number of the sequence obtained by appending <math id="I1.i6.p1.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> to the end of the sequence whose code number is <math id="I1.i6.p1.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">If <math id="p3.m1" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math> is a primitive recursive encoding, then each of the above function is primitive recursive. For example, <math id="p3.m2" class="ltx_Math" alttext="(n)_{-i}=(n)_{\operatorname{lh}(n)\dot{-}i+1}" display="inline"><mrow><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mi>i</mi></mrow></msub><mo>=</mo><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mrow><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>⁢</mo><mover accent="true"><mo>-</mo><mo>˙</mo></mover><mo>⁢</mo><mi>i</mi></mrow><mo>+</mo><mn>1</mn></mrow></msub></mrow></math>.</p>
+</div>
+<div id="Thmthm1" class="ltx_theorem ltx_theorem_thm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 1</span>.</h6>
+<div id="Thmthm1.p1" class="ltx_para">
+<p class="ltx_p"><math id="Thmthm1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math><span class="ltx_text ltx_font_italic"> is recursive.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">In this proof, the choice of encoding <math id="p4.m1" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math> is the multiplicative encoding, for it is convenient and, more importantly, a primitive recursive encoding. Briefly,</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="E(r_{1},\ldots,r_{m})=p_{1}^{r_{1}+1}\cdots p_{m}^{r_{m}+1}," display="block"><mrow><mrow><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>r</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>r</mi><mi>m</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msubsup><mi>p</mi><mn>1</mn><mrow><msub><mi>r</mi><mn>1</mn></msub><mo>+</mo><mn>1</mn></mrow></msubsup><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msubsup><mi>p</mi><mi>m</mi><mrow><msub><mi>r</mi><mi>m</mi></msub><mo>+</mo><mn>1</mn></mrow></msubsup></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p4.m2" class="ltx_Math" alttext="p_{i}" display="inline"><msub><mi>p</mi><mi>i</mi></msub></math> is the <math id="p4.m3" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>-th prime number (so that <math id="p4.m4" class="ltx_Math" alttext="p_{1}=2" display="inline"><mrow><msub><mi>p</mi><mn>1</mn></msub><mo>=</mo><mn>2</mn></mrow></math>).</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">We know that computing <math id="p5.m1" class="ltx_Math" alttext="A(x,y)=z" display="inline"><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>z</mi></mrow></math> is basically a sequence of computations on finite sequences:</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="x,y\longrightarrow\cdots\longrightarrow z\longrightarrow z\longrightarrow\cdots" display="block"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>⟶</mo><mi mathvariant="normal">⋯</mi><mo>⟶</mo><mi>z</mi><mo>⟶</mo><mi>z</mi><mo>⟶</mo><mi mathvariant="normal">⋯</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Let <math id="p5.m2" class="ltx_Math" alttext="s(x,y,i)" display="inline"><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mrow></math> denote the sequence at step <math id="p5.m3" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math>, then the above sequence can be rewritten:</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="s(x,y,0)\longrightarrow s(x,y,1)\longrightarrow\cdots\longrightarrow s(x,y,k)\longrightarrow\cdots" display="block"><mrow><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>⟶</mo><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>⟶</mo><mi mathvariant="normal">⋯</mi><mo>⟶</mo><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow><mo>⟶</mo><mi mathvariant="normal">⋯</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Define <math id="p5.m4" class="ltx_Math" alttext="f(x,y,i)=E(s(x,y,i))" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. From this we see that</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="g(x,y)=\mu i[f(x,y,i)=f(x,y,i+1)]." display="block"><mrow><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>μ</mi><mi>i</mi><mrow><mo stretchy="false">[</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">is the function that computes the smallest number of steps needed so that the code number becomes stationary. When the code number is decoded, we get the resulting value of <math id="p5.m5" class="ltx_Math" alttext="A(x,y)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>:</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="A(x,y)=D(f(x,y,g(x,y)))," display="block"><mrow><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p5.m6" class="ltx_Math" alttext="D(m):=(m)_{-1}" display="inline"><mrow><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><msub><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msub></mrow></math>, decodes <math id="p5.m7" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>, and returns the last number in the sequence <math id="p5.m8" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> whose code number <math id="p5.m9" class="ltx_Math" alttext="E(s)" display="inline"><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="p5.m10" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Now the remaining task to show that <math id="p6.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is primitive recursive. First, note that</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="f(x,y,0)=\langle x,y\rangle=2^{x+1}3^{y+1}" display="block"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">⟨</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">⟩</mo></mrow><mo>=</mo><mrow><msup><mn>2</mn><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>⁢</mo><msup><mn>3</mn><mrow><mi>y</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">is primitive recursive. Next, we want to express</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="f(x,y,n+1)=h(f(x,y,n))," display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p6.m2" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> is the function that changes the code number of the sequence <math id="p6.m3" class="ltx_Math" alttext="s(x,y,n)" display="inline"><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math> to the code number of the sequence <math id="p6.m4" class="ltx_Math" alttext="s(x,y,n+1)" display="inline"><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></math>. Once we obtain <math id="p6.m5" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> and show that <math id="p6.m6" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> is primitive recursive, then <math id="p6.m7" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is primitive recursive, as it is defined by primitive recursion via primitive recursive functions <math id="p6.m8" class="ltx_Math" alttext="\langle x,y\rangle" display="inline"><mrow><mo stretchy="false">⟨</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">⟩</mo></mrow></math> and <math id="p6.m9" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math>.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">To find out what <math id="p7.m1" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> is, recall the four rules of constructing the next sequence from the current one givne in this this entry (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/ComputingTheAckermannFunction</span>). Let <math id="p7.m2" class="ltx_Math" alttext="n_{1}=E(s(x,y,k))" display="inline"><mrow><msub><mi>n</mi><mn>1</mn></msub><mo>=</mo><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p7.m3" class="ltx_Math" alttext="n_{2}=E(s(x,y,k+1))" display="inline"><mrow><msub><mi>n</mi><mn>2</mn></msub><mo>=</mo><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. We rewrite the four rules using the notations and definitions here:</p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i1.p1.m1" class="ltx_Math" alttext="\operatorname{lh}(n_{1})=1" display="inline"><mrow><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>1</mn></mrow></math>, then <math id="I2.i1.p1.m2" class="ltx_Math" alttext="n_{2}=n_{1}" display="inline"><mrow><msub><mi>n</mi><mn>2</mn></msub><mo>=</mo><msub><mi>n</mi><mn>1</mn></msub></mrow></math>;</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i2.p1.m1" class="ltx_Math" alttext="\operatorname{lh}(n_{1})&gt;1" display="inline"><mrow><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mn>1</mn></mrow></math>, and <math id="I2.i2.p1.m2" class="ltx_Math" alttext="(n_{1})_{-2}=0" display="inline"><mrow><msub><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msub><mo>=</mo><mn>0</mn></mrow></math>, then <math id="I2.i2.p1.m3" class="ltx_Math" alttext="n_{2}=h_{1}(n_{1})" display="inline"><mrow><msub><mi>n</mi><mn>2</mn></msub><mo>=</mo><mrow><msub><mi>h</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, where</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="h_{1}(n):=\operatorname{ext}(\operatorname{red}^{2}(n),(n)_{-1}+1);" display="block"><mrow><mrow><mrow><msub><mi>h</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mi>ext</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>red</mi><mn>2</mn></msup><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>;</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i3.p1.m1" class="ltx_Math" alttext="\operatorname{lh}(n_{1})&gt;1" display="inline"><mrow><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mn>1</mn></mrow></math>, and <math id="I2.i3.p1.m2" class="ltx_Math" alttext="(n_{1})_{-2}&gt;0" display="inline"><mrow><msub><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msub><mo>&gt;</mo><mn>0</mn></mrow></math> and <math id="I2.i3.p1.m3" class="ltx_Math" alttext="(n_{1})_{-1}=0" display="inline"><mrow><msub><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>0</mn></mrow></math>, then <math id="I2.i3.p1.m4" class="ltx_Math" alttext="n_{2}=h_{2}(n_{1})" display="inline"><mrow><msub><mi>n</mi><mn>2</mn></msub><mo>=</mo><mrow><msub><mi>h</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, where</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="h_{2}(n):=\operatorname{ext}(\operatorname{ext}(\operatorname{red}^{2}(n),(n)_%
+{-2}-1),1);" display="block"><mrow><mrow><mrow><msub><mi>h</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mi>ext</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>ext</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>red</mi><mn>2</mn></msup><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msub><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>;</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">or</p>
+</div>
+</li>
+<li id="I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I2.i4.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i4.p1.m1" class="ltx_Math" alttext="\operatorname{lh}(n_{1})&gt;1" display="inline"><mrow><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mn>1</mn></mrow></math>, and <math id="I2.i4.p1.m2" class="ltx_Math" alttext="(n_{1})_{-2}&gt;0" display="inline"><mrow><msub><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msub><mo>&gt;</mo><mn>0</mn></mrow></math> and <math id="I2.i4.p1.m3" class="ltx_Math" alttext="(n_{1})_{-1}&gt;0" display="inline"><mrow><msub><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msub><mo>&gt;</mo><mn>0</mn></mrow></math>, then then <math id="I2.i4.p1.m4" class="ltx_Math" alttext="n_{2}=h_{3}(n_{1})" display="inline"><mrow><msub><mi>n</mi><mn>2</mn></msub><mo>=</mo><mrow><msub><mi>h</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, where</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="h_{3}(n):=\operatorname{ext}(\operatorname{ext}(\operatorname{ext}(%
+\operatorname{red}^{2}(n),(n)_{-2}-1),(n)_{-2}),(n)_{-1}-1)." display="block"><mrow><mrow><mrow><msub><mi>h</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mi>ext</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>ext</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>ext</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>red</mi><mn>2</mn></msup><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msub><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msub><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+<p class="ltx_p">If we define predicates:</p>
+<ol id="I3" class="ltx_enumerate">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i1.p1.m1" class="ltx_Math" alttext="\Phi_{0}(n):=\operatorname{lh}(n)\leq 1" display="inline"><mrow><mrow><msub><mi mathvariant="normal">Φ</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mn>1</mn></mrow></math>,</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i2.p1.m1" class="ltx_Math" alttext="\Phi_{1}(n):=\operatorname{lh}(n)&gt;1\textrm{, and }(n)_{-2}=0" display="inline"><mrow><mrow><msub><mi mathvariant="normal">Φ</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mrow><mn>1</mn><mo>⁢</mo><mtext>, and </mtext><mo>⁢</mo><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msub></mrow><mo>=</mo><mn>0</mn></mrow></math>,</p>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i3.p1.m1" class="ltx_Math" alttext="\Phi_{2}(n):=\operatorname{lh}(n)&gt;1\textrm{, and }(n)_{-2}&gt;0\textrm{ and }(n)_%
+{-1}=0" display="inline"><mrow><mrow><msub><mi mathvariant="normal">Φ</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mrow><mn>1</mn><mo>⁢</mo><mtext>, and </mtext><mo>⁢</mo><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msub></mrow><mo>&gt;</mo><mrow><mn>0</mn><mo>⁢</mo><mtext> and </mtext><mo>⁢</mo><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msub></mrow><mo>=</mo><mn>0</mn></mrow></math>,</p>
+</div>
+</li>
+<li id="I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I3.i4.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i4.p1.m1" class="ltx_Math" alttext="\Phi_{3}(n):=\operatorname{lh}(n)&gt;1\textrm{, and }(n)_{-2}&gt;0\textrm{ and }(n)_%
+{-1}&gt;0" display="inline"><mrow><mrow><msub><mi mathvariant="normal">Φ</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mi>lh</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>&gt;</mo><mrow><mn>1</mn><mo>⁢</mo><mtext>, and </mtext><mo>⁢</mo><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msub></mrow><mo>&gt;</mo><mrow><mn>0</mn><mo>⁢</mo><mtext> and </mtext><mo>⁢</mo><msub><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msub></mrow><mo>&gt;</mo><mn>0</mn></mrow></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">Then each <math id="p7.m4" class="ltx_Math" alttext="\Phi_{i}" display="inline"><msub><mi mathvariant="normal">Φ</mi><mi>i</mi></msub></math> is primitive recursive, pairwise exclusive, and <math id="p7.m5" class="ltx_Math" alttext="\Phi_{0}\equiv\neg\Phi_{1}\wedge\neg\Phi_{2}\wedge\neg\Phi_{3}" display="inline"><mrow><msub><mi mathvariant="normal">Φ</mi><mn>0</mn></msub><mo>≡</mo><mrow><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><msub><mi mathvariant="normal">Φ</mi><mn>1</mn></msub></mrow><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><msub><mi mathvariant="normal">Φ</mi><mn>2</mn></msub></mrow><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><msub><mi mathvariant="normal">Φ</mi><mn>3</mn></msub></mrow></mrow></mrow></math>. Now, define <math id="p7.m6" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> as follows:</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="h(n):=\left\{\begin{array}[]{ll}\operatorname{id}(n)&amp;\textrm{if }\Phi_{0}(n),%
+\\
+h_{1}(n)&amp;\textrm{if }\Phi_{1}(n),\\
+h_{2}(n)&amp;\textrm{if }\Phi_{2}(n),\\
+h_{3}(n)&amp;\textrm{if }\Phi_{3}(n).\end{array}\right." display="block"><mrow><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:=</mo><mrow><mo>{</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="left"><mrow><mi>id</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mtext>if </mtext><mo>⁢</mo><msub><mi mathvariant="normal">Φ</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="left"><mrow><msub><mi>h</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mtext>if </mtext><mo>⁢</mo><msub><mi mathvariant="normal">Φ</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="left"><mrow><msub><mi>h</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mtext>if </mtext><mo>⁢</mo><msub><mi mathvariant="normal">Φ</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo></mrow></mtd></mtr><mtr><mtd columnalign="left"><mrow><msub><mi>h</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd columnalign="left"><mrow><mrow><mtext>if </mtext><mo>⁢</mo><msub><mi mathvariant="normal">Φ</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>.</mo></mrow></mtd></mtr></mtable><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Since <math id="p7.m7" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> is defined by cases, and each <math id="p7.m8" class="ltx_Math" alttext="h_{i}" display="inline"><msub><mi>h</mi><mi>i</mi></msub></math> is primitive recursive, <math id="p7.m9" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> is also primitive recursive.
+∎</p>
+</div>
+</div>
+<div id="p8" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">Ackermann function is total recursive</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">AckermannFunctionIsTotalRecursive</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:07:53</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:07:53</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">15</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Theorem</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03D75</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Related topic</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">AckermannFunctionIsNotPrimitiveRecursive</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"></p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:05:58 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

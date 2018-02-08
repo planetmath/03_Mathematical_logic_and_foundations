@@ -1,0 +1,853 @@
+<!DOCTYPE html><html>
+<head>
+<title>7.3 Truncations</title>
+<!--Generated on Thu Feb  8 19:39:16 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , -category, -truncation, Postnikov tower, for functions on a truncation, for truncation, hub and spoke, induction principle, iterated, loop space, principle, propositional, recursion principle, reflective, subcategory, truncation, uniqueness">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">7.3 Truncations</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">In §3.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/37propositionaltruncation</span>) we introduced the propositional truncation, which makes the “best approximation” of a type that is a mere
+proposition, i.e. a <math id="p2.m1" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-type.
+In §6.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/69truncations</span>) we constructed this truncation as a higher inductive type, and gave one way to generalize it to a
+0-truncation.
+We now explain a better generalization of this, which truncates any type into an <math id="p2.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type for any <math id="p2.m3" class="ltx_Math" alttext="n\geq-2" display="inline"><mrow><mi>n</mi><mo>≥</mo><mrow><mo>-</mo><mn>2</mn></mrow></mrow></math>; in classical homotopy theory this would be called its <math id="p2.m4" class="ltx_Math" alttext="n^{\mathrm{th}}" display="inline"><msup><mi>n</mi><mi>th</mi></msup></math><span class="ltx_text ltx_font_bold"> Postnikov section</span>.
+</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">The idea is to make use of  (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem# utoref</span>), which states that <math id="p3.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an <math id="p3.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type just when <math id="p3.m3" class="ltx_Math" alttext="\Omega^{n+1}(A,a)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+is contractible for
+all <math id="p3.m4" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, and Lemma 6.5.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/65suspensions#Thmprelem3</span>), which implies that
+<math id="p3.m5" class="ltx_Math" alttext="\Omega^{n+1}(A,a)\simeq\mathsf{Map}_{*}(\mathbb{S}^{n+1},(A,a))," display="inline"><mrow><mrow><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≃</mo><mrow><msub><mi>𝖬𝖺𝗉</mi><mo>*</mo></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>,</mo></mrow></math> where <math id="p3.m6" class="ltx_Math" alttext="\mathbb{S}^{n+1}" display="inline"><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></math> is equipped with some basepoint which we may as well call <math id="p3.m7" class="ltx_Math" alttext="\mathsf{base}" display="inline"><mi>𝖻𝖺𝗌𝖾</mi></math>.
+However, contractibility of <math id="p3.m8" class="ltx_Math" alttext="\mathsf{Map}_{*}(\mathbb{S}^{n+1},(A,a))" display="inline"><mrow><msub><mi>𝖬𝖺𝗉</mi><mo>*</mo></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> is something that we can ensure directly by giving path constructors.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">We might first of all try to define <math id="p4.m1" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>A</mi><mo>∥</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math> to be generated by a function <math id="p4.m2" class="ltx_Math" alttext="|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}:A\to\mathopen{}\left\|A%
+\right\|_{n}\mathclose{}" display="inline"><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><msub><mo stretchy="false">|</mo><mi>n</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>, together with for each
+<math id="p4.m3" class="ltx_Math" alttext="r:\mathbb{S}^{n+1}\to\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>r</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> and each <math id="p4.m4" class="ltx_Math" alttext="x:\mathbb{S}^{n+1}" display="inline"><mrow><mi>x</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math>, a path <math id="p4.m5" class="ltx_Math" alttext="s_{r}(x):r(x)=r(\mathsf{base})" display="inline"><mrow><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.
+But this does not quite work, for the same reason that Remark 6.7.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/67hubsandspokes#Thmprermk1</span>) fails.
+Instead, we use the full “hub and spoke” construction as in §6.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/67hubsandspokes</span>).</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Thus, for <math id="p5.m1" class="ltx_Math" alttext="n\geq-1" display="inline"><mrow><mi>n</mi><mo>≥</mo><mrow><mo>-</mo><mn>1</mn></mrow></mrow></math>, we take <math id="p5.m2" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>A</mi><mo>∥</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math> to be the higher inductive type generated by:</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">a function <math id="I1.i1.p1.m1" class="ltx_Math" alttext="|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}:A\to\mathopen{}\left\|A%
+\right\|_{n}\mathclose{}" display="inline"><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><msub><mo stretchy="false">|</mo><mi>n</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">for each <math id="I1.i2.p1.m1" class="ltx_Math" alttext="r:\mathbb{S}^{n+1}\to\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>r</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>, a <em class="ltx_emph ltx_font_italic">hub</em> point <math id="I1.i2.p1.m2" class="ltx_Math" alttext="h(r):\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>, and</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p">for each <math id="I1.i3.p1.m1" class="ltx_Math" alttext="r:\mathbb{S}^{n+1}\to\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>r</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> and each <math id="I1.i3.p1.m2" class="ltx_Math" alttext="x:\mathbb{S}^{n+1}" display="inline"><mrow><mi>x</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math>, a <em class="ltx_emph ltx_font_italic">spoke</em> path <math id="I1.i3.p1.m3" class="ltx_Math" alttext="s_{r}(x):r(x)=h(r)" display="inline"><mrow><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="p6" class="ltx_para ltx_noindent">
+<p class="ltx_p">The existence of these constructors is now enough to show:</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 7.3.1</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>A</mi><mo>∥</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math><span class="ltx_text ltx_font_italic"> is an <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">By  (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem# utoref</span>), it suffices to show that <math id="p7.m1" class="ltx_Math" alttext="\Omega^{n+1}(\mathopen{}\left\|A\right\|_{n}\mathclose{},b)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> is contractible for all <math id="p7.m2" class="ltx_Math" alttext="b:\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>b</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>, which by
+Lemma 6.5.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/65suspensions#Thmprelem3</span>) is equivalent to <math id="p7.m3" class="ltx_Math" alttext="\mathsf{Map}_{*}(\mathbb{S}^{n+1},(\mathopen{}\left\|A\right\|_{n}\mathclose{}%
+,b))." display="inline"><mrow><msub><mi>𝖬𝖺𝗉</mi><mo>*</mo></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>,</mo><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math>
+As center of contraction for the latter, we choose the function <math id="p7.m4" class="ltx_Math" alttext="c_{b}:\mathbb{S}^{n+1}\to\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><msub><mi>c</mi><mi>b</mi></msub><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> which is constant at <math id="p7.m5" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math>, together with
+<math id="p7.m6" class="ltx_Math" alttext="\mathsf{refl}_{b}:c_{b}(\mathsf{base})=b" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>b</mi></msub><mo>:</mo><mrow><mrow><msub><mi>c</mi><mi>b</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>b</mi></mrow></mrow></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Now, an arbitrary element of <math id="p8.m1" class="ltx_Math" alttext="\mathsf{Map}_{*}(\mathbb{S}^{n+1},(\mathopen{}\left\|A\right\|_{n}\mathclose{}%
+,b))" display="inline"><mrow><msub><mi>𝖬𝖺𝗉</mi><mo>*</mo></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>,</mo><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> consists of a map <math id="p8.m2" class="ltx_Math" alttext="r:\mathbb{S}^{n+1}\to\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>r</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> together with a path
+<math id="p8.m3" class="ltx_Math" alttext="p:r(\mathsf{base})=b" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>b</mi></mrow></mrow></math>.
+By function extensionality, to show <math id="p8.m4" class="ltx_Math" alttext="r=c_{b}" display="inline"><mrow><mi>r</mi><mo>=</mo><msub><mi>c</mi><mi>b</mi></msub></mrow></math> it suffices to give, for each <math id="p8.m5" class="ltx_Math" alttext="x:\mathbb{S}^{n+1}" display="inline"><mrow><mi>x</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math>, a path <math id="p8.m6" class="ltx_Math" alttext="r(x)=c_{b}(x)\equiv b" display="inline"><mrow><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>c</mi><mi>b</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mi>b</mi></mrow></math>.
+We choose this to be the composite <math id="p8.m7" class="ltx_Math" alttext="s_{r}(x)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\mathord{{s_{r}(\mathsf{base})}^{-1}}\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}p" display="inline"><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>p</mi></mrow></math>, where <math id="p8.m8" class="ltx_Math" alttext="s_{r}(x)" display="inline"><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the spoke at <math id="p8.m9" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Finally, we must show that when transported along this equality <math id="p9.m1" class="ltx_Math" alttext="r=c_{b}" display="inline"><mrow><mi>r</mi><mo>=</mo><msub><mi>c</mi><mi>b</mi></msub></mrow></math>, the path <math id="p9.m2" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> becomes <math id="p9.m3" class="ltx_Math" alttext="\mathsf{refl}_{b}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>b</mi></msub></math>.
+By transport in path types, this means we need</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathord{{(s_{r}(\mathsf{base})\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathord{{s_{r}(\mathsf{base})}^%
+{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}p)}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}p=\mathsf{refl}_{b}." display="block"><mrow><mrow><mrow><msup><mrow><mo stretchy="false">(</mo><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>p</mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>p</mi></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>b</mi></msub></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">But this is immediate from path operations.
+∎</p>
+</div>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">(This construction fails for <math id="p10.m1" class="ltx_Math" alttext="n=-2" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mo>-</mo><mn>2</mn></mrow></mrow></math>, but in that case we can simply define <math id="p10.m2" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{-2}\mathclose{}:\!\!\equiv\mathbf{1}" display="inline"><mrow><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mo>-</mo><mn>2</mn></mrow></msub><mi></mi></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mn>𝟏</mn></mrow></math> for all <math id="p10.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+From now on we assume <math id="p10.m4" class="ltx_Math" alttext="n\geq-1" display="inline"><mrow><mi>n</mi><mo>≥</mo><mrow><mo>-</mo><mn>1</mn></mrow></mrow></math>.)</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">To show the desired universal property of the <math id="p11.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncation, we need the induction principle.
+We extract this from the constructors in the usual way; it says that given <math id="p11.m2" class="ltx_Math" alttext="P:\mathopen{}\left\|A\right\|_{n}\mathclose{}\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> together with</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">For each <math id="I2.i1.p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, an element <math id="I2.i1.p1.m2" class="ltx_Math" alttext="g(a):P(\mathopen{}\left|a\right|_{n}\mathclose{})" display="inline"><mrow><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">For each <math id="I2.i2.p1.m1" class="ltx_Math" alttext="r:\mathbb{S}^{n+1}\to\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>r</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> and <math id="I2.i2.p1.m2" class="ltx_Math" alttext="r^{\prime}:\mathchoice{\prod_{x:\mathbb{S}^{n+1}}\,}{\mathchoice{{\textstyle%
+\prod_{(x:\mathbb{S}^{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb%
+{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:%
+\mathbb{S}^{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})%
+}}{\prod_{(x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^%
+{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(%
+x:\mathbb{S}^{n+1})}}}P(r(x))" display="inline"><mrow><msup><mi>r</mi><mo>′</mo></msup><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, an element <math id="I2.i2.p1.m3" class="ltx_Math" alttext="h^{\prime}(r,r^{\prime}):P(h(r))" display="inline"><mrow><mrow><msup><mi>h</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>,</mo><msup><mi>r</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p">For each <math id="I2.i3.p1.m1" class="ltx_Math" alttext="r:\mathbb{S}^{n+1}\to\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>r</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> and <math id="I2.i3.p1.m2" class="ltx_Math" alttext="r^{\prime}:\mathchoice{\prod_{x:\mathbb{S}^{n+1}}\,}{\mathchoice{{\textstyle%
+\prod_{(x:\mathbb{S}^{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb%
+{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:%
+\mathbb{S}^{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})%
+}}{\prod_{(x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^%
+{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(%
+x:\mathbb{S}^{n+1})}}}P(r(x))" display="inline"><mrow><msup><mi>r</mi><mo>′</mo></msup><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, and each <math id="I2.i3.p1.m3" class="ltx_Math" alttext="x:\mathbb{S}^{n+1}" display="inline"><mrow><mi>x</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow></math>, a dependent path
+<math id="I2.i3.p1.m4" class="ltx_Math" alttext="r^{\prime}(x)=^{P}_{s_{r}(x)}h^{\prime}(r,r^{\prime})" display="inline"><mrow><mrow><msup><mi>r</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><msubsup><mo>=</mo><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mi>P</mi></msubsup><mrow><msup><mi>h</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>,</mo><msup><mi>r</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">there exists a section <math id="p11.m3" class="ltx_Math" alttext="f:\mathchoice{\prod_{x:\mathopen{}\left\|A\right\|_{n}\mathclose{}}\,}{%
+\mathchoice{{\textstyle\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}%
+}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}{\prod_{(x:%
+\mathopen{}\left\|A\right\|_{n}\mathclose{})}}{\prod_{(x:\mathopen{}\left\|A%
+\right\|_{n}\mathclose{})}}}{\mathchoice{{\textstyle\prod_{(x:\mathopen{}\left%
+\|A\right\|_{n}\mathclose{})}}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}%
+\mathclose{})}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}{\prod%
+_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}}{\mathchoice{{\textstyle%
+\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}}{\prod_{(x:\mathopen{%
+}\left\|A\right\|_{n}\mathclose{})}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}%
+\mathclose{})}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}}P(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> with <math id="p11.m4" class="ltx_Math" alttext="f(\mathopen{}\left|a\right|_{n}\mathclose{})\equiv g(a)" display="inline"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>≡</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> for all <math id="p11.m5" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>.
+To make this more useful, we reformulate it as follows.</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.3.2</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any type family <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="P:\mathopen{}\left\|A\right\|_{n}\mathclose{}\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo mathvariant="normal">:</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>A</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> such that each <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is an <math id="Thmprethm1.p1.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type, and any function <math id="Thmprethm1.p1.m4" class="ltx_Math" alttext="g:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:%
+A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}P(\mathopen{}\left|a\right%
+|_{n}\mathclose{})" display="inline"><mrow><mi>g</mi><mo mathvariant="normal">:</mo><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mi>P</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi></mi><mo mathvariant="normal">|</mo><mi>a</mi><msub><mo mathvariant="normal">|</mo><mi>n</mi></msub><mi></mi></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>, there
+exists a section <math id="Thmprethm1.p1.m5" class="ltx_Math" alttext="f:\mathchoice{\prod_{x:\mathopen{}\left\|A\right\|_{n}\mathclose{}}\,}{%
+\mathchoice{{\textstyle\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}%
+}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}{\prod_{(x:%
+\mathopen{}\left\|A\right\|_{n}\mathclose{})}}{\prod_{(x:\mathopen{}\left\|A%
+\right\|_{n}\mathclose{})}}}{\mathchoice{{\textstyle\prod_{(x:\mathopen{}\left%
+\|A\right\|_{n}\mathclose{})}}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}%
+\mathclose{})}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}{\prod%
+_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}}{\mathchoice{{\textstyle%
+\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}}{\prod_{(x:\mathopen{%
+}\left\|A\right\|_{n}\mathclose{})}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}%
+\mathclose{})}}{\prod_{(x:\mathopen{}\left\|A\right\|_{n}\mathclose{})}}}P(x)" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>A</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> such that <math id="Thmprethm1.p1.m6" class="ltx_Math" alttext="f(\mathopen{}\left|a\right|_{n}\mathclose{}):\!\!\equiv g(a)" display="inline"><mrow><mi>f</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi></mi><mo mathvariant="normal">|</mo><mi>a</mi><msub><mo mathvariant="normal">|</mo><mi>n</mi></msub><mi></mi></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><mi>g</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> for all <math id="Thmprethm1.p1.m7" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">It will suffice to construct the second and third data listed above, since <math id="p12.m1" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> has exactly the type of the first datum.
+Given <math id="p12.m2" class="ltx_Math" alttext="r:\mathbb{S}^{n+1}\to\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>r</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> and <math id="p12.m3" class="ltx_Math" alttext="r^{\prime}:\mathchoice{\prod_{x:\mathbb{S}^{n+1}}\,}{\mathchoice{{\textstyle%
+\prod_{(x:\mathbb{S}^{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb%
+{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:%
+\mathbb{S}^{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})%
+}}{\prod_{(x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^%
+{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(%
+x:\mathbb{S}^{n+1})}}}P(r(x))" display="inline"><mrow><msup><mi>r</mi><mo>′</mo></msup><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, we have <math id="p12.m4" class="ltx_Math" alttext="h(r):\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> and <math id="p12.m5" class="ltx_Math" alttext="s_{r}:\mathchoice{\prod_{x:\mathbb{S}^{n+1}}\,}{\mathchoice{{\textstyle\prod_{%
+(x:\mathbb{S}^{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+%
+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{%
+S}^{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod%
+_{(x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^{n+1})}}%
+}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:%
+\mathbb{S}^{n+1})}}}(r(x)=h(r))" display="inline"><mrow><msub><mi>s</mi><mi>r</mi></msub><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>r</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+Define <math id="p12.m6" class="ltx_Math" alttext="t:\mathbb{S}^{n+1}\to P(h(r))" display="inline"><mrow><mi>t</mi><mo>:</mo><mrow><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>→</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> by <math id="p12.m7" class="ltx_Math" alttext="t(x):\!\!\equiv{s_{r}(x)}_{*}\mathopen{}\left({r^{\prime}(x)}\right)\mathclose{}" display="inline"><mrow><mi>t</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>s</mi><mi>r</mi></msub><msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><msup><mi>r</mi><mo>′</mo></msup><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow></mrow></math>.
+Then since <math id="p12.m8" class="ltx_Math" alttext="P(h(r))" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="p12.m9" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncated, there exists a point <math id="p12.m10" class="ltx_Math" alttext="u:P(h(r))" display="inline"><mrow><mi>u</mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and a contraction <math id="p12.m11" class="ltx_Math" alttext="v:\mathchoice{\prod_{x:\mathbb{S}^{n+1}}\,}{\mathchoice{{\textstyle\prod_{(x:%
+\mathbb{S}^{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})%
+}}{\prod_{(x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^%
+{n+1})}}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(%
+x:\mathbb{S}^{n+1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^{n+1})}}}{%
+\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{S}^{n+1})}}{\prod_{(x:\mathbb{%
+S}^{n+1})}}}(t(x)=u)" display="inline"><mrow><mi>v</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><msup><mi>𝕊</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>t</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Define <math id="p12.m12" class="ltx_Math" alttext="h^{\prime}(r,r^{\prime}):\!\!\equiv u" display="inline"><mrow><msup><mi>h</mi><mo>′</mo></msup><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>,</mo><msup><mi>r</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>u</mi></mrow></math>, giving the second datum.
+Then (recalling the definition of dependent paths), <math id="p12.m13" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math> has exactly the type required of the third datum.
+∎</p>
+</div>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">In particular, if <math id="p13.m1" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math> is some <math id="p13.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type, we can consider the constant family of types equal to <math id="p13.m3" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math> for every point of <math id="p13.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+
+Thus, every map <math id="p13.m5" class="ltx_Math" alttext="f:A\to{}E" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>E</mi></mrow></mrow></math> can be extended to a map <math id="p13.m6" class="ltx_Math" alttext="\mathsf{ext}(f):\mathopen{}\left\|A\right\|_{n}\mathclose{}\to{}E" display="inline"><mrow><mi>𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mi>E</mi></mrow></math> defined by <math id="p13.m7" class="ltx_Math" alttext="\mathsf{ext}(f)(\mathopen{}\left|a\right|_{n}\mathclose{}):\!\!\equiv f(a)" display="inline"><mrow><mi>𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>; this is the <em class="ltx_emph ltx_font_italic">recursion principle</em> for <math id="p13.m8" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>A</mi><mo>∥</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math>.</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">The induction principle also implies a uniqueness principle for functions of this form.
+Namely, if <math id="p14.m1" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math> is an <math id="p14.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type and <math id="p14.m3" class="ltx_Math" alttext="g,g^{\prime}:\mathopen{}\left\|A\right\|_{n}\mathclose{}\to{}E" display="inline"><mrow><mi>g</mi><mo>,</mo><msup><mi>g</mi><mo>′</mo></msup><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mi>E</mi></mrow></math> are such
+that <math id="p14.m4" class="ltx_Math" alttext="g(\mathopen{}\left|a\right|_{n}\mathclose{})=g^{\prime}(\mathopen{}\left|a%
+\right|_{n}\mathclose{})" display="inline"><mrow><mi>g</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><msup><mi>g</mi><mo>′</mo></msup><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> for every <math id="p14.m5" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, then <math id="p14.m6" class="ltx_Math" alttext="g(x)=g^{\prime}(x)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for all <math id="p14.m7" class="ltx_Math" alttext="x:\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>, since the type <math id="p14.m8" class="ltx_Math" alttext="g(x)=g^{\prime}(x)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>g</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is an <math id="p14.m9" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type.
+Thus, <math id="p14.m10" class="ltx_Math" alttext="g=g^{\prime}" display="inline"><mrow><mi>g</mi><mo>=</mo><msup><mi>g</mi><mo>′</mo></msup></mrow></math>.
+This yields the following universal property.</p>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 7.3.3</span> (Universal property of truncations).</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmprelem2.p1.m1" class="ltx_Math" alttext="n\geq-2" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">≥</mo><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">2</mn></mrow></mrow></math>, <math id="Thmprelem2.p1.m2" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> and <math id="Thmprelem2.p1.m3" class="ltx_Math" alttext="B:{n}\text{-}\mathsf{Type}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mi>n</mi><mo mathvariant="italic">⁢</mo><mtext mathvariant="italic">-</mtext><mo mathvariant="italic">⁢</mo><mi mathvariant="normal">Type</mi></mrow></mrow></math>. The following map is an
+equivalence:</span></p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\left\{\begin{array}[]{rcl}(\mathopen{}\left\|A\right\|_{n}\mathclose{}\to{}B)%
+&amp;\longrightarrow&amp;(A\to{}B)\\
+g&amp;\longmapsto&amp;g\circ|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}\end{%
+array}\right." display="block"><mrow><mo>{</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="center"><mo>⟶</mo></mtd><mtd columnalign="left"><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mi>g</mi></mtd><mtd columnalign="center"><mo>⟼</mo></mtd><mtd columnalign="left"><mrow><mi>g</mi><mo>∘</mo><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></mrow></mtd></mtr></mtable><mi></mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">Given that <math id="p15.m1" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is <math id="p15.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncated, any <math id="p15.m3" class="ltx_Math" alttext="f:A\to{}B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> can be extended to a map <math id="p15.m4" class="ltx_Math" alttext="\mathsf{ext}(f):\mathopen{}\left\|A\right\|_{n}\mathclose{}\to{}B" display="inline"><mrow><mi>𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mi>B</mi></mrow></math>.
+The map <math id="p15.m5" class="ltx_Math" alttext="\mathsf{ext}(f)\circ|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}" display="inline"><mrow><mrow><mi>𝖾𝗑𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∘</mo><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></mrow></math> is equal to <math id="p15.m6" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, because for every <math id="p15.m7" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> we have <math id="p15.m8" class="ltx_Math" alttext="\mathsf{ext}(f)(\mathopen{}\left|a\right|_{n}\mathclose{})=f(a)" display="inline"><mrow><mi>𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> by definition.
+And the map <math id="p15.m9" class="ltx_Math" alttext="\mathsf{ext}(g\circ|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n})" display="inline"><mrow><mi>𝖾𝗑𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>∘</mo><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></math> is equal to <math id="p15.m10" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math>, because they both send <math id="p15.m11" class="ltx_Math" alttext="\mathopen{}\left|a\right|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>|</mo><mi>a</mi><mo>|</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math> to <math id="p15.m12" class="ltx_Math" alttext="g(\mathopen{}\left|a\right|_{n}\mathclose{})" display="inline"><mrow><mi>g</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">In categorical language, this says that the <math id="p16.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types form a <em class="ltx_emph ltx_font_italic">reflective subcategory</em> of the category of types.
+(To state this fully precisely, one ought to use the language of <math id="p16.m2" class="ltx_Math" alttext="(\infty,1)" display="inline"><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">∞</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>-categories.)
+In particular, this implies that the <math id="p16.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncation is functorial:
+given <math id="p16.m5" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math>, applying the recursion principle to the composite <math id="p16.m6" class="ltx_Math" alttext="A\xrightarrow{f}B\to\mathopen{}\left\|B\right\|_{n}\mathclose{}" display="inline"><mrow><mi>A</mi><mover accent="true"><mo>→</mo><mo>𝑓</mo></mover><mi>B</mi><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>B</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> yields a map <math id="p16.m7" class="ltx_Math" alttext="\mathopen{}\left\|f\right\|_{n}\mathclose{}:\mathopen{}\left\|A\right\|_{n}%
+\mathclose{}\to\mathopen{}\left\|B\right\|_{n}\mathclose{}" display="inline"><mrow><mrow><mi></mi><mo>∥</mo><mi>f</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>B</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>.
+By definition, we have a homotopy</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="\mathsf{nat}^{f}_{n}:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{%
+(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle%
+\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}%
+\mathopen{}\left\|f\right\|_{n}\mathclose{}(\mathopen{}\left|a\right|_{n}%
+\mathclose{})=\mathopen{}\left|f(a)\right|_{n}\mathclose{}," display="block"><mrow><msubsup><mi>𝗇𝖺𝗍</mi><mi>n</mi><mi>f</mi></msubsup><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mi></mi><mo>∥</mo><mi>f</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(7.3.4)</span></td>
+</tr>
+</table>
+<p class="ltx_p">expressing <em class="ltx_emph ltx_font_italic">naturality</em> of the maps <math id="p16.m8" class="ltx_Math" alttext="|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}" display="inline"><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></math>.</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">Uniqueness implies functoriality laws such as <math id="p17.m1" class="ltx_Math" alttext="\mathopen{}\left\|g\circ f\right\|_{n}\mathclose{}=\mathopen{}\left\|g\right\|%
+_{n}\mathclose{}\circ\mathopen{}\left\|f\right\|_{n}\mathclose{}" display="inline"><mrow><mrow><mi></mi><mo>∥</mo><mi>g</mi><mo>∘</mo><mi>f</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>g</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>∘</mo><mrow><mi></mi><mo>∥</mo><mi>f</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> and <math id="p17.m2" class="ltx_Math" alttext="\mathopen{}\left\|\mathsf{id}_{A}\right\|_{n}\mathclose{}=\mathsf{id}_{%
+\mathopen{}\left\|A\right\|_{n}\mathclose{}}" display="inline"><mrow><mrow><mi></mi><mo>∥</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>=</mo><msub><mi>𝗂𝖽</mi><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></msub></mrow></math>, with attendant coherence laws.
+We also have higher functoriality, for instance:</p>
+</div>
+<div id="Thmprelem3" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 7.3.5</span>.</h6>
+<div id="Thmprelem3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given <math id="Thmprelem3.p1.m1" class="ltx_Math" alttext="f,g:A\to B" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="normal">,</mo><mi>g</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>B</mi></mrow></mrow></math> and a homotopy <math id="Thmprelem3.p1.m2" class="ltx_Math" alttext="h:f\sim g" display="inline"><mrow><mi>h</mi><mo mathvariant="normal">:</mo><mrow><mi>f</mi><mo mathvariant="normal">∼</mo><mi>g</mi></mrow></mrow></math>, there is an induced homotopy <math id="Thmprelem3.p1.m3" class="ltx_Math" alttext="\mathopen{}\left\|h\right\|_{n}\mathclose{}:\mathopen{}\left\|f\right\|_{n}%
+\mathclose{}\sim\mathopen{}\left\|g\right\|_{n}\mathclose{}" display="inline"><mrow><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>h</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow><mo mathvariant="normal">:</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>f</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow><mo mathvariant="normal">∼</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>g</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> such that the composite</span></p>
+<table id="S0.E2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E2.m1" class="ltx_Math" alttext="\includegraphics{HoTT_{f}ig_{7}.3.1.png}" display="block"><mrow><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\includegraphics</mtext></merror><mo>⁢</mo><mi>H</mi><mo>⁢</mo><mi>o</mi><mo>⁢</mo><mi>T</mi><mo>⁢</mo><msub><mi>T</mi><mi>f</mi></msub><mo>⁢</mo><mi>i</mi><mo>⁢</mo><msub><mi>g</mi><mn>7</mn></msub><mo>⁢</mo><mn>.3.1</mn></mrow><mo>.</mo><mrow><mi>p</mi><mo>⁢</mo><mi>n</mi><mo>⁢</mo><mi>g</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(7.3.5)</span></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">is equal to <math id="Thmprelem3.p1.m4" class="ltx_Math" alttext="\mathsf{ap}_{|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}}(h(a))" display="inline"><mrow><msub><mi mathvariant="normal">ap</mi><msub><mrow><mo mathvariant="normal" stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded><mo mathvariant="normal" stretchy="false">|</mo></mrow><mi>n</mi></msub></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi>h</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">First, we indeed have a homotopy with components <math id="p18.m1" class="ltx_Math" alttext="\mathsf{ap}_{|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}}(h(a)):%
+\mathopen{}\left|f(a)\right|_{n}\mathclose{}=\mathopen{}\left|g(a)\right|_{n}%
+\mathclose{}" display="inline"><mrow><msub><mi>𝖺𝗉</mi><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></msub><mrow><mo stretchy="false">(</mo><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mi></mi><mo>|</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>.
+Composing on either sides with the paths <math id="p18.m2" class="ltx_Math" alttext="\mathopen{}\left|f(a)\right|_{n}\mathclose{}=\mathopen{}\left\|f\right\|_{n}%
+\mathclose{}(\mathopen{}\left|a\right|_{n}\mathclose{})" display="inline"><mrow><mrow><mi></mi><mo>|</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>f</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p18.m3" class="ltx_Math" alttext="\mathopen{}\left|g(a)\right|_{n}\mathclose{}=\mathopen{}\left\|g\right\|_{n}%
+\mathclose{}(\mathopen{}\left|a\right|_{n}\mathclose{})" display="inline"><mrow><mrow><mi></mi><mo>|</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>g</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, which arise from the definitions of <math id="p18.m4" class="ltx_Math" alttext="\mathopen{}\left\|f\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>f</mi><mo>∥</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math> and <math id="p18.m5" class="ltx_Math" alttext="\mathopen{}\left\|g\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>g</mi><mo>∥</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math>, we obtain a homotopy <math id="p18.m6" class="ltx_Math" alttext="(\mathopen{}\left\|f\right\|_{n}\mathclose{}\circ|\mathord{\hskip 1.0pt\text{-%
+-}\hskip 1.0pt}|_{n})\sim(\mathopen{}\left\|g\right\|_{n}\mathclose{}\circ|%
+\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>f</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>∘</mo><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><msub><mo stretchy="false">|</mo><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>∼</mo><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>g</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>∘</mo><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><msub><mo stretchy="false">|</mo><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>, and hence an equality by function extensionality.
+But since <math id="p18.m7" class="ltx_Math" alttext="(\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}\circ|\mathord{\hskip 1.0pt\text{-%
+-}\hskip 1.0pt}|_{n})" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo>∘</mo><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow></math> is an equivalence, there must be a path <math id="p18.m8" class="ltx_Math" alttext="\mathopen{}\left\|f\right\|_{n}\mathclose{}=\mathopen{}\left\|g\right\|_{n}%
+\mathclose{}" display="inline"><mrow><mrow><mi></mi><mo>∥</mo><mi>f</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>g</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> inducing it, and the coherence laws for function extensionality imply (<a href="#S0.E2" title="(7.3.5) ‣ Lemma 7.3.5. ‣ 7.3 Truncations" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7.3.5</span></a>).
+∎</p>
+</div>
+</div>
+<div id="p19" class="ltx_para">
+<p class="ltx_p">The following observation about reflective subcategories is also standard.</p>
+</div>
+<div id="Thmprecor1" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 7.3.7</span>.</h6>
+<div id="Thmprecor1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A type <math id="Thmprecor1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an <math id="Thmprecor1.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type if and only if <math id="Thmprecor1.p1.m3" class="ltx_Math" alttext="|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}:A\to\mathopen{}\left\|A%
+\right\|_{n}\mathclose{}" display="inline"><mrow><mo mathvariant="normal" stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded><msub><mo mathvariant="normal" stretchy="false">|</mo><mi>n</mi></msub><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal">→</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>A</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> is an equivalence.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p20" class="ltx_para">
+<p class="ltx_p">“If” follows from closure of <math id="p20.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types under equivalence.
+On the other hand, if <math id="p20.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an <math id="p20.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type, we can define <math id="p20.m4" class="ltx_Math" alttext="\mathsf{ext}(\mathsf{id}_{A}):\mathopen{}\left\|A\right\|_{n}\mathclose{}\to{}A" display="inline"><mrow><mi>𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mi>A</mi></mrow></math>.
+Then we have <math id="p20.m5" class="ltx_Math" alttext="\mathsf{ext}(\mathsf{id}_{A})\circ|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}%
+|_{n}=\mathsf{id}_{A}:A\to{}A" display="inline"><mrow><mrow><mrow><mrow><mi>𝖾𝗑𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>∘</mo><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></mrow><mo>=</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub></mrow><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi></mrow></mrow></math> by
+definition. In order to prove that
+<math id="p20.m6" class="ltx_Math" alttext="|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}\circ\mathsf{ext}(\mathsf{id}%
+_{A})=\mathsf{id}_{\mathopen{}\left\|A\right\|_{n}\mathclose{}}" display="inline"><mrow><mrow><mrow><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub><mo>∘</mo><mi>𝖾𝗑𝗍</mi></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>𝗂𝖽</mi><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></msub></mrow></math>, we only need to prove
+that <math id="p20.m7" class="ltx_Math" alttext="|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}\circ\mathsf{ext}(\mathsf{id}%
+_{A})\circ|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}=\mathsf{id}_{%
+\mathopen{}\left\|A\right\|_{n}\mathclose{}}\circ|\mathord{\hskip 1.0pt\text{-%
+-}\hskip 1.0pt}|_{n}" display="inline"><mrow><mrow><mrow><mrow><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub><mo>∘</mo><mi>𝖾𝗑𝗍</mi></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗂𝖽</mi><mi>A</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>∘</mo><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></mrow><mo>=</mo><mrow><msub><mi>𝗂𝖽</mi><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></msub><mo>∘</mo><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></mrow></mrow></math>.
+This is again true:</p>
+</div>
+<figure id="fig1" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center">HoTT_fig_7.3.2.png</p>
+</figure>
+<div id="p21" class="ltx_para">
+<p class="ltx_p">∎</p>
+</div>
+</div>
+<div id="p22" class="ltx_para">
+<p class="ltx_p">The category of <math id="p22.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types also has some special properties not possessed by all reflective subcategories.
+For instance, the reflector <math id="p22.m2" class="ltx_Math" alttext="\mathopen{}\left\|-\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><mo>∥</mo><mo>-</mo><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></math> preserves finite products.</p>
+</div>
+<div id="Thmprethm2" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.3.8</span>.</h6>
+<div id="Thmprethm2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any types <math id="Thmprethm2.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="Thmprethm2.p1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, the induced map <math id="Thmprethm2.p1.m3" class="ltx_Math" alttext="\mathopen{}\left\|A\times B\right\|_{n}\mathclose{}\to\mathopen{}\left\|A%
+\right\|_{n}\mathclose{}\times\mathopen{}\left\|B\right\|_{n}\mathclose{}" display="inline"><mrow><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>A</mi><mo mathvariant="normal">×</mo><mi>B</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow><mo mathvariant="normal">→</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>A</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow><mo mathvariant="normal">×</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>B</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> is an equivalence.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p23" class="ltx_para">
+<p class="ltx_p">It suffices to show that <math id="p23.m1" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{n}\mathclose{}\times\mathopen{}\left\|B\right\|_{%
+n}\mathclose{}" display="inline"><mrow><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>×</mo><mrow><mi></mi><mo>∥</mo><mi>B</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math> has the same universal property as <math id="p23.m2" class="ltx_Math" alttext="\mathopen{}\left\|A\times B\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow><mo>∥</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math>.
+Thus, let <math id="p23.m3" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math> be an <math id="p23.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type; we have</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle(\mathopen{}\left\|A\right\|_{n}\mathclose{}\times\mathopen{}%
+\left\|B\right\|_{n}\mathclose{}\to C)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>×</mo><mrow><mi></mi><mo>∥</mo><mi>B</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle=(\mathopen{}\left\|A\right\|_{n}\mathclose{}\to(\mathopen{}\left%
+\|B\right\|_{n}\mathclose{}\to C))" display="inline"><mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>B</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle=(\mathopen{}\left\|A\right\|_{n}\mathclose{}\to(B\to C))" display="inline"><mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle=(A\to(B\to C))" display="inline"><mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex6.m2" class="ltx_Math" alttext="\displaystyle=(A\times B\to C)" display="inline"><mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>×</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">using the universal properties of <math id="p23.m5" class="ltx_Math" alttext="\mathopen{}\left\|B\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>B</mi><mo>∥</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math> and <math id="p23.m6" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>A</mi><mo>∥</mo></mrow><mi>n</mi></msub><mi></mi></mrow></math>, along with the fact that <math id="p23.m7" class="ltx_Math" alttext="B\to C" display="inline"><mrow><mi>B</mi><mo>→</mo><mi>C</mi></mrow></math> is an <math id="p23.m8" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type since <math id="p23.m9" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math> is.
+It is straightforward to verify that this equivalence is given by composing with <math id="p23.m10" class="ltx_Math" alttext="|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n}\times|\mathord{\hskip 1.0pt%
+\text{--}\hskip 1.0pt}|_{n}" display="inline"><mrow><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub><mo>×</mo><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mi>n</mi></msub></mrow></math>, as needed.
+∎</p>
+</div>
+</div>
+<div id="p24" class="ltx_para">
+<p class="ltx_p">The following related fact about dependent sums is often useful.</p>
+</div>
+<div id="Thmprethm3" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.3.9</span>.</h6>
+<div id="Thmprethm3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmprethm3.p1.m1" class="ltx_Math" alttext="P:A\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> be a family of types. Then there is an equivalence</span></p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\Bigl{\|}\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_%
+{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}\mathopen{}\left\|P(x)\right\|_{n%
+}\mathclose{}\Bigr{\|}_{n}\simeq\Bigl{\|}\mathchoice{\sum_{x:A}\,}{\mathchoice%
+{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{%
+\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}%
+}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:%
+A)}}}P(x)\Bigr{\|}_{n}." display="block"><mrow><msub><mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mi></mi><mo>∥</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo></mrow><mi>n</mi></msub><mo>≃</mo><msub><mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo></mrow><mi>n</mi></msub><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p25" class="ltx_para">
+<p class="ltx_p">We use the induction principle of <math id="p25.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncation several times to construct
+functions</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\displaystyle\varphi" display="inline"><mi>φ</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle:\Bigl{\|}\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{%
+(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle%
+\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{%
+\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}\mathopen{}%
+\left\|P(x)\right\|_{n}\mathclose{}\Bigr{\|}_{n}\to\Bigl{\|}\mathchoice{\sum_{%
+x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum%
+_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{%
+\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)%
+}}{\sum_{(x:A)}}}P(x)\Bigr{\|}_{n}" display="inline"><mrow><mo>:</mo><msub><mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mstyle></mpadded><mrow><mi></mi><mo>∥</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo></mrow><mi>n</mi></msub><mo>→</mo><msub><mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mstyle></mpadded><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo></mrow><mi>n</mi></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex9" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\displaystyle\psi" display="inline"><mi>ψ</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex9.m2" class="ltx_Math" alttext="\displaystyle:\Bigl{\|}\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{%
+(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle%
+\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{%
+\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}P(x)\Bigr{%
+\|}_{n}\to\Bigl{\|}\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A%
+)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(%
+x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum%
+_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}\mathopen{}\left\|P(x)%
+\right\|_{n}\mathclose{}\Bigr{\|}_{n}" display="inline"><mrow><mo>:</mo><msub><mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mstyle></mpadded><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo></mrow><mi>n</mi></msub><mo>→</mo><msub><mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mstyle></mpadded><mrow><mi></mi><mo>∥</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo></mrow><mi>n</mi></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and homotopies <math id="p25.m2" class="ltx_Math" alttext="H:\varphi\circ\psi\sim\mathsf{id}" display="inline"><mrow><mi>H</mi><mo>:</mo><mrow><mrow><mi>φ</mi><mo>∘</mo><mi>ψ</mi></mrow><mo>∼</mo><mi>𝗂𝖽</mi></mrow></mrow></math> and <math id="p25.m3" class="ltx_Math" alttext="K:\psi\circ\varphi\sim\mathsf{id}" display="inline"><mrow><mi>K</mi><mo>:</mo><mrow><mrow><mi>ψ</mi><mo>∘</mo><mi>φ</mi></mrow><mo>∼</mo><mi>𝗂𝖽</mi></mrow></mrow></math> exhibiting them as quasi-inverses.
+We define <math id="p25.m4" class="ltx_Math" alttext="\varphi" display="inline"><mi>φ</mi></math> by setting <math id="p25.m5" class="ltx_Math" alttext="\varphi(\mathopen{}\left|{\mathopen{}(x,\mathopen{}\left|u\right|_{n}%
+\mathclose{})\mathclose{}}\right|_{n}\mathclose{}):\!\!\equiv\mathopen{}\left|%
+{\mathopen{}(x,u)\mathclose{}}\right|_{n}\mathclose{}" display="inline"><mrow><mi>φ</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi></mi><mo>|</mo><mi>u</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mi></mi></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>.
+We define <math id="p25.m6" class="ltx_Math" alttext="\psi" display="inline"><mi>ψ</mi></math> by setting <math id="p25.m7" class="ltx_Math" alttext="\psi(\mathopen{}\left|{\mathopen{}(x,u)\mathclose{}}\right|_{n}\mathclose{}):%
+\!\!\equiv\mathopen{}\left|{\mathopen{}(x,\mathopen{}\left|u\right|_{n}%
+\mathclose{})\mathclose{}}\right|_{n}\mathclose{}" display="inline"><mrow><mi>ψ</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi></mi><mo>|</mo><mi>u</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mi></mi></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>.
+Then we define <math id="p25.m8" class="ltx_Math" alttext="H(\mathopen{}\left|{\mathopen{}(x,u)\mathclose{}}\right|_{n}\mathclose{}):\!\!%
+\equiv\mathsf{refl}_{\mathopen{}\left|{\mathopen{}(x,u)\mathclose{}}\right|_{n%
+}\mathclose{}}" display="inline"><mrow><mi>H</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow></msub></mrow></math> and
+<math id="p25.m9" class="ltx_Math" alttext="K(\mathopen{}\left|{\mathopen{}(x,\mathopen{}\left|u\right|_{n}\mathclose{})%
+\mathclose{}}\right|_{n}\mathclose{}):\!\!\equiv\mathsf{refl}_{\mathopen{}%
+\left|{\mathopen{}(x,\mathopen{}\left|u\right|_{n}\mathclose{})\mathclose{}}%
+\right|_{n}\mathclose{}}" display="inline"><mrow><mi>K</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi></mi><mo>|</mo><mi>u</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mi></mi></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi></mi><mo>|</mo><mi>u</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mi></mi></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow></msub></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmprecor2" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 7.3.10</span>.</h6>
+<div id="Thmprecor2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmprecor2.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an <math id="Thmprecor2.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type and <math id="Thmprecor2.p1.m3" class="ltx_Math" alttext="P:A\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> is any type family, then</span></p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\mathchoice{\sum_{a:A}\,}{\mathchoice{{\textstyle\sum_{(a:A)}}}{\sum_{(a:A)}}{%
+\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{(a:A)}}}{\sum_{(a:A)%
+}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{(a:A)}}}{\sum_{(a%
+:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}\mathopen{}\left\|P(a)\right\|_{n}\mathclose%
+{}\simeq\Bigl{\|}\mathchoice{\sum_{a:A}\,}{\mathchoice{{\textstyle\sum_{(a:A)}%
+}}{\sum_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{(a:%
+A)}}}{\sum_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{%
+(a:A)}}}{\sum_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}P(a)\Bigr{\|}_{n}" display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mi></mi><mo>∥</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><mo>≃</mo><msub><mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo></mrow><mi>n</mi></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p26" class="ltx_para">
+<p class="ltx_p">If <math id="p26.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an <math id="p26.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type, then the left-hand type above is already an <math id="p26.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type, hence equivalent to its <math id="p26.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncation; thus this follows from Theorem 7.3.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/73truncations#Thmprethm3</span>).
+∎</p>
+</div>
+</div>
+<div id="p27" class="ltx_para">
+<p class="ltx_p">We can characterize the path spaces of a truncation using the same method that we used in §2.12 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/212coproducts</span>),§2.13 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers</span>) for
+coproducts and natural numbers (and which we will use in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87582</span>Chapter 8 to calculate homotopy groups).
+Unsurprisingly, the path spaces in the <math id="p27.m1" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-truncation of <math id="p27.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> are the <math id="p27.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncations of the path spaces of <math id="p27.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+Indeed, for any <math id="p27.m5" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></math> there is a canonical map</p>
+<table id="S0.E3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E3.m1" class="ltx_Math" alttext="f:\bigl{\|}x=_{A}y\bigr{\|}_{n}\to\Big{(}\mathopen{}\left|x\right|_{n+1}%
+\mathclose{}=_{\mathopen{}\left\|A\right\|_{n+1}\mathclose{}}\mathopen{}\left|%
+y\right|_{n+1}\mathclose{}\Big{)}" display="block"><mrow><mi>f</mi><mo>:</mo><msub><mrow><mo fence="true" maxsize="120%" minsize="120%">∥</mo><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi><mo fence="true" maxsize="120%" minsize="120%">∥</mo></mrow><mi>n</mi></msub><mo>→</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><msub><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mrow><mi></mi><mo>|</mo><mi>y</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(7.3.11)</span></td>
+</tr>
+</table>
+<p class="ltx_p">defined by</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="f(\mathopen{}\left|p\right|_{n}\mathclose{}):\!\!\equiv\mathsf{ap}_{|\mathord{%
+\hskip 1.0pt\text{--}\hskip 1.0pt}|_{n+1}}(p)." display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>p</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝖺𝗉</mi><msub><mrow><mo stretchy="false">|</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">|</mo></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></msub><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This definition uses the recursion principle for <math id="p27.m6" class="ltx_Math" alttext="\|\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}\|_{n}" display="inline"><msub><mrow><mo>∥</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo>∥</mo></mrow><mi>n</mi></msub></math>, which is correct because <math id="p27.m7" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{n+1}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>A</mi><mo>∥</mo></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></math> is <math id="p27.m8" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-truncated, so that the
+codomain of <math id="p27.m9" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is <math id="p27.m10" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncated.</p>
+</div>
+<div id="Thmprethm4" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.3.12</span>.</h6>
+<div id="Thmprethm4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmprethm4.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="Thmprethm4.p1.m2" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> and <math id="Thmprethm4.p1.m3" class="ltx_Math" alttext="n\geq-2" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">≥</mo><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">2</mn></mrow></mrow></math>, the map (<a href="#S0.E3" title="(7.3.11) ‣ 7.3 Truncations" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7.3.11</span></a>) is an equivalence; thus we have</span></p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="\bigl{\|}x=_{A}y\bigr{\|}_{n}\simeq\Big{(}\mathopen{}\left|x\right|_{n+1}%
+\mathclose{}=_{\mathopen{}\left\|A\right\|_{n+1}\mathclose{}}\mathopen{}\left|%
+y\right|_{n+1}\mathclose{}\Big{)}." display="block"><mrow><msub><mrow><mo fence="true" maxsize="120%" minsize="120%">∥</mo><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi><mo fence="true" maxsize="120%" minsize="120%">∥</mo></mrow><mi>n</mi></msub><mo>≃</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><msub><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mrow><mi></mi><mo>|</mo><mi>y</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p28" class="ltx_para">
+<p class="ltx_p">The proof is a simple application of the encode-decode method:
+As in previous situations, we cannot directly define a quasi-inverse to the map (<a href="#S0.E3" title="(7.3.11) ‣ 7.3 Truncations" class="ltx_ref"><span class="ltx_text ltx_ref_tag">7.3.11</span></a>) because there is no way to induct on an
+equality between <math id="p28.m1" class="ltx_Math" alttext="\mathopen{}\left|x\right|_{n+1}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>|</mo><mi>x</mi><mo>|</mo></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></math> and <math id="p28.m2" class="ltx_Math" alttext="\mathopen{}\left|y\right|_{n+1}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>|</mo><mi>y</mi><mo>|</mo></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></math>.
+Thus, instead we generalize its type, in order to have general elements of the type <math id="p28.m3" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{n+1}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>A</mi><mo>∥</mo></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></math> instead of <math id="p28.m4" class="ltx_Math" alttext="\mathopen{}\left|x\right|_{n+1}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>|</mo><mi>x</mi><mo>|</mo></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></math> and <math id="p28.m5" class="ltx_Math" alttext="\mathopen{}\left|y\right|_{n+1}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>|</mo><mi>y</mi><mo>|</mo></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></math>.
+Define <math id="p28.m6" class="ltx_Math" alttext="P:\mathopen{}\left\|A\right\|_{n+1}\mathclose{}\to\mathopen{}\left\|A\right\|_%
+{n+1}\mathclose{}\to{n}\text{-}\mathsf{Type}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo>→</mo><mi>n</mi><mtext>-</mtext><mi>𝖳𝗒𝗉𝖾</mi></mrow></math> by</p>
+<table id="S0.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex13.m1" class="ltx_Math" alttext="P(\mathopen{}\left|x\right|_{n+1}\mathclose{},\mathopen{}\left|y\right|_{n+1}%
+\mathclose{}):\!\!\equiv\mathopen{}\left\|x=_{A}y\right\|_{n}\mathclose{}" display="block"><mrow><mi>P</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo>,</mo><mrow><mi></mi><mo>|</mo><mi>y</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mi></mi><mo>∥</mo><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This definition is correct because <math id="p28.m7" class="ltx_Math" alttext="\mathopen{}\left\|x=_{A}y\right\|_{n}\mathclose{}" display="inline"><mrow><mi></mi><mo>∥</mo><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></math> is <math id="p28.m8" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncated, and <math id="p28.m9" class="ltx_Math" alttext="{n}\text{-}\mathsf{Type}" display="inline"><mrow><mi>n</mi><mo>⁢</mo><mtext>-</mtext><mo>⁢</mo><mi>𝖳𝗒𝗉𝖾</mi></mrow></math> is <math id="p28.m10" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-truncated by
+Theorem 7.1.11 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/71definitionofntypes#Thmprethm7</span>).
+Now for every <math id="p28.m11" class="ltx_Math" alttext="u,v:\mathopen{}\left\|A\right\|_{n+1}\mathclose{}" display="inline"><mrow><mi>u</mi><mo>,</mo><mi>v</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></mrow></math>, there is a map</p>
+<table id="S0.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\mathsf{encode}:P(u,v)\to\big{(}u=_{\mathopen{}\left\|A\right\|_{n+1}%
+\mathclose{}}v\big{)}" display="block"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>:</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>u</mi><msub><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mi>v</mi><mo maxsize="120%" minsize="120%">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">defined for <math id="p28.m12" class="ltx_Math" alttext="u=\mathopen{}\left|x\right|_{n+1}\mathclose{}" display="inline"><mrow><mi>u</mi><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></mrow></math> and <math id="p28.m13" class="ltx_Math" alttext="v=\mathopen{}\left|y\right|_{n+1}\mathclose{}" display="inline"><mrow><mi>v</mi><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>y</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></mrow></math> and <math id="p28.m14" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math> by</p>
+<table id="S0.Ex15" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex15.m1" class="ltx_Math" alttext="\mathsf{encode}(\mathopen{}\left|p\right|_{n}\mathclose{}):\!\!\equiv\mathsf{%
+ap}_{\mathopen{}\left|\mathord{\hskip 1.0pt\underline{\hskip 4.3pt}\hskip 1.0%
+pt}\right|_{n+1}\mathclose{}}(p)." display="block"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>p</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝖺𝗉</mi><mrow><mi></mi><mo>|</mo><mpadded lspace="1pt" width="+2pt"><munder accentunder="true"><mi></mi><mo>¯</mo></munder></mpadded><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Since the codomain of <math id="p28.m15" class="ltx_Math" alttext="\mathsf{encode}" display="inline"><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi></math> is <math id="p28.m16" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncated, it suffices to define it only for <math id="p28.m17" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> and <math id="p28.m18" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math> of this form, and then it’s just the same
+definition as before.
+We also define a function</p>
+<table id="S0.Ex16" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex16.m1" class="ltx_Math" alttext="r:\mathchoice{\prod_{u:\mathopen{}\left\|A\right\|_{n+1}\mathclose{}}\,}{%
+\mathchoice{{\textstyle\prod_{(u:\mathopen{}\left\|A\right\|_{n+1}\mathclose{}%
+)}}}{\prod_{(u:\mathopen{}\left\|A\right\|_{n+1}\mathclose{})}}{\prod_{(u:%
+\mathopen{}\left\|A\right\|_{n+1}\mathclose{})}}{\prod_{(u:\mathopen{}\left\|A%
+\right\|_{n+1}\mathclose{})}}}{\mathchoice{{\textstyle\prod_{(u:\mathopen{}%
+\left\|A\right\|_{n+1}\mathclose{})}}}{\prod_{(u:\mathopen{}\left\|A\right\|_{%
+n+1}\mathclose{})}}{\prod_{(u:\mathopen{}\left\|A\right\|_{n+1}\mathclose{})}}%
+{\prod_{(u:\mathopen{}\left\|A\right\|_{n+1}\mathclose{})}}}{\mathchoice{{%
+\textstyle\prod_{(u:\mathopen{}\left\|A\right\|_{n+1}\mathclose{})}}}{\prod_{(%
+u:\mathopen{}\left\|A\right\|_{n+1}\mathclose{})}}{\prod_{(u:\mathopen{}\left%
+\|A\right\|_{n+1}\mathclose{})}}{\prod_{(u:\mathopen{}\left\|A\right\|_{n+1}%
+\mathclose{})}}}P(u,u)" display="block"><mrow><mi>r</mi><mo>:</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>u</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></mrow></munder></mpadded><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">by induction on <math id="p28.m19" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>, where <math id="p28.m20" class="ltx_Math" alttext="r(\mathopen{}\left|x\right|_{n+1}\mathclose{}):\!\!\equiv\mathopen{}\left|%
+\mathsf{refl}_{x}\right|_{n}\mathclose{}" display="inline"><mrow><mi>r</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mi></mi><mo>|</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math>.</p>
+</div>
+<div id="p29" class="ltx_para">
+<p class="ltx_p">Now we can define an inverse map</p>
+<table id="S0.Ex17" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex17.m1" class="ltx_Math" alttext="\mathsf{decode}:(u=_{\mathopen{}\left\|A\right\|_{n+1}\mathclose{}}v)\to P(u,v)" display="block"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><msub><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mi>v</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">by</p>
+<table id="S0.Ex18" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex18.m1" class="ltx_Math" alttext="\mathsf{decode}(p):\!\!\equiv\mathsf{transport}^{v\mapsto P(u,v)}(p,r(u))." display="block"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>v</mi><mo>↦</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>r</mi><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">To show that the composite</p>
+<table id="S0.Ex19" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex19.m1" class="ltx_Math" alttext="(u=_{\mathopen{}\left\|A\right\|_{n+1}\mathclose{}}v)\xrightarrow{\mathsf{%
+decode}}P(u,v)\xrightarrow{\mathsf{encode}}(u=_{\mathopen{}\left\|A\right\|_{n%
++1}\mathclose{}}v)" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>u</mi><msub><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mi>v</mi><mo stretchy="false">)</mo></mrow><mover accent="true"><mo>→</mo><mo>𝖽𝖾𝖼𝗈𝖽𝖾</mo></mover><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><mover accent="true"><mo>→</mo><mo>𝖾𝗇𝖼𝗈𝖽𝖾</mo></mover><mrow><mo stretchy="false">(</mo><mi>u</mi><msub><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">is the identity function, by path induction it suffices to check it for <math id="p29.m1" class="ltx_Math" alttext="\mathsf{refl}_{u}:u=u" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>u</mi></msub><mo>:</mo><mrow><mi>u</mi><mo>=</mo><mi>u</mi></mrow></mrow></math>, in which case what we need to know is that
+<math id="p29.m2" class="ltx_Math" alttext="\mathsf{decode}(r(u))=\mathsf{refl}_{u}" display="inline"><mrow><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>u</mi></msub></mrow></math>.
+But since this is an <math id="p29.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type, hence also an <math id="p29.m4" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-type, we may assume <math id="p29.m5" class="ltx_Math" alttext="u\equiv\mathopen{}\left|x\right|_{n+1}\mathclose{}" display="inline"><mrow><mi>u</mi><mo>≡</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></mrow></math>, in which case it follows by definition
+of <math id="p29.m6" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> and <math id="p29.m7" class="ltx_Math" alttext="\mathsf{decode}" display="inline"><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi></math>.
+Finally, to show that</p>
+<table id="S0.Ex20" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex20.m1" class="ltx_Math" alttext="P(u,v)\xrightarrow{\mathsf{encode}}(u=_{\mathopen{}\left\|A\right\|_{n+1}%
+\mathclose{}}v)\xrightarrow{\mathsf{decode}}P(u,v)" display="block"><mrow><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><mover accent="true"><mo>→</mo><mo>𝖾𝗇𝖼𝗈𝖽𝖾</mo></mover><mrow><mo stretchy="false">(</mo><mi>u</mi><msub><mo>=</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mi>v</mi><mo stretchy="false">)</mo></mrow><mover accent="true"><mo>→</mo><mo>𝖽𝖾𝖼𝗈𝖽𝖾</mo></mover><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">is the identity function, since this goal is again an <math id="p29.m8" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type, we may assume that <math id="p29.m9" class="ltx_Math" alttext="u=\mathopen{}\left|x\right|_{n+1}\mathclose{}" display="inline"><mrow><mi>u</mi><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></mrow></math> and <math id="p29.m10" class="ltx_Math" alttext="v=\mathopen{}\left|y\right|_{n+1}\mathclose{}" display="inline"><mrow><mi>v</mi><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>y</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></mrow></math> and that we are
+considering <math id="p29.m11" class="ltx_Math" alttext="\mathopen{}\left|p\right|_{n}\mathclose{}:P(\mathopen{}\left|x\right|_{n+1}%
+\mathclose{},\mathopen{}\left|y\right|_{n+1}\mathclose{})" display="inline"><mrow><mrow><mi></mi><mo>|</mo><mi>p</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo>:</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo>,</mo><mrow><mi></mi><mo>|</mo><mi>y</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> for some <math id="p29.m12" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math>.
+Then we have</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex21" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex21.m1" class="ltx_Math" alttext="\displaystyle\mathsf{decode}(\mathsf{encode}(\mathopen{}\left|p\right|_{n}%
+\mathclose{}))" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>p</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex21.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{decode}(\mathsf{ap}_{\mathopen{}\left|\mathord{\hskip 1.%
+0pt\underline{\hskip 4.3pt}\hskip 1.0pt}\right|_{n+1}\mathclose{}}(p))" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝖺𝗉</mi><mrow><mi></mi><mo>|</mo><mpadded lspace="1pt" width="+2pt"><munder accentunder="true"><mi></mi><mo>¯</mo></munder></mpadded><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex22" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex22.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{v\mapsto P(\mathopen{}\left|x\right|_{n+1}%
+\mathclose{},v)}(\mathsf{ap}_{\mathopen{}\left|\mathord{\hskip 1.0pt\underline%
+{\hskip 4.3pt}\hskip 1.0pt}\right|_{n+1}\mathclose{}}(p),\mathopen{}\left|%
+\mathsf{refl}_{x}\right|_{n}\mathclose{})" display="inline"><mrow><mo>=</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>v</mi><mo>↦</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow></msup><mrow><mo stretchy="false">(</mo><msub><mi>𝖺𝗉</mi><mrow><mi></mi><mo>|</mo><mpadded lspace="1pt" width="+2pt"><munder accentunder="true"><mi></mi><mo>¯</mo></munder></mpadded><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></msub><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mi></mi><mo>|</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex23" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex23.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{v\mapsto\mathopen{}\left\|u=v\right\|_{n}%
+\mathclose{}}(p,\mathopen{}\left|\mathsf{refl}_{x}\right|_{n}\mathclose{})" display="inline"><mrow><mo>=</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>v</mi><mo>↦</mo><mrow><mi></mi><mo>∥</mo><mi>u</mi><mo>=</mo><mi>v</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow></mrow></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mrow><mi></mi><mo>|</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex24" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex24.m2" class="ltx_Math" alttext="\displaystyle=\mathopen{}\left|\mathsf{transport}^{v\mapsto(u=v)}(p,\mathsf{%
+refl}_{x})\right|_{n}\mathclose{}" display="inline"><mrow><mo>=</mo><mrow><mi></mi><mo>|</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>v</mi><mo>↦</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>=</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex25" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex25.m2" class="ltx_Math" alttext="\displaystyle=\mathopen{}\left|p\right|_{n}\mathclose{}." display="inline"><mrow><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>p</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This completes the proof that <math id="p29.m13" class="ltx_Math" alttext="\mathsf{encode}" display="inline"><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi></math> and <math id="p29.m14" class="ltx_Math" alttext="\mathsf{decode}" display="inline"><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi></math> are quasi-inverses.
+The stated result is then the special case where <math id="p29.m15" class="ltx_Math" alttext="u=\mathopen{}\left|x\right|_{n+1}\mathclose{}" display="inline"><mrow><mi>u</mi><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>x</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></mrow></math> and <math id="p29.m16" class="ltx_Math" alttext="v=\mathopen{}\left|y\right|_{n+1}\mathclose{}" display="inline"><mrow><mi>v</mi><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>y</mi><msub><mo>|</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmprecor3" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 7.3.13</span>.</h6>
+<div id="Thmprecor3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmprecor3.p1.m1" class="ltx_Math" alttext="n\geq-2" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">≥</mo><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">2</mn></mrow></mrow></math> and <math id="Thmprecor3.p1.m2" class="ltx_Math" alttext="(A,a)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> be a pointed type. Then</span></p>
+<table id="S0.Ex26" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex26.m1" class="ltx_Math" alttext="\bigl{\|}\Omega(A,a)\bigr{\|}_{n}=\Omega\mathopen{}\left(\mathopen{}\left\|(A,%
+a)\right\|_{n+1}\mathclose{}\right)" display="block"><mrow><msub><mrow><mo fence="true" maxsize="120%" minsize="120%">∥</mo><mi mathvariant="normal">Ω</mi><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo fence="true" maxsize="120%" minsize="120%">∥</mo></mrow><mi>n</mi></msub><mo>=</mo><mi mathvariant="normal">Ω</mi><mrow><mi></mi><mrow><mo>(</mo><mrow><mi></mi><mo>∥</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi></mi></mrow><mo>)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p30" class="ltx_para">
+<p class="ltx_p">This is a special case of the previous lemma where <math id="p30.m1" class="ltx_Math" alttext="x=y=a" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>y</mi><mo>=</mo><mi>a</mi></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmprecor4" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 7.3.14</span>.</h6>
+<div id="Thmprecor4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmprecor4.p1.m1" class="ltx_Math" alttext="n\geq-2" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">≥</mo><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">2</mn></mrow></mrow></math> and <math id="Thmprecor4.p1.m2" class="ltx_Math" alttext="k\geq 0" display="inline"><mrow><mi>k</mi><mo mathvariant="normal">≥</mo><mn mathvariant="normal">0</mn></mrow></math> and <math id="Thmprecor4.p1.m3" class="ltx_Math" alttext="(A,a)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> a pointed type. Then</span></p>
+<table id="S0.Ex27" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex27.m1" class="ltx_Math" alttext="\bigl{\|}\Omega^{k}(A,a)\bigr{\|}_{n}=\Omega^{k}\mathopen{}\left(\mathopen{}%
+\left\|(A,a)\right\|_{n+k}\mathclose{}\right)." display="block"><mrow><msub><mrow><mo fence="true" maxsize="120%" minsize="120%">∥</mo><msup><mi mathvariant="normal">Ω</mi><mi>k</mi></msup><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo fence="true" maxsize="120%" minsize="120%">∥</mo></mrow><mi>n</mi></msub><mo>=</mo><msup><mi mathvariant="normal">Ω</mi><mi>k</mi></msup><mrow><mi></mi><mrow><mo>(</mo><mrow><mi></mi><mo>∥</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><msub><mo>∥</mo><mrow><mi>n</mi><mo>+</mo><mi>k</mi></mrow></msub><mi></mi></mrow><mo>)</mo></mrow><mo>.</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p31" class="ltx_para">
+<p class="ltx_p">By induction on <math id="p31.m1" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>, using the recursive definition of <math id="p31.m2" class="ltx_Math" alttext="\Omega^{k}" display="inline"><msup><mi mathvariant="normal">Ω</mi><mi>k</mi></msup></math>.
+∎</p>
+</div>
+</div>
+<div id="p32" class="ltx_para">
+<p class="ltx_p">We also observe that “truncations are cumulative”: if we truncate to an <math id="p32.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type and then to a <math id="p32.m2" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-type with <math id="p32.m3" class="ltx_Math" alttext="k\leq n" display="inline"><mrow><mi>k</mi><mo>≤</mo><mi>n</mi></mrow></math>, then we might as
+well have truncated directly to a <math id="p32.m4" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-type.</p>
+</div>
+<div id="Thmprelem4" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 7.3.15</span>.</h6>
+<div id="Thmprelem4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmprelem4.p1.m1" class="ltx_Math" alttext="k,n\geq-2" display="inline"><mrow><mrow><mi>k</mi><mo mathvariant="normal">,</mo><mi>n</mi></mrow><mo mathvariant="normal">≥</mo><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">2</mn></mrow></mrow></math> with <math id="Thmprelem4.p1.m2" class="ltx_Math" alttext="k\leq{}n" display="inline"><mrow><mi>k</mi><mo mathvariant="normal">≤</mo><mi>n</mi></mrow></math> and <math id="Thmprelem4.p1.m3" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math>. Then
+<math id="Thmprelem4.p1.m4" class="ltx_Math" alttext="\mathopen{}\left\|\mathopen{}\left\|A\right\|_{n}\mathclose{}\right\|_{k}%
+\mathclose{}=\mathopen{}\left\|A\right\|_{k}\mathclose{}" display="inline"><mrow><mrow><mi></mi><mo mathvariant="normal">∥</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>A</mi><msub><mo mathvariant="normal">∥</mo><mi>n</mi></msub><mi></mi></mrow><msub><mo mathvariant="normal">∥</mo><mi>k</mi></msub><mi></mi></mrow><mo mathvariant="normal">=</mo><mrow><mi></mi><mo mathvariant="normal">∥</mo><mi>A</mi><msub><mo mathvariant="normal">∥</mo><mi>k</mi></msub><mi></mi></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p33" class="ltx_para">
+<p class="ltx_p">We define two maps <math id="p33.m1" class="ltx_Math" alttext="f:\mathopen{}\left\|\mathopen{}\left\|A\right\|_{n}\mathclose{}\right\|_{k}%
+\mathclose{}\to\mathopen{}\left\|A\right\|_{k}\mathclose{}" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow></mrow></math> and
+<math id="p33.m2" class="ltx_Math" alttext="g:\mathopen{}\left\|A\right\|_{k}\mathclose{}\to\mathopen{}\left\|\mathopen{}%
+\left\|A\right\|_{n}\mathclose{}\right\|_{k}\mathclose{}" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow><mo>→</mo><mrow><mi></mi><mo>∥</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow></mrow></math> by</p>
+<table id="S0.Ex28" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex28.m1" class="ltx_Math" alttext="f(\mathopen{}\left|\mathopen{}\left|a\right|_{n}\mathclose{}\right|_{k}%
+\mathclose{}):\!\!\equiv\mathopen{}\left|a\right|_{k}\mathclose{}\qquad\text{%
+and}\qquad g(\mathopen{}\left|a\right|_{k}\mathclose{}):\!\!\equiv\mathopen{}%
+\left|\mathopen{}\left|a\right|_{n}\mathclose{}\right|_{k}\mathclose{}." display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>and</mtext><mo mathvariant="italic" separator="true">  </mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The map <math id="p33.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is well-defined because <math id="p33.m4" class="ltx_Math" alttext="\mathopen{}\left\|A\right\|_{k}\mathclose{}" display="inline"><mrow><mi></mi><msub><mrow><mo>∥</mo><mi>A</mi><mo>∥</mo></mrow><mi>k</mi></msub><mi></mi></mrow></math> is <math id="p33.m5" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-truncated and also
+<math id="p33.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-truncated (because <math id="p33.m7" class="ltx_Math" alttext="k\leq{}n" display="inline"><mrow><mi>k</mi><mo>≤</mo><mi>n</mi></mrow></math>), and the map <math id="p33.m8" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> is well-defined because
+<math id="p33.m9" class="ltx_Math" alttext="\mathopen{}\left\|\mathopen{}\left\|A\right\|_{n}\mathclose{}\right\|_{k}%
+\mathclose{}" display="inline"><mrow><mi></mi><mo>∥</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow></math> is <math id="p33.m10" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>-truncated.</p>
+</div>
+<div id="p34" class="ltx_para">
+<p class="ltx_p">The composition <math id="p34.m1" class="ltx_Math" alttext="f\circ{}g:\mathopen{}\left\|A\right\|_{k}\mathclose{}\to\mathopen{}\left\|A%
+\right\|_{k}\mathclose{}" display="inline"><mrow><mi>f</mi><mo>∘</mo><mi>g</mi><mo>:</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow><mo>→</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow></mrow></math> satisfies
+<math id="p34.m2" class="ltx_Math" alttext="(f\circ{}g)(\mathopen{}\left|a\right|_{k}\mathclose{})=\mathopen{}\left|a%
+\right|_{k}\mathclose{}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>∘</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow></mrow></math>, hence <math id="p34.m3" class="ltx_Math" alttext="f\circ{}g=\mathsf{id}_{\mathopen{}\left\|A\right\|_{k}\mathclose{}}" display="inline"><mrow><mrow><mi>f</mi><mo>∘</mo><mi>g</mi></mrow><mo>=</mo><msub><mi>𝗂𝖽</mi><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow></msub></mrow></math>.
+Similarly, we have <math id="p34.m4" class="ltx_Math" alttext="(g\circ{}f)(\mathopen{}\left|\mathopen{}\left|a\right|_{n}\mathclose{}\right|_%
+{k}\mathclose{})=\mathopen{}\left|\mathopen{}\left|a\right|_{n}\mathclose{}%
+\right|_{k}\mathclose{}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>g</mi><mo>∘</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mi></mi><mo>|</mo><mrow><mi></mi><mo>|</mo><mi>a</mi><msub><mo>|</mo><mi>n</mi></msub><mi></mi></mrow><msub><mo>|</mo><mi>k</mi></msub><mi></mi></mrow></mrow></math> and hence <math id="p34.m5" class="ltx_Math" alttext="g\circ{}f=\mathsf{id}_{\mathopen{}\left\|\mathopen{}\left\|A\right\|_{n}%
+\mathclose{}\right\|_{k}\mathclose{}}" display="inline"><mrow><mrow><mi>g</mi><mo>∘</mo><mi>f</mi></mrow><mo>=</mo><msub><mi>𝗂𝖽</mi><mrow><mi></mi><mo>∥</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mi>n</mi></msub><mi></mi></mrow><msub><mo>∥</mo><mi>k</mi></msub><mi></mi></mrow></msub></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p35" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">7.3 Truncations</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:39:16 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

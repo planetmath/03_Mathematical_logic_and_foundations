@@ -1,0 +1,162 @@
+<!DOCTYPE html><html>
+<head>
+<title>Type theory</title>
+<!--Generated on Thu Feb  8 19:46:00 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-calculus, Russell, Bertrand, assistant, computer proof assistant, continuous, equivalence, formalized, function, homotopy, in classical homotopy theory, mathematics, programming, proof, space, topological, type theory">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">Type theory</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Type theory was originally invented by Bertrand Russell <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib10" title="" class="ltx_ref">10</a>]</cite>, as a device for blocking the paradoxes in the logical foundations of mathematics that were under investigation at the time. It was later developed as a rigorous formal system in its own right (under the name “<math id="p1.m1" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-calculus”) by Alonzo Church <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib1" title="" class="ltx_ref">1</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib2" title="" class="ltx_ref">2</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib3" title="" class="ltx_ref">3</a>]</cite>. Although it is not generally regarded as the foundation for classical mathematics, set theory being more customary, type theory still has numerous applications, especially in computer science and the theory of programming languages <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib9" title="" class="ltx_ref">9</a>]</cite>.
+Per Martin-Löf <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib5" title="" class="ltx_ref">5</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib6" title="" class="ltx_ref">6</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib7" title="" class="ltx_ref">7</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib8" title="" class="ltx_ref">8</a>]</cite>, among others,
+developed a “predicative” modification of Church’s type system, which is now usually called dependent, constructive, intuitionistic, or simply <em class="ltx_emph ltx_font_italic">Martin-Löf type theory</em>. This is the basis of the system that we consider here; it was originally intended as a rigorous framework for the formalization of constructive mathematics. In what follows, we will often use “type theory” to refer specifically to this system and similar ones, although type theory as a subject is much broader (see <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib11" title="" class="ltx_ref">11</a>]</cite>,<cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib4" title="" class="ltx_ref">4</a>]</cite> for the history of type theory).</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">In type theory, unlike set theory, objects are classified using a primitive notion of <em class="ltx_emph ltx_font_italic">type</em>, similar to the data-types used in programming languages. These elaborately structured types can be used to express detailed specifications of the objects classified, giving rise to principles of reasoning about these objects. To take a very simple example, the objects of a product type <math id="p2.m1" class="ltx_Math" alttext="A\times B" display="inline"><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow></math> are known to be of the form <math id="p2.m2" class="ltx_Math" alttext="{\mathopen{}(a,b)\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math>, and so one automatically knows how to construct them and how to decompose them. Similarly, an object of function type <math id="p2.m3" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math> can be acquired from an object of type <math id="p2.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> parametrized by objects of type <math id="p2.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, and can be evaluated at an argument of type <math id="p2.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>. This rigidly predictable behavior of all objects (as opposed to set theory’s more liberal formation principles, allowing inhomogeneous sets) is one aspect of type theory that has led to its extensive use in verifying the correctness of computer programs. The clear reasoning principles associated with the construction of types also form the basis of modern <em class="ltx_emph ltx_font_italic">computer proof assistants</em>,
+which are used for formalizing mathematics and verifying the correctness of formalized proofs. We return to this aspect of type theory below.
+</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">One problem in understanding type theory from a mathematical point of view, however, has always been that the basic concept of <em class="ltx_emph ltx_font_italic">type</em> is unlike that of <em class="ltx_emph ltx_font_italic">set</em> in ways that have been hard to make precise. We believe that the new idea of regarding types, not as strange sets (perhaps constructed without using classical logic), but as spaces, viewed from the perspective of homotopy theory, is a significant step forward. In particular, it solves the problem of understanding how the notion of equality of elements of a type differs from that of elements of a set.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">In homotopy theory one is concerned with spaces
+and continuous mappings between them,
+up to homotopy. A <em class="ltx_emph ltx_font_italic">homotopy</em>
+between a pair of continuous maps <math id="p4.m1" class="ltx_Math" alttext="f:X\to Y" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>X</mi><mo>→</mo><mi>Y</mi></mrow></mrow></math>
+and <math id="p4.m2" class="ltx_Math" alttext="g:X\to Y" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mi>X</mi><mo>→</mo><mi>Y</mi></mrow></mrow></math> is
+a continuous map <math id="p4.m3" class="ltx_Math" alttext="H:X\times[0,1]\to Y" display="inline"><mrow><mi>H</mi><mo>:</mo><mrow><mrow><mi>X</mi><mo>×</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow><mo>→</mo><mi>Y</mi></mrow></mrow></math> satisfying
+<math id="p4.m4" class="ltx_Math" alttext="H(x,0)=f(x)" display="inline"><mrow><mrow><mi>H</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p4.m5" class="ltx_Math" alttext="H(x,1)=g(x)" display="inline"><mrow><mrow><mi>H</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. The homotopy <math id="p4.m6" class="ltx_Math" alttext="H" display="inline"><mi>H</mi></math> may be thought of as a “continuous deformation” of <math id="p4.m7" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> into <math id="p4.m8" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math>. The spaces <math id="p4.m9" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> and <math id="p4.m10" class="ltx_Math" alttext="Y" display="inline"><mi>Y</mi></math> are said to be <em class="ltx_emph ltx_font_italic">homotopy equivalent</em>,
+<math id="p4.m11" class="ltx_Math" alttext="X\simeq Y" display="inline"><mrow><mi>X</mi><mo>≃</mo><mi>Y</mi></mrow></math>, if there are continuous maps going back and forth, the composites of which are homotopical to the respective identity mappings, i.e., if they are isomorphic “up to homotopy”. Homotopy equivalent spaces have the same algebraic invariants (e.g., homology, or the fundamental group), and are said to have the same <em class="ltx_emph ltx_font_italic">homotopy type</em>.</p>
+</div>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul class="ltx_biblist">
+      
+<li id="bib.bib1" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">1</span>
+        
+<span class="ltx_bibblock"> Alonzo Church. A set of postulates for the foundation of logic 2. <em class="ltx_emph ltx_font_italic">Annals of Mathematics</em>, 34:839–864 1933
+
+</span>
+      </li>
+      
+<li id="bib.bib2" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">2</span>
+        
+<span class="ltx_bibblock"> Alonzo Church. A formulation of of the simple theory of types. <em class="ltx_emph ltx_font_italic">Journal of Symbolic Logic</em>, 5:56–68 1940
+
+</span>
+      </li>
+      
+<li id="bib.bib3" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">3</span>
+        
+<span class="ltx_bibblock"> Alonzo Church, <em class="ltx_emph ltx_font_italic">The Calculi of Lambda Conversation</em> Princeton University Press,1941
+
+</span>
+      </li>
+      
+<li id="bib.bib4" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">4</span>
+        
+<span class="ltx_bibblock"> Fairouz Kamareddine and Twan Laan and Rob Nederpelt, <em class="ltx_emph ltx_font_italic">A Modern Perspective on Type Theory: From its Origins until Today</em> Kluwer,2004
+
+</span>
+      </li>
+      
+<li id="bib.bib5" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">5</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. An intuitionistic theory of types. In <em class="ltx_emph ltx_font_italic">Twenty-five years of constructive type theory (Venice,1995)</em>,volume 36 of Oxford Logic Guides, pages 127–172. Oxford University Press, 1998.
+
+</span>
+      </li>
+      
+<li id="bib.bib6" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">6</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. An intuitionistic theory of types: predicative part. In <em class="ltx_emph ltx_font_italic">Logic Colloquium ’73,Proceedings of the Logic Colloquium</em>,volume 80 of Studies in Logic and the Foundations of Mathematics, pages 73–118. North-Holland, 1975.
+
+</span>
+      </li>
+      
+<li id="bib.bib7" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">7</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per. Constructive mathematics and computer programming. In <em class="ltx_emph ltx_font_italic">Logic,Methodology and Philosophy of Science VI,Proceedings of the Sixth International Congress of Logic,Methodology and Philosophy of Science,Hannover 1979</em>,volume 104 of Studies in Logic and the Foundations of Mathematics, pages 153–175. North-Holland, 1982.
+
+</span>
+      </li>
+      
+<li id="bib.bib8" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">8</span>
+        
+<span class="ltx_bibblock"> Martin-Löf,Per, <em class="ltx_emph ltx_font_italic">Intuitionistic type theory</em> Bibliopolis,1984
+
+</span>
+      </li>
+      
+<li id="bib.bib9" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">9</span>
+        
+<span class="ltx_bibblock"> Benjamin C. Pierce, <em class="ltx_emph ltx_font_italic">Types and Programming Languages</em> MIT Press,2002
+
+</span>
+      </li>
+      
+<li id="bib.bib10" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">10</span>
+        
+<span class="ltx_bibblock"> Bertand Russell. Mathematical logic based on the theory of types. <em class="ltx_emph ltx_font_italic">American Journal of Mathematics</em>, 30:222–262 1908
+
+</span>
+      </li>
+      
+<li id="bib.bib11" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">11</span>
+        
+<span class="ltx_bibblock"> Giovanni Sommaruga, <em class="ltx_emph ltx_font_italic">History and Philosophy of Constructive Type Theory</em> Kluwer,2010
+
+</span>
+      </li>
+    
+</ul>
+</section>
+<div id="p5" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">Type theory</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:46:00 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

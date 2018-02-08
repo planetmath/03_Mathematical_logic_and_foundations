@@ -1,0 +1,662 @@
+<!DOCTYPE html><html>
+<head>
+<title>8. Homotopy theory</title>
+<!--Generated on Thu Feb  8 19:42:12 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , , -, -groupoid, -topos, Eckmann–Hilton argument, Kan complex, Quillen model category, abelian, acceptance, assistant, automorphism, classical, cohomology, constructive, equivalence, formalization of mathematics, formalized, fundamental, geometric realization, group, homology, homotopy, homotopy theory, iterated, loop, loop space, mathematics, of , of an , of circle, presentation, proof, sets, simplicial, space, synthetic mathematics, topological, univalence axiom">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">8. Homotopy theory</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">In this chapter, we develop some homotopy theory within type theory. We
+use the <em class="ltx_emph ltx_font_italic">synthetic approach</em> to homotopy theory introduced in
+<span class="ltx_ERROR undefined">\cref</span>cha:basics: Spaces, points, paths, and homotopies are basic
+notions, which are represented by types and elements of types, particularly
+the identity type. The algebraic structure of paths and homotopies is
+represented by the natural <math id="p2.m1" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoid
+structure on types, which is generated
+by the rules for the identity type. Using higher inductive types, as
+introduced in <span class="ltx_ERROR undefined">\cref</span>cha:hits, we can describe spaces directly by their
+universal properties.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">There are several interesting aspects of this synthetic approach.
+First, it combines advantages of concrete models (such as topological
+spaces
+or simplicial sets)
+with advantages of abstract categorical frameworks
+for homotopy theory (such as Quillen model categories).
+On the one hand,
+our proofs feel elementary, and refer concretely to
+points, paths, and homotopies in types. On the other hand, our approach nevertheless abstracts away from
+any concrete presentation of these objects — for example,
+associativity of path concatenation is proved by path induction, rather
+than by reparametrization of maps <math id="p3.m1" class="ltx_Math" alttext="[0,1]\to X" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><mo>→</mo><mi>X</mi></mrow></math> or by horn-filling conditions.
+Type theory seems to be a very convenient way to study the abstract homotopy theory
+of <math id="p3.m2" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoids: by using the rules for the identity type, we
+can avoid the complicated combinatorics involved in many definitions of
+<math id="p3.m3" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoids, and explicate only as much of the
+structure as is needed in any particular proof.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">The abstract nature of type theory means that our proofs apply automatically in a variety of settings.
+In particular, as mentioned previously, homotopy type theory has one interpretation in
+Kan simplicial sets,
+which is one model for the homotopy theory of <math id="p4.m1" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoids. Thus,
+our proofs apply to this model, and transferring them along the geometric
+realization functor from simplicial sets to topological spaces gives
+proofs of corresponding theorems in classical homotopy theory.
+However, though the details are work in progress, we can also
+interpret type theory in a wide variety of other categories
+that look like the category of <math id="p4.m2" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoids, such as
+<math id="p4.m3" class="ltx_Math" alttext="(\infty,1)" display="inline"><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">∞</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>-toposes.
+Thus, proving a result in type theory will show
+that it holds in these settings as well.
+This sort of extra generality is well-known as a property of ordinary categorical logic:
+univalent foundations extends it to homotopy theory as well.
+</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Second, our synthetic approach has suggested new type-theoretic
+methods and proofs. Some of our proofs are fairly
+direct transcriptions of classical proofs. Others have a more
+type-theoretic feel, and consist mainly of calculations with
+<math id="p5.m1" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoid operations, in a style that is very similar to how
+computer scientists use type theory to reason about computer programs.
+One thing that seems to have permitted these new proofs is the fact that type theory
+emphasizes different aspects of homotopy theory than other approaches:
+while tools like path induction and the universal properties of higher
+inductives are available in a setting like Kan simplicial sets, type
+theory elevates their importance, because they are the <em class="ltx_emph ltx_font_italic">only</em>
+primitive tools available for working with these types. Focusing on
+these tools had led to new descriptions of familiar constructions such
+as the universal cover of the circle and the Hopf fibration, using just the
+recursion principles for higher inductive types. These descriptions are
+very direct, and many of the proofs in this chapter involve
+computational calculations with such fibrations.
+Another new aspect of our proofs is that they are constructive (assuming
+univalence and higher inductives types are constructive); we describe an
+application of this to homotopy groups of spheres in
+<span class="ltx_ERROR undefined">\cref</span>sec:moreresults.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Third, our synthetic approach is very amenable to computer-checked
+proofs in proof assistants such as <span class="ltx_text ltx_font_smallcaps">Coq</span> and <span class="ltx_text ltx_font_smallcaps">Agda</span>.
+Almost all of the proofs
+described in this chapter have been computer-checked, and many of these
+proofs were first given in a proof assistant, and then “unformalized”
+for this book. The computer-checked proofs are comparable in length and
+effort to the informal proofs presented here, and in some cases they are
+even shorter and easier to do.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Before turning to the presentation of our results, we briefly review some
+basic concepts and theorems from homotopy theory for the benefit of the reader who is not familiar with them.
+We also give an overview of the
+results proved in this chapter.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Homotopy theory is a branch of algebraic topology, and uses tools from abstract algebra,
+such as group theory, to investigate properties of spaces. One question
+homotopy theorists investigate is how to tell whether two spaces are the
+same, where “the same” means <em class="ltx_emph ltx_font_italic">homotopy equivalence</em>
+(continuous
+maps back and forth that compose to the identity up to homotopy—this
+gives the opportunity to “correct” maps that don’t exactly compose to
+the identity). One common way to tell whether two spaces are the same
+is to calculate <em class="ltx_emph ltx_font_italic">algebraic invariants</em> associated with a space,
+which include its <em class="ltx_emph ltx_font_italic">homotopy groups</em> and <em class="ltx_emph ltx_font_italic">homology</em> and
+<em class="ltx_emph ltx_font_italic">cohomology groups</em>.
+Equivalent spaces have isomorphic
+homotopy/(co)homology groups, so if two spaces have different groups,
+then they are not equivalent. Thus, these algebraic invariants provide
+global information about a space, which can be used to tell spaces
+apart, and complements the local information provided by notions such as
+continuity. For example, the torus locally looks like the <math id="p8.m1" class="ltx_Math" alttext="2" display="inline"><mn>2</mn></math>-sphere, but it
+has a global difference, because it as a hole in it, and this difference
+is visible in the homotopy groups of these two spaces.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">The simplest example of a homotopy group is the <em class="ltx_emph ltx_font_italic">fundamental group</em>
+of a space, which is written <math id="p9.m1" class="ltx_Math" alttext="\pi_{1}(X,x_{0}" display="inline"><mrow><msub><mi>π</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msub><mi>x</mi><mn>0</mn></msub></mrow></mrow></math>): Given a space <math id="p9.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> and a
+point <math id="p9.m3" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math> in it, one can make a group whose elements are loops at
+<math id="p9.m4" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math> (continuous paths from <math id="p9.m5" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math> to <math id="p9.m6" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math>), considered up to homotopy, with the
+group operations given by the identity path (standing still), path
+concatenation, and path reversal. For example, the fundamental group of
+the <math id="p9.m7" class="ltx_Math" alttext="2" display="inline"><mn>2</mn></math>-sphere is trivial, but the fundamental group of the torus is not,
+which shows that the sphere and the torus are not homotopy equivalent.
+The intuition is that every loop on the sphere is homotopic to the
+identity, because its inside can be filled in. In contrast, a loop on
+the torus that goes through the donut’s hole is not homotopic to the
+identity, so there are non-trivial elements in the fundamental group.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">The <em class="ltx_emph ltx_font_italic">higher homotopy groups</em> provide additional information about a
+space. Fix a point <math id="p10.m1" class="ltx_Math" alttext="x_{0}" display="inline"><msub><mi>x</mi><mn>0</mn></msub></math> in <math id="p10.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>, and consider the constant path
+<math id="p10.m3" class="ltx_Math" alttext="\mathsf{refl}_{x_{0}}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>x</mi><mn>0</mn></msub></msub></math>. Then the homotopy classes of homotopies between <math id="p10.m4" class="ltx_Math" alttext="\mathsf{refl}_{x_{0}}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>x</mi><mn>0</mn></msub></msub></math>
+and itself form a group <math id="p10.m5" class="ltx_Math" alttext="\pi_{2}(X,x_{0})" display="inline"><mrow><msub><mi>π</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math>, which tells us something about
+the two-dimensional structure of the space. Then <math id="p10.m6" class="ltx_Math" alttext="\pi_{3}(X,x_{0}" display="inline"><mrow><msub><mi>π</mi><mn>3</mn></msub><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msub><mi>x</mi><mn>0</mn></msub></mrow></mrow></math>) is the
+group of homotopy classes of homotopies between homotopies, and so on.
+One of the basic problems of algebraic topology is
+<em class="ltx_emph ltx_font_italic">calculating the homotopy groups of a space <math id="p10.m7" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math></em>, which means
+giving a group isomorphism between <math id="p10.m8" class="ltx_Math" alttext="\pi_{k}(X,x_{0})" display="inline"><mrow><msub><mi>π</mi><mi>k</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math> and some more direct
+description of a group (e.g., by a multiplication table or
+presentation). Somewhat surprisingly, this is a very difficult
+question, even for spaces as simple as the spheres. As can be seen from
+<span class="ltx_ERROR undefined">\cref</span>tab:homotopy-groups-of-spheres, some patterns emerge in the
+higher homotopy groups of spheres, but there is no general formula, and
+many homotopy groups of spheres are currently still unknown.</p>
+</div>
+<span class="ltx_ERROR undefined">\definecolor</span>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">xA<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxA</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xB<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxB</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xC<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxC</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xD<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxD</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xE<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxE</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xF<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxF</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xG<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxG</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xH<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxH</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xI<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxI</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xJ<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxJ</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xK<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxK</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xL<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxL</span>
+<span class="ltx_ERROR undefined">\definecolor</span>xM<span class="ltx_ERROR undefined">\OPTcolormodel</span><span class="ltx_ERROR undefined">\OPTcolxM</span></p>
+</div>
+<figure id="S0.T1" class="ltx_table">
+<table class="ltx_tabular ltx_centering ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;"><span class="ltx_ERROR undefined">\toprule</span></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m1" class="ltx_Math" alttext="\mathbb{S}^{0}" display="inline"><msup><mi mathsize="90%">𝕊</mi><mn mathsize="90%">0</mn></msup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m2" class="ltx_Math" alttext="\mathbb{S}^{1}" display="inline"><msup><mi mathsize="90%">𝕊</mi><mn mathsize="90%">1</mn></msup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m3" class="ltx_Math" alttext="\mathbb{S}^{2}" display="inline"><msup><mi mathsize="90%">𝕊</mi><mn mathsize="90%">2</mn></msup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m4" class="ltx_Math" alttext="\mathbb{S}^{3}" display="inline"><msup><mi mathsize="90%">𝕊</mi><mn mathsize="90%">3</mn></msup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m5" class="ltx_Math" alttext="\mathbb{S}^{4}" display="inline"><msup><mi mathsize="90%">𝕊</mi><mn mathsize="90%">4</mn></msup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m6" class="ltx_Math" alttext="\mathbb{S}^{5}" display="inline"><msup><mi mathsize="90%">𝕊</mi><mn mathsize="90%">5</mn></msup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m7" class="ltx_Math" alttext="\mathbb{S}^{6}" display="inline"><msup><mi mathsize="90%">𝕊</mi><mn mathsize="90%">6</mn></msup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m8" class="ltx_Math" alttext="\mathbb{S}^{7}" display="inline"><msup><mi mathsize="90%">𝕊</mi><mn mathsize="90%">7</mn></msup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m9" class="ltx_Math" alttext="\mathbb{S}^{8}" display="inline"><msup><mi mathsize="90%">𝕊</mi><mn mathsize="90%">8</mn></msup></math></td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt] </span><span class="ltx_ERROR undefined">\midrule</span><math id="S0.T1.m10" class="ltx_Math" alttext="\pi_{1}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">1</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m11" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m12" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi mathsize="90%">ℤ</mi></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xG</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m13" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xF</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m14" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xE</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m15" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xD</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m16" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xC</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m17" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xB</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m18" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xA</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m19" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m20" class="ltx_Math" alttext="\pi_{2}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">2</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m21" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m22" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xH</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m23" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xG</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m24" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xF</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m25" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xE</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m26" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xD</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m27" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xC</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m28" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xB</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m29" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m30" class="ltx_Math" alttext="\pi_{3}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">3</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m31" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m32" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m33" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi mathsize="90%">ℤ</mi></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xH</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m34" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xG</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m35" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xF</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m36" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xE</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m37" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xD</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m38" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xC</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m39" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m40" class="ltx_Math" alttext="\pi_{4}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">4</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m41" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m42" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m43" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xI</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m44" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xH</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m45" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xG</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m46" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xF</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m47" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xE</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m48" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xD</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m49" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m50" class="ltx_Math" alttext="\pi_{5}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">5</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m51" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m52" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m53" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m54" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xI</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m55" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xH</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m56" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xG</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m57" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xF</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m58" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xE</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m59" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m60" class="ltx_Math" alttext="\pi_{6}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">6</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m61" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m62" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m63" class="ltx_Math" alttext="\mathbb{Z}_{12}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">12</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m64" class="ltx_Math" alttext="\mathbb{Z}_{12}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">12</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xJ</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m65" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xI</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m66" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xH</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m67" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xG</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m68" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xF</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m69" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m70" class="ltx_Math" alttext="\pi_{7}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">7</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m71" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m72" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m73" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m74" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m75" class="ltx_Math" alttext="\mathbb{Z}{\times}\mathbb{Z}_{12}" display="inline"><mrow><mi mathsize="80%">ℤ</mi><mo mathsize="80%" stretchy="false">×</mo><msub><mi mathsize="80%">ℤ</mi><mn mathsize="80%">12</mn></msub></mrow></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xJ</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m76" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xI</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m77" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xH</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m78" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xG</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m79" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m80" class="ltx_Math" alttext="\pi_{8}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">8</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m81" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m82" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m83" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m84" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m85" class="ltx_Math" alttext="\mathbb{Z}_{2}^{2}" display="inline"><msubsup><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn><mn mathsize="90%">2</mn></msubsup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xK</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m86" class="ltx_Math" alttext="\mathbb{Z}_{24}" display="inline"><msub><mi>ℤ</mi><mn>24</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xJ</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m87" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xI</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m88" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xH</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m89" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m90" class="ltx_Math" alttext="\pi_{9}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">9</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m91" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m92" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m93" class="ltx_Math" alttext="\mathbb{Z}_{3}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">3</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m94" class="ltx_Math" alttext="\mathbb{Z}_{3}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">3</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m95" class="ltx_Math" alttext="\mathbb{Z}_{2}^{2}" display="inline"><msubsup><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn><mn mathsize="90%">2</mn></msubsup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m96" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xK</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m97" class="ltx_Math" alttext="\mathbb{Z}_{24}" display="inline"><msub><mi>ℤ</mi><mn>24</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xJ</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m98" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xI</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m99" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m100" class="ltx_Math" alttext="\pi_{10}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">10</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m101" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m102" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m103" class="ltx_Math" alttext="\mathbb{Z}_{15}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">15</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m104" class="ltx_Math" alttext="\mathbb{Z}_{15}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">15</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m105" class="ltx_Math" alttext="\mathbb{Z}_{24}{\times}\mathbb{Z}_{3}" display="inline"><mrow><msub><mi mathsize="80%">ℤ</mi><mn mathsize="80%">24</mn></msub><mo mathsize="80%" stretchy="false">×</mo><msub><mi mathsize="80%">ℤ</mi><mn mathsize="80%">3</mn></msub></mrow></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m106" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xL</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m107" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xK</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m108" class="ltx_Math" alttext="\mathbb{Z}_{24}" display="inline"><msub><mi>ℤ</mi><mn>24</mn></msub></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xJ</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m109" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi>ℤ</mi><mn>2</mn></msub></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m110" class="ltx_Math" alttext="\pi_{11}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">11</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m111" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m112" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m113" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m114" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m115" class="ltx_Math" alttext="\mathbb{Z}_{15}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">15</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m116" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m117" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi mathsize="90%">ℤ</mi></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xL</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m118" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xK</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m119" class="ltx_Math" alttext="\mathbb{Z}_{24}" display="inline"><msub><mi>ℤ</mi><mn>24</mn></msub></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m120" class="ltx_Math" alttext="\pi_{12}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">12</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m121" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m122" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m123" class="ltx_Math" alttext="\mathbb{Z}_{2}^{2}" display="inline"><msubsup><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn><mn mathsize="90%">2</mn></msubsup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m124" class="ltx_Math" alttext="\mathbb{Z}_{2}^{2}" display="inline"><msubsup><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn><mn mathsize="90%">2</mn></msubsup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m125" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m126" class="ltx_Math" alttext="\mathbb{Z}_{30}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">30</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m127" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xM</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m128" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xL</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m129" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><math id="S0.T1.m130" class="ltx_Math" alttext="\pi_{13}" display="inline"><msub><mi mathsize="90%">π</mi><mn mathsize="90%">13</mn></msub></math>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m131" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m132" class="ltx_Math" alttext="0" display="inline"><mn mathsize="90%">0</mn></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m133" class="ltx_Math" alttext="\mathbb{Z}_{12}{\times}\mathbb{Z}_{2}" display="inline"><mrow><msub><mi mathsize="80%">ℤ</mi><mn mathsize="80%">12</mn></msub><mo mathsize="80%" stretchy="false">×</mo><msub><mi mathsize="80%">ℤ</mi><mn mathsize="80%">2</mn></msub></mrow></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m134" class="ltx_Math" alttext="\mathbb{Z}_{12}{\times}\mathbb{Z}_{2}" display="inline"><mrow><msub><mi mathsize="80%">ℤ</mi><mn mathsize="80%">12</mn></msub><mo mathsize="80%" stretchy="false">×</mo><msub><mi mathsize="80%">ℤ</mi><mn mathsize="80%">2</mn></msub></mrow></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m135" class="ltx_Math" alttext="\mathbb{Z}_{2}^{3}" display="inline"><msubsup><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn><mn mathsize="90%">3</mn></msubsup></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m136" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m137" class="ltx_Math" alttext="\mathbb{Z}_{60}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">60</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"><math id="S0.T1.m138" class="ltx_Math" alttext="\mathbb{Z}_{2}" display="inline"><msub><mi mathsize="90%">ℤ</mi><mn mathsize="90%">2</mn></msub></math></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;">
+<span class="ltx_ERROR undefined">\colorbox</span><span class="ltx_text" style="font-size:90%;">xM</span><span class="ltx_text" style="font-size:90%;width:20.0pt;"> <math id="S0.T1.m139" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math></span>
+</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_justify" style="width:15.0pt;">
+<span class="ltx_ERROR undefined">\addlinespace</span><span class="ltx_text" style="font-size:90%;">[3pt]
+</span><span class="ltx_ERROR undefined">\bottomrule</span>
+</td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"></td>
+<td class="ltx_td ltx_align_justify" style="width:0.0pt;"></td>
+</tr>
+</tbody>
+</table>
+<figcaption class="ltx_caption ltx_centering" style="font-size:90%;"><span class="ltx_tag ltx_tag_table">Table 1: </span>Homotopy groups of spheres <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">wikipedia-groups</span>]</cite>.
+The <math id="S0.T1.m147" class="ltx_Math" alttext="k^{\textrm{th}}" display="inline"><msup><mi>k</mi><mtext>th</mtext></msup></math> homotopy group <math id="S0.T1.m148" class="ltx_Math" alttext="\pi_{k}" display="inline"><msub><mi>π</mi><mi>k</mi></msub></math> of the <math id="S0.T1.m149" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-dimensional sphere
+<math id="S0.T1.m150" class="ltx_Math" alttext="\mathbb{S}^{n}" display="inline"><msup><mi>𝕊</mi><mi>n</mi></msup></math> is isomorphic to the group listed in each entry, where <math id="S0.T1.m151" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math> is
+the additive group of integers, and <math id="S0.T1.m152" class="ltx_Math" alttext="\mathbb{Z}_{m}" display="inline"><msub><mi>ℤ</mi><mi>m</mi></msub></math> is the cyclic group of order <math id="S0.T1.m153" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>.
+</figcaption>
+</figure>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">One way of understanding this complexity is through the correspondence
+between spaces and <math id="p12.m1" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoids
+introduced in <span class="ltx_ERROR undefined">\cref</span>cha:basics.
+As discussed in <span class="ltx_ERROR undefined">\cref</span>sec:circle, the 2-sphere is presented by a higher
+inductive type with one point and one 2-dimensional loop. Thus, one
+might wonder why <math id="p12.m3" class="ltx_Math" alttext="\pi_{3}(\mathbb{S}^{2})" display="inline"><mrow><msub><mi>π</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="p12.m4" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math>, when the type <math id="p12.m5" class="ltx_Math" alttext="\mathbb{S}^{2}" display="inline"><msup><mi>𝕊</mi><mn>2</mn></msup></math> has no
+generators creating 3-dimensional cells. It turns out that the
+generating element of <math id="p12.m6" class="ltx_Math" alttext="\pi_{3}(\mathbb{S}^{2})" display="inline"><mrow><msub><mi>π</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math> is constructed using the
+interchange law described in the proof of <span class="ltx_ERROR undefined">\cref</span>thm:EckmannHilton: the
+algebraic structure of an <math id="p12.m7" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoid includes non-trivial
+interactions between levels, and these interactions create elements of
+higher homotopy groups.</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">Type theory provides a natural setting for investigating this structure, as
+we can easily define the higher homotopy groups. Recall from <span class="ltx_ERROR undefined">\cref</span>def:loopspace that for <math id="p13.m1" class="ltx_Math" alttext="n:\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></math>, the
+<math id="p13.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-fold iterated loop space of a pointed type <math id="p13.m3" class="ltx_Math" alttext="(A,a)" display="inline"><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></math> is defined
+recursively by:</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle\Omega^{0}(A,a)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mn>0</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle=(A,a)" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle\Omega^{n+1}(A,a)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle=\Omega^{n}(\Omega(A,a))." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><msup><mi mathvariant="normal">Ω</mi><mi>n</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This gives a <em class="ltx_emph ltx_font_italic">space</em> (i.e. a type) of <math id="p13.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-dimensional loops, which itself has
+higher homotopies. We obtain the set of <math id="p13.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-dimensional loops by
+truncation (this was also defined as an example in
+<span class="ltx_ERROR undefined">\autoref</span>sec:free-algebras):</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 8.0.1</span> (Homotopy Groups).</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given <math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="n\geq 1" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">≥</mo><mn mathvariant="normal">1</mn></mrow></math> and <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="(A,a)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> a pointed type, we define the <span class="ltx_text ltx_font_bold">homotopy groups</span> of <math id="Thmpredefn1.p1.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>
+at <math id="Thmpredefn1.p1.m4" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> by</span></p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\pi_{n}(A,a):\!\!\equiv\Bigl{\|}\Omega^{n}(A,a)\Bigr{\|}_{0}" display="block"><mrow><msub><mi>π</mi><mi>n</mi></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo><msup><mi mathvariant="normal">Ω</mi><mi>n</mi></msup><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo fence="true" maxsize="160%" minsize="160%">∥</mo></mrow><mn>0</mn></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p14" class="ltx_para ltx_noindent">
+<p class="ltx_p">Since <math id="p14.m1" class="ltx_Math" alttext="n\geq 1" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>1</mn></mrow></math>, the path concatenation and inversion operations on
+<math id="p14.m2" class="ltx_Math" alttext="\Omega^{n}(A)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mi>n</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> induce operations on <math id="p14.m3" class="ltx_Math" alttext="\pi_{n}(A)" display="inline"><mrow><msub><mi>π</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> making it into a group in
+a straightforward way. If <math id="p14.m4" class="ltx_Math" alttext="n\geq 2" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>2</mn></mrow></math>, then the group <math id="p14.m5" class="ltx_Math" alttext="\pi_{n}(A)" display="inline"><mrow><msub><mi>π</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> is
+abelian, by the Eckmann–Hilton argument  (<span class="ltx_ERROR undefined">\autoref</span>thm:EckmannHilton).
+It is convenient to also write <math id="p14.m6" class="ltx_Math" alttext="\pi_{0}(A):\!\!\equiv\mathopen{}\left\|A\right\|_{0}\mathclose{}" display="inline"><mrow><msub><mi>π</mi><mn>0</mn></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mi></mi><mo>∥</mo><mi>A</mi><msub><mo>∥</mo><mn>0</mn></msub><mi></mi></mrow></mrow></math>,
+but this case behaves somewhat differently: not only is it not a group,
+it is defined without reference to any basepoint in <math id="p14.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.</p>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">This definition is a suitable one for investigating homotopy groups
+because the (higher) inductive definition of a type <math id="p15.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> presents <math id="p15.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> as
+a free type, analogous to a free <math id="p15.m3" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoid,
+and this
+presentation <em class="ltx_emph ltx_font_italic">determines</em> but does not <em class="ltx_emph ltx_font_italic">explicitly describe</em>
+the higher identity types of <math id="p15.m5" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>. The identity types are populated by
+both the generators (<math id="p15.m6" class="ltx_Math" alttext="\mathsf{loop}" display="inline"><mi>𝗅𝗈𝗈𝗉</mi></math>, for the circle) and the results of applying to them all of the groupoid
+operations (identity, composition, inverses, associativity, interchange,
+…). Thus, the higher-inductive presentation of a space allows us
+to pose the question “what does the identity type of <math id="p15.m7" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> really turn out
+to be?” though it can take some significant mathematics to answer it.
+This is a higher-dimensional generalization of a familiar fact in type
+theory: characterizing the identity type of <math id="p15.m8" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> can take some work,
+even if <math id="p15.m9" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is an ordinary inductive type, such as the natural numbers
+or booleans. For example, the theorem that <math id="p15.m10" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> is different
+from <math id="p15.m11" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math> does not follow immediately from the definition;
+see <span class="ltx_ERROR undefined">\autoref</span>sec:compute-coprod.</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">The univalence axiom plays an essential role in calculating homotopy
+groups (without univalence, type theory is compatible with an
+interpretation where all paths, including, for example, the loop on the
+circle, are reflexivity). We will see this in the calculation of the
+fundamental group of the circle below: the map from <math id="p16.m1" class="ltx_Math" alttext="\Omega(\mathbb{S}^{1})" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>1</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math> to <math id="p16.m2" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math> is defined by mapping a loop on the circle to an
+automorphism of the set <math id="p16.m4" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math>, so that, for example, <math id="p16.m5" class="ltx_Math" alttext="\mathsf{loop}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}%
+}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\mathord{{\mathsf{loop}}^{-1}}" display="inline"><mrow><mi>𝗅𝗈𝗈𝗉</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></math> is sent to <math id="p16.m6" class="ltx_Math" alttext="\mathsf{successor}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{predecessor}" display="inline"><mrow><mi>𝗌𝗎𝖼𝖼𝖾𝗌𝗌𝗈𝗋</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>𝗉𝗋𝖾𝖽𝖾𝖼𝖾𝗌𝗌𝗈𝗋</mi></mrow></math> (where
+<math id="p16.m7" class="ltx_Math" alttext="\mathsf{successor}" display="inline"><mi>𝗌𝗎𝖼𝖼𝖾𝗌𝗌𝗈𝗋</mi></math> and <math id="p16.m8" class="ltx_Math" alttext="\mathsf{predecessor}" display="inline"><mi>𝗉𝗋𝖾𝖽𝖾𝖼𝖾𝗌𝗌𝗈𝗋</mi></math> are automorphisms of
+<math id="p16.m9" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math> viewed, by univalence, as paths in the universe), and then applying
+the automorphism to 0. Univalence produces non-trivial paths in the
+universe, and this is used to extract information from paths in higher
+inductive types.</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">In this chapter, we first calculate some homotopy groups of spheres,
+including <math id="p17.m1" class="ltx_Math" alttext="\pi_{k}(\mathbb{S}^{1})" display="inline"><mrow><msub><mi>π</mi><mi>k</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>1</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math> (<span class="ltx_ERROR undefined">\autoref</span>sec:pi1-s1-intro), <math id="p17.m2" class="ltx_Math" alttext="\pi_{k}(\mathbb{S}^{n})" display="inline"><mrow><msub><mi>π</mi><mi>k</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mi>n</mi></msup><mo stretchy="false">)</mo></mrow></mrow></math> for <math id="p17.m3" class="ltx_Math" alttext="k&lt;n" display="inline"><mrow><mi>k</mi><mo>&lt;</mo><mi>n</mi></mrow></math> (<span class="ltx_ERROR undefined">\autoref</span>sec:conn-susp,<span class="ltx_ERROR undefined">\autoref</span>sec:pik-le-n), <math id="p17.m4" class="ltx_Math" alttext="\pi_{2}(\mathbb{S}^{2})" display="inline"><mrow><msub><mi>π</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p17.m5" class="ltx_Math" alttext="\pi_{3}(\mathbb{S}^{2})" display="inline"><mrow><msub><mi>π</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow></mrow></math> by
+way of the Hopf fibration (<span class="ltx_ERROR undefined">\autoref</span>sec:hopf) and a long-exact-sequence
+argument (<span class="ltx_ERROR undefined">\autoref</span>sec:long-exact-sequence-homotopy-groups), and
+<math id="p17.m6" class="ltx_Math" alttext="\pi_{n}(\mathbb{S}^{n})" display="inline"><mrow><msub><mi>π</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mi>n</mi></msup><mo stretchy="false">)</mo></mrow></mrow></math> by way of the Freudenthal suspension theorem
+(<span class="ltx_ERROR undefined">\autoref</span>sec:freudenthal). Next, we discuss the van Kampen theorem
+(<span class="ltx_ERROR undefined">\autoref</span>sec:van-kampen), which characterizes the fundamental group of
+a pushout, and the status of Whitehead’s principle (when is a map that
+induces an equivalence on all homotopy groups an equivalence?)
+(<span class="ltx_ERROR undefined">\autoref</span>sec:whitehead). Finally, we include brief summaries of
+additional results that are not included in the book, such as
+<math id="p17.m7" class="ltx_Math" alttext="\pi_{n+1}(\mathbb{S}^{n})" display="inline"><mrow><msub><mi>π</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mi>n</mi></msup><mo stretchy="false">)</mo></mrow></mrow></math> for <math id="p17.m8" class="ltx_Math" alttext="n\geq 3" display="inline"><mrow><mi>n</mi><mo>≥</mo><mn>3</mn></mrow></math>, the Blakers–Massey theorem, and a
+construction of Eilenberg–Mac Lane spaces (<span class="ltx_ERROR undefined">\autoref</span>sec:moreresults).
+Prerequisites for this chapter include <span class="ltx_ERROR undefined">\autoref</span>cha:typetheory,<span class="ltx_ERROR undefined">\autoref</span>cha:basics,<span class="ltx_ERROR undefined">\autoref</span>cha:hits,<span class="ltx_ERROR undefined">\autoref</span>cha:hlevels as well as parts of <span class="ltx_ERROR undefined">\autoref</span>cha:logic.</p>
+</div>
+<div id="p18" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">8. Homotopy theory</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:42:12 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

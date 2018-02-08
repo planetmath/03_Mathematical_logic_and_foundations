@@ -1,0 +1,358 @@
+<!DOCTYPE html><html>
+<head>
+<title>2.12 Coproducts</title>
+<!--Generated on Thu Feb  8 19:33:07 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="coproduct, encode-decode method, in coproduct types, negative, of a positive type by its constructors, polarity, positive, presentation, transport, type">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">2.12 Coproducts</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">So far, most of the type formers we have considered have been what are called <em class="ltx_emph ltx_font_italic">negative</em>.
+Intuitively, this means that their elements are determined by their behavior under the elimination rules: a (dependent) pair is determined by its projections, and a (dependent) function is determined by its values.
+The identity types of negative types can almost always be characterized straightforwardly, along with all of their higher structure, as we have done in §2.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/26cartesianproducttypes</span>) to §2.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom</span>).
+The universe is not exactly a negative type, but its identity types behave similarly: we have a straightforward characterization (univalence) and a description of the higher structure.
+Identity types themselves, of course, are a special case.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">We now consider our first example of a <em class="ltx_emph ltx_font_italic">positive</em> type former.
+Again informally, a positive type is one which is “presented” by certain constructors, with the universal property of a presentation being expressed by its elimination rule.
+(Categorically speaking, a positive type has a “mapping out” universal property, while a negative type has a “mapping in” universal property.)
+Because computing with presentations is, in general, an uncomputable problem, for positive types we cannot always expect a straightforward characterization of the identity type.
+However, in many particular cases, a characterization or partial characterization does exist, and can be obtained by the general method that we introduce with this example.
+</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">(Technically, our chosen presentation of cartesian products and <math id="p3.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types is also positive.
+However, because these types also admit a negative presentation which differs only slightly, their identity types have a direct characterization that does not require the method to be described here.)</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Consider the coproduct type <math id="p4.m1" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math>, which is “presented” by the injections <math id="p4.m2" class="ltx_Math" alttext="{\mathsf{inl}}:A\to A+B" display="inline"><mrow><mi>𝗂𝗇𝗅</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></mrow></mrow></math> and <math id="p4.m3" class="ltx_Math" alttext="{\mathsf{inr}}:B\to A+B" display="inline"><mrow><mi>𝗂𝗇𝗋</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></mrow></mrow></math>.
+Intuitively, we expect that <math id="p4.m4" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math> contains exact copies of <math id="p4.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p4.m6" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> disjointly, so that we should have</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S0.E1"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.E1.m1" class="ltx_Math" alttext="\displaystyle{({\mathsf{inl}}(a_{1})={\mathsf{inl}}(a_{2}))}" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.E1.m2" class="ltx_Math" alttext="\displaystyle\simeq{(a_{1}=a_{2})}" display="inline"><mrow><mo>≃</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><msub><mi>a</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.12.1)</span></td>
+</tr></tbody>
+<tbody id="S0.E2"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.E2.m1" class="ltx_Math" alttext="\displaystyle{({\mathsf{inr}}(b_{1})={\mathsf{inr}}(b_{2}))}" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.E2.m2" class="ltx_Math" alttext="\displaystyle\simeq{(b_{1}=b_{2})}" display="inline"><mrow><mo>≃</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mn>1</mn></msub><mo>=</mo><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.12.2)</span></td>
+</tr></tbody>
+<tbody id="S0.E3"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.E3.m1" class="ltx_Math" alttext="\displaystyle{({\mathsf{inl}}(a)={\mathsf{inr}}(b))}" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.E3.m2" class="ltx_Math" alttext="\displaystyle\simeq{\mathbf{0}}." display="inline"><mrow><mrow><mi></mi><mo>≃</mo><mn>𝟎</mn></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.12.3)</span></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">We prove this as follows.
+Fix an element <math id="p4.m7" class="ltx_Math" alttext="a_{0}:A" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>:</mo><mi>A</mi></mrow></math>; we will characterize the type family</p>
+<table id="S0.E4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E4.m1" class="ltx_Math" alttext="(x\mapsto({\mathsf{inl}}(a_{0})=x)):A+B\to\mathcal{U}." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>↦</mo><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.12.4)</span></td>
+</tr>
+</table>
+<p class="ltx_p">A similar argument would characterize the analogous family <math id="p4.m8" class="ltx_Math" alttext="x\mapsto(x={\mathsf{inr}}(b_{0}))" display="inline"><mrow><mi>x</mi><mo>↦</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>𝗂𝗇𝗋</mi><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> for any <math id="p4.m9" class="ltx_Math" alttext="b_{0}:B" display="inline"><mrow><msub><mi>b</mi><mn>0</mn></msub><mo>:</mo><mi>B</mi></mrow></math>.
+Together, these characterizations imply (<a href="#S0.E1" title="(2.12.1) ‣ 2.12 Coproducts" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.12.1</span></a>)–(<a href="#S0.E3" title="(2.12.3) ‣ 2.12 Coproducts" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.12.3</span></a>).</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">In order to characterize (<a href="#S0.E4" title="(2.12.4) ‣ 2.12 Coproducts" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.12.4</span></a>), we will define a type family <math id="p5.m1" class="ltx_Math" alttext="\mathsf{code}:A+B\to\mathcal{U}" display="inline"><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>:</mo><mrow><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> and show that <math id="p5.m2" class="ltx_Math" alttext="\mathchoice{\prod_{x:A+B}\,}{\mathchoice{{\textstyle\prod_{(x:A+B)}}}{\prod_{(%
+x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}}{\mathchoice{{\textstyle\prod_{(x:A%
++B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}%
+}(({\mathsf{inl}}(a_{0})=x)\simeq\mathsf{code}(x))" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>≃</mo><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+Since we want to conclude (<a href="#S0.E1" title="(2.12.1) ‣ 2.12 Coproducts" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.12.1</span></a>) from this, we should have <math id="p5.m3" class="ltx_Math" alttext="\mathsf{code}({\mathsf{inl}}(a))=(a_{0}=a)" display="inline"><mrow><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and since we also want to conclude (<a href="#S0.E3" title="(2.12.3) ‣ 2.12 Coproducts" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.12.3</span></a>), we should have <math id="p5.m4" class="ltx_Math" alttext="\mathsf{code}({\mathsf{inr}}(b))=\mathbf{0}" display="inline"><mrow><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>𝟎</mn></mrow></math>.
+The essential insight is that we can use the recursion principle of <math id="p5.m5" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math> to <em class="ltx_emph ltx_font_italic">define</em> <math id="p5.m6" class="ltx_Math" alttext="\mathsf{code}:A+B\to\mathcal{U}" display="inline"><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>:</mo><mrow><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> by these two equations:</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle\mathsf{code}({\mathsf{inl}}(a))" display="inline"><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv(a_{0}=a)," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle\mathsf{code}({\mathsf{inr}}(b))" display="inline"><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathbf{0}." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mn>𝟎</mn><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This is a very simple example of a proof technique that is used quite a
+bit when doing homotopy theory in homotopy type theory; see
+e.g. §8.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/81pi1s1</span>),§8.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/89ageneralstatementoftheencodedecodemethod</span>).
+We can now show:</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 2.12.5</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For all <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="x:A+B" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">+</mo><mi>B</mi></mrow></mrow></math> we have <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="({\mathsf{inl}}(a_{0})=x)\simeq\mathsf{code}(x)" display="inline"><mrow><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi mathvariant="normal">inl</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>a</mi><mn mathvariant="normal">0</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">=</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">≃</mo><mi mathvariant="normal">code</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">The key to the following proof is that we do it for all points <math id="p6.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> together, enabling us to use the elimination principle for the coproduct.
+We first define a function</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\mathsf{encode}:\mathchoice{\prod_{(x:A+B)}\,}{\mathchoice{{\textstyle\prod_{(%
+x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}%
+}{\mathchoice{{\textstyle\prod_{(x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{%
+\prod_{(x:A+B)}}}\mathchoice{\prod_{(p:{\mathsf{inl}}(a_{0})=x)}\,}{%
+\mathchoice{{\textstyle\prod_{(p:{\mathsf{inl}}(a_{0})=x)}}}{\prod_{(p:{%
+\mathsf{inl}}(a_{0})=x)}}{\prod_{(p:{\mathsf{inl}}(a_{0})=x)}}{\prod_{(p:{%
+\mathsf{inl}}(a_{0})=x)}}}{\mathchoice{{\textstyle\prod_{(p:{\mathsf{inl}}(a_{%
+0})=x)}}}{\prod_{(p:{\mathsf{inl}}(a_{0})=x)}}{\prod_{(p:{\mathsf{inl}}(a_{0})%
+=x)}}{\prod_{(p:{\mathsf{inl}}(a_{0})=x)}}}{\mathchoice{{\textstyle\prod_{(p:{%
+\mathsf{inl}}(a_{0})=x)}}}{\prod_{(p:{\mathsf{inl}}(a_{0})=x)}}{\prod_{(p:{%
+\mathsf{inl}}(a_{0})=x)}}{\prod_{(p:{\mathsf{inl}}(a_{0})=x)}}}\mathsf{code}(x)" display="block"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>:</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">by transporting reflexivity along <math id="p6.m2" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>:</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathsf{encode}(x,p):\!\!\equiv\mathsf{transport}^{\mathsf{code}}(p,\mathsf{%
+refl}_{a_{0}})." display="block"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Note that <math id="p6.m3" class="ltx_Math" alttext="\mathsf{refl}_{a_{0}}:\mathsf{code}({\mathsf{inl}}(a_{0}))" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>:</mo><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, since <math id="p6.m4" class="ltx_Math" alttext="\mathsf{code}({\mathsf{inl}}(a_{0}))\equiv(a_{0}=a_{0})" display="inline"><mrow><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math> by definition of <math id="p6.m5" class="ltx_Math" alttext="\mathsf{code}" display="inline"><mi>𝖼𝗈𝖽𝖾</mi></math>.
+Next, we define a function</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\mathsf{decode}:\mathchoice{\prod_{(x:A+B)}\,}{\mathchoice{{\textstyle\prod_{(%
+x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}%
+}{\mathchoice{{\textstyle\prod_{(x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{%
+\prod_{(x:A+B)}}}\mathchoice{\prod_{(c:\mathsf{code}(x))}\,}{\mathchoice{{%
+\textstyle\prod_{(c:\mathsf{code}(x))}}}{\prod_{(c:\mathsf{code}(x))}}{\prod_{%
+(c:\mathsf{code}(x))}}{\prod_{(c:\mathsf{code}(x))}}}{\mathchoice{{\textstyle%
+\prod_{(c:\mathsf{code}(x))}}}{\prod_{(c:\mathsf{code}(x))}}{\prod_{(c:\mathsf%
+{code}(x))}}{\prod_{(c:\mathsf{code}(x))}}}{\mathchoice{{\textstyle\prod_{(c:%
+\mathsf{code}(x))}}}{\prod_{(c:\mathsf{code}(x))}}{\prod_{(c:\mathsf{code}(x))%
+}}{\prod_{(c:\mathsf{code}(x))}}}({\mathsf{inl}}(a_{0})=x)." display="block"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>:</mo><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">To define <math id="p6.m6" class="ltx_Math" alttext="\mathsf{decode}(x,c)" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math>, we may first use the elimination principle of <math id="p6.m7" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math> to divide into cases based on whether <math id="p6.m8" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is of the form <math id="p6.m9" class="ltx_Math" alttext="{\mathsf{inl}}(a)" display="inline"><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> or the form <math id="p6.m10" class="ltx_Math" alttext="{\mathsf{inr}}(b)" display="inline"><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">In the first case, where <math id="p7.m1" class="ltx_Math" alttext="x\equiv{\mathsf{inl}}(a)" display="inline"><mrow><mi>x</mi><mo>≡</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then <math id="p7.m2" class="ltx_Math" alttext="\mathsf{code}(x)\equiv(a_{0}=a)" display="inline"><mrow><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, so that <math id="p7.m3" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math> is an identification between <math id="p7.m4" class="ltx_Math" alttext="a_{0}" display="inline"><msub><mi>a</mi><mn>0</mn></msub></math> and <math id="p7.m5" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.
+Thus, <math id="p7.m6" class="ltx_Math" alttext="\mathsf{ap}_{{\mathsf{inl}}}(c):({\mathsf{inl}}(a_{0})={\mathsf{inl}}(a))" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mi>𝗂𝗇𝗅</mi></msub><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> so we can define this to be <math id="p7.m7" class="ltx_Math" alttext="\mathsf{decode}({\mathsf{inl}}(a),c)" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">In the second case, where <math id="p8.m1" class="ltx_Math" alttext="x\equiv{\mathsf{inr}}(b)" display="inline"><mrow><mi>x</mi><mo>≡</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then <math id="p8.m2" class="ltx_Math" alttext="\mathsf{code}(x)\equiv\mathbf{0}" display="inline"><mrow><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mn>𝟎</mn></mrow></math>, so that <math id="p8.m3" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math> inhabits the empty type.
+Thus, the elimination rule of <math id="p8.m4" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> yields a value for <math id="p8.m5" class="ltx_Math" alttext="\mathsf{decode}({\mathsf{inr}}(b),c)" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">This completes the definition of <math id="p9.m1" class="ltx_Math" alttext="\mathsf{decode}" display="inline"><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi></math>; we now show that <math id="p9.m2" class="ltx_Math" alttext="\mathsf{encode}(x,{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}})" display="inline"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p9.m3" class="ltx_Math" alttext="\mathsf{decode}(x,{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}})" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow></mrow></math> are quasi-inverses for all <math id="p9.m4" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>.
+On the one hand, suppose given <math id="p9.m5" class="ltx_Math" alttext="x:A+B" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></mrow></math> and <math id="p9.m6" class="ltx_Math" alttext="p:{\mathsf{inl}}(a_{0})=x" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>x</mi></mrow></mrow></math>; we want to show
+<math id="p9.m7" class="ltx_Math" alttext="\mathsf{decode}(x,\mathsf{encode}(x,p))=p." display="inline"><mrow><mrow><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>p</mi></mrow><mo>.</mo></mrow></math>
+But now by (based) path induction, it suffices to consider <math id="p9.m8" class="ltx_Math" alttext="x\equiv{\mathsf{inl}}(a_{0})" display="inline"><mrow><mi>x</mi><mo>≡</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p9.m9" class="ltx_Math" alttext="p\equiv\mathsf{refl}_{{\mathsf{inl}}(a_{0})}" display="inline"><mrow><mi>p</mi><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></msub></mrow></math>:</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\displaystyle\mathsf{decode}(x,\mathsf{encode}(x,p))" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex6.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathsf{decode}({\mathsf{inl}}(a_{0}),\mathsf{encode}({%
+\mathsf{inl}}(a_{0}),\mathsf{refl}_{{\mathsf{inl}}(a_{0})}))" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathsf{decode}({\mathsf{inl}}(a_{0}),\mathsf{transport}^{%
+\mathsf{code}}(\mathsf{refl}_{{\mathsf{inl}}(a_{0})},\mathsf{refl}_{a_{0}}))" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></msub><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathsf{decode}({\mathsf{inl}}(a_{0}),\mathsf{refl}_{a_{0}})" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex9" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex9.m2" class="ltx_Math" alttext="\displaystyle\equiv{{\mathsf{inl}}}\mathopen{}\left({\mathsf{refl}_{a_{0}}}%
+\right)\mathclose{}" display="inline"><mrow><mo>≡</mo><mi>𝗂𝗇𝗅</mi><mrow><mi></mi><mrow><mo>(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>)</mo></mrow><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex10" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex10.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathsf{refl}_{{\mathsf{inl}}(a_{0})}" display="inline"><mrow><mi></mi><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex11" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex11.m2" class="ltx_Math" alttext="\displaystyle\equiv p." display="inline"><mrow><mrow><mi></mi><mo>≡</mo><mi>p</mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">On the other hand, let <math id="p9.m10" class="ltx_Math" alttext="x:A+B" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></mrow></math> and <math id="p9.m11" class="ltx_Math" alttext="c:\mathsf{code}(x)" display="inline"><mrow><mi>c</mi><mo>:</mo><mrow><mi>𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>; we want to show <math id="p9.m12" class="ltx_Math" alttext="\mathsf{encode}(x,\mathsf{decode}(x,c))=c" display="inline"><mrow><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>c</mi></mrow></math>.
+We may again divide into cases based on <math id="p9.m13" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>.
+If <math id="p9.m14" class="ltx_Math" alttext="x\equiv{\mathsf{inl}}(a)" display="inline"><mrow><mi>x</mi><mo>≡</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then <math id="p9.m15" class="ltx_Math" alttext="c:a_{0}=a" display="inline"><mrow><mi>c</mi><mo>:</mo><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>a</mi></mrow></mrow></math> and <math id="p9.m16" class="ltx_Math" alttext="\mathsf{decode}(x,c)\equiv\mathsf{ap}_{{\mathsf{inl}}}(c)" display="inline"><mrow><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><msub><mi>𝖺𝗉</mi><mi>𝗂𝗇𝗅</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, so that</p>
+<table id="S0.EGx4" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex12" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex12.m1" class="ltx_Math" alttext="\displaystyle\mathsf{encode}(x,\mathsf{decode}(x,c))" display="inline"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex12.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathsf{transport}^{\mathsf{code}}(\mathsf{ap}_{{\mathsf{%
+inl}}}(c),\mathsf{refl}_{a_{0}})" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝖺𝗉</mi><mi>𝗂𝗇𝗅</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tbody id="S0.Ex13"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex13.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{a\mapsto(a_{0}=a)}(c,\mathsf{refl}_{a_{0}}){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>a</mi><mo>↦</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by Lemma 7 (http://planetmath.org/23typefamiliesarefibrationshmlem7))</span></td>
+</tr></tbody>
+<tbody id="S0.Ex14"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex14.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{refl}_{a_{0}}\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}c{}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>a</mi><mn>0</mn></msub></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>c</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by Lemma 1 (http://planetmath.org/211identitytypehmlem1))</span></td>
+</tr></tbody>
+<tr id="S0.Ex15" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex15.m2" class="ltx_Math" alttext="\displaystyle=c." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mi>c</mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Finally, if <math id="p9.m17" class="ltx_Math" alttext="x\equiv{\mathsf{inr}}(b)" display="inline"><mrow><mi>x</mi><mo>≡</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then <math id="p9.m18" class="ltx_Math" alttext="c:\mathbf{0}" display="inline"><mrow><mi>c</mi><mo>:</mo><mn>𝟎</mn></mrow></math>, so we may conclude anything we wish.
+∎</p>
+</div>
+</div>
+<div id="p10" class="ltx_para ltx_noindent">
+<p class="ltx_p">Of course, there is a corresponding theorem if we fix <math id="p10.m1" class="ltx_Math" alttext="b_{0}:B" display="inline"><mrow><msub><mi>b</mi><mn>0</mn></msub><mo>:</mo><mi>B</mi></mrow></math> instead of <math id="p10.m2" class="ltx_Math" alttext="a_{0}:A" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>:</mo><mi>A</mi></mrow></math>.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">In particular, Theorem 2.12.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/212coproducts#Thmprethm1</span>) implies that for any <math id="p11.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p11.m2" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math> there are functions</p>
+<table id="S0.Ex16" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex16.m1" class="ltx_Math" alttext="\mathsf{encode}(a,{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}}):({\mathsf{inl%
+}}(a_{0})={\mathsf{inl}}(a))\to(a_{0}=a)" display="block"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and</p>
+<table id="S0.Ex17" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex17.m1" class="ltx_Math" alttext="\mathsf{encode}(b,{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}}):({\mathsf{inl%
+}}(a_{0})={\mathsf{inr}}(b))\to\mathbf{0}." display="block"><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>𝗂𝗇𝗋</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mn>𝟎</mn><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The second of these states
+“<math id="p11.m3" class="ltx_Math" alttext="{\mathsf{inl}}(a_{0})" display="inline"><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math> is not equal to <math id="p11.m4" class="ltx_Math" alttext="{\mathsf{inr}}(b)" display="inline"><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math>”, i.e. the images of <math id="p11.m5" class="ltx_Math" alttext="{\mathsf{inl}}" display="inline"><mi>𝗂𝗇𝗅</mi></math> and <math id="p11.m6" class="ltx_Math" alttext="{\mathsf{inr}}" display="inline"><mi>𝗂𝗇𝗋</mi></math> are disjoint. The traditional reading of the first one, where identity types are viewed as propositions, is just injectivity of <math id="p11.m7" class="ltx_Math" alttext="{\mathsf{inl}}" display="inline"><mi>𝗂𝗇𝗅</mi></math>. The
+full homotopical statement of Theorem 1.12.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/212coproducts#Thmprethm1</span>) gives more information: the types <math id="p11.m8" class="ltx_Math" alttext="{\mathsf{inl}}(a_{0})={\mathsf{inl}}(a)" display="inline"><mrow><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and
+<math id="p11.m9" class="ltx_Math" alttext="a_{0}=a" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>a</mi></mrow></math> are actually equivalent, as are <math id="p11.m10" class="ltx_Math" alttext="{\mathsf{inr}}(b_{0})={\mathsf{inr}}(b)" display="inline"><mrow><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>b</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p11.m11" class="ltx_Math" alttext="b_{0}=b" display="inline"><mrow><msub><mi>b</mi><mn>0</mn></msub><mo>=</mo><mi>b</mi></mrow></math>.
+</p>
+</div>
+<div id="Thmprermk1" class="ltx_theorem ltx_theorem_prermk">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Remark 2.12.6</span>.</h6>
+<div id="Thmprermk1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In particular, since the two-element type <math id="Thmprermk1.p1.m1" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn mathvariant="normal">2</mn></math> is equivalent to <math id="Thmprermk1.p1.m2" class="ltx_Math" alttext="\mathbf{1}+\mathbf{1}" display="inline"><mrow><mn mathvariant="normal">1</mn><mo mathvariant="normal">+</mo><mn mathvariant="normal">1</mn></mrow></math>, we have <math id="Thmprermk1.p1.m3" class="ltx_Math" alttext="{0_{\mathbf{2}}}\neq{1_{\mathbf{2}}}" display="inline"><mrow><msub><mn mathvariant="normal">0</mn><mn mathvariant="normal">2</mn></msub><mo mathvariant="normal">≠</mo><msub><mn mathvariant="normal">1</mn><mn mathvariant="normal">2</mn></msub></mrow></math>.</span></p>
+</div>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">This proof illustrates a general method for describing path spaces, which we will use often. To characterize a path space, the first step is to define a comparison fibration “<math id="p12.m1" class="ltx_Math" alttext="\mathsf{code}" display="inline"><mi>𝖼𝗈𝖽𝖾</mi></math>” that provides a more explicit description of the paths. There are several different methods for proving that such a comparison fibration is equivalent to the paths (we show a few different proofs of the same result in §8.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/81pi1s1</span>)). The one we have used here is called the <span class="ltx_text ltx_font_bold">encode-decode method</span>:
+
+the key idea is to define <math id="p12.m2" class="ltx_Math" alttext="\mathsf{decode}" display="inline"><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi></math> generally for all instances of the fibration (i.e. as a function <math id="p12.m3" class="ltx_Math" alttext="\mathchoice{\prod_{x:A+B}\,}{\mathchoice{{\textstyle\prod_{(x:A+B)}}}{\prod_{(%
+x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}}{\mathchoice{{\textstyle\prod_{(x:A%
++B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A+B)}}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}{\prod_{(x:A+B)}}%
+}\mathsf{code}(x)\to({\mathsf{inl}}(a_{0})=x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>), so that path induction can be used to analyze <math id="p12.m4" class="ltx_Math" alttext="\mathsf{decode}(x,\mathsf{encode}(x,p))" display="inline"><mrow><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">As usual, we can also characterize the action of transport in coproduct types.
+Given a type <math id="p13.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>, a path <math id="p13.m2" class="ltx_Math" alttext="p:x_{1}=_{X}x_{2}" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><msub><mo>=</mo><mi>X</mi></msub><msub><mi>x</mi><mn>2</mn></msub></mrow></mrow></math>, and type families <math id="p13.m3" class="ltx_Math" alttext="A,B:X\to\mathcal{U}" display="inline"><mrow><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow><mo>:</mo><mrow><mi>X</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, we have</p>
+<table id="S0.EGx5" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex18" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex18.m1" class="ltx_Math" alttext="\displaystyle\mathsf{transport}^{A+B}(p,{\mathsf{inl}}(a))" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex18.m2" class="ltx_Math" alttext="\displaystyle={\mathsf{inl}}(\mathsf{transport}^{A}(p,a))," display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>A</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex19" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex19.m1" class="ltx_Math" alttext="\displaystyle\mathsf{transport}^{A+B}(p,{\mathsf{inr}}(b))" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex19.m2" class="ltx_Math" alttext="\displaystyle={\mathsf{inr}}(\mathsf{transport}^{B}(p,b))," display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>B</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where as usual, <math id="p13.m4" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math> in the superscript denotes abusively the type family <math id="p13.m5" class="ltx_Math" alttext="x\mapsto A(x)+B(x)" display="inline"><mrow><mi>x</mi><mo>↦</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.
+The proof is an easy path induction.</p>
+</div>
+<div id="p14" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">2.12 Coproducts</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:33:07 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

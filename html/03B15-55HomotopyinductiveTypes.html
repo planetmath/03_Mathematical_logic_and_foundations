@@ -1,0 +1,1084 @@
+<!DOCTYPE html><html>
+<head>
+<title>5.5 Homotopy-inductive types</title>
+<!--Generated on Thu Feb  8 19:36:49 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="coherence, computation rule, encoded as a , for homotopy , homotopy-inductive, homotopy-inductive type, natural numbers, principle, propositional, propositional, type, uniqueness">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">5.5 Homotopy-inductive types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">In §5.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/53wtypes</span>) we showed how to encode natural numbers as <math id="p1.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types, with</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle\mathbf{N^{w}}" display="inline"><msup><mi>𝐍</mi><mi>𝐰</mi></msup></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(b:%
+\mathbf{2})}}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}{%
+\mathsf{W}_{(b:\mathbf{2})}}}{\mathchoice{{\textstyle\mathsf{W}_{(b:\mathbf{2}%
+)}}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:%
+\mathbf{2})}}}{\mathchoice{{\textstyle\mathsf{W}_{(b:\mathbf{2})}}}{\mathsf{W}%
+_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(b:\mathbf{2})}}}{\mathsf{W}_{(b:\mathbf{2}%
+)}}{\mathsf{W}_{(b:\mathbf{2})}}{\mathsf{W}_{(b:\mathbf{2})}}}\mathsf{rec}_{%
+\mathbf{2}}(\mathcal{U},\mathbf{0},\mathbf{1})," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow></msub><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo><mn>𝟎</mn><mo>,</mo><mn>𝟏</mn><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle 0^{\mathbf{w}}" display="inline"><msup><mn>0</mn><mi>𝐰</mi></msup></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv{\mathsf{sup}}({0_{\mathbf{2}}},({\lambda}x.\,\mathsf{%
+rec}_{\mathbf{0}}(\mathbf{N^{w}},x)))," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖼</mi><mn>𝟎</mn></msub><mrow><mo stretchy="false">(</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle\mathbf{s^{w}}" display="inline"><msup><mi>𝐬</mi><mi>𝐰</mi></msup></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv{\lambda}n.\,{\mathsf{sup}}({1_{\mathbf{2}}},({\lambda%
+}x.\,n))." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>λ</mi><mi>n</mi><mo rspace="4.2pt">.</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We also showed how one can define a <math id="p1.m2" class="ltx_Math" alttext="\mathsf{double}" display="inline"><mi>𝖽𝗈𝗎𝖻𝗅𝖾</mi></math> function on <math id="p1.m3" class="ltx_Math" alttext="\mathbf{N^{w}}" display="inline"><msup><mi>𝐍</mi><mi>𝐰</mi></msup></math> using the recursion principle.
+When it comes to the induction principle, however, this encoding is no longer satisfactory: given <math id="p1.m4" class="ltx_Math" alttext="E:\mathbf{N^{w}}\to\mathcal{U}" display="inline"><mrow><mi>E</mi><mo>:</mo><mrow><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> and recurrences <math id="p1.m5" class="ltx_Math" alttext="e_{z}:E(0^{\mathbf{w}})" display="inline"><mrow><msub><mi>e</mi><mi>z</mi></msub><mo>:</mo><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mn>0</mn><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p1.m6" class="ltx_Math" alttext="e_{s}:\mathchoice{\prod_{(n:\mathbf{N^{w}})}\,}{\mathchoice{{\textstyle\prod_{%
+(n:\mathbf{N^{w}})}}}{\prod_{(n:\mathbf{N^{w}})}}{\prod_{(n:\mathbf{N^{w}})}}{%
+\prod_{(n:\mathbf{N^{w}})}}}{\mathchoice{{\textstyle\prod_{(n:\mathbf{N^{w}})}%
+}}{\prod_{(n:\mathbf{N^{w}})}}{\prod_{(n:\mathbf{N^{w}})}}{\prod_{(n:\mathbf{N%
+^{w}})}}}{\mathchoice{{\textstyle\prod_{(n:\mathbf{N^{w}})}}}{\prod_{(n:%
+\mathbf{N^{w}})}}{\prod_{(n:\mathbf{N^{w}})}}{\prod_{(n:\mathbf{N^{w}})}}}%
+\mathchoice{\prod_{(y:E(n))}\,}{\mathchoice{{\textstyle\prod_{(y:E(n))}}}{%
+\prod_{(y:E(n))}}{\prod_{(y:E(n))}}{\prod_{(y:E(n))}}}{\mathchoice{{\textstyle%
+\prod_{(y:E(n))}}}{\prod_{(y:E(n))}}{\prod_{(y:E(n))}}{\prod_{(y:E(n))}}}{%
+\mathchoice{{\textstyle\prod_{(y:E(n))}}}{\prod_{(y:E(n))}}{\prod_{(y:E(n))}}{%
+\prod_{(y:E(n))}}}E(\mathbf{s^{w}}(n))" display="inline"><mrow><msub><mi>e</mi><mi>s</mi></msub><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>E</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝐬</mi><mi>𝐰</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math>, we can only construct a dependent function <math id="p1.m7" class="ltx_Math" alttext="r(E,e_{z},e_{s}):\mathchoice{\prod_{n:\mathbf{N^{w}}}\,}{\mathchoice{{%
+\textstyle\prod_{(n:\mathbf{N^{w}})}}}{\prod_{(n:\mathbf{N^{w}})}}{\prod_{(n:%
+\mathbf{N^{w}})}}{\prod_{(n:\mathbf{N^{w}})}}}{\mathchoice{{\textstyle\prod_{(%
+n:\mathbf{N^{w}})}}}{\prod_{(n:\mathbf{N^{w}})}}{\prod_{(n:\mathbf{N^{w}})}}{%
+\prod_{(n:\mathbf{N^{w}})}}}{\mathchoice{{\textstyle\prod_{(n:\mathbf{N^{w}})}%
+}}{\prod_{(n:\mathbf{N^{w}})}}{\prod_{(n:\mathbf{N^{w}})}}{\prod_{(n:\mathbf{N%
+^{w}})}}}E(n)" display="inline"><mrow><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>,</mo><msub><mi>e</mi><mi>z</mi></msub><mo>,</mo><msub><mi>e</mi><mi>s</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><msup><mi>𝐍</mi><mi>𝐰</mi></msup><mo stretchy="false">)</mo></mrow></msub><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> satisfying the given recurrences <em class="ltx_emph ltx_font_italic">propositionally</em>, i.e. up to a path.
+This means that the computation rules for natural numbers, which give judgmental equalities, cannot be derived from the rules for <math id="p1.m8" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types in any obvious way.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">This problem goes away if instead of the conventional inductive types we consider <em class="ltx_emph ltx_font_italic">homotopy-inductive types</em>, where all computation rules are stated up to a path, i.e. the symbol <math id="p2.m1" class="ltx_Math" alttext="\equiv" display="inline"><mo>≡</mo></math> is replaced by <math id="p2.m2" class="ltx_Math" alttext="=" display="inline"><mo>=</mo></math>. For instance, the computation rule for the homotopy version of <math id="p2.m3" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types <math id="p2.m4" class="ltx_Math" alttext="\mathsf{W^{h}}" display="inline"><msup><mi>𝖶</mi><mi>𝗁</mi></msup></math> becomes:
+</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">For any <math id="I1.i1.p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="I1.i1.p1.m2" class="ltx_Math" alttext="f:B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}^{h}}}{\mathsf{W}^{h}}{%
+\mathsf{W}^{h}}{\mathsf{W}^{h}}({\textstyle x:A}),\ }{\mathchoice{{\textstyle%
+\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}B(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msubsup><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mi>h</mi></msubsup><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> we have</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathsf{rec}_{\mathchoice{\mathchoice{{\textstyle\mathsf{W}^{h}}}{\mathsf{W}^{%
+h}}{\mathsf{W}^{h}}{\mathsf{W}^{h}}({\textstyle x:A}),\ }{\mathchoice{{%
+\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:%
+A)}}{\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}B(x)}(E,{\mathsf{sup}}(a,f))=e%
+\Big{(}a,f,\big{(}{\lambda}b.\,\mathsf{rec}_{\mathchoice{\mathchoice{{%
+\textstyle\mathsf{W}^{h}}}{\mathsf{W}^{h}}{\mathsf{W}^{h}}{\mathsf{W}^{h}}({%
+\textstyle x:A}),\ }{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W%
+}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{%
+\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:%
+A)}}{\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}B(x)}(%
+E,f(b))\big{)}\Big{)}" display="block"><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><msubsup><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mi>h</mi></msubsup><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>,</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>e</mi><mrow><mo maxsize="160%" minsize="160%">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo>,</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖼</mi><mrow><msubsup><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mi>h</mi></msubsup><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Homotopy-inductive types have an obvious disadvantage when it comes to computational properties — the behavior of any function constructed using the induction principle can now only be characterized propositionally.
+But numerous other considerations drive us to consider homotopy-inductive types as well.
+For instance, while we showed in §5.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/54inductivetypesareinitialalgebras</span>) that inductive types are homotopy-initial algebras, not every homotopy-initial algebra is an inductive type (i.e. satisfies the corresponding induction principle) — but every homotopy-initial algebra <em class="ltx_emph ltx_font_italic">is</em> a homotopy-inductive type.
+Similarly, we might want to apply the uniqueness argument from §5.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/52uniquenessofinductivetypes</span>) when one (or both) of the types involved is only a homotopy-inductive type — for instance, to show that the <math id="p3.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type encoding of <math id="p3.m2" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> is equivalent to the usual <math id="p3.m3" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Additionally, the notion of a homotopy-inductive type is now internal to the type theory.
+For example, this means we can form a type of all natural numbers objects and make assertions about it.
+In the case of <math id="p4.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types, we can characterize a homotopy <math id="p4.m2" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type <math id="p4.m3" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> as any type endowed with a supremum function and an induction principle satisfying the appropriate (propositional) computation rule:</p>
+<table class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="p4.m4" class="ltx_Math" alttext="\displaystyle\mathsf{W}_{d}(A,B):\!\!\equiv\mathchoice{\sum_{W:\mathcal{U}}\,}%
+{\mathchoice{{\textstyle\sum_{(W:\mathcal{U})}}}{\sum_{(W:\mathcal{U})}}{\sum_%
+{(W:\mathcal{U})}}{\sum_{(W:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(W:%
+\mathcal{U})}}}{\sum_{(W:\mathcal{U})}}{\sum_{(W:\mathcal{U})}}{\sum_{(W:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(W:\mathcal{U})}}}{\sum_{(W:%
+\mathcal{U})}}{\sum_{(W:\mathcal{U})}}{\sum_{(W:\mathcal{U})}}}\mathchoice{%
+\sum_{({\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(%
+a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a%
+)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)%
+}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}\,}{\mathchoice{{%
+\textstyle\sum_{({\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{%
+\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{%
+\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{%
+\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W%
+)}}}{\sum_{({\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_%
+{({\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}%
+{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup%
+}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}{\mathchoice{{\textstyle\sum_{({%
+\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}{\sum_{({\mathsf{%
+sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)%
+}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}%
+}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}%
+{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup}}:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup}}:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}{\mathchoice{{\textstyle\sum_{({%
+\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}{\sum_{({\mathsf{%
+sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)%
+}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}%
+}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}%
+{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup}}:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup}}:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}\mathchoice{\prod_{(E:W\to%
+\mathcal{U})}\,}{\mathchoice{{\textstyle\prod_{(E:W\to\mathcal{U})}}}{\prod_{(%
+E:W\to\mathcal{U})}}{\prod_{(E:W\to\mathcal{U})}}{\prod_{(E:W\to\mathcal{U})}}%
+}{\mathchoice{{\textstyle\prod_{(E:W\to\mathcal{U})}}}{\prod_{(E:W\to\mathcal{%
+U})}}{\prod_{(E:W\to\mathcal{U})}}{\prod_{(E:W\to\mathcal{U})}}}{\mathchoice{{%
+\textstyle\prod_{(E:W\to\mathcal{U})}}}{\prod_{(E:W\to\mathcal{U})}}{\prod_{(E%
+:W\to\mathcal{U})}}{\prod_{(E:W\to\mathcal{U})}}}\\
+\displaystyle\mathchoice{\prod_{(e:\mathchoice{\prod_{a,f}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b%
+:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(%
+a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf{sup}}(a,f)))}\,}{\mathchoice{{%
+\textstyle\prod_{(e:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(%
+a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}(%
+\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_%
+{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_%
+{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf{sup}}(a,f)))}}}{\prod_{(e:\mathchoice%
+{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}%
+}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf%
+{sup}}(a,f)))}}{\prod_{(e:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(%
+a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf{sup}}(a,f)))}}{\prod_{(e:%
+\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)%
+}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod%
+_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}%
+}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}%
+}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf%
+{sup}}(a,f)))}}}{\mathchoice{{\textstyle\prod_{(e:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{\textstyle%
+\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf{sup}}(a,f)))}}}{%
+\prod_{(e:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a%
+,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}(\mathchoice{%
+\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}E(f(b)))\to E({\mathsf{sup}}(a,f)))}}{\prod_{(e:\mathchoice{\prod_{a,f}\,%
+}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{%
+(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{\textstyle%
+\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf{sup}}(a,f)))}}{%
+\prod_{(e:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a%
+,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}(\mathchoice{%
+\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}E(f(b)))\to E({\mathsf{sup}}(a,f)))}}}{\mathchoice{{\textstyle\prod_{(e:%
+\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)%
+}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod%
+_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}%
+}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}%
+}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf%
+{sup}}(a,f)))}}}{\prod_{(e:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(%
+a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf{sup}}(a,f)))}}{\prod_{(e:%
+\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)%
+}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod%
+_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}%
+}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{%
+\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{%
+\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}%
+}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf%
+{sup}}(a,f)))}}{\prod_{(e:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}(\mathchoice{\prod_{b:B(a)}\,}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}%
+{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}}{\mathchoice{{%
+\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(a))}}{\prod_{(b:B(a%
+))}}}{\mathchoice{{\textstyle\prod_{(b:B(a))}}}{\prod_{(b:B(a))}}{\prod_{(b:B(%
+a))}}{\prod_{(b:B(a))}}}E(f(b)))\to E({\mathsf{sup}}(a,f)))}}}\mathchoice{\sum%
+_{(\mathsf{ind}:\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)%
+}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod%
+_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{%
+\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}E(w))}%
+\,}{\mathchoice{{\textstyle\sum_{(\mathsf{ind}:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}E(w))}}}{\sum_{(\mathsf{ind}:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}E(w))}}{\sum_{(\mathsf{ind}:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}E(w))}}{\sum_{(\mathsf{ind}:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}E(w))}}}{\mathchoice{{\textstyle\sum_{(\mathsf{ind}:%
+\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)%
+}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod%
+_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}%
+}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}E(w))}}}{\sum_{(\mathsf{ind}:%
+\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)%
+}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod%
+_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}%
+}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}E(w))}}{\sum_{(\mathsf{ind}:%
+\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)%
+}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod%
+_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}%
+}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}E(w))}}{\sum_{(\mathsf{ind}:%
+\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)%
+}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod%
+_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}%
+}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}E(w))}}}{\mathchoice{{%
+\textstyle\sum_{(\mathsf{ind}:\mathchoice{\prod_{w:W}\,}{\mathchoice{{%
+\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}E(w))}}}{\sum_{(\mathsf{ind}:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}E(w))}}{\sum_{(\mathsf{ind}:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}E(w))}}{\sum_{(\mathsf{ind}:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}E(w))}}}\mathchoice{\prod_{(a,f)}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}\\
+\displaystyle\mathsf{ind}({\mathsf{sup}}(a,f))=e(a,{\lambda}b.\,\mathsf{ind}(f%
+(b)))." display="block"><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="left"><mrow><msub><mi>𝖶</mi><mi>d</mi></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>W</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mo stretchy="false">(</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>E</mi><mo>:</mo><mi>W</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mpadded></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>e</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mo stretchy="false">(</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>E</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>E</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝖽</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>E</mi><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></munder></mpadded></mrow></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mi>𝗂𝗇𝖽</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>e</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>𝗂𝗇𝖽</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></mtd></mtr></mtable></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">In <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87579</span>Chapter 6 we will see some other reasons why propositional computation rules are worth considering.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">In this section, we will state some basic facts about homotopy-inductive types.
+We omit most of the proofs, which are somewhat technical.</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 5.5.1</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> and <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>, the type <math id="Thmprethm1.p1.m3" class="ltx_Math" alttext="\mathsf{W}_{d}(A,B)" display="inline"><mrow><msub><mi mathvariant="normal">W</mi><mi>d</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>B</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a mere proposition.</span></p>
+</div>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">It turns out that there is an equivalent characterization of <math id="p6.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types using a recursion principle, plus certain <em class="ltx_emph ltx_font_italic">uniqueness</em> and <em class="ltx_emph ltx_font_italic">coherence</em> laws. First we give the recursion principle:</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">When constructing a function from the <math id="I2.i1.p1.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-type <math id="I2.i1.p1.m2" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}^{h}}}{\mathsf{W}^{h}}{\mathsf{W}%
+^{h}}{\mathsf{W}^{h}}({\textstyle x:A}),\ }{\mathchoice{{\textstyle\mathsf{W}^%
+{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{%
+(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)%
+}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}}B(x)" display="inline"><mrow><msubsup><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mi>h</mi></msubsup><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> into the type <math id="I2.i1.p1.m3" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math>, it suffices to give its value for <math id="I2.i1.p1.m4" class="ltx_Math" alttext="{\mathsf{sup}}(a,f)" display="inline"><mrow><mi>𝗌𝗎𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math>, assuming we are given the values of all <math id="I2.i1.p1.m5" class="ltx_Math" alttext="f(b)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> with <math id="I2.i1.p1.m6" class="ltx_Math" alttext="b:B(a)" display="inline"><mrow><mi>b</mi><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+In other words, it suffices to construct a function</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="c:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:%
+A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}(B(a)\to C)\to C." display="block"><mrow><mi>c</mi><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+<p class="ltx_p">The associated computation rule for <math id="p6.m2" class="ltx_Math" alttext="\mathsf{rec}_{\mathchoice{\mathchoice{{\textstyle\mathsf{W}^{h}}}{\mathsf{W}^{%
+h}}{\mathsf{W}^{h}}{\mathsf{W}^{h}}({\textstyle x:A}),\ }{\mathchoice{{%
+\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:%
+A)}}{\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}B(x)}(C,c):(\mathchoice{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)%
+}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}%
+_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x))\to C" display="inline"><mrow><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><msubsup><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mi>h</mi></msubsup><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi></mrow></mrow></math> is as follows:
+</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">For any <math id="I3.i1.p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="I3.i1.p1.m2" class="ltx_Math" alttext="f:B(a)\to\mathchoice{\mathchoice{{\textstyle\mathsf{W}^{h}}}{\mathsf{W}^{h}}{%
+\mathsf{W}^{h}}{\mathsf{W}^{h}}({\textstyle x:A}),\ }{\mathchoice{{\textstyle%
+\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}B(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msubsup><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mi>h</mi></msubsup><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> we have
+a witness <math id="I3.i1.p1.m3" class="ltx_Math" alttext="\beta(C,c,a,f)" display="inline"><mrow><mi>β</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math> for equality</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\mathsf{rec}_{\mathchoice{\mathchoice{{\textstyle\mathsf{W}^{h}}}{\mathsf{W}^{%
+h}}{\mathsf{W}^{h}}{\mathsf{W}^{h}}({\textstyle x:A}),\ }{\mathchoice{{%
+\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:%
+A)}}{\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}B(x)}(C,c,{\mathsf{sup}}(a,f))%
+=c(a,{\lambda}b.\,\mathsf{rec}_{\mathchoice{\mathchoice{{\textstyle\mathsf{W}^%
+{h}}}{\mathsf{W}^{h}}{\mathsf{W}^{h}}{\mathsf{W}^{h}}({\textstyle x:A}),\ }{%
+\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle%
+\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}B(x)}(%
+C,c,f(b)))." display="block"><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><msubsup><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mi>h</mi></msubsup><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖼</mi><mrow><msubsup><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mi>h</mi></msubsup><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Furthermore, we assert the following uniqueness principle, saying that any two functions defined by the same recurrence are equal:
+</p>
+<ul id="I4" class="ltx_itemize">
+<li id="I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i1.p1" class="ltx_para">
+<p class="ltx_p">Let <math id="I4.i1.p1.m1" class="ltx_Math" alttext="C:\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and <math id="I4.i1.p1.m2" class="ltx_Math" alttext="c:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:%
+A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a%
+:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}(B(a)\to C)\to C" display="inline"><mrow><mi>c</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi></mrow></math> be given. Let <math id="I4.i1.p1.m3" class="ltx_Math" alttext="g,h:(\mathchoice{\mathchoice{{\textstyle\mathsf{W}^{h}}}{\mathsf{W}^{h}}{%
+\mathsf{W}^{h}}{\mathsf{W}^{h}}({\textstyle x:A}),\ }{\mathchoice{{\textstyle%
+\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}^{h}_{(x:A)}}}{\mathsf{W}^{h}_{(x:A)}}{%
+\mathsf{W}^{h}_{(x:A)}}{\mathsf{W}^{h}_{(x:A)}}}B(x))\to C" display="inline"><mrow><mrow><mi>g</mi><mo>,</mo><mi>h</mi></mrow><mo>:</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msubsup><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mi>h</mi></msubsup><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi></mrow></mrow></math> be two functions which satisfy the recurrence <math id="I4.i1.p1.m4" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math> up to propositional equality, i.e., such that we have</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\displaystyle\beta_{g}" display="inline"><msub><mi>β</mi><mi>g</mi></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}%
+}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{%
+(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}g({\mathsf{sup}}(%
+a,f))=c(a,{\lambda}b.\,g(f(b)))," display="inline"><mrow><mo>:</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>,</mo><mi>f</mi></mrow></munder></mstyle></mpadded><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\displaystyle\beta_{h}" display="inline"><msub><mi>β</mi><mi>h</mi></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}%
+}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{%
+(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}h({\mathsf{sup}}(%
+a,f))=c(a,{\lambda}b.\,h(f(b)))." display="inline"><mrow><mo>:</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>,</mo><mi>f</mi></mrow></munder></mstyle></mpadded><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then <math id="I4.i1.p1.m5" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> and <math id="I4.i1.p1.m6" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> are equal, i.e. there is <math id="I4.i1.p1.m7" class="ltx_Math" alttext="\alpha(C,c,f,g,\beta_{g},\beta_{h})" display="inline"><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>f</mi><mo>,</mo><mi>g</mi><mo>,</mo><msub><mi>β</mi><mi>g</mi></msub><mo>,</mo><msub><mi>β</mi><mi>h</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> of type <math id="I4.i1.p1.m8" class="ltx_Math" alttext="g=h" display="inline"><mrow><mi>g</mi><mo>=</mo><mi>h</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Recall that when we have an induction principle rather than only a recursion principle, this propositional uniqueness principle is derivable (Theorem 5.3.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/53wtypes#Thmprethm1</span>)).
+But with only recursion, the uniqueness principle is no longer derivable — and in fact, the statement is not even true (exercise). Hence, we postulate it as an axiom.
+We also postulate the following coherence law, which tells us how the proof of uniqueness behaves on canonical elements:
+</p>
+<ul id="I5" class="ltx_itemize">
+<li id="I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I5.i1.p1" class="ltx_para">
+<p class="ltx_p">For any <math id="I5.i1.p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="I5.i1.p1.m2" class="ltx_Math" alttext="f:B(a)\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mi>C</mi></mrow></mrow></math>, the following diagram commutes propositionally:</p>
+</div>
+<figure id="I5.i1.fig1" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center">HoTT_fig_5.5.1.png</p>
+</figure>
+<div id="I5.i1.p2" class="ltx_para">
+<p class="ltx_p">where <math id="I5.i1.p2.m1" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math> abbreviates the path <math id="I5.i1.p2.m2" class="ltx_Math" alttext="\alpha(C,c,f,g,\beta_{g},\beta_{h}):g=h" display="inline"><mrow><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>f</mi><mo>,</mo><mi>g</mi><mo>,</mo><msub><mi>β</mi><mi>g</mi></msub><mo>,</mo><msub><mi>β</mi><mi>h</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>g</mi><mo>=</mo><mi>h</mi></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Putting all of this data together yields another characterization of <math id="p9.m1" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, as a type with a supremum function, satisfying simple elimination, computation, uniqueness, and coherence rules:</p>
+<table class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="p9.m2" class="ltx_Math" alttext="\displaystyle\mathsf{W}_{s}(A,B):\!\!\equiv\mathchoice{\sum_{W:\mathcal{U}}\,}%
+{\mathchoice{{\textstyle\sum_{(W:\mathcal{U})}}}{\sum_{(W:\mathcal{U})}}{\sum_%
+{(W:\mathcal{U})}}{\sum_{(W:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(W:%
+\mathcal{U})}}}{\sum_{(W:\mathcal{U})}}{\sum_{(W:\mathcal{U})}}{\sum_{(W:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(W:\mathcal{U})}}}{\sum_{(W:%
+\mathcal{U})}}{\sum_{(W:\mathcal{U})}}{\sum_{(W:\mathcal{U})}}}\;\mathchoice{%
+\sum_{{\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a%
+)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)%
+}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}%
+}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W}\,}{\mathchoice{{%
+\textstyle\sum_{({\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{%
+\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{%
+\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{%
+\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W%
+)}}}{\sum_{({\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_%
+{({\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}%
+{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup%
+}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}{\mathchoice{{\textstyle\sum_{({%
+\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}{\sum_{({\mathsf{%
+sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)%
+}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}%
+}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}%
+{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup}}:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup}}:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}{\mathchoice{{\textstyle\sum_{({%
+\mathsf{sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}{\sum_{({\mathsf{%
+sup}}:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)%
+}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}%
+}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}%
+{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup}}:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}{\sum_{({\mathsf{sup}}:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to W)\to W)}}}\;\mathchoice{\prod_{C:\mathcal{%
+U}}\,}{\mathchoice{{\textstyle\prod_{(C:\mathcal{U})}}}{\prod_{(C:\mathcal{U})%
+}}{\prod_{(C:\mathcal{U})}}{\prod_{(C:\mathcal{U})}}}{\mathchoice{{\textstyle%
+\prod_{(C:\mathcal{U})}}}{\prod_{(C:\mathcal{U})}}{\prod_{(C:\mathcal{U})}}{%
+\prod_{(C:\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(C:\mathcal{U})}}}{%
+\prod_{(C:\mathcal{U})}}{\prod_{(C:\mathcal{U})}}{\prod_{(C:\mathcal{U})}}}\;%
+\mathchoice{\prod_{c:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a%
+)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)%
+}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}%
+}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to C)\to C}\,}{\mathchoice{{%
+\textstyle\prod_{(c:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)%
+}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}%
+}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}%
+}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to C)\to C)}}}{\prod_{(c:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to C)\to C)}}{\prod_{(c:\mathchoice{\prod_{a}%
+\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}%
+}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}%
+}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}%
+(B(a)\to C)\to C)}}{\prod_{(c:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to C)\to C)}}}{%
+\mathchoice{{\textstyle\prod_{(c:\mathchoice{\prod_{a}\,}{\mathchoice{{%
+\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{%
+\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{%
+\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to C)\to C%
+)}}}{\prod_{(c:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{%
+\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to C)\to C)}}{\prod_{(c:%
+\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to C)\to C)}}{\prod_{(c:\mathchoice{\prod_{a}%
+\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}%
+}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}%
+}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}%
+(B(a)\to C)\to C)}}}{\mathchoice{{\textstyle\prod_{(c:\mathchoice{\prod_{a}\,}%
+{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{%
+\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{%
+\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B%
+(a)\to C)\to C)}}}{\prod_{(c:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle%
+\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}(B(a)\to C)\to C)}}{\prod%
+_{(c:\mathchoice{\prod_{a}\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}%
+}{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}%
+{\prod_{(a)}}{\prod_{(a)}}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{%
+\prod_{(a)}}{\prod_{(a)}}}(B(a)\to C)\to C)}}{\prod_{(c:\mathchoice{\prod_{a}%
+\,}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}%
+}}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}%
+}{\mathchoice{{\textstyle\prod_{(a)}}}{\prod_{(a)}}{\prod_{(a)}}{\prod_{(a)}}}%
+(B(a)\to C)\to C)}}}\;\mathchoice{\sum_{\mathsf{rec}:W\to C}\,}{\mathchoice{{%
+\textstyle\sum_{(\mathsf{rec}:W\to C)}}}{\sum_{(\mathsf{rec}:W\to C)}}{\sum_{(%
+\mathsf{rec}:W\to C)}}{\sum_{(\mathsf{rec}:W\to C)}}}{\mathchoice{{\textstyle%
+\sum_{(\mathsf{rec}:W\to C)}}}{\sum_{(\mathsf{rec}:W\to C)}}{\sum_{(\mathsf{%
+rec}:W\to C)}}{\sum_{(\mathsf{rec}:W\to C)}}}{\mathchoice{{\textstyle\sum_{(%
+\mathsf{rec}:W\to C)}}}{\sum_{(\mathsf{rec}:W\to C)}}{\sum_{(\mathsf{rec}:W\to
+C%
+)}}{\sum_{(\mathsf{rec}:W\to C)}}}\\
+\displaystyle\;\mathchoice{\sum_{\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{%
+{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}\mathsf{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}%
+(f(b)))}\,}{\mathchoice{{\textstyle\sum_{(\beta:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}\mathsf{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,%
+\mathsf{rec}(f(b))))}}}{\sum_{(\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}\mathsf{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}%
+(f(b))))}}{\sum_{(\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}\mathsf{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}(f(b))))}%
+}{\sum_{(\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}%
+}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_%
+{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}\mathsf%
+{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}(f(b))))}}}{%
+\mathchoice{{\textstyle\sum_{(\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}\mathsf{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}%
+(f(b))))}}}{\sum_{(\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}\mathsf{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}(f(b))))}%
+}{\sum_{(\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}%
+}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_%
+{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}\mathsf%
+{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}(f(b))))}}{\sum_{(%
+\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_%
+{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}%
+{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(%
+a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}\mathsf{rec}({\mathsf{sup%
+}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}(f(b))))}}}{\mathchoice{{\textstyle\sum_%
+{(\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a%
+,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}\mathsf{rec}({%
+\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}(f(b))))}}}{\sum_{(\beta:%
+\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)%
+}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod%
+_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}%
+}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}\mathsf{rec}({\mathsf{sup}}(a,f%
+))=c(a,{\lambda}b.\,\mathsf{rec}(f(b))))}}{\sum_{(\beta:\mathchoice{\prod_{a,f%
+}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}}\mathsf{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b%
+.\,\mathsf{rec}(f(b))))}}{\sum_{(\beta:\mathchoice{\prod_{a,f}\,}{\mathchoice{%
+{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}\mathsf{rec}({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,\mathsf{rec}%
+(f(b))))}}}\;\mathchoice{\prod_{g:W\to C}\,}{\mathchoice{{\textstyle\prod_{(g:%
+W\to C)}}}{\prod_{(g:W\to C)}}{\prod_{(g:W\to C)}}{\prod_{(g:W\to C)}}}{%
+\mathchoice{{\textstyle\prod_{(g:W\to C)}}}{\prod_{(g:W\to C)}}{\prod_{(g:W\to
+C%
+)}}{\prod_{(g:W\to C)}}}{\mathchoice{{\textstyle\prod_{(g:W\to C)}}}{\prod_{(g%
+:W\to C)}}{\prod_{(g:W\to C)}}{\prod_{(g:W\to C)}}}\;\mathchoice{\prod_{h:W\to
+C%
+}\,}{\mathchoice{{\textstyle\prod_{(h:W\to C)}}}{\prod_{(h:W\to C)}}{\prod_{(h%
+:W\to C)}}{\prod_{(h:W\to C)}}}{\mathchoice{{\textstyle\prod_{(h:W\to C)}}}{%
+\prod_{(h:W\to C)}}{\prod_{(h:W\to C)}}{\prod_{(h:W\to C)}}}{\mathchoice{{%
+\textstyle\prod_{(h:W\to C)}}}{\prod_{(h:W\to C)}}{\prod_{(h:W\to C)}}{\prod_{%
+(h:W\to C)}}}\;\mathchoice{\prod_{\beta_{g}:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b)))}\,}{%
+\mathchoice{{\textstyle\prod_{(\beta_{g}:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b))))}}}{%
+\prod_{(\beta_{g}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,%
+f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}g({%
+\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b))))}}{\prod_{(\beta_{g}:\mathchoice%
+{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g%
+(f(b))))}}{\prod_{(\beta_{g}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b))))}}}{%
+\mathchoice{{\textstyle\prod_{(\beta_{g}:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b))))}}}{%
+\prod_{(\beta_{g}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,%
+f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}g({%
+\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b))))}}{\prod_{(\beta_{g}:\mathchoice%
+{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g%
+(f(b))))}}{\prod_{(\beta_{g}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b))))}}}{%
+\mathchoice{{\textstyle\prod_{(\beta_{g}:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b))))}}}{%
+\prod_{(\beta_{g}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,%
+f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}g({%
+\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b))))}}{\prod_{(\beta_{g}:\mathchoice%
+{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g%
+(f(b))))}}{\prod_{(\beta_{g}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}g({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,g(f(b))))}}}\\
+\displaystyle\;\mathchoice{\prod_{\beta_{h}:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b)))}\,}{%
+\mathchoice{{\textstyle\prod_{(\beta_{h}:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b))))}}}{%
+\prod_{(\beta_{h}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,%
+f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}h({%
+\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b))))}}{\prod_{(\beta_{h}:\mathchoice%
+{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h%
+(f(b))))}}{\prod_{(\beta_{h}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b))))}}}{%
+\mathchoice{{\textstyle\prod_{(\beta_{h}:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b))))}}}{%
+\prod_{(\beta_{h}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,%
+f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}h({%
+\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b))))}}{\prod_{(\beta_{h}:\mathchoice%
+{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h%
+(f(b))))}}{\prod_{(\beta_{h}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b))))}}}{%
+\mathchoice{{\textstyle\prod_{(\beta_{h}:\mathchoice{\prod_{a,f}\,}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b))))}}}{%
+\prod_{(\beta_{h}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,%
+f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle%
+\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}h({%
+\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b))))}}{\prod_{(\beta_{h}:\mathchoice%
+{\prod_{a,f}\,}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}{\prod_{(a,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(%
+a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h%
+(f(b))))}}{\prod_{(\beta_{h}:\mathchoice{\prod_{a,f}\,}{\mathchoice{{%
+\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a,f)}}}{%
+\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{\prod_{(a%
+,f)}}}{\mathchoice{{\textstyle\prod_{(a,f)}}}{\prod_{(a,f)}}{\prod_{(a,f)}}{%
+\prod_{(a,f)}}}h({\mathsf{sup}}(a,f))=c(a,{\lambda}b.\,h(f(b))))}}}\;%
+\mathchoice{\sum_{\alpha:\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle%
+\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{%
+\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}g(w)=h(w)}\,}{\mathchoice{{\textstyle\sum_{(\alpha:\mathchoice{\prod_{w:%
+W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}}{\sum_{(\alpha:\mathchoice{\prod_{w%
+:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}{\sum_{(\alpha:\mathchoice{\prod_{w:%
+W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}{\sum_{(\alpha:\mathchoice{\prod_{w:%
+W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}}{\mathchoice{{\textstyle\sum_{(%
+\alpha:\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod%
+_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}%
+}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{%
+(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}}{\sum_{(%
+\alpha:\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod%
+_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}%
+}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{%
+(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}{\sum_{(%
+\alpha:\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod%
+_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}%
+}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{%
+(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}{\sum_{(%
+\alpha:\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod%
+_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}%
+}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{%
+(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}}{%
+\mathchoice{{\textstyle\sum_{(\alpha:\mathchoice{\prod_{w:W}\,}{\mathchoice{{%
+\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}g(w)=h(w))}}}{\sum_{(\alpha:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}{\sum_{(\alpha:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}{\sum_{(\alpha:\mathchoice{\prod_{w:W}\,}{%
+\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w%
+:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{%
+\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:W)}}{\prod_{(%
+w:W)}}{\prod_{(w:W)}}}g(w)=h(w))}}}\\
+\displaystyle\;\alpha({\mathsf{sup}}(x,f))\mathchoice{\mathbin{\raisebox{2.15%
+pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\beta_{h}=\beta_{g}\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}c(a,-)(%
+\mathsf{funext}\;{\lambda}b.\,\alpha(f(b)))" display="block"><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="left"><mrow><msub><mi>𝖶</mi><mi>s</mi></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+4.4pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>W</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></munder></mpadded><mpadded width="+4.4pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>𝗌𝗎𝗉</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mo stretchy="false">(</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>W</mi></mrow></munder></mpadded><mpadded width="+4.4pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>C</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></munder></mpadded><mpadded width="+4.4pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>c</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mo stretchy="false">(</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>𝗋𝖾𝖼</mi><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi>C</mi></mrow></mrow></munder></mpadded></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mpadded width="+4.4pt"><munder><mo largeop="true" lspace="5.3pt" movablelimits="false" symmetric="true">∑</mo><mrow><mi>β</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>𝗋𝖾𝖼</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>𝗋𝖾𝖼</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></munder></mpadded><mrow><mpadded width="+4.4pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>g</mi><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi>C</mi></mrow></mrow></munder></mpadded><mrow><mpadded width="+4.4pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>h</mi><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi>C</mi></mrow></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><msub><mi>β</mi><mi>g</mi></msub><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></munder></mpadded></mrow></mrow></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mpadded width="+4.4pt"><munder><mo largeop="true" lspace="5.3pt" movablelimits="false" symmetric="true">∏</mo><mrow><msub><mi>β</mi><mi>h</mi></msub><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>α</mi><mo>:</mo><mrow><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></munder></mpadded></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mpadded lspace="2.8pt" width="+2.8pt"><mi>α</mi></mpadded><mrow><mo stretchy="false">(</mo><mi>𝗌𝗎𝗉</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><msub><mi>β</mi><mi>h</mi></msub><mo>=</mo><msub><mi>β</mi><mi>g</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mo>-</mo><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mpadded width="+2.8pt"><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi></mpadded><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>α</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr></mtable></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="Thmprethm2" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 5.5.2</span>.</h6>
+<div id="Thmprethm2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmprethm2.p1.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> and <math id="Thmprethm2.p1.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>, the type <math id="Thmprethm2.p1.m3" class="ltx_Math" alttext="\mathsf{W}_{s}(A,B)" display="inline"><mrow><msub><mi mathvariant="normal">W</mi><mi>s</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>B</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a mere proposition.</span></p>
+</div>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">Finally, we have a third, very concise characterization of <math id="p10.m1" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> as an h-initial <math id="p10.m2" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-algebra:</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\mathsf{W}_{h}(A,B):\!\!\equiv\mathchoice{\sum_{I:\mathsf{W}\mathsf{Alg}(A,B)}%
+\,}{\mathchoice{{\textstyle\sum_{(I:\mathsf{W}\mathsf{Alg}(A,B))}}}{\sum_{(I:%
+\mathsf{W}\mathsf{Alg}(A,B))}}{\sum_{(I:\mathsf{W}\mathsf{Alg}(A,B))}}{\sum_{(%
+I:\mathsf{W}\mathsf{Alg}(A,B))}}}{\mathchoice{{\textstyle\sum_{(I:\mathsf{W}%
+\mathsf{Alg}(A,B))}}}{\sum_{(I:\mathsf{W}\mathsf{Alg}(A,B))}}{\sum_{(I:\mathsf%
+{W}\mathsf{Alg}(A,B))}}{\sum_{(I:\mathsf{W}\mathsf{Alg}(A,B))}}}{\mathchoice{{%
+\textstyle\sum_{(I:\mathsf{W}\mathsf{Alg}(A,B))}}}{\sum_{(I:\mathsf{W}\mathsf{%
+Alg}(A,B))}}{\sum_{(I:\mathsf{W}\mathsf{Alg}(A,B))}}{\sum_{(I:\mathsf{W}%
+\mathsf{Alg}(A,B))}}}\mathsf{isHinit}_{\mathsf{W}}(A,B,I)." display="block"><mrow><msub><mi>𝖶</mi><mi>h</mi></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>I</mi><mo>:</mo><mrow><mi>𝖶𝖠𝗅𝗀</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></munder></mpadded><msub><mi>𝗂𝗌𝖧𝗂𝗇𝗂𝗍</mi><mi>𝖶</mi></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>I</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="Thmprethm3" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 5.5.3</span>.</h6>
+<div id="Thmprethm3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmprethm3.p1.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> and <math id="Thmprethm3.p1.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>, the type <math id="Thmprethm3.p1.m3" class="ltx_Math" alttext="\mathsf{W}_{h}(A,B)" display="inline"><mrow><msub><mi mathvariant="normal">W</mi><mi>h</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>B</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a mere proposition.</span></p>
+</div>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">It turns out all three characterizations of <math id="p11.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types are in fact equivalent:</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 5.5.4</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> and <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>, we have</span></p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\mathsf{W}_{d}(A,B)\simeq\mathsf{W}_{s}(A,B)\simeq\mathsf{W}_{h}(A,B)" display="block"><mrow><mrow><msub><mi>𝖶</mi><mi>d</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≃</mo><mrow><msub><mi>𝖶</mi><mi>s</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≃</mo><mrow><msub><mi>𝖶</mi><mi>h</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Indeed, we have the following theorem, which is an improvement over Theorem 5.4.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/54inductivetypesareinitialalgebras#Thmprethm3</span>):
+</p>
+</div>
+<div id="Thmprethm4" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 5.5.5</span>.</h6>
+<div id="Thmprethm4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The types satisfying the formation, introduction, elimination, and propositional computation rules for <math id="Thmprethm4.p1.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi mathvariant="normal">W</mi></math>-types are precisely the homotopy-initial <math id="Thmprethm4.p1.m2" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi mathvariant="normal">W</mi></math>-algebras.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Sketch of proof.</h6>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">Inspecting the proof of Theorem 5.4.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/54inductivetypesareinitialalgebras#Thmprethm3</span>), we see that only the <em class="ltx_emph ltx_font_italic">propositional</em> computation rule was required to establish the h-initiality of <math id="p13.m1" class="ltx_Math" alttext="\mathchoice{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{%
+\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x%
+:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}{%
+\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x%
+:A)}}{\mathsf{W}_{(x:A)}}}{\mathchoice{{\textstyle\mathsf{W}_{(x:A)}}}{\mathsf%
+{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}{\mathsf{W}_{(x:A)}}}B(x)" display="inline"><mrow><msub><mi>𝖶</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mo>⁢</mo><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+For the converse implication, let us assume that the polynomial functor associated
+to <math id="p13.m2" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and <math id="p13.m3" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, has an h-initial algebra <math id="p13.m4" class="ltx_Math" alttext="(W,s_{W})" display="inline"><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>s</mi><mi>W</mi></msub><mo stretchy="false">)</mo></mrow></math>; we show that <math id="p13.m5" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> satisfies the propositional rules of <math id="p13.m6" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types.
+The <math id="p13.m7" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-introduction rule is simple; namely, for <math id="p13.m8" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p13.m9" class="ltx_Math" alttext="t:B(a)\rightarrow W" display="inline"><mrow><mi>t</mi><mo>:</mo><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mi>W</mi></mrow></mrow></math>, we define <math id="p13.m10" class="ltx_Math" alttext="{\mathsf{sup}}(a,t):W" display="inline"><mrow><mrow><mi>𝗌𝗎𝗉</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mi>W</mi></mrow></math> to be the
+result of applying the structure map <math id="p13.m11" class="ltx_Math" alttext="s_{W}:PW\rightarrow W" display="inline"><mrow><msub><mi>s</mi><mi>W</mi></msub><mo>:</mo><mrow><mrow><mi>P</mi><mo>⁢</mo><mi>W</mi></mrow><mo>→</mo><mi>W</mi></mrow></mrow></math> to <math id="p13.m12" class="ltx_Math" alttext="(a,t):PW" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mi>W</mi></mrow></mrow></math>.
+For the <math id="p13.m13" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-elimination rule, let us assume its premisses and in particular that <math id="p13.m14" class="ltx_Math" alttext="C^{\prime}:W\to\mathcal{U}" display="inline"><mrow><msup><mi>C</mi><mo>′</mo></msup><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>.
+Using the other premisses, one shows that the type <math id="p13.m15" class="ltx_Math" alttext="C:\!\!\equiv\mathchoice{\sum_{w:W}\,}{\mathchoice{{\textstyle\sum_{(w:W)}}}{%
+\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:W)}%
+}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}{\mathchoice{{\textstyle\sum_{(w:%
+W)}}}{\sum_{(w:W)}}{\sum_{(w:W)}}{\sum_{(w:W)}}}C^{\prime}(w)" display="inline"><mrow><mi>C</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><msup><mi>C</mi><mo>′</mo></msup><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+can be equipped with a structure map <math id="p13.m16" class="ltx_Math" alttext="s_{C}:PC\rightarrow C" display="inline"><mrow><msub><mi>s</mi><mi>C</mi></msub><mo>:</mo><mrow><mrow><mi>P</mi><mo>⁢</mo><mi>C</mi></mrow><mo>→</mo><mi>C</mi></mrow></mrow></math>. By the h-initiality of <math id="p13.m17" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>,
+we obtain an algebra homomorphism <math id="p13.m18" class="ltx_Math" alttext="(f,s_{f}):(W,s_{W})\rightarrow(C,s_{C})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><msub><mi>s</mi><mi>f</mi></msub><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>s</mi><mi>W</mi></msub><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><msub><mi>s</mi><mi>C</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. Furthermore,
+the first projection <math id="p13.m19" class="ltx_Math" alttext="\mathsf{pr}_{1}:C\rightarrow W" display="inline"><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>:</mo><mrow><mi>C</mi><mo>→</mo><mi>W</mi></mrow></mrow></math> can be equipped with the structure of a
+homomorphism, so that we obtain a diagram of the form</p>
+</div>
+<figure id="fig1" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center">HoTT_fig_5.5.2.png</p>
+</figure>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">But the identity function <math id="p14.m1" class="ltx_Math" alttext="1_{W}:W\rightarrow W" display="inline"><mrow><msub><mn>1</mn><mi>W</mi></msub><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi>W</mi></mrow></mrow></math> has a canonical structure of an
+algebra homomorphism and so, by the contractibility of the type of homomorphisms
+from <math id="p14.m2" class="ltx_Math" alttext="(W,s_{W})" display="inline"><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>s</mi><mi>W</mi></msub><mo stretchy="false">)</mo></mrow></math> to itself, there must be an identity proof between the composite
+of <math id="p14.m3" class="ltx_Math" alttext="(f,s_{f})" display="inline"><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><msub><mi>s</mi><mi>f</mi></msub><mo stretchy="false">)</mo></mrow></math> with <math id="p14.m4" class="ltx_Math" alttext="(\mathsf{pr}_{1},s_{\mathsf{pr}_{1}})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>,</mo><msub><mi>s</mi><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></msub><mo stretchy="false">)</mo></mrow></math> and <math id="p14.m5" class="ltx_Math" alttext="(1_{W},s_{1_{W}})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mi>W</mi></msub><mo>,</mo><msub><mi>s</mi><msub><mn>1</mn><mi>W</mi></msub></msub><mo stretchy="false">)</mo></mrow></math>. This implies, in particular,
+that there is an identity proof <math id="p14.m6" class="ltx_Math" alttext="p:\mathsf{pr}_{1}\circ f=1_{W}" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>∘</mo><mi>f</mi></mrow><mo>=</mo><msub><mn>1</mn><mi>W</mi></msub></mrow></mrow></math>.</p>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">Since <math id="p15.m1" class="ltx_Math" alttext="(\mathsf{pr}_{2}\circ f)w:C((\mathsf{pr}_{1}\circ f)w)" display="inline"><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>∘</mo><mi>f</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>w</mi></mrow><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>∘</mo><mi>f</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>w</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, we can define</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\mathsf{rec}(w,c):\!\!\equiv p_{\,*\,}((\mathsf{pr}_{2}\circ f)w):C(w)" display="block"><mrow><mi>𝗋𝖾𝖼</mi><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>p</mi><mo lspace="4.2pt" rspace="4.2pt">*</mo></msub><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>∘</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mi>w</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where the transport <math id="p15.m2" class="ltx_Math" alttext="p_{\,*\,}" display="inline"><msub><mi>p</mi><mo lspace="4.2pt" rspace="4.2pt">*</mo></msub></math> is with respect to the family</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="{\lambda}u.\,C\circ u:(W\to W)\to W\to\mathcal{U}." display="block"><mrow><mi>λ</mi><mi>u</mi><mo rspace="4.2pt">.</mo><mi>C</mi><mo>∘</mo><mi>u</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>→</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>W</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The verification of the propositional <math id="p15.m3" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-computation rule is a calculation,
+involving the naturality properties of operations of the form <math id="p15.m4" class="ltx_Math" alttext="p_{\,*\,}" display="inline"><msub><mi>p</mi><mo lspace="4.2pt" rspace="4.2pt">*</mo></msub></math>.
+∎</p>
+</div>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">Finally, as desired, we can encode homotopy-natural-numbers as homotopy-<math id="p16.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types:
+</p>
+</div>
+<div id="Thmprethm5" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 5.5.6</span>.</h6>
+<div id="Thmprethm5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The rules for natural numbers with propositional computation rules can be derived from the rules for <math id="Thmprethm5.p1.m1" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi mathvariant="normal">W</mi></math>-types with propositional computation rules.</span></p>
+</div>
+</div>
+<div id="p17" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">5.5 Homotopy-inductive types</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:36:49 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html><html>
+<head>
+<title>1.6 Dependent pair types</title>
+<!--Generated on Thu Feb  8 19:32:33 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">1.6 Dependent pair types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Just as we generalized function types (§1.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/12functiontypes</span>)) to dependent function types (§1.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/14dependentfunctiontypes</span>)), it is often useful to generalize the product types from §1.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/15producttypes</span>) to allow the type of
+the second component of a pair to vary depending on the choice of the first
+component. This is called a <span class="ltx_text ltx_font_bold">dependent pair type</span>, or <math id="p1.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math><span class="ltx_text ltx_font_bold">-type</span>, because in set theory it
+corresponds to an indexed sum (in the sense of coproduct or
+disjoint union) over a given type.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Given a type <math id="p2.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and a family <math id="p2.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, the dependent
+pair type is written as <math id="p2.m3" class="ltx_Math" alttext="\textstyle\sum_{(x:A)}B(x):\mathcal{U}" display="inline"><mrow><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>.
+Alternative notations are</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\textstyle\sum_{(x:A)}B(x)\hskip 56.905512pt\sum_{(x:A)}\,B(x)\hskip 56.905512%
+pt\sum({\textstyle x:A}),\ B(x)." display="block"><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true">       </mo><mpadded width="+1.7pt"><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle></mpadded><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true">       </mo><mstyle displaystyle="false"><mo largeop="true" symmetric="true">∑</mo></mstyle><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="7.5pt">,</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Like other binding constructs such as <math id="p2.m4" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstractions and <math id="p2.m5" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>s, <math id="p2.m6" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>s automatically scope over the rest of the expression unless delimited, so e.g. <math id="p2.m7" class="ltx_Math" alttext="\textstyle\sum_{(x:A)}B(x)\times C(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>×</mo><mi>C</mi></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> means <math id="p2.m8" class="ltx_Math" alttext="\textstyle\sum_{(x:A)}(B(x)\times C(x))" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mrow><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>×</mo><mi>C</mi></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">The way to construct elements of a dependent pair type is by pairing: we have
+<math id="p3.m1" class="ltx_Math" alttext="(a,b):\textstyle\sum_{(x:A)}B(x)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> given <math id="p3.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p3.m3" class="ltx_Math" alttext="b:B(a)" display="inline"><mrow><mi>b</mi><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+If <math id="p3.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is constant, then the dependent pair type is the
+ordinary cartesian product type:</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\Bigl{(}\textstyle\sum_{(x:A)}B\Bigr{)}\equiv(A\times B)." display="block"><mrow><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">All the constructions on <math id="p3.m5" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types arise as straightforward generalizations of the ones for product types, with dependent functions often replacing non-dependent ones.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">For instance, the recursion principle
+says that to define a non-dependent function out of a <math id="p4.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-type
+<math id="p4.m2" class="ltx_Math" alttext="f:(\textstyle\sum_{(x:A)}B(x))\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi></mrow></mrow></math>, we provide a function
+<math id="p4.m3" class="ltx_Math" alttext="g:\textstyle\prod_{(x:A)}B(x)\to C" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi>C</mi></mrow></mrow></math>, and then we can define <math id="p4.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> via the defining
+equation</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="f((a,b))܃\!\!\equiv g(a)(b)." display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">For instance, we can derive the first projection from a <math id="p4.m5" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-type:</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathsf{pr}_{1}:\Bigl{(}\textstyle\sum_{(x:A)}B(x)\Bigr{)}\to A." display="block"><mrow><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>:</mo><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mi>A</mi></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">by the defining equation</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\mathsf{pr}_{1}((a,b))܃\!\!\equiv a." display="block"><mrow><mrow><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mi>a</mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">However, since the type of the second component of a pair
+<math id="p4.m6" class="ltx_Math" alttext="(a,b):\textstyle\sum_{(x:A)}B(x)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>
+is <math id="p4.m7" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, the second projection must be a <em class="ltx_emph ltx_font_italic">dependent</em> function, whose type involves the first projection function:</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\mathsf{pr}_{2}:\textstyle\prod_{(p:\textstyle\sum_{(x:A)}B(x))}B(\mathsf{pr}_%
+{1}(p))." display="block"><mrow><mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>:</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" mathsize="100%" stretchy="false" symmetric="true">∑</mo><mrow><mo maxsize="140%" minsize="140%">(</mo><mi mathsize="140%">x</mi><mo mathsize="140%" stretchy="false">:</mo><mi mathsize="140%">A</mi><mo maxsize="140%" minsize="140%">)</mo></mrow></msub></mstyle><mi mathsize="142%">B</mi><mrow><mo maxsize="142%" minsize="142%">(</mo><mi mathsize="142%">x</mi><mo maxsize="142%" minsize="142%">)</mo></mrow><mo maxsize="142%" minsize="142%">)</mo></mrow></msub></mstyle><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Thus we need the <em class="ltx_emph ltx_font_italic">induction</em> principle
+for <math id="p4.m8" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types (the “dependent eliminator”).
+This says that to construct a dependent function out of a <math id="p4.m9" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-type into a family <math id="p4.m10" class="ltx_Math" alttext="C:(\textstyle\sum_{(x:A)}B(x))\to\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, we need a function</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="g:\textstyle\prod_{(a:A)}{b:B(a)}C((a,b))." display="block"><mrow><mrow><mi>g</mi><mo>:</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>b</mi></mrow><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We can then derive a function</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="f:\textstyle\prod_{(p:\textstyle\sum_{(x:A)}B(x))}C(p)" display="block"><mrow><mi>f</mi><mo>:</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" mathsize="100%" stretchy="false" symmetric="true">∑</mo><mrow><mo maxsize="140%" minsize="140%">(</mo><mi mathsize="140%">x</mi><mo mathsize="140%" stretchy="false">:</mo><mi mathsize="140%">A</mi><mo maxsize="140%" minsize="140%">)</mo></mrow></msub></mstyle><mi mathsize="142%">B</mi><mrow><mo maxsize="142%" minsize="142%">(</mo><mi mathsize="142%">x</mi><mo maxsize="142%" minsize="142%">)</mo></mrow><mo maxsize="142%" minsize="142%">)</mo></mrow></msub></mstyle><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with defining equation</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="f((a,b))܃\!\!\equiv g(a)(b)." display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Applying this with <math id="p4.m11" class="ltx_Math" alttext="C(p)܃\!\!\equiv B(\mathsf{pr}_{1}(p))" display="inline"><mrow><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, we can define
+<math id="p4.m12" class="ltx_Math" alttext="\mathsf{pr}_{2}:\textstyle\prod_{(p:\textstyle\sum_{(x:A)}B(x))}B(\mathsf{pr}_%
+{1}(p))" display="inline"><mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" mathsize="100%" stretchy="false" symmetric="true">∑</mo><mrow><mo maxsize="140%" minsize="140%">(</mo><mi mathsize="140%">x</mi><mo mathsize="140%" stretchy="false">:</mo><mi mathsize="140%">A</mi><mo maxsize="140%" minsize="140%">)</mo></mrow></msub></mstyle><mi mathsize="142%">B</mi><mrow><mo maxsize="142%" minsize="142%">(</mo><mi mathsize="142%">x</mi><mo maxsize="142%" minsize="142%">)</mo></mrow><mo maxsize="142%" minsize="142%">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>
+with the obvious equation</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\mathsf{pr}_{2}((a,b))܃\!\!\equiv b." display="block"><mrow><mrow><mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mi>b</mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">To convince ourselves that this is correct, we note that <math id="p4.m13" class="ltx_Math" alttext="B(\mathsf{pr}_{1}((a,b)))\equiv B(a)" display="inline"><mrow><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, using the defining equation for <math id="p4.m14" class="ltx_Math" alttext="\mathsf{pr}_{1}" display="inline"><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></math>, and
+indeed <math id="p4.m15" class="ltx_Math" alttext="b:B(a)" display="inline"><mrow><mi>b</mi><mo>:</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">We can package the recursion and induction principles into the recursor for <math id="p5.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>:</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\mathsf{rec}_{\textstyle\sum_{(x:A)}B(x)}:\prod_{(C:\mathcal{U})}\,\Bigl{(}%
+\textstyle\prod_{(x:A)}B(x)\to C\Bigr{)}\to\Bigl{(}\textstyle\sum_{(x:A)}B(x)%
+\Bigr{)}\to C" display="block"><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><mstyle displaystyle="false"><msub><mo largeop="true" mathsize="100%" stretchy="false" symmetric="true">∑</mo><mrow><mo maxsize="140%" minsize="140%">(</mo><mi mathsize="140%">x</mi><mo mathsize="140%" stretchy="false">:</mo><mi mathsize="140%">A</mi><mo maxsize="140%" minsize="140%">)</mo></mrow></msub></mstyle><mrow><mi mathsize="142%">B</mi><mo>⁢</mo><mrow><mo maxsize="142%" minsize="142%">(</mo><mi mathsize="142%">x</mi><mo maxsize="142%" minsize="142%">)</mo></mrow></mrow></mrow></msub><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo maxsize="160%" minsize="160%">(</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mi>C</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with the defining equation</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="\mathsf{rec}_{\textstyle\sum_{(x:A)}B(x)}(C,g,(a,b))܃\!\!\equiv g(a)(b)" display="block"><mrow><mrow><msub><mi>𝗋𝖾𝖼</mi><mrow><mstyle displaystyle="false"><msub><mo largeop="true" mathsize="100%" stretchy="false" symmetric="true">∑</mo><mrow><mo maxsize="140%" minsize="140%">(</mo><mi mathsize="140%">x</mi><mo mathsize="140%" stretchy="false">:</mo><mi mathsize="140%">A</mi><mo maxsize="140%" minsize="140%">)</mo></mrow></msub></mstyle><mrow><mi mathsize="142%">B</mi><mo>⁢</mo><mrow><mo maxsize="142%" minsize="142%">(</mo><mi mathsize="142%">x</mi><mo maxsize="142%" minsize="142%">)</mo></mrow></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>g</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and the corresponding induction operator:</p>
+<table id="S0.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex13.m1" class="ltx_Math" alttext="\mathsf{ind}_{\textstyle\sum_{(x:A)}B(x)}:\prod_{(C:(\textstyle\sum_{(x:A)}B(x%
+))\to\mathcal{U})}\,\Bigl{(}\textstyle\prod_{(a:A)}{b:B(a)}C((a,b))\Bigr{)}\to%
+\prod_{(p:\textstyle\sum_{(x:A)}B(x))}\,C(p)" display="block"><mrow><msub><mi>𝗂𝗇𝖽</mi><mrow><mstyle displaystyle="false"><msub><mo largeop="true" mathsize="100%" stretchy="false" symmetric="true">∑</mo><mrow><mo maxsize="140%" minsize="140%">(</mo><mi mathsize="140%">x</mi><mo mathsize="140%" stretchy="false">:</mo><mi mathsize="140%">A</mi><mo maxsize="140%" minsize="140%">)</mo></mrow></msub></mstyle><mrow><mi mathsize="142%">B</mi><mo>⁢</mo><mrow><mo maxsize="142%" minsize="142%">(</mo><mi mathsize="142%">x</mi><mo maxsize="142%" minsize="142%">)</mo></mrow></mrow></mrow></msub><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mstyle displaystyle="false"><msub><mo largeop="true" mathsize="100%" stretchy="false" symmetric="true">∑</mo><mrow><mo maxsize="140%" minsize="140%">(</mo><mi mathsize="140%">x</mi><mo mathsize="140%" stretchy="false">:</mo><mi mathsize="140%">A</mi><mo maxsize="140%" minsize="140%">)</mo></mrow></msub></mstyle><mi mathsize="142%">B</mi><mrow><mo maxsize="142%" minsize="142%">(</mo><mi mathsize="142%">x</mi><mo maxsize="142%" minsize="142%">)</mo></mrow><mo maxsize="142%" minsize="142%">)</mo></mrow><mo mathsize="142%" stretchy="false">→</mo><mi class="ltx_font_mathcaligraphic" mathsize="142%">𝒰</mi><mo maxsize="142%" minsize="142%">)</mo></mrow></munder></mpadded><mrow><mo maxsize="160%" minsize="160%">(</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>b</mi><mo>:</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mi>C</mi><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mpadded width="+1.7pt"><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" mathsize="100%" stretchy="false" symmetric="true">∑</mo><mrow><mo maxsize="140%" minsize="140%">(</mo><mi mathsize="140%">x</mi><mo mathsize="140%" stretchy="false">:</mo><mi mathsize="140%">A</mi><mo maxsize="140%" minsize="140%">)</mo></mrow></msub></mstyle><mi mathsize="142%">B</mi><mrow><mo maxsize="142%" minsize="142%">(</mo><mi mathsize="142%">x</mi><mo maxsize="142%" minsize="142%">)</mo></mrow><mo maxsize="142%" minsize="142%">)</mo></mrow></msub></mstyle></mpadded><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with the defining equation</p>
+<table id="S0.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\mathsf{ind}_{\textstyle\sum_{(x:A)}B(x)}(C,g,(a,b))܃\!\!\equiv g(a)(b)." display="block"><mrow><mrow><mrow><msub><mi>𝗂𝗇𝖽</mi><mrow><mstyle displaystyle="false"><msub><mo largeop="true" mathsize="100%" stretchy="false" symmetric="true">∑</mo><mrow><mo maxsize="140%" minsize="140%">(</mo><mi mathsize="140%">x</mi><mo mathsize="140%" stretchy="false">:</mo><mi mathsize="140%">A</mi><mo maxsize="140%" minsize="140%">)</mo></mrow></msub></mstyle><mrow><mi mathsize="142%">B</mi><mo>⁢</mo><mrow><mo maxsize="142%" minsize="142%">(</mo><mi mathsize="142%">x</mi><mo maxsize="142%" minsize="142%">)</mo></mrow></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>g</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">As before, the recursor is the special case of induction
+when the family <math id="p5.m2" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math> is constant.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">As a further example, consider the following principle, where <math id="p6.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p6.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are types and <math id="p6.m3" class="ltx_Math" alttext="R:A\to B\to\mathcal{U}" display="inline"><mrow><mi>R</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>.</p>
+<table id="S0.Ex15" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex15.m1" class="ltx_Math" alttext="\mathsf{ac}:\Bigl{(}\textstyle\prod_{(x:A)}\textstyle\sum_{(y:B)}R(x,y)\Bigr{)%
+}\to\Bigl{(}\textstyle\sum_{(f:A\to B)}\textstyle\prod_{(x:A)}R(x,f(x))\Bigr{)}" display="block"><mrow><mi>𝖺𝖼</mi><mo>:</mo><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We may regard <math id="p6.m4" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> as a “proof-relevant relation”
+between <math id="p6.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p6.m6" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, with <math id="p6.m7" class="ltx_Math" alttext="R(a,b)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> the type of witnesses for relatedness of <math id="p6.m8" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p6.m9" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math>.
+Then <math id="p6.m10" class="ltx_Math" alttext="\mathsf{ac}" display="inline"><mi>𝖺𝖼</mi></math> says intuitively that if we have a dependent function <math id="p6.m11" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> assigning to every <math id="p6.m12" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> a dependent pair <math id="p6.m13" class="ltx_Math" alttext="(b,r)" display="inline"><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></math> where <math id="p6.m14" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math> and <math id="p6.m15" class="ltx_Math" alttext="r:R(a,b)" display="inline"><mrow><mi>r</mi><mo>:</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then we have a function <math id="p6.m16" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> and a dependent function assigning to every <math id="p6.m17" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> a witness that <math id="p6.m18" class="ltx_Math" alttext="R(a,f(a))" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+Our intuition tells us that we can just split up the values of <math id="p6.m19" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> into their components.
+Indeed, using the projections we have just defined, we can define:
+</p>
+<table id="S0.Ex16" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex16.m1" class="ltx_Math" alttext="\mathsf{ac}(g)܃\!\!\equiv\Bigl{(}{\lambda}x{.\,}\mathsf{pr}_{1}(g(x)),\,{%
+\lambda}x{.\,}\mathsf{pr}_{2}(g(x))\Bigr{)}." display="block"><mrow><mi>𝖺𝖼</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mi>Ü</mi><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded><mo>≡</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">,</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">To verify that this is well-typed, note that if <math id="p6.m20" class="ltx_Math" alttext="g:\textstyle\prod_{(x:A)}\textstyle\sum_{(y:B)}R(x,y)" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math>, we have</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex17" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex17.m1" class="ltx_Math" alttext="\displaystyle{\lambda}x{.\,}\mathsf{pr}_{1}(g(x))" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex17.m2" class="ltx_Math" alttext="\displaystyle:A\to B," display="inline"><mrow><mrow><mi></mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex18" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex18.m1" class="ltx_Math" alttext="\displaystyle{\lambda}x{.\,}\mathsf{pr}_{2}(g(x))" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex18.m2" class="ltx_Math" alttext="\displaystyle:\textstyle\prod_{(x:A)}R(x,\mathsf{pr}_{1}(g(x)))." display="inline"><mrow><mrow><mi></mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Moreover, the type <math id="p6.m21" class="ltx_Math" alttext="\textstyle\prod_{(x:A)}R(x,\mathsf{pr}_{1}(g(x)))" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is the result of substituting the function <math id="p6.m22" class="ltx_Math" alttext="{\lambda}x{.\,}\mathsf{pr}_{1}(g(x))" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for <math id="p6.m23" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> in the family being summed over in the codomain of <math id="p6.m24" class="ltx_Math" alttext="\mathsf{ac}" display="inline"><mi>𝖺𝖼</mi></math>:</p>
+<table id="S0.Ex19" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex19.m1" class="ltx_Math" alttext="\textstyle\prod_{(x:A)}R(x,\mathsf{pr}_{1}(g(x)))\equiv\Bigl{(}{\lambda}f{.\,}%
+\textstyle\prod_{(x:A)}R(x,f(x))\Bigr{)}\big{(}{\lambda}x{.\,}\mathsf{pr}_{1}(%
+g(x))\big{)}." display="block"><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>≡</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mi>λ</mi><mi>f</mi><mo rspace="4.2pt">.</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Thus, we have</p>
+<table id="S0.Ex20" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex20.m1" class="ltx_Math" alttext="\Bigl{(}{\lambda}x{.\,}\mathsf{pr}_{1}(g(x)),\,{\lambda}x{.\,}\mathsf{pr}_{2}(%
+g(x))\Bigr{)}:\textstyle\sum_{(f:A\to B)}\textstyle\prod_{(x:A)}R(x,f(x))" display="block"><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">,</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">as required.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">If we read <math id="p7.m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math> as “for all” and <math id="p7.m2" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math> as “there exists”, then the type of the function <math id="p7.m3" class="ltx_Math" alttext="\mathsf{ac}" display="inline"><mi>𝖺𝖼</mi></math> expresses:
+<em class="ltx_emph ltx_font_italic">if for all <math id="p7.m4" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> there is a <math id="p7.m5" class="ltx_Math" alttext="y:B" display="inline"><mrow><mi>y</mi><mo mathvariant="normal">:</mo><mi>B</mi></mrow></math> such that <math id="p7.m6" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>, then there is a function <math id="p7.m7" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>B</mi></mrow></mrow></math> such that for all <math id="p7.m8" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> we have <math id="p7.m9" class="ltx_Math" alttext="R(x,f(x))" display="inline"><mrow><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">,</mo><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math></em>.
+Since this sounds like a version of the axiom of choice, the function <math id="p7.m10" class="ltx_Math" alttext="\mathsf{ac}" display="inline"><mi>𝖺𝖼</mi></math> has traditionally been called the <span class="ltx_text ltx_font_bold">type-theoretic axiom of choice</span>, and as we have just shown, it can be proved directly from the rules of type theory, rather than having to be taken as an axiom.
+However, note that no choice is actually involved, since the choices have already been given to us in the premise: all we have to do is take it apart into two functions: one representing the choice and the other its correctness.
+In <span class="ltx_ERROR undefined">\autoref</span>sec:axiom-choice we will give another formulation of an “axiom of choice” which is closer to the usual one.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Dependent pair types are often used to define types of mathematical structures, which commonly consist of several dependent pieces of data.
+To take a simple example, suppose we want to define a <span class="ltx_text ltx_font_bold">magma</span> to be a type <math id="p8.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> together with a binary operation <math id="p8.m2" class="ltx_Math" alttext="m:A\to A\to A" display="inline"><mrow><mi>m</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow></mrow></math>.
+The precise meaning of the phrase “together with” (and the synonymous “equipped with”) is that “a magma” is a <em class="ltx_emph ltx_font_italic">pair</em> <math id="p8.m3" class="ltx_Math" alttext="(A,m)" display="inline"><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></math> consisting of a type <math id="p8.m4" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and an operation <math id="p8.m5" class="ltx_Math" alttext="m:A\to A\to A" display="inline"><mrow><mi>m</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow></mrow></math>.
+Since the type <math id="p8.m6" class="ltx_Math" alttext="A\to A\to A" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow></math> of the second component <math id="p8.m7" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math> of this pair depends on its first component <math id="p8.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, such pairs belong to a dependent pair type.
+Thus, the definition “a magma is a type <math id="p8.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> together with a binary operation <math id="p8.m10" class="ltx_Math" alttext="m:A\to A\to A" display="inline"><mrow><mi>m</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow></mrow></math>” should be read as defining <em class="ltx_emph ltx_font_italic">the type of magmas</em> to be
+</p>
+<table id="S0.Ex21" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex21.m1" class="ltx_Math" alttext="\mathsf{Magma}܃\!\!\equiv\textstyle\sum_{(A:\mathcal{U})}(A\to A\to A)." display="block"><mrow><mi>𝖬𝖺𝗀𝗆𝖺</mi><mi>Ü</mi><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded><mo>≡</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Given a magma, we extract its underlying type (its “carrier”) with the first projection <math id="p8.m11" class="ltx_Math" alttext="\mathsf{pr}_{1}" display="inline"><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></math>, and its operation with the second projection <math id="p8.m12" class="ltx_Math" alttext="\mathsf{pr}_{2}" display="inline"><msub><mi>𝗉𝗋</mi><mn>2</mn></msub></math>.
+Of course, structures built from more than two pieces of data require iterated pair types, which may be only partially dependent; for instance the type of pointed magmas (magmas <math id="p8.m13" class="ltx_Math" alttext="(A,m)" display="inline"><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></math> equipped with a basepoint <math id="p8.m14" class="ltx_Math" alttext="e:A" display="inline"><mrow><mi>e</mi><mo>:</mo><mi>A</mi></mrow></math>) is</p>
+<table id="S0.Ex22" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex22.m1" class="ltx_Math" alttext="\mathsf{PointedMagma}܃\!\!\equiv\textstyle\sum_{(A:\mathcal{U})}(A\to A\to A)%
+\times A." display="block"><mrow><mi>𝖯𝗈𝗂𝗇𝗍𝖾𝖽𝖬𝖺𝗀𝗆𝖺</mi><mi>Ü</mi><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded><mo>≡</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo>×</mo><mi>A</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We generally also want to impose axioms on such a structure, e.g. to make a pointed magma into a monoid or a group.
+This can also be done using <math id="p8.m15" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types; see <span class="ltx_ERROR undefined">\autoref</span>sec:pat.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">In the rest of the book, we will sometimes make definitions of this sort explicit, but eventually we trust the reader to translate them from English into <math id="p9.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types.
+We also generally follow the common mathematical practice of using the same letter for a structure of this sort and for its carrier (which amounts to leaving the appropriate projection function implicit in the notation): that is, we will speak of a magma <math id="p9.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> with its operation <math id="p9.m3" class="ltx_Math" alttext="m:A\to A\to A" display="inline"><mrow><mi>m</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow></mrow></math>.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">Note that the canonical elements of <math id="p10.m1" class="ltx_Math" alttext="\mathsf{PointedMagma}" display="inline"><mi>𝖯𝗈𝗂𝗇𝗍𝖾𝖽𝖬𝖺𝗀𝗆𝖺</mi></math> are of the form <math id="p10.m2" class="ltx_Math" alttext="(A,(m,e))" display="inline"><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>m</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></math> where <math id="p10.m3" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>, <math id="p10.m4" class="ltx_Math" alttext="m:A\to A\to A" display="inline"><mrow><mi>m</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow></mrow></math>, and <math id="p10.m5" class="ltx_Math" alttext="e:A" display="inline"><mrow><mi>e</mi><mo>:</mo><mi>A</mi></mrow></math>.
+Because of the frequency with which iterated <math id="p10.m6" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types of this sort arise, we use the usual notation of ordered triples, quadruples and so on to stand for nested pairs (possibly dependent) associating to the right.
+That is, we have <math id="p10.m7" class="ltx_Math" alttext="(x,y,z)܃\!\!\equiv(x,(y,z))" display="inline"><mrow><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p10.m8" class="ltx_Math" alttext="(x,y,z,w)܃\!\!\equiv(x,(y,(z,w)))" display="inline"><mrow><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>,</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo>,</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, etc.</p>
+</div>
+<div id="p11" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">1.6 Dependent pair types</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">16DependentPairTypes</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-11-13 18:01:54</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-11-13 18:01:54</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">PMBookProject (1000683)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">rspuzio (6075)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">22</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">PMBookProject (6075)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">msc 03B15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:32:33 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

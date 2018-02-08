@@ -1,0 +1,433 @@
+<!DOCTYPE html><html>
+<head>
+<title>7.2 Uniqueness of identity proofs and Hedbergâs theorem</title>
+<!--Generated on Thu Feb  8 19:38:52 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , , , , Streicher’s Axiom K, anger, axiom, decidable, decidable equality, equality, excluded middle, generalization to , loop space, merely, merely decidable, of a relation, of identity proofs, reflexivity, set, uniqueness, whiskering, “continuity” of functions in type theory, “functoriality” of functions in type theory">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">7.2 Uniqueness of identity proofs and Hedbergâs theorem</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">In §3.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/31setsandntypes</span>) we defined a type <math id="p2.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> to be a <em class="ltx_emph ltx_font_italic">set</em> if for all <math id="p2.m2" class="ltx_Math" alttext="x,y:X" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>X</mi></mrow></math> and <math id="p2.m3" class="ltx_Math" alttext="p,q:x=_{X}y" display="inline"><mrow><mrow><mi>p</mi><mo>,</mo><mi>q</mi></mrow><mo>:</mo><mrow><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi></mrow></mrow></math> we have <math id="p2.m4" class="ltx_Math" alttext="p=q" display="inline"><mrow><mi>p</mi><mo>=</mo><mi>q</mi></mrow></math>.
+In conventional type theory, this property goes by the name of <span class="ltx_text ltx_font_bold">uniqueness of identity proofs (UIP)</span>.
+We have seen also that it is equivalent to being a <math id="p2.m5" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math>-type in the sense of the previous section.
+Here is another equivalent characterization, involving Streicher’s “Axiom K” <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib1" title="" class="ltx_ref">1</a>]</cite>:</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.2.1</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A type <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a set if and only if it satisfies <span class="ltx_text ltx_font_bold">Axiom K</span>:
+for all <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="x:X" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>X</mi></mrow></math> and <math id="Thmprethm1.p1.m3" class="ltx_Math" alttext="p:(x=_{A}x)" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><msub><mo mathvariant="normal">=</mo><mi>A</mi></msub><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> we have <math id="Thmprethm1.p1.m4" class="ltx_Math" alttext="p=\mathsf{refl}_{x}" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">=</mo><msub><mi mathvariant="normal">refl</mi><mi>x</mi></msub></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Clearly Axiom K is a special case of UIP.
+Conversely, if <math id="p3.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> satisfies Axiom K, let <math id="p3.m2" class="ltx_Math" alttext="x,y:X" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>X</mi></mrow></math> and <math id="p3.m3" class="ltx_Math" alttext="p,q:(x=y)" display="inline"><mrow><mi>p</mi><mo>,</mo><mi>q</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>; we want to show <math id="p3.m4" class="ltx_Math" alttext="p=q" display="inline"><mrow><mi>p</mi><mo>=</mo><mi>q</mi></mrow></math>.
+But induction on <math id="p3.m5" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> reduces this goal precisely to Axiom K.
+∎</p>
+</div>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">We stress that <em class="ltx_emph ltx_font_italic">we</em> are not assuming UIP or the K principle as axioms!
+They are simply properties which a particular type may or may not satisfy (which are equivalent to being a set).
+Recall from Example 3.1.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/31setsandntypes#Thmpreeg6</span>) that <em class="ltx_emph ltx_font_italic">not</em> all types are sets.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">The following theorem is another useful way to show that types are sets.</p>
+</div>
+<div id="Thmprethm2" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.2.2</span>.</h6>
+<div id="Thmprethm2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose <math id="Thmprethm2.p1.m1" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> is a reflexive mere relation on a type <math id="Thmprethm2.p1.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> implying identity.
+Then <math id="Thmprethm2.p1.m3" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a set, and <math id="Thmprethm2.p1.m4" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is equivalent to <math id="Thmprethm2.p1.m5" class="ltx_Math" alttext="x=_{X}y" display="inline"><mrow><mi>x</mi><msub><mo mathvariant="normal">=</mo><mi>X</mi></msub><mi>y</mi></mrow></math> for all <math id="Thmprethm2.p1.m6" class="ltx_Math" alttext="x,y:X" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mi>X</mi></mrow></math>.
+</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Let <math id="p6.m1" class="ltx_Math" alttext="\rho:\mathchoice{\prod_{x:X}\,}{\mathchoice{{\textstyle\prod_{(x:X)}}}{\prod_{%
+(x:X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}{\mathchoice{{\textstyle\prod_{(x:X)}}}{%
+\prod_{(x:X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}{\mathchoice{{\textstyle\prod_{(x%
+:X)}}}{\prod_{(x:X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}R(x,x)" display="inline"><mrow><mi>ρ</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> witness reflexivity of <math id="p6.m2" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>, and let <math id="p6.m3" class="ltx_Math" alttext="f:\mathchoice{\prod_{x,y:X}\,}{\mathchoice{{\textstyle\prod_{(x,y:X)}}}{\prod_%
+{(x,y:X)}}{\prod_{(x,y:X)}}{\prod_{(x,y:X)}}}{\mathchoice{{\textstyle\prod_{(x%
+,y:X)}}}{\prod_{(x,y:X)}}{\prod_{(x,y:X)}}{\prod_{(x,y:X)}}}{\mathchoice{{%
+\textstyle\prod_{(x,y:X)}}}{\prod_{(x,y:X)}}{\prod_{(x,y:X)}}{\prod_{(x,y:X)}}%
+}R(x,y)\to(x=_{X}y)" display="inline"><mrow><mi>f</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> be a witness that <math id="p6.m4" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>
+implies identity.
+Note first that the two statements in the theorem are equivalent.
+For on one hand, if <math id="p6.m5" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a set, then <math id="p6.m6" class="ltx_Math" alttext="x=_{X}y" display="inline"><mrow><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi></mrow></math> is a mere proposition, and since it is logically equivalent to the mere proposition
+<math id="p6.m7" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> by hypothesis, it must also be equivalent to it.
+On the other hand, if <math id="p6.m8" class="ltx_Math" alttext="x=_{X}y" display="inline"><mrow><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi></mrow></math> is equivalent to <math id="p6.m9" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>, then like the latter it is a mere proposition for all <math id="p6.m10" class="ltx_Math" alttext="x,y:X" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>X</mi></mrow></math>, and hence <math id="p6.m11" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>
+is a set.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">We give two proofs of this theorem.
+The first shows directly that <math id="p7.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a set; the second shows directly that <math id="p7.m2" class="ltx_Math" alttext="R(x,y)\simeq(x=y)" display="inline"><mrow><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>≃</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">First proof:</em> we show that <math id="p8.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a set.
+The idea is the same as that of Lemma 3.3.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/33merepropositions#Thmprelem3</span>): the function <math id="p8.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> must be continuous in its arguments <math id="p8.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p8.m4" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>.
+However, it is slightly more notationally complicated because we have to deal with the additional argument of type <math id="p8.m5" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Firstly, for any <math id="p9.m1" class="ltx_Math" alttext="x:X" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow></math> and <math id="p9.m2" class="ltx_Math" alttext="p:x=_{X}x" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>x</mi></mrow></mrow></math>, consider <math id="p9.m3" class="ltx_Math" alttext="\mathsf{apd}_{f(x)}(p)" display="inline"><mrow><msub><mi>𝖺𝗉𝖽</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+This is a dependent path from <math id="p9.m4" class="ltx_Math" alttext="f(x,x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> to itself.
+Since <math id="p9.m5" class="ltx_Math" alttext="f(x,x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is still a function <math id="p9.m6" class="ltx_Math" alttext="R(x,x)\to(x=_{X}y)" display="inline"><mrow><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>, by Lemma 2.9.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#Thmprelem1</span>) this yields for any <math id="p9.m7" class="ltx_Math" alttext="r:R(x,x)" display="inline"><mrow><mi>r</mi><mo>:</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> a path</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="{p}_{*}\mathopen{}\left({f(x,x,r)}\right)\mathclose{}=f(x,x,{p}_{*}\mathopen{}%
+\left({r}\right)\mathclose{})." display="block"><mrow><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>r</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">On the left-hand side, we have transport in an identity type, which is concatenation.
+And on the right-hand side, we have <math id="p9.m8" class="ltx_Math" alttext="{p}_{*}\mathopen{}\left({r}\right)\mathclose{}=r" display="inline"><mrow><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>r</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>r</mi></mrow></math>, since both lie in the mere proposition <math id="p9.m9" class="ltx_Math" alttext="R(x,x)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Thus, substituting <math id="p9.m10" class="ltx_Math" alttext="r:\!\!\equiv\rho(x)" display="inline"><mrow><mi>r</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>ρ</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, we obtain</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="f(x,x,\rho(x))\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$%
+}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}p=f(x,x,\rho(x))." display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><mrow><mi>ρ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>p</mi></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><mrow><mi>ρ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">By cancellation, <math id="p9.m11" class="ltx_Math" alttext="p=\mathsf{refl}_{x}" display="inline"><mrow><mi>p</mi><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>.
+So <math id="p9.m12" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> satisfies Axiom K, and hence is a set.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">Second proof:</em> we show that each <math id="p10.m1" class="ltx_Math" alttext="f(x,y):R(x,y)\to x=_{X}y" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi></mrow></mrow></math> is an equivalence.
+By Theorem 4.7.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/47closurepropertiesofequivalences#Thmprethm4</span>), it suffices to show that <math id="p10.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> induces an equivalence of total spaces:</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\Bigl{(}\mathchoice{\sum_{y:X}\,}{\mathchoice{{\textstyle\sum_{(y:X)}}}{\sum_{%
+(y:X)}}{\sum_{(y:X)}}{\sum_{(y:X)}}}{\mathchoice{{\textstyle\sum_{(y:X)}}}{%
+\sum_{(y:X)}}{\sum_{(y:X)}}{\sum_{(y:X)}}}{\mathchoice{{\textstyle\sum_{(y:X)}%
+}}{\sum_{(y:X)}}{\sum_{(y:X)}}{\sum_{(y:X)}}}R(x,y)\Bigr{)}\simeq\Bigl{(}%
+\mathchoice{\sum_{y:X}\,}{\mathchoice{{\textstyle\sum_{(y:X)}}}{\sum_{(y:X)}}{%
+\sum_{(y:X)}}{\sum_{(y:X)}}}{\mathchoice{{\textstyle\sum_{(y:X)}}}{\sum_{(y:X)%
+}}{\sum_{(y:X)}}{\sum_{(y:X)}}}{\mathchoice{{\textstyle\sum_{(y:X)}}}{\sum_{(y%
+:X)}}{\sum_{(y:X)}}{\sum_{(y:X)}}}x=_{X}y\Bigr{)}." display="block"><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>y</mi><mo>:</mo><mi>X</mi></mrow></munder></mpadded><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>≃</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>y</mi><mo>:</mo><mi>X</mi></mrow></munder></mpadded><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">By Lemma 3.11.8 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/311contractibility#Thmprelem5</span>), the type on the right is contractible, so it
+suffices to show that the type on the left is contractible. As the center of
+contraction we take the pair <math id="p10.m3" class="ltx_Math" alttext="{\mathopen{}(x,\rho(x))\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>ρ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math>. It remains to show, for
+every <math id="p10.m4" class="ltx_Math" alttext="{y:X}" display="inline"><mrow><mi>y</mi><mo>:</mo><mi>X</mi></mrow></math> and every <math id="p10.m5" class="ltx_Math" alttext="{H:R(x,y)}" display="inline"><mrow><mi>H</mi><mo>:</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> that</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="{\mathopen{}(x,\rho(x))\mathclose{}}={\mathopen{}(y,H)\mathclose{}}." display="block"><mrow><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>ρ</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">But since <math id="p10.m6" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> is a mere proposition, by Theorem 2.7.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/27sigmatypes#Thmprethm1</span>) it suffices to show that
+<math id="p10.m7" class="ltx_Math" alttext="x=_{X}y" display="inline"><mrow><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi></mrow></math>, which we get from <math id="p10.m8" class="ltx_Math" alttext="f(H)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmprecor1" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 7.2.3</span>.</h6>
+<div id="Thmprecor1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If a type <math id="Thmprecor1.p1.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> has the property that <math id="Thmprecor1.p1.m2" class="ltx_Math" alttext="\neg\neg(x=y)\to(x=y)" display="inline"><mrow><mi mathvariant="normal">¬</mi><mi mathvariant="normal">¬</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> for any <math id="Thmprecor1.p1.m3" class="ltx_Math" alttext="x,y:X" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mi>X</mi></mrow></math>, then <math id="Thmprecor1.p1.m4" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a set.</span></p>
+</div>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">Another convenient way to show that a type is a set is the following.
+Recall from §3.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/34classicalvsintuitionisticlogic</span>) that a type <math id="p11.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is said to have <em class="ltx_emph ltx_font_italic">decidable equality</em>
+if for all <math id="p11.m2" class="ltx_Math" alttext="x,y:X" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>X</mi></mrow></math> we have</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="(x=_{X}y)+\neg(x=_{X}y)." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>+</mo><mi mathvariant="normal">¬</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This is a very strong condition: it says that a path <math id="p11.m3" class="ltx_Math" alttext="x=y" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></math> can be chosen, when it exists, continuously (or computably, or functorially) in <math id="p11.m4" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p11.m5" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>.
+This turns out to imply that <math id="p11.m6" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a set, by way of Theorem 7.2.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem#Thmprethm2</span>) and the following lemma.</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 7.2.4</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any type <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> we have <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="(A+\neg A)\to(\neg\neg A\to A)" display="inline"><mrow><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">+</mo><mi mathvariant="normal">¬</mi><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi mathvariant="normal">¬</mi><mi>A</mi><mo mathvariant="normal">→</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Suppose <math id="p12.m1" class="ltx_Math" alttext="x:A+\neg A" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi>A</mi><mo>+</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></mrow></math>. We have two cases to consider.
+If <math id="p12.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is <math id="p12.m3" class="ltx_Math" alttext="{\mathsf{inl}}(a)" display="inline"><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> for some <math id="p12.m4" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, then we have the constant function <math id="p12.m5" class="ltx_Math" alttext="\neg\neg A\to A" display="inline"><mrow><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow><mo>→</mo><mi>A</mi></mrow></math> which maps everything to <math id="p12.m6" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>. If <math id="p12.m7" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is <math id="p12.m8" class="ltx_Math" alttext="{\mathsf{inr}}(f)" display="inline"><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math> for some <math id="p12.m9" class="ltx_Math" alttext="t:\neg A" display="inline"><mrow><mi>t</mi><mo>:</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math>,
+we have <math id="p12.m10" class="ltx_Math" alttext="g(t):\mathbf{0}" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mn>𝟎</mn></mrow></math> for every <math id="p12.m11" class="ltx_Math" alttext="g:\neg\neg A" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math>. Hence we may use
+<em class="ltx_emph ltx_font_italic">ex falso quodlibet</em>, that is <math id="p12.m12" class="ltx_Math" alttext="\mathsf{rec}_{\mathbf{0}}" display="inline"><msub><mi>𝗋𝖾𝖼</mi><mn>𝟎</mn></msub></math>, to obtain an element of <math id="p12.m13" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> for any <math id="p12.m14" class="ltx_Math" alttext="g:\neg\neg A" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmprethm3" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.2.5</span> (Hedberg).</h6>
+<div id="Thmprethm3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmprethm3.p1.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> has decidable equality, then <math id="Thmprethm3.p1.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a set.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">If <math id="p13.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> has decidable equality, it follows that <math id="p13.m2" class="ltx_Math" alttext="\neg\neg(x=y)\to(x=y)" display="inline"><mrow><mi mathvariant="normal">¬</mi><mi mathvariant="normal">¬</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> for any
+<math id="p13.m3" class="ltx_Math" alttext="x,y:X" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>X</mi></mrow></math>. Therefore, Hedberg’s theorem follows from
+Corollary 7.2.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72UniquenessOfIdentityProofsAndHedbergsTheorem#Thmprecor1</span>).
+∎</p>
+</div>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">There is, of course, a strong connection between this theorem and Corollary 3.2.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/32propositionsastypes#Thmprecor1</span>).
+The statement <math id="p14.m1" class="ltx_Math" alttext="\mathsf{LEM}_{\infty}" display="inline"><msub><mi>𝖫𝖤𝖬</mi><mi mathvariant="normal">∞</mi></msub></math> that is denied by Corollary 3.2.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/32propositionsastypes#Thmprecor1</span>) clearly implies that every type has decidable equality, and hence is a set, which we know is not the case.
+Note that the consistent axiom <math id="p14.m2" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math> from §3.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/34classicalvsintuitionisticlogic</span>) implies only that every type has <em class="ltx_emph ltx_font_italic">merely decidable equality</em>, i.e. that for any <math id="p14.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> we have
+</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\mathchoice{\prod_{a,b:A}\,}{\mathchoice{{\textstyle\prod_{(a,b:A)}}}{\prod_{(%
+a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{\textstyle\prod_{(a,b%
+:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}}{\mathchoice{{%
+\textstyle\prod_{(a,b:A)}}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}{\prod_{(a,b:A)}}%
+}(\mathopen{}\left\|a=b\right\|\mathclose{}+\neg\mathopen{}\left\|a=b\right\|%
+\mathclose{})." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mrow><mi></mi><mo>∥</mo><mi>a</mi><mo>=</mo><mi>b</mi><mo>∥</mo><mi></mi></mrow><mo>+</mo><mi mathvariant="normal">¬</mi><mrow><mi></mi><mo>∥</mo><mi>a</mi><mo>=</mo><mi>b</mi><mo>∥</mo><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">As an example application of Theorem 7.2.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem#Thmprethm3</span>), recall that in Example 3.1.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/31setsandntypes#Thmpreeg3</span>) we observed that <math id="p15.m1" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> is a set, using our characterization of its equality types in
+§2.13 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers</span>).
+A more traditional proof of this theorem uses only (2.13.2) (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers#S0.E1</span>) and (2.13.2) (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers#S0.E2</span>), rather than the full
+characterization of Theorem 2.13.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers#Thmprethm1</span>), with Theorem 7.2.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem#Thmprethm3</span>) to fill in the blanks.</p>
+</div>
+<div id="Thmprethm4" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.2.6</span>.</h6>
+<div id="Thmprethm4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The type <math id="Thmprethm4.p1.m1" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi mathvariant="normal">N</mi></math> of natural numbers has decidable equality, and hence is a set.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">Let <math id="p16.m1" class="ltx_Math" alttext="x,y:\mathbb{N}" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>ℕ</mi></mrow></math> be given; we proceed by induction on <math id="p16.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and case analysis on <math id="p16.m3" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> to prove <math id="p16.m4" class="ltx_Math" alttext="(x=y)+\neg(x=y)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>+</mo><mi mathvariant="normal">¬</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+If <math id="p16.m5" class="ltx_Math" alttext="x\equiv 0" display="inline"><mrow><mi>x</mi><mo>≡</mo><mn>0</mn></mrow></math> and <math id="p16.m6" class="ltx_Math" alttext="y\equiv 0" display="inline"><mrow><mi>y</mi><mo>≡</mo><mn>0</mn></mrow></math>, we take <math id="p16.m7" class="ltx_Math" alttext="{\mathsf{inl}}(\mathsf{refl}(0))" display="inline"><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗋𝖾𝖿𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+If <math id="p16.m8" class="ltx_Math" alttext="x\equiv 0" display="inline"><mrow><mi>x</mi><mo>≡</mo><mn>0</mn></mrow></math> and <math id="p16.m9" class="ltx_Math" alttext="y\equiv\mathsf{succ}(n)" display="inline"><mrow><mi>y</mi><mo>≡</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then by (2.13.2) (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers#S0.E1</span>) we get <math id="p16.m10" class="ltx_Math" alttext="\neg(0=\mathsf{succ}(n))" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>0</mn><mo>=</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">For the inductive step, let <math id="p17.m1" class="ltx_Math" alttext="x\equiv\mathsf{succ}(n)" display="inline"><mrow><mi>x</mi><mo>≡</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+If <math id="p17.m2" class="ltx_Math" alttext="y\equiv 0" display="inline"><mrow><mi>y</mi><mo>≡</mo><mn>0</mn></mrow></math>, we use (2.13.2) (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers#S0.E1</span>) again.
+Finally, if <math id="p17.m3" class="ltx_Math" alttext="y\equiv\mathsf{succ}(m)" display="inline"><mrow><mi>y</mi><mo>≡</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, the inductive hypothesis gives <math id="p17.m4" class="ltx_Math" alttext="(m=n)+\neg(m=n)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>m</mi><mo>=</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo>+</mo><mi mathvariant="normal">¬</mi><mrow><mo stretchy="false">(</mo><mi>m</mi><mo>=</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+In the first case, if <math id="p17.m5" class="ltx_Math" alttext="p:m=n" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>m</mi><mo>=</mo><mi>n</mi></mrow></mrow></math>, then <math id="p17.m6" class="ltx_Math" alttext="{\mathsf{succ}}\mathopen{}\left({p}\right)\mathclose{}:\mathsf{succ}(m)=%
+\mathsf{succ}(n)" display="inline"><mrow><mi>𝗌𝗎𝖼𝖼</mi><mrow><mi></mi><mrow><mo>(</mo><mi>p</mi><mo>)</mo></mrow><mi></mi></mrow><mo>:</mo><mi>𝗌𝗎𝖼𝖼</mi><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>𝗌𝗎𝖼𝖼</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+And in the second case, (2.13.3) (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers#S0.E2</span>) yields <math id="p17.m7" class="ltx_Math" alttext="\neg(\mathsf{succ}(m)=\mathsf{succ}(n))" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">Although Hedberg’s theorem appears rather special to sets (<math id="p18.m1" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math>-types), “Axiom K” generalizes naturally to <math id="p18.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types.
+Note that the ordinary Axiom K (as a property of a type <math id="p18.m3" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>) states that for all <math id="p18.m4" class="ltx_Math" alttext="x:X" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow></math>, the loop space <math id="p18.m5" class="ltx_Math" alttext="\Omega(X,x)" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> (see Definition 2.1.8 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmpredefn2</span>)) is contractible.
+Since <math id="p18.m6" class="ltx_Math" alttext="\Omega(X,x)" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is always inhabited (by <math id="p18.m7" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>), this is equivalent to its being a mere proposition (a <math id="p18.m8" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-type).
+Since <math id="p18.m9" class="ltx_Math" alttext="0=(-1)+1" display="inline"><mrow><mn>0</mn><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>+</mo><mn>1</mn></mrow></mrow></math>, this suggests the following generalization.</p>
+</div>
+<div id="Thmprethm5" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.2.7</span>.</h6>
+<div id="Thmprethm5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmprethm5.p1.m1" class="ltx_Math" alttext="n\geq-1" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">≥</mo><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow></mrow></math>, a type <math id="Thmprethm5.p1.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is an <math id="Thmprethm5.p1.m3" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi>n</mi><mo mathvariant="normal">+</mo><mn mathvariant="normal">1</mn></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></math>-type if and only if for all <math id="Thmprethm5.p1.m4" class="ltx_Math" alttext="x:X" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>X</mi></mrow></math>, the type <math id="Thmprethm5.p1.m5" class="ltx_Math" alttext="\Omega(X,x)" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>X</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is an <math id="Thmprethm5.p1.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type.</span></p>
+</div>
+</div>
+<div id="p19" class="ltx_para">
+<p class="ltx_p">Before proving this, we prove an auxiliary lemma:</p>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 7.2.8</span>.</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given <math id="Thmprelem2.p1.m1" class="ltx_Math" alttext="n\geq-1" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">≥</mo><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow></mrow></math> and <math id="Thmprelem2.p1.m2" class="ltx_Math" alttext="X:\mathcal{U}" display="inline"><mrow><mi>X</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math>.
+If, given any inhabitant of <math id="Thmprelem2.p1.m3" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> it follows that <math id="Thmprelem2.p1.m4" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is an <math id="Thmprelem2.p1.m5" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type, then <math id="Thmprelem2.p1.m6" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is an <math id="Thmprelem2.p1.m7" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p20" class="ltx_para">
+<p class="ltx_p">Let <math id="p20.m1" class="ltx_Math" alttext="f:X\to\mathsf{is}\mbox{-}{n}\mbox{-}\mathsf{type}(X)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>X</mi><mo>→</mo><mrow><mi>𝗂𝗌</mi><mo>⁢</mo><mtext>-</mtext><mo>⁢</mo><mi>n</mi><mo>⁢</mo><mtext>-</mtext><mo>⁢</mo><mi>𝗍𝗒𝗉𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> be the given map.
+We need to show that for any <math id="p20.m2" class="ltx_Math" alttext="x,x^{\prime}:X" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><msup><mi>x</mi><mo>′</mo></msup></mrow><mo>:</mo><mi>X</mi></mrow></math>, the type <math id="p20.m3" class="ltx_Math" alttext="x=x^{\prime}" display="inline"><mrow><mi>x</mi><mo>=</mo><msup><mi>x</mi><mo>′</mo></msup></mrow></math> is an <math id="p20.m4" class="ltx_Math" alttext="(n-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-type.
+But then <math id="p20.m5" class="ltx_Math" alttext="f(x)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> shows that <math id="p20.m6" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is an <math id="p20.m7" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type, hence all its path spaces are <math id="p20.m8" class="ltx_Math" alttext="(n-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-types.
+∎</p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof of Theorem 7.2.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem#Thmprethm5</span>).</h6>
+<div id="p21" class="ltx_para">
+<p class="ltx_p">The “only if” direction is obvious, since <math id="p21.m1" class="ltx_Math" alttext="\Omega(X,x):\!\!\equiv(x=_{X}x)" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Conversely, in order to show that <math id="p21.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is an <math id="p21.m3" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-type, we need to show that for any <math id="p21.m4" class="ltx_Math" alttext="x,x^{\prime}:X" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><msup><mi>x</mi><mo>′</mo></msup></mrow><mo>:</mo><mi>X</mi></mrow></math>, the type <math id="p21.m5" class="ltx_Math" alttext="x=x^{\prime}" display="inline"><mrow><mi>x</mi><mo>=</mo><msup><mi>x</mi><mo>′</mo></msup></mrow></math> is an
+<math id="p21.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type.
+Following Lemma 7.2.8 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem#Thmprelem2</span>) it suffices to give a map</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="(x=x^{\prime})\to\mathsf{is}\mbox{-}{n}\mbox{-}\mathsf{type}(x=x^{\prime})." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>𝗂𝗌</mi><mtext>-</mtext><mi>n</mi><mtext>-</mtext><mi>𝗍𝗒𝗉𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">By path induction, it suffices to do this when <math id="p21.m7" class="ltx_Math" alttext="x\equiv x^{\prime}" display="inline"><mrow><mi>x</mi><mo>≡</mo><msup><mi>x</mi><mo>′</mo></msup></mrow></math>, in which case it follows from the assumption that <math id="p21.m8" class="ltx_Math" alttext="\Omega(X,x)" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is an
+<math id="p21.m9" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type.
+∎</p>
+</div>
+</div>
+<div id="p22" class="ltx_para">
+<p class="ltx_p">By induction and some slightly clever whiskering, we can obtain a generalization of the K property to <math id="p22.m1" class="ltx_Math" alttext="n&gt;0" display="inline"><mrow><mi>n</mi><mo>&gt;</mo><mn>0</mn></mrow></math>.</p>
+</div>
+<div id="Thmprethm6" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 7.2.9</span>.</h6>
+<div id="Thmprethm6.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For every <math id="Thmprethm6.p1.m1" class="ltx_Math" alttext="n\geq-1" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">≥</mo><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow></mrow></math>, a type <math id="Thmprethm6.p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an <math id="Thmprethm6.p1.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type if and only if <math id="Thmprethm6.p1.m4" class="ltx_Math" alttext="\Omega^{n+1}(A,a)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo mathvariant="normal">+</mo><mn mathvariant="normal">1</mn></mrow></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is contractible for all <math id="Thmprethm6.p1.m5" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p23" class="ltx_para">
+<p class="ltx_p">Recalling that <math id="p23.m1" class="ltx_Math" alttext="\Omega^{0}(A,a)=(A,a)" display="inline"><mrow><mrow><msup><mi mathvariant="normal">Ω</mi><mn>0</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, the case <math id="p23.m2" class="ltx_Math" alttext="n=-1" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mo>-</mo><mn>1</mn></mrow></mrow></math> is <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87838</span>Exercise 3.5.
+The case <math id="p23.m3" class="ltx_Math" alttext="n=0" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow></math> is Theorem 7.2.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem#Thmprethm1</span>).
+Now we use induction; suppose the statement holds for <math id="p23.m4" class="ltx_Math" alttext="n:\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></math>.
+By Theorem 7.2.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem#Thmprethm5</span>), <math id="p23.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an <math id="p23.m6" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-type iff <math id="p23.m7" class="ltx_Math" alttext="\Omega(A,a)" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> is an <math id="p23.m8" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type for all <math id="p23.m9" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>.
+By the inductive hypothesis, the latter is equivalent to saying that <math id="p23.m10" class="ltx_Math" alttext="\Omega^{n+1}(\Omega(A,a),p)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></math> is contractible for all <math id="p23.m11" class="ltx_Math" alttext="p:\Omega(A,a)" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p24" class="ltx_para">
+<p class="ltx_p">Since <math id="p24.m1" class="ltx_Math" alttext="\Omega^{n+2}(A,a):\!\!\equiv\Omega^{n+1}(\Omega(A,a),\mathsf{refl}_{a})" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msup><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Ω</mi><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>, and <math id="p24.m2" class="ltx_Math" alttext="\Omega^{n+1}=\Omega^{n}\circ\Omega" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>=</mo><mrow><msup><mi mathvariant="normal">Ω</mi><mi>n</mi></msup><mo>∘</mo><mi mathvariant="normal">Ω</mi></mrow></mrow></math>, it will suffice to show that <math id="p24.m3" class="ltx_Math" alttext="\Omega(\Omega(A,a),p)" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></math> is equal to <math id="p24.m4" class="ltx_Math" alttext="\Omega(\Omega(A,a),\mathsf{refl}_{a})" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>, in the type <math id="p24.m5" class="ltx_Math" alttext="\mathcal{U}_{\bullet}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>∙</mo></msub></math> of pointed types.
+For this, it suffices to give an equivalence</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="g:\Omega(\Omega(A,a),p)\simeq\Omega(\Omega(A,a),\mathsf{refl}_{a})" display="block"><mrow><mi>g</mi><mo>:</mo><mrow><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≃</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">which carries the basepoint <math id="p24.m6" class="ltx_Math" alttext="\mathsf{refl}_{p}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>p</mi></msub></math> to the basepoint <math id="p24.m7" class="ltx_Math" alttext="\mathsf{refl}_{\mathsf{refl}_{a}}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></msub></math>.
+For <math id="p24.m8" class="ltx_Math" alttext="q:p=p" display="inline"><mrow><mi>q</mi><mo>:</mo><mrow><mi>p</mi><mo>=</mo><mi>p</mi></mrow></mrow></math>, define <math id="p24.m9" class="ltx_Math" alttext="g(q):\mathsf{refl}_{a}=\mathsf{refl}_{a}" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></mrow></mrow></math> to be the following composite:</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\mathsf{refl}_{a}=p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathord{{p}^{-1}}\overset{q}{=}p%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\mathord{{p}^{-1}}=\mathsf{refl}_{a}," display="block"><mrow><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo>=</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mover accent="true"><mo>=</mo><mo>𝑞</mo></mover><mo>⁢</mo><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where the path labeled “<math id="p24.m10" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>” is actually <math id="p24.m11" class="ltx_Math" alttext="\mathsf{ap}_{{\lambda}r.\,r\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathord{{p}^{-1}}}(q)" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>r</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>r</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Then <math id="p24.m12" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> is an equivalence because it is a composite of equivalences</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="(p=p)\xrightarrow{\mathsf{ap}_{{\lambda}r.\,r\mathchoice{\mathbin{\raisebox{2.%
+15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathord{{p}^{-1}}}}(p%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\mathord{{p}^{-1}}=p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathord{{p}^{-1}})\xrightarrow{i%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}-\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\mathord{{i}^{-1}}}(\mathsf{refl}_{a}=\mathsf{refl}_{a})." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>=</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mover accent="true"><mo>→</mo><msub><mi>𝖺𝗉</mi><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>r</mi></mrow><mo rspace="4.2pt">.</mo><mrow><mi>r</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></mrow></msub></mover><mrow><mo stretchy="false">(</mo><mi>p</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>=</mo><mi>p</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow><mover accent="true"><mo>→</mo><mrow><mrow><mi>i</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror></mrow><mo>-</mo><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>i</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></mrow></mover><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">using Example 2.4.8 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/24homotopiesandequivalences#Thmpreeg2</span>),Theorem 2.11.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/211identitytype#Thmprethm1</span>), where <math id="p24.m13" class="ltx_Math" alttext="i:\mathsf{refl}_{a}=p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathord{{p}^{-1}}" display="inline"><mrow><mi>i</mi><mo>:</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo>=</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></mrow></mrow></math> is the canonical equality.
+And it is evident that <math id="p24.m14" class="ltx_Math" alttext="g(\mathsf{refl}_{p})=\mathsf{refl}_{\mathsf{refl}_{a}}" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>p</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></msub></mrow></math>.
+∎</p>
+</div>
+</div>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul class="ltx_biblist">
+      
+<li id="bib.bib1" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">1</span>
+        
+<span class="ltx_bibblock"> Thomas Streicher. Investigations into intensional type theory, 1993. Habilitationsschrift,Ludwig-Maximilians-Universität München.
+
+</span>
+      </li>
+    
+</ul>
+</section>
+<div id="p25" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">7.2 Uniqueness of identity proofs and Hedbergâs theorem</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:38:52 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

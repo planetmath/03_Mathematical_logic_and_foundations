@@ -1,0 +1,272 @@
+<!DOCTYPE html><html>
+<head>
+<title>3.1 Sets and n-types</title>
+<!--Generated on Thu Feb  8 19:34:47 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , -type, 1-type, discrete, set, space, “continuity” of functions in type theory, “functoriality” of functions in type theory">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">3.1 Sets and n-types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">In order to explain the connection between the logic of type theory and the logic of set theory, it is helpful to have a notion of <em class="ltx_emph ltx_font_italic">set</em> in type theory.
+While types in general behave like spaces or higher groupoids, there is a subclass of them that behave more like the sets in a traditional set-theoretic system.
+Categorically, we may consider <em class="ltx_emph ltx_font_italic">discrete</em> groupoids, which are determined by a set of objects and only identity morphisms as higher morphisms; while topologically, we may consider spaces having the discrete topology.
+More generally, we may consider groupoids or spaces that are <em class="ltx_emph ltx_font_italic">equivalent</em> to ones of this sort; since everything we do in type theory is up to homotopy, we can’t expect to tell the difference.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Intuitively, we would expect a type to “be a set” in this sense if it has no higher homotopical information: any two parallel paths are equal (up to homotopy), and similarly for parallel higher paths at all dimensions.
+Fortunately, because everything in homotopy type theory is automatically functorial/continuous,
+it turns out to be sufficient to ask this at the bottom level.
+</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 3.1.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A type <math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a <span class="ltx_text ltx_font_bold">set</span>
+if for all <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> and all <math id="Thmpredefn1.p1.m3" class="ltx_Math" alttext="p,q:x=y" display="inline"><mrow><mrow><mi>p</mi><mo mathvariant="normal">,</mo><mi>q</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi></mrow></mrow></math>, we have <math id="Thmpredefn1.p1.m4" class="ltx_Math" alttext="p=q" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">=</mo><mi>q</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">More precisely, the proposition <math id="p4.m1" class="ltx_Math" alttext="\mathsf{isSet}(A)" display="inline"><mrow><mi>𝗂𝗌𝖲𝖾𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> is defined to be the type</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathsf{isSet}(A):\!\!\equiv\mathchoice{\prod_{(x,y:A)}\,}{\mathchoice{{%
+\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}%
+}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}\mathchoice{\prod_{(p,q:x=y)}\,}{\mathchoice%
+{{\textstyle\prod_{(p,q:x=y)}}}{\prod_{(p,q:x=y)}}{\prod_{(p,q:x=y)}}{\prod_{(%
+p,q:x=y)}}}{\mathchoice{{\textstyle\prod_{(p,q:x=y)}}}{\prod_{(p,q:x=y)}}{%
+\prod_{(p,q:x=y)}}{\prod_{(p,q:x=y)}}}{\mathchoice{{\textstyle\prod_{(p,q:x=y)%
+}}}{\prod_{(p,q:x=y)}}{\prod_{(p,q:x=y)}}{\prod_{(p,q:x=y)}}}(p=q)." display="block"><mrow><mi>𝗂𝗌𝖲𝖾𝗍</mi><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>=</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">As mentioned in §1.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/11typetheoryversussettheory</span>),
+the sets in homotopy type theory are not like the sets in ZF set theory, in that there is no global “membership predicate” <math id="p5.m1" class="ltx_Math" alttext="\in" display="inline"><mo>∈</mo></math>.
+They are more like the sets used in structural mathematics and in category theory, whose elements are “abstract points” to which we give structure with functions and relations.
+This is all we need in order to use them as a foundational system for most set-based mathematics; we will see some examples in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87584</span>Chapter 10.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Which types are sets?
+In <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87580</span>Chapter 7 we will study a more general form of this question in depth, but for now we can observe some easy examples.</p>
+</div>
+<div id="Thmpreeg1" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 3.1.2</span>.</h6>
+<div id="Thmpreeg1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The type <math id="Thmpreeg1.p1.m1" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn mathvariant="normal">1</mn></math> is a set.
+For by Theorem 2.8.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/28theunittype#S8.Thmthm1</span>), for any <math id="Thmpreeg1.p1.m2" class="ltx_Math" alttext="x,y:\mathbf{1}" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mn mathvariant="normal">1</mn></mrow></math> the type <math id="Thmpreeg1.p1.m3" class="ltx_Math" alttext="(x=y)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is equivalent to <math id="Thmpreeg1.p1.m4" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn mathvariant="normal">1</mn></math>.
+Since any two elements of <math id="Thmpreeg1.p1.m5" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn mathvariant="normal">1</mn></math> are equal, this implies that any two elements of <math id="Thmpreeg1.p1.m6" class="ltx_Math" alttext="x=y" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi></mrow></math> are equal.</span></p>
+</div>
+</div>
+<div id="Thmpreeg2" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 3.1.3</span>.</h6>
+<div id="Thmpreeg2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The type <math id="Thmpreeg2.p1.m1" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn mathvariant="normal">0</mn></math> is a set, for given any <math id="Thmpreeg2.p1.m2" class="ltx_Math" alttext="x,y:\mathbf{0}" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mn mathvariant="normal">0</mn></mrow></math> we may deduce anything we like, by the induction principle of <math id="Thmpreeg2.p1.m3" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn mathvariant="normal">0</mn></math>.</span></p>
+</div>
+</div>
+<div id="Thmpreeg3" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 3.1.4</span>.</h6>
+<div id="Thmpreeg3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The type <math id="Thmpreeg3.p1.m1" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi mathvariant="normal">N</mi></math> of natural numbers is also a set.
+This follows from Theorem 2.13.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/213naturalnumbers#Thmprethm1</span>), since all equality types <math id="Thmpreeg3.p1.m2" class="ltx_Math" alttext="x=_{\mathbb{N}}y" display="inline"><mrow><mi>x</mi><msub><mo mathvariant="normal">=</mo><mi mathvariant="normal">N</mi></msub><mi>y</mi></mrow></math> are equivalent to either <math id="Thmpreeg3.p1.m3" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn mathvariant="normal">1</mn></math> or <math id="Thmpreeg3.p1.m4" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn mathvariant="normal">0</mn></math>, and any two inhabitants of <math id="Thmpreeg3.p1.m5" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn mathvariant="normal">1</mn></math> or <math id="Thmpreeg3.p1.m6" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn mathvariant="normal">0</mn></math> are equal.
+We will see another proof of this fact in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87580</span>Chapter 7.</span></p>
+</div>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Most of the type forming operations we have considered so far also preserve sets.
+</p>
+</div>
+<div id="Thmpreeg4" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 3.1.5</span>.</h6>
+<div id="Thmpreeg4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmpreeg4.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="Thmpreeg4.p1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are sets, then so is <math id="Thmpreeg4.p1.m3" class="ltx_Math" alttext="A\times B" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">×</mo><mi>B</mi></mrow></math>.
+For given <math id="Thmpreeg4.p1.m4" class="ltx_Math" alttext="x,y:A\times B" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">×</mo><mi>B</mi></mrow></mrow></math> and <math id="Thmpreeg4.p1.m5" class="ltx_Math" alttext="p,q:x=y" display="inline"><mrow><mrow><mi>p</mi><mo mathvariant="normal">,</mo><mi>q</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi></mrow></mrow></math>, by Theorem 2.6.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/26cartesianproducttypes#Thmprethm1</span>) we have <math id="Thmpreeg4.p1.m6" class="ltx_Math" alttext="p=\mathsf{pair}^{\mathord{=}}(\mathsf{ap}_{\mathsf{pr}_{1}}(p),\mathsf{ap}_{%
+\mathsf{pr}_{2}}(p))" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">=</mo><mrow><msup><mi mathvariant="normal">pair</mi><mi mathvariant="normal">=</mi></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msub><mi mathvariant="normal">ap</mi><msub><mi mathvariant="normal">pr</mi><mn mathvariant="normal">1</mn></msub></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>p</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">,</mo><mrow><msub><mi mathvariant="normal">ap</mi><msub><mi mathvariant="normal">pr</mi><mn mathvariant="normal">2</mn></msub></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>p</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="Thmpreeg4.p1.m7" class="ltx_Math" alttext="q=\mathsf{pair}^{\mathord{=}}(\mathsf{ap}_{\mathsf{pr}_{1}}(q),\mathsf{ap}_{%
+\mathsf{pr}_{2}}(q))" display="inline"><mrow><mi>q</mi><mo mathvariant="normal">=</mo><mrow><msup><mi mathvariant="normal">pair</mi><mi mathvariant="normal">=</mi></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msub><mi mathvariant="normal">ap</mi><msub><mi mathvariant="normal">pr</mi><mn mathvariant="normal">1</mn></msub></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>q</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">,</mo><mrow><msub><mi mathvariant="normal">ap</mi><msub><mi mathvariant="normal">pr</mi><mn mathvariant="normal">2</mn></msub></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>q</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>.
+But <math id="Thmpreeg4.p1.m8" class="ltx_Math" alttext="\mathsf{ap}_{\mathsf{pr}_{1}}(p)=\mathsf{ap}_{\mathsf{pr}_{1}}(q)" display="inline"><mrow><mrow><msub><mi mathvariant="normal">ap</mi><msub><mi mathvariant="normal">pr</mi><mn mathvariant="normal">1</mn></msub></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>p</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mrow><msub><mi mathvariant="normal">ap</mi><msub><mi mathvariant="normal">pr</mi><mn mathvariant="normal">1</mn></msub></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>q</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> since <math id="Thmpreeg4.p1.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a set, and <math id="Thmpreeg4.p1.m10" class="ltx_Math" alttext="\mathsf{ap}_{\mathsf{pr}_{2}}(p)=\mathsf{ap}_{\mathsf{pr}_{2}}(q)" display="inline"><mrow><mrow><msub><mi mathvariant="normal">ap</mi><msub><mi mathvariant="normal">pr</mi><mn mathvariant="normal">2</mn></msub></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>p</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mrow><msub><mi mathvariant="normal">ap</mi><msub><mi mathvariant="normal">pr</mi><mn mathvariant="normal">2</mn></msub></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>q</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> since <math id="Thmpreeg4.p1.m11" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is a set; hence <math id="Thmpreeg4.p1.m12" class="ltx_Math" alttext="p=q" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">=</mo><mi>q</mi></mrow></math>.</span></p>
+</div>
+<div id="Thmpreeg4.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Similarly, if <math id="Thmpreeg4.p2.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a set and <math id="Thmpreeg4.p2.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> is such that each <math id="Thmpreeg4.p2.m3" class="ltx_Math" alttext="B(x)" display="inline"><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a set, then <math id="Thmpreeg4.p2.m4" class="ltx_Math" alttext="\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x%
+:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x)" display="inline"><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> is a set.</span></p>
+</div>
+</div>
+<div id="Thmpreeg5" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 3.1.6</span>.</h6>
+<div id="Thmpreeg5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmpreeg5.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is <em class="ltx_emph ltx_font_upright">any</em> type and <math id="Thmpreeg5.p1.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> is such that each <math id="Thmpreeg5.p1.m3" class="ltx_Math" alttext="B(x)" display="inline"><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a set, then the type <math id="Thmpreeg5.p1.m4" class="ltx_Math" alttext="\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)%
+}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod%
+_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}%
+}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}B(x)" display="inline"><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math> is a set.
+For suppose <math id="Thmpreeg5.p1.m5" class="ltx_Math" alttext="f,g:\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(%
+x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x%
+:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}B(x)" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="normal">,</mo><mi>g</mi></mrow><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> and <math id="Thmpreeg5.p1.m6" class="ltx_Math" alttext="p,q:f=g" display="inline"><mrow><mrow><mi>p</mi><mo mathvariant="normal">,</mo><mi>q</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>f</mi><mo mathvariant="normal">=</mo><mi>g</mi></mrow></mrow></math>.
+By function extensionality, we have</span></p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="p={\mathsf{funext}(x\mapsto\mathsf{happly}(p,x))}\quad\text{and}\quad q={%
+\mathsf{funext}(x\mapsto\mathsf{happly}(q,x))}." display="block"><mrow><mi>p</mi><mo>=</mo><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>↦</mo><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true"> </mo><mtext>𝑎𝑛𝑑</mtext><mo mathvariant="italic" separator="true"> </mo><mi>q</mi><mo>=</mo><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>↦</mo><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">But for any <math id="Thmpreeg5.p1.m7" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>, we have</span></p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\mathsf{happly}(p,x):f(x)=g(x)\qquad\text{and}\qquad\mathsf{happly}(q,x):f(x)=%
+g(x)," display="block"><mrow><mrow><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>𝑎𝑛𝑑</mtext><mo mathvariant="italic" separator="true">  </mo><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>:</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">so since <math id="Thmpreeg5.p1.m8" class="ltx_Math" alttext="B(x)" display="inline"><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a set we have <math id="Thmpreeg5.p1.m9" class="ltx_Math" alttext="\mathsf{happly}(p,x)=\mathsf{happly}(q,x)" display="inline"><mrow><mrow><mi mathvariant="normal">happly</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>p</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mrow><mi mathvariant="normal">happly</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>q</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Now using function extensionality again, the dependent functions <math id="Thmpreeg5.p1.m10" class="ltx_Math" alttext="(x\mapsto\mathsf{happly}(p,x))" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi>x</mi><mo mathvariant="normal">↦</mo><mrow><mi mathvariant="normal">happly</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>p</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> and <math id="Thmpreeg5.p1.m11" class="ltx_Math" alttext="(x\mapsto\mathsf{happly}(q,x))" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi>x</mi><mo mathvariant="normal">↦</mo><mrow><mi mathvariant="normal">happly</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>q</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> are equal, and hence (applying <math id="Thmpreeg5.p1.m12" class="ltx_Math" alttext="\mathsf{ap}_{\mathsf{funext}}" display="inline"><msub><mi mathvariant="normal">ap</mi><mi mathvariant="normal">funext</mi></msub></math>) so are <math id="Thmpreeg5.p1.m13" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> and <math id="Thmpreeg5.p1.m14" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>.</span></p>
+</div>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">For more examples, see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87828</span>Exercise 3.2,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87768</span>Exercise 3.3. For a more systematic investigation of the subsystem (category) of all sets in homotopy type theory, see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87584</span>Chapter 10.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Sets are just the first rung on a ladder of what are called <em class="ltx_emph ltx_font_italic">homotopy <math id="p9.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types</em>.
+The next rung consists of <em class="ltx_emph ltx_font_italic"><math id="p9.m2" class="ltx_Math" alttext="1" display="inline"><mn mathvariant="normal">1</mn></math>-types</em>, which are analogous to <math id="p9.m3" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math>-groupoids in category theory.
+The defining property of a set (which we may also call a <em class="ltx_emph ltx_font_italic"><math id="p9.m4" class="ltx_Math" alttext="0" display="inline"><mn mathvariant="normal">0</mn></math>-type</em>) is that it has no non-trivial paths.
+Similarly, the defining property of a <math id="p9.m5" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math>-type is that it has no non-trivial paths between paths:</p>
+</div>
+<div id="Thmpredefn2" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 3.1.7</span>.</h6>
+<div id="Thmpredefn2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A type <math id="Thmpredefn2.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a <span class="ltx_text ltx_font_bold">1-type</span>
+if for all <math id="Thmpredefn2.p1.m2" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> and <math id="Thmpredefn2.p1.m3" class="ltx_Math" alttext="p,q:x=y" display="inline"><mrow><mrow><mi>p</mi><mo mathvariant="normal">,</mo><mi>q</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi></mrow></mrow></math> and <math id="Thmpredefn2.p1.m4" class="ltx_Math" alttext="r,s:p=q" display="inline"><mrow><mrow><mi>r</mi><mo mathvariant="normal">,</mo><mi>s</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>p</mi><mo mathvariant="normal">=</mo><mi>q</mi></mrow></mrow></math>, we have <math id="Thmpredefn2.p1.m5" class="ltx_Math" alttext="r=s" display="inline"><mrow><mi>r</mi><mo mathvariant="normal">=</mo><mi>s</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">Similarly, we can define <math id="p10.m1" class="ltx_Math" alttext="2" display="inline"><mn>2</mn></math>-types, <math id="p10.m2" class="ltx_Math" alttext="3" display="inline"><mn>3</mn></math>-types, and so on.
+We will define the general notion of <math id="p10.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type inductively in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87580</span>Chapter 7, and study the relationships between them.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">However, for now it is useful to have two facts in mind.
+First, the levels are upward-closed: if <math id="p11.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an <math id="p11.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-type then <math id="p11.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is an <math id="p11.m4" class="ltx_Math" alttext="(n+1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-type.
+For example:
+</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 3.1.8</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a set (that is, <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="\mathsf{isSet}(A)" display="inline"><mrow><mi mathvariant="normal">isSet</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is inhabited), then <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a 1-type.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Suppose <math id="p12.m1" class="ltx_Math" alttext="f:\mathsf{isSet}(A)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>𝗂𝗌𝖲𝖾𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>; then for any <math id="p12.m2" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></math> and <math id="p12.m3" class="ltx_Math" alttext="p,q:x=y" display="inline"><mrow><mrow><mi>p</mi><mo>,</mo><mi>q</mi></mrow><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math> we have <math id="p12.m4" class="ltx_Math" alttext="f(x,y,p,q):p=q" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>p</mi><mo>=</mo><mi>q</mi></mrow></mrow></math>.
+Fix <math id="p12.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>, <math id="p12.m6" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>, and <math id="p12.m7" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, and define <math id="p12.m8" class="ltx_Math" alttext="g:\mathchoice{\prod_{q:x=y}\,}{\mathchoice{{\textstyle\prod_{(q:x=y)}}}{\prod_%
+{(q:x=y)}}{\prod_{(q:x=y)}}{\prod_{(q:x=y)}}}{\mathchoice{{\textstyle\prod_{(q%
+:x=y)}}}{\prod_{(q:x=y)}}{\prod_{(q:x=y)}}{\prod_{(q:x=y)}}}{\mathchoice{{%
+\textstyle\prod_{(q:x=y)}}}{\prod_{(q:x=y)}}{\prod_{(q:x=y)}}{\prod_{(q:x=y)}}%
+}(p=q)" display="inline"><mrow><mi>g</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>=</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></math> by <math id="p12.m9" class="ltx_Math" alttext="g(q):\!\!\equiv f(x,y,p,q)" display="inline"><mrow><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Then for any <math id="p12.m10" class="ltx_Math" alttext="r:q=q^{\prime}" display="inline"><mrow><mi>r</mi><mo>:</mo><mrow><mi>q</mi><mo>=</mo><msup><mi>q</mi><mo>′</mo></msup></mrow></mrow></math>, we have <math id="p12.m11" class="ltx_Math" alttext="\mathsf{apd}_{g}(r):{r}_{*}\mathopen{}\left({g(q)}\right)\mathclose{}=g(q^{%
+\prime})" display="inline"><mrow><msub><mi>𝖺𝗉𝖽</mi><mi>g</mi></msub><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><msub><mi>r</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><msup><mi>q</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math>.
+By Lemma 1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/211identitytype#Thmlem1</span>), therefore, we have <math id="p12.m12" class="ltx_Math" alttext="g(q)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}r=g(q^{\prime})" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>q</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">In particular, suppose given <math id="p13.m1" class="ltx_Math" alttext="x,y,p,q" display="inline"><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo>,</mo><mi>q</mi></mrow></math> and <math id="p13.m2" class="ltx_Math" alttext="r,s:p=q" display="inline"><mrow><mrow><mi>r</mi><mo>,</mo><mi>s</mi></mrow><mo>:</mo><mrow><mi>p</mi><mo>=</mo><mi>q</mi></mrow></mrow></math>, as in Definition 3.1.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/31setsandntypes#Thmpredefn2</span>), and define <math id="p13.m3" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> as above.
+Then <math id="p13.m4" class="ltx_Math" alttext="g(p)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}r=g(q)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and also <math id="p13.m5" class="ltx_Math" alttext="g(p)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}s=g(q)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>s</mi></mrow><mo>=</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, hence by cancellation <math id="p13.m6" class="ltx_Math" alttext="r=s" display="inline"><mrow><mi>r</mi><mo>=</mo><mi>s</mi></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">Second, this stratification of types by level is not degenerate, in the
+sense that not all types are sets:</p>
+</div>
+<div id="Thmpreeg6" class="ltx_theorem ltx_theorem_preeg">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Example 3.1.9</span>.</h6>
+<div id="Thmpreeg6.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The universe <math id="Thmpreeg6.p1.m1" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></math> is not a set.
+To prove this, it suffices to exhibit a type <math id="Thmpreeg6.p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and a path <math id="Thmpreeg6.p1.m3" class="ltx_Math" alttext="p:A=A" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">=</mo><mi>A</mi></mrow></mrow></math> which is not equal to <math id="Thmpreeg6.p1.m4" class="ltx_Math" alttext="\mathsf{refl}_{A}" display="inline"><msub><mi mathvariant="normal">refl</mi><mi>A</mi></msub></math>.
+Take <math id="Thmpreeg6.p1.m5" class="ltx_Math" alttext="A=\mathbf{2}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">=</mo><mn mathvariant="normal">2</mn></mrow></math>, and let <math id="Thmpreeg6.p1.m6" class="ltx_Math" alttext="f:A\to A" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>A</mi></mrow></mrow></math> be defined by <math id="Thmpreeg6.p1.m7" class="ltx_Math" alttext="f({0_{\mathbf{2}}}):\!\!\equiv{1_{\mathbf{2}}}" display="inline"><mrow><mi>f</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mn mathvariant="normal">0</mn><mn mathvariant="normal">2</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><msub><mn mathvariant="normal">1</mn><mn mathvariant="normal">2</mn></msub></mrow></math> and <math id="Thmpreeg6.p1.m8" class="ltx_Math" alttext="f({1_{\mathbf{2}}}):\!\!\equiv{0_{\mathbf{2}}}" display="inline"><mrow><mi>f</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mn mathvariant="normal">1</mn><mn mathvariant="normal">2</mn></msub><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><msub><mn mathvariant="normal">0</mn><mn mathvariant="normal">2</mn></msub></mrow></math>.
+Then <math id="Thmpreeg6.p1.m9" class="ltx_Math" alttext="f(f(x))=x" display="inline"><mrow><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mi>x</mi></mrow></math> for all <math id="Thmpreeg6.p1.m10" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> (by an easy case analysis), so <math id="Thmpreeg6.p1.m11" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is an equivalence.
+Hence, by univalence, <math id="Thmpreeg6.p1.m12" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> gives rise to a path <math id="Thmpreeg6.p1.m13" class="ltx_Math" alttext="p:A=A" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">=</mo><mi>A</mi></mrow></mrow></math>.</span></p>
+</div>
+<div id="Thmpreeg6.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmpreeg6.p2.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> were equal to <math id="Thmpreeg6.p2.m2" class="ltx_Math" alttext="\mathsf{refl}_{A}" display="inline"><msub><mi mathvariant="normal">refl</mi><mi>A</mi></msub></math>, then (again by univalence) <math id="Thmpreeg6.p2.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> would equal the identity function of <math id="Thmpreeg6.p2.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+But this would imply that <math id="Thmpreeg6.p2.m5" class="ltx_Math" alttext="{0_{\mathbf{2}}}={1_{\mathbf{2}}}" display="inline"><mrow><msub><mn mathvariant="normal">0</mn><mn mathvariant="normal">2</mn></msub><mo mathvariant="normal">=</mo><msub><mn mathvariant="normal">1</mn><mn mathvariant="normal">2</mn></msub></mrow></math>, contradicting Remark 1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/212coproducts#Thmrmk1</span>).</span></p>
+</div>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">In <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87579</span>Chapter 6,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87582</span>Chapter 8 we will show that for any <math id="p15.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, there are types which are not <math id="p15.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types.</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">Note that <math id="p16.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a 1-type exactly when for any <math id="p16.m2" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></math>, the identity type <math id="p16.m3" class="ltx_Math" alttext="x=_{A}y" display="inline"><mrow><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi></mrow></math> is a set.
+(Thus, Lemma 3.1.8 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/31setsandntypes#Thmprelem1</span>) could equivalently be read as saying that the identity types of a set are also sets.)
+This will be the basis of the recursive definition of <math id="p16.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types we will give in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87580</span>Chapter 7.</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">We can also extend this characterization “downwards” from sets.
+That is, a type <math id="p17.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a set just when for any <math id="p17.m2" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></math>, any two elements of <math id="p17.m3" class="ltx_Math" alttext="x=_{A}y" display="inline"><mrow><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi></mrow></math> are equal.
+Since sets are equivalently 0-types, it is natural to call a type a <em class="ltx_emph ltx_font_italic"><math id="p17.m4" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></math>-type</em> if it has this latter property (any two elements of it are equal).
+Such types may be regarded as <em class="ltx_emph ltx_font_italic">propositions in a narrow sense</em>, and their study is just what is usually called “logic”; it will occupy us for the rest of this chapter.</p>
+</div>
+<div id="p18" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">3.1 Sets and n-types</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:34:47 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

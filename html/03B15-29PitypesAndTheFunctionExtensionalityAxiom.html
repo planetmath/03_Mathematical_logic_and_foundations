@@ -1,0 +1,367 @@
+<!DOCTYPE html><html>
+<head>
+<title>2.9 Π-types and the function extensionality axiom</title>
+<!--Generated on Thu Feb  8 19:34:28 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , computation rule, dependent, dependent function, equality of functions, for identities between functions, function, homotopy, in dependent function types, in function types, operations on functions, path, pointwise, principle, propositional, transport, type, uniqueness, “continuity” of functions in type theory, “functoriality” of functions in type theory">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">2.9 <math id="m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types and the function extensionality axiom</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Given a type <math id="p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and a type family <math id="p1.m2" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, consider the dependent function type <math id="p1.m3" class="ltx_Math" alttext="\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)%
+}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod%
+_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}%
+}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}B(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+We expect the type <math id="p1.m4" class="ltx_Math" alttext="f=g" display="inline"><mrow><mi>f</mi><mo>=</mo><mi>g</mi></mrow></math> of paths from <math id="p1.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to <math id="p1.m6" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> in <math id="p1.m7" class="ltx_Math" alttext="\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)%
+}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod%
+_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}%
+}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}B(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> to be equivalent to
+the type of pointwise paths:
+</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="(f=g)\;\simeq\;\Bigl{(}\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod%
+_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x%
+:A)}}}(f(x)=_{B(x)}g(x))\Bigr{)}." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>=</mo><mi>g</mi><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo rspace="5.3pt">≃</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><msub><mo>=</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.9.1)</span></td>
+</tr>
+</table>
+<p class="ltx_p">From a traditional perspective, this would say that two functions which are equal at each point are equal as functions.
+From a topological perspective, it would say that a path in a function space is the same as a continuous homotopy.
+And from a categorical perspective, it would say that an isomorphism in a functor category is a natural family of isomorphisms.
+</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Unlike the case in the previous sections, however, the basic type theory presented in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87533</span>Chapter 1 is insufficient to prove (<a href="#S0.E1" title="(2.9.1) ‣ 2.9 Π -types and the function extensionality axiom" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.9.1</span></a>).
+All we can say is that there is a certain function</p>
+<table id="S0.E2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E2.m1" class="ltx_Math" alttext="\mathsf{happly}:(f=g)\to\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle%
+\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x%
+:A)}}}(f(x)=_{B(x)}g(x))" display="block"><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>=</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><msub><mo>=</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.9.2)</span></td>
+</tr>
+</table>
+<p class="ltx_p">which is easily defined by path induction.
+For the moment, therefore, we will assume:</p>
+</div>
+<div id="Thmpreaxiom1" class="ltx_theorem ltx_theorem_preaxiom">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Axiom 2.9.3</span> (Function extensionality).</h6>
+<div id="Thmpreaxiom1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any <math id="Thmpreaxiom1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, <math id="Thmpreaxiom1.p1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, <math id="Thmpreaxiom1.p1.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, and <math id="Thmpreaxiom1.p1.m4" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math>, the function (<a href="#S0.E2" title="(2.9.2) ‣ 2.9 Π -types and the function extensionality axiom" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.9.2</span></a>) is an equivalence.</span></p>
+</div>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">We will see in later chapters that this axiom follows both from univalence (see §2.10 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/210universesandtheunivalenceaxiom</span>),§4.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/49univalenceimpliesfunctionextensionality</span>)) and from an interval type (see §6.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/63theinterval</span>)).</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">In particular, Axiom 2.9.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#Thmaxiom1</span>) implies that (<a href="#S0.E2" title="(2.9.2) ‣ 2.9 Π -types and the function extensionality axiom" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.9.2</span></a>) has a quasi-inverse</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathsf{funext}:\Bigl{(}\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle%
+\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x%
+:A)}}}(f(x)=g(x))\Bigr{)}\to{(f=g)}." display="block"><mrow><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi><mo>:</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>=</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This function is also referred to as “function extensionality”.
+As we did with <math id="p4.m1" class="ltx_Math" alttext="\mathsf{pair}^{\mathord{=}}" display="inline"><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup></math> in §2.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/26cartesianproducttypes</span>), we can regard <math id="p4.m2" class="ltx_Math" alttext="\mathsf{funext}" display="inline"><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi></math> as an <em class="ltx_emph ltx_font_italic">introduction rule</em> for the type <math id="p4.m3" class="ltx_Math" alttext="f=g" display="inline"><mrow><mi>f</mi><mo>=</mo><mi>g</mi></mrow></math>.
+From this point of view, <math id="p4.m4" class="ltx_Math" alttext="\mathsf{happly}" display="inline"><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi></math> is the <em class="ltx_emph ltx_font_italic">elimination rule</em>, while the homotopies witnessing <math id="p4.m5" class="ltx_Math" alttext="\mathsf{funext}" display="inline"><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi></math> as quasi-inverse to <math id="p4.m6" class="ltx_Math" alttext="\mathsf{happly}" display="inline"><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi></math> become a propositional computation rule
+</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\mathsf{happly}({\mathsf{funext}{(h)}},x)=h(x)\qquad\text{for }h:\mathchoice{%
+\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x%
+:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(%
+x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}(f(x)=g(x))" display="block"><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>for </mtext><mi>h</mi><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and a propositional uniqueness principle:
+</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="p=\mathsf{funext}(x\mapsto\mathsf{happly}(p,{x}))\qquad\text{for }p:(f=g)." display="block"><mrow><mi>p</mi><mo>=</mo><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>↦</mo><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>for </mtext><mi>p</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>=</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">We can also compute the identity, inverses, and composition in <math id="p5.m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types; they are simply given by pointwise operations:.
+</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\displaystyle\mathsf{refl}_{f}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>f</mi></msub></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{funext}(x\mapsto\mathsf{refl}_{f(x)})" display="inline"><mrow><mo>=</mo><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>↦</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\displaystyle\mathord{{\alpha}^{-1}}" display="inline"><msup><mi>α</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{funext}(x\mapsto\mathord{{\mathsf{happly}(\alpha,x)}^{-1%
+}})" display="inline"><mrow><mo>=</mo><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>↦</mo><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mo>⁢</mo><msup><mrow><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\displaystyle{\alpha}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\beta" display="inline"><mrow><mi>α</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>β</mi></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex6.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{funext}(x\mapsto{\mathsf{happly}({\alpha},x)\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{%
+happly}({\beta},x)})." display="inline"><mrow><mo>=</mo><mi>𝖿𝗎𝗇𝖾𝗑𝗍</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>↦</mo><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><mi>β</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The first of these equalities follows from the definition of <math id="p5.m2" class="ltx_Math" alttext="\mathsf{happly}" display="inline"><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi></math>, while the second and third are easy path inductions.
+</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Since the non-dependent function type <math id="p6.m1" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math> is a special case of the dependent function type <math id="p6.m2" class="ltx_Math" alttext="\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)%
+}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod%
+_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}%
+}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}B(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> when <math id="p6.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is independent of <math id="p6.m4" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>, everything we have said above applies in non-dependent cases as well.
+The rules for transport, however, are somewhat simpler in the non-dependent case.
+Given a type <math id="p6.m5" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>, a path <math id="p6.m6" class="ltx_Math" alttext="p:x_{1}=_{X}x_{2}" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><msub><mo>=</mo><mi>X</mi></msub><msub><mi>x</mi><mn>2</mn></msub></mrow></mrow></math>, type families <math id="p6.m7" class="ltx_Math" alttext="A,B:X\to\mathcal{U}" display="inline"><mrow><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow><mo>:</mo><mrow><mi>X</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, and a function <math id="p6.m8" class="ltx_Math" alttext="f:A(x_{1})\to B(x_{1})" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, we have</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S0.E3"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.E3.m1" class="ltx_Math" alttext="\displaystyle\mathsf{transport}^{A\to B}(p,f)" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.E3.m2" class="ltx_Math" alttext="\displaystyle=\Big{(}x\mapsto\mathsf{transport}^{B}(p,f(\mathsf{transport}^{A}%
+(\mathord{{p}^{-1}},x)))\Big{)}" display="inline"><mrow><mo>=</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mi>x</mi><mo>↦</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>B</mi></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>A</mi></msup><mrow><mo stretchy="false">(</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.9.4)</span></td>
+</tr></tbody>
+</table>
+<p class="ltx_p">where <math id="p6.m9" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math> denotes abusively the type family <math id="p6.m10" class="ltx_Math" alttext="X\to\mathcal{U}" display="inline"><mrow><mi>X</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> defined by</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="(A\to B)(x):\!\!\equiv(A(x)\to B(x))." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">In other words, when we transport a function <math id="p6.m11" class="ltx_Math" alttext="f:A(x_{1})\to B(x_{1})" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> along a path <math id="p6.m12" class="ltx_Math" alttext="p:x_{1}=x_{2}" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><msub><mi>x</mi><mn>2</mn></msub></mrow></mrow></math>, we obtain the function <math id="p6.m13" class="ltx_Math" alttext="A(x_{2})\to B(x_{2})" display="inline"><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> which transports its argument backwards along <math id="p6.m14" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> (in the type family <math id="p6.m15" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>), applies <math id="p6.m16" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, and then transports the result forwards along <math id="p6.m17" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> (in the type family <math id="p6.m18" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>).
+This can be proven easily by path induction.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Transporting dependent functions is similar, but more complicated.
+Suppose given <math id="p7.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> and <math id="p7.m2" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> as before, type families <math id="p7.m3" class="ltx_Math" alttext="A:X\to\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mrow><mi>X</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> and <math id="p7.m4" class="ltx_Math" alttext="B:\mathchoice{\prod_{x:X}\,}{\mathchoice{{\textstyle\prod_{(x:X)}}}{\prod_{(x:%
+X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}{\mathchoice{{\textstyle\prod_{(x:X)}}}{%
+\prod_{(x:X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}{\mathchoice{{\textstyle\prod_{(x%
+:X)}}}{\prod_{(x:X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}(A(x)\to\mathcal{U})" display="inline"><mrow><mi>B</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and also a dependent function <math id="p7.m5" class="ltx_Math" alttext="f:\mathchoice{\prod_{a:A(x_{1})}\,}{\mathchoice{{\textstyle\prod_{(a:A(x_{1}))%
+}}}{\prod_{(a:A(x_{1}))}}{\prod_{(a:A(x_{1}))}}{\prod_{(a:A(x_{1}))}}}{%
+\mathchoice{{\textstyle\prod_{(a:A(x_{1}))}}}{\prod_{(a:A(x_{1}))}}{\prod_{(a:%
+A(x_{1}))}}{\prod_{(a:A(x_{1}))}}}{\mathchoice{{\textstyle\prod_{(a:A(x_{1}))}%
+}}{\prod_{(a:A(x_{1}))}}{\prod_{(a:A(x_{1}))}}{\prod_{(a:A(x_{1}))}}}B(x_{1},a)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.
+Then for <math id="p7.m6" class="ltx_Math" alttext="a:A(x_{2})" display="inline"><mrow><mi>a</mi><mo>:</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, we have</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\mathsf{transport}^{\Pi_{A}(B)}(p,f)(a)=\mathsf{transport}^{\widehat{B}}\Big{(%
+}\mathord{{(\mathsf{pair}^{\mathord{=}}(\mathord{{p}^{-1}},\mathsf{refl}_{{%
+\mathord{{p}^{-1}}}_{*}\mathopen{}\left({a}\right)\mathclose{}}))}^{-1}},\,f(%
+\mathsf{transport}^{A}(\mathord{{p}^{-1}},a))\Big{)}" display="block"><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><msub><mi mathvariant="normal">Π</mi><mi>A</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mover accent="true"><mi>B</mi><mo>^</mo></mover></msup><mo>⁢</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><msup><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mmultiscripts><mi>p</mi><none></none><mrow><mo>-</mo><mn>1</mn></mrow><mo>*</mo><none></none></mmultiscripts><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo rspace="4.2pt">,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>A</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p7.m7" class="ltx_Math" alttext="\Pi_{A}(B)" display="inline"><mrow><msub><mi mathvariant="normal">Π</mi><mi>A</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p7.m8" class="ltx_Math" alttext="\widehat{B}" display="inline"><mover accent="true"><mi>B</mi><mo>^</mo></mover></math> denote respectively the type families</p>
+<table id="S0.E4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E4.m1" class="ltx_Math" alttext="\begin{array}[]{rclcl}\Pi_{A}(B)&amp;:\!\!\equiv&amp;\big{(}x\mapsto\mathchoice{\prod_%
+{a:A(x)}\,}{\mathchoice{{\textstyle\prod_{(a:A(x))}}}{\prod_{(a:A(x))}}{\prod_%
+{(a:A(x))}}{\prod_{(a:A(x))}}}{\mathchoice{{\textstyle\prod_{(a:A(x))}}}{\prod%
+_{(a:A(x))}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}}{\mathchoice{{\textstyle\prod%
+_{(a:A(x))}}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}}B(x,a)\big%
+{)}&amp;:&amp;X\to\mathcal{U}\\
+\widehat{B}&amp;:\!\!\equiv&amp;\big{(}w\mapsto B(\mathsf{pr}_{1}w,\mathsf{pr}_{2}w)%
+\big{)}&amp;:&amp;\big{(}\mathchoice{\sum_{x:X}\,}{\mathchoice{{\textstyle\sum_{(x:X)}%
+}}{\sum_{(x:X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}{\mathchoice{{\textstyle\sum_{(x:%
+X)}}}{\sum_{(x:X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}{\mathchoice{{\textstyle\sum_{%
+(x:X)}}}{\sum_{(x:X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}A(x)\big{)}\to\mathcal{U}.%
+\end{array}" display="block"><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="right"><mrow><msub><mi mathvariant="normal">Π</mi><mi>A</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd columnalign="center"><mrow><mi></mi><mo rspace="0pt">:</mo><mo>≡</mo></mrow></mtd><mtd columnalign="left"><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mi>x</mi><mo>↦</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></munder></mpadded><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></mtd><mtd columnalign="center"><mo>:</mo></mtd><mtd columnalign="left"><mrow><mi>X</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mtd></mtr><mtr><mtd columnalign="right"><mover accent="true"><mi>B</mi><mo>^</mo></mover></mtd><mtd columnalign="center"><mrow><mi></mi><mo rspace="0pt">:</mo><mo>≡</mo></mrow></mtd><mtd columnalign="left"><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mi>w</mi><mo>↦</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mi>w</mi></mrow><mo>,</mo><mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>⁢</mo><mi>w</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></mtd><mtd columnalign="center"><mo>:</mo></mtd><mtd columnalign="left"><mrow><mrow><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow></munder></mpadded><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow><mo>.</mo></mrow></mtd></mtr></mtable></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.9.5)</span></td>
+</tr>
+</table>
+<p class="ltx_p">If these formulas look a bit intimidating, don’t worry about the details.
+The basic idea is just the same as for the non-dependent function type: we transport the argument backwards, apply the function, and then transport the result forwards again.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Now recall that for a general type family <math id="p8.m1" class="ltx_Math" alttext="P:X\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi>X</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, in §2.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/22functionsarefunctors</span>) we defined the type of <em class="ltx_emph ltx_font_italic">dependent paths</em> over <math id="p8.m2" class="ltx_Math" alttext="p:x=_{X}y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><msub><mo>=</mo><mi>X</mi></msub><mi>y</mi></mrow></mrow></math> from <math id="p8.m3" class="ltx_Math" alttext="u:P(x)" display="inline"><mrow><mi>u</mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> to <math id="p8.m4" class="ltx_Math" alttext="v:P(y)" display="inline"><mrow><mi>v</mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> to be <math id="p8.m5" class="ltx_Math" alttext="{p}_{*}\mathopen{}\left({u}\right)\mathclose{}=_{P(y)}v" display="inline"><mrow><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>u</mi><mo>)</mo></mrow><mi></mi></mrow><msub><mo>=</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mi>v</mi></mrow></math>.
+When <math id="p8.m6" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math> is a family of function types, there is an equivalent way to represent this which is often more convenient.
+
+</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 2.9.6</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given type families <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="A,B:X\to\mathcal{U}" display="inline"><mrow><mrow><mi>A</mi><mo mathvariant="normal">,</mo><mi>B</mi></mrow><mo mathvariant="normal">:</mo><mrow><mi>X</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> and <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="p:x=_{X}y" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>x</mi><msub><mo mathvariant="normal">=</mo><mi>X</mi></msub><mi>y</mi></mrow></mrow></math>, and also <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="f:A(x)\to B(x)" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mrow><mi>A</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">→</mo><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> and <math id="Thmprelem1.p1.m4" class="ltx_Math" alttext="g:A(y)\to B(y)" display="inline"><mrow><mi>g</mi><mo mathvariant="normal">:</mo><mrow><mrow><mi>A</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">→</mo><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, we have an equivalence</span></p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\big{(}{p}_{*}\mathopen{}\left({f}\right)\mathclose{}={g}\big{)}\;\simeq\;%
+\mathchoice{\prod_{a:A(x)}\,}{\mathchoice{{\textstyle\prod_{(a:A(x))}}}{\prod_%
+{(a:A(x))}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}}{\mathchoice{{\textstyle\prod_%
+{(a:A(x))}}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}}{%
+\mathchoice{{\textstyle\prod_{(a:A(x))}}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}{%
+\prod_{(a:A(x))}}}({p}_{*}\mathopen{}\left({f(a)}\right)\mathclose{}=g({p}_{*}%
+\mathopen{}\left({a}\right)\mathclose{}))." display="block"><mrow><mrow><mo maxsize="120%" minsize="120%">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>f</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>g</mi><mo maxsize="120%" minsize="120%" rspace="5.3pt">)</mo></mrow><mo rspace="5.3pt">≃</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Moreover, if <math id="Thmprelem1.p1.m5" class="ltx_Math" alttext="q:{p}_{*}\mathopen{}\left({f}\right)\mathclose{}={g}" display="inline"><mrow><mi>q</mi><mo mathvariant="normal">:</mo><msub><mi>p</mi><mo mathvariant="normal">*</mo></msub><mrow><mi></mi><mrow><mo mathvariant="normal">(</mo><mi>f</mi><mo mathvariant="normal">)</mo></mrow><mi></mi></mrow><mo mathvariant="normal">=</mo><mi>g</mi></mrow></math> corresponds under this equivalence to <math id="Thmprelem1.p1.m6" class="ltx_Math" alttext="\widehat{q}" display="inline"><mover accent="true"><mi>q</mi><mo mathvariant="normal">^</mo></mover></math>, then for <math id="Thmprelem1.p1.m7" class="ltx_Math" alttext="a:A(x)" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>, the path</span></p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\mathsf{happly}(q,{p}_{*}\mathopen{}\left({a}\right)\mathclose{}):({p}_{*}%
+\mathopen{}\left({f}\right)\mathclose{})({p}_{*}\mathopen{}\left({a}\right)%
+\mathclose{})=g({p}_{*}\mathopen{}\left({a}\right)\mathclose{})" display="block"><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>f</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">is equal to the composite</span></p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S0.Ex11"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\displaystyle({p}_{*}\mathopen{}\left({f}\right)\mathclose{})({p}_{*}\mathopen%
+{}\left({a}\right)\mathclose{})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>f</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex11.m2" class="ltx_Math" alttext="\displaystyle={p}_{*}\mathopen{}\left({f({\mathord{{p}^{-1}}}_{*}\mathopen{}%
+\left({{p}_{*}\mathopen{}\left({a}\right)\mathclose{}}\right)\mathclose{})}%
+\right)\mathclose{}{}" display="inline"><mrow><mo>=</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mmultiscripts><mi>p</mi><none></none><mrow><mo>-</mo><mn>1</mn></mrow><mo>*</mo><none></none></mmultiscripts><mrow><mi></mi><mrow><mo>(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by \eqref{eq:transport-arrow})</span></td>
+</tr></tbody>
+<tr id="S0.Ex12" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex12.m2" class="ltx_Math" alttext="\displaystyle={p}_{*}\mathopen{}\left({f(a)}\right)\mathclose{}" display="inline"><mrow><mo>=</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>)</mo></mrow><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tbody id="S0.Ex13"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex13.m2" class="ltx_Math" alttext="\displaystyle=g({p}_{*}\mathopen{}\left({a}\right)\mathclose{}).{}" display="inline"><mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by $\widehat{q}$)</span></td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">By path induction, we may assume <math id="p9.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is reflexivity, in which case the desired equivalence reduces to function extensionality.
+The second statement then follows by the computation rule for function extensionality.
+∎</p>
+</div>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">As usual, the case of dependent functions is similar, but more complicated.
+
+</p>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 2.9.7</span>.</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given type families <math id="Thmprelem2.p1.m1" class="ltx_Math" alttext="A:X\to\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mrow><mi>X</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> and <math id="Thmprelem2.p1.m2" class="ltx_Math" alttext="B:\mathchoice{\prod_{x:X}\,}{\mathchoice{{\textstyle\prod_{(x:X)}}}{\prod_{(x:%
+X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}{\mathchoice{{\textstyle\prod_{(x:X)}}}{%
+\prod_{(x:X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}{\mathchoice{{\textstyle\prod_{(x%
+:X)}}}{\prod_{(x:X)}}{\prod_{(x:X)}}{\prod_{(x:X)}}}A(x)\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>X</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>A</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> and <math id="Thmprelem2.p1.m3" class="ltx_Math" alttext="p:x=_{X}y" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>x</mi><msub><mo mathvariant="normal">=</mo><mi>X</mi></msub><mi>y</mi></mrow></mrow></math>, and also <math id="Thmprelem2.p1.m4" class="ltx_Math" alttext="f:\mathchoice{\prod_{a:A(x)}\,}{\mathchoice{{\textstyle\prod_{(a:A(x))}}}{%
+\prod_{(a:A(x))}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}}{\mathchoice{{\textstyle%
+\prod_{(a:A(x))}}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}}{%
+\mathchoice{{\textstyle\prod_{(a:A(x))}}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}{%
+\prod_{(a:A(x))}}}B(x,a)" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> and <math id="Thmprelem2.p1.m5" class="ltx_Math" alttext="g:\mathchoice{\prod_{a:A(y)}\,}{\mathchoice{{\textstyle\prod_{(a:A(y))}}}{%
+\prod_{(a:A(y))}}{\prod_{(a:A(y))}}{\prod_{(a:A(y))}}}{\mathchoice{{\textstyle%
+\prod_{(a:A(y))}}}{\prod_{(a:A(y))}}{\prod_{(a:A(y))}}{\prod_{(a:A(y))}}}{%
+\mathchoice{{\textstyle\prod_{(a:A(y))}}}{\prod_{(a:A(y))}}{\prod_{(a:A(y))}}{%
+\prod_{(a:A(y))}}}B(y,a)" display="inline"><mrow><mi>g</mi><mo mathvariant="normal">:</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>y</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>, we have an equivalence</span></p>
+<table id="S0.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\big{(}{p}_{*}\mathopen{}\left({f}\right)\mathclose{}={g}\big{)}\;\simeq\;%
+\Bigl{(}\mathchoice{\prod_{a:A(x)}\,}{\mathchoice{{\textstyle\prod_{(a:A(x))}}%
+}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}}{\mathchoice{{%
+\textstyle\prod_{(a:A(x))}}}{\prod_{(a:A(x))}}{\prod_{(a:A(x))}}{\prod_{(a:A(x%
+))}}}{\mathchoice{{\textstyle\prod_{(a:A(x))}}}{\prod_{(a:A(x))}}{\prod_{(a:A(%
+x))}}{\prod_{(a:A(x))}}}\mathsf{transport}^{\widehat{B}}(\mathsf{pair}^{%
+\mathord{=}}(p,\mathsf{refl}_{{p}_{*}\mathopen{}\left({a}\right)\mathclose{}})%
+,f(a))=g({p}_{*}\mathopen{}\left({a}\right)\mathclose{})\Bigr{)}" display="block"><mrow><mrow><mo maxsize="120%" minsize="120%">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>f</mi><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>g</mi><mo maxsize="120%" minsize="120%" rspace="5.3pt">)</mo></mrow><mo rspace="5.3pt">≃</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></munder></mpadded><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mover accent="true"><mi>B</mi><mo>^</mo></mover></msup><mrow><mo stretchy="false">(</mo><msup><mi>𝗉𝖺𝗂𝗋</mi><mi mathvariant="normal">=</mi></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">with <math id="Thmprelem2.p1.m6" class="ltx_Math" alttext="\widehat{B}" display="inline"><mover accent="true"><mi>B</mi><mo mathvariant="normal">^</mo></mover></math> as in (<a href="#S0.E4" title="(2.9.5) ‣ 2.9 Π -types and the function extensionality axiom" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.9.5</span></a>).</span></p>
+</div>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">We leave it to the reader to prove this and to formulate a suitable computation rule.</p>
+</div>
+<div id="p12" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">2.9 <math id="p12.m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types and the function extensionality axiom</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></th>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:34:28 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

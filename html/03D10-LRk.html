@@ -1,0 +1,257 @@
+<!DOCTYPE html><html>
+<head>
+<title>LR(k)</title>
+<!--Generated on Thu Feb  8 20:00:56 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">LR(k)</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Given a word <math id="p1.m1" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> and a context-free grammar <math id="p1.m2" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math>, how do we determine if <math id="p1.m3" class="ltx_Math" alttext="u\in L(G)" display="inline"><mrow><mi>u</mi><mo>∈</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>?</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">One way is to look for any subword <math id="p2.m1" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math> of <math id="p2.m2" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> such that there is a production <math id="p2.m3" class="ltx_Math" alttext="A\to v" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>v</mi></mrow></math>. If this is successful, we may replace <math id="p2.m4" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math> with <math id="p2.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> in <math id="p2.m6" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> to obtain a word <math id="p2.m7" class="ltx_Math" alttext="w" display="inline"><mi>w</mi></math>, so that <math id="p2.m8" class="ltx_Math" alttext="w\Rightarrow u" display="inline"><mrow><mi>w</mi><mo>⇒</mo><mi>u</mi></mrow></math>. We may then repeat the process on <math id="p2.m9" class="ltx_Math" alttext="w" display="inline"><mi>w</mi></math> to obtain another word <math id="p2.m10" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> such that <math id="p2.m11" class="ltx_Math" alttext="x\Rightarrow w" display="inline"><mrow><mi>x</mi><mo>⇒</mo><mi>w</mi></mrow></math> (if successful). In the end, if everything works successfully, we arrive at the starting non-terminal symbol <math id="p2.m12" class="ltx_Math" alttext="\sigma" display="inline"><mi>σ</mi></math>, and get a derivation <math id="p2.m13" class="ltx_Math" alttext="\sigma\Rightarrow^{*}u" display="inline"><mrow><mi>σ</mi><msup><mo>⇒</mo><mo>*</mo></msup><mi>u</mi></mrow></math> as a result, so that <math id="p2.m14" class="ltx_Math" alttext="u\in L(G)" display="inline"><mrow><mi>u</mi><mo>∈</mo><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. This procedure is known as the bottom-up parsing of the word <math id="p2.m15" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">In general, unless one is very lucky, successfully finding a derivation <math id="p3.m1" class="ltx_Math" alttext="\sigma\Rightarrow^{*}u" display="inline"><mrow><mi>σ</mi><msup><mo>⇒</mo><mo>*</mo></msup><mi>u</mi></mrow></math> requires many trials and errors, since at each stage, for a given word <math id="p3.m2" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>, there may be several words <math id="p3.m3" class="ltx_Math" alttext="w" display="inline"><mi>w</mi></math> such that <math id="p3.m4" class="ltx_Math" alttext="w\Rightarrow u" display="inline"><mrow><mi>w</mi><mo>⇒</mo><mi>u</mi></mrow></math>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Nevertheless, there is a particular family of context-free grammars, called the <math id="p4.m1" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> grammars, which make the bottom-up parsing described above straightforward in the sense that, given a word <math id="p4.m2" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>, once a word <math id="p4.m3" class="ltx_Math" alttext="w" display="inline"><mi>w</mi></math> is found such that <math id="p4.m4" class="ltx_Math" alttext="w\Rightarrow_{R}u" display="inline"><mrow><mi>w</mi><msub><mo>⇒</mo><mi>R</mi></msub><mi>u</mi></mrow></math>, any other word <math id="p4.m5" class="ltx_Math" alttext="w^{\prime}" display="inline"><msup><mi>w</mi><mo>′</mo></msup></math> such that <math id="p4.m6" class="ltx_Math" alttext="w^{\prime}\Rightarrow_{R}u" display="inline"><mrow><msup><mi>w</mi><mo>′</mo></msup><msub><mo>⇒</mo><mi>R</mi></msub><mi>u</mi></mrow></math> forces <math id="p4.m7" class="ltx_Math" alttext="w^{\prime}=w" display="inline"><mrow><msup><mi>w</mi><mo>′</mo></msup><mo>=</mo><mi>w</mi></mrow></math>. Here, <math id="p4.m8" class="ltx_Math" alttext="\Rightarrow_{R}" display="inline"><msub><mo>⇒</mo><mi>R</mi></msub></math> is known as the rightmost derivation (meaning that <math id="p4.m9" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> is obtained from <math id="p4.m10" class="ltx_Math" alttext="w" display="inline"><mi>w</mi></math> by replacing the rightmost non-terminal in <math id="p4.m11" class="ltx_Math" alttext="w" display="inline"><mi>w</mi></math>). The <math id="p4.m12" class="ltx_Math" alttext="L" display="inline"><mi>L</mi></math> in <math id="p4.m13" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> means scanning the symbols of <math id="p4.m14" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> from left to right, <math id="p4.m15" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> stands for finding a rightmost derivation for <math id="p4.m16" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>, and <math id="p4.m17" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> means having the allowance to look at up to <math id="p4.m18" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> symbols ahead while scanning.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">The details are as follows:</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. Let <math id="p6.m1" class="ltx_Math" alttext="G=(\Sigma,N,P,\sigma)" display="inline"><mrow><mi>G</mi><mo>=</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Σ</mi><mo>,</mo><mi>N</mi><mo>,</mo><mi>P</mi><mo>,</mo><mi>σ</mi><mo stretchy="false">)</mo></mrow></mrow></math> be a context-free grammar such that <math id="p6.m2" class="ltx_Math" alttext="\sigma\to\sigma" display="inline"><mrow><mi>σ</mi><mo>→</mo><mi>σ</mi></mrow></math> is not a production of <math id="p6.m3" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math>, and <math id="p6.m4" class="ltx_Math" alttext="k\geq 0" display="inline"><mrow><mi>k</mi><mo>≥</mo><mn>0</mn></mrow></math> an integer. Suppose <math id="p6.m5" class="ltx_Math" alttext="U" display="inline"><mi>U</mi></math> is any sentential form over <math id="p6.m6" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math> with the following setup: <math id="p6.m7" class="ltx_Math" alttext="U=U_{1}U_{2}U_{3}" display="inline"><mrow><mi>U</mi><mo>=</mo><mrow><msub><mi>U</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi>U</mi><mn>2</mn></msub><mo>⁢</mo><msub><mi>U</mi><mn>3</mn></msub></mrow></mrow></math> where</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="U_{3}" display="inline"><msub><mi>U</mi><mn>3</mn></msub></math> is a terminal word,</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i2.p1.m1" class="ltx_Math" alttext="X\to U_{2}" display="inline"><mrow><mi>X</mi><mo>→</mo><msub><mi>U</mi><mn>2</mn></msub></mrow></math> a production, and</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i3.p1.m1" class="ltx_Math" alttext="\sigma\Rightarrow_{R}^{*}U_{1}XU_{3}\Rightarrow_{R}U" display="inline"><mrow><mi>σ</mi><msubsup><mo>⇒</mo><mi>R</mi><mo>*</mo></msubsup><mrow><msub><mi>U</mi><mn>1</mn></msub><mo>⁢</mo><mi>X</mi><mo>⁢</mo><msub><mi>U</mi><mn>3</mn></msub></mrow><msub><mo>⇒</mo><mi>R</mi></msub><mi>U</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Let <math id="p6.m8" class="ltx_Math" alttext="n=|U_{1}U_{2}|+k" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>U</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi>U</mi><mn>2</mn></msub></mrow><mo stretchy="false">|</mo></mrow><mo>+</mo><mi>k</mi></mrow></mrow></math>, and <math id="p6.m9" class="ltx_Math" alttext="Z" display="inline"><mi>Z</mi></math> the prefix of <math id="p6.m10" class="ltx_Math" alttext="U" display="inline"><mi>U</mi></math> of length <math id="p6.m11" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> (if <math id="p6.m12" class="ltx_Math" alttext="|U|&lt;n" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mi>U</mi><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mi>n</mi></mrow></math>, then set <math id="p6.m13" class="ltx_Math" alttext="Z=U" display="inline"><mrow><mi>Z</mi><mo>=</mo><mi>U</mi></mrow></math>).</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Then <math id="p7.m1" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> is said to be <math id="p7.m2" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> if <math id="p7.m3" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> is another sentential form having <math id="p7.m4" class="ltx_Math" alttext="Z" display="inline"><mi>Z</mi></math> as a prefix, with the following setup: <math id="p7.m5" class="ltx_Math" alttext="W=W_{1}W_{2}W_{3}" display="inline"><mrow><mi>W</mi><mo>=</mo><mrow><msub><mi>W</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi>W</mi><mn>2</mn></msub><mo>⁢</mo><msub><mi>W</mi><mn>3</mn></msub></mrow></mrow></math>, where</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i1.p1.m1" class="ltx_Math" alttext="W_{3}" display="inline"><msub><mi>W</mi><mn>3</mn></msub></math> is a terminal,</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i2.p1.m1" class="ltx_Math" alttext="Y\to W_{2}" display="inline"><mrow><mi>Y</mi><mo>→</mo><msub><mi>W</mi><mn>2</mn></msub></mrow></math> is a production, and</p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i3.p1.m1" class="ltx_Math" alttext="\sigma\Rightarrow_{R}^{*}W_{1}YW_{3}\Rightarrow_{R}W" display="inline"><mrow><mi>σ</mi><msubsup><mo>⇒</mo><mi>R</mi><mo>*</mo></msubsup><mrow><msub><mi>W</mi><mn>1</mn></msub><mo>⁢</mo><mi>Y</mi><mo>⁢</mo><msub><mi>W</mi><mn>3</mn></msub></mrow><msub><mo>⇒</mo><mi>R</mi></msub><mi>W</mi></mrow></math>,</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">implies that</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="W_{1}=U_{1},\qquad Y=X,\qquad\mbox{and}\qquad W_{2}=U_{2}." display="block"><mrow><mrow><mrow><msub><mi>W</mi><mn>1</mn></msub><mo>=</mo><msub><mi>U</mi><mn>1</mn></msub></mrow><mo rspace="22.5pt">,</mo><mrow><mrow><mi>Y</mi><mo>=</mo><mrow><mi>X</mi><mo rspace="22.5pt">,</mo><mtext>and</mtext></mrow></mrow><mo mathvariant="italic" separator="true">  </mo><mrow><msub><mi>W</mi><mn>2</mn></msub><mo>=</mo><msub><mi>U</mi><mn>2</mn></msub></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Simply put, if <math id="p8.m1" class="ltx_Math" alttext="D_{U}" display="inline"><msub><mi>D</mi><mi>U</mi></msub></math> and <math id="p8.m2" class="ltx_Math" alttext="D_{W}" display="inline"><msub><mi>D</mi><mi>W</mi></msub></math> are the rightmost derivations of <math id="p8.m3" class="ltx_Math" alttext="U" display="inline"><mi>U</mi></math> and <math id="p8.m4" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> respectively, and if the prefix of <math id="p8.m5" class="ltx_Math" alttext="U" display="inline"><mi>U</mi></math> obtained by including <math id="p8.m6" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> symbols beyond the last replacement in <math id="p8.m7" class="ltx_Math" alttext="D_{U}" display="inline"><msub><mi>D</mi><mi>U</mi></msub></math> is also a prefix of <math id="p8.m8" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>, then the prefix of <math id="p8.m9" class="ltx_Math" alttext="U^{\prime}" display="inline"><msup><mi>U</mi><mo>′</mo></msup></math> obtained by including <math id="p8.m10" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> symbols beyond the last replacement in <math id="p8.m11" class="ltx_Math" alttext="D_{U}" display="inline"><msub><mi>D</mi><mi>U</mi></msub></math> is also a prefix of <math id="p8.m12" class="ltx_Math" alttext="W^{\prime}" display="inline"><msup><mi>W</mi><mo>′</mo></msup></math>, where <math id="p8.m13" class="ltx_Math" alttext="U^{\prime}" display="inline"><msup><mi>U</mi><mo>′</mo></msup></math> and <math id="p8.m14" class="ltx_Math" alttext="W^{\prime}" display="inline"><msup><mi>W</mi><mo>′</mo></msup></math> are words at the next to the last step in <math id="p8.m15" class="ltx_Math" alttext="D_{U}" display="inline"><msub><mi>D</mi><mi>U</mi></msub></math> and <math id="p8.m16" class="ltx_Math" alttext="D_{W}" display="inline"><msub><mi>D</mi><mi>W</mi></msub></math> respectively. In particular, if <math id="p8.m17" class="ltx_Math" alttext="U=W" display="inline"><mrow><mi>U</mi><mo>=</mo><mi>W</mi></mrow></math>, then <math id="p8.m18" class="ltx_Math" alttext="U^{\prime}=W^{\prime}" display="inline"><mrow><msup><mi>U</mi><mo>′</mo></msup><mo>=</mo><msup><mi>W</mi><mo>′</mo></msup></mrow></math>. This implies that any derivable in an <math id="p8.m19" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> grammar has a unique rightmost derivation, hence</p>
+</div>
+<div id="Thmprop1" class="ltx_theorem ltx_theorem_prop">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Proposition 1</span>.</h6>
+<div id="Thmprop1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Any <math id="Thmprop1.p1.m1" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo mathvariant="italic">⁢</mo><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>k</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> grammar is unambiguous.</span></p>
+</div>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Examples</span>.</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">Let <math id="I3.i1.p1.m1" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> be the grammar consisting of one non-terminal symbol <math id="I3.i1.p1.m2" class="ltx_Math" alttext="\sigma" display="inline"><mi>σ</mi></math> (which is also the final non-terminal symbol), two terminal symbols <math id="I3.i1.p1.m3" class="ltx_Math" alttext="a,b" display="inline"><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow></math>, with productions</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\sigma\to a\sigma b,\qquad\sigma\to\sigma b\qquad\mbox{and}\qquad\sigma\to b." display="block"><mrow><mrow><mrow><mi>σ</mi><mo>→</mo><mrow><mi>a</mi><mo>⁢</mo><mi>σ</mi><mo>⁢</mo><mi>b</mi></mrow></mrow><mo rspace="22.5pt">,</mo><mrow><mrow><mi>σ</mi><mo>→</mo><mrow><mrow><mi>σ</mi><mo>⁢</mo><mi>b</mi></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>and</mtext></mrow></mrow><mo mathvariant="italic" separator="true">  </mo><mrow><mi>σ</mi><mo>→</mo><mi>b</mi></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then <math id="I3.i1.p1.m4" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> is not <math id="I3.i1.p1.m5" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> for any <math id="I3.i1.p1.m6" class="ltx_Math" alttext="k\geq 0" display="inline"><mrow><mi>k</mi><mo>≥</mo><mn>0</mn></mrow></math>.
+For instance, look at the following two derivations of <math id="I3.i1.p1.m7" class="ltx_Math" alttext="U=a^{2}\sigma b^{3}" display="inline"><mrow><mi>U</mi><mo>=</mo><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>⁢</mo><mi>σ</mi><mo>⁢</mo><msup><mi>b</mi><mn>3</mn></msup></mrow></mrow></math>:</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\sigma\Rightarrow^{*}a\sigma b^{2}\Rightarrow a^{2}\sigma b^{3}\qquad\mbox{and%
+}\qquad\sigma\Rightarrow^{*}a^{2}\sigma b^{2}\Rightarrow a^{2}\sigma b^{3}" display="block"><mrow><mrow><mi>σ</mi><msup><mo>⇒</mo><mo>*</mo></msup><mrow><mi>a</mi><mo>⁢</mo><mi>σ</mi><mo>⁢</mo><msup><mi>b</mi><mn>2</mn></msup></mrow><mo>⇒</mo><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>⁢</mo><mi>σ</mi><mo>⁢</mo><msup><mi>b</mi><mn>3</mn></msup></mrow></mrow><mo mathvariant="italic" separator="true">  </mo><mrow><mrow><mtext>and</mtext><mo mathvariant="italic" separator="true">  </mo><mi>σ</mi></mrow><msup><mo>⇒</mo><mo>*</mo></msup><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>⁢</mo><mi>σ</mi><mo>⁢</mo><msup><mi>b</mi><mn>2</mn></msup></mrow><mo>⇒</mo><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>⁢</mo><mi>σ</mi><mo>⁢</mo><msup><mi>b</mi><mn>3</mn></msup></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Here, <math id="I3.i1.p1.m8" class="ltx_Math" alttext="U_{1}=a" display="inline"><mrow><msub><mi>U</mi><mn>1</mn></msub><mo>=</mo><mi>a</mi></mrow></math>, <math id="I3.i1.p1.m9" class="ltx_Math" alttext="U_{2}=\sigma b" display="inline"><mrow><msub><mi>U</mi><mn>2</mn></msub><mo>=</mo><mrow><mi>σ</mi><mo>⁢</mo><mi>b</mi></mrow></mrow></math>. Let <math id="I3.i1.p1.m10" class="ltx_Math" alttext="k=1" display="inline"><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow></math>. Then the criteria in the definition are satisfied. Yet, <math id="I3.i1.p1.m11" class="ltx_Math" alttext="W_{1}=a^{2}\neq U_{1}" display="inline"><mrow><msub><mi>W</mi><mn>1</mn></msub><mo>=</mo><msup><mi>a</mi><mn>2</mn></msup><mo>≠</mo><msub><mi>U</mi><mn>1</mn></msub></mrow></math>. Therefore, <math id="I3.i1.p1.m12" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> is not <math id="I3.i1.p1.m13" class="ltx_Math" alttext="LR(1)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p">Note that the grammar <math id="I3.i2.p1.m1" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> above generates the language <math id="I3.i2.p1.m2" class="ltx_Math" alttext="L=\{a^{m}b^{n}\mid n&gt;m\}" display="inline"><mrow><mi>L</mi><mo>=</mo><mrow><mo stretchy="false">{</mo><mrow><msup><mi>a</mi><mi>m</mi></msup><mo>⁢</mo><msup><mi>b</mi><mi>n</mi></msup><mo>⁢</mo><mrow><mo fence="true">∣</mo><mi>n</mi><mo>&gt;</mo></mrow><mo>⁢</mo><mi>m</mi></mrow><mo stretchy="false">}</mo></mrow></mrow></math>, which can also be generated by the grammar with three non-terminal symbols <math id="I3.i2.p1.m3" class="ltx_Math" alttext="\sigma,X,Y" display="inline"><mrow><mi>σ</mi><mo>,</mo><mi>X</mi><mo>,</mo><mi>Y</mi></mrow></math>, with <math id="I3.i2.p1.m4" class="ltx_Math" alttext="\sigma" display="inline"><mi>σ</mi></math> the final non-terminal symbol, where the productions are given by</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\sigma\to XY,\quad X\to aXb,\quad X\to\lambda,\quad Y\to Yb,\quad\mbox{and}%
+\quad Y\to b." display="block"><mrow><mrow><mrow><mi>σ</mi><mo>→</mo><mrow><mi>X</mi><mo>⁢</mo><mi>Y</mi></mrow></mrow><mo rspace="12.5pt">,</mo><mrow><mrow><mi>X</mi><mo>→</mo><mrow><mi>a</mi><mo>⁢</mo><mi>X</mi><mo>⁢</mo><mi>b</mi></mrow></mrow><mo rspace="12.5pt">,</mo><mrow><mrow><mi>X</mi><mo>→</mo><mi>λ</mi></mrow><mo rspace="12.5pt">,</mo><mrow><mrow><mi>Y</mi><mo>→</mo><mrow><mrow><mi>Y</mi><mo>⁢</mo><mi>b</mi></mrow><mo rspace="12.5pt">,</mo><mtext>and</mtext></mrow></mrow><mo mathvariant="italic" separator="true"> </mo><mrow><mi>Y</mi><mo>→</mo><mi>b</mi></mrow></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">However, this grammar is <math id="I3.i2.p1.m5" class="ltx_Math" alttext="LR(1)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">Determining whether a context-free grammar is <math id="p10.m1" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> is a non-trivial problem. Nevertheless, an algorithm exists for determining, given a context-free grammar <math id="p10.m2" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> and a non-negative integer <math id="p10.m3" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>, whether <math id="p10.m4" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> is <math id="p10.m5" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math>. On the other hand, without specifying <math id="p10.m6" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> in advance, no algorithms exist that determine if <math id="p10.m7" class="ltx_Math" alttext="G" display="inline"><mi>G</mi></math> is <math id="p10.m8" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> for <em class="ltx_emph ltx_font_italic">some</em> <math id="p10.m9" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. A language is said to be <math id="p11.m1" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> if it can be generated by an <math id="p11.m2" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> grammar.</p>
+</div>
+<div id="Thmthm1" class="ltx_theorem ltx_theorem_thm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 1</span>.</h6>
+<div id="Thmthm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Every <math id="Thmthm1.p1.m1" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo mathvariant="italic">⁢</mo><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>k</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> language is deterministic context-free. Every deterministic context-free language is <math id="Thmthm1.p1.m2" class="ltx_Math" alttext="LR(1)" display="inline"><mrow><mi>L</mi><mo mathvariant="italic">⁢</mo><mi>R</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mn mathvariant="normal">1</mn><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Hence, deterministic context-free languages are the same as <math id="p12.m1" class="ltx_Math" alttext="LR(1)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math> languages.</p>
+</div>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul class="ltx_biblist">
+      
+<li id="bib.bib1" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">1</span>
+        
+<span class="ltx_bibblock"> A. Salomaa, <span class="ltx_text ltx_font_italic">Formal Languages</span>, Academic Press, New York (1973).
+
+</span>
+      </li>
+      
+<li id="bib.bib2" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">2</span>
+        
+<span class="ltx_bibblock"> J.E. Hopcroft, J.D. Ullman, <span class="ltx_text ltx_font_italic">Formal Languages and Their Relation to Automata</span>, Addison-Wesley, (1969).
+
+</span>
+      </li>
+    
+</ul>
+</section>
+<div id="p13" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">LR(k)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">LRk</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:00:31</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:00:31</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">11</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03D10</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 68Q42</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 68Q05</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Synonym</th>
+<td class="ltx_td ltx_align_left ltx_border_r"><math id="p13.m1" class="ltx_Math" alttext="LR(k)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Related topic</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">LLk</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"></p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:00:56 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

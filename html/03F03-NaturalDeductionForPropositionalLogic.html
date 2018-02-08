@@ -1,0 +1,777 @@
+<!DOCTYPE html><html>
+<head>
+<title>natural deduction for propositional logic</title>
+<!--Generated on Thu Feb  8 20:23:54 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">natural deduction for propositional logic</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">The natural deduction system for classical propositional logic described here is based on the language that consists of a set of propositional variables, a symbol <math id="p1.m1" class="ltx_Math" alttext="\perp" display="inline"><mo>⟂</mo></math> for falsity, and two logical connectives <math id="p1.m2" class="ltx_Math" alttext="\land" display="inline"><mo>∧</mo></math> and <math id="p1.m3" class="ltx_Math" alttext="\to" display="inline"><mo>→</mo></math>. The other connectives are defined as follows:</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="\neg A:=A\to\perp" display="inline"><mrow><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow><mo>:=</mo><mi>A</mi><mo>→</mo><mo>⟂</mo></mrow></math>,</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i2.p1.m1" class="ltx_Math" alttext="A\lor B:=\neg(\neg A\land\neg B)" display="inline"><mrow><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow><mo>:=</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>B</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i3.p1.m1" class="ltx_Math" alttext="A\leftrightarrow B:=(A\to B)\land(B\to A)" display="inline"><mrow><mi>A</mi><mo>↔</mo><mi>B</mi><mo>:=</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">In this system, there are no axioms, only rules of inference.</p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">for <math id="I2.i1.p1.m1" class="ltx_Math" alttext="\land" display="inline"><mo>∧</mo></math>, there are three rules, one introduction rule <math id="I2.i1.p1.m2" class="ltx_Math" alttext="\land\!I" display="inline"><mrow><mo rspace="0.8pt">∧</mo><mi>I</mi></mrow></math>, and two elimination rules <math id="I2.i1.p1.m3" class="ltx_Math" alttext="\land\!E_{L}" display="inline"><mrow><mo rspace="0.8pt">∧</mo><msub><mi>E</mi><mi>L</mi></msub></mrow></math> and <math id="I2.i1.p1.m4" class="ltx_Math" alttext="\land\!E_{R}" display="inline"><mrow><mo rspace="0.8pt">∧</mo><msub><mi>E</mi><mi>R</mi></msub></mrow></math>:</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="{{{\hbox{\vbox{
+\moveright 11.249828pt\vbox{\halign{\cr}$A$&amp;\quad$\quad B$}}\nointerlineskip%
+\kern 2.0pt\moveright 0.0pt\vbox{\hrule width 22.499657pt height 1px}%
+\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{$A\land B$}}\kern-29.999542pt%
+\kern 5.0pt\raise 6.499931pt\hbox{$(\land\!I)$}\kern 0.0pt}\hskip 56.905512pt%
+\hbox{\vbox{
+\moveright 3.749943pt\vbox{\halign{\cr}$A\land B$}}\nointerlineskip\kern 2.0pt%
+\moveright 0.0pt\vbox{\hrule width 7.499886pt height 1px}\nointerlineskip\kern
+2%
+.0pt\moveright 0.0pt\hbox{$A$}}\kern-14.999771pt\kern 5.0pt\raise 7.039923pt%
+\hbox{$(\land\!E_{L})$}\kern 0.0pt}\hskip 56.905512pt\hbox{\vbox{
+\moveright 3.749943pt\vbox{\halign{\cr}$A\land B$}}\nointerlineskip\kern 2.0pt%
+\moveright 0.0pt\vbox{\hrule width 7.499886pt height 1px}\nointerlineskip\kern
+2%
+.0pt\moveright 0.0pt\hbox{$B$}}\kern-14.999771pt\kern 5.0pt\raise 7.039923pt%
+\hbox{$(\land\!E_{R})$}\kern 0.0pt}" display="block"><mrow><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:11.2pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                    </XMath></span>
+<span class="ltx_td ltx_align_left"> <XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMApp>
+                                        <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                                        <XMTok role="UNKNOWN"> </XMTok>
+                                        <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                      </XMApp>
+                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:22.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMApp>
+                                  <XMTok meaning="and" name="land" role="ADDOP">∧</XMTok>
+                                  <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                  <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                </XMApp>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-6.5pt" height="+6.5pt" voffset="6.5pt"><mo stretchy="false">(</mo><mrow><mo rspace="0.8pt">∧</mo><mi>I</mi></mrow><mo stretchy="false">)</mo></mpadded></mrow><mo mathvariant="italic" separator="true">       </mo><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:3.7pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMApp>
+                                        <XMTok meaning="and" name="land" role="ADDOP">∧</XMTok>
+                                        <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                        <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                      </XMApp>
+                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:7.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-7.0pt" height="+7.0pt" voffset="7.0pt"><mo stretchy="false">(</mo><mrow><mo rspace="0.8pt">∧</mo><msub><mi>E</mi><mi>L</mi></msub></mrow><mo stretchy="false">)</mo></mpadded></mrow><mo mathvariant="italic" separator="true">       </mo><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:3.7pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMApp>
+                                        <XMTok meaning="and" name="land" role="ADDOP">∧</XMTok>
+                                        <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                        <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                      </XMApp>
+                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:7.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-7.0pt" height="+7.0pt" voffset="7.0pt"><mo stretchy="false">(</mo><mrow><mo rspace="0.8pt">∧</mo><msub><mi>E</mi><mi>R</mi></msub></mrow><mo stretchy="false">)</mo></mpadded></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">for <math id="I2.i2.p1.m1" class="ltx_Math" alttext="\to" display="inline"><mo>→</mo></math>, there are two rules, one introduction <math id="I2.i2.p1.m2" class="ltx_Math" alttext="\to\!I" display="inline"><mrow><mi></mi><mo rspace="0.8pt">→</mo><mi>I</mi></mrow></math> and one elimination <math id="I2.i2.p1.m3" class="ltx_Math" alttext="\to\!E" display="inline"><mrow><mi></mi><mo rspace="0.8pt">→</mo><mi>E</mi></mrow></math> (modus ponens):</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="{{{{\hbox{\vbox{
+\moveright 14.999771pt\vbox{\halign{\cr}$\vbox{
+\moveright 7.499886pt\vbox{\halign{\cr}$\vbox{
+\moveright 14.999771pt\vbox{\halign{\cr}$[A]$}}\nointerlineskip\kern 2.0pt%
+\moveright 0.0pt\hbox{\hbox{$\vtop{\vbox{\hbox{.}\hbox{.}\hbox{.}}\hbox{.}}$}}%
+}$}}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{\hbox{$B$}}}$}}%
+\nointerlineskip\kern 2.0pt\moveright 0.0pt\vbox{\hrule width 22.499657pt heig%
+ht 1px}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{$A\to B$}}\kern-29.999%
+542pt\kern 5.0pt\raise 6.499931pt\hbox{$(\to\!I)$}\kern 0.0pt}\hskip 56.905512%
+pt\hbox{\vbox{
+\moveright 3.749943pt\vbox{\halign{\cr}$A$&amp;\quad$\quad A\rightarrow B$}}%
+\nointerlineskip\kern 2.0pt\moveright 0.0pt\vbox{\hrule width 7.499886pt heigh%
+t 1px}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{$B$}}\kern-14.999771pt%
+\kern 5.0pt\raise 6.499931pt\hbox{$(\to\!E)$}\kern 0.0pt}" display="block"><mrow><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:15.0pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:7.5pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:15.0pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                                              <XMDual>
+                                                                <XMApp>
+                                                                  <XMTok meaning="delimited-[]"></XMTok>
+                                                                  <XMRef idref="S0.Ex2.m1.m1.m1.m1.1nest"></XMRef>
+                                                                </XMApp>
+                                                                <XMWrap>
+                                                                  <XMTok role="OPEN" stretchy="false">[</XMTok>
+                                                                  <XMTok font="italic" role="UNKNOWN" id="S0.Ex2.m1.m1.m1.m1.1nest" fragid="S0.Ex2.m1.m1.m1.m1.1nest">A</XMTok>
+                                                                  <XMTok role="CLOSE" stretchy="false">]</XMTok>
+                                                                </XMWrap>
+                                                              </XMDual>
+                                                            </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_top">
+<span class="ltx_block ltx_align_bottom">
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+</span>
+<span class="ltx_p">.</span>
+</span></span></span>
+</span></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                            <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                          </XMath></span></span>
+</span></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:22.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMApp>
+                                  <XMTok name="to" role="ARROW">→</XMTok>
+                                  <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                  <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                </XMApp>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-6.5pt" height="+6.5pt" voffset="6.5pt"><mo stretchy="false">(</mo><mrow><mi></mi><mo rspace="0.8pt">→</mo><mi>I</mi></mrow><mo stretchy="false">)</mo></mpadded></mrow><mo mathvariant="italic" separator="true">       </mo><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:3.7pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                    </XMath></span>
+<span class="ltx_td ltx_align_left"> <XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMApp>
+                                        <XMTok name="rightarrow" role="ARROW">→</XMTok>
+                                        <XMApp>
+                                          <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                                          <XMTok role="UNKNOWN"> </XMTok>
+                                          <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                        </XMApp>
+                                        <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                      </XMApp>
+                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:7.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-6.5pt" height="+6.5pt" voffset="6.5pt"><mo stretchy="false">(</mo><mrow><mi></mi><mo rspace="0.8pt">→</mo><mi>E</mi></mrow><mo stretchy="false">)</mo></mpadded></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p">for <math id="I2.i3.p1.m1" class="ltx_Math" alttext="\perp" display="inline"><mo>⟂</mo></math>, there are two rules, one introduction <math id="I2.i3.p1.m2" class="ltx_Math" alttext="\perp\!I" display="inline"><mrow><mi></mi><mo rspace="0.8pt">⟂</mo><mi>I</mi></mrow></math> (ex falso quodlibet), and one RAA (reductio ad absurdum):</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="{{{{\hbox{\vbox{
+\moveright 3.749943pt\vbox{\halign{\cr}$\perp$}}\nointerlineskip\kern 2.0pt%
+\moveright 0.0pt\vbox{\hrule width 7.499886pt height 1px}\nointerlineskip\kern
+2%
+.0pt\moveright 0.0pt\hbox{$A$}}\kern-14.999771pt\kern 5.0pt\raise 6.499931pt%
+\hbox{$(\perp\!I)$}\kern 0.0pt}\hskip 56.905512pt\hbox{\vbox{
+\moveright 7.499886pt\vbox{\halign{\cr}$\vbox{
+\moveright 7.499886pt\vbox{\halign{\cr}$\vbox{
+\moveright 14.999771pt\vbox{\halign{\cr}$[\neg A]$}}\nointerlineskip\kern 2.0%
+pt\moveright 0.0pt\hbox{\hbox{$\vtop{\vbox{\hbox{.}\hbox{.}\hbox{.}}\hbox{.}}$%
+}}}$}}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{\hbox{$\perp$}}}$}}%
+\nointerlineskip\kern 2.0pt\moveright 0.0pt\vbox{\hrule width 7.499886pt heigh%
+t 1px}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{$A$}}\kern-14.999771pt%
+\kern 5.0pt\raise 6.499931pt\hbox{$(RAA)$}\kern 0.0pt}" display="block"><mrow><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:3.7pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMTok meaning="perpendicular-to" name="perp" role="RELOP">⟂</XMTok>
+                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:7.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-6.5pt" height="+6.5pt" voffset="6.5pt"><mo stretchy="false">(</mo><mrow><mi></mi><mo rspace="0.8pt">⟂</mo><mi>I</mi></mrow><mo stretchy="false">)</mo></mpadded></mrow><mo mathvariant="italic" separator="true">       </mo><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:7.5pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:7.5pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:15.0pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                                              <XMDual>
+                                                                <XMApp>
+                                                                  <XMTok meaning="delimited-[]"></XMTok>
+                                                                  <XMRef idref="S0.Ex3.m1.m4.m1.m1.1nest"></XMRef>
+                                                                </XMApp>
+                                                                <XMWrap>
+                                                                  <XMTok role="OPEN" stretchy="false">[</XMTok>
+                                                                  <XMApp id="S0.Ex3.m1.m4.m1.m1.1nest" fragid="S0.Ex3.m1.m4.m1.m1.1nest">
+                                                                    <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                                                                    <XMTok meaning="not" name="neg" role="FUNCTION">¬</XMTok>
+                                                                    <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                                                  </XMApp>
+                                                                  <XMTok role="CLOSE" stretchy="false">]</XMTok>
+                                                                </XMWrap>
+                                                              </XMDual>
+                                                            </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_top">
+<span class="ltx_block ltx_align_bottom">
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+</span>
+<span class="ltx_p">.</span>
+</span></span></span>
+</span></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                            <XMTok meaning="perpendicular-to" name="perp" role="RELOP">⟂</XMTok>
+                                          </XMath></span></span>
+</span></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:7.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-6.5pt" height="+6.5pt" voffset="6.5pt"><mo stretchy="false">(</mo><mrow><mi>R</mi><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mi>A</mi></mrow><mo stretchy="false">)</mo></mpadded></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Remark</span>. In the rules <math id="p2.m1" class="ltx_Math" alttext="\to\!I" display="inline"><mrow><mi></mi><mo rspace="0.8pt">→</mo><mi>I</mi></mrow></math> and RAA, the square brackets around the top formula denote that the formula is removed, or <em class="ltx_emph ltx_font_italic">discharged</em>. In other words,</p>
+<p class="ltx_p ltx_align_center">“once the conclusion is reached, the assumption can be dropped.”</p>
+<p class="ltx_p">In <math id="p2.m2" class="ltx_Math" alttext="\to\!I" display="inline"><mrow><mi></mi><mo rspace="0.8pt">→</mo><mi>I</mi></mrow></math>, when the formula <math id="p2.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is deduced from the assumption or hypothesis <math id="p2.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, we conclude with the formula <math id="p2.m5" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math>. Once this conclusion is reached, <math id="p2.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is superfluous and therefore removed, as it is embodied in the formula <math id="p2.m7" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math>. This is often encountered in mathematical proofs: if we want to prove <math id="p2.m8" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math>, we first assume <math id="p2.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, then we proceed with the proof and reach <math id="p2.m10" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, and therefore <math id="p2.m11" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math>. Simiarly, in RAA, to prove <math id="p2.m12" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, we start by assuming <math id="p2.m13" class="ltx_Math" alttext="\neg A" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></math>, and then reach a contradiction (<math id="p2.m14" class="ltx_Math" alttext="\perp" display="inline"><mo>⟂</mo></math>), and hence we conclude with <math id="p2.m15" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>. Of course, <math id="p2.m16" class="ltx_Math" alttext="\neg A" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></math> is no longer needed at this point.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Classical propositional logic as defined by the natural deduction system above is termed NK. Derivations and theorems for NK are defined in the usual manner like all natural deduction systems, which can be found here (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/DeductionsFromNaturalDeduction</span>). Some of the theorems of NK are listed below:</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i1.p1.m1" class="ltx_Math" alttext="A\to(B\to A)" display="inline"><mrow><mi>A</mi><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i2.p1.m1" class="ltx_Math" alttext="(A\to(B\to C))\to((A\to B)\to(A\to C))" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></p>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i3.p1.m1" class="ltx_Math" alttext="(\neg A\to\neg B)\to(B\to A)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi>A</mi><mo>→</mo><mi mathvariant="normal">¬</mi><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math></p>
+</div>
+</li>
+<li id="I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i4.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i4.p1.m1" class="ltx_Math" alttext="A\land B\to B\land A" display="inline"><mrow><mrow><mi>A</mi><mo>∧</mo><mi>B</mi></mrow><mo>→</mo><mrow><mi>B</mi><mo>∧</mo><mi>A</mi></mrow></mrow></math></p>
+</div>
+</li>
+<li id="I3.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i5.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i5.p1.m1" class="ltx_Math" alttext="\neg(A\land\neg A)" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></p>
+</div>
+</li>
+<li id="I3.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i6.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i6.p1.m1" class="ltx_Math" alttext="A\leftrightarrow\neg\neg A" display="inline"><mrow><mi>A</mi><mo>↔</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math></p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">For example, <math id="p3.m1" class="ltx_Math" alttext="\vdash\neg(A\land\neg A)" display="inline"><mrow><mi></mi><mo>⊢</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math> as</p>
+<p class="ltx_p ltx_align_center"><span class="ltx_text" style="position:relative; bottom:-0.5pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_block ltx_align_bottom">
+<span class="ltx_p">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p">  <math id="p3.m2" class="ltx_Math" alttext="[A\land\neg A]_{1}" display="inline"><msub><mrow><mo stretchy="false">[</mo><mrow><mi>A</mi><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow><mo stretchy="false">]</mo></mrow><mn>1</mn></msub></math></span>
+<span class="ltx_p"><span class="ltx_text" style="position:relative; bottom:0.0pt;"></span><span class="ltx_text" style="width:79.2pt;"><span class="ltx_rule" style="width:100%;height:1px;background:black;display:inline-block;"> </span> </span><span class="ltx_text" style="position:relative; bottom:-2.4pt;"> <math id="p3.m3" class="ltx_Math" alttext="(\land\!E_{L})" display="inline"><mrow><mo maxsize="70%" minsize="70%">(</mo><mrow><mo mathsize="70%" rspace="0.8pt" stretchy="false">∧</mo><msub><mi mathsize="70%">E</mi><mi mathsize="70%">L</mi></msub></mrow><mo maxsize="70%" minsize="70%">)</mo></mrow></math></span></span>
+<span class="ltx_p">         <math id="p3.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math></span>
+</span>     
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p">  <math id="p3.m5" class="ltx_Math" alttext="[A\land\neg A]_{1}" display="inline"><msub><mrow><mo stretchy="false">[</mo><mrow><mi>A</mi><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow><mo stretchy="false">]</mo></mrow><mn>1</mn></msub></math></span>
+<span class="ltx_p"><span class="ltx_text" style="position:relative; bottom:0.0pt;"></span><span class="ltx_text" style="width:79.2pt;"><span class="ltx_rule" style="width:100%;height:1px;background:black;display:inline-block;"> </span> </span><span class="ltx_text" style="position:relative; bottom:-2.4pt;"> <math id="p3.m6" class="ltx_Math" alttext="(\land\!E_{R})" display="inline"><mrow><mo maxsize="70%" minsize="70%">(</mo><mrow><mo mathsize="70%" rspace="0.8pt" stretchy="false">∧</mo><msub><mi mathsize="70%">E</mi><mi mathsize="70%">R</mi></msub></mrow><mo maxsize="70%" minsize="70%">)</mo></mrow></math></span></span>
+<span class="ltx_p">        <math id="p3.m7" class="ltx_Math" alttext="\neg A" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></math></span>
+</span></span>
+<span class="ltx_p">       <span class="ltx_text" style="position:relative; bottom:0.0pt;"></span><span class="ltx_text" style="width:356.9pt;"><span class="ltx_rule" style="width:100%;height:1px;background:black;display:inline-block;"> </span> </span><span class="ltx_text" style="position:relative; bottom:-2.5pt;"> <math id="p3.m8" class="ltx_Math" alttext="(\to\!E)" display="inline"><mrow><mo maxsize="70%" minsize="70%">(</mo><mrow><mi></mi><mo mathsize="70%" rspace="0.8pt" stretchy="false">→</mo><mi mathsize="70%">E</mi></mrow><mo maxsize="70%" minsize="70%">)</mo></mrow></math></span></span>
+<span class="ltx_p">                                                         <math id="p3.m9" class="ltx_Math" alttext="\perp" display="inline"><mo>⟂</mo></math></span>
+</span>
+<span class="ltx_p">                                               <span class="ltx_text" style="position:relative; bottom:0.0pt;"></span><span class="ltx_text" style="width:90.0pt;"><span class="ltx_rule" style="width:100%;height:1px;background:black;display:inline-block;"> </span> </span><span class="ltx_text" style="position:relative; bottom:-2.4pt;"> <math id="p3.m10" class="ltx_Math" alttext="(\to\!I)_{1}" display="inline"><msub><mrow><mo maxsize="70%" minsize="70%">(</mo><mo mathsize="70%" rspace="0.8pt" stretchy="false">→</mo><mi mathsize="70%">I</mi><mo maxsize="70%" minsize="70%">)</mo></mrow><mn mathsize="70%">1</mn></msub></math></span></span>
+<span class="ltx_p">                                                 <math id="p3.m11" class="ltx_Math" alttext="(A\land\neg A)\to\perp" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mo>⟂</mo></mrow></math></span>
+</span></span></p>
+<p class="ltx_p">is a derivation of <math id="p3.m12" class="ltx_Math" alttext="(A\land\neg A)\to\perp" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mo>⟂</mo></mrow></math>, which is <math id="p3.m13" class="ltx_Math" alttext="\neg(A\land\neg A)" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>∧</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, where all of the assumptions have been discharged. The subscript indicates that the discharging of the assumptions at the top correspond to the application of the inference rule <math id="p3.m14" class="ltx_Math" alttext="\to\!I" display="inline"><mrow><mi></mi><mo rspace="0.8pt">→</mo><mi>I</mi></mrow></math> at the bottom.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Note also that the first three theorems are the axiom schemas for the Łukasiewicz’s axiom system for propositional logic, and it is easy to see that NK and the axiom system are in fact deductively equivalent: the theorems in both systems are precisely the same. In addition to the theorems above, we also have the following meta-theorems:</p>
+<ol id="I4" class="ltx_enumerate">
+<li id="I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I4.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I4.i1.p1.m1" class="ltx_Math" alttext="A,\neg A\vdash\perp" display="inline"><mrow><mrow><mi>A</mi><mo>,</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow><mo>⊢</mo><mo>⟂</mo></mrow></math>,</p>
+</div>
+</li>
+<li id="I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I4.i2.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I4.i2.p1.m1" class="ltx_Math" alttext="\Sigma\cup\{A\}\vdash\perp" display="inline"><mrow><mrow><mi mathvariant="normal">Σ</mi><mo>∪</mo><mrow><mo stretchy="false">{</mo><mi>A</mi><mo stretchy="false">}</mo></mrow></mrow><mo>⊢</mo><mo>⟂</mo></mrow></math>, then <math id="I4.i2.p1.m2" class="ltx_Math" alttext="\Sigma\vdash\neg A" display="inline"><mrow><mi mathvariant="normal">Σ</mi><mo>⊢</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math>,
+</p>
+</div>
+</li>
+<li id="I4.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I4.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I4.i3.p1.m1" class="ltx_Math" alttext="A\vdash A\lor B" display="inline"><mrow><mi>A</mi><mo>⊢</mo><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow></mrow></math> and <math id="I4.i3.p1.m2" class="ltx_Math" alttext="B\vdash A\lor B" display="inline"><mrow><mi>B</mi><mo>⊢</mo><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I4.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I4.i4.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I4.i4.p1.m1" class="ltx_Math" alttext="\Sigma\cup\{A\}\vdash C" display="inline"><mrow><mrow><mi mathvariant="normal">Σ</mi><mo>∪</mo><mrow><mo stretchy="false">{</mo><mi>A</mi><mo stretchy="false">}</mo></mrow></mrow><mo>⊢</mo><mi>C</mi></mrow></math> and <math id="I4.i4.p1.m2" class="ltx_Math" alttext="\Sigma\cup\{B\}\vdash C" display="inline"><mrow><mrow><mi mathvariant="normal">Σ</mi><mo>∪</mo><mrow><mo stretchy="false">{</mo><mi>B</mi><mo stretchy="false">}</mo></mrow></mrow><mo>⊢</mo><mi>C</mi></mrow></math>, then <math id="I4.i4.p1.m3" class="ltx_Math" alttext="\Sigma\cup\{A\lor B\}\vdash C" display="inline"><mrow><mrow><mi mathvariant="normal">Σ</mi><mo>∪</mo><mrow><mo stretchy="false">{</mo><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow><mo stretchy="false">}</mo></mrow></mrow><mo>⊢</mo><mi>C</mi></mrow></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Remark</span>. If <math id="p4.m1" class="ltx_Math" alttext="\neg" display="inline"><mi mathvariant="normal">¬</mi></math> and <math id="p4.m2" class="ltx_Math" alttext="\lor" display="inline"><mo>∨</mo></math> were introduced as primitive logical symbols instead of them as being “defined”, then we need to have inference rules for <math id="p4.m3" class="ltx_Math" alttext="\neg" display="inline"><mi mathvariant="normal">¬</mi></math> and <math id="p4.m4" class="ltx_Math" alttext="\lor" display="inline"><mo>∨</mo></math> as well:</p>
+<ol id="I5" class="ltx_enumerate">
+<li id="I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I5.i1.p1" class="ltx_para">
+<p class="ltx_p">for <math id="I5.i1.p1.m1" class="ltx_Math" alttext="\neg" display="inline"><mi mathvariant="normal">¬</mi></math>, there are two rules, one introduction <math id="I5.i1.p1.m2" class="ltx_Math" alttext="\neg I" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>I</mi></mrow></math> and one elimination <math id="I5.i1.p1.m3" class="ltx_Math" alttext="\neg E" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>E</mi></mrow></math>:</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="{{{{\hbox{\vbox{
+\moveright 11.249828pt\vbox{\halign{\cr}$\vbox{
+\moveright 7.499886pt\vbox{\halign{\cr}$\vbox{
+\moveright 14.999771pt\vbox{\halign{\cr}$[A]$}}\nointerlineskip\kern 2.0pt%
+\moveright 0.0pt\hbox{\hbox{$\vtop{\vbox{\hbox{.}\hbox{.}\hbox{.}}\hbox{.}}$}}%
+}$}}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{\hbox{$\perp$}}}$}}%
+\nointerlineskip\kern 2.0pt\moveright 0.0pt\vbox{\hrule width 14.999771pt heig%
+ht 1px}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{$\neg A$}}\kern-22.499%
+657pt\kern 5.0pt\raise 6.499931pt\hbox{$(\neg I)$}\kern 0.0pt}\hskip 56.905512%
+pt\hbox{\vbox{
+\moveright 3.749943pt\vbox{\halign{\cr}$A$&amp;\quad$\quad\neg A$}}%
+\nointerlineskip\kern 2.0pt\moveright 0.0pt\vbox{\hrule width 7.499886pt heigh%
+t 1px}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{$\perp$}}\kern-14.99977%
+1pt\kern 5.0pt\raise 6.499931pt\hbox{$(\neg E)$}\kern 0.0pt}" display="block"><mrow><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:11.2pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:7.5pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:15.0pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                                              <XMDual>
+                                                                <XMApp>
+                                                                  <XMTok meaning="delimited-[]"></XMTok>
+                                                                  <XMRef idref="S0.Ex4.m1.m1.m1.m1.1nest"></XMRef>
+                                                                </XMApp>
+                                                                <XMWrap>
+                                                                  <XMTok role="OPEN" stretchy="false">[</XMTok>
+                                                                  <XMTok font="italic" role="UNKNOWN" id="S0.Ex4.m1.m1.m1.m1.1nest" fragid="S0.Ex4.m1.m1.m1.m1.1nest">A</XMTok>
+                                                                  <XMTok role="CLOSE" stretchy="false">]</XMTok>
+                                                                </XMWrap>
+                                                              </XMDual>
+                                                            </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_top">
+<span class="ltx_block ltx_align_bottom">
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+</span>
+<span class="ltx_p">.</span>
+</span></span></span>
+</span></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                            <XMTok meaning="perpendicular-to" name="perp" role="RELOP">⟂</XMTok>
+                                          </XMath></span></span>
+</span></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:15.0pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMApp>
+                                  <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                                  <XMTok meaning="not" name="neg" role="FUNCTION">¬</XMTok>
+                                  <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                </XMApp>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-6.5pt" height="+6.5pt" voffset="6.5pt"><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>I</mi></mrow><mo stretchy="false">)</mo></mpadded></mrow><mo mathvariant="italic" separator="true">       </mo><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:3.7pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                    </XMath></span>
+<span class="ltx_td ltx_align_left"> <XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMApp>
+                                        <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                                        <XMTok role="UNKNOWN"> </XMTok>
+                                        <XMTok meaning="not" name="neg" role="FUNCTION">¬</XMTok>
+                                        <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                      </XMApp>
+                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:7.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMTok meaning="perpendicular-to" name="perp" role="RELOP">⟂</XMTok>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-6.5pt" height="+6.5pt" voffset="6.5pt"><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>E</mi></mrow><mo stretchy="false">)</mo></mpadded></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I5.i2.p1" class="ltx_para">
+<p class="ltx_p">for <math id="I5.i2.p1.m1" class="ltx_Math" alttext="\lor" display="inline"><mo>∨</mo></math>, there are three rules, two introduction rules <math id="I5.i2.p1.m2" class="ltx_Math" alttext="\lor\!I_{E}" display="inline"><mrow><mo rspace="0.8pt">∨</mo><msub><mi>I</mi><mi>E</mi></msub></mrow></math>, <math id="I5.i2.p1.m3" class="ltx_Math" alttext="\lor\!I_{L}" display="inline"><mrow><mo rspace="0.8pt">∨</mo><msub><mi>I</mi><mi>L</mi></msub></mrow></math>, and one elimination rule <math id="I5.i2.p1.m4" class="ltx_Math" alttext="\lor\!E" display="inline"><mrow><mo rspace="0.8pt">∨</mo><mi>E</mi></mrow></math>:</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="{{{{{{{\hbox{\vbox{
+\moveright 11.249828pt\vbox{\halign{\cr}$A$}}\nointerlineskip\kern 2.0pt%
+\moveright 0.0pt\vbox{\hrule width 22.499657pt height 1px}\nointerlineskip%
+\kern 2.0pt\moveright 0.0pt\hbox{$A\lor B$}}\kern-29.999542pt\kern 5.0pt\raise
+7%
+.039923pt\hbox{$(\lor\!I_{L})$}\kern 0.0pt}\hskip 56.905512pt\hbox{\vbox{
+\moveright 11.249828pt\vbox{\halign{\cr}$B$}}\nointerlineskip\kern 2.0pt%
+\moveright 0.0pt\vbox{\hrule width 22.499657pt height 1px}\nointerlineskip%
+\kern 2.0pt\moveright 0.0pt\hbox{$A\lor B$}}\kern-29.999542pt\kern 5.0pt\raise
+7%
+.039923pt\hbox{$(\lor\!I_{R})$}\kern 0.0pt}\hskip 56.905512pt\hbox{\vbox{
+\moveright 7.499886pt\vbox{\halign{\cr}$A\lor B$&amp;\quad$\quad\vbox{
+\moveright 7.499886pt\vbox{\halign{\cr}$\vbox{
+\moveright 14.999771pt\vbox{\halign{\cr}$[A]$}}\nointerlineskip\kern 2.0pt%
+\moveright 0.0pt\hbox{\hbox{$\vtop{\vbox{\hbox{.}\hbox{.}\hbox{.}}\hbox{.}}$}}%
+}$}}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{\hbox{$C$}}}\quad\vbox{
+\moveright 7.499886pt\vbox{\halign{\cr}$\vbox{
+\moveright 14.999771pt\vbox{\halign{\cr}$[B]$}}\nointerlineskip\kern 2.0pt%
+\moveright 0.0pt\hbox{\hbox{$\vtop{\vbox{\hbox{.}\hbox{.}\hbox{.}}\hbox{.}}$}}%
+}$}}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{\hbox{$C$}}}$}}%
+\nointerlineskip\kern 2.0pt\moveright 0.0pt\vbox{\hrule width 7.499886pt heigh%
+t 1px}\nointerlineskip\kern 2.0pt\moveright 0.0pt\hbox{$C$}}\kern-14.999771pt%
+\kern 5.0pt\raise 6.499931pt\hbox{$(\lor\!E)$}\kern 0.0pt}" display="block"><mrow><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:11.2pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:22.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMApp>
+                                  <XMTok meaning="or" name="lor" role="ADDOP">∨</XMTok>
+                                  <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                  <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                </XMApp>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-7.0pt" height="+7.0pt" voffset="7.0pt"><mo stretchy="false">(</mo><mrow><mo rspace="0.8pt">∨</mo><msub><mi>I</mi><mi>L</mi></msub></mrow><mo stretchy="false">)</mo></mpadded></mrow><mo mathvariant="italic" separator="true">       </mo><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:11.2pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:22.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMApp>
+                                  <XMTok meaning="or" name="lor" role="ADDOP">∨</XMTok>
+                                  <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                  <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                </XMApp>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-7.0pt" height="+7.0pt" voffset="7.0pt"><mo stretchy="false">(</mo><mrow><mo rspace="0.8pt">∨</mo><msub><mi>I</mi><mi>R</mi></msub></mrow><mo stretchy="false">)</mo></mpadded></mrow><mo mathvariant="italic" separator="true">       </mo><mrow><mtext>
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:7.5pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMApp>
+                                        <XMTok meaning="or" name="lor" role="ADDOP">∨</XMTok>
+                                        <XMTok font="italic" role="UNKNOWN">A</XMTok>
+                                        <XMTok font="italic" role="UNKNOWN">B</XMTok>
+                                      </XMApp>
+                                    </XMath></span>
+<span class="ltx_td ltx_align_left"> <XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                      <XMDual>
+                                        <XMApp>
+                                          <XMTok meaning="list"></XMTok>
+                                          <XMRef idref="S0.Ex5.m1.m8.2nest"></XMRef>
+                                          <XMRef idref="S0.Ex5.m1.m8.1nest"></XMRef>
+                                        </XMApp>
+                                        <XMWrap>
+                                          <XMApp id="S0.Ex5.m1.m8.2nest" fragid="S0.Ex5.m1.m8.2nest">
+                                            <XMTok meaning="times" role="MULOP">⁢</XMTok>
+                                            <XMTok role="UNKNOWN"> </XMTok>
+                                            <XMText vattach="bottom"><span xmlns="" class="ltx_text" style="position:relative; left:7.5pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:15.0pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                                                      <XMDual>
+                                                                        <XMApp>
+                                                                          <XMTok meaning="delimited-[]"></XMTok>
+                                                                          <XMRef idref="S0.Ex5.m1.m8.m1.m1.1nest"></XMRef>
+                                                                        </XMApp>
+                                                                        <XMWrap>
+                                                                          <XMTok role="OPEN" stretchy="false">[</XMTok>
+                                                                          <XMTok font="italic" role="UNKNOWN" id="S0.Ex5.m1.m8.m1.m1.1nest" fragid="S0.Ex5.m1.m8.m1.m1.1nest">A</XMTok>
+                                                                          <XMTok role="CLOSE" stretchy="false">]</XMTok>
+                                                                        </XMWrap>
+                                                                      </XMDual>
+                                                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_top">
+<span class="ltx_block ltx_align_bottom">
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+</span>
+<span class="ltx_p">.</span>
+</span></span></span>
+</span></span></span>
+</span></span><span xmlns="" class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                                    <XMTok font="italic" role="UNKNOWN">C</XMTok>
+                                                  </XMath></span></XMText>
+                                          </XMApp>
+                                          <XMTok font="italic" name="quad" role="PUNCT"> </XMTok>
+                                          <XMText vattach="bottom" id="S0.Ex5.m1.m8.1nest" fragid="S0.Ex5.m1.m8.1nest"><span xmlns="" class="ltx_text" style="position:relative; left:7.5pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_text" style="position:relative; left:15.0pt;">
+<span class="ltx_tabular ltx_align_bottom">
+<span class="ltx_tr">
+<span class="ltx_td ltx_align_left"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                                                    <XMDual>
+                                                                      <XMApp>
+                                                                        <XMTok meaning="delimited-[]"></XMTok>
+                                                                        <XMRef idref="S0.Ex5.m1.m8.m3.m1.1nest"></XMRef>
+                                                                      </XMApp>
+                                                                      <XMWrap>
+                                                                        <XMTok role="OPEN" stretchy="false">[</XMTok>
+                                                                        <XMTok font="italic" role="UNKNOWN" id="S0.Ex5.m1.m8.m3.m1.1nest" fragid="S0.Ex5.m1.m8.m3.m1.1nest">B</XMTok>
+                                                                        <XMTok role="CLOSE" stretchy="false">]</XMTok>
+                                                                      </XMWrap>
+                                                                    </XMDual>
+                                                                  </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_markedasmath ltx_align_top">
+<span class="ltx_block ltx_align_bottom">
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+<span class="ltx_p">.</span>
+</span>
+<span class="ltx_p">.</span>
+</span></span></span>
+</span></span></span>
+</span></span><span xmlns="" class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                                  <XMTok font="italic" role="UNKNOWN">C</XMTok>
+                                                </XMath></span></XMText>
+                                        </XMWrap>
+                                      </XMDual>
+                                    </XMath></span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_p"><span class="ltx_rule" style="width:7.5pt;height:1px;background:black;display:inline-block;"> </span></span>
+</span></span><span class="ltx_text" style="position:relative; left:0.0pt;"><XMath xmlns="http://dlmf.nist.gov/LaTeXML">
+                                <XMTok font="italic" role="UNKNOWN">C</XMTok>
+                              </XMath></span></span>
+</span></mtext><mpadded depth="-6.5pt" height="+6.5pt" voffset="6.5pt"><mo stretchy="false">(</mo><mrow><mo rspace="0.8pt">∨</mo><mi>E</mi></mrow><mo stretchy="false">)</mo></mpadded></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+<p class="ltx_p">Note that the inference rules correspond to the meta-theorems above: rule <math id="p4.m5" class="ltx_Math" alttext="\neg E" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>E</mi></mrow></math> corresponds to meta-theorem 1, <math id="p4.m6" class="ltx_Math" alttext="\neg I" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>I</mi></mrow></math> corresponds to 2, <math id="p4.m7" class="ltx_Math" alttext="\lor\!I_{L}" display="inline"><mrow><mo rspace="0.8pt">∨</mo><msub><mi>I</mi><mi>L</mi></msub></mrow></math> and <math id="p4.m8" class="ltx_Math" alttext="\lor\!I_{R}" display="inline"><mrow><mo rspace="0.8pt">∨</mo><msub><mi>I</mi><mi>R</mi></msub></mrow></math> correspond to 3, and <math id="p4.m9" class="ltx_Math" alttext="\lor\!E" display="inline"><mrow><mo rspace="0.8pt">∨</mo><mi>E</mi></mrow></math> to 4. The resulting system is deductively equivalent to original NK system.</p>
+</div>
+<div id="p5" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">natural deduction for propositional logic</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">NaturalDeductionForPropositionalLogic</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:31:59</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:31:59</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">25</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03F03</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03B05</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Synonym</th>
+<td class="ltx_td ltx_align_left ltx_border_r">natural deduction for classical propositional logic</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Defines</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">NK</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"></p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:23:54 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

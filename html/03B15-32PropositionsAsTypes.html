@@ -1,0 +1,229 @@
+<!DOCTYPE html><html>
+<head>
+<title>3.2 Propositions as types?</title>
+<!--Generated on Thu Feb  8 19:34:51 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , , , anger, as types, automorphism, axiom, classical, constructive vs classical, fixed-point-free, logic, mathematics, of choice, proposition, type-theoretic, univalence axiom, “continuity” of functions in type theory, “functoriality” of functions in type theory">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">3.2 Propositions as types?</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Until now, we have been following the straightforward “propositions as types” philosophy described in §1.11 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/111propositionsastypes</span>), according to which English phrases such as “there exists an <math id="p1.m1" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math> such that <math id="p1.m2" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>” are interpreted by corresponding types such as <math id="p1.m3" class="ltx_Math" alttext="\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x%
+:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}P(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, with the proof of a statement being regarded as judging some specific element to inhabit that type.
+However, we have also seen some ways in which the “logic” resulting from this reading seems unfamiliar to a classical mathematician.
+For instance, in Theorem 2.15.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/215universalproperties#Thmprethm3</span>) we saw that the statement
+</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center">
+<span class="ltx_inline-block ltx_markedasmath ltx_parbox ltx_align_middle" style="width:433.6pt;">
+<span class="ltx_p">“If for all <math id="S0.E1.m1.m1" class="ltx_Math" alttext="x:X" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow></math> there exists an <math id="S0.E1.m1.m2" class="ltx_Math" alttext="a:A(x)" display="inline"><mrow><mi>a</mi><mo>:</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> such that <math id="S0.E1.m1.m3" class="ltx_Math" alttext="P(x,a)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, then there exists a function <math id="S0.E1.m1.m4" class="ltx_Math" alttext="g:\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:%
+A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x%
+:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}A(x)" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> such that for all <math id="S0.E1.m1.m5" class="ltx_Math" alttext="x:X" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow></math> we have <math id="S0.E1.m1.m6" class="ltx_Math" alttext="P(x,g(x))" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>,”</span>
+</span>
+</td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="0" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(3.2.1)</span></td>
+</tr>
+</table>
+<p class="ltx_p">which looks like the classical <em class="ltx_emph ltx_font_italic">axiom of choice</em>, is always true under this reading. This is a noteworthy, and often useful, feature of the propositions-as-types logic, but it also illustrates how significantly it differs from the classical interpretation of logic, under which the axiom of choice is not a logical truth, but an additional “axiom”.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">On the other hand, we can now also show that corresponding statements looking like the classical <em class="ltx_emph ltx_font_italic">law of double negation</em> and <em class="ltx_emph ltx_font_italic">law of excluded middle</em> are incompatible with the univalence axiom.
+</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 3.2.2</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">It is not the case that for all <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> we have <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="\neg(\neg A)\to A" display="inline"><mrow><mrow><mi mathvariant="normal">¬</mi><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi mathvariant="normal">¬</mi><mo mathvariant="italic">⁢</mo><mi>A</mi></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">→</mo><mi>A</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Recall that <math id="p3.m1" class="ltx_Math" alttext="\neg A\equiv(A\to\mathbf{0})" display="inline"><mrow><mi mathvariant="normal">¬</mi><mi>A</mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow></mrow></math>.
+We also read “it is not the case that …” as the operator <math id="p3.m2" class="ltx_Math" alttext="\neg" display="inline"><mi mathvariant="normal">¬</mi></math>.
+Thus, in order to prove this statement, it suffices to assume given some <math id="p3.m3" class="ltx_Math" alttext="f:\mathchoice{\prod_{A:\mathcal{U}}\,}{\mathchoice{{\textstyle\prod_{(A:%
+\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}{\mathchoice{%
+{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}(\neg\neg A\to A)" display="inline"><mrow><mi>f</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi mathvariant="normal">¬</mi><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> and construct an element of <math id="p3.m4" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>.
+</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">The idea of the following proof is to observe that <math id="p4.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, like any function in type theory, is “continuous”.
+By univalence, this implies that <math id="p4.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is <em class="ltx_emph ltx_font_italic">natural</em> with respect to equivalences of types.
+From this, and a fixed-point-free autoequivalence, we will be able to extract a contradiction.
+</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Let <math id="p5.m1" class="ltx_Math" alttext="e:\mathbf{2}\simeq\mathbf{2}" display="inline"><mrow><mi>e</mi><mo>:</mo><mrow><mn>𝟐</mn><mo>≃</mo><mn>𝟐</mn></mrow></mrow></math> be the equivalence defined by <math id="p5.m2" class="ltx_Math" alttext="e({1_{\mathbf{2}}}):\!\!\equiv{0_{\mathbf{2}}}" display="inline"><mrow><mi>e</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mn>0</mn><mn>𝟐</mn></msub></mrow></math> and <math id="p5.m3" class="ltx_Math" alttext="e({0_{\mathbf{2}}}):\!\!\equiv{1_{\mathbf{2}}}" display="inline"><mrow><mi>e</mi><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mn>1</mn><mn>𝟐</mn></msub></mrow></math>, as in Example 3.1.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/31setsandntypes#Thmpreeg6</span>).
+Let <math id="p5.m4" class="ltx_Math" alttext="p:\mathbf{2}=\mathbf{2}" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mn>𝟐</mn><mo>=</mo><mn>𝟐</mn></mrow></mrow></math> be the path corresponding to <math id="p5.m5" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math> by univalence, i.e. <math id="p5.m6" class="ltx_Math" alttext="p:\!\!\equiv\mathsf{ua}(e)" display="inline"><mrow><mi>p</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>𝗎𝖺</mi><mrow><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Then we have <math id="p5.m7" class="ltx_Math" alttext="f(\mathbf{2}):\neg\neg\mathbf{2}\to\mathbf{2}" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mn>𝟐</mn></mrow><mo>→</mo><mn>𝟐</mn></mrow></mrow></math> and</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathsf{apd}_{f}\mathopen{}\left(p\right)\mathclose{}:\mathsf{transport}^{A%
+\mapsto(\neg\neg A\to A)}(p,f(\mathbf{2}))=f(\mathbf{2})." display="block"><mrow><msub><mi>𝖺𝗉𝖽</mi><mi>f</mi></msub><mrow><mi></mi><mrow><mo>(</mo><mi>p</mi><mo>)</mo></mrow><mi></mi></mrow><mo>:</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>↦</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi mathvariant="normal">¬</mi><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Hence, for any <math id="p5.m8" class="ltx_Math" alttext="u:\neg\neg\mathbf{2}" display="inline"><mrow><mi>u</mi><mo>:</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mn>𝟐</mn></mrow></mrow></math>, we have</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\mathsf{happly}(\mathsf{apd}_{f}\mathopen{}\left(p\right)\mathclose{},u):%
+\mathsf{transport}^{A\mapsto(\neg\neg A\to A)}(p,f(\mathbf{2}))(u)=f(\mathbf{2%
+})(u)." display="block"><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><msub><mi>𝖺𝗉𝖽</mi><mi>f</mi></msub><mrow><mi></mi><mrow><mo>(</mo><mi>p</mi><mo>)</mo></mrow><mi></mi></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>↦</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi mathvariant="normal">¬</mi><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Now by (2.9.4) (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#S0.E3</span>), transporting <math id="p6.m1" class="ltx_Math" alttext="f(\mathbf{2}):\neg\neg\mathbf{2}\to\mathbf{2}" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mn>𝟐</mn></mrow><mo>→</mo><mn>𝟐</mn></mrow></mrow></math> along <math id="p6.m2" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> in the type family <math id="p6.m3" class="ltx_Math" alttext="{A\mapsto(\neg\neg A\to A)}" display="inline"><mrow><mi>A</mi><mo>↦</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi mathvariant="normal">¬</mi><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> is equal to the function which transports its argument along <math id="p6.m4" class="ltx_Math" alttext="\mathord{{p}^{-1}}" display="inline"><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> in the type family <math id="p6.m5" class="ltx_Math" alttext="A\mapsto\neg\neg A" display="inline"><mrow><mi>A</mi><mo>↦</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math>, applies <math id="p6.m6" class="ltx_Math" alttext="f(\mathbf{2})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow></mrow></math>, then transports the result along <math id="p6.m7" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> in the type family <math id="p6.m8" class="ltx_Math" alttext="A\mapsto A" display="inline"><mrow><mi>A</mi><mo>↦</mo><mi>A</mi></mrow></math>:</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\mathsf{transport}^{A\mapsto(\neg\neg A\to A)}(p,f(\mathbf{2}))(u)=\mathsf{%
+transport}^{A\mapsto A}(p,f(\mathbf{2})(\mathsf{transport}^{A\mapsto\neg\neg A%
+}(\mathord{{p}^{-1}},u)))" display="block"><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>↦</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi mathvariant="normal">¬</mi><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>↦</mo><mi>A</mi></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>↦</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">However, any two points <math id="p6.m9" class="ltx_Math" alttext="u,v:\neg\neg\mathbf{2}" display="inline"><mrow><mrow><mi>u</mi><mo>,</mo><mi>v</mi></mrow><mo>:</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mn>𝟐</mn></mrow></mrow></math> are equal by function extensionality, since for any <math id="p6.m10" class="ltx_Math" alttext="x:\neg\mathbf{2}" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mn>𝟐</mn></mrow></mrow></math> we have <math id="p6.m11" class="ltx_Math" alttext="u(x):\mathbf{0}" display="inline"><mrow><mrow><mi>u</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mn>𝟎</mn></mrow></math> and thus we can derive any conclusion, in particular <math id="p6.m12" class="ltx_Math" alttext="u(x)=v(x)" display="inline"><mrow><mrow><mi>u</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>v</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Thus, we have <math id="p6.m13" class="ltx_Math" alttext="\mathsf{transport}^{A\mapsto\neg\neg A}(\mathord{{p}^{-1}},u)=u" display="inline"><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>↦</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>u</mi></mrow></math>, and so from <math id="p6.m14" class="ltx_Math" alttext="\mathsf{happly}(\mathsf{apd}_{f}\mathopen{}\left(p\right)\mathclose{},u)" display="inline"><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><msub><mi>𝖺𝗉𝖽</mi><mi>f</mi></msub><mrow><mi></mi><mrow><mo>(</mo><mi>p</mi><mo>)</mo></mrow><mi></mi></mrow><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></math> we obtain an equality</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathsf{transport}^{A\mapsto A}(p,f(\mathbf{2})(u))=f(\mathbf{2})(u)." display="block"><mrow><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mi>A</mi><mo>↦</mo><mi>A</mi></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Finally, as discussed in §2.10 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/210universesandtheunivalenceaxiom</span>), transporting in the type family <math id="p6.m15" class="ltx_Math" alttext="A\mapsto A" display="inline"><mrow><mi>A</mi><mo>↦</mo><mi>A</mi></mrow></math> along the path <math id="p6.m16" class="ltx_Math" alttext="p\equiv\mathsf{ua}(e)" display="inline"><mrow><mi>p</mi><mo>≡</mo><mrow><mi>𝗎𝖺</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is equivalent to applying the equivalence <math id="p6.m17" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math>; thus we have</p>
+<table id="S0.E2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E2.m1" class="ltx_Math" alttext="e(f(\mathbf{2})(u))=f(\mathbf{2})(u)." display="block"><mrow><mrow><mrow><mi>e</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(3.2.3)</span></td>
+</tr>
+</table>
+<p class="ltx_p">However, we can also prove that</p>
+<table id="S0.E3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E3.m1" class="ltx_Math" alttext="\mathchoice{\prod_{x:\mathbf{2}}\,}{\mathchoice{{\textstyle\prod_{(x:\mathbf{2%
+})}}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}}%
+{\mathchoice{{\textstyle\prod_{(x:\mathbf{2})}}}{\prod_{(x:\mathbf{2})}}{\prod%
+_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}}{\mathchoice{{\textstyle\prod_{(x:%
+\mathbf{2})}}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:%
+\mathbf{2})}}}\neg(e(x)=x)." display="block"><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mn>𝟐</mn></mrow></munder></mpadded><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>e</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(3.2.4)</span></td>
+</tr>
+</table>
+<p class="ltx_p">This follows from a case analysis on <math id="p6.m18" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>: both cases are immediate from the definition of <math id="p6.m19" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math> and the fact that <math id="p6.m20" class="ltx_Math" alttext="{0_{\mathbf{2}}}\neq{1_{\mathbf{2}}}" display="inline"><mrow><msub><mn>0</mn><mn>𝟐</mn></msub><mo>≠</mo><msub><mn>1</mn><mn>𝟐</mn></msub></mrow></math> (Remark 2.12.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/212coproducts#Thmprermk1</span>)).
+Thus, applying (<a href="#S0.E3" title="(3.2.4) ‣ 3.2 Propositions as types?" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.2.4</span></a>) to <math id="p6.m21" class="ltx_Math" alttext="f(\mathbf{2})(u)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></math> and (<a href="#S0.E2" title="(3.2.3) ‣ 3.2 Propositions as types?" class="ltx_ref"><span class="ltx_text ltx_ref_tag">3.2.3</span></a>), we obtain an element of <math id="p6.m22" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmprermk1" class="ltx_theorem ltx_theorem_prermk">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Remark 3.2.5</span>.</h6>
+<div id="Thmprermk1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In particular, this implies that there can be no Hilbert-style “choice operator” which selects an element of every nonempty type.
+The point is that no such operator can be <em class="ltx_emph ltx_font_upright">natural</em>, and under the univalence axiom, all functions acting on types must be natural with respect to equivalences.</span></p>
+</div>
+</div>
+<div id="Thmprermk2" class="ltx_theorem ltx_theorem_prermk">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Remark 3.2.6</span>.</h6>
+<div id="Thmprermk2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">It is, however, still the case that <math id="Thmprermk2.p1.m1" class="ltx_Math" alttext="\neg\neg\neg A\to\neg A" display="inline"><mrow><mrow><mi mathvariant="normal">¬</mi><mo mathvariant="italic">⁢</mo><mi mathvariant="normal">¬</mi><mo mathvariant="italic">⁢</mo><mi mathvariant="normal">¬</mi><mo mathvariant="italic">⁢</mo><mi>A</mi></mrow><mo mathvariant="normal">→</mo><mrow><mi mathvariant="normal">¬</mi><mo mathvariant="italic">⁢</mo><mi>A</mi></mrow></mrow></math> for any <math id="Thmprermk2.p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>; see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87564</span>Exercise 1.11.</span></p>
+</div>
+</div>
+<div id="Thmprecor1" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 3.2.7</span>.</h6>
+<div id="Thmprecor1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">It is not the case that for all <math id="Thmprecor1.p1.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> we have <math id="Thmprecor1.p1.m2" class="ltx_Math" alttext="A+(\neg A)" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">+</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mi mathvariant="normal">¬</mi><mo mathvariant="italic">⁢</mo><mi>A</mi></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Suppose we had <math id="p7.m1" class="ltx_Math" alttext="g:\mathchoice{\prod_{A:\mathcal{U}}\,}{\mathchoice{{\textstyle\prod_{(A:%
+\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}{\mathchoice{%
+{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}(A+(\neg A))" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mrow><mi>A</mi><mo>+</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+We will show that then <math id="p7.m2" class="ltx_Math" alttext="\mathchoice{\prod_{A:\mathcal{U}}\,}{\mathchoice{{\textstyle\prod_{(A:\mathcal%
+{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U%
+})}}}{\mathchoice{{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}%
+}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}{\mathchoice{{\textstyle%
+\prod_{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{%
+\prod_{(A:\mathcal{U})}}}(\neg\neg A\to A)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi mathvariant="normal">¬</mi><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math>, so that we can apply Theorem 3.2.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/32propositionsastypes#Thmprethm1</span>).
+Thus, suppose <math id="p7.m3" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and <math id="p7.m4" class="ltx_Math" alttext="u:\neg\neg A" display="inline"><mrow><mi>u</mi><mo>:</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math>; we want to construct an element of <math id="p7.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Now <math id="p8.m1" class="ltx_Math" alttext="g(A):A+(\neg A)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>A</mi><mo>+</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, so by case analysis, we may assume either <math id="p8.m2" class="ltx_Math" alttext="g(A)\equiv{\mathsf{inl}}(a)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for some <math id="p8.m3" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, or <math id="p8.m4" class="ltx_Math" alttext="g(A)\equiv{\mathsf{inr}}(w)" display="inline"><mrow><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for some <math id="p8.m5" class="ltx_Math" alttext="w:\neg A" display="inline"><mrow><mi>w</mi><mo>:</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math>.
+In the first case, we have <math id="p8.m6" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, while in the second case we have <math id="p8.m7" class="ltx_Math" alttext="u(w):\mathbf{0}" display="inline"><mrow><mrow><mi>u</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mn>𝟎</mn></mrow></math> and so we can obtain anything we wish (such as <math id="p8.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>).
+Thus, in both cases we have an element of <math id="p8.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, as desired.
+∎</p>
+</div>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Thus, if we want to assume the univalence axiom (which, of course, we do) and still leave ourselves the option of classical reasoning (which is also desirable), we cannot use the unmodified propositions-as-types principle to interpret <em class="ltx_emph ltx_font_italic">all</em> informal mathematical statements into type theory, since then the law of excluded middle would be false.
+However, neither do we want to discard propositions-as-types entirely, because of its many good properties (such as simplicity, constructivity, and computability).
+We now discuss a modification of propositions-as-types which resolves these problems; in §3.10 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/310whenarepropositionstruncated</span>) we will return to the question of which logic to use when.
+</p>
+</div>
+<div id="p10" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">3.2 Propositions as types?</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:34:51 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

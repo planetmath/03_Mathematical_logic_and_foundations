@@ -1,0 +1,409 @@
+<!DOCTYPE html><html>
+<head>
+<title>6.8 Pushouts</title>
+<!--Generated on Thu Feb  8 19:38:30 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , cocone, cofiber of a function, colimit, cone, for functions on a pushout, join, limit, mapping cone, of a function, of types, principle, propositional, pullback, pushout, pushout of, smash product, span, suspension, type, uniqueness, vertex of a cocone, wedge">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">6.8 Pushouts</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">From a category-theoretic point of view, one of the important aspects of any foundational system is the ability to construct limits and colimits.
+In set-theoretic foundations, these are limits and colimits of sets, whereas in our case they are limits and colimits of <em class="ltx_emph ltx_font_italic">types</em>.
+We have seen in §2.15 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/215universalproperties</span>) that cartesian product types have the correct universal property of a categorical product of types, and in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87640</span>Exercise 2.9 that coproduct types likewise have their expected universal property.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">As remarked in §2.15 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/215universalproperties</span>), more general limits can be constructed using identity types and <math id="p2.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types, e.g. the pullback of <math id="p2.m2" class="ltx_Math" alttext="f:A\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>C</mi></mrow></mrow></math> and <math id="p2.m3" class="ltx_Math" alttext="g:B\to C" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>C</mi></mrow></mrow></math> is <math id="p2.m4" class="ltx_Math" alttext="\mathchoice{\sum_{(a:A)}\,}{\mathchoice{{\textstyle\sum_{(a:A)}}}{\sum_{(a:A)}%
+}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{(a:A)}}}{\sum_{(a:%
+A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{(a:A)}}}{\sum_{%
+(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}\mathchoice{\sum_{(b:B)}\,}{\mathchoice{{%
+\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{%
+\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}%
+}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:%
+B)}}}(f(a)=g(b))" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> (see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87642</span>Exercise 2.11).
+However, more general <em class="ltx_emph ltx_font_italic">colimits</em> require identifying elements coming from different types, for which higher inductives are well-adapted.
+Since all our constructions are homotopy-invariant, all our colimits are necessarily <em class="ltx_emph ltx_font_italic">homotopy colimits</em>, but we drop the ubiquitous adjective in the interests of concision.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">In this section we discuss <em class="ltx_emph ltx_font_italic">pushouts</em>, as perhaps the simplest and one of the most useful colimits.
+Indeed, one expects all finite colimits (for a suitable homotopical definition of “finite”) to be constructible from pushouts and finite coproducts.
+It is also possible to give a direct construction of more general colimits using higher inductive types, but this is somewhat technical, and also not completely satisfactory since we do not yet have a good fully general notion of homotopy coherent diagrams.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Suppose given a span of types and functions:</p>
+</div>
+<figure id="fig1" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center">HoTT_fig_6.8.1.png</p>
+</figure>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">The <span class="ltx_text ltx_font_bold">pushout</span> of this span is the higher inductive type <math id="p5.m1" class="ltx_Math" alttext="A\sqcup^{C}B" display="inline"><mrow><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi></mrow></math> presented by</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">a function <math id="I1.i1.p1.m1" class="ltx_Math" alttext="{\mathsf{inl}}:A\to A\sqcup^{C}B" display="inline"><mrow><mi>𝗂𝗇𝗅</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mrow><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">a function <math id="I1.i2.p1.m1" class="ltx_Math" alttext="{\mathsf{inr}}:B\to A\sqcup^{C}B" display="inline"><mrow><mi>𝗂𝗇𝗋</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mrow><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi></mrow></mrow></mrow></math>, and</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p">for each <math id="I1.i3.p1.m1" class="ltx_Math" alttext="c:C" display="inline"><mrow><mi>c</mi><mo>:</mo><mi>C</mi></mrow></math> a path <math id="I1.i3.p1.m2" class="ltx_Math" alttext="\mathsf{glue}(c):({\mathsf{inl}}(f(c))={\mathsf{inr}}(g(c)))" display="inline"><mrow><mi>𝗀𝗅𝗎𝖾</mi><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>𝗂𝗇𝗋</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">In other words, <math id="p5.m2" class="ltx_Math" alttext="A\sqcup^{C}B" display="inline"><mrow><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi></mrow></math> is the disjoint union of <math id="p5.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p5.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, together with for every <math id="p5.m5" class="ltx_Math" alttext="c:C" display="inline"><mrow><mi>c</mi><mo>:</mo><mi>C</mi></mrow></math> a witness that <math id="p5.m6" class="ltx_Math" alttext="f(c)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p5.m7" class="ltx_Math" alttext="g(c)" display="inline"><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math> are equal.
+The recursion principle says that if <math id="p5.m8" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math> is another type, we can define a map <math id="p5.m9" class="ltx_Math" alttext="s:A\sqcup^{C}B\to{}D" display="inline"><mrow><mi>s</mi><mo>:</mo><mrow><mrow><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi></mrow><mo>→</mo><mi>D</mi></mrow></mrow></math> by defining</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">for each <math id="I2.i1.p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, the value of <math id="I2.i1.p1.m2" class="ltx_Math" alttext="s({\mathsf{inl}}(a)):D" display="inline"><mrow><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mi>D</mi></mrow></math>,</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">for each <math id="I2.i2.p1.m1" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math>, the value of <math id="I2.i2.p1.m2" class="ltx_Math" alttext="s({\mathsf{inr}}(b)):D" display="inline"><mrow><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mi>D</mi></mrow></math>, and</p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p">for each <math id="I2.i3.p1.m1" class="ltx_Math" alttext="c:C" display="inline"><mrow><mi>c</mi><mo>:</mo><mi>C</mi></mrow></math>, the value of <math id="I2.i3.p1.m2" class="ltx_Math" alttext="\mathsf{ap}_{s}(\mathsf{glue}(c)):s({\mathsf{inl}}(f(c)))=s({\mathsf{inr}}(g(c%
+)))" display="inline"><mrow><mrow><msub><mi>𝖺𝗉</mi><mi>s</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗀𝗅𝗎𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">We leave it to the reader to formulate the induction principle.
+It also implies the uniqueness principle that if <math id="p5.m10" class="ltx_Math" alttext="s,s^{\prime}:A\sqcup^{C}B\to{}D" display="inline"><mrow><mrow><mi>s</mi><mo>,</mo><msup><mi>s</mi><mo>′</mo></msup></mrow><mo>:</mo><mrow><mrow><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi></mrow><mo>→</mo><mi>D</mi></mrow></mrow></math> are two maps such that
+</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle s({\mathsf{inl}}(a))" display="inline"><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle=s^{\prime}({\mathsf{inl}}(a))" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msup><mi>s</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle s({\mathsf{inr}}(b))" display="inline"><mrow><mi>s</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle=s^{\prime}({\mathsf{inr}}(b))" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msup><mi>s</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle\mathsf{ap}_{s}(\mathsf{glue}(c))" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mi>s</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗀𝗅𝗎𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{ap}_{s^{\prime}}(\mathsf{glue}(c))\qquad\text{(modulo %
+the previous two equalities)}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mrow><msub><mi>𝖺𝗉</mi><msup><mi>s</mi><mo>′</mo></msup></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗀𝗅𝗎𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo mathvariant="italic" separator="true">  </mo><mtext>(modulo the previous two equalities)</mtext></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">for every <math id="p5.m11" class="ltx_Math" alttext="a,b,c" display="inline"><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi></mrow></math>, then <math id="p5.m12" class="ltx_Math" alttext="s=s^{\prime}" display="inline"><mrow><mi>s</mi><mo>=</mo><msup><mi>s</mi><mo>′</mo></msup></mrow></math>.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">To formulate the universal property of a pushout, we introduce the following.</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 6.8.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given a span <math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="\mathscr{D}=(A\xleftarrow{f}C\xrightarrow{g}B)" display="inline"><mrow><mi class="ltx_font_mathscript" mathvariant="normal">D</mi><mo mathvariant="normal">=</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mover accent="true"><mo mathvariant="normal">←</mo><mo>𝑓</mo></mover><mi>C</mi><mover accent="true"><mo mathvariant="normal">→</mo><mo>𝑔</mo></mover><mi>B</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> and a type <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math>, a <span class="ltx_text ltx_font_bold">cocone under <math id="Thmpredefn1.p1.m3" class="ltx_Math" alttext="\mathscr{D}" display="inline"><mi class="ltx_font_mathscript" mathvariant="normal">D</mi></math> with vertex <math id="Thmpredefn1.p1.m4" class="ltx_Math" alttext="D" display="inline"><mi mathvariant="normal">D</mi></math></span>
+consists of functions <math id="Thmpredefn1.p1.m5" class="ltx_Math" alttext="i:A\to{}D" display="inline"><mrow><mi>i</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>D</mi></mrow></mrow></math> and <math id="Thmpredefn1.p1.m6" class="ltx_Math" alttext="j:B\to{}D" display="inline"><mrow><mi>j</mi><mo mathvariant="normal">:</mo><mrow><mi>B</mi><mo mathvariant="normal">→</mo><mi>D</mi></mrow></mrow></math> and a homotopy <math id="Thmpredefn1.p1.m7" class="ltx_Math" alttext="h:\mathchoice{\prod_{c:C}\,}{\mathchoice{{\textstyle\prod_{(c:C)}}}{\prod_{(c:%
+C)}}{\prod_{(c:C)}}{\prod_{(c:C)}}}{\mathchoice{{\textstyle\prod_{(c:C)}}}{%
+\prod_{(c:C)}}{\prod_{(c:C)}}{\prod_{(c:C)}}}{\mathchoice{{\textstyle\prod_{(c%
+:C)}}}{\prod_{(c:C)}}{\prod_{(c:C)}}{\prod_{(c:C)}}}(i(f(c))=j(g(c)))" display="inline"><mrow><mi>h</mi><mo mathvariant="normal">:</mo><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>c</mi><mo mathvariant="normal">:</mo><mi>C</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>i</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>c</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">=</mo><mi>j</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>g</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>c</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>:</span></p>
+</div>
+<figure id="Thmpredefn1.fig1" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center"><span class="ltx_text ltx_font_italic">HoTT_fig_6.8.2.png</span></p>
+</figure>
+<div id="Thmpredefn1.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We denote by <math id="Thmpredefn1.p2.m1" class="ltx_Math" alttext="\mathsf{cocone}_{\mathscr{D}}(D)" display="inline"><mrow><msub><mi mathvariant="normal">cocone</mi><mi class="ltx_font_mathscript" mathvariant="normal">D</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>D</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> the type of all such cocones, i.e.</span></p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathsf{cocone}_{\mathscr{D}}(D):\!\!\equiv\mathchoice{\sum_{(i:A\to D)}\,}{%
+\mathchoice{{\textstyle\sum_{(i:A\to D)}}}{\sum_{(i:A\to D)}}{\sum_{(i:A\to D)%
+}}{\sum_{(i:A\to D)}}}{\mathchoice{{\textstyle\sum_{(i:A\to D)}}}{\sum_{(i:A%
+\to D)}}{\sum_{(i:A\to D)}}{\sum_{(i:A\to D)}}}{\mathchoice{{\textstyle\sum_{(%
+i:A\to D)}}}{\sum_{(i:A\to D)}}{\sum_{(i:A\to D)}}{\sum_{(i:A\to D)}}}%
+\mathchoice{\sum_{(j:B\to D)}\,}{\mathchoice{{\textstyle\sum_{(j:B\to D)}}}{%
+\sum_{(j:B\to D)}}{\sum_{(j:B\to D)}}{\sum_{(j:B\to D)}}}{\mathchoice{{%
+\textstyle\sum_{(j:B\to D)}}}{\sum_{(j:B\to D)}}{\sum_{(j:B\to D)}}{\sum_{(j:B%
+\to D)}}}{\mathchoice{{\textstyle\sum_{(j:B\to D)}}}{\sum_{(j:B\to D)}}{\sum_{%
+(j:B\to D)}}{\sum_{(j:B\to D)}}}\mathchoice{\prod_{(c:C)}\,}{\mathchoice{{%
+\textstyle\prod_{(c:C)}}}{\prod_{(c:C)}}{\prod_{(c:C)}}{\prod_{(c:C)}}}{%
+\mathchoice{{\textstyle\prod_{(c:C)}}}{\prod_{(c:C)}}{\prod_{(c:C)}}{\prod_{(c%
+:C)}}}{\mathchoice{{\textstyle\prod_{(c:C)}}}{\prod_{(c:C)}}{\prod_{(c:C)}}{%
+\prod_{(c:C)}}}(i(f(c))=j(g(c)))." display="block"><mrow><msub><mi>𝖼𝗈𝖼𝗈𝗇𝖾</mi><mi class="ltx_font_mathscript">𝒟</mi></msub><mrow><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>D</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>j</mi><mo>:</mo><mi>B</mi><mo>→</mo><mi>D</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>:</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>g</mi><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Of course, there is a canonical cocone under <math id="p7.m1" class="ltx_Math" alttext="\mathscr{D}" display="inline"><mi class="ltx_font_mathscript">𝒟</mi></math> with vertex <math id="p7.m2" class="ltx_Math" alttext="A\sqcup^{C}B" display="inline"><mrow><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi></mrow></math> consisting of <math id="p7.m3" class="ltx_Math" alttext="{\mathsf{inl}}" display="inline"><mi>𝗂𝗇𝗅</mi></math>, <math id="p7.m4" class="ltx_Math" alttext="{\mathsf{inr}}" display="inline"><mi>𝗂𝗇𝗋</mi></math>, and <math id="p7.m5" class="ltx_Math" alttext="\mathsf{glue}" display="inline"><mi>𝗀𝗅𝗎𝖾</mi></math>.</p>
+</div>
+<figure id="fig2" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center">HoTT_fig_6.8.3.png</p>
+</figure>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">The following lemma says that this is the universal such cocone.</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 6.8.2</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any type <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math>, there is an equivalence</span></p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="(A\sqcup^{C}B\to E)\;\simeq\;\mathsf{cocone}_{\mathscr{D}}(E)." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi><mo>→</mo><mi>E</mi><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo rspace="5.3pt">≃</mo><msub><mi>𝖼𝗈𝖼𝗈𝗇𝖾</mi><mi class="ltx_font_mathscript">𝒟</mi></msub><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Let’s consider an arbitrary type <math id="p9.m1" class="ltx_Math" alttext="E:\mathcal{U}" display="inline"><mrow><mi>E</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>.
+There is a canonical function</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\left\{\begin{array}[]{rcl}(A\sqcup^{C}B\to{}E)&amp;\longrightarrow&amp;\mathsf{cocone%
+}_{\mathscr{D}}(E)\\
+t&amp;\longmapsto&amp;t\circ c_{\sqcup}\end{array}\right." display="block"><mrow><mo>{</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="right"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi></mrow><mo>→</mo><mi>E</mi></mrow><mo stretchy="false">)</mo></mrow></mtd><mtd columnalign="center"><mo>⟶</mo></mtd><mtd columnalign="left"><mrow><msub><mi>𝖼𝗈𝖼𝗈𝗇𝖾</mi><mi class="ltx_font_mathscript">𝒟</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr><mtr><mtd columnalign="right"><mi>t</mi></mtd><mtd columnalign="center"><mo>⟼</mo></mtd><mtd columnalign="left"><mrow><mi>t</mi><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow></mtd></mtr></mtable><mi></mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">defined by sending <math id="p9.m2" class="ltx_Math" alttext="(i,j,h)" display="inline"><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></math> to <math id="p9.m3" class="ltx_Math" alttext="(t\circ{}i,t\circ{}j,\mathsf{ap}_{t}\circ{}h)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>t</mi><mo>∘</mo><mi>i</mi></mrow><mo>,</mo><mrow><mi>t</mi><mo>∘</mo><mi>j</mi></mrow><mo>,</mo><mrow><msub><mi>𝖺𝗉</mi><mi>t</mi></msub><mo>∘</mo><mi>h</mi></mrow><mo stretchy="false">)</mo></mrow></math>.
+We show that this is an equivalence.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">Firstly, given a <math id="p10.m1" class="ltx_Math" alttext="c=(i,j,h):\mathsf{cocone}_{\mathscr{D}}(E)" display="inline"><mrow><mrow><mi>c</mi><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><msub><mi>𝖼𝗈𝖼𝗈𝗇𝖾</mi><mi class="ltx_font_mathscript">𝒟</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, we need to construct a
+map <math id="p10.m2" class="ltx_Math" alttext="\mathsf{s}(c)" display="inline"><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math> from <math id="p10.m3" class="ltx_Math" alttext="A\sqcup^{C}B" display="inline"><mrow><mi>A</mi><msup><mo>⊔</mo><mi>C</mi></msup><mi>B</mi></mrow></math> to <math id="p10.m4" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math>.</p>
+</div>
+<figure id="fig3" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center">HoTT_fig_6.8.4.png</p>
+</figure>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">The map <math id="p11.m1" class="ltx_Math" alttext="\mathsf{s}(c)" display="inline"><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math> is defined in the following way</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\displaystyle\mathsf{s}(c)({\mathsf{inl}}(a))" display="inline"><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv i(a)," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\displaystyle\mathsf{s}(c)({\mathsf{inr}}(b))" display="inline"><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv j(b)," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex9" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\displaystyle\mathsf{ap}_{\mathsf{s}(c)}(\mathsf{glue}(x))" display="inline"><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗀𝗅𝗎𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex9.m2" class="ltx_Math" alttext="\displaystyle:=h(x)." display="inline"><mrow><mrow><mi></mi><mo>:=</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We have defined a map</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\left\{\begin{array}[]{rcl}\mathsf{cocone}_{\mathscr{D}}(E)&amp;\longrightarrow&amp;(A%
+\sqcup^{B}C\to{}E)\\
+c&amp;\longmapsto&amp;\mathsf{s}(c)\end{array}\right." display="block"><mrow><mo>{</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="right"><mrow><msub><mi>𝖼𝗈𝖼𝗈𝗇𝖾</mi><mi class="ltx_font_mathscript">𝒟</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mrow></mtd><mtd columnalign="center"><mo>⟶</mo></mtd><mtd columnalign="left"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>A</mi><msup><mo>⊔</mo><mi>B</mi></msup><mi>C</mi></mrow><mo>→</mo><mi>E</mi></mrow><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right"><mi>c</mi></mtd><mtd columnalign="center"><mo>⟼</mo></mtd><mtd columnalign="left"><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mtd></mtr></mtable><mi></mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and we need to prove that this map is an inverse to
+<math id="p11.m2" class="ltx_Math" alttext="t\mapsto{}t\circ c_{\sqcup}" display="inline"><mrow><mi>t</mi><mo>↦</mo><mrow><mi>t</mi><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow></mrow></math>.
+On the one hand, if <math id="p11.m3" class="ltx_Math" alttext="c=(i,j,h):\mathsf{cocone}_{\mathscr{D}}(E)" display="inline"><mrow><mrow><mi>c</mi><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><msub><mi>𝖼𝗈𝖼𝗈𝗇𝖾</mi><mi class="ltx_font_mathscript">𝒟</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, we have</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex11" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\displaystyle\mathsf{s}(c)\circ c_{\sqcup}" display="inline"><mrow><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex11.m2" class="ltx_Math" alttext="\displaystyle=(\mathsf{s}(c)\circ{\mathsf{inl}},\mathsf{s}(c)\circ{\mathsf{inr%
+}},\mathsf{ap}_{\mathsf{s}(c)}\circ\mathsf{glue})" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∘</mo><mi>𝗂𝗇𝗅</mi></mrow><mo>,</mo><mrow><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∘</mo><mi>𝗂𝗇𝗋</mi></mrow><mo>,</mo><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>∘</mo><mi>𝗀𝗅𝗎𝖾</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex12" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex12.m2" class="ltx_Math" alttext="\displaystyle=({\lambda}a.\,\mathsf{s}(c)({\mathsf{inl}}(a)),\;{\lambda}b.\,%
+\mathsf{s}(c)({\mathsf{inr}}(b)),\;{\lambda}x.\,\mathsf{ap}_{\mathsf{s}(c)}(%
+\mathsf{glue}(x)))" display="inline"><mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>a</mi><mo rspace="4.2pt">.</mo><mi>𝗌</mi><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>𝗌</mi><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗋</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝖺𝗉</mi><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>𝗀𝗅𝗎𝖾</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex13" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex13.m2" class="ltx_Math" alttext="\displaystyle=({\lambda}a.\,i(a),\;{\lambda}b.\,j(b),\;{\lambda}x.\,h(x))" display="inline"><mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>a</mi><mo rspace="4.2pt">.</mo><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi>j</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>h</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex14" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex14.m2" class="ltx_Math" alttext="\displaystyle\equiv(i,j,h)" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex15" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex15.m2" class="ltx_Math" alttext="\displaystyle=c." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mi>c</mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">On the other hand, if <math id="p11.m4" class="ltx_Math" alttext="t:A\sqcup^{B}C\to{}E" display="inline"><mrow><mi>t</mi><mo>:</mo><mrow><mrow><mi>A</mi><msup><mo>⊔</mo><mi>B</mi></msup><mi>C</mi></mrow><mo>→</mo><mi>E</mi></mrow></mrow></math>, we want to prove that
+<math id="p11.m5" class="ltx_Math" alttext="\mathsf{s}(t\circ c_{\sqcup})=t" display="inline"><mrow><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>t</mi><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>t</mi></mrow></math>.
+For <math id="p11.m6" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, we have</p>
+<table id="S0.Ex16" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex16.m1" class="ltx_Math" alttext="\mathsf{s}(t\circ c_{\sqcup})({\mathsf{inl}}(a))=t({\mathsf{inl}}(a))" display="block"><mrow><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>t</mi><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>t</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">because the first component of <math id="p11.m7" class="ltx_Math" alttext="t\circ c_{\sqcup}" display="inline"><mrow><mi>t</mi><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow></math> is <math id="p11.m8" class="ltx_Math" alttext="t\circ{\mathsf{inl}}" display="inline"><mrow><mi>t</mi><mo>∘</mo><mi>𝗂𝗇𝗅</mi></mrow></math>. In
+the same way, for <math id="p11.m9" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math> we have</p>
+<table id="S0.Ex17" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex17.m1" class="ltx_Math" alttext="\mathsf{s}(t\circ c_{\sqcup})({\mathsf{inr}}(b))=t({\mathsf{inr}}(b))" display="block"><mrow><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>t</mi><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>t</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and for <math id="p11.m10" class="ltx_Math" alttext="x:C" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>C</mi></mrow></math> we have</p>
+<table id="S0.Ex18" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex18.m1" class="ltx_Math" alttext="\mathsf{ap}_{\mathsf{s}(t\circ c_{\sqcup})}(\mathsf{glue}(x))=\mathsf{ap}_{t}(%
+\mathsf{glue}(x))" display="block"><mrow><mrow><msub><mi>𝖺𝗉</mi><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>t</mi><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗀𝗅𝗎𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>𝖺𝗉</mi><mi>t</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗀𝗅𝗎𝖾</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">hence <math id="p11.m11" class="ltx_Math" alttext="\mathsf{s}(t\circ c_{\sqcup})=t" display="inline"><mrow><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>t</mi><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>t</mi></mrow></math>.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">This proves that <math id="p12.m1" class="ltx_Math" alttext="c\mapsto\mathsf{s}(c)" display="inline"><mrow><mi>c</mi><mo>↦</mo><mrow><mi>𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is a quasi-inverse to <math id="p12.m2" class="ltx_Math" alttext="t\mapsto{}t\circ c_{\sqcup}" display="inline"><mrow><mi>t</mi><mo>↦</mo><mrow><mi>t</mi><mo>∘</mo><msub><mi>c</mi><mo>⊔</mo></msub></mrow></mrow></math>, as desired.
+∎</p>
+</div>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">A number of standard homotopy-theoretic constructions can be expressed as (homotopy) pushouts.</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">The pushout of the span <math id="I3.i1.p1.m1" class="ltx_Math" alttext="\mathbf{1}\leftarrow A\to\mathbf{1}" display="inline"><mrow><mn>𝟏</mn><mo>←</mo><mi>A</mi><mo>→</mo><mn>𝟏</mn></mrow></math> is the <span class="ltx_text ltx_font_bold">suspension</span> <math id="I3.i1.p1.m2" class="ltx_Math" alttext="\Sigma A" display="inline"><mrow><mi mathvariant="normal">Σ</mi><mo>⁢</mo><mi>A</mi></mrow></math> (see §6.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/65suspensions</span>)).
+
+</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p">The pushout of <math id="I3.i2.p1.m1" class="ltx_Math" alttext="A\xleftarrow{\mathsf{pr}_{1}}A\times B\xrightarrow{\mathsf{pr}_{2}}B" display="inline"><mrow><mi>A</mi><mover accent="true"><mo>←</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></mover><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow><mover accent="true"><mo>→</mo><msub><mi>𝗉𝗋</mi><mn>2</mn></msub></mover><mi>B</mi></mrow></math> is called the <span class="ltx_text ltx_font_bold">join</span> of <math id="I3.i2.p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="I3.i2.p1.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, written <math id="I3.i2.p1.m4" class="ltx_Math" alttext="A*B" display="inline"><mrow><mi>A</mi><mo>*</mo><mi>B</mi></mrow></math>.
+</p>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p">The pushout of <math id="I3.i3.p1.m1" class="ltx_Math" alttext="\mathbf{1}\leftarrow A\xrightarrow{f}B" display="inline"><mrow><mn>𝟏</mn><mo>←</mo><mi>A</mi><mover accent="true"><mo>→</mo><mo>𝑓</mo></mover><mi>B</mi></mrow></math> is the <span class="ltx_text ltx_font_bold">cone</span> or <span class="ltx_text ltx_font_bold">cofiber</span> of <math id="I3.i3.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+</p>
+</div>
+</li>
+<li id="I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i4.p1" class="ltx_para">
+<p class="ltx_p">If <math id="I3.i4.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="I3.i4.p1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are equipped with basepoints <math id="I3.i4.p1.m3" class="ltx_Math" alttext="a_{0}:A" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>:</mo><mi>A</mi></mrow></math> and <math id="I3.i4.p1.m4" class="ltx_Math" alttext="b_{0}:B" display="inline"><mrow><msub><mi>b</mi><mn>0</mn></msub><mo>:</mo><mi>B</mi></mrow></math>, then the pushout of <math id="I3.i4.p1.m5" class="ltx_Math" alttext="A\xleftarrow{a_{0}}\mathbf{1}\xrightarrow{b_{0}}B" display="inline"><mrow><mi>A</mi><mover accent="true"><mo>←</mo><msub><mi>a</mi><mn>0</mn></msub></mover><mn>𝟏</mn><mover accent="true"><mo>→</mo><msub><mi>b</mi><mn>0</mn></msub></mover><mi>B</mi></mrow></math> is the <span class="ltx_text ltx_font_bold">wedge</span> <math id="I3.i4.p1.m6" class="ltx_Math" alttext="A\vee B" display="inline"><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow></math>.
+
+</p>
+</div>
+</li>
+<li id="I3.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i5.p1" class="ltx_para">
+<p class="ltx_p">If <math id="I3.i5.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="I3.i5.p1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are pointed as before, define <math id="I3.i5.p1.m3" class="ltx_Math" alttext="f:A\vee B\to A\times B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow><mo>→</mo><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow></mrow></mrow></math> by <math id="I3.i5.p1.m4" class="ltx_Math" alttext="f({\mathsf{inl}}(a)):\!\!\equiv(a,b_{0})" display="inline"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗅</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><msub><mi>b</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="I3.i5.p1.m5" class="ltx_Math" alttext="f({\mathsf{inr}}(b)):\!\!\equiv(a_{0},b)" display="inline"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>𝗂𝗇𝗋</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math>, with <math id="I3.i5.p1.m6" class="ltx_Math" alttext="{f}\mathopen{}\left({\mathsf{glue}}\right)\mathclose{}:=\mathsf{refl}_{(a_{0},%
+b_{0})}" display="inline"><mrow><mi>f</mi><mrow><mi></mi><mrow><mo>(</mo><mi>𝗀𝗅𝗎𝖾</mi><mo>)</mo></mrow><mi></mi></mrow><mo>:=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>b</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></msub></mrow></math>.
+Then the cone of <math id="I3.i5.p1.m7" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is called the <span class="ltx_text ltx_font_bold">smash product</span> <math id="I3.i5.p1.m8" class="ltx_Math" alttext="A\wedge B" display="inline"><mrow><mi>A</mi><mo>∧</mo><mi>B</mi></mrow></math>.
+</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">We will discuss pushouts further in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87580</span>Chapter 7,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87582</span>Chapter 8.</p>
+</div>
+<div id="Thmprermk1" class="ltx_theorem ltx_theorem_prermk">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Remark 6.8.3</span>.</h6>
+<div id="Thmprermk1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">As remarked in §3.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/37propositionaltruncation</span>), the notations <math id="Thmprermk1.p1.m1" class="ltx_Math" alttext="\wedge" display="inline"><mo mathvariant="normal">∧</mo></math> and <math id="Thmprermk1.p1.m2" class="ltx_Math" alttext="\vee" display="inline"><mo mathvariant="normal">∨</mo></math> for the smash product and wedge of pointed spaces are also used in logic for “and” and “or”, respectively.
+Since types in homotopy type theory can behave either like spaces or like propositions, there is technically a potential for conflict — but since they rarely do both at once, context generally disambiguates.
+Furthermore, the smash product and wedge only apply to <em class="ltx_emph ltx_font_upright">pointed</em> spaces, while the only pointed mere proposition is <math id="Thmprermk1.p1.m3" class="ltx_Math" alttext="\top\equiv\mathbf{1}" display="inline"><mrow><mo mathvariant="normal">⊤</mo><mo mathvariant="normal">≡</mo><mn mathvariant="normal">1</mn></mrow></math> — and we have <math id="Thmprermk1.p1.m4" class="ltx_Math" alttext="\mathbf{1}\wedge\mathbf{1}=\mathbf{1}" display="inline"><mrow><mrow><mn mathvariant="normal">1</mn><mo mathvariant="normal">∧</mo><mn mathvariant="normal">1</mn></mrow><mo mathvariant="normal">=</mo><mn mathvariant="normal">1</mn></mrow></math> and <math id="Thmprermk1.p1.m5" class="ltx_Math" alttext="\mathbf{1}\vee\mathbf{1}=\mathbf{1}" display="inline"><mrow><mrow><mn mathvariant="normal">1</mn><mo mathvariant="normal">∨</mo><mn mathvariant="normal">1</mn></mrow><mo mathvariant="normal">=</mo><mn mathvariant="normal">1</mn></mrow></math> for either meaning of <math id="Thmprermk1.p1.m6" class="ltx_Math" alttext="\wedge" display="inline"><mo mathvariant="normal">∧</mo></math> and <math id="Thmprermk1.p1.m7" class="ltx_Math" alttext="\vee" display="inline"><mo mathvariant="normal">∨</mo></math>.</span></p>
+</div>
+</div>
+<div id="Thmprermk2" class="ltx_theorem ltx_theorem_prermk">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Remark 6.8.4</span>.</h6>
+<div id="Thmprermk2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Note that colimits do not in general preserve truncatedness.
+For instance, <math id="Thmprermk2.p1.m1" class="ltx_Math" alttext="\mathbb{S}^{0}" display="inline"><msup><mi mathvariant="normal">S</mi><mn mathvariant="normal">0</mn></msup></math> and <math id="Thmprermk2.p1.m2" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn mathvariant="normal">1</mn></math> are both sets, but the pushout of <math id="Thmprermk2.p1.m3" class="ltx_Math" alttext="\mathbf{1}\leftarrow\mathbb{S}^{0}\to\mathbf{1}" display="inline"><mrow><mn mathvariant="normal">1</mn><mo mathvariant="normal">←</mo><msup><mi mathvariant="normal">S</mi><mn mathvariant="normal">0</mn></msup><mo mathvariant="normal">→</mo><mn mathvariant="normal">1</mn></mrow></math> is <math id="Thmprermk2.p1.m4" class="ltx_Math" alttext="\mathbb{S}^{1}" display="inline"><msup><mi mathvariant="normal">S</mi><mn mathvariant="normal">1</mn></msup></math>, which is not a set.
+If we are interested in colimits in the category of <math id="Thmprermk2.p1.m5" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-types, therefore (and, in particular, in the category of sets), we need to “truncate” the colimit somehow.
+We will return to this point in §6.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/69truncations</span>),<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87580</span>Chapter 7,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87584</span>Chapter 10.</span></p>
+</div>
+</div>
+<div id="p14" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">6.8 Pushouts</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:38:30 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

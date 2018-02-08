@@ -1,0 +1,242 @@
+<!DOCTYPE html><html>
+<head>
+<title>1.1 Type theory versus set theory</title>
+<!--Generated on Thu Feb  8 19:32:12 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">1.1 Type theory versus set theory</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Homotopy type theory is (among other things) a foundational language for mathematics, i.e., an alternative to Zermelo–Fraenkel set theory.
+However, it behaves differently from set theory in several important ways, and that can take some getting used to.
+Explaining these differences carefully requires us to be more formal here than we will be in the rest of the book.
+As stated in the introduction, our goal is to write type theory <em class="ltx_emph ltx_font_italic">informally</em>; but for a mathematician accustomed to set theory, more precision at the beginning can help avoid some common misconceptions and mistakes.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">We note that a set-theoretic foundation has two “layers”: the deductive system of first-order logic, and, formulated inside this system, the axioms of a particular theory, such as ZFC.
+Thus, set theory is not only about sets, but rather about the interplay between sets (the objects of the second layer) and propositions (the objects of the first layer).</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">By contrast, type theory is its own deductive system: it need not be formulated inside any superstructure, such as first-order logic.
+Instead of the two basic notions of set theory, sets and propositions, type theory has one basic notion: <em class="ltx_emph ltx_font_italic">types</em>.
+Propositions (statements which we can prove, disprove, assume, negate, and so on<span class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">1</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">1</sup>Confusingly, it is also a common practice (dating
+back to Euclid) to use the word “proposition” synonymously with “theorem”.
+We will confine ourselves to the logician’s usage, according to which a <em class="ltx_emph ltx_font_italic">proposition</em> is a statement <em class="ltx_emph ltx_font_italic">susceptible to</em> proof, whereas a <em class="ltx_emph ltx_font_italic">theorem</em> (or “lemma” or “corollary”) is such a statement that <em class="ltx_emph ltx_font_italic">has been</em> proven.
+Thus “<math id="p3.m1" class="ltx_Math" alttext="0=1" display="inline"><mrow><mn>0</mn><mo>=</mo><mn>1</mn></mrow></math>” and its negation “<math id="p3.m2" class="ltx_Math" alttext="\neg(0=1)" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mn>0</mn><mo>=</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></math>” are both propositions, but only the latter is a theorem.</span></span></span>) are identified with particular types, via the correspondence shown in Table 1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/constructivity#S0.T1</span>).
+Thus, the mathematical activity of <em class="ltx_emph ltx_font_italic">proving a theorem</em> is identified with a special case of the mathematical activity of <em class="ltx_emph ltx_font_italic">constructing an object</em>—in this case, an inhabitant of a type that represents a proposition.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">This leads us to another difference between type theory and set theory, but to explain it we must say a little about deductive systems in general.
+Informally, a deductive system is a collection of <span class="ltx_text ltx_font_bold">rules</span>
+for deriving things called <span class="ltx_text ltx_font_bold">judgments</span>.
+If we think of a deductive system as a formal game,
+then the judgments are the “positions” in the game which we reach by following the game rules.
+We can also think of a deductive system as a sort of algebraic theory, in which case the judgments are the elements (like the elements of a group) and the deductive rules are the operations (like the group multiplication).
+From a logical point of view, the judgments can be considered to be the “external” statements, living in the metatheory, as opposed to the “internal” statements of the theory itself.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">In the deductive system of first-order logic (on which set theory is based), there is only one kind of judgment: that a given proposition has a proof.
+That is, each proposition <math id="p5.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> gives rise to a judgment “<math id="p5.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> has a proof”, and all judgments are of this form.
+A rule of first-order logic such as “from <math id="p5.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p5.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> infer <math id="p5.m5" class="ltx_Math" alttext="A\wedge B" display="inline"><mrow><mi>A</mi><mo>∧</mo><mi>B</mi></mrow></math>” is actually a rule of “proof construction” which says that given the judgments “<math id="p5.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> has a proof” and “<math id="p5.m7" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> has a proof”, we may deduce that “<math id="p5.m8" class="ltx_Math" alttext="A\wedge B" display="inline"><mrow><mi>A</mi><mo>∧</mo><mi>B</mi></mrow></math> has a proof”.
+Note that the judgment “<math id="p5.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> has a proof” exists at a different level from the <em class="ltx_emph ltx_font_italic">proposition</em> <math id="p5.m10" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> itself, which is an internal statement of the theory.
+</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">The basic judgment of type theory, analogous to “<math id="p6.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> has a proof”, is written “<math id="p6.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>” and pronounced as “the term <math id="p6.m3" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> has type <math id="p6.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>”, or more loosely “<math id="p6.m5" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is an element of <math id="p6.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>” (or, in homotopy type theory, “<math id="p6.m7" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is a point of <math id="p6.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>”).
+When <math id="p6.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a type representing a proposition, then <math id="p6.m10" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> may be called a <em class="ltx_emph ltx_font_italic">witness</em> to the provability of <math id="p6.m11" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, or <em class="ltx_emph ltx_font_italic">evidence</em> of the truth of <math id="p6.m12" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> (or even a <em class="ltx_emph ltx_font_italic">proof</em> of <math id="p6.m13" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, but we will try to avoid this confusing terminology).
+In this case, the judgment <math id="p6.m14" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> is derivable in type theory (for some <math id="p6.m15" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>) precisely when the analogous judgment “<math id="p6.m16" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> has a proof” is derivable in first-order logic (modulo differences in the axioms assumed and in the encoding of mathematics, as we will discuss throughout the book).</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">On the other hand, if the type <math id="p7.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is being treated more like a set than like a proposition (although as we will see, the distinction can become blurry), then “<math id="p7.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>” may be regarded as analogous to the set-theoretic statement “<math id="p7.m3" class="ltx_Math" alttext="a\in A" display="inline"><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow></math>”.
+However, there is an essential difference in that “<math id="p7.m4" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>” is a <em class="ltx_emph ltx_font_italic">judgment</em> whereas “<math id="p7.m5" class="ltx_Math" alttext="a\in A" display="inline"><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow></math>” is a <em class="ltx_emph ltx_font_italic">proposition</em>.
+In particular, when working internally in type theory, we cannot make statements such as “if <math id="p7.m6" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> then it is not the case that <math id="p7.m7" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math>”, nor can we “disprove” the judgment “<math id="p7.m8" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>”.
+</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">A good way to think about this is that in set theory, “membership” is a relation which may or may not hold between two pre-existing objects “<math id="p8.m1" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>” and “<math id="p8.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>”, while in type theory we cannot talk about an element “<math id="p8.m3" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>” in isolation: every element <em class="ltx_emph ltx_font_italic">by its very nature</em> is an element of some type, and that type is (generally speaking) uniquely determined.
+Thus, when we say informally “let <math id="p8.m4" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> be a natural number”, in set theory this is shorthand for “let <math id="p8.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> be a thing and assume that <math id="p8.m6" class="ltx_Math" alttext="x\in\mathbb{N}" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow></math>”, whereas in type theory “let <math id="p8.m7" class="ltx_Math" alttext="x:\mathbb{N}" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>ℕ</mi></mrow></math>” is an atomic statement: we cannot introduce a variable without specifying its type.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">At first glance, this may seem an uncomfortable restriction, but it is arguably closer to the intuitive mathematical meaning of “let <math id="p9.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> be a natural number”.
+In practice, it seems that whenever we actually <em class="ltx_emph ltx_font_italic">need</em> “<math id="p9.m2" class="ltx_Math" alttext="a\in A" display="inline"><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow></math>” to be a proposition rather than a judgment, there is always an ambient set <math id="p9.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> of which <math id="p9.m4" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is known to be an element and <math id="p9.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is known to be a subset.
+This situation is also easy to represent in type theory, by taking <math id="p9.m6" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> to be an element of the type <math id="p9.m7" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, and <math id="p9.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> to be a predicate on <math id="p9.m9" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>; see §3.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/35subsetsandpropositionalresizing</span>).</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">A last difference between type theory and set theory is the treatment of equality.
+The familiar notion of equality in mathematics is a proposition: e.g. we can disprove an equality or assume an equality as a hypothesis.
+Since in type theory, propositions are types, this means that equality is a type: for elements <math id="p10.m1" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math> (that is, both <math id="p10.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p10.m3" class="ltx_Math" alttext="b:A" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>A</mi></mrow></math>) we have a type “<math id="p10.m4" class="ltx_Math" alttext="a=_{A}b" display="inline"><mrow><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>b</mi></mrow></math>”.
+(In <em class="ltx_emph ltx_font_italic">homotopy</em> type theory, of course, this equality proposition can behave in unfamiliar ways: see §1.12 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/112identitytypes</span>), and the rest of the book).
+When <math id="p10.m5" class="ltx_Math" alttext="a=_{A}b" display="inline"><mrow><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>b</mi></mrow></math> is inhabited, we say that <math id="p10.m6" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and <math id="p10.m7" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> are <span class="ltx_text ltx_font_bold">(propositionally) equal</span>.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">However, in type theory there is also a need for an equality <em class="ltx_emph ltx_font_italic">judgment</em>, existing at the same level as the judgment “<math id="p11.m1" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>”.
+This is called <span class="ltx_text ltx_font_bold">judgmental equality</span>
+or <span class="ltx_text ltx_font_bold">definitional equality</span>,
+equality, definitionaland we write it as <math id="p11.m2" class="ltx_Math" alttext="a\equiv b:A" display="inline"><mrow><mrow><mi>a</mi><mo>≡</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math> or simply <math id="p11.m3" class="ltx_Math" alttext="a\equiv b" display="inline"><mrow><mi>a</mi><mo>≡</mo><mi>b</mi></mrow></math>.
+It is helpful to think of this as meaning “equal by definition”.
+For instance, if we define a function <math id="p11.m4" class="ltx_Math" alttext="f:\mathbb{N}\to\mathbb{N}" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mi>ℕ</mi></mrow></mrow></math> by the equation <math id="p11.m5" class="ltx_Math" alttext="f(x)=x^{2}" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></math>, then the expression <math id="p11.m6" class="ltx_Math" alttext="f(3)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></mrow></math> is equal to <math id="p11.m7" class="ltx_Math" alttext="3^{2}" display="inline"><msup><mn>3</mn><mn>2</mn></msup></math> <em class="ltx_emph ltx_font_italic">by definition</em>.
+Inside the theory, it does not make sense to negate or assume an equality-by-definition; we cannot say “if <math id="p11.m8" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is equal to <math id="p11.m9" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> by definition, then <math id="p11.m10" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> is not equal to <math id="p11.m11" class="ltx_Math" alttext="w" display="inline"><mi>w</mi></math> by definition”.
+Whether or not two expressions are equal by definition is just a matter of expanding out the definitions; in particular, it is algorithmically decidable (though the algorithm is necessarily meta-theoretic, not internal to the theory).</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">As type theory becomes more complicated, judgmental equality can get more subtle than this, but it is a good intuition to start from.
+Alternatively, if we regard a deductive system as an algebraic theory, then judgmental equality is simply the equality in that theory, analogous to the equality between elements of a group—the only potential for confusion is that there is <em class="ltx_emph ltx_font_italic">also</em> an object <em class="ltx_emph ltx_font_italic">inside</em> the deductive system of type theory (namely the type “<math id="p12.m1" class="ltx_Math" alttext="a=b" display="inline"><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow></math>”) which behaves internally as a notion of “equality”.</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">The reason we <em class="ltx_emph ltx_font_italic">want</em> a judgmental notion of equality is so that it can control the other form of judgment, “<math id="p13.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>”.
+For instance, suppose we have given a proof that <math id="p13.m2" class="ltx_Math" alttext="3^{2}=9" display="inline"><mrow><msup><mn>3</mn><mn>2</mn></msup><mo>=</mo><mn>9</mn></mrow></math>, i.e. we have derived the judgment <math id="p13.m3" class="ltx_Math" alttext="p:(3^{2}=9)" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><msup><mn>3</mn><mn>2</mn></msup><mo>=</mo><mn>9</mn><mo stretchy="false">)</mo></mrow></mrow></math> for some <math id="p13.m4" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>.
+Then the same witness <math id="p13.m5" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> ought to count as a proof that <math id="p13.m6" class="ltx_Math" alttext="f(3)=9" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>9</mn></mrow></math>, since <math id="p13.m7" class="ltx_Math" alttext="f(3)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="p13.m8" class="ltx_Math" alttext="3^{2}" display="inline"><msup><mn>3</mn><mn>2</mn></msup></math> <em class="ltx_emph ltx_font_italic">by definition</em>.
+The best way to represent this is with a rule saying that given the judgments <math id="p13.m9" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p13.m10" class="ltx_Math" alttext="A\equiv B" display="inline"><mrow><mi>A</mi><mo>≡</mo><mi>B</mi></mrow></math>, we may derive the judgment <math id="p13.m11" class="ltx_Math" alttext="a:B" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>B</mi></mrow></math>.</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">Thus, for us, type theory will be a deductive system based on two forms of judgment:</p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_t">Judgment</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">Meaning</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_t"><math id="p14.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math></th>
+<td class="ltx_td ltx_align_left ltx_border_t">“<math id="p14.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is an object of type <math id="p14.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>”</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_b"><math id="p14.m4" class="ltx_Math" alttext="a\equiv b:A" display="inline"><mrow><mrow><mi>a</mi><mo>≡</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math></th>
+<td class="ltx_td ltx_align_left ltx_border_b">“<math id="p14.m5" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and <math id="p14.m6" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> are definitionally equal objects of type <math id="p14.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>”</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p">When introducing a definitional equality, i.e., defining one thing to be equal to another, we will use the symbol “<math id="p14.m8" class="ltx_Math" alttext="܃\!\!\equiv" display="inline"><mrow><mrow><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><mi></mi></mrow></math>”.
+Thus, the above definition of the function <math id="p14.m9" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> would be written as <math id="p14.m10" class="ltx_Math" alttext="f(x)܃\!\!\equiv x^{2}" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>Ü</mi><mo>⁢</mo><mpadded width="-3.3pt"><mi mathvariant="normal"></mi></mpadded></mrow><mo>≡</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></math>.</p>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">Because judgments cannot be put together into more complicated statements, the symbols “<math id="p15.m1" class="ltx_Math" alttext=":" display="inline"><mo>:</mo></math>” and “<math id="p15.m2" class="ltx_Math" alttext="\equiv" display="inline"><mo>≡</mo></math>” bind more loosely than anything else.<span class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">2</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">2</sup>In formalized type theory, commas and turnstiles can bind even more loosely.
+For instance, <math id="p15.m3" class="ltx_Math" alttext="x:A,y:B\vdash c:C" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi>A</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>B</mi><mo>⊢</mo><mi>c</mi><mo>:</mo><mi>C</mi></mrow></math> is parsed as <math id="p15.m4" class="ltx_Math" alttext="((x:A),(y:B))\vdash(c:C)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⊢</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>:</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+However, in this book we refrain from such notation until <span class="ltx_ERROR undefined">\autoref</span>cha:rules.</span></span></span>
+Thus, for instance, “<math id="p15.m5" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math>” should be parsed as “<math id="p15.m6" class="ltx_Math" alttext="p:(x=y)" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>”, which makes sense since “<math id="p15.m7" class="ltx_Math" alttext="x=y" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></math>” is a type, and not as “<math id="p15.m8" class="ltx_Math" alttext="(p:x)=y" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>y</mi></mrow></math>”, which is senseless since “<math id="p15.m9" class="ltx_Math" alttext="p:x" display="inline"><mrow><mi>p</mi><mo>:</mo><mi>x</mi></mrow></math>” is a judgment and cannot be equal to anything.
+Similarly, “<math id="p15.m10" class="ltx_Math" alttext="A\equiv x=y" display="inline"><mrow><mi>A</mi><mo>≡</mo><mi>x</mi><mo>=</mo><mi>y</mi></mrow></math>” can only be parsed as “<math id="p15.m11" class="ltx_Math" alttext="A\equiv(x=y)" display="inline"><mrow><mi>A</mi><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>”, although in extreme cases such as this, one ought to add parentheses anyway to aid reading comprehension.
+Moreover, later on we will fall into the common notation of chaining together equalities — e.g. writing <math id="p15.m12" class="ltx_Math" alttext="a=b=c=d" display="inline"><mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>=</mo><mi>c</mi><mo>=</mo><mi>d</mi></mrow></math> to mean “<math id="p15.m13" class="ltx_Math" alttext="a=b" display="inline"><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow></math> and <math id="p15.m14" class="ltx_Math" alttext="b=c" display="inline"><mrow><mi>b</mi><mo>=</mo><mi>c</mi></mrow></math> and <math id="p15.m15" class="ltx_Math" alttext="c=d" display="inline"><mrow><mi>c</mi><mo>=</mo><mi>d</mi></mrow></math>, hence <math id="p15.m16" class="ltx_Math" alttext="a=d" display="inline"><mrow><mi>a</mi><mo>=</mo><mi>d</mi></mrow></math>” — and we will also include judgmental equalities in such chains.
+Context usually suffices to make the intent clear.</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">This is perhaps also an appropriate place to mention that the common mathematical notation “<math id="p16.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math>”, expressing the fact that <math id="p16.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is a function from <math id="p16.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> to <math id="p16.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, can be regarded as a typing judgment, since we use “<math id="p16.m5" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math>” as notation for the type of functions from <math id="p16.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> to <math id="p16.m7" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> (as is standard practice in type theory; see §1.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/14dependentfunctiontypes</span>)).</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">Judgments may depend on <em class="ltx_emph ltx_font_italic">assumptions</em> of the form <math id="p17.m1" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>, where <math id="p17.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is a variable
+and <math id="p17.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a type.
+For example, we may construct an object <math id="p17.m4" class="ltx_Math" alttext="m+n:\mathbb{N}" display="inline"><mrow><mrow><mi>m</mi><mo>+</mo><mi>n</mi></mrow><mo>:</mo><mi>ℕ</mi></mrow></math> under the assumptions that <math id="p17.m5" class="ltx_Math" alttext="m,n:\mathbb{N}" display="inline"><mrow><mrow><mi>m</mi><mo>,</mo><mi>n</mi></mrow><mo>:</mo><mi>ℕ</mi></mrow></math>.
+Another example is that assuming <math id="p17.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a type, <math id="p17.m7" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></math>, and <math id="p17.m8" class="ltx_Math" alttext="p:x=_{A}y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi></mrow></mrow></math>, we may construct an element <math id="p17.m9" class="ltx_Math" alttext="p^{-1}:y=_{A}x" display="inline"><mrow><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>:</mo><mrow><mi>y</mi><msub><mo>=</mo><mi>A</mi></msub><mi>x</mi></mrow></mrow></math>.
+The collection of all such assumptions is called the <span class="ltx_text ltx_font_bold">context</span>;
+from a topological point of view it may be thought of as a “parameter space”.
+In fact, technically the context must be an ordered list of assumptions, since later assumptions may depend on previous ones: the assumption <math id="p17.m10" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math> can only be made <em class="ltx_emph ltx_font_italic">after</em> the assumptions of any variables appearing in the type <math id="p17.m11" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.</p>
+</div>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">If the type <math id="p18.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> in an assumption <math id="p18.m2" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math> represents a proposition, then the assumption is a type-theoretic version of a <em class="ltx_emph ltx_font_italic">hypothesis</em>:
+we assume that the proposition <math id="p18.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> holds.
+When types are regarded as propositions, we may omit the names of their proofs.
+Thus, in the second example above we may instead say that assuming <math id="p18.m4" class="ltx_Math" alttext="x=_{A}y" display="inline"><mrow><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi></mrow></math>, we can prove <math id="p18.m5" class="ltx_Math" alttext="y=_{A}x" display="inline"><mrow><mi>y</mi><msub><mo>=</mo><mi>A</mi></msub><mi>x</mi></mrow></math>.
+However, since we are doing “proof-relevant” mathematics,
+we will frequently refer back to proofs as objects.
+In the example above, for instance, we may want to establish that <math id="p18.m6" class="ltx_Math" alttext="p^{-1}" display="inline"><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> together with the proofs of transitivity and reflexivity behave like a groupoid; see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87569</span>Chapter 2.</p>
+</div>
+<div id="p19" class="ltx_para">
+<p class="ltx_p">Note that under this meaning of the word <em class="ltx_emph ltx_font_italic">assumption</em>, we can assume a propositional equality (by assuming a variable <math id="p19.m1" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math>), but we cannot assume a judgmental equality <math id="p19.m2" class="ltx_Math" alttext="x\equiv y" display="inline"><mrow><mi>x</mi><mo>≡</mo><mi>y</mi></mrow></math>, since it is not a type that can have an element.
+However, we can do something else which looks kind of like assuming a judgmental equality: if we have a type or an element which involves a variable <math id="p19.m3" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>, then we can <em class="ltx_emph ltx_font_italic">substitute</em> any particular element <math id="p19.m4" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> for <math id="p19.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> to obtain a more specific type or element.
+We will sometimes use language like “now assume <math id="p19.m6" class="ltx_Math" alttext="x\equiv a" display="inline"><mrow><mi>x</mi><mo>≡</mo><mi>a</mi></mrow></math>” to refer to this process of substitution, even though it is not an <em class="ltx_emph ltx_font_italic">assumption</em> in the technical sense introduced above.</p>
+</div>
+<div id="p20" class="ltx_para">
+<p class="ltx_p">By the same token, we cannot <em class="ltx_emph ltx_font_italic">prove</em> a judgmental equality either, since it is not a type in which we can exhibit a witness.
+Nevertheless, we will sometimes state judgmental equalities as part of a theorem, e.g. “there exists <math id="p20.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> such that <math id="p20.m2" class="ltx_Math" alttext="f(x)\equiv y" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mi>y</mi></mrow></math>”.
+This should be regarded as the making of two separate judgments: first we make the judgment <math id="p20.m3" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> for some element <math id="p20.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, then we make the additional judgment that <math id="p20.m5" class="ltx_Math" alttext="f(x)\equiv y" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mi>y</mi></mrow></math>.</p>
+</div>
+<div id="p21" class="ltx_para">
+<p class="ltx_p">In the rest of this chapter, we attempt to give an informal presentation of type theory, sufficient for the purposes of this book; we give a more formal account in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87881</span>Appendix A.
+Aside from some fairly obvious rules (such as the fact that judgmentally equal things can always be substituted for each other), the rules of type theory can be grouped into <em class="ltx_emph ltx_font_italic">type formers</em>.
+Each type former consists of a way to construct types (possibly making use of previously constructed types), together with rules for the construction and behavior of elements of that type.
+In most cases, these rules follow a fairly predictable pattern, but we will not attempt to make this precise here; see however the beginning of §1.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/15producttypes</span>) and also <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87578</span>Chapter 5.</p>
+</div>
+<div id="p22" class="ltx_para">
+<p class="ltx_p">An important aspect of the type theory presented in this chapter is that it consists entirely of <em class="ltx_emph ltx_font_italic">rules</em>, without any <em class="ltx_emph ltx_font_italic">axioms</em>.
+In the description of deductive systems in terms of judgments, the <em class="ltx_emph ltx_font_italic">rules</em> are what allow us to conclude one judgment from a collection of others, while the <em class="ltx_emph ltx_font_italic">axioms</em> are the judgments we are given at the outset.
+If we think of a deductive system as a formal game, then the rules are the rules of the game, while the axioms are the starting position.
+And if we think of a deductive system as an algebraic theory, then the rules are the operations of the theory, while the axioms are the <em class="ltx_emph ltx_font_italic">generators</em> for some particular free model of that theory.</p>
+</div>
+<div id="p23" class="ltx_para">
+<p class="ltx_p">In set theory, the only rules are the rules of first-order logic (such as the rule allowing us to deduce “<math id="p23.m1" class="ltx_Math" alttext="A\wedge B" display="inline"><mrow><mi>A</mi><mo>∧</mo><mi>B</mi></mrow></math> has a proof” from “<math id="p23.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> has a proof” and “<math id="p23.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> has a proof”): all the information about the behavior of sets is contained in the axioms.
+By contrast, in type theory, it is usually the <em class="ltx_emph ltx_font_italic">rules</em> which contain all the information, with no axioms being necessary.
+For instance, in §1.05 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/15producttypes</span>) we will see that there is a rule allowing us to deduce the judgment “<math id="p23.m4" class="ltx_Math" alttext="(a,b):A\times B" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow></mrow></math>” from “<math id="p23.m5" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>” and “<math id="p23.m6" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math>”, whereas in set theory the analogous statement would be (a consequence of) the pairing axiom.</p>
+</div>
+<div id="p24" class="ltx_para">
+<p class="ltx_p">The advantage of formulating type theory using only rules is that rules are “procedural”.
+In particular, this property is what makes possible (though it does not automatically ensure) the good computational properties of type theory, such as “canonicity”.
+However, while this style works for traditional type theories, we do not yet understand how to formulate everything we need for <em class="ltx_emph ltx_font_italic">homotopy</em> type theory in this way.
+In particular, in §2.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom</span>),§2.10 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/210universesandtheunivalenceaxiom</span>),<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87579</span>Chapter 6 we will have to augment the rules of type theory presented in this chapter by introducing additional axioms, notably the <em class="ltx_emph ltx_font_italic">univalence axiom</em>.
+In this chapter, however, we confine ourselves to a traditional rule-based type theory.</p>
+</div>
+<div id="p25" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">1.1 Type theory versus set theory</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">11TypeTheoryVersusSetTheory</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-11-13 17:48:08</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-11-13 17:48:08</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">PMBookProject (1000683)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">rspuzio (6075)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">21</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">PMBookProject (6075)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Feature</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">msc 03B15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:32:12 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

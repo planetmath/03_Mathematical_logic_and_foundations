@@ -1,0 +1,1481 @@
+<!DOCTYPE html><html>
+<head>
+<title>2.1 Types are higher groupoids</title>
+<!--Generated on Thu Feb  8 19:33:44 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , , , -, -dimensional, -dimensional loop, -dimensional path, -fold, -groupoid, -loop, -path, 2-, 3-, Eckmann–Hilton argument, abelian, basepoint, coherence, coherence of, composite, composition, concatenation, concatenation of paths, equality, formalized, globular operad, group, groupoid, higher, horizontal, horizontal composition, identity, interchange law, inverse, iterated, iterated loop space, loop, loop space, mathematics, of equality, of path, of paths, operad, path, pointed, proof-relevant, reflexivity of, structure of a type, symmetry, symmetry of, transitivity, transitivity of, type">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">2.1 Types are higher groupoids</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">We now derive from the induction principle the beginnings of the structure of a higher groupoid.
+We begin with symmetry of equality, which, in topological language, means that “paths can be reversed”.</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 2.1.1</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For every type <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and every <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> there is a function</span></p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="(x=y)\to(y=x)" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">denoted <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="p\mapsto\mathord{{p}^{-1}}" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">↦</mo><msup><mi>p</mi><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow></msup></mrow></math>, such that <math id="Thmprelem1.p1.m4" class="ltx_Math" alttext="\mathord{{\mathsf{refl}_{x}}^{-1}}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mmultiscripts><mi mathvariant="normal">refl</mi><mi>x</mi><none></none><none></none><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow></mmultiscripts><mo mathvariant="normal">≡</mo><msub><mi mathvariant="normal">refl</mi><mi>x</mi></msub></mrow></math> for each <math id="Thmprelem1.p1.m5" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>.
+We call <math id="Thmprelem1.p1.m6" class="ltx_Math" alttext="\mathord{{p}^{-1}}" display="inline"><msup><mi>p</mi><mrow><mo mathvariant="normal">-</mo><mn mathvariant="normal">1</mn></mrow></msup></math> the <span class="ltx_text ltx_font_bold">inverse</span> of <math id="Thmprelem1.p1.m7" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>.
+</span></p>
+</div>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Since this is our first time stating something as a “Lemma” or “Theorem”, let us pause to consider what that means.
+Recall that propositions (statements susceptible to proof) are identified with types, whereas lemmas and theorems (statements that have been proven) are identified with <em class="ltx_emph ltx_font_italic">inhabited</em> types.
+Thus, the statement of a lemma or theorem should be translated into a type, as in §1.11 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/111propositionsastypes</span>), and its proof translated into an inhabitant of that type.
+According to the interpretation of the universal quantifier “for every”, the type corresponding to Lemma 2.1.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem1</span>) is</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(A:\mathcal{U})}\,}{\mathchoice{{\textstyle\prod_{(A:%
+\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}{\mathchoice{%
+{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}\mathchoice{\prod_{(x,y:A)}\,}{%
+\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}(x=y)\to(y=x)." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The proof of Lemma 2.1.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem1</span>) will consist of constructing an element of this type, i.e. deriving the judgment <math id="p2.m1" class="ltx_Math" alttext="f:\mathchoice{\prod_{(A:\mathcal{U})}\,}{\mathchoice{{\textstyle\prod_{(A:%
+\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}{\mathchoice{%
+{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}\mathchoice{\prod_{(x,y:A)}\,}{%
+\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}(x=y)\to(y=x)" display="inline"><mrow><mi>f</mi><mo>:</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> for some <math id="p2.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+We then introduce the notation <math id="p2.m3" class="ltx_Math" alttext="\mathord{{(\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})}^{-1}}" display="inline"><msup><mrow><mo stretchy="false">(</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> for this element <math id="p2.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>, in which the arguments <math id="p2.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, <math id="p2.m6" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>, and <math id="p2.m7" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> are omitted and inferred from context.
+(As remarked in §1.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/11typetheoryversussettheory</span>), the secondary statement “<math id="p2.m8" class="ltx_Math" alttext="\mathord{{\mathsf{refl}_{x}}^{-1}}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math> for each <math id="p2.m9" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>” should be regarded as a separate judgment.)</p>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">First proof.</h6>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Assume given <math id="p3.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>, and
+let <math id="p3.m2" class="ltx_Math" alttext="D:\mathchoice{\prod_{(x,y:A)}\,}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}\mathchoice{\prod_{(p:x=y)}\,}{\mathchoice{{\textstyle\prod_{%
+(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}}{\mathchoice{{%
+\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}%
+}{\mathchoice{{\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{%
+\prod_{(p:x=y)}}}\mathcal{U}" display="inline"><mrow><mi>D</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></msub><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></mrow></math> be the type family defined by <math id="p3.m3" class="ltx_Math" alttext="D(x,y,p):\!\!\equiv(y=x)" display="inline"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+In other words, <math id="p3.m4" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math> is a function assigning to any <math id="p3.m5" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></math> and <math id="p3.m6" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math> a type, namely the type <math id="p3.m7" class="ltx_Math" alttext="y=x" display="inline"><mrow><mi>y</mi><mo>=</mo><mi>x</mi></mrow></math>.
+Then we have an element</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="d:\!\!\equiv{\lambda}x.\,\mathsf{refl}_{x}:\mathchoice{\prod_{x:A}\,}{%
+\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x%
+:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{%
+\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(%
+x:A)}}{\prod_{(x:A)}}}D(x,x,\mathsf{refl}_{x})." display="block"><mrow><mi>d</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Thus, the induction principle for identity types gives us an element
+<math id="p3.m8" class="ltx_Math" alttext="\mathsf{ind}_{=_{A}}(D,d,x,y,p):(y=x)" display="inline"><mrow><msub><mi>𝗂𝗇𝖽</mi><msub><mo>=</mo><mi>A</mi></msub></msub><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><mi>d</mi><mo>,</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+for each <math id="p3.m9" class="ltx_Math" alttext="p:(x=y)" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+We can now define the desired function <math id="p3.m10" class="ltx_Math" alttext="\mathord{{(\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt})}^{-1}}" display="inline"><msup><mrow><mo stretchy="false">(</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> to be <math id="p3.m11" class="ltx_Math" alttext="{\lambda}p.\,\mathsf{ind}_{=_{A}}(D,d,x,y,p)" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>p</mi></mrow><mo rspace="4.2pt">.</mo><mrow><msub><mi>𝗂𝗇𝖽</mi><msub><mo>=</mo><mi>A</mi></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><mi>d</mi><mo>,</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, i.e. we set <math id="p3.m12" class="ltx_Math" alttext="\mathord{{p}^{-1}}:\!\!\equiv\mathsf{ind}_{=_{A}}(D,d,x,y,p)" display="inline"><mrow><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗂𝗇𝖽</mi><msub><mo>=</mo><mi>A</mi></msub></msub><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><mi>d</mi><mo>,</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+The conversion rule (2.0.1) (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/2homotopytypetheory#S0.E1</span>) gives <math id="p3.m13" class="ltx_Math" alttext="\mathord{{\mathsf{refl}_{x}}^{-1}}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>, as required.
+∎</p>
+</div>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">We have written out this proof in a very formal style, which may be helpful while the induction rule on identity types is unfamiliar.
+To be even more formal, we could say that Lemma 2.1.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem1</span>) and its proof together consist of the judgment</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="{\lambda}A.\,{\lambda}x.\,{\lambda}y.\,{\lambda}p.\,\mathsf{ind}_{=_{A}}(({%
+\lambda}x.\,{\lambda}y.\,{\lambda}p.\,(y=x)),({\lambda}x.\,\mathsf{refl}_{x}),%
+x,y,p):\mathchoice{\prod_{(A:\mathcal{U})}\,}{\mathchoice{{\textstyle\prod_{(A%
+:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}{\mathchoice{%
+{\textstyle\prod_{(A:\mathcal{U})}}}{\prod_{(A:\mathcal{U})}}{\prod_{(A:%
+\mathcal{U})}}{\prod_{(A:\mathcal{U})}}}\mathchoice{\prod_{(x,y:A)}\,}{%
+\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}(x=y)\to(y=x)" display="block"><mrow><mi>λ</mi><mi>A</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>y</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>p</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗂𝗇𝖽</mi><msub><mo>=</mo><mi>A</mi></msub></msub><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>y</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>p</mi><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">(along with an additional equality judgment).
+However, eventually we prefer to use more natural language, such as in the following equivalent proof.</p>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Second proof.</h6>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">We want to construct, for each <math id="p5.m1" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></math> and <math id="p5.m2" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math>, an element <math id="p5.m3" class="ltx_Math" alttext="\mathord{{p}^{-1}}:y=x" display="inline"><mrow><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>:</mo><mrow><mi>y</mi><mo>=</mo><mi>x</mi></mrow></mrow></math>.
+By induction, it suffices to do this in the case when <math id="p5.m4" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> is <math id="p5.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p5.m6" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is <math id="p5.m7" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>.
+But in this case, the type <math id="p5.m8" class="ltx_Math" alttext="x=y" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></math> of <math id="p5.m9" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> and the type <math id="p5.m10" class="ltx_Math" alttext="y=x" display="inline"><mrow><mi>y</mi><mo>=</mo><mi>x</mi></mrow></math> in which we are trying to construct <math id="p5.m11" class="ltx_Math" alttext="\mathord{{p}^{-1}}" display="inline"><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> are both simply <math id="p5.m12" class="ltx_Math" alttext="x=x" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>x</mi></mrow></math>.
+Thus, in the “reflexivity case”, we can define <math id="p5.m13" class="ltx_Math" alttext="\mathord{{\mathsf{refl}_{x}}^{-1}}" display="inline"><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts></math> to be simply <math id="p5.m14" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>.
+The general case then follows by the induction principle, and the conversion rule <math id="p5.m15" class="ltx_Math" alttext="\mathord{{\mathsf{refl}_{x}}^{-1}}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math> is precisely the proof in the reflexivity case that we gave.
+∎</p>
+</div>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">We will write out the next few proofs in both styles, to help the reader become accustomed to the latter one.
+Next we prove the transitivity of equality, or equivalently we “concatenate paths”.</p>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 2.1.2</span>.</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For every type <math id="Thmprelem2.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and every <math id="Thmprelem2.p1.m2" class="ltx_Math" alttext="x,y,z:A" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal">,</mo><mi>z</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> there is a function
+</span></p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="(x=y)\to(y=z)\to(x=z)" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">written <math id="Thmprelem2.p1.m3" class="ltx_Math" alttext="p\mapsto q\mapsto p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}q" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">↦</mo><mi>q</mi><mo mathvariant="normal">↦</mo><mrow><mi>p</mi><mo mathvariant="italic">⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo mathvariant="italic">⁢</mo><mi>q</mi></mrow></mrow></math>, such that <math id="Thmprelem2.p1.m4" class="ltx_Math" alttext="\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mrow><msub><mi mathvariant="normal">refl</mi><mi>x</mi></msub><mo mathvariant="italic">⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo mathvariant="italic">⁢</mo><msub><mi mathvariant="normal">refl</mi><mi>x</mi></msub></mrow><mo mathvariant="normal">≡</mo><msub><mi mathvariant="normal">refl</mi><mi>x</mi></msub></mrow></math> for any <math id="Thmprelem2.p1.m5" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>.
+We call <math id="Thmprelem2.p1.m6" class="ltx_Math" alttext="p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}q" display="inline"><mrow><mi>p</mi><mo mathvariant="italic">⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo mathvariant="italic">⁢</mo><mi>q</mi></mrow></math> the <span class="ltx_text ltx_font_bold">concatenation</span> or <span class="ltx_text ltx_font_bold">composite</span> of <math id="Thmprelem2.p1.m7" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> and <math id="Thmprelem2.p1.m8" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>.
+</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">First proof.</h6>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Let <math id="p7.m1" class="ltx_Math" alttext="D:\mathchoice{\prod_{(x,y:A)}\,}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}\mathchoice{\prod_{(p:x=y)}\,}{\mathchoice{{\textstyle\prod_{%
+(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}}{\mathchoice{{%
+\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}%
+}{\mathchoice{{\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{%
+\prod_{(p:x=y)}}}\mathcal{U}" display="inline"><mrow><mi>D</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></msub><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></mrow></math> be the type family</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="D(x,y,p):\!\!\equiv\mathchoice{\prod_{(z:A)}\,}{\mathchoice{{\textstyle\prod_{%
+(z:A)}}}{\prod_{(z:A)}}{\prod_{(z:A)}}{\prod_{(z:A)}}}{\mathchoice{{\textstyle%
+\prod_{(z:A)}}}{\prod_{(z:A)}}{\prod_{(z:A)}}{\prod_{(z:A)}}}{\mathchoice{{%
+\textstyle\prod_{(z:A)}}}{\prod_{(z:A)}}{\prod_{(z:A)}}{\prod_{(z:A)}}}%
+\mathchoice{\prod_{(q:y=z)}\,}{\mathchoice{{\textstyle\prod_{(q:y=z)}}}{\prod_%
+{(q:y=z)}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}}{\mathchoice{{\textstyle\prod_{(q%
+:y=z)}}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}}{\mathchoice{{%
+\textstyle\prod_{(q:y=z)}}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}%
+}(x=z)." display="block"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>y</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Note that <math id="p7.m2" class="ltx_Math" alttext="D(x,x,\mathsf{refl}_{x})\equiv\mathchoice{\prod_{(z:A)}\,}{\mathchoice{{%
+\textstyle\prod_{(z:A)}}}{\prod_{(z:A)}}{\prod_{(z:A)}}{\prod_{(z:A)}}}{%
+\mathchoice{{\textstyle\prod_{(z:A)}}}{\prod_{(z:A)}}{\prod_{(z:A)}}{\prod_{(z%
+:A)}}}{\mathchoice{{\textstyle\prod_{(z:A)}}}{\prod_{(z:A)}}{\prod_{(z:A)}}{%
+\prod_{(z:A)}}}\mathchoice{\prod_{(q:x=z)}\,}{\mathchoice{{\textstyle\prod_{(q%
+:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}}{\mathchoice{{%
+\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}%
+}{\mathchoice{{\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{%
+\prod_{(q:x=z)}}}(x=z)" display="inline"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>≡</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Thus, in order to apply the induction principle for identity types to this <math id="p7.m3" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math>, we need a function of type</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)%
+}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod%
+_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}%
+}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}D(x,x,\mathsf{refl}_{x})" display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(2.1.3)</span></td>
+</tr>
+</table>
+<p class="ltx_p">which is to say, of type</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(x,z:A)}\,}{\mathchoice{{\textstyle\prod_{(x,z:A)}}}{\prod_%
+{(x,z:A)}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}}{\mathchoice{{\textstyle\prod_{(x%
+,z:A)}}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x,z:A)}}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}%
+}\mathchoice{\prod_{(q:x=z)}\,}{\mathchoice{{\textstyle\prod_{(q:x=z)}}}{\prod%
+_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}}{\mathchoice{{\textstyle\prod_{(%
+q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}}{\mathchoice{{%
+\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}%
+}(x=z)." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Now let <math id="p7.m4" class="ltx_Math" alttext="E:\mathchoice{\prod_{(x,z:A)}\,}{\mathchoice{{\textstyle\prod_{(x,z:A)}}}{%
+\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,z:A)}}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,z:A)}}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{%
+\prod_{(x,z:A)}}}\mathchoice{\prod_{(q:x=z)}\,}{\mathchoice{{\textstyle\prod_{%
+(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}}{\mathchoice{{%
+\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}%
+}{\mathchoice{{\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{%
+\prod_{(q:x=z)}}}\mathcal{U}" display="inline"><mrow><mi>E</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></msub><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></mrow></math> be the type family <math id="p7.m5" class="ltx_Math" alttext="E(x,z,q):\!\!\equiv(x=z)" display="inline"><mrow><mi>E</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Note that <math id="p7.m6" class="ltx_Math" alttext="E(x,x,\mathsf{refl}_{x})\equiv(x=x)" display="inline"><mrow><mi>E</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Thus, we have the function</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="e(x):\!\!\equiv\mathsf{refl}_{x}:E(x,x,\mathsf{refl}_{x})." display="block"><mrow><mi>e</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>:</mo><mi>E</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">By the induction principle for identity types applied to <math id="p7.m7" class="ltx_Math" alttext="E" display="inline"><mi>E</mi></math>, we obtain a function</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="d(x,z,q):\mathchoice{\prod_{(x,z:A)}\,}{\mathchoice{{\textstyle\prod_{(x,z:A)}%
+}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,z:A)}}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,z:A)}}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{%
+\prod_{(x,z:A)}}}\mathchoice{\prod_{(q:x=z)}\,}{\mathchoice{{\textstyle\prod_{%
+(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}}{\mathchoice{{%
+\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}%
+}{\mathchoice{{\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{%
+\prod_{(q:x=z)}}}E(x,z,q)." display="block"><mrow><mrow><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mi>E</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">But <math id="p7.m8" class="ltx_Math" alttext="E(x,z,q)\equiv(x=z)" display="inline"><mrow><mi>E</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></math>, so this is (<a href="#S0.E1" title="(2.1.3) ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">2.1.3</span></a>).
+Thus, we can use this function <math id="p7.m9" class="ltx_Math" alttext="d" display="inline"><mi>d</mi></math> and apply the induction principle for identity types to <math id="p7.m10" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math>, to obtain our desired function of type</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(x,y,z:A)}\,}{\mathchoice{{\textstyle\prod_{(x,y,z:A)}}}{%
+\prod_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x,y,z:A)}}}{\prod_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}{\prod_{(x,%
+y,z:A)}}}{\mathchoice{{\textstyle\prod_{(x,y,z:A)}}}{\prod_{(x,y,z:A)}}{\prod_%
+{(x,y,z:A)}}{\prod_{(x,y,z:A)}}}\mathchoice{\prod_{(q:y=z)}\,}{\mathchoice{{%
+\textstyle\prod_{(q:y=z)}}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}%
+}{\mathchoice{{\textstyle\prod_{(q:y=z)}}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}{%
+\prod_{(q:y=z)}}}{\mathchoice{{\textstyle\prod_{(q:y=z)}}}{\prod_{(q:y=z)}}{%
+\prod_{(q:y=z)}}{\prod_{(q:y=z)}}}\mathchoice{\prod_{(p:x=y)}\,}{\mathchoice{{%
+\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}%
+}{\mathchoice{{\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{%
+\prod_{(p:x=y)}}}{\mathchoice{{\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{%
+\prod_{(p:x=y)}}{\prod_{(p:x=y)}}}(x=z)." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>y</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The conversion rules for the two induction principles give us <math id="p7.m11" class="ltx_Math" alttext="\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math> for any <math id="p7.m12" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>.
+∎</p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Second proof.</h6>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">We want to construct, for every <math id="p8.m1" class="ltx_Math" alttext="x,y,z:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></mrow><mo>:</mo><mi>A</mi></mrow></math> and every <math id="p8.m2" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math> and <math id="p8.m3" class="ltx_Math" alttext="q:y=z" display="inline"><mrow><mi>q</mi><mo>:</mo><mrow><mi>y</mi><mo>=</mo><mi>z</mi></mrow></mrow></math>, an element of <math id="p8.m4" class="ltx_Math" alttext="x=z" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>z</mi></mrow></math>.
+By induction on <math id="p8.m5" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, it suffices to assume that <math id="p8.m6" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> is <math id="p8.m7" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p8.m8" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is <math id="p8.m9" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>.
+In this case, the type <math id="p8.m10" class="ltx_Math" alttext="y=z" display="inline"><mrow><mi>y</mi><mo>=</mo><mi>z</mi></mrow></math> of <math id="p8.m11" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> is <math id="p8.m12" class="ltx_Math" alttext="x=z" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>z</mi></mrow></math>.
+Now by induction on <math id="p8.m13" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>, it suffices to assume also that <math id="p8.m14" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> is <math id="p8.m15" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p8.m16" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> is <math id="p8.m17" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>.
+But in this case, <math id="p8.m18" class="ltx_Math" alttext="x=z" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>z</mi></mrow></math> is <math id="p8.m19" class="ltx_Math" alttext="x=x" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>x</mi></mrow></math>, and we have <math id="p8.m20" class="ltx_Math" alttext="\mathsf{refl}_{x}:(x=x)" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">The reader may well feel that we have given an overly convoluted proof of this lemma.
+In fact, we could stop after the induction on <math id="p9.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, since at that point what we want to produce is an equality <math id="p9.m2" class="ltx_Math" alttext="x=z" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>z</mi></mrow></math>, and we already have such an equality, namely <math id="p9.m3" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>.
+Why do we go on to do another induction on <math id="p9.m4" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>?</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">The answer is that, as described in the introduction, we are doing <em class="ltx_emph ltx_font_italic">proof-relevant</em> mathematics.
+When we prove a lemma, we are defining an inhabitant of some type, and it can matter what <em class="ltx_emph ltx_font_italic">specific</em> element we defined in the course of the proof, not merely the type inhabited by that element (that is, the <em class="ltx_emph ltx_font_italic">statement</em> of the lemma).
+Lemma 2.1.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem2</span>) has three obvious proofs: we could do induction over <math id="p10.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, induction over <math id="p10.m2" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>, or induction over both of them.
+If we proved it three different ways, we would have three different elements of the same type.
+It’s not hard to show that these three elements are equal (see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87632</span>Exercise 2.1), but as they are not <em class="ltx_emph ltx_font_italic">definitionally</em> equal, there can still be reasons to prefer one over another.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">In the case of Lemma 2.1.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem2</span>), the difference hinges on the computation rule.
+If we proved the lemma using a single induction over <math id="p11.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, then we would end up with a computation rule of the form <math id="p11.m2" class="ltx_Math" alttext="\mathsf{refl}_{y}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}q\equiv q" display="inline"><mrow><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>y</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>q</mi></mrow><mo>≡</mo><mi>q</mi></mrow></math>.
+If we proved it with a single induction over <math id="p11.m3" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>, we would have instead <math id="p11.m4" class="ltx_Math" alttext="p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\mathsf{refl}_{x}\equiv p" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo>≡</mo><mi>p</mi></mrow></math>, while proving it with a double induction (as we did) gives only <math id="p11.m5" class="ltx_Math" alttext="\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">The asymmetrical computation rules can sometimes be convenient when doing formalized mathematics, as they allow the computer to simplify more things automatically.
+However, in informal mathematics, and arguably even in the formalized case, it can be confusing to have a concatenation operation which behaves asymmetrically and to have to remember which side is the “special” one.
+Treating both sides symmetrically makes for more robust proofs; this is why we have given the proof that we did.
+(However, this is admittedly a stylistic choice.)</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">The table below summarizes the “equality”, “homotopical”, and “higher-groupoid” points of view on what we have done so far.</p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">Equality</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">Homotopy</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_border_t">
+<math id="p13.m1" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-Groupoid</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_t">reflexivity</td>
+<td class="ltx_td ltx_align_center ltx_border_t">constant path</td>
+<td class="ltx_td ltx_align_center ltx_border_t">identity morphism</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center">symmetry</td>
+<td class="ltx_td ltx_align_center">inversion of paths</td>
+<td class="ltx_td ltx_align_center">inverse morphism</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center">transitivity</td>
+<td class="ltx_td ltx_align_center">concatenation of paths</td>
+<td class="ltx_td ltx_align_center">composition of morphisms</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_center ltx_border_t"></td>
+<td class="ltx_td ltx_border_t"></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">In practice, transitivity is often applied to prove an equality by a chain of intermediate steps.
+We will use the common notation for this such as <math id="p14.m1" class="ltx_Math" alttext="a=b=c=d" display="inline"><mrow><mi>a</mi><mo>=</mo><mi>b</mi><mo>=</mo><mi>c</mi><mo>=</mo><mi>d</mi></mrow></math>.
+If the intermediate expressions are long, or we want to specify the witness of each equality, we may write</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex11" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\displaystyle a" display="inline"><mi>a</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex11.m2" class="ltx_Math" alttext="\displaystyle=b" display="inline"><mrow><mi></mi><mo>=</mo><mi>b</mi></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><span class="ltx_text ltx_markedasmath">(by <math id="S0.Ex11.m3.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>)</span></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex12" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex12.m2" class="ltx_Math" alttext="\displaystyle=c" display="inline"><mrow><mi></mi><mo>=</mo><mi>c</mi></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><span class="ltx_text ltx_markedasmath">(by <math id="S0.Ex12.m3.m1" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>)</span></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex13" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex13.m2" class="ltx_Math" alttext="\displaystyle=d" display="inline"><mrow><mi></mi><mo>=</mo><mi>d</mi></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex13.m3" class="ltx_Math" alttext="\displaystyle\text{(by $r$)}." display="inline"><mrow><mrow><mtext>(by </mtext><mi>r</mi><mtext>)</mtext></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">In either case, the notation indicates construction of the element <math id="p14.m2" class="ltx_Math" alttext="(p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin%
+{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}q)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}r:(a=d)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>p</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>q</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>=</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+(We choose left-associativity for concreteness, although in view of Lemma 2.1.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem3</span>)(<a href="#I1.i4" title="4. ‣ Lemma 2.1.4. ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>) below it makes litle difference.)
+If it should happen that <math id="p14.m3" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> and <math id="p14.m4" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math>, say, are judgmentally equal, then we may write</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex14" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\displaystyle a" display="inline"><mi>a</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex14.m2" class="ltx_Math" alttext="\displaystyle=b" display="inline"><mrow><mi></mi><mo>=</mo><mi>b</mi></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><span class="ltx_text ltx_markedasmath">(by <math id="S0.Ex14.m3.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>)</span></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex15" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex15.m2" class="ltx_Math" alttext="\displaystyle\equiv c" display="inline"><mrow><mi></mi><mo>≡</mo><mi>c</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex16" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex16.m2" class="ltx_Math" alttext="\displaystyle=d" display="inline"><mrow><mi></mi><mo>=</mo><mi>d</mi></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><span class="ltx_text ltx_markedasmath">(by <math id="S0.Ex16.m3.m1" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>)</span></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">to indicate construction of <math id="p14.m5" class="ltx_Math" alttext="p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}r:(a=d)" display="inline"><mrow><mi>p</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>=</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+</p>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">Now, because of proof-relevance, we can’t stop after proving “symmetry” and “transitivity” of equality: we need to know that these <em class="ltx_emph ltx_font_italic">operations</em> on equalities are well-behaved.
+(This issue is invisible in set theory, where symmetry and transitivity are mere <em class="ltx_emph ltx_font_italic">properties</em> of equality, rather than structure on
+paths.)
+From the homotopy-theoretic point of view, concatenation and inversion are just the “first level” of higher groupoid structure — we also need coherence laws on these operations, and analogous operations at higher dimensions.
+For instance, we need to know that concatenation is <em class="ltx_emph ltx_font_italic">associative</em>, and that inversion provides <em class="ltx_emph ltx_font_italic">inverses</em> with respect to concatenation.</p>
+</div>
+<div id="Thmprelem3" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 2.1.4</span>.</h6>
+<div id="Thmprelem3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose <math id="Thmprelem3.p1.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math>, that <math id="Thmprelem3.p1.m2" class="ltx_Math" alttext="x,y,z,w:A" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal">,</mo><mi>z</mi><mo mathvariant="normal">,</mo><mi>w</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> and that <math id="Thmprelem3.p1.m3" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi>x</mi><mo mathvariant="normal">=</mo><mi>y</mi></mrow></mrow></math> and <math id="Thmprelem3.p1.m4" class="ltx_Math" alttext="q:y=z" display="inline"><mrow><mi>q</mi><mo mathvariant="normal">:</mo><mrow><mi>y</mi><mo mathvariant="normal">=</mo><mi>z</mi></mrow></mrow></math> and <math id="Thmprelem3.p1.m5" class="ltx_Math" alttext="r:z=w" display="inline"><mrow><mi>r</mi><mo mathvariant="normal">:</mo><mrow><mi>z</mi><mo mathvariant="normal">=</mo><mi>w</mi></mrow></mrow></math>.
+We have the following:</span></p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="p=p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\mathsf{refl}_{y}" display="inline"><mrow><mi>p</mi><mo>=</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>y</mi></msub></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I1.i1.p1.m2" class="ltx_Math" alttext="p=\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}p" display="inline"><mrow><mi>p</mi><mo>=</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>p</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i2.p1.m1" class="ltx_Math" alttext="\mathord{{p}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}p=\mathsf{refl}_{y}" display="inline"><mrow><mrow><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>p</mi></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>y</mi></msub></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I1.i2.p1.m2" class="ltx_Math" alttext="p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\mathord{{p}^{-1}}=\mathsf{refl}_{x}" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i3.p1.m1" class="ltx_Math" alttext="\mathord{{(\mathord{{p}^{-1}})}^{-1}}=p" display="inline"><mrow><msup><mrow><mo stretchy="false">(</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>=</mo><mi>p</mi></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i4.p1.m1" class="ltx_Math" alttext="p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}(q\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}r)=(p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}q)\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}r" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>q</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>q</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">Note, in particular, that <a href="#I1.i1" title="1. ‣ Lemma 2.1.4. ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>–<a href="#I1.i4" title="4. ‣ Lemma 2.1.4. ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a> are themselves propositional equalities, living in the identity types <em class="ltx_emph ltx_font_italic">of</em> identity types, such as <math id="p16.m1" class="ltx_Math" alttext="p=_{x=y}q" display="inline"><mrow><mi>p</mi><msub><mo>=</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></msub><mi>q</mi></mrow></math> for <math id="p16.m2" class="ltx_Math" alttext="p,q:x=y" display="inline"><mrow><mrow><mi>p</mi><mo>,</mo><mi>q</mi></mrow><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math>.
+Topologically, they are <em class="ltx_emph ltx_font_italic">paths of paths</em>, i.e. homotopies.
+It is a familiar fact in topology that when we concatenate a path <math id="p16.m3" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> with the reversed path <math id="p16.m4" class="ltx_Math" alttext="\mathord{{p}^{-1}}" display="inline"><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math>, we don’t literally obtain a constant path (which corresponds to the equality <math id="p16.m5" class="ltx_Math" alttext="\mathsf{refl}" display="inline"><mi>𝗋𝖾𝖿𝗅</mi></math> in type theory) — instead we have a homotopy, or higher path, from <math id="p16.m6" class="ltx_Math" alttext="p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\mathord{{p}^{-1}}" display="inline"><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></math> to the constant path.</p>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof of Lemma 3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmlem3</span>).</h6>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">All the proofs use the induction principle for equalities.</p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">First proof:</em> let <math id="I2.i1.p1.m1" class="ltx_Math" alttext="D:\mathchoice{\prod_{(x,y:A)}\,}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}\mathchoice{\prod_{(p:x=y)}\,}{\mathchoice{{\textstyle\prod_{%
+(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}}{\mathchoice{{%
+\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}%
+}{\mathchoice{{\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{%
+\prod_{(p:x=y)}}}\mathcal{U}" display="inline"><mrow><mi>D</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></msub><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></mrow></math> be the type family given by</p>
+<table id="S0.Ex17" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex17.m1" class="ltx_Math" alttext="D(x,y,p):\!\!\equiv(p=p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{y})." display="block"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>=</mo><mi>p</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>y</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then <math id="I2.i1.p1.m2" class="ltx_Math" alttext="D(x,x,\mathsf{refl}_{x})" display="inline"><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I2.i1.p1.m3" class="ltx_Math" alttext="\mathsf{refl}_{x}=\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x}" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>=</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></mrow></math>.
+Since <math id="I2.i1.p1.m4" class="ltx_Math" alttext="\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>, it follows that <math id="I2.i1.p1.m5" class="ltx_Math" alttext="D(x,x,\mathsf{refl}_{x})\equiv(\mathsf{refl}_{x}=\mathsf{refl}_{x})" display="inline"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>.
+Thus, there is a function</p>
+<table id="S0.Ex18" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex18.m1" class="ltx_Math" alttext="d:\!\!\equiv{\lambda}x.\,\mathsf{refl}_{\mathsf{refl}_{x}}:\mathchoice{\prod_{%
+x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{%
+\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(%
+x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}}D(x,x,\mathsf{refl}_{x})." display="block"><mrow><mi>d</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></msub><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Now the induction principle for identity types gives an element <math id="I2.i1.p1.m6" class="ltx_Math" alttext="\mathsf{ind}_{=_{A}}(D,d,p):(p=p\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{y})" display="inline"><mrow><msub><mi>𝗂𝗇𝖽</mi><msub><mo>=</mo><mi>A</mi></msub></msub><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><mi>d</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>=</mo><mi>p</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>y</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> for each <math id="I2.i1.p1.m7" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math>.
+The other equality is proven similarly.</p>
+</div>
+<div id="I2.i1.p2" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">Second proof:</em> by induction on <math id="I2.i1.p2.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, it suffices to assume that <math id="I2.i1.p2.m2" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> is <math id="I2.i1.p2.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and that <math id="I2.i1.p2.m4" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is <math id="I2.i1.p2.m5" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>.
+But in this case, we have <math id="I2.i1.p2.m6" class="ltx_Math" alttext="\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>.</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I2.i2.p1" class="ltx_para ltx_noindent">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">First proof:</em> let <math id="I2.i2.p1.m1" class="ltx_Math" alttext="D:\mathchoice{\prod_{(x,y:A)}\,}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}\mathchoice{\prod_{(p:x=y)}\,}{\mathchoice{{\textstyle\prod_{%
+(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}}{\mathchoice{{%
+\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}%
+}{\mathchoice{{\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{%
+\prod_{(p:x=y)}}}\mathcal{U}" display="inline"><mrow><mi>D</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></msub><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></mrow></math> be the type family given by</p>
+<table id="S0.Ex19" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex19.m1" class="ltx_Math" alttext="D(x,y,p):\!\!\equiv(\mathord{{p}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}p=\mathsf{refl}_{y})." display="block"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>p</mi><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>y</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then <math id="I2.i2.p1.m2" class="ltx_Math" alttext="D(x,x,\mathsf{refl}_{x})" display="inline"><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is <math id="I2.i2.p1.m3" class="ltx_Math" alttext="\mathord{{\mathsf{refl}_{x}}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x}=\mathsf{refl}_%
+{x}" display="inline"><mrow><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>.
+Since <math id="I2.i2.p1.m4" class="ltx_Math" alttext="\mathord{{\mathsf{refl}_{x}}^{-1}}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math> and <math id="I2.i2.p1.m5" class="ltx_Math" alttext="\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>, we get that <math id="I2.i2.p1.m6" class="ltx_Math" alttext="D(x,x,\mathsf{refl}_{x})\equiv(\mathsf{refl}_{x}=\mathsf{refl}_{x})" display="inline"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>.
+Hence we find the function</p>
+<table id="S0.Ex20" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex20.m1" class="ltx_Math" alttext="d:\!\!\equiv{\lambda}x.\,\mathsf{refl}_{\mathsf{refl}_{x}}:\mathchoice{\prod_{%
+x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{%
+\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(%
+x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}}D(x,x,\mathsf{refl}_{x})." display="block"><mrow><mi>d</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></msub><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Now path induction gives an element <math id="I2.i2.p1.m7" class="ltx_Math" alttext="\mathsf{ind}_{=_{A}}(D,d,p):\mathord{{p}^{-1}}\mathchoice{\mathbin{\raisebox{2%
+.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}%
+{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{%
+\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}p=\mathsf{refl}_{y}" display="inline"><mrow><mrow><msub><mi>𝗂𝗇𝖽</mi><msub><mo>=</mo><mi>A</mi></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><mi>d</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>p</mi></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>y</mi></msub></mrow></mrow></math> for each <math id="I2.i2.p1.m8" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math> in <math id="I2.i2.p1.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+The other equality is similar.</p>
+</div>
+<div id="I2.i2.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">Second proof</em> By induction, it suffices to assume <math id="I2.i2.p2.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is <math id="I2.i2.p2.m2" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>.
+But in this case, we have <math id="I2.i2.p2.m3" class="ltx_Math" alttext="\mathord{{p}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}p\equiv\mathord{{\mathsf{refl}_{x}}^{-1}}%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\mathsf{refl}_{x}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mrow><msup><mi>p</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>p</mi></mrow><mo>≡</mo><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>.</p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">First proof:</em> let <math id="I2.i3.p1.m1" class="ltx_Math" alttext="D:\mathchoice{\prod_{(x,y:A)}\,}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}\mathchoice{\prod_{(p:x=y)}\,}{\mathchoice{{\textstyle\prod_{%
+(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}}{\mathchoice{{%
+\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}%
+}{\mathchoice{{\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{%
+\prod_{(p:x=y)}}}\mathcal{U}" display="inline"><mrow><mi>D</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></msub><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></mrow></math> be the type family given by</p>
+<table id="S0.Ex21" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex21.m1" class="ltx_Math" alttext="D(x,y,p):\!\!\equiv(\mathord{{\mathord{{p}^{-1}}}^{-1}}=p)." display="block"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mmultiscripts><mi>p</mi><none></none><mrow><mo>-</mo><mn>1</mn></mrow><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>=</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then <math id="I2.i3.p1.m2" class="ltx_Math" alttext="D(x,x,\mathsf{refl}_{x})" display="inline"><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is the type <math id="I2.i3.p1.m3" class="ltx_Math" alttext="(\mathord{{\mathord{{\mathsf{refl}_{x}}^{-1}}}^{-1}}=\mathsf{refl}_{x})" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo stretchy="false">)</mo></mrow></math>.
+But since <math id="I2.i3.p1.m4" class="ltx_Math" alttext="\mathord{{\mathsf{refl}_{x}}^{-1}}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math> for each <math id="I2.i3.p1.m5" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>, we have <math id="I2.i3.p1.m6" class="ltx_Math" alttext="\mathord{{\mathord{{\mathsf{refl}_{x}}^{-1}}}^{-1}}\equiv\mathord{{\mathsf{%
+refl}_{x}}^{-1}}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>≡</mo><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>, and thus <math id="I2.i3.p1.m7" class="ltx_Math" alttext="D(x,x,\mathsf{refl}_{x})\equiv(\mathsf{refl}_{x}=\mathsf{refl}_{x})" display="inline"><mrow><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math>.
+Hence we find the function</p>
+<table id="S0.Ex22" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex22.m1" class="ltx_Math" alttext="d:\!\!\equiv{\lambda}x.\,\mathsf{refl}_{\mathsf{refl}_{x}}:\mathchoice{\prod_{%
+x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{%
+\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(%
+x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{%
+\prod_{(x:A)}}{\prod_{(x:A)}}}D(x,x,\mathsf{refl}_{x})." display="block"><mrow><mi>d</mi><mo rspace="0pt">:</mo><mo>≡</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></msub><mo>:</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>D</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Now path induction gives an element <math id="I2.i3.p1.m8" class="ltx_Math" alttext="\mathsf{ind}_{=_{A}}(D,d,p):\mathord{{\mathord{{p}^{-1}}}^{-1}}=p" display="inline"><mrow><mrow><msub><mi>𝗂𝗇𝖽</mi><msub><mo>=</mo><mi>A</mi></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><mi>d</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mmultiscripts><mi>p</mi><none></none><mrow><mo>-</mo><mn>1</mn></mrow><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>=</mo><mi>p</mi></mrow></mrow></math> for each <math id="I2.i3.p1.m9" class="ltx_Math" alttext="p:x=y" display="inline"><mrow><mi>p</mi><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow></math>.</p>
+</div>
+<div id="I2.i3.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">Second proof:</em> by induction, it suffices to assume <math id="I2.i3.p2.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is <math id="I2.i3.p2.m2" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>.
+But in this case, we have <math id="I2.i3.p2.m3" class="ltx_Math" alttext="\mathord{{\mathord{{p}^{-1}}}^{-1}}\equiv\mathord{{\mathord{{\mathsf{refl}_{x}%
+}^{-1}}}^{-1}}\equiv\mathsf{refl}_{x}" display="inline"><mrow><mmultiscripts><mi>p</mi><none></none><mrow><mo>-</mo><mn>1</mn></mrow><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>≡</mo><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math>.</p>
+</div>
+</li>
+<li id="I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I2.i4.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">First proof:</em> let <math id="I2.i4.p1.m1" class="ltx_Math" alttext="D_{1}:\mathchoice{\prod_{(x,y:A)}\,}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{%
+\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{%
+\prod_{(x,y:A)}}}\mathchoice{\prod_{(p:x=y)}\,}{\mathchoice{{\textstyle\prod_{%
+(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}}{\mathchoice{{%
+\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}%
+}{\mathchoice{{\textstyle\prod_{(p:x=y)}}}{\prod_{(p:x=y)}}{\prod_{(p:x=y)}}{%
+\prod_{(p:x=y)}}}\mathcal{U}" display="inline"><mrow><msub><mi>D</mi><mn>1</mn></msub><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></msub><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></mrow></math> be the type family given by</p>
+<table id="S0.Ex23" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex23.m1" class="ltx_Math" alttext="D_{1}(x,y,p):\!\!\equiv\mathchoice{\prod_{(z,w:A)}\,}{\mathchoice{{\textstyle%
+\prod_{(z,w:A)}}}{\prod_{(z,w:A)}}{\prod_{(z,w:A)}}{\prod_{(z,w:A)}}}{%
+\mathchoice{{\textstyle\prod_{(z,w:A)}}}{\prod_{(z,w:A)}}{\prod_{(z,w:A)}}{%
+\prod_{(z,w:A)}}}{\mathchoice{{\textstyle\prod_{(z,w:A)}}}{\prod_{(z,w:A)}}{%
+\prod_{(z,w:A)}}{\prod_{(z,w:A)}}}\mathchoice{\prod_{(q:y=z)}\,}{\mathchoice{{%
+\textstyle\prod_{(q:y=z)}}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}%
+}{\mathchoice{{\textstyle\prod_{(q:y=z)}}}{\prod_{(q:y=z)}}{\prod_{(q:y=z)}}{%
+\prod_{(q:y=z)}}}{\mathchoice{{\textstyle\prod_{(q:y=z)}}}{\prod_{(q:y=z)}}{%
+\prod_{(q:y=z)}}{\prod_{(q:y=z)}}}\mathchoice{\prod_{(r:z=w)}\,}{\mathchoice{{%
+\textstyle\prod_{(r:z=w)}}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}%
+}{\mathchoice{{\textstyle\prod_{(r:z=w)}}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}{%
+\prod_{(r:z=w)}}}{\mathchoice{{\textstyle\prod_{(r:z=w)}}}{\prod_{(r:z=w)}}{%
+\prod_{(r:z=w)}}{\prod_{(r:z=w)}}}\big{(}p\mathchoice{\mathbin{\raisebox{2.15%
+pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}(q\mathchoice{\mathbin{\raisebox%
+{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}%
+}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{%
+\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}r)=(p\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}q)%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}r\big{)}." display="block"><mrow><msub><mi>D</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo>,</mo><mi>w</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>y</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>z</mi><mo>=</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo maxsize="120%" minsize="120%">(</mo><mi>p</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mrow><mo stretchy="false">(</mo><mi>q</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>q</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then <math id="I2.i4.p1.m2" class="ltx_Math" alttext="D_{1}(x,x,\mathsf{refl}_{x})" display="inline"><mrow><msub><mi>D</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is</p>
+<table id="S0.Ex24" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex24.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(z,w:A)}\,}{\mathchoice{{\textstyle\prod_{(z,w:A)}}}{\prod_%
+{(z,w:A)}}{\prod_{(z,w:A)}}{\prod_{(z,w:A)}}}{\mathchoice{{\textstyle\prod_{(z%
+,w:A)}}}{\prod_{(z,w:A)}}{\prod_{(z,w:A)}}{\prod_{(z,w:A)}}}{\mathchoice{{%
+\textstyle\prod_{(z,w:A)}}}{\prod_{(z,w:A)}}{\prod_{(z,w:A)}}{\prod_{(z,w:A)}}%
+}\mathchoice{\prod_{(q:x=z)}\,}{\mathchoice{{\textstyle\prod_{(q:x=z)}}}{\prod%
+_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}}{\mathchoice{{\textstyle\prod_{(%
+q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}}{\mathchoice{{%
+\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}%
+}\mathchoice{\prod_{(r:z=w)}\,}{\mathchoice{{\textstyle\prod_{(r:z=w)}}}{\prod%
+_{(r:z=w)}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}}{\mathchoice{{\textstyle\prod_{(%
+r:z=w)}}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}}{\mathchoice{{%
+\textstyle\prod_{(r:z=w)}}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}%
+}\big{(}\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}(q\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}r)=(\mathsf{refl}_{x}\mathchoice%
+{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.%
+15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$%
+}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}q)%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}r\big{)}." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo>,</mo><mi>w</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>z</mi><mo>=</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo maxsize="120%" minsize="120%">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mrow><mo stretchy="false">(</mo><mi>q</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>q</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">To construct an element of this type, let <math id="I2.i4.p1.m3" class="ltx_Math" alttext="D_{2}:\mathchoice{\prod_{(x,z:A)}\,}{\mathchoice{{\textstyle\prod_{(x,z:A)}}}{%
+\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,z:A)}}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,z:A)}}}{\prod_{(x,z:A)}}{\prod_{(x,z:A)}}{%
+\prod_{(x,z:A)}}}\mathchoice{\prod_{(q:x=z)}\,}{\mathchoice{{\textstyle\prod_{%
+(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}}{\mathchoice{{%
+\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}%
+}{\mathchoice{{\textstyle\prod_{(q:x=z)}}}{\prod_{(q:x=z)}}{\prod_{(q:x=z)}}{%
+\prod_{(q:x=z)}}}\mathcal{U}" display="inline"><mrow><msub><mi>D</mi><mn>2</mn></msub><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></msub><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></mrow></math> be the type family</p>
+<table id="S0.Ex25" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex25.m1" class="ltx_Math" alttext="D_{2}(x,z,q):\!\!\equiv\mathchoice{\prod_{(w:A)}\,}{\mathchoice{{\textstyle%
+\prod_{(w:A)}}}{\prod_{(w:A)}}{\prod_{(w:A)}}{\prod_{(w:A)}}}{\mathchoice{{%
+\textstyle\prod_{(w:A)}}}{\prod_{(w:A)}}{\prod_{(w:A)}}{\prod_{(w:A)}}}{%
+\mathchoice{{\textstyle\prod_{(w:A)}}}{\prod_{(w:A)}}{\prod_{(w:A)}}{\prod_{(w%
+:A)}}}\mathchoice{\prod_{(r:z=w)}\,}{\mathchoice{{\textstyle\prod_{(r:z=w)}}}{%
+\prod_{(r:z=w)}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}}{\mathchoice{{\textstyle%
+\prod_{(r:z=w)}}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}}{%
+\mathchoice{{\textstyle\prod_{(r:z=w)}}}{\prod_{(r:z=w)}}{\prod_{(r:z=w)}}{%
+\prod_{(r:z=w)}}}\big{(}\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt%
+}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}(q\mathchoice{\mathbin{\raisebox%
+{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}%
+}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{%
+\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}r)=(\mathsf{refl}_{x}%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}q)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}r\big{)}." display="block"><mrow><msub><mi>D</mi><mn>2</mn></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>z</mi><mo>=</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo maxsize="120%" minsize="120%">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mrow><mo stretchy="false">(</mo><mi>q</mi><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>q</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then <math id="I2.i4.p1.m4" class="ltx_Math" alttext="D_{2}(x,x,\mathsf{refl}_{x})" display="inline"><mrow><msub><mi>D</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is</p>
+<table id="S0.Ex26" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex26.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(w:A)}\,}{\mathchoice{{\textstyle\prod_{(w:A)}}}{\prod_{(w:%
+A)}}{\prod_{(w:A)}}{\prod_{(w:A)}}}{\mathchoice{{\textstyle\prod_{(w:A)}}}{%
+\prod_{(w:A)}}{\prod_{(w:A)}}{\prod_{(w:A)}}}{\mathchoice{{\textstyle\prod_{(w%
+:A)}}}{\prod_{(w:A)}}{\prod_{(w:A)}}{\prod_{(w:A)}}}\mathchoice{\prod_{(r:x=w)%
+}\,}{\mathchoice{{\textstyle\prod_{(r:x=w)}}}{\prod_{(r:x=w)}}{\prod_{(r:x=w)}%
+}{\prod_{(r:x=w)}}}{\mathchoice{{\textstyle\prod_{(r:x=w)}}}{\prod_{(r:x=w)}}{%
+\prod_{(r:x=w)}}{\prod_{(r:x=w)}}}{\mathchoice{{\textstyle\prod_{(r:x=w)}}}{%
+\prod_{(r:x=w)}}{\prod_{(r:x=w)}}{\prod_{(r:x=w)}}}\big{(}\mathsf{refl}_{x}%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}(\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}r)=(\mathsf{refl}_{x}\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_%
+{x})\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}r\big{)}." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mo maxsize="120%" minsize="120%">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">To construct an element of <em class="ltx_emph ltx_font_italic">this</em> type, let <math id="I2.i4.p1.m5" class="ltx_Math" alttext="D_{3}:\mathchoice{\prod_{(x,w:A)}\,}{\mathchoice{{\textstyle\prod_{(x,w:A)}}}{%
+\prod_{(x,w:A)}}{\prod_{(x,w:A)}}{\prod_{(x,w:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,w:A)}}}{\prod_{(x,w:A)}}{\prod_{(x,w:A)}}{\prod_{(x,w:A)}}}{%
+\mathchoice{{\textstyle\prod_{(x,w:A)}}}{\prod_{(x,w:A)}}{\prod_{(x,w:A)}}{%
+\prod_{(x,w:A)}}}\mathchoice{\prod_{(r:x=w)}\,}{\mathchoice{{\textstyle\prod_{%
+(r:x=w)}}}{\prod_{(r:x=w)}}{\prod_{(r:x=w)}}{\prod_{(r:x=w)}}}{\mathchoice{{%
+\textstyle\prod_{(r:x=w)}}}{\prod_{(r:x=w)}}{\prod_{(r:x=w)}}{\prod_{(r:x=w)}}%
+}{\mathchoice{{\textstyle\prod_{(r:x=w)}}}{\prod_{(r:x=w)}}{\prod_{(r:x=w)}}{%
+\prod_{(r:x=w)}}}\mathcal{U}" display="inline"><mrow><msub><mi>D</mi><mn>3</mn></msub><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>w</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></msub><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></mrow></math> be the type family</p>
+<table id="S0.Ex27" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex27.m1" class="ltx_Math" alttext="D_{3}(x,w,r):\!\!\equiv\big{(}\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{%
+2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}%
+}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{%
+\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}(\mathsf{refl}_{x}%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}r)=(\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x})\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}r\big{)}." display="block"><mrow><msub><mi>D</mi><mn>3</mn></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>w</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi><mo maxsize="120%" minsize="120%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then <math id="I2.i4.p1.m6" class="ltx_Math" alttext="D_{3}(x,x,\mathsf{refl}_{x})" display="inline"><mrow><msub><mi>D</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is</p>
+<table id="S0.Ex28" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex28.m1" class="ltx_Math" alttext="\big{(}\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}(\mathsf{refl}_{x}\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_%
+{x})=(\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x})\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_%
+{x}\big{)}" display="block"><mrow><mo maxsize="120%" minsize="120%">(</mo><mrow><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></mrow><mo maxsize="120%" minsize="120%">)</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">which is definitionally equal to the type <math id="I2.i4.p1.m7" class="ltx_Math" alttext="(\mathsf{refl}_{x}=\mathsf{refl}_{x})" display="inline"><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo stretchy="false">)</mo></mrow></math>, and is therefore inhabited by <math id="I2.i4.p1.m8" class="ltx_Math" alttext="\mathsf{refl}_{\mathsf{refl}_{x}}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></msub></math>.
+Applying the path induction rule three times, therefore, we obtain an element of the overall desired type.</p>
+</div>
+<div id="I2.i4.p2" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">Second proof:</em> by induction, it suffices to assume <math id="I2.i4.p2.m1" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, <math id="I2.i4.p2.m2" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>, and <math id="I2.i4.p2.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> are all <math id="I2.i4.p2.m4" class="ltx_Math" alttext="\mathsf{refl}_{x}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></math>.
+But in this case, we have</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex29" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex29.m1" class="ltx_Math" alttext="\displaystyle p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot%
+$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}(q\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}r)" display="inline"><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>q</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex29.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}(\mathsf{refl}_{x}\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{%
+refl}_{x})" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex30" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex30.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathsf{refl}_{x}" display="inline"><mrow><mi></mi><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex31" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex31.m2" class="ltx_Math" alttext="\displaystyle\equiv(\mathsf{refl}_{x}\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{x})\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{%
+refl}_{x}" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex32" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex32.m2" class="ltx_Math" alttext="\displaystyle\equiv(p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}q)\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}r." display="inline"><mrow><mrow><mi></mi><mo>≡</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>q</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Thus, we have <math id="I2.i4.p2.m5" class="ltx_Math" alttext="\mathsf{refl}_{\mathsf{refl}_{x}}" display="inline"><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub></msub></math> inhabiting this type. ∎</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="Thmprermk1" class="ltx_theorem ltx_theorem_prermk">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Remark 2.1.5</span>.</h6>
+<div id="Thmprermk1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">There are other ways to define these higher paths.
+For instance, in Lemma 2.1.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem3</span>)(<a href="#I1.i4" title="4. ‣ Lemma 2.1.4. ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>) we might do induction only over one or two paths rather than all three.
+Each possibility will produce a <em class="ltx_emph ltx_font_upright">definitionally</em> different proof, but they will all be equal to each other.
+Such an equality between any two particular proofs can, again, be proven by induction, reducing all the paths in question to reflexivities and then observing that both proofs reduce themselves to reflexivities.</span></p>
+</div>
+</div>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">In view of Lemma 2.1.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem3</span>)(<a href="#I1.i4" title="4. ‣ Lemma 2.1.4. ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>), we will often write <math id="p18.m1" class="ltx_Math" alttext="p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}q\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}r" display="inline"><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>q</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow></math> for <math id="p18.m2" class="ltx_Math" alttext="(p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin%
+{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}q)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}r" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>q</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow></math>, and similarly <math id="p18.m3" class="ltx_Math" alttext="p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}q\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}r\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}s" display="inline"><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>q</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>s</mi></mrow></math> for <math id="p18.m4" class="ltx_Math" alttext="((p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}q)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}r)\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}s" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>q</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>s</mi></mrow></math> and so on.
+We choose left-associativity for definiteness, but it makes no real difference.
+We generally trust the reader to insert instances of Lemma 2.1.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem3</span>)(<a href="#I1.i4" title="4. ‣ Lemma 2.1.4. ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>) to reassociate such expressions as necessary.</p>
+</div>
+<div id="p19" class="ltx_para">
+<p class="ltx_p">We are still not really done with the higher groupoid structure: the paths <a href="#I1.i1" title="1. ‣ Lemma 2.1.4. ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>–<a href="#I1.i4" title="4. ‣ Lemma 2.1.4. ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a> must also satisfy their own higher coherence laws, which are themselves higher paths,
+and so on “all the way up to infinity” (this can be made precise using e.g. the notion of a globular operad).
+However, for most purposes it is unnecessary to make the whole infinite-dimensional structure explicit.
+One of the nice things about homotopy type theory is that all of this structure can be <em class="ltx_emph ltx_font_italic">proven</em> starting from only the inductive property of identity types, so we can make explicit as much or as little of it as we need.</p>
+</div>
+<div id="p20" class="ltx_para">
+<p class="ltx_p">In particular, in this book we will not need any of the complicated combinatorics involved in making precise notions such as “coherent structure at all higher levels”.
+In addition to ordinary paths, we will use paths of paths (i.e. elements of a type <math id="p20.m1" class="ltx_Math" alttext="p=_{x=_{A}y}q" display="inline"><mrow><mi>p</mi><msub><mo>=</mo><mrow><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi></mrow></msub><mi>q</mi></mrow></math>), which as remarked previously we call <em class="ltx_emph ltx_font_italic">2-paths</em> or <em class="ltx_emph ltx_font_italic">2-dimensional paths</em>, and perhaps occasionally paths of paths of paths (i.e. elements of a type <math id="p20.m2" class="ltx_Math" alttext="r=_{p=_{x=_{A}y}q}s" display="inline"><mrow><mi>r</mi><msub><mo>=</mo><mrow><mi>p</mi><msub><mo>=</mo><mrow><mi>x</mi><msub><mo>=</mo><mi>A</mi></msub><mi>y</mi></mrow></msub><mi>q</mi></mrow></msub><mi>s</mi></mrow></math>), which we call <em class="ltx_emph ltx_font_italic">3-paths</em> or <em class="ltx_emph ltx_font_italic">3-dimensional paths</em>.
+It is possible to define a general notion of <em class="ltx_emph ltx_font_italic"><math id="p20.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-dimensional path</em>
+(see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87635</span>Exercise 2.4), but we will not need it.
+</p>
+</div>
+<div id="p21" class="ltx_para">
+<p class="ltx_p">We will, however, use one particularly important and simple case of higher paths, which is when the start and end points are the same.
+In set theory, the proposition <math id="p21.m1" class="ltx_Math" alttext="a=a" display="inline"><mrow><mi>a</mi><mo>=</mo><mi>a</mi></mrow></math> is entirely uninteresting, but in homotopy theory, paths from a point to itself are called <em class="ltx_emph ltx_font_italic">loops</em> and carry lots of interesting higher structure.
+Thus, given a type <math id="p21.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> with a point <math id="p21.m3" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, we define its <span class="ltx_text ltx_font_bold">loop space</span>
+<math id="p21.m4" class="ltx_Math" alttext="\Omega(A,a)" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> to be the type <math id="p21.m5" class="ltx_Math" alttext="a=_{A}a" display="inline"><mrow><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>a</mi></mrow></math>.
+We may sometimes write simply <math id="p21.m6" class="ltx_Math" alttext="\Omega A" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mi>A</mi></mrow></math> if the point <math id="p21.m7" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is understood from context.</p>
+</div>
+<div id="p22" class="ltx_para">
+<p class="ltx_p">Since any two elements of <math id="p22.m1" class="ltx_Math" alttext="\Omega A" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mi>A</mi></mrow></math> are paths with the same start and end points, they can be concatenated;
+thus we have an operation <math id="p22.m2" class="ltx_Math" alttext="\Omega A\times\Omega A\to\Omega A" display="inline"><mrow><mrow><mrow><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mi>A</mi></mrow><mo>×</mo><mi mathvariant="normal">Ω</mi></mrow><mo>⁢</mo><mi>A</mi></mrow><mo>→</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math>.
+More generally, the higher groupoid structure of <math id="p22.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> gives <math id="p22.m4" class="ltx_Math" alttext="\Omega A" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mi>A</mi></mrow></math> the analogous structure of a “higher group”.</p>
+</div>
+<div id="p23" class="ltx_para">
+<p class="ltx_p">It can also be useful to consider the loop space <em class="ltx_emph ltx_font_italic">of</em> the loop space of <math id="p23.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, which is the space of 2-dimensional loops on the identity loop at <math id="p23.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.
+This is written <math id="p23.m3" class="ltx_Math" alttext="\Omega^{2}(A,a)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mn>2</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> and represented in type theory by the type <math id="p23.m4" class="ltx_Math" alttext="\mathsf{refl}_{a}=_{({a=_{A}a})}\mathsf{refl}_{a}" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><msub><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>a</mi><mo stretchy="false">)</mo></mrow></msub><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></mrow></math>.
+While <math id="p23.m5" class="ltx_Math" alttext="\Omega^{2}(A,a)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mn>2</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, as a loop space, is again a “higher group”, it now also has some additional structure resulting from the fact that its elements are 2-dimensional loops between 1-dimensional loops.</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 2.1.6</span> (Eckmann–Hilton).</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The composition operation on the second loop space</span></p>
+<table id="S0.Ex33" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex33.m1" class="ltx_Math" alttext="\Omega^{2}(A)\times\Omega^{2}(A)\to\Omega^{2}(A)" display="block"><mrow><mrow><mrow><mrow><msup><mi mathvariant="normal">Ω</mi><mn>2</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>×</mo><msup><mi mathvariant="normal">Ω</mi><mn>2</mn></msup></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msup><mi mathvariant="normal">Ω</mi><mn>2</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">is commutative: <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="\alpha\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\beta=\beta\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\alpha" display="inline"><mrow><mrow><mi>α</mi><mo mathvariant="italic">⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo mathvariant="italic">⁢</mo><mi>β</mi></mrow><mo mathvariant="normal">=</mo><mrow><mi>β</mi><mo mathvariant="italic">⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo mathvariant="italic">⁢</mo><mi>α</mi></mrow></mrow></math>, for any <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="\alpha,\beta:\Omega^{2}(A)" display="inline"><mrow><mrow><mi>α</mi><mo mathvariant="normal">,</mo><mi>β</mi></mrow><mo mathvariant="normal">:</mo><mrow><msup><mi mathvariant="normal">Ω</mi><mn mathvariant="normal">2</mn></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>.
+</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p24" class="ltx_para">
+<p class="ltx_p">First, observe that the composition of <math id="p24.m1" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math>-loops <math id="p24.m2" class="ltx_Math" alttext="\Omega A\times\Omega A\to\Omega A" display="inline"><mrow><mrow><mrow><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mi>A</mi></mrow><mo>×</mo><mi mathvariant="normal">Ω</mi></mrow><mo>⁢</mo><mi>A</mi></mrow><mo>→</mo><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mi>A</mi></mrow></mrow></math> induces an operation</p>
+<table id="S0.Ex34" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex34.m1" class="ltx_Math" alttext="\star:\Omega^{2}(A)\times\Omega^{2}(A)\to\Omega^{2}(A)" display="block"><mrow><mo>⋆</mo><mo>:</mo><msup><mi mathvariant="normal">Ω</mi><mn>2</mn></msup><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo>×</mo><msup><mi mathvariant="normal">Ω</mi><mn>2</mn></msup><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><msup><mi mathvariant="normal">Ω</mi><mn>2</mn></msup><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">as follows: consider elements <math id="p24.m3" class="ltx_Math" alttext="a,b,c:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi></mrow><mo>:</mo><mi>A</mi></mrow></math> and 1- and 2-paths,</p>
+<table id="S0.EGx4" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex35" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex35.m1" class="ltx_Math" alttext="\displaystyle p" display="inline"><mi>p</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex35.m2" class="ltx_Math" alttext="\displaystyle:a=b," display="inline"><mrow><mrow><mi></mi><mo>:</mo><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex35.m3" class="ltx_Math" alttext="\displaystyle r" display="inline"><mi>r</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex35.m4" class="ltx_Math" alttext="\displaystyle:b=c" display="inline"><mrow><mi></mi><mo>:</mo><mrow><mi>b</mi><mo>=</mo><mi>c</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex36" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex36.m1" class="ltx_Math" alttext="\displaystyle q" display="inline"><mi>q</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex36.m2" class="ltx_Math" alttext="\displaystyle:a=b," display="inline"><mrow><mrow><mi></mi><mo>:</mo><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex36.m3" class="ltx_Math" alttext="\displaystyle s" display="inline"><mi>s</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex36.m4" class="ltx_Math" alttext="\displaystyle:b=c" display="inline"><mrow><mi></mi><mo>:</mo><mrow><mi>b</mi><mo>=</mo><mi>c</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex37" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex37.m1" class="ltx_Math" alttext="\displaystyle\alpha" display="inline"><mi>α</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex37.m2" class="ltx_Math" alttext="\displaystyle:p=q," display="inline"><mrow><mrow><mi></mi><mo>:</mo><mrow><mi>p</mi><mo>=</mo><mi>q</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex37.m3" class="ltx_Math" alttext="\displaystyle\beta" display="inline"><mi>β</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex37.m4" class="ltx_Math" alttext="\displaystyle:r=s" display="inline"><mrow><mi></mi><mo>:</mo><mrow><mi>r</mi><mo>=</mo><mi>s</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">as depicted in the following diagram (with paths drawn as arrows).
+</p>
+</div>
+<figure id="fig1" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center">HoTT_fig_2.1.1.png</p>
+</figure>
+<div id="p25" class="ltx_para">
+<p class="ltx_p">Composing the upper and lower 1-paths, respectively, we get two paths <math id="p25.m1" class="ltx_Math" alttext="p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}r,\ q\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}s:a=c" display="inline"><mrow><mrow><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow><mo rspace="7.5pt">,</mo><mrow><mi>q</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>s</mi></mrow></mrow><mo>:</mo><mrow><mi>a</mi><mo>=</mo><mi>c</mi></mrow></mrow></math>, and there is then a “horizontal composition”</p>
+<table id="S0.Ex38" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex38.m1" class="ltx_Math" alttext="\alpha\star\beta:p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}r=q\mathchoice{\mathbin{\raisebox{2.15pt}{%
+$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}s" display="block"><mrow><mrow><mi>α</mi><mo>⋆</mo><mi>β</mi></mrow><mo>:</mo><mrow><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow><mo>=</mo><mrow><mi>q</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>s</mi></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">between them, defined as follows.
+First, we define <math id="p25.m2" class="ltx_Math" alttext="\alpha\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}}_{r}}r:p\mathchoice{\mathbin{\raisebox{2.%
+15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}r=q\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}r" display="inline"><mrow><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mo>⁡</mo><mi>α</mi><mi>r</mi></mrow><mo>:</mo><mrow><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow><mo>=</mo><mrow><mi>q</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow></mrow></mrow></math> by path induction on <math id="p25.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, so that</p>
+<table id="S0.Ex39" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex39.m1" class="ltx_Math" alttext="\alpha\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}}_{r}}\mathsf{refl}_{b}\equiv\mathord{{%
+\mathsf{ru}_{p}}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\alpha\mathchoice{\mathbin{\raisebox{2.15%
+pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{ru}_{q}" display="block"><mrow><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mo>⁡</mo><mi>α</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>b</mi></msub></mrow><mo>≡</mo><mrow><mmultiscripts><mi>𝗋𝗎</mi><mi>p</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>α</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝗎</mi><mi>q</mi></msub></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p25.m4" class="ltx_Math" alttext="\mathsf{ru}_{p}:p=p\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_{b}" display="inline"><mrow><msub><mi>𝗋𝗎</mi><mi>p</mi></msub><mo>:</mo><mrow><mi>p</mi><mo>=</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>b</mi></msub></mrow></mrow></mrow></math> is the right unit law from Lemma 2.1.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmprelem3</span>)(<a href="#I1.i1" title="1. ‣ Lemma 2.1.4. ‣ 2.1 Types are higher groupoids" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a>).
+We could similarly define <math id="p25.m5" class="ltx_Math" alttext="\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}}_{r}}" display="inline"><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub></math> by induction on <math id="p25.m6" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math>, or on all paths in sight, resulting in different judgmental equalities, but for present purposes the definition by induction on <math id="p25.m7" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> will make things simpler.
+Similarly, we define <math id="p25.m8" class="ltx_Math" alttext="q\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}%
+{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}}_{\ell}}\beta:q\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}r=q\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}s" display="inline"><mrow><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi mathvariant="normal">ℓ</mi></msub><mo>⁡</mo><mi>q</mi><mi>β</mi></mrow><mo>:</mo><mrow><mrow><mi>q</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>r</mi></mrow><mo>=</mo><mrow><mi>q</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>s</mi></mrow></mrow></mrow></math> by induction on <math id="p25.m9" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>, so that</p>
+<table id="S0.Ex40" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex40.m1" class="ltx_Math" alttext="\mathsf{refl}_{b}\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}}_{\ell}}\beta\equiv\mathord{{%
+\mathsf{lu}_{r}}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\beta\mathchoice{\mathbin{\raisebox{2.15pt%
+}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{lu}_{s}" display="block"><mrow><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi mathvariant="normal">ℓ</mi></msub><mo>⁡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>b</mi></msub><mi>β</mi></mrow><mo>≡</mo><mrow><mmultiscripts><mi>𝗅𝗎</mi><mi>r</mi><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>β</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗅𝗎</mi><mi>s</mi></msub></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p25.m10" class="ltx_Math" alttext="\mathsf{lu}_{r}" display="inline"><msub><mi>𝗅𝗎</mi><mi>r</mi></msub></math> denotes the left unit law.
+The operations <math id="p25.m11" class="ltx_Math" alttext="\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}}_{\ell}}" display="inline"><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi mathvariant="normal">ℓ</mi></msub></math> and <math id="p25.m12" class="ltx_Math" alttext="\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}}_{r}}" display="inline"><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub></math> are called <span class="ltx_text ltx_font_bold">whiskering</span>.
+Next, since <math id="p25.m13" class="ltx_Math" alttext="\alpha\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}}_{r}}r" display="inline"><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mo>⁡</mo><mi>α</mi><mi>r</mi></mrow></math> and <math id="p25.m14" class="ltx_Math" alttext="q\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}%
+{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}}_{\ell}}\beta" display="inline"><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi mathvariant="normal">ℓ</mi></msub><mo>⁡</mo><mi>q</mi><mi>β</mi></mrow></math> are composable 2-paths, we can define the <span class="ltx_text ltx_font_bold">horizontal composition</span>
+by:
+</p>
+<table id="S0.Ex41" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex41.m1" class="ltx_Math" alttext="\alpha\star\beta\ :\!\!\equiv\ (\alpha\mathbin{{\mathchoice{\mathbin{\raisebox%
+{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}%
+}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{%
+\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}}_{r}}r)\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}(q\mathbin{%
+{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}}_{\ell}}\beta)." display="block"><mrow><mi>α</mi><mo>⋆</mo><mpadded width="+5pt"><mi>β</mi></mpadded><mo rspace="0pt">:</mo><mo rspace="7.5pt">≡</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mi>r</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mrow><mo stretchy="false">(</mo><mi>q</mi><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi mathvariant="normal">ℓ</mi></msub><mi>β</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Now suppose that <math id="p25.m15" class="ltx_Math" alttext="a\equiv b\equiv c" display="inline"><mrow><mi>a</mi><mo>≡</mo><mi>b</mi><mo>≡</mo><mi>c</mi></mrow></math>, so that all the 1-paths <math id="p25.m16" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, <math id="p25.m17" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>, <math id="p25.m18" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, and <math id="p25.m19" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math> are elements of <math id="p25.m20" class="ltx_Math" alttext="\Omega(A,a)" display="inline"><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and assume moreover that <math id="p25.m21" class="ltx_Math" alttext="p\equiv q\equiv r\equiv s\equiv\mathsf{refl}_{a}" display="inline"><mrow><mi>p</mi><mo>≡</mo><mi>q</mi><mo>≡</mo><mi>r</mi><mo>≡</mo><mi>s</mi><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></mrow></math>, so that <math id="p25.m22" class="ltx_Math" alttext="\alpha:\mathsf{refl}_{a}=\mathsf{refl}_{a}" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></mrow></mrow></math> and <math id="p25.m23" class="ltx_Math" alttext="\beta:\mathsf{refl}_{a}=\mathsf{refl}_{a}" display="inline"><mrow><mi>β</mi><mo>:</mo><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></mrow></mrow></math> are composable in both orders.
+In that case, we have</p>
+<table id="S0.EGx5" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex42" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex42.m1" class="ltx_Math" alttext="\displaystyle\alpha\star\beta" display="inline"><mrow><mi>α</mi><mo>⋆</mo><mi>β</mi></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex42.m2" class="ltx_Math" alttext="\displaystyle\equiv(\alpha\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}}_{r}}\mathsf{refl}_{a})%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}(\mathsf{refl}_{a}\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}}_{\ell}}\beta)" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mo>⁡</mo><mi>α</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi mathvariant="normal">ℓ</mi></msub><mo>⁡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mi>β</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex43" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex43.m2" class="ltx_Math" alttext="\displaystyle=\mathord{{\mathsf{ru}_{\mathsf{refl}_{a}}}^{-1}}\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\alpha%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\mathsf{ru}_{\mathsf{refl}_{a}}\mathchoice{\mathbin{\raisebox{2.15pt}{$%
+\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathord{{\mathsf{lu}_{\mathsf{%
+refl}_{a}}}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\beta\mathchoice{\mathbin{\raisebox{2.15pt%
+}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{lu}_{\mathsf{refl}_{a}}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mmultiscripts><mi>𝗋𝗎</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>α</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝗎</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mmultiscripts><mi>𝗅𝗎</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>β</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗅𝗎</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></msub></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex44" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex44.m2" class="ltx_Math" alttext="\displaystyle\equiv\mathord{{\mathsf{refl}_{\mathsf{refl}_{a}}}^{-1}}%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\alpha\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\mathsf{refl}_{\mathsf{refl}_{a}}\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathord{{%
+\mathsf{refl}_{\mathsf{refl}_{a}}}^{-1}}\mathchoice{\mathbin{\raisebox{2.15pt}%
+{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\beta\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{refl}_%
+{\mathsf{refl}_{a}}" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>α</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></msub><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mmultiscripts><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><none></none><none></none><mrow><mo>-</mo><mn>1</mn></mrow></mmultiscripts><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>β</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></msub></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex45" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex45.m2" class="ltx_Math" alttext="\displaystyle=\alpha\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\beta." display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>α</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>β</mi></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">(Recall that <math id="p25.m24" class="ltx_Math" alttext="\mathsf{ru}_{\mathsf{refl}_{a}}\equiv\mathsf{lu}_{\mathsf{refl}_{a}}\equiv%
+\mathsf{refl}_{\mathsf{refl}_{a}}" display="inline"><mrow><msub><mi>𝗋𝗎</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></msub><mo>≡</mo><msub><mi>𝗅𝗎</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></msub><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></msub></mrow></math>, by the computation rule for path induction.)
+On the other hand, we can define another horizontal composition analogously by</p>
+<table id="S0.Ex46" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex46.m1" class="ltx_Math" alttext="\alpha\star^{\prime}\beta\ :\!\!\equiv\ (p\mathbin{{\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}}_{\ell}}\beta%
+)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}(\alpha\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}}_{r}}s)." display="block"><mrow><mi>α</mi><msup><mo>⋆</mo><mo>′</mo></msup><mpadded width="+5pt"><mi>β</mi></mpadded><mo rspace="0pt">:</mo><mo rspace="7.5pt">≡</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi mathvariant="normal">ℓ</mi></msub><mi>β</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mrow><mo stretchy="false">(</mo><mi>α</mi><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mi>s</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and we similarly learn that</p>
+<table id="S0.Ex47" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex47.m1" class="ltx_Math" alttext="\alpha\star^{\prime}\beta\ =\ (\mathsf{refl}_{a}\mathbin{{\mathchoice{\mathbin%
+{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}}_{\ell}}\beta%
+)\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}(\alpha\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}}_{r}}\mathsf{refl}_{a})=\beta\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\alpha." display="block"><mrow><mrow><mrow><mi>α</mi><msup><mo>⋆</mo><mo>′</mo></msup><mpadded width="+5pt"><mi>β</mi></mpadded></mrow><mo rspace="7.5pt">=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi mathvariant="normal">ℓ</mi></msub><mo>⁡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mi>β</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mo>⁡</mo><mi>α</mi><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>β</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>α</mi></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">But, in general, the two ways of defining horizontal composition agree, <math id="p25.m25" class="ltx_Math" alttext="\alpha\star\beta=\alpha\star^{\prime}\beta" display="inline"><mrow><mrow><mi>α</mi><mo>⋆</mo><mi>β</mi></mrow><mo>=</mo><mrow><mi>α</mi><msup><mo>⋆</mo><mo>′</mo></msup><mi>β</mi></mrow></mrow></math>, as we can see by induction on <math id="p25.m26" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math> and <math id="p25.m27" class="ltx_Math" alttext="\beta" display="inline"><mi>β</mi></math> and then on the two remaining 1-paths, to reduce everything to reflexivity.
+Thus we have</p>
+<table id="S0.Ex48" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex48.m1" class="ltx_Math" alttext="\alpha\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\beta=\alpha\star\beta=\alpha\star^{\prime}\beta=\beta%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\alpha.\qed" display="block"><mrow><mrow><mrow><mi>α</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>β</mi></mrow><mo>=</mo><mrow><mi>α</mi><mo>⋆</mo><mi>β</mi></mrow><mo>=</mo><mrow><mi>α</mi><msup><mo>⋆</mo><mo>′</mo></msup><mi>β</mi></mrow><mo>=</mo><mrow><mi>β</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>α</mi></mrow></mrow><mo>.</mo><mo mathvariant="italic" separator="true">∎</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="p26" class="ltx_para">
+<p class="ltx_p">The foregoing fact, which is known as the <em class="ltx_emph ltx_font_italic">Eckmann–Hilton argument</em>, comes from classical homotopy theory, and indeed it is used in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87582</span>Chapter 8 below to show that the higher homotopy groups of a type are always abelian groups.
+The whiskering and horizontal composition operations defined in the proof are also a general part of the <math id="p26.m1" class="ltx_Math" alttext="\infty" display="inline"><mi mathvariant="normal">∞</mi></math>-groupoid structure of types.
+They satisfy their own laws (up to higher homotopy), such as</p>
+<table id="S0.Ex49" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex49.m1" class="ltx_Math" alttext="\alpha\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}}_{r}}(p\mathchoice{\mathbin{\raisebox{2.1%
+5pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}q)=(\alpha\mathbin{{\mathchoice{%
+\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.1%
+5pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}%
+}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}}_{r}}p)%
+\mathbin{{\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{%
+\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}}_{r}}q" display="block"><mrow><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mo>⁡</mo><mi>α</mi><mrow><mo stretchy="false">(</mo><mrow><mi>p</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>q</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><msub><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>r</mi></msub><mo>⁡</mo><mi>α</mi><mi>p</mi></mrow><mo stretchy="false">)</mo></mrow><mi>q</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and so on.
+From now on, we trust the reader to apply path induction whenever needed to define further operations of this sort and verify their properties.</p>
+</div>
+<div id="p27" class="ltx_para">
+<p class="ltx_p">As this example suggests, the algebra of higher path types is much more intricate than just the groupoid-like structure at each level; the levels interact to give many further operations and laws, as in the study of iterated loop spaces in homotopy theory.
+Indeed, as in classical homotopy theory, we can make the following general definitions:</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 2.1.7</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A <span class="ltx_text ltx_font_bold">pointed type</span>
+<math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="(A,a)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is a type <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> together with a point <math id="Thmpredefn1.p1.m3" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>, called its <span class="ltx_text ltx_font_bold">basepoint</span>.
+We write <math id="Thmpredefn1.p1.m4" class="ltx_Math" alttext="\mathcal{U}_{\bullet}:\!\!\equiv\mathchoice{\sum_{A:\mathcal{U}}\,}{%
+\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{%
+(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(A:%
+\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:%
+\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}A" display="inline"><mrow><msub><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal">∙</mo></msub><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mi>A</mi></mrow></math> for the type of pointed types in the universe <math id="Thmpredefn1.p1.m5" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></math>.</span></p>
+</div>
+</div>
+<div id="Thmpredefn2" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 2.1.8</span>.</h6>
+<div id="Thmpredefn2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Given a pointed type <math id="Thmpredefn2.p1.m1" class="ltx_Math" alttext="(A,a)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math>, we define the <span class="ltx_text ltx_font_bold">loop space</span>
+of <math id="Thmpredefn2.p1.m2" class="ltx_Math" alttext="(A,a)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> to be the following pointed type:</span></p>
+<table id="S0.Ex50" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex50.m1" class="ltx_Math" alttext="\Omega(A,a):\!\!\equiv((a=_{A}a),\mathsf{refl}_{a})." display="block"><mrow><mi mathvariant="normal">Ω</mi><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><msub><mo>=</mo><mi>A</mi></msub><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>a</mi></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">An element of it will be called a <span class="ltx_text ltx_font_bold">loop</span> at <math id="Thmpredefn2.p1.m3" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.
+For <math id="Thmpredefn2.p1.m4" class="ltx_Math" alttext="n:\mathbb{N}" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">:</mo><mi mathvariant="normal">N</mi></mrow></math>, the <math id="Thmpredefn2.p1.m5" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math><span class="ltx_text ltx_font_bold">-fold iterated loop space</span> <math id="Thmpredefn2.p1.m6" class="ltx_Math" alttext="\Omega^{n}(A,a)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mi>n</mi></msup><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>
+of a pointed type <math id="Thmpredefn2.p1.m8" class="ltx_Math" alttext="(A,a)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is defined recursively by:</span></p>
+<table id="S0.EGx6" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex51" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex51.m1" class="ltx_Math" alttext="\displaystyle\Omega^{0}(A,a)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mn>0</mn></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex51.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv(A,a)" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex52" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex52.m1" class="ltx_Math" alttext="\displaystyle\Omega^{n+1}(A,a)" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex52.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\Omega^{n}(\Omega(A,a))." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msup><mi mathvariant="normal">Ω</mi><mi>n</mi></msup><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Ω</mi><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">An element of it will be called an <math id="Thmpredefn2.p1.m9" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math><span class="ltx_text ltx_font_bold">-loop</span>
+or an <math id="Thmpredefn2.p1.m13" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math><span class="ltx_text ltx_font_bold">-dimensional loop</span>
+at <math id="Thmpredefn2.p1.m18" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>.</span></p>
+</div>
+</div>
+<div id="p28" class="ltx_para">
+<p class="ltx_p">We will return to iterated loop spaces in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87580</span>Chapter 7,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87579</span>Chapter 6,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87582</span>Chapter 8.
+
+</p>
+</div>
+<div id="p29" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">2.1 Types are higher groupoids</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:33:44 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

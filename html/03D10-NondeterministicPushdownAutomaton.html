@@ -1,0 +1,254 @@
+<!DOCTYPE html><html>
+<head>
+<title>non-deterministic pushdown automaton</title>
+<!--Generated on Thu Feb  8 20:01:14 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">non-deterministic pushdown automaton</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<section id="S0.SS0.SSSx1" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Definition</h2>
+
+<div id="S0.SS0.SSSx1.p1" class="ltx_para">
+<p class="ltx_p">A <em class="ltx_emph ltx_font_italic">non-deterministic pushdown automaton</em> (NPDA), or just <em class="ltx_emph ltx_font_italic">pushdown automaton</em> (PDA) is a variation on the idea of a non-deterministic finite automaton (NDFA). Unlike an NDFA, a PDA is associated with a stack (hence the name <span class="ltx_text ltx_font_italic">pushdown</span>). The transition function must also take into account the “state” of the stack.</p>
+</div>
+<div id="S0.SS0.SSSx1.p2" class="ltx_para">
+<p class="ltx_p">Formally defined, a pushdown automaton <math id="S0.SS0.SSSx1.p2.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> is a 7-tuple <math id="S0.SS0.SSSx1.p2.m2" class="ltx_Math" alttext="M=(Q,\Sigma,\Gamma,T,q_{0},\bot,F)" display="inline"><mrow><mi>M</mi><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>Q</mi><mo>,</mo><mi mathvariant="normal">Σ</mi><mo>,</mo><mi mathvariant="normal">Γ</mi><mo>,</mo><mi>T</mi><mo>,</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mo>⊥</mo><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow></mrow></math>, where
+<math id="S0.SS0.SSSx1.p2.m3" class="ltx_Math" alttext="Q,\Sigma,q_{0}," display="inline"><mrow><mrow><mi>Q</mi><mo>,</mo><mi mathvariant="normal">Σ</mi><mo>,</mo><msub><mi>q</mi><mn>0</mn></msub></mrow><mo>,</mo></mrow></math> and <math id="S0.SS0.SSSx1.p2.m4" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math>, like those in an NDFA, are the set of states, the input alphabet, the start state, and the set of final states respectively. <math id="S0.SS0.SSSx1.p2.m5" class="ltx_Math" alttext="\Gamma" display="inline"><mi mathvariant="normal">Γ</mi></math> is the <em class="ltx_emph ltx_font_italic">stack alphabet</em>, specifying the set of symbols that can be pushed onto the stack. <math id="S0.SS0.SSSx1.p2.m6" class="ltx_Math" alttext="\Gamma" display="inline"><mi mathvariant="normal">Γ</mi></math> is not necessarily disjoint from <math id="S0.SS0.SSSx1.p2.m7" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>. <math id="S0.SS0.SSSx1.p2.m8" class="ltx_Math" alttext="\bot" display="inline"><mo>⊥</mo></math> is an element of <math id="S0.SS0.SSSx1.p2.m9" class="ltx_Math" alttext="\Gamma" display="inline"><mi mathvariant="normal">Γ</mi></math> called the <em class="ltx_emph ltx_font_italic">start stack symbol</em>. The transition function is</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="T:Q\times(\Sigma\cup\{\lambda\})\times\Gamma\to\mathcal{P}(Q\times\Gamma^{*})." display="block"><mrow><mrow><mi>T</mi><mo>:</mo><mrow><mrow><mi>Q</mi><mo>×</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">Σ</mi><mo>∪</mo><mrow><mo stretchy="false">{</mo><mi>λ</mi><mo stretchy="false">}</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>×</mo><mi mathvariant="normal">Γ</mi></mrow><mo>→</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒫</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>Q</mi><mo>×</mo><msup><mi mathvariant="normal">Γ</mi><mo>*</mo></msup></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</section>
+<section id="S0.SS0.SSSx2" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">How It Works</h2>
+
+<div id="S0.SS0.SSSx2.p1" class="ltx_para">
+<p class="ltx_p">To see how the computing machine <math id="S0.SS0.SSSx2.p1.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> works, first imagine <math id="S0.SS0.SSSx2.p1.m2" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> with the following features:</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">a finite set <math id="I1.i1.p1.m1" class="ltx_Math" alttext="Q" display="inline"><mi>Q</mi></math> of internal states,</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">a horizontal tape of cells each containing an input symbol of <math id="I1.i2.p1.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>,</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p">a tape reader that reads at most one tape cell in any given internal state, and</p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p">a vertical stack of cells storing symbols of <math id="I1.i4.p1.m1" class="ltx_Math" alttext="\Gamma" display="inline"><mi mathvariant="normal">Γ</mi></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">Now, given that <math id="S0.SS0.SSSx2.p1.m3" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> is in state <math id="S0.SS0.SSSx2.p1.m4" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, with symbol <math id="S0.SS0.SSSx2.p1.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> on top of the stack, and tape reader pointing at a tape cell containing symbol <math id="S0.SS0.SSSx2.p1.m6" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>, it may do one of the following:</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i1.p1.m1" class="ltx_Math" alttext="T(p,a,A)\neq\varnothing" display="inline"><mrow><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mi mathvariant="normal">∅</mi></mrow></math>, then it</p>
+<ol id="I2.I1" class="ltx_enumerate">
+<li id="I2.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">(a)</span> 
+<div id="I2.I1.i1.p1" class="ltx_para">
+<p class="ltx_p">“pops” <math id="I2.I1.i1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> off the stack,</p>
+</div>
+</li>
+<li id="I2.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">(b)</span> 
+<div id="I2.I1.i2.p1" class="ltx_para">
+<p class="ltx_p">“pushes” word <math id="I2.I1.i2.p1.m1" class="ltx_Math" alttext="A_{1}\cdots A_{n}" display="inline"><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msub><mi>A</mi><mi>n</mi></msub></mrow></math> onto the stack, by starting with symbol <math id="I2.I1.i2.p1.m2" class="ltx_Math" alttext="A_{n}" display="inline"><msub><mi>A</mi><mi>n</mi></msub></math>, and ending with symbol <math id="I2.I1.i2.p1.m3" class="ltx_Math" alttext="A_{1}" display="inline"><msub><mi>A</mi><mn>1</mn></msub></math>,</p>
+</div>
+</li>
+<li id="I2.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">(c)</span> 
+<div id="I2.I1.i3.p1" class="ltx_para">
+<p class="ltx_p">“consumes” <math id="I2.I1.i3.p1.m1" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> by moving the tape reader to the right of the cell containing <math id="I2.I1.i3.p1.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>, and</p>
+</div>
+</li>
+<li id="I2.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">(d)</span> 
+<div id="I2.I1.i4.p1" class="ltx_para">
+<p class="ltx_p">enters state <math id="I2.I1.i4.p1.m1" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>,</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">provided that <math id="I2.i1.p1.m2" class="ltx_Math" alttext="(q,A_{1}\cdots A_{n})\in T(p,a,A)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msub><mi>A</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo>∈</mo><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>; if <math id="I2.i1.p1.m3" class="ltx_Math" alttext="T(p,a,A)=\varnothing" display="inline"><mrow><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi mathvariant="normal">∅</mi></mrow></math>, then <math id="I2.i1.p1.m4" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> does nothing.</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I2.i2.p1.m1" class="ltx_Math" alttext="T(p,\lambda,A)\neq\varnothing" display="inline"><mrow><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>λ</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≠</mo><mi mathvariant="normal">∅</mi></mrow></math>, then, without reading <math id="I2.i2.p1.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>, it</p>
+<ol id="I2.I2" class="ltx_enumerate">
+<li id="I2.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">(a)</span> 
+<div id="I2.I2.i1.p1" class="ltx_para">
+<p class="ltx_p">“pops” <math id="I2.I2.i1.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> off the stack,</p>
+</div>
+</li>
+<li id="I2.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">(b)</span> 
+<div id="I2.I2.i2.p1" class="ltx_para">
+<p class="ltx_p">“pushes” word <math id="I2.I2.i2.p1.m1" class="ltx_Math" alttext="A_{1}\cdots A_{n}" display="inline"><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msub><mi>A</mi><mi>n</mi></msub></mrow></math> onto the stack, and</p>
+</div>
+</li>
+<li id="I2.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">(c)</span> 
+<div id="I2.I2.i3.p1" class="ltx_para">
+<p class="ltx_p">enters state <math id="I2.I2.i3.p1.m1" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math>,</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">as long as <math id="I2.i2.p1.m3" class="ltx_Math" alttext="(q,A_{1}\cdots A_{n})\in T(p,\lambda,A)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msub><mi>A</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo>∈</mo><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>λ</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>; if <math id="I2.i2.p1.m4" class="ltx_Math" alttext="T(p,\lambda,A)=\varnothing" display="inline"><mrow><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>λ</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi mathvariant="normal">∅</mi></mrow></math>, then <math id="I2.i2.p1.m5" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> does nothing.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">If <math id="S0.SS0.SSSx2.p1.m7" class="ltx_Math" alttext="(q,\lambda)\in T(p,a,A)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>λ</mi><mo stretchy="false">)</mo></mrow><mo>∈</mo><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then <math id="S0.SS0.SSSx2.p1.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> gets popped off, and nothing gets pushed onto the stack.</p>
+</div>
+</section>
+<section id="S0.SS0.SSSx3" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Modes of Acceptance</h2>
+
+<div id="S0.SS0.SSSx3.p1" class="ltx_para">
+<p class="ltx_p">A PDA is a language acceptor. We describe how words are accepted by a PDA <math id="S0.SS0.SSSx3.p1.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math>. First, we start with configurations.</p>
+</div>
+<div id="S0.SS0.SSSx3.p2" class="ltx_para">
+<p class="ltx_p">A configuration of <math id="S0.SS0.SSSx3.p2.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> is an element of <math id="S0.SS0.SSSx3.p2.m2" class="ltx_Math" alttext="Q\times\Sigma^{*}\times\Gamma^{*}" display="inline"><mrow><mi>Q</mi><mo>×</mo><msup><mi mathvariant="normal">Σ</mi><mo>*</mo></msup><mo>×</mo><msup><mi mathvariant="normal">Γ</mi><mo>*</mo></msup></mrow></math>. For any word <math id="S0.SS0.SSSx3.p2.m3" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>, the configuration <math id="S0.SS0.SSSx3.p2.m4" class="ltx_Math" alttext="(q_{0},u,\bot)" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo>,</mo><mo>⊥</mo><mo stretchy="false">)</mo></mrow></math> is called the <em class="ltx_emph ltx_font_italic">start configuration</em> of <math id="S0.SS0.SSSx3.p2.m5" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>. A binary relation <math id="S0.SS0.SSSx3.p2.m6" class="ltx_Math" alttext="\vdash" display="inline"><mo>⊢</mo></math> on the set of configurations is defined as follows: if <math id="S0.SS0.SSSx3.p2.m7" class="ltx_Math" alttext="(p,u,\alpha)" display="inline"><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>u</mi><mo>,</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></math> and <math id="S0.SS0.SSSx3.p2.m8" class="ltx_Math" alttext="(q,v,\beta)" display="inline"><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>v</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow></math> are configurations of <math id="S0.SS0.SSSx3.p2.m9" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math>, then</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="(p,u,\alpha)\vdash(q,v,\beta)" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>u</mi><mo>,</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mo>⊢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>v</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">provided that <math id="S0.SS0.SSSx3.p2.m10" class="ltx_Math" alttext="\alpha=A\gamma" display="inline"><mrow><mi>α</mi><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mi>γ</mi></mrow></mrow></math> and <math id="S0.SS0.SSSx3.p2.m11" class="ltx_Math" alttext="\beta=B_{1}\cdots B_{n}\gamma" display="inline"><mrow><mi>β</mi><mo>=</mo><mrow><msub><mi>B</mi><mn>1</mn></msub><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msub><mi>B</mi><mi>n</mi></msub><mo>⁢</mo><mi>γ</mi></mrow></mrow></math>, for some <math id="S0.SS0.SSSx3.p2.m12" class="ltx_Math" alttext="A,B_{1},\ldots,B_{n}\in\Gamma" display="inline"><mrow><mrow><mi>A</mi><mo>,</mo><msub><mi>B</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>B</mi><mi>n</mi></msub></mrow><mo>∈</mo><mi mathvariant="normal">Γ</mi></mrow></math>, and</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">either <math id="I3.i1.p1.m1" class="ltx_Math" alttext="u=av" display="inline"><mrow><mi>u</mi><mo>=</mo><mrow><mi>a</mi><mo>⁢</mo><mi>v</mi></mrow></mrow></math>, and <math id="I3.i1.p1.m2" class="ltx_Math" alttext="(q,B_{1}\cdots B_{n})\in T(p,a,A)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mrow><msub><mi>B</mi><mn>1</mn></msub><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msub><mi>B</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo>∈</mo><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p">or <math id="I3.i2.p1.m1" class="ltx_Math" alttext="u=v" display="inline"><mrow><mi>u</mi><mo>=</mo><mi>v</mi></mrow></math>, and <math id="I3.i2.p1.m2" class="ltx_Math" alttext="(q,B_{1}\cdots B_{n})\in T(p,\lambda,A)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mrow><msub><mi>B</mi><mn>1</mn></msub><mo>⁢</mo><mi mathvariant="normal">⋯</mi><mo>⁢</mo><msub><mi>B</mi><mi>n</mi></msub></mrow><mo stretchy="false">)</mo></mrow><mo>∈</mo><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>λ</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Now, take the reflexive transitive closure <math id="S0.SS0.SSSx3.p2.m13" class="ltx_Math" alttext="\vdash^{*}" display="inline"><msup><mo>⊢</mo><mo>*</mo></msup></math> of <math id="S0.SS0.SSSx3.p2.m14" class="ltx_Math" alttext="\vdash" display="inline"><mo>⊢</mo></math>. When <math id="S0.SS0.SSSx3.p2.m15" class="ltx_Math" alttext="(p,u,\alpha)\vdash^{*}(q,v,\beta)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>u</mi><mo>,</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><msup><mo>⊢</mo><mo>*</mo></msup><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>v</mi><mo>,</mo><mi>β</mi><mo stretchy="false">)</mo></mrow></mrow></math>, we say that <math id="S0.SS0.SSSx3.p2.m16" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math> is derivable from <math id="S0.SS0.SSSx3.p2.m17" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math>. A word <math id="S0.SS0.SSSx3.p2.m18" class="ltx_Math" alttext="u\in\Sigma^{*}" display="inline"><mrow><mi>u</mi><mo>∈</mo><msup><mi mathvariant="normal">Σ</mi><mo>*</mo></msup></mrow></math> is said to be</p>
+<ul id="I4" class="ltx_itemize">
+<li id="I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i1.p1" class="ltx_para">
+<p class="ltx_p">accepted on final state by <math id="I4.i1.p1.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> if <math id="I4.i1.p1.m2" class="ltx_Math" alttext="(q_{0},u,\bot)\vdash^{*}(q,\lambda,\alpha)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo>,</mo><mo>⊥</mo><mo stretchy="false">)</mo></mrow><msup><mo>⊢</mo><mo>*</mo></msup><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>λ</mi><mo>,</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></mrow></math> for some final state <math id="I4.i1.p1.m3" class="ltx_Math" alttext="q\in F" display="inline"><mrow><mi>q</mi><mo>∈</mo><mi>F</mi></mrow></math>,</p>
+</div>
+</li>
+<li id="I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i2.p1" class="ltx_para">
+<p class="ltx_p">accepted on empty stack by <math id="I4.i2.p1.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> if <math id="I4.i2.p1.m2" class="ltx_Math" alttext="(q_{0},u,\bot)\vdash^{*}(q,\lambda,\lambda)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo>,</mo><mo>⊥</mo><mo stretchy="false">)</mo></mrow><msup><mo>⊢</mo><mo>*</mo></msup><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>λ</mi><mo>,</mo><mi>λ</mi><mo stretchy="false">)</mo></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I4.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i3.p1" class="ltx_para">
+<p class="ltx_p">accepted on final state and empty stack by <math id="I4.i3.p1.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> if <math id="I4.i3.p1.m2" class="ltx_Math" alttext="(q_{0},u,\bot)\vdash^{*}(q,\lambda,\lambda)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mi>u</mi><mo>,</mo><mo>⊥</mo><mo stretchy="false">)</mo></mrow><msup><mo>⊢</mo><mo>*</mo></msup><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>λ</mi><mo>,</mo><mi>λ</mi><mo stretchy="false">)</mo></mrow></mrow></math> for some <math id="I4.i3.p1.m3" class="ltx_Math" alttext="q\in F" display="inline"><mrow><mi>q</mi><mo>∈</mo><mi>F</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="S0.SS0.SSSx4" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Languages Accepted by a PDA</h2>
+
+<div id="S0.SS0.SSSx4.p1" class="ltx_para">
+<p class="ltx_p">Given a mode of acceptance, the set of words accepted by <math id="S0.SS0.SSSx4.p1.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> is called the language accepted by <math id="S0.SS0.SSSx4.p1.m2" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> based on that mode of acceptance. Given a PDA <math id="S0.SS0.SSSx4.p1.m3" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math>, there are three languages accepted by <math id="S0.SS0.SSSx4.p1.m4" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math>, corresponding to the three acceptance modes above.</p>
+</div>
+<div id="S0.SS0.SSSx4.p2" class="ltx_para">
+<p class="ltx_p">It turns out that three modes of acceptance are <em class="ltx_emph ltx_font_italic">equivalent</em>, in the following sense: if a language <math id="S0.SS0.SSSx4.p2.m1" class="ltx_Math" alttext="L" display="inline"><mi>L</mi></math> is accepted by <math id="S0.SS0.SSSx4.p2.m2" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> on one acceptance mode, there are PDA <math id="S0.SS0.SSSx4.p2.m3" class="ltx_Math" alttext="M_{1}" display="inline"><msub><mi>M</mi><mn>1</mn></msub></math> and <math id="S0.SS0.SSSx4.p2.m4" class="ltx_Math" alttext="M_{2}" display="inline"><msub><mi>M</mi><mn>2</mn></msub></math> that accept <math id="S0.SS0.SSSx4.p2.m5" class="ltx_Math" alttext="L" display="inline"><mi>L</mi></math> in the other two acceptance modes.</p>
+</div>
+<div id="S0.SS0.SSSx4.p3" class="ltx_para">
+<p class="ltx_p">In general, unless otherwise stated, the language <math id="S0.SS0.SSSx4.p3.m1" class="ltx_Math" alttext="L(M)" display="inline"><mrow><mi>L</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow></mrow></math> accepted by a PDA <math id="S0.SS0.SSSx4.p3.m2" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> stands for the language accepted by <math id="S0.SS0.SSSx4.p3.m3" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> on final state.</p>
+</div>
+<div id="S0.SS0.SSSx4.p4" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Remarks</span>.
+</p>
+<ol id="I5" class="ltx_enumerate">
+<li id="I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I5.i1.p1" class="ltx_para">
+<p class="ltx_p">Two PDAs are said to be equivalent if they accept the same language. It can be shown that any PDA is equivalent to a PDA where <math id="I5.i1.p1.m1" class="ltx_Math" alttext="T(p,\lambda,A)=\varnothing" display="inline"><mrow><mrow><mi>T</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>λ</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi mathvariant="normal">∅</mi></mrow></math> for all <math id="I5.i1.p1.m2" class="ltx_Math" alttext="p\in F" display="inline"><mrow><mi>p</mi><mo>∈</mo><mi>F</mi></mrow></math> and <math id="I5.i1.p1.m3" class="ltx_Math" alttext="A\in\Gamma" display="inline"><mrow><mi>A</mi><mo>∈</mo><mi mathvariant="normal">Γ</mi></mrow></math> (called a <math id="I5.i1.p1.m4" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-free PDA).</p>
+</div>
+</li>
+<li id="I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I5.i2.p1" class="ltx_para">
+<p class="ltx_p">One of the main reasons for studying PDA is: the notion of a PDA is equivalent to the notion of a context-free grammar. This means that, every language accepted by a PDA is context-free, and every context-free language is accepted by some PDA.</p>
+</div>
+</li>
+</ol>
+</div>
+</section>
+<section id="S0.SS0.SSSx5" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Representation by State Diagrams</h2>
+
+<div id="S0.SS0.SSSx5.p1" class="ltx_para">
+<p class="ltx_p">Like an NDFA, a PDA can be presented visually as a directed graph, called a <em class="ltx_emph ltx_font_italic">state diagram</em>. Instead of simply labelling edges representing transitions with the leading symbol, two additional symbols are added, representing what symbol must be matched and removed from the top of the stack (or <math id="S0.SS0.SSSx5.p1.m1" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math> if none) and what symbol should be pushed onto the stack (or <math id="S0.SS0.SSSx5.p1.m2" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math> if none). For instance, the notation
+<code class="ltx_verbatim ltx_font_typewriter">a A/B</code> for an edge label indicates that <code class="ltx_verbatim ltx_font_typewriter">a</code> must be the first symbol in the remaining input string and <code class="ltx_verbatim ltx_font_typewriter">A</code> must be the symbol at the top of the stack for this transition to occur, and after the transition, <code class="ltx_verbatim ltx_font_typewriter">A</code> is replaced by <code class="ltx_verbatim ltx_font_typewriter">B</code> at the top of the stack. If the label had been
+<math id="S0.SS0.SSSx5.p1.m3" class="ltx_Math" alttext="\verb=a=\,\lambda\verb=/B=" display="inline"><mrow><mrow><mpadded width="+1.7pt"><mi>𝚊</mi></mpadded><mo>⁢</mo><mi>λ</mi></mrow><mo>/</mo><mi>𝙱</mi></mrow></math>, then the symbol at the top of the stack would not matter (the stack could even be empty), and <code class="ltx_verbatim ltx_font_typewriter">B</code> would be pushed on top of the stack during the transition. If the label had been <math id="S0.SS0.SSSx5.p1.m4" class="ltx_Math" alttext="\verb=a=\,\verb=A/=\lambda" display="inline"><mrow><mrow><mpadded width="+1.7pt"><mi>𝚊</mi></mpadded><mo>⁢</mo><mi>𝙰</mi></mrow><mo>/</mo><mi>λ</mi></mrow></math>, <code class="ltx_verbatim ltx_font_typewriter">A</code> would be popped from the stack and nothing would replace it during the transition.</p>
+</div>
+<div id="S0.SS0.SSSx5.p2" class="ltx_para">
+<p class="ltx_p">For example, consider the alphabet <math id="S0.SS0.SSSx5.p2.m1" class="ltx_Math" alttext="\Sigma:=\left\{\verb=(=,\verb=)=\right\}" display="inline"><mrow><mi mathvariant="normal">Σ</mi><mo>:=</mo><mrow><mo>{</mo><mrow><mo stretchy="false">(</mo><mo>,</mo><mo stretchy="false">)</mo></mrow><mo>}</mo></mrow></mrow></math>.
+Let us define a context-free language <math id="S0.SS0.SSSx5.p2.m2" class="ltx_Math" alttext="L" display="inline"><mi>L</mi></math> that consists of strings where the parentheses are fully balanced. If we define <math id="S0.SS0.SSSx5.p2.m3" class="ltx_Math" alttext="\Gamma:=\left\{A\right\}" display="inline"><mrow><mi mathvariant="normal">Γ</mi><mo>:=</mo><mrow><mo>{</mo><mi>A</mi><mo>}</mo></mrow></mrow></math>,
+then a PDA for accepting such strings is:</p>
+</div>
+<div id="S0.SS0.SSSx5.p3" class="ltx_para">
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><span class="ltx_text ltx_markedasmath"></span></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:01:14 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

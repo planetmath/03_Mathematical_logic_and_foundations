@@ -1,0 +1,213 @@
+<!DOCTYPE html><html>
+<head>
+<title>A.4 Basic metatheory</title>
+<!--Generated on Thu Feb  8 19:44:26 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="Kan complex, canonicity, closed, computation rule, confluence, consistency, for function types, metatheory, normal form, normal form of, normalizable, normalizable term, normalization, open, problem, rewriting, rewriting rule, rule, strong, strongly normalizable, term">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">A.4 Basic metatheory</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">This section discusses the meta-theoretic properties of the type theory presented in
+<span class="ltx_ERROR undefined">\autoref</span>sec:syntax-informally, and similar results hold for <span class="ltx_ERROR undefined">\autoref</span>sec:syntax-more-formally. Figuring out which of these still hold when we add the features from <span class="ltx_ERROR undefined">\autoref</span>sec:hott-features quickly leads to open questions, as discussed at the end of this section.
+</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Recall that <span class="ltx_ERROR undefined">\autoref</span>sec:syntax-informally defines the terms of type theory as
+an extension of the untyped <math id="p2.m1" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-calculus. The <math id="p2.m2" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-calculus
+has its own notion of computation, namely the computation rule:
+</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="({\lambda}x.\,t)(u):\!\!\equiv t[u/x]" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>t</mi><mrow><mo stretchy="false">[</mo><mi>u</mi><mo>/</mo><mi>x</mi><mo stretchy="false">]</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This rule, together with the defining equations for the defined constants form
+<em class="ltx_emph ltx_font_italic">rewriting rules</em> that determine reduction steps for a rewriting
+system. These steps yield a notion of computation in the sense that each rule
+has a natural direction: one simplifies <math id="p2.m3" class="ltx_Math" alttext="({\lambda}x.\,t)(u)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></math> by evaluating the
+function at its argument.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Moreover, this system is <em class="ltx_emph ltx_font_italic">confluent</em>, that is, if <math id="p3.m1" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> simplifies in some
+number of steps to both <math id="p3.m2" class="ltx_Math" alttext="a^{\prime}" display="inline"><msup><mi>a</mi><mo>′</mo></msup></math> and <math id="p3.m3" class="ltx_Math" alttext="a^{\prime\prime}" display="inline"><msup><mi>a</mi><mo>′′</mo></msup></math>, there is some <math id="p3.m4" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> to which both <math id="p3.m5" class="ltx_Math" alttext="a^{\prime}" display="inline"><msup><mi>a</mi><mo>′</mo></msup></math> and
+<math id="p3.m6" class="ltx_Math" alttext="a^{\prime\prime}" display="inline"><msup><mi>a</mi><mo>′′</mo></msup></math> eventually simplify. Thus we can define <math id="p3.m7" class="ltx_Math" alttext="t\downarrow u" display="inline"><mrow><mi>t</mi><mo>↓</mo><mi>u</mi></mrow></math> to mean that <math id="p3.m8" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math> and
+<math id="p3.m9" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> simplify to the same term.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">(The situation is similar in <span class="ltx_ERROR undefined">\autoref</span>sec:syntax-more-formally: Although there
+we presented the computation rules as undirected equalities <math id="p4.m1" class="ltx_Math" alttext="\equiv" display="inline"><mo>≡</mo></math>, we can give
+an operational semantics by saying that the application of an eliminator to an
+introductory form simplifies to its equal, not the other way around.)</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">It is straightforward to show that the system in <span class="ltx_ERROR undefined">\autoref</span>sec:syntax-informally
+has the following properties:</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 12.5.1</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> and <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="A\downarrow A^{\prime}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">↓</mo><msup><mi>A</mi><mo mathvariant="normal">′</mo></msup></mrow></math> then <math id="Thmprethm1.p1.m3" class="ltx_Math" alttext="A^{\prime}:\mathcal{U}" display="inline"><mrow><msup><mi>A</mi><mo mathvariant="normal">′</mo></msup><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math>.
+If <math id="Thmprethm1.p1.m4" class="ltx_Math" alttext="t:A" display="inline"><mrow><mi>t</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> and <math id="Thmprethm1.p1.m5" class="ltx_Math" alttext="t\downarrow t^{\prime}" display="inline"><mrow><mi>t</mi><mo mathvariant="normal">↓</mo><msup><mi>t</mi><mo mathvariant="normal">′</mo></msup></mrow></math> then <math id="Thmprethm1.p1.m6" class="ltx_Math" alttext="t^{\prime}:A" display="inline"><mrow><msup><mi>t</mi><mo mathvariant="normal">′</mo></msup><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">We say that a term is <span class="ltx_text ltx_font_bold">normalizable</span>
+(respectively, <span class="ltx_text ltx_font_bold">strongly
+normalizable</span>)
+if some (respectively, every), sequence of rewriting steps from the term
+terminates.
+</p>
+</div>
+<div id="Thmprethm2" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 12.5.2</span>.</h6>
+<div id="Thmprethm2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmprethm2.p1.m1" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> then <math id="Thmprethm2.p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is strongly normalizable.
+If <math id="Thmprethm2.p1.m3" class="ltx_Math" alttext="t:A" display="inline"><mrow><mi>t</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> then <math id="Thmprethm2.p1.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="Thmprethm2.p1.m5" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math> are strongly normalizable.</span></p>
+</div>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">We say that a term is in <span class="ltx_text ltx_font_bold">normal form</span>
+if it cannot be further
+simplified, and that a term is <span class="ltx_text ltx_font_bold">closed</span>
+if no variable occurs freely in
+it. A closed normal type has to be a primitive type, i.e., of the form
+<math id="p7.m1" class="ltx_Math" alttext="c(\vec{v})" display="inline"><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mover accent="true"><mi>v</mi><mo stretchy="false">→</mo></mover><mo stretchy="false">)</mo></mrow></mrow></math> for some primitive constant <math id="p7.m2" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math> (where the list <math id="p7.m3" class="ltx_Math" alttext="\vec{v}" display="inline"><mover accent="true"><mi>v</mi><mo stretchy="false">→</mo></mover></math> of closed
+normal terms may be omitted if empty, for instance, as with <math id="p7.m4" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>). In fact, we
+can explicitly describe all normal forms:</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 12.5.3</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The terms in normal form can be described by the following syntax:</span></p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle v" display="inline"><mi>v</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle:\!\!:\!\!=k\mid{\lambda}x.\,v\mid c(\vec{v})\mid f(\vec{v})," display="inline"><mrow><mo rspace="0pt">:</mo><mo rspace="0pt">:</mo><mo>=</mo><mi>k</mi><mo>∣</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>v</mi><mo>∣</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mover accent="true"><mi>v</mi><mo stretchy="false">→</mo></mover><mo stretchy="false">)</mo></mrow><mo>∣</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mover accent="true"><mi>v</mi><mo stretchy="false">→</mo></mover><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle k" display="inline"><mi>k</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle:\!\!:\!\!=x\mid k(v)\mid f(\vec{v})(k)," display="inline"><mrow><mo rspace="0pt">:</mo><mo rspace="0pt">:</mo><mo>=</mo><mi>x</mi><mo>∣</mo><mi>k</mi><mrow><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><mo>∣</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mover accent="true"><mi>v</mi><mo stretchy="false">→</mo></mover><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">where <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="f(\vec{v})" display="inline"><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mover accent="true"><mi>v</mi><mo mathvariant="normal" stretchy="false">→</mo></mover><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> represents a partial application of the defined function <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+In particular, a type in normal form is of the form <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> or <math id="Thmprelem1.p1.m4" class="ltx_Math" alttext="c(\vec{v})" display="inline"><mrow><mi>c</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mover accent="true"><mi>v</mi><mo mathvariant="normal" stretchy="false">→</mo></mover><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div id="Thmprethm3" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 12.5.4</span>.</h6>
+<div id="Thmprethm3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If <math id="Thmprethm3.p1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is in normal form then the
+judgment <math id="Thmprethm3.p1.m2" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> is decidable. If <math id="Thmprethm3.p1.m3" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> and <math id="Thmprethm3.p1.m4" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math> is in normal form then the judgment
+<math id="Thmprethm3.p1.m5" class="ltx_Math" alttext="t:A" display="inline"><mrow><mi>t</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> is decidable.</span></p>
+</div>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Logical consistency (of the system in <span class="ltx_ERROR undefined">\autoref</span>sec:syntax-informally) follows
+immediately: if we had <math id="p8.m1" class="ltx_Math" alttext="a:\mathbf{0}" display="inline"><mrow><mi>a</mi><mo>:</mo><mn>𝟎</mn></mrow></math> in the empty context, then by
+<span class="ltx_ERROR undefined">\autoref</span>thm:conversion-preserves-typing,<span class="ltx_ERROR undefined">\autoref</span>thm:strong-normalization, <math id="p8.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>
+simplifies to a normal term <math id="p8.m3" class="ltx_Math" alttext="a^{\prime}:\mathbf{0}" display="inline"><mrow><msup><mi>a</mi><mo>′</mo></msup><mo>:</mo><mn>𝟎</mn></mrow></math>. But by
+<span class="ltx_ERROR undefined">\autoref</span>lem:normal-forms no such term exists.</p>
+</div>
+<div id="Thmprecor1" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 12.5.5</span>.</h6>
+<div id="Thmprecor1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The system in <span class="ltx_ERROR undefined">\autoref</span>sec:syntax-informally is logically consistent.</span></p>
+</div>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Similarly, we have the <em class="ltx_emph ltx_font_italic">canonicity</em> property that if <math id="p9.m1" class="ltx_Math" alttext="a:\mathbb{N}" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>ℕ</mi></mrow></math> in the empty
+context, then <math id="p9.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> simplifies to a normal term <math id="p9.m3" class="ltx_Math" alttext="\mathsf{succ}^{k}(0)" display="inline"><mrow><msup><mi>𝗌𝗎𝖼𝖼</mi><mi>k</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></math> for some numeral <math id="p9.m4" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>.</p>
+</div>
+<div id="Thmprecor2" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 12.5.6</span>.</h6>
+<div id="Thmprecor2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The system in <span class="ltx_ERROR undefined">\autoref</span>sec:syntax-informally has the canonicity property.
+</span></p>
+</div>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">Finally, if <math id="p10.m1" class="ltx_Math" alttext="a,A" display="inline"><mrow><mi>a</mi><mo>,</mo><mi>A</mi></mrow></math> are in normal form, it is <em class="ltx_emph ltx_font_italic">decidable</em> whether <math id="p10.m2" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>; in
+other words, because type-checking amounts to verifying the correctness of a
+proof, this means we can always “recognize a correct proof when we see one.”</p>
+</div>
+<div id="Thmprecor3" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 12.5.7</span>.</h6>
+<div id="Thmprecor3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The property of being a proof in the system in <span class="ltx_ERROR undefined">\autoref</span>sec:syntax-informally is decidable.</span></p>
+</div>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">The above results do not apply to the extended system of homotopy type
+theory (i.e., the above system extended by <span class="ltx_ERROR undefined">\autoref</span>sec:hott-features), since
+occurrences of the univalence axiom and constructors of higher inductive types
+never simplify, breaking <span class="ltx_ERROR undefined">\autoref</span>lem:normal-forms. It is an open question
+whether one can simplify applications of these constants in order to restore
+canonicity. We also do not have a schema describing all permissible higher
+inductive types, nor are we certain how to correctly formulate their rules
+(e.g., whether the computation rules on higher constructors should be judgmental
+equalities).
+</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">The consistency of Martin-Löf type theory extended with univalence and higher
+inductive types could be shown by inventing an appropriate normalization procedure, but currently
+the only proofs that these systems are consistent are via semantic models—for
+univalence, a model in Kan complexes due to Voevodsky <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">klv:ssetmodel</span>]</cite>, and
+for higher inductive types, a model due to Lumsdaine and Shulman <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">ls:hits</span>]</cite>.</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">Other metatheoretic issues, and a summary of our current results, are discussed
+in greater length in the “Constructivity” and “Open problems” sections of
+the introduction to this book.</p>
+</div>
+<div id="p14" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">A.4 Basic metatheory</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:44:26 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

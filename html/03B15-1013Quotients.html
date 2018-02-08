@@ -1,0 +1,325 @@
+<!DOCTYPE html><html>
+<head>
+<title>10.1.3 Quotients</title>
+<!--Generated on Thu Feb  8 19:29:16 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="Rezk, completion, effective, effective equivalence, encode-decode method, equivalence relation, impredicative, kernel, pair, power set, propositional resizing, quotient, relation, resizing, set-quotient">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">10.1.3 Quotients</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Now that we know that <math id="p2.m1" class="ltx_Math" alttext="\mathcal{S}et" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒮</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><mi>t</mi></mrow></math> is regular, to show that <math id="p2.m2" class="ltx_Math" alttext="\mathcal{S}et" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒮</mi><mo>⁢</mo><mi>e</mi><mo>⁢</mo><mi>t</mi></mrow></math> is exact, we need to show that every
+equivalence relation is effective.
+In other words, given an equivalence
+relation <math id="p2.m3" class="ltx_Math" alttext="R:A\to A\to\mathsf{Prop}" display="inline"><mrow><mi>R</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></math>, there is a coequalizer <math id="p2.m4" class="ltx_Math" alttext="c_{R}" display="inline"><msub><mi>c</mi><mi>R</mi></msub></math> of the pair
+<math id="p2.m5" class="ltx_Math" alttext="\mathsf{pr}_{1},\mathsf{pr}_{2}:\mathchoice{\sum_{x,y:A}\,}{\mathchoice{{%
+\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{%
+\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{%
+(x,y:A)}}}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:%
+A)}}{\sum_{(x,y:A)}}}R(x,y)\to A" display="inline"><mrow><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>,</mo><msub><mi>𝗉𝗋</mi><mn>2</mn></msub></mrow><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi>A</mi></mrow></mrow></math> and, moreover, the <math id="p2.m6" class="ltx_Math" alttext="\mathsf{pr}_{1}" display="inline"><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></math> and <math id="p2.m7" class="ltx_Math" alttext="\mathsf{pr}_{2}" display="inline"><msub><mi>𝗉𝗋</mi><mn>2</mn></msub></math>
+form the kernel pair of <math id="p2.m8" class="ltx_Math" alttext="c_{R}" display="inline"><msub><mi>c</mi><mi>R</mi></msub></math>.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">We have already seen, in <span class="ltx_ERROR undefined">\autoref</span>sec:set-quotients, two general ways to construct the quotient of a set by an equivalence relation <math id="p3.m1" class="ltx_Math" alttext="R:A\to A\to\mathsf{Prop}" display="inline"><mrow><mi>R</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></math>.
+The first can be described as the set-coequalizer of the two projections</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathsf{pr}_{1},\mathsf{pr}_{2}:\Bigl{(}\mathchoice{\sum_{x,y:A}\,}{%
+\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{%
+(x,y:A)}}}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:%
+A)}}{\sum_{(x,y:A)}}}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{%
+\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}R(x,y)\Bigr{)}\to A." display="block"><mrow><mrow><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>,</mo><msub><mi>𝗉𝗋</mi><mn>2</mn></msub></mrow><mo>:</mo><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mi>A</mi></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The important property of such a quotient is the following.</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 10.1.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A relation <math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="R:A\to A\to\mathsf{Prop}" display="inline"><mrow><mi>R</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>A</mi><mo mathvariant="normal">→</mo><mi mathvariant="normal">Prop</mi></mrow></mrow></math> is said to be <span class="ltx_text ltx_font_bold">effective</span>
+
+if the square
+</span></p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\xymatrix{{\mathchoice{\sum_{x,y:A}\,}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}%
+{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{{\textstyle\sum_%
+{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{{%
+\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}R(x%
+,y)}\ar[r]^{(}0.7){\mathsf{pr}_{1}}\ar[d]_{\mathsf{pr}_{2}}&{A}\ar[d]^{c_{R}}%
+\\
+{A}\ar[r]_{c_{R}}&{A/R}}" display="block"><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\xymatrix</mtext></merror><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><msup><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><mo stretchy="false">(</mo></msup><mn>0.7</mn><mo stretchy="false">)</mo><mi>𝗉𝗋</mi><msub><mi></mi><mn>1</mn></msub><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mo stretchy="false">[</mo><mi>d</mi><mo stretchy="false">]</mo><msub><mi></mi><msub><mi>𝗉𝗋</mi><mn>2</mn></msub></msub><mi mathvariant="normal">&amp;</mi><mi>A</mi><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mo stretchy="false">[</mo><mi>d</mi><mo stretchy="false">]</mo><msup><mi></mi><msub><mi>c</mi><mi>R</mi></msub></msup><mi>A</mi><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><msub><mi></mi><msub><mi>c</mi><mi>R</mi></msub></msub><mi mathvariant="normal">&amp;</mi><mi>A</mi><mo>/</mo><mi>R</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">is a pullback.</span></p>
+</div>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Since the standard pullback of <math id="p4.m1" class="ltx_Math" alttext="c_{R}" display="inline"><msub><mi>c</mi><mi>R</mi></msub></math> and itself is <math id="p4.m2" class="ltx_Math" alttext="\mathchoice{\sum_{x,y:A}\,}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y%
+:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}%
+{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{{\textstyle\sum_%
+{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}(c_{R}(x)=c_{R}(y))" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, by <span class="ltx_ERROR undefined">\autoref</span>thm:total-fiber-equiv this is equivalent to asking that the canonical transformation <math id="p4.m3" class="ltx_Math" alttext="\mathchoice{\prod_{x,y:A}\,}{\mathchoice{{\textstyle\prod_{(x,y:A)}}}{\prod_{(%
+x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{\textstyle\prod_{(x,y%
+:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x,y:A)}}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}{\prod_{(x,y:A)}}%
+}R(x,y)\to(c_{R}(x)=c_{R}(y))" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> be a fiberwise equivalence.</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 10.1.2</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="{\mathopen{}(A,R)\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>A</mi><mo mathvariant="normal">,</mo><mi>R</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mi></mi></mrow></math> is an equivalence relation. Then there is an equivalence</span></p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="(c_{R}(x)=c_{R}(y))\simeq R(x,y)" display="block"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>≃</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for any <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi></mrow><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>. In other words, equivalence relations are effective.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">We begin by extending <math id="p5.m1" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> to a relation <math id="p5.m2" class="ltx_Math" alttext="\widetilde{R}:A/R\to A/R\to\mathsf{Prop}" display="inline"><mrow><mover accent="true"><mi>R</mi><mo>~</mo></mover><mo>:</mo><mrow><mrow><mi>A</mi><mo>/</mo><mi>R</mi></mrow><mo>→</mo><mrow><mi>A</mi><mo>/</mo><mi>R</mi></mrow><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></math>, which we will then show is equivalent
+to the identity type on <math id="p5.m3" class="ltx_Math" alttext="A/R" display="inline"><mrow><mi>A</mi><mo>/</mo><mi>R</mi></mrow></math>. We define <math id="p5.m4" class="ltx_Math" alttext="\widetilde{R}" display="inline"><mover accent="true"><mi>R</mi><mo>~</mo></mover></math> by double induction on
+<math id="p5.m5" class="ltx_Math" alttext="A/R" display="inline"><mrow><mi>A</mi><mo>/</mo><mi>R</mi></mrow></math> (note that <math id="p5.m6" class="ltx_Math" alttext="\mathsf{Prop}" display="inline"><mi>𝖯𝗋𝗈𝗉</mi></math> is a set by univalence for mere propositions). We
+define <math id="p5.m7" class="ltx_Math" alttext="\widetilde{R}(c_{R}(x),c_{R}(y)):\!\!\equiv R(x,y)" display="inline"><mrow><mover accent="true"><mi>R</mi><mo>~</mo></mover><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>. For <math id="p5.m8" class="ltx_Math" alttext="r:R(x,x^{\prime})" display="inline"><mrow><mi>r</mi><mo>:</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p5.m9" class="ltx_Math" alttext="s:R(y,y^{\prime})" display="inline"><mrow><mi>s</mi><mo>:</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,
+the transitivity and symmetry
+of <math id="p5.m10" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> gives an equivalence from <math id="p5.m11" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> to <math id="p5.m12" class="ltx_Math" alttext="R(x^{\prime},y^{\prime})" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>x</mi><mo>′</mo></msup><mo>,</mo><msup><mi>y</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math>. This completes the
+definition of <math id="p5.m13" class="ltx_Math" alttext="\widetilde{R}" display="inline"><mover accent="true"><mi>R</mi><mo>~</mo></mover></math>.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">It remains to show that <math id="p6.m1" class="ltx_Math" alttext="\widetilde{R}(w,w^{\prime})\simeq(w=w^{\prime})" display="inline"><mrow><mover accent="true"><mi>R</mi><mo>~</mo></mover><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><msup><mi>w</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>≃</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>=</mo><msup><mi>w</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math> for every <math id="p6.m2" class="ltx_Math" alttext="w,w^{\prime}:A/R" display="inline"><mrow><mrow><mi>w</mi><mo>,</mo><msup><mi>w</mi><mo>′</mo></msup></mrow><mo>:</mo><mrow><mi>A</mi><mo>/</mo><mi>R</mi></mrow></mrow></math>.
+The direction <math id="p6.m3" class="ltx_Math" alttext="(w=w^{\prime})\to\widetilde{R}(w,w^{\prime})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>=</mo><msup><mi>w</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>→</mo><mover accent="true"><mi>R</mi><mo>~</mo></mover><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><msup><mi>w</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math> follows by transport once we show that <math id="p6.m4" class="ltx_Math" alttext="\widetilde{R}" display="inline"><mover accent="true"><mi>R</mi><mo>~</mo></mover></math> is reflexive, which is an easy induction.
+The other direction <math id="p6.m5" class="ltx_Math" alttext="\widetilde{R}(w,w^{\prime})\to(w=w^{\prime})" display="inline"><mrow><mover accent="true"><mi>R</mi><mo>~</mo></mover><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><msup><mi>w</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>=</mo><msup><mi>w</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math> is a mere proposition, so since <math id="p6.m6" class="ltx_Math" alttext="c_{R}:A\to A/R" display="inline"><mrow><msub><mi>c</mi><mi>R</mi></msub><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mrow><mi>A</mi><mo>/</mo><mi>R</mi></mrow></mrow></mrow></math> is surjective, it suffices to assume that <math id="p6.m7" class="ltx_Math" alttext="w" display="inline"><mi>w</mi></math> and <math id="p6.m8" class="ltx_Math" alttext="w^{\prime}" display="inline"><msup><mi>w</mi><mo>′</mo></msup></math> are of the form <math id="p6.m9" class="ltx_Math" alttext="c_{R}(x)" display="inline"><mrow><msub><mi>c</mi><mi>R</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p6.m10" class="ltx_Math" alttext="c_{R}(y)" display="inline"><mrow><msub><mi>c</mi><mi>R</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+But in this case, we have the canonical map <math id="p6.m11" class="ltx_Math" alttext="\widetilde{R}(c_{R}(x),c_{R}(y)):\!\!\equiv R(x,y)\to(c_{R}(x)=c_{R}(y))" display="inline"><mrow><mover accent="true"><mi>R</mi><mo>~</mo></mover><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mi>c</mi><mi>R</mi></msub><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+(Note again the appearance of the encode-decode method.)
+∎</p>
+</div>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The second construction of quotients is as the set of equivalence classes of <math id="p7.m1" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> (a subset
+of its power set):
+</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="A\sslash R:\!\!\equiv\setof{P:A\to\mathsf{Prop}|P\text{ is an equivalence %
+class of }R}" display="block"><mrow><mi>A</mi><merror class="ltx_ERROR undefined undefined"><mtext>\sslash</mtext></merror><mi>R</mi><mo rspace="0pt">:</mo><mo>≡</mo><merror class="ltx_ERROR undefined undefined"><mtext>\setof</mtext></merror><mi>P</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">|</mo><mi>P</mi><mtext> is an equivalence class of </mtext><mi>R</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This requires propositional resizing in order to remain in the same universe as <math id="p7.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p7.m3" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Note that if we regard <math id="p8.m1" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> as a function from <math id="p8.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> to <math id="p8.m3" class="ltx_Math" alttext="A\to\mathsf{Prop}" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></math>, then <math id="p8.m4" class="ltx_Math" alttext="A\sslash R" display="inline"><mrow><mi>A</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\sslash</mtext></merror><mo>⁢</mo><mi>R</mi></mrow></math> is equivalent to <math id="p8.m5" class="ltx_Math" alttext="\mathsf{im}(R)" display="inline"><mrow><mi>𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow></mrow></math>, as constructed in <span class="ltx_ERROR undefined">\autoref</span>sec:image.
+Now in <span class="ltx_ERROR undefined">\autoref</span>lem:images_are_coequalizers we have shown that images are
+coequalizers. In particular, we immediately get the coequalizer diagram</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\xymatrix{**[l]{\mathchoice{\sum_{x,y:A}\,}{\mathchoice{{\textstyle\sum_{(x,y:%
+A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{{\textstyle%
+\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{%
+{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}R(%
+x)=R(y)}\ar@&lt;0.25em&gt;[r]^{\mathsf{pr}_{1}}\ar@&lt;-0.25em&gt;[r]_{\mathsf{pr}_{2}}&{A%
+}\ar[r]&{A\sslash R.}}" display="block"><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\xymatrix</mtext></merror><mo>*</mo><mo>*</mo><mrow><mo stretchy="false">[</mo><mi>l</mi><mo stretchy="false">]</mo></mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mi mathvariant="normal">@</mi><mo>&lt;</mo><mn>0.25</mn><mi>e</mi><mi>m</mi><mo>&gt;</mo><msup><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></msup><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mi mathvariant="normal">@</mi><mo>&lt;</mo><mo>-</mo><mn>0.25</mn><mi>e</mi><mi>m</mi><mo>&gt;</mo><msub><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub></msub><mi mathvariant="normal">&amp;</mi><mi>A</mi><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><mi mathvariant="normal">&amp;</mi><mi>A</mi><merror class="ltx_ERROR undefined undefined"><mtext>\sslash</mtext></merror><mi>R</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We can use this to give an alternative proof that any equivalence relation is effective and that the two definitions of quotients agree.</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 10.1.3</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any function <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>B</mi></mrow></mrow></math> between any two sets,
+the relation <math id="Thmprethm1.p1.m2" class="ltx_Math" alttext="\ker(f):A\to A\to\mathsf{Prop}" display="inline"><mrow><mrow><mi mathvariant="normal">ker</mi><mo mathvariant="italic">⁡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>A</mi><mo mathvariant="normal">→</mo><mi mathvariant="normal">Prop</mi></mrow></mrow></math> given by
+<math id="Thmprethm1.p1.m3" class="ltx_Math" alttext="\ker(f,x,y):\!\!\equiv(f(x)=f(y))" display="inline"><mrow><mi mathvariant="normal">ker</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mo mathvariant="normal">,</mo><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" rspace="0pt">:</mo><mo mathvariant="normal">≡</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>f</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">=</mo><mi>f</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>y</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is effective.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">We will use that <math id="p9.m1" class="ltx_Math" alttext="\mathsf{im}(f)" display="inline"><mrow><mi>𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the coequalizer of <math id="p9.m2" class="ltx_Math" alttext="\mathsf{pr}_{1},\mathsf{pr}_{2}:(\mathchoice{\sum_{x,y:A}\,}{\mathchoice{{%
+\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{%
+\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{%
+(x,y:A)}}}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:%
+A)}}{\sum_{(x,y:A)}}}f(x)=f(y))\to A" display="inline"><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>,</mo><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>:</mo><mrow><mo stretchy="false">(</mo><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>A</mi></mrow></math>.
+Note that the kernel pair of the function</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="c_{f}:\!\!\equiv{\lambda}a.\,\Bigl{(}f(a),\mathopen{}\left\|{\mathopen{}(a,%
+\mathsf{refl}_{f(a)})\mathclose{}}\right\|\mathclose{}\Bigr{)}:A\to\mathsf{im}%
+(f)" display="block"><mrow><msub><mi>c</mi><mi>f</mi></msub><mo rspace="0pt">:</mo><mo>≡</mo><mi>λ</mi><mi>a</mi><mo rspace="4.2pt">.</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mi></mi><mo>∥</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo>∥</mo><mi></mi></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>:</mo><mi>A</mi><mo>→</mo><mi>𝗂𝗆</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">consists of the two projections</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\mathsf{pr}_{1},\mathsf{pr}_{2}:\Bigl{(}\mathchoice{\sum_{x,y:A}\,}{%
+\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{%
+(x,y:A)}}}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:%
+A)}}{\sum_{(x,y:A)}}}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{%
+\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}c_{f}(x)=c_{f}(y)\Bigr{)}\to A." display="block"><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>,</mo><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>:</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></munder></mpadded><msub><mi>c</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mi>c</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mi>A</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">For any <math id="p9.m3" class="ltx_Math" alttext="x,y:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></math>, we have equivalences</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\displaystyle(c_{f}(x)=c_{f}(y))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><msub><mi>c</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>c</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle\simeq\Bigl{(}\mathchoice{\sum_{p:f(x)=f(y)}\,}{\mathchoice{{%
+\textstyle\sum_{(p:f(x)=f(y))}}}{\sum_{(p:f(x)=f(y))}}{\sum_{(p:f(x)=f(y))}}{%
+\sum_{(p:f(x)=f(y))}}}{\mathchoice{{\textstyle\sum_{(p:f(x)=f(y))}}}{\sum_{(p:%
+f(x)=f(y))}}{\sum_{(p:f(x)=f(y))}}{\sum_{(p:f(x)=f(y))}}}{\mathchoice{{%
+\textstyle\sum_{(p:f(x)=f(y))}}}{\sum_{(p:f(x)=f(y))}}{\sum_{(p:f(x)=f(y))}}{%
+\sum_{(p:f(x)=f(y))}}}{p}_{*}\mathopen{}\left({\mathopen{}\left\|{\mathopen{}(%
+x,\mathsf{refl}_{f(x)})\mathclose{}}\right\|\mathclose{}}\right)\mathclose{}=%
+\mathopen{}\left\|{\mathopen{}(y,\mathsf{refl}_{f(x)})\mathclose{}}\right\|%
+\mathclose{}\Bigr{)}" display="inline"><mrow><mo>≃</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>p</mi><mo>:</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></munder></mstyle></mpadded><msub><mi>p</mi><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><mrow><mi></mi><mo>∥</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo>∥</mo><mi></mi></mrow><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mo>∥</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo>∥</mo><mi></mi></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex9" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex9.m2" class="ltx_Math" alttext="\displaystyle\simeq(f(x)=f(y))," display="inline"><mrow><mo>≃</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where the last equivalence holds because
+<math id="p9.m4" class="ltx_Math" alttext="\mathopen{}\left\|{\mathsf{fib}}_{f}(b)\right\|\mathclose{}" display="inline"><mrow><mi></mi><mrow><mo>∥</mo><mrow><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∥</mo></mrow><mi></mi></mrow></math> is a mere proposition for any <math id="p9.m5" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math>.
+Therefore, we get that</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\Bigl{(}\mathchoice{\sum_{x,y:A}\,}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}{%
+\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{{\textstyle\sum_{%
+(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{{%
+\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}c_{%
+f}(x)=c_{f}(y)\Bigr{)}\simeq\Bigl{(}\mathchoice{\sum_{x,y:A}\,}{\mathchoice{{%
+\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{%
+\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{%
+(x,y:A)}}}{\mathchoice{{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:%
+A)}}{\sum_{(x,y:A)}}}f(x)=f(y)\Bigr{)}" display="block"><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></munder></mpadded><msub><mi>c</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mi>c</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>≃</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and hence we may conclude that <math id="p9.m6" class="ltx_Math" alttext="\ker f" display="inline"><mrow><mi>ker</mi><mo>⁡</mo><mi>f</mi></mrow></math> is an effective relation
+for any function <math id="p9.m7" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+∎</p>
+</div>
+</div>
+<div id="Thmprethm2" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 10.1.4</span>.</h6>
+<div id="Thmprethm2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Equivalence relations are effective and there is an equivalence <math id="Thmprethm2.p1.m1" class="ltx_Math" alttext="A/R\simeq A\sslash R" display="inline"><mrow><mrow><mi>A</mi><mo mathvariant="normal">/</mo><mi>R</mi></mrow><mo mathvariant="normal">≃</mo><mrow><mi>A</mi><mo mathvariant="italic">⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\sslash</mtext></merror><mo mathvariant="italic">⁢</mo><mi>R</mi></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">We need to analyze the coequalizer diagram</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\xymatrix{**[l]{\mathchoice{\sum_{x,y:A}\,}{\mathchoice{{\textstyle\sum_{(x,y:%
+A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{{\textstyle%
+\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{%
+{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}R(%
+x)=R(y)}\ar@&lt;0.25em&gt;[r]^{\mathsf{pr}_{1}}\ar@&lt;-0.25em&gt;[r]_{\mathsf{pr}_{2}}&{A%
+}\ar[r]&{A\sslash R}}" display="block"><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\xymatrix</mtext></merror><mo>*</mo><mo>*</mo><mrow><mo stretchy="false">[</mo><mi>l</mi><mo stretchy="false">]</mo></mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mi mathvariant="normal">@</mi><mo>&lt;</mo><mn>0.25</mn><mi>e</mi><mi>m</mi><mo>&gt;</mo><msup><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></msup><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mi mathvariant="normal">@</mi><mo>&lt;</mo><mo>-</mo><mn>0.25</mn><mi>e</mi><mi>m</mi><mo>&gt;</mo><msub><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub></msub><mi mathvariant="normal">&amp;</mi><mi>A</mi><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><mi mathvariant="normal">&amp;</mi><mi>A</mi><merror class="ltx_ERROR undefined undefined"><mtext>\sslash</mtext></merror><mi>R</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">By the univalence axiom, the type <math id="p10.m1" class="ltx_Math" alttext="R(x)=R(y)" display="inline"><mrow><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is equivalent to the type of homotopies from <math id="p10.m2" class="ltx_Math" alttext="R(x)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> to <math id="p10.m3" class="ltx_Math" alttext="R(y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>, which is
+equivalent to
+<math id="p10.m4" class="ltx_Math" alttext="\mathchoice{\prod_{z:A}\,}{\mathchoice{{\textstyle\prod_{(z:A)}}}{\prod_{(z:A)%
+}}{\prod_{(z:A)}}{\prod_{(z:A)}}}{\mathchoice{{\textstyle\prod_{(z:A)}}}{\prod%
+_{(z:A)}}{\prod_{(z:A)}}{\prod_{(z:A)}}}{\mathchoice{{\textstyle\prod_{(z:A)}}%
+}{\prod_{(z:A)}}{\prod_{(z:A)}}{\prod_{(z:A)}}}R(x,z)\simeq R(y,z)." display="inline"><mrow><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>≃</mo><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math>
+Since <math id="p10.m5" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> is an equivalence relation, the latter space is equivalent to <math id="p10.m6" class="ltx_Math" alttext="R(x,y)" display="inline"><mrow><mi>R</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>. To
+summarize, we get that <math id="p10.m7" class="ltx_Math" alttext="(R(x)=R(y))\simeq R(x,y)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>≃</mo><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>, so <math id="p10.m8" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> is effective since it is equivalent to an effective relation. Also,
+the diagram</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="\xymatrix{**[l]{\mathchoice{\sum_{x,y:A}\,}{\mathchoice{{\textstyle\sum_{(x,y:%
+A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{{\textstyle%
+\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}{\mathchoice{%
+{\textstyle\sum_{(x,y:A)}}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}{\sum_{(x,y:A)}}}R(%
+x,y)}\ar@&lt;0.25em&gt;[r]^{\mathsf{pr}_{1}}\ar@&lt;-0.25em&gt;[r]_{\mathsf{pr}_{2}}&{A}%
+\ar[r]&{A\sslash R.}}" display="block"><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\xymatrix</mtext></merror><mo>*</mo><mo>*</mo><mrow><mo stretchy="false">[</mo><mi>l</mi><mo stretchy="false">]</mo></mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mi>R</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mi mathvariant="normal">@</mi><mo>&lt;</mo><mn>0.25</mn><mi>e</mi><mi>m</mi><mo>&gt;</mo><msup><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></msup><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mi mathvariant="normal">@</mi><mo>&lt;</mo><mo>-</mo><mn>0.25</mn><mi>e</mi><mi>m</mi><mo>&gt;</mo><msub><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub></msub><mi mathvariant="normal">&amp;</mi><mi>A</mi><merror class="ltx_ERROR undefined undefined"><mtext>\ar</mtext></merror><mrow><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><mi mathvariant="normal">&amp;</mi><mi>A</mi><merror class="ltx_ERROR undefined undefined"><mtext>\sslash</mtext></merror><mi>R</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">is a coequalizer diagram. Since coequalizers are unique up to equivalence, it follows that <math id="p10.m9" class="ltx_Math" alttext="A/R\simeq A\sslash R" display="inline"><mrow><mrow><mi>A</mi><mo>/</mo><mi>R</mi></mrow><mo>≃</mo><mrow><mi>A</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\sslash</mtext></merror><mo>⁢</mo><mi>R</mi></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">We finish this section by mentioning a possible third construction of the quotient of a set <math id="p11.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> by an equivalence relation <math id="p11.m2" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>.
+Consider the precategory with objects <math id="p11.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and hom-sets <math id="p11.m4" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>; the type of objects of the Rezk completion
+(see <span class="ltx_ERROR undefined">\autoref</span>sec:rezk) of this precategory will then be the
+quotient. The reader is invited to check the details.</p>
+</div>
+<div id="p12" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">10.1.3 Quotients</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:29:16 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

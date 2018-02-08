@@ -1,0 +1,941 @@
+<!DOCTYPE html><html>
+<head>
+<title>Hilbert’s ε-operator</title>
+<!--Generated on Thu Feb  8 20:18:18 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">Hilbert’s <math id="m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-operator</h1>
+
+<div class="ltx_abstract">
+<h6 class="ltx_title ltx_title_abstract">Abstract</h6>
+    
+<p class="ltx_p">Hilbert’s <math id="m2" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-operator is a function introduced in the formal system of Hilbert and Bernays <em class="ltx_emph ltx_font_italic">Grundlagen der Matematik</em>, the purpose of which is a reformulation of classical predicate calculus.</p>
+    
+<p class="ltx_p">In particular, it allows the elimination of Russell’s <math id="m3" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-terms and of the usual symbols for quantification.</p>
+    
+<p class="ltx_p">It is usually referred to as a "choice function" or a "choice operator" due to its kinship with the axiom of choice.</p>
+  
+</div>
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div class="ltx_TOC ltx_role_contents">
+<h6>Contents:</h6>
+<ul class="ltx_toclist">
+<li class="ltx_tocentry ltx_tocentry_section"><a href="#S1" title="1 Background, definitions and notation ‣ Hilbert’s ε -operator" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">1 </span>Background, definitions and notation</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a href="#S2" title="2 Syntax ‣ Hilbert’s ε -operator" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">2 </span>Syntax</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a href="#S3" title="3 Hilbert’s epsilon-axiom ‣ Hilbert’s ε -operator" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">3 </span>Hilbert’s epsilon-axiom</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a href="#S4" title="4 The axiom of choice ‣ Hilbert’s ε -operator" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">4 </span>The axiom of choice</span></a></li>
+<li class="ltx_tocentry ltx_tocentry_section"><a href="#S5" title="5 The elimination of descriptions and quantifiers ‣ Hilbert’s ε -operator" class="ltx_ref"><span class="ltx_text ltx_ref_title"><span class="ltx_tag ltx_tag_ref">5 </span>The elimination of descriptions and quantifiers</span></a></li>
+</ul>
+</div>
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Background, definitions and notation</h2>
+
+<div id="S1.p1" class="ltx_para">
+<p class="ltx_p">In a first order theory with equality, whose domain is for example the set of positive integers, an object of the domain can be represented by a name, like "2", or by a complex expression, like "the positive square root of 4", in which case the number 2 is not even explicitly used.</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p class="ltx_p">The interesting difference between the two representations consists in the fact that the complex expression makes it possible to refer to an object with a certain property, even in the absence of the object’s name.</p>
+</div>
+<div id="S1.p3" class="ltx_para">
+<p class="ltx_p">The first systematic study of this fundamental logical process was done by Bertrand Russell in <em class="ltx_emph ltx_font_italic">Principia Mathematica</em> and in <em class="ltx_emph ltx_font_italic">Introduction to mathematical philosophy</em>, where Russell proposed to call descriptions all expressions of the general form</p>
+</div>
+<div id="S1.p4" class="ltx_para ltx_centering">
+<p class="ltx_p">"the object <math id="S1.p4.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> such that <math id="S1.p4.m2" class="ltx_Math" alttext="F(x)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>".</p>
+</div>
+<div id="S1.p5" class="ltx_para">
+<p class="ltx_p">In <em class="ltx_emph ltx_font_italic">Introduction to mathematical philosophy</em> Russell makes a distinction between definite and indefinite descriptions. These have the general form
+</p>
+</div>
+<div id="S1.p6" class="ltx_para ltx_centering">
+<p class="ltx_p">"an object <math id="S1.p6.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> such that <math id="S1.p6.m2" class="ltx_Math" alttext="F(x)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>".</p>
+</div>
+<div id="S1.p7" class="ltx_para">
+<p class="ltx_p">This distinction did not find much echo in his subsequent logical theory, where the main focus became rather the development of a theory of definite descriptions.</p>
+</div>
+<div id="S1.p8" class="ltx_para">
+<p class="ltx_p">Thus where a name is an arbitrary symbol assigned to an object of the domain, and one then says that the object is the denotation of the name, in contrast a description is a condition which applies to any object of the domain that satisfies it. In a definite description the object is characterized by the fact that a certain predicate is uniquely satisfied by the object.</p>
+</div>
+<div id="S1.p9" class="ltx_para">
+<p class="ltx_p">The condition that a certain predicate <math id="S1.p9.m1" class="ltx_Math" alttext="F(a)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> is satisfied by a unique object <math id="S1.p9.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is represented in the so called <em class="ltx_emph ltx_font_italic">uniqueness formulas</em> for <math id="S1.p9.m3" class="ltx_Math" alttext="F(a)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> with the following configuration:</p>
+</div>
+<div id="S1.p10" class="ltx_para">
+<table id="S1.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex1.m1" class="ltx_Math" alttext="(\exists x)F(x)" display="block"><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∃</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S1.p11" class="ltx_para">
+<table id="S1.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_Math" alttext="(\forall x)(\forall y){[F(x)\wedge F(y)]\to(x=y)}." display="block"><mrow><mrow><mo stretchy="false">(</mo><mo>∀</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mo>∀</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">[</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>∧</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S1.p12" class="ltx_para">
+<p class="ltx_p">The extension of the predicate <math id="S1.p12.m1" class="ltx_Math" alttext="F(a)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> determines the object that uniquely satisfies <math id="S1.p12.m2" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> and for that reason the argument of the predicate plays the role of a bound variable.</p>
+</div>
+<div id="S1.p13" class="ltx_para">
+<p class="ltx_p">In <em class="ltx_emph ltx_font_italic">Principia Mathematica</em> the notation introduced for the definite description is a functional variable, known as the <em class="ltx_emph ltx_font_italic">description operator</em>. It is build by the small Greek letter <math id="S1.p13.m1" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math> with <math id="S1.p13.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> as an index, followed by the predicate to which the operator is applied:</p>
+</div>
+<div id="S1.p14" class="ltx_para ltx_centering">
+<p class="ltx_p"><math id="S1.p14.m1" class="ltx_Math" alttext="\iota_{x}F(x)." display="inline"><mrow><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>.</mo></mrow></math></p>
+</div>
+<div id="S1.p15" class="ltx_para">
+<p class="ltx_p">It is to such an expression that Russell calls a description.</p>
+</div>
+</section>
+<section id="S2" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">2 </span>Syntax</h2>
+
+<div id="S2.p1" class="ltx_para">
+<p class="ltx_p">In relation to syntax it is to be noticed that a description may have an occurrence in an argument position. This then gives rise to a formula like</p>
+</div>
+<div id="S2.p2" class="ltx_para">
+<table id="S2.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S2.Ex3.m1" class="ltx_Math" alttext="B[\iota_{x}F(x)]" display="block"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S2.p3" class="ltx_para">
+<p class="ltx_p">the interpretation of which is the statement</p>
+</div>
+<div id="S2.p4" class="ltx_para ltx_centering">
+<p class="ltx_p">"there is a unique object which satisfies <math id="S2.p4.m1" class="ltx_Math" alttext="F(a)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> and also satisfies <math id="S2.p4.m2" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>".</p>
+</div>
+<div id="S2.p5" class="ltx_para">
+<p class="ltx_p">If the conditions stipulated by the uniqueness formulas are not satisfied, in propositions like for example "the smallest complex number is prime", the description "the smallest complex number" is said to be empty and the proposition in which it occurs is false.</p>
+</div>
+<div id="S2.p6" class="ltx_para">
+<p class="ltx_p">Notice that the interpretation of the formula</p>
+</div>
+<div id="S2.p7" class="ltx_para">
+<table id="S2.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S2.Ex4.m1" class="ltx_Math" alttext="B[\iota_{x}F(x)]" display="block"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S2.p8" class="ltx_para">
+<p class="ltx_p">is <em class="ltx_emph ltx_font_italic">not</em> an explicit definition of the description</p>
+</div>
+<div id="S2.p9" class="ltx_para">
+<table id="S2.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S2.Ex5.m1" class="ltx_Math" alttext="\iota_{x}F(x)," display="block"><mrow><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S2.p10" class="ltx_para">
+<p class="ltx_p">since for this symbol we do not have a defining expression. What we have is a semantic characterization of the formulas in which the description occurs as one of its constituent parts, as a term.</p>
+</div>
+<div id="S2.p11" class="ltx_para">
+<p class="ltx_p">If there is a derivation of the uniqueness formulas for <math id="S2.p11.m1" class="ltx_Math" alttext="F(a)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> then the symbol
+</p>
+</div>
+<div id="S2.p12" class="ltx_para">
+<table id="S2.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S2.Ex6.m1" class="ltx_Math" alttext="\iota_{x}F(x)" display="block"><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S2.p13" class="ltx_para">
+<p class="ltx_p">is a term, in particular the term representing the unique object that satisfies <math id="S2.p13.m1" class="ltx_Math" alttext="F(a)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="S2.p14" class="ltx_para">
+<p class="ltx_p">The <math id="S2.p14.m1" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator is subject to the so called <math id="S2.p14.m2" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-Rule with the following content:</p>
+</div>
+<div id="S2.p15" class="ltx_para">
+<blockquote class="ltx_quote">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">If the uniqueness formulas for <math id="S2.p15.m1" class="ltx_Math" alttext="F(a)" display="inline"><mrow><mi>F</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> have been derived then the description <math id="S2.p15.m2" class="ltx_Math" alttext="\iota_{x}F(x)" display="inline"><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo mathvariant="italic">⁢</mo><mi>F</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is a term and the formula</em>
+
+<br class="ltx_break"></p>
+<table id="S2.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S2.Ex7.m1" class="ltx_Math" alttext="F[\iota_{x}F(x)]" display="block"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<br class="ltx_break">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">can now be derived by means of the following scheme:</em>
+
+<br class="ltx_break">
+                <math id="S2.p15.m3" class="ltx_Math" alttext="(\exists x)F(x)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∃</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+
+<br class="ltx_break">
+                <math id="S2.p15.m4" class="ltx_Math" alttext="(\forall x)(\forall y){[F(x)\wedge F(y)]\to(x=y)}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mo>∀</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mo>∀</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">[</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>∧</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+
+<br class="ltx_break">
+                <svg version="1.1" class="ltx_markedasmath" height="0.0pt" width="170" fragid="S2.p15.m5.pic1" viewBox="0 0 170 0" overflow="visible"><g transform="translate(0,0.0)"><g transform="scale(1 -1)"><path d="M 0,0 170,0" stroke-width="0.4"></path></g></g></svg>
+
+<br class="ltx_break">
+                <math id="S2.p15.m6" class="ltx_Math" alttext="\therefore F[\iota_{x}F(x)]" display="inline"><mrow><mi></mi><mo>∴</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></mrow></math></p>
+</blockquote>
+</div>
+<div id="S2.p16" class="ltx_para">
+<p class="ltx_p">The rule of the redenomination of bound variables for quantifiers can be applied to the bound variable of the <math id="S2.p16.m1" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator. Likewise the collision of bound variables, that one has to prevent when using quantifiers, has also to be prevented also with the use of the <math id="S2.p16.m2" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator.</p>
+</div>
+</section>
+<section id="S3" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">3 </span>Hilbert’s epsilon-axiom</h2>
+
+<div id="S3.p1" class="ltx_para">
+<p class="ltx_p">On the face of it it would seem that the introduction of <math id="S3.p1.m1" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-terms and of the <math id="S3.p1.m2" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-Rule would allow the derivation of new formulas. But one can prove that if a formula <math id="S3.p1.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> of the first order predicate calculus with equality, with 0-occurences of <math id="S3.p1.m4" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-terms, is derivable by means of the <math id="S3.p1.m5" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator and the <math id="S3.p1.m6" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-Rule, then <math id="S3.p1.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> can also be derived without the use of the <math id="S3.p1.m8" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator.</p>
+</div>
+<div id="S3.p2" class="ltx_para">
+<p class="ltx_p">Other than the <em class="ltx_emph ltx_font_italic">formal</em> eliminability of the <math id="S3.p2.m1" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator, Hilbert also adopted the introduction of a symbol which secures the eliminability of the <math id="S3.p2.m2" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator.</p>
+</div>
+<div id="S3.p3" class="ltx_para">
+<p class="ltx_p">The basic idea is the following:</p>
+</div>
+<div id="S3.p4" class="ltx_para">
+<blockquote class="ltx_quote">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">the descriptive term</em>
+
+<br class="ltx_break"></p>
+<table id="S3.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.Ex8.m1" class="ltx_Math" alttext="\iota_{x}A(x)" display="block"><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<br class="ltx_break">
+<p class="ltx_p"><em class="ltx_emph ltx_font_italic">formally represents the statement</em>
+
+<br class="ltx_break"></p>
+<p class="ltx_p ltx_align_center">"<span class="ltx_text ltx_font_bold">the object <math id="S3.p4.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> which has the property <math id="S3.p4.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math></span>".</p>
+</blockquote>
+</div>
+<div id="S3.p5" class="ltx_para">
+<p class="ltx_p">As we have seen above this term can only be formally introduced after the derivation of the uniqueness formulas.</p>
+</div>
+<div id="S3.p6" class="ltx_para">
+<p class="ltx_p">Hilbert proves that these formulas can be dispensed with and the <math id="S3.p6.m1" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator be replaced by his <math id="S3.p6.m2" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-operator.</p>
+</div>
+<div id="S3.p7" class="ltx_para">
+<p class="ltx_p">The introduction of this operator is to be controlled by conditions that specify:
+</p>
+</div>
+<div id="S3.p8" class="ltx_para">
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">Which are the well formed formulas in which the operator is going to occur;</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">How the underlying logic is going to be adjusted;</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p">They give an axiom that defines the use of <math id="I1.i3.p1.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>.</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S3.p9" class="ltx_para">
+<p class="ltx_p">In particular, let us assume that <math id="S3.p9.m1" class="ltx_Math" alttext="A(x)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is a formula in which <math id="S3.p9.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> has a free occurrence. We can then build a term of the form</p>
+</div>
+<div id="S3.p10" class="ltx_para">
+<table id="S3.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.Ex9.m1" class="ltx_Math" alttext="\varepsilon_{x}A(x)" display="block"><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S3.p11" class="ltx_para">
+<p class="ltx_p">where the occurrence of <math id="S3.p11.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is now bound.</p>
+</div>
+<div id="S3.p12" class="ltx_para">
+<p class="ltx_p">If a term built with the <math id="S3.p12.m1" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator can be interpreted as a definite description, the term built with <math id="S3.p12.m2" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math> can be interpreted as an indefinite description.</p>
+</div>
+<div id="S3.p13" class="ltx_para">
+<p class="ltx_p">So if there is at least a value <math id="S3.p13.m1" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> such that <math id="S3.p13.m2" class="ltx_Math" alttext="A(k)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> is satisfied, then the term</p>
+</div>
+<div id="S3.p14" class="ltx_para">
+<table id="S3.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.Ex10.m1" class="ltx_Math" alttext="\varepsilon_{x}A(x)" display="block"><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S3.p15" class="ltx_para">
+<p class="ltx_p">denotes <em class="ltx_emph ltx_font_italic">an object, without further specifications</em>, which satisfies <math id="S3.p15.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>. If there is no such <math id="S3.p15.m2" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> such that</p>
+</div>
+<div id="S3.p16" class="ltx_para">
+<table id="S3.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.Ex11.m1" class="ltx_Math" alttext="\varepsilon_{x}A(x)" display="block"><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S3.p17" class="ltx_para">
+<p class="ltx_p">then we let the term denote an arbitrary value. This already implies that the formula</p>
+</div>
+<div id="S3.p18" class="ltx_para">
+<table id="S3.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S3.Ex12.m1" class="ltx_Math" alttext="(\exists x)A(x)\to A[\varepsilon_{x}A(x)]" display="block"><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∃</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S3.p19" class="ltx_para">
+<p class="ltx_p">is true.</p>
+</div>
+<div id="S3.p20" class="ltx_para">
+<p class="ltx_p">The fundamental axiom is the following:</p>
+</div>
+<div id="S3.p21" class="ltx_para ltx_centering">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Axiom <math id="S3.p21.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>: If <math id="S3.p21.m2" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> is a predicate with a free occurrence of <math id="S3.p21.m3" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>, then</span></p>
+<p class="ltx_p">(<math id="S3.p21.m4" class="ltx_Math" alttext="\star" display="inline"><mo>⋆</mo></math>)     <math id="S3.p21.m5" class="ltx_Math" alttext="F(y)\to F[\varepsilon_{x}F(x)]" display="inline"><mrow><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></mrow></math>.</p>
+</div>
+</section>
+<section id="S4" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">4 </span>The axiom of choice</h2>
+
+<div id="S4.p1" class="ltx_para">
+<p class="ltx_p">It was already pointed out that the variable <math id="S4.p1.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> of the <math id="S4.p1.m2" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-term is a bound variable and that the redenomination rule for bound variables can be applied.</p>
+</div>
+<div id="S4.p2" class="ltx_para">
+<p class="ltx_p">The formula <math id="S4.p2.m1" class="ltx_Math" alttext="A(x)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> to which the <math id="S4.p2.m2" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-operator is attached as a prefix may contain variables, free or bound by <math id="S4.p2.m3" class="ltx_Math" alttext="\forall" display="inline"><mo>∀</mo></math>, <math id="S4.p2.m4" class="ltx_Math" alttext="\exists" display="inline"><mo>∃</mo></math>, <math id="S4.p2.m5" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math> or <math id="S4.p2.m6" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>. In that case the formal definition of the <math id="S4.p2.m7" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-term can not give rise to the <em class="ltx_emph ltx_font_italic">collision of bound variables</em>.</p>
+</div>
+<div id="S4.p3" class="ltx_para">
+<p class="ltx_p">For Hilbert’s new symbol the name "<span class="ltx_text ltx_font_bold">choice operator</span>" has been suggested, due to the obvious analogy between the <math id="S4.p3.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-axiom and the axiom of choice.</p>
+</div>
+<div id="S4.p4" class="ltx_para">
+<p class="ltx_p">To develop the analogy, let us suppose that</p>
+</div>
+<div id="S4.p5" class="ltx_para">
+<table id="S4.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S4.Ex13.m1" class="ltx_Math" alttext="\{M_{i}\}" display="block"><mrow><mo stretchy="false">{</mo><msub><mi>M</mi><mi>i</mi></msub><mo stretchy="false">}</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S4.p6" class="ltx_para">
+<p class="ltx_p">denotes a set of disjoint non-empty sets <math id="S4.p6.m1" class="ltx_Math" alttext="M_{i}" display="inline"><msub><mi>M</mi><mi>i</mi></msub></math> (with <math id="S4.p6.m2" class="ltx_Math" alttext="i\in I" display="inline"><mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></math>). Now the axiom of choice secures the existence of a function which chooses from each set <math id="S4.p6.m3" class="ltx_Math" alttext="M_{i}" display="inline"><msub><mi>M</mi><mi>i</mi></msub></math> an element <math id="S4.p6.m4" class="ltx_Math" alttext="m_{i}\in M_{i}" display="inline"><mrow><msub><mi>m</mi><mi>i</mi></msub><mo>∈</mo><msub><mi>M</mi><mi>i</mi></msub></mrow></math>, the representative element of <math id="S4.p6.m5" class="ltx_Math" alttext="M_{i}" display="inline"><msub><mi>M</mi><mi>i</mi></msub></math>.</p>
+</div>
+<div id="S4.p7" class="ltx_para">
+<p class="ltx_p">Hilbert’s <math id="S4.p7.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-operator works like such a function, since the term</p>
+</div>
+<div id="S4.p8" class="ltx_para">
+<table id="S4.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S4.Ex14.m1" class="ltx_Math" alttext="\varepsilon_{x}(x\in M_{i})" display="block"><mrow><msub><mi>ε</mi><mi>x</mi></msub><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>∈</mo><msub><mi>M</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S4.p9" class="ltx_para">
+<p class="ltx_p">in the usual interpretation represents a chosen element <math id="S4.p9.m1" class="ltx_Math" alttext="m_{i}" display="inline"><msub><mi>m</mi><mi>i</mi></msub></math> from <math id="S4.p9.m2" class="ltx_Math" alttext="M_{i}" display="inline"><msub><mi>M</mi><mi>i</mi></msub></math>.</p>
+</div>
+<div id="S4.p10" class="ltx_para">
+<p class="ltx_p">Thus if we have the following:</p>
+</div>
+<div id="S4.p11" class="ltx_para">
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i1.p1.m1" class="ltx_Math" alttext="A(a,\ldots,k,x)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>k</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></p>
+</div>
+<div id="I2.i1.p2" class="ltx_para">
+<p class="ltx_p">is a formula in which <math id="I2.i1.p2.m1" class="ltx_Math" alttext="a,\ldots,k,x" display="inline"><mrow><mi>a</mi><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>k</mi><mo>,</mo><mi>x</mi></mrow></math> are the only free variables, and</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">A relation which maps every set of elements <math id="I2.i2.p1.m1" class="ltx_Math" alttext="a,\ldots,k" display="inline"><mrow><mi>a</mi><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>k</mi></mrow></math> to at least an element <math id="I2.i2.p1.m2" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math> such that</p>
+</div>
+<div id="I2.i2.p2" class="ltx_para">
+<table id="S4.Ex15" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S4.Ex15.m1" class="ltx_Math" alttext="A(a,\ldots,k,m)," display="block"><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>k</mi><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I2.i2.p3" class="ltx_para">
+<p class="ltx_p">then</p>
+</div>
+<div id="I2.i2.p4" class="ltx_para">
+<table id="S4.Ex16" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S4.Ex16.m1" class="ltx_Math" alttext="\varepsilon_{x}A(a,\ldots,k,x)" display="block"><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>k</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I2.i2.p5" class="ltx_para">
+<p class="ltx_p">is a function which maps every set of values of the arguments <math id="I2.i2.p5.m1" class="ltx_Math" alttext="a,\ldots,k" display="inline"><mrow><mi>a</mi><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>k</mi></mrow></math> to a unique value <math id="I2.i2.p5.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="S4.p12" class="ltx_para">
+<p class="ltx_p">To sober up the analogy a little, it is to be noticed that Hilbert intended the choice function to have a finitistic meaning and accordingly to perform only a finite number of choices of one element at a time. In contrast the real choice function of the axiom of choice performs an infinite number of simultaneous choices.</p>
+</div>
+</section>
+<section id="S5" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">5 </span>The elimination of descriptions and quantifiers</h2>
+
+<div id="S5.p1" class="ltx_para">
+<p class="ltx_p">We sketch now some of the best known properties of the <math id="S5.p1.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-operator.</p>
+</div>
+<div id="S5.p2" class="ltx_para">
+<ol id="I3" class="ltx_enumerate">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Descriptions</span></p>
+</div>
+<div id="I3.i1.p2" class="ltx_para">
+<p class="ltx_p">If for a formula <math id="I3.i1.p2.m1" class="ltx_Math" alttext="A(x)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> it is at all possible to introduce the</p>
+</div>
+<div id="I3.i1.p3" class="ltx_para ltx_centering">
+<p class="ltx_p"><math id="I3.i1.p3.m1" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator</p>
+</div>
+<div id="I3.i1.p4" class="ltx_para">
+<p class="ltx_p">then</p>
+</div>
+<div id="I3.i1.p5" class="ltx_para">
+<table id="S5.Ex17" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex17.m1" class="ltx_Math" alttext="\iota_{x}A(x)=\varepsilon_{x}A(x)." display="block"><mrow><mrow><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.i1.p6" class="ltx_para">
+<p class="ltx_p">The argument is the following:</p>
+</div>
+<div id="I3.i1.p7" class="ltx_para">
+<ul id="I3.I1" class="ltx_itemize">
+<li id="I3.I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I3.I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">i)</span> If the <math id="I3.I1.i1.p1.m1" class="ltx_Math" alttext="\iota" display="inline"><mi>ι</mi></math>-operator can be introduced then one has the term
+</p>
+<table id="S5.Ex18" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex18.m1" class="ltx_Math" alttext="A[\iota_{x}A(x)]." display="block"><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I3.I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I3.I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">ii)</span> In the formula (<math id="I3.I1.i2.p1.m1" class="ltx_Math" alttext="\star" display="inline"><mo>⋆</mo></math>), Hilbert’s axiom, we insert <math id="I3.I1.i2.p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> for <math id="I3.I1.i2.p1.m3" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math> and the descriptive term <math id="I3.I1.i2.p1.m4" class="ltx_Math" alttext="\iota_{x}A(x)" display="inline"><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> for <math id="I3.I1.i2.p1.m5" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> and we obtain the formula</p>
+</div>
+<div id="I3.I1.i2.p2" class="ltx_para">
+<table id="S5.Ex19" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex19.m1" class="ltx_Math" alttext="A[\iota_{x}A(x)]\to A[\varepsilon_{x}A(x)]." display="block"><mrow><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow><mo>→</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I3.I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I3.I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">iii)</span> By i) and <em class="ltx_emph ltx_font_italic">modus ponens</em> one has then</p>
+</div>
+<div id="I3.I1.i3.p2" class="ltx_para">
+<table id="S5.Ex20" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex20.m1" class="ltx_Math" alttext="A[\varepsilon_{x}A(x)]." display="block"><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I3.I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I3.I1.i4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">iv)</span> This shows that if the descriptive term can be introduced then the <math id="I3.I1.i4.p1.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-term satisfies the same predicate <math id="I3.I1.i4.p1.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and therefore that</p>
+</div>
+<div id="I3.I1.i4.p2" class="ltx_para">
+<table id="S5.Ex21" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex21.m1" class="ltx_Math" alttext="\iota_{x}A(x)=\varepsilon_{x}A(x)." display="block"><mrow><mrow><mrow><msub><mi>ι</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Quantifiers</span></p>
+</div>
+<div id="I3.i2.p2" class="ltx_para">
+<ul id="I3.I2" class="ltx_itemize">
+<li id="I3.I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I3.I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">i) Existence</span></p>
+</div>
+<div id="I3.I2.i1.p2" class="ltx_para">
+<p class="ltx_p">If we start with the <math id="I3.I2.i1.p2.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-axiom</p>
+</div>
+<div id="I3.I2.i1.p3" class="ltx_para">
+<table id="S5.Ex22" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex22.m1" class="ltx_Math" alttext="F(y)\to F[\varepsilon_{x}F(x)]" display="block"><mrow><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i1.p4" class="ltx_para">
+<p class="ltx_p">then by <math id="I3.I2.i1.p4.m1" class="ltx_Math" alttext="\exists" display="inline"><mo>∃</mo></math>-introduction we obtain</p>
+</div>
+<div id="I3.I2.i1.p5" class="ltx_para">
+<table id="S5.Ex23" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex23.m1" class="ltx_Math" alttext="(\exists x)F(x)\to F[\varepsilon_{x}F(x)]." display="block"><mrow><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∃</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i1.p6" class="ltx_para">
+<p class="ltx_p">Existential Generalization gives the formula</p>
+</div>
+<div id="I3.I2.i1.p7" class="ltx_para">
+<table id="S5.Ex24" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex24.m1" class="ltx_Math" alttext="F(y)\to(\exists x)F(x)" display="block"><mrow><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∃</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i1.p8" class="ltx_para">
+<p class="ltx_p">and by inserting the <math id="I3.I2.i1.p8.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-term for <math id="I3.I2.i1.p8.m2" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> we get</p>
+</div>
+<div id="I3.I2.i1.p9" class="ltx_para">
+<table id="S5.Ex25" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex25.m1" class="ltx_Math" alttext="F[\varepsilon_{x}F(x)]\to(\exists x)F(x)." display="block"><mrow><mrow><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow><mo>→</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∃</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i1.p10" class="ltx_para">
+<p class="ltx_p">This shows that</p>
+</div>
+<div id="I3.I2.i1.p11" class="ltx_para">
+<table id="S5.Ex26" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex26.m1" class="ltx_Math" alttext="(\exists x)F(x)\leftrightarrow F[\varepsilon_{x}F(x)]." display="block"><mrow><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∃</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>↔</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I3.I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I3.I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">ii) Generality</span></p>
+</div>
+<div id="I3.I2.i2.p2" class="ltx_para">
+<p class="ltx_p">We use as starting formula</p>
+</div>
+<div id="I3.I2.i2.p3" class="ltx_para">
+<table id="S5.Ex27" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex27.m1" class="ltx_Math" alttext="(\exists x)F(x)\leftrightarrow F[\varepsilon_{x}F(x)]." display="block"><mrow><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∃</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>↔</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i2.p4" class="ltx_para">
+<p class="ltx_p">The rule of insertion allows the reformulation</p>
+</div>
+<div id="I3.I2.i2.p5" class="ltx_para">
+<table id="S5.Ex28" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex28.m1" class="ltx_Math" alttext="(\exists x)\sim F(x)\leftrightarrow\sim F[\varepsilon_{x}\sim F(x)]." display="block"><mrow><mrow><mo stretchy="false">(</mo><mo>∃</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>↔</mo><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">[</mo><msub><mi>ε</mi><mi>x</mi></msub><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i2.p6" class="ltx_para">
+<p class="ltx_p">The propositional tautology</p>
+</div>
+<div id="I3.I2.i2.p7" class="ltx_para">
+<table id="S5.Ex29" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex29.m1" class="ltx_Math" alttext="(X\leftrightarrow Y)\to(\sim X\leftrightarrow\sim Y)" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>↔</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mo>∼</mo><mi>X</mi><mo>↔</mo><mo>∼</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i2.p8" class="ltx_para">
+<p class="ltx_p">gives the formula</p>
+</div>
+<div id="I3.I2.i2.p9" class="ltx_para">
+<table id="S5.Ex30" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex30.m1" class="ltx_Math" alttext="\sim(\exists x)\sim F(x)\leftrightarrow\sim\sim F[\varepsilon_{x}\sim F(x)]." display="block"><mrow><mo>∼</mo><mrow><mo stretchy="false">(</mo><mo>∃</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>↔</mo><mo>∼</mo><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">[</mo><msub><mi>ε</mi><mi>x</mi></msub><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i2.p10" class="ltx_para">
+<p class="ltx_p">From predicate calculus we get</p>
+</div>
+<div id="I3.I2.i2.p11" class="ltx_para">
+<table id="S5.Ex31" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex31.m1" class="ltx_Math" alttext="(\forall x)F(x)\leftrightarrow\sim\sim F[\varepsilon_{x}\sim F(x)]." display="block"><mrow><mrow><mo stretchy="false">(</mo><mo>∀</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>↔</mo><mo>∼</mo><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">[</mo><msub><mi>ε</mi><mi>x</mi></msub><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</li>
+<li id="I3.I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_bold">–</span></span> 
+<div id="I3.I2.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">iii) <em class="ltx_emph ltx_font_italic">Dictum de Omni</em></span></p>
+</div>
+<div id="I3.I2.i3.p2" class="ltx_para">
+<p class="ltx_p">The same kind of argument allows the derivation of <em class="ltx_emph ltx_font_italic">dictum de omni</em>.</p>
+</div>
+<div id="I3.I2.i3.p3" class="ltx_para">
+<p class="ltx_p">To prove</p>
+</div>
+<div id="I3.I2.i3.p4" class="ltx_para">
+<table id="S5.Ex32" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex32.m1" class="ltx_Math" alttext="(\forall x)F(x)\to F(y)" display="block"><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∀</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i3.p5" class="ltx_para">
+<p class="ltx_p">we start with the <math id="I3.I2.i3.p5.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-axiom</p>
+</div>
+<div id="I3.I2.i3.p6" class="ltx_para">
+<table id="S5.Ex33" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex33.m1" class="ltx_Math" alttext="F(y)\to F[\varepsilon_{x}F(x)]" display="block"><mrow><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><msub><mi>ε</mi><mi>x</mi></msub><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i3.p7" class="ltx_para">
+<p class="ltx_p">and by the rule of insertion we get</p>
+</div>
+<div id="I3.I2.i3.p8" class="ltx_para">
+<table id="S5.Ex34" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex34.m1" class="ltx_Math" alttext="\sim F(y)\to\sim F[\varepsilon_{x}\sim F(x)]." display="block"><mrow><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">[</mo><msub><mi>ε</mi><mi>x</mi></msub><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i3.p9" class="ltx_para">
+<p class="ltx_p">The propositional tautology</p>
+</div>
+<div id="I3.I2.i3.p10" class="ltx_para">
+<table id="S5.Ex35" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex35.m1" class="ltx_Math" alttext="(X\to Y)\leftrightarrow(\sim Y\to\sim X)" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>→</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><mo>↔</mo><mrow><mo stretchy="false">(</mo><mo>∼</mo><mi>Y</mi><mo>→</mo><mo>∼</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i3.p11" class="ltx_para">
+<p class="ltx_p">gives the formula</p>
+</div>
+<div id="I3.I2.i3.p12" class="ltx_para">
+<table id="S5.Ex36" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex36.m1" class="ltx_Math" alttext="\sim\sim F[\varepsilon_{x}\sim F(x)]\to\sim\sim F(y)." display="block"><mrow><mo>∼</mo><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">[</mo><msub><mi>ε</mi><mi>x</mi></msub><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow><mo>→</mo><mo>∼</mo><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i3.p13" class="ltx_para">
+<p class="ltx_p">But by Part ii) above this is</p>
+</div>
+<div id="I3.I2.i3.p14" class="ltx_para">
+<table id="S5.Ex37" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex37.m1" class="ltx_Math" alttext="(\forall x)F(x)\to\sim\sim F(y)." display="block"><mrow><mrow><mo stretchy="false">(</mo><mo>∀</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mo>∼</mo><mo>∼</mo><mi>F</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i3.p15" class="ltx_para">
+<p class="ltx_p">Double negation gives</p>
+</div>
+<div id="I3.I2.i3.p16" class="ltx_para">
+<table id="S5.Ex38" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S5.Ex38.m1" class="ltx_Math" alttext="(\forall x)F(x)\to F(y)" display="block"><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>∀</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="I3.I2.i3.p17" class="ltx_para">
+<p class="ltx_p">as desired.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</section>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul class="ltx_biblist">
+      
+<li id="bib.bib1" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">1</span>
+        
+<span class="ltx_bibblock"> Fraenkel, A., <em class="ltx_emph ltx_font_italic">Foundations of set theory</em>, North-Holland, Amsterdam, 1958.
+
+</span>
+      </li>
+      
+<li id="bib.bib2" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">2</span>
+        
+<span class="ltx_bibblock"> Bernays, P., Hilbert, D., <em class="ltx_emph ltx_font_italic">Grundlagen der Mathematik</em>, 2. Auflage, Berlin, 1968.
+
+</span>
+      </li>
+      
+<li id="bib.bib3" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">3</span>
+        
+<span class="ltx_bibblock"> Kreisel, G., "Hilbert’s Programme", <em class="ltx_emph ltx_font_italic">Dialectica</em> 12, 1958.
+
+</span>
+      </li>
+      
+<li id="bib.bib4" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">4</span>
+        
+<span class="ltx_bibblock"> Russell, B., Whitehead, A., <em class="ltx_emph ltx_font_italic">Principia Mathematica</em>, Cambridge, 1910.
+
+</span>
+      </li>
+    
+</ul>
+</section>
+<div id="p2" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">Hilbert’s <math id="p2.m1" class="ltx_Math" alttext="\varepsilon" display="inline"><mi>ε</mi></math>-operator</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Canonical name</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Hilbertsvarepsilonoperator</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Date of creation</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 18:39:18</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified on</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 18:39:18</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Owner</td>
+<td class="ltx_td ltx_align_left ltx_border_r">gribskoff (21395)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified by</td>
+<td class="ltx_td ltx_align_left ltx_border_r">gribskoff (21395)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Numerical id</td>
+<td class="ltx_td ltx_align_left ltx_border_r">8</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Author</td>
+<td class="ltx_td ltx_align_left ltx_border_r">gribskoff (21395)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Entry type</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03E30</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03E25</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03B10</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03-01</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">choice function</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">choice operator</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Related topic</td>
+<td class="ltx_td ltx_align_left ltx_border_r">AnOutlineOfHilbertsProgramme</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Related topic</td>
+<td class="ltx_td ltx_align_left ltx_border_r">FOUNDATIONSOFMATHEMATICSOVERVIEW</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Related topic</td>
+<td class="ltx_td ltx_align_left ltx_border_r">AxiomOfChoice</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Related topic</td>
+<td class="ltx_td ltx_align_left ltx_border_r">RussellsTheoryOfTypes</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">Hilbert’s epsilon-operator</td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:18:18 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

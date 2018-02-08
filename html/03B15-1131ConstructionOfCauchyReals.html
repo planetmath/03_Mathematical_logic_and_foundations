@@ -1,0 +1,198 @@
+<!DOCTYPE html><html>
+<head>
+<title>11.3.1 Construction of Cauchy reals</title>
+<!--Generated on Thu Feb  8 19:30:56 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , , , Cauchy, distance, higher, inductive-inductive type, real numbers, sequence">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">11.3.1 Construction of Cauchy reals</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">The construction of the Cauchy reals <math id="p2.m1" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi>ℝ</mi><mi>𝖼</mi></msub></math> as a higher inductive type is a bit more subtle than that of the free algebraic structures considered in <span class="ltx_ERROR undefined">\autoref</span>sec:free-algebras.
+We intend to include a “take the limit” constructor whose input is a Cauchy sequence of reals, but the notion of “Cauchy sequence of reals” depends on having some way to measure the “distance” between real numbers.
+In general, of course, the distance between two real numbers will be another real number, leading to a potentially problematic circularity.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">However, what we actually need for the notion of Cauchy sequence of reals is not the general notion of “distance”, but a way to say that “the distance between two real numbers is less than <math id="p3.m1" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math>” for any <math id="p3.m2" class="ltx_Math" alttext="\epsilon:\mathbb{Q}_{+}" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub></mrow></math>.
+This can be represented by a family of binary relations, which we will denote <math id="p3.m3" class="ltx_Math" alttext="\mathord{\sim_{\epsilon}}:\mathbb{R}_{\mathsf{c}}\to\mathbb{R}_{\mathsf{c}}\to%
+\mathsf{Prop}" display="inline"><mrow><msub><mo>∼</mo><mi>ϵ</mi></msub><mo>:</mo><mrow><msub><mi>ℝ</mi><mi>𝖼</mi></msub><mo>→</mo><msub><mi>ℝ</mi><mi>𝖼</mi></msub><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></math>.
+The intended meaning of <math id="p3.m4" class="ltx_Math" alttext="x\sim_{\epsilon}y" display="inline"><mrow><mi>x</mi><msub><mo>∼</mo><mi>ϵ</mi></msub><mi>y</mi></mrow></math> is <math id="p3.m5" class="ltx_Math" alttext="|x-y|&lt;\epsilon" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>x</mi><mo>-</mo><mi>y</mi></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mi>ϵ</mi></mrow></math>, but since we do not have notions of subtraction, absolute value, or inequality available yet (we are only just defining <math id="p3.m6" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi>ℝ</mi><mi>𝖼</mi></msub></math>, after all), we will have to define these relations <math id="p3.m7" class="ltx_Math" alttext="\sim_{\epsilon}" display="inline"><msub><mo>∼</mo><mi>ϵ</mi></msub></math> at the same time as we define <math id="p3.m8" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi>ℝ</mi><mi>𝖼</mi></msub></math> itself.
+And since <math id="p3.m9" class="ltx_Math" alttext="\sim_{\epsilon}" display="inline"><msub><mo>∼</mo><mi>ϵ</mi></msub></math> is a type family indexed by two copies of <math id="p3.m10" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi>ℝ</mi><mi>𝖼</mi></msub></math>, we cannot do this with an ordinary mutual (higher) inductive definition; instead we have to use a <em class="ltx_emph ltx_font_italic">higher inductive-inductive definition</em>.
+
+</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Recall from <span class="ltx_ERROR undefined">\autoref</span>sec:generalizations that the ordinary notion of inductive-inductive definition allows us to define a type and a type family indexed by it by simultaneous induction.
+Of course, the “higher” version of this allows both the type and the family to have path constructors as well as point constructors.
+We will not attempt to formulate any general theory of higher inductive-inductive definitions, but hopefully the description we will give of <math id="p4.m1" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi>ℝ</mi><mi>𝖼</mi></msub></math> and <math id="p4.m2" class="ltx_Math" alttext="\sim_{\epsilon}" display="inline"><msub><mo>∼</mo><mi>ϵ</mi></msub></math> will make the idea transparent.</p>
+</div>
+<div id="Thmprermk1" class="ltx_theorem ltx_theorem_prermk">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Remark 11.3.1</span>.</h6>
+<div id="Thmprermk1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We might also consider a <em class="ltx_emph ltx_font_upright">higher inductive-recursive definition</em>, in which <math id="Thmprermk1.p1.m1" class="ltx_Math" alttext="\sim_{\epsilon}" display="inline"><msub><mo mathvariant="normal">∼</mo><mi>ϵ</mi></msub></math> is defined using the <em class="ltx_emph ltx_font_upright">recursion</em> principle of <math id="Thmprermk1.p1.m2" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi mathvariant="normal">R</mi><mi mathvariant="normal">c</mi></msub></math>, simultaneously with the <em class="ltx_emph ltx_font_upright">inductive</em> definition of <math id="Thmprermk1.p1.m3" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi mathvariant="normal">R</mi><mi mathvariant="normal">c</mi></msub></math>.
+We choose the inductive-inductive route instead for two reasons.
+Firstly, higher inductive-recursive definitions seem to be more difficult to justify in homotopical semantics.
+Secondly, and more importantly, the inductive-inductive definition yields a more powerful induction principle, which we will need in order to develop even the basic theory of Cauchy reals.
+</span></p>
+</div>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Finally, as we did for the discussion of Cauchy completeness of the Dedekind reals in <span class="ltx_ERROR undefined">\autoref</span>sec:RD-cauchy-complete, we will work with <em class="ltx_emph ltx_font_italic">Cauchy approximations</em> (<span class="ltx_ERROR undefined">\autoref</span>defn:cauchy-approximation) instead of Cauchy sequences.
+Of course, our Cauchy approximations will now consist of Cauchy reals, rather than Dedekind reals or rational numbers.</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 11.3.2</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi mathvariant="normal">R</mi><mi mathvariant="normal">c</mi></msub></math> and the relation <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="\mathord{\sim}:\mathbb{Q}_{+}\times\mathbb{R}_{\mathsf{c}}\times\mathbb{R}_{%
+\mathsf{c}}\to\mathcal{U}" display="inline"><mrow><mi mathvariant="normal">∼</mi><mo mathvariant="normal">:</mo><mrow><mrow><msub><mi mathvariant="normal">Q</mi><mo mathvariant="normal">+</mo></msub><mo mathvariant="normal">×</mo><msub><mi mathvariant="normal">R</mi><mi mathvariant="normal">c</mi></msub><mo mathvariant="normal">×</mo><msub><mi mathvariant="normal">R</mi><mi mathvariant="normal">c</mi></msub></mrow><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> be the following higher inductive-inductive type family.
+The type <math id="Thmpredefn1.p1.m3" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi mathvariant="normal">R</mi><mi mathvariant="normal">c</mi></msub></math> of <span class="ltx_text ltx_font_bold">Cauchy reals</span>
+is generated by the following constructors:
+</span></p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">rational points:</em><span class="ltx_text ltx_font_italic">
+for any </span><math id="I1.i1.p1.m1" class="ltx_Math" alttext="q:\mathbb{Q}" display="inline"><mrow><mi>q</mi><mo>:</mo><mi>ℚ</mi></mrow></math><span class="ltx_text ltx_font_italic"> there is a real </span><math id="I1.i1.p1.m2" class="ltx_Math" alttext="\mathsf{rat}(q)" display="inline"><mrow><mi>𝗋𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.
+</span></p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">limit points</em><span class="ltx_text ltx_font_italic">:
+for any </span><math id="I1.i2.p1.m1" class="ltx_Math" alttext="x:\mathbb{Q}_{+}\to\mathbb{R}_{\mathsf{c}}" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><msub><mi>ℚ</mi><mo>+</mo></msub><mo>→</mo><msub><mi>ℝ</mi><mi>𝖼</mi></msub></mrow></mrow></math><span class="ltx_text ltx_font_italic"> such that</span></p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="\forall(\delta,\epsilon:\mathbb{Q}_{+}).\,x_{\delta}\sim_{\delta+\epsilon}x_{\epsilon}" display="block"><mrow><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo>,</mo><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><msub><mi>x</mi><mi>δ</mi></msub><msub><mo>∼</mo><mrow><mi>δ</mi><mo>+</mo><mi>ϵ</mi></mrow></msub><msub><mi>x</mi><mi>ϵ</mi></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(11.3.2)</span></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">there is a point </span><math id="I1.i2.p1.m2" class="ltx_Math" alttext="\mathsf{lim}(x):\mathbb{R}_{\mathsf{c}}" display="inline"><mrow><mrow><mi>𝗅𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><msub><mi>ℝ</mi><mi>𝖼</mi></msub></mrow></math><span class="ltx_text ltx_font_italic">. We call </span><math id="I1.i2.p1.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math><span class="ltx_text ltx_font_italic"> a </span><span class="ltx_text ltx_font_bold ltx_font_italic">Cauchy approximation</span><span class="ltx_text ltx_font_italic">.
+</span></p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">paths:</em><span class="ltx_text ltx_font_italic">
+for </span><math id="I1.i3.p1.m1" class="ltx_Math" alttext="u,v:\mathbb{R}_{\mathsf{c}}" display="inline"><mrow><mrow><mi>u</mi><mo>,</mo><mi>v</mi></mrow><mo>:</mo><msub><mi>ℝ</mi><mi>𝖼</mi></msub></mrow></math><span class="ltx_text ltx_font_italic"> such that</span></p>
+<table id="S0.E2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E2.m1" class="ltx_Math" alttext="\forall(\epsilon:\mathbb{Q}_{+}).\,u\sim_{\epsilon}v" display="block"><mrow><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>u</mi><msub><mo>∼</mo><mi>ϵ</mi></msub><mi>v</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(11.3.3)</span></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">then there is a path </span><math id="I1.i3.p1.m2" class="ltx_Math" alttext="\mathsf{eq}_{\mathbb{R}_{\mathsf{c}}}(u,v):u=_{\mathbb{R}_{\mathsf{c}}}v" display="inline"><mrow><mrow><msub><mi>𝖾𝗊</mi><msub><mi>ℝ</mi><mi>𝖼</mi></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>u</mi><msub><mo>=</mo><msub><mi>ℝ</mi><mi>𝖼</mi></msub></msub><mi>v</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ul>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Simultaneously, the type family <math id="Thmpredefn1.p1.m4" class="ltx_Math" alttext="\mathord{\sim}:\mathbb{R}_{\mathsf{c}}\to\mathbb{R}_{\mathsf{c}}\to\mathbb{Q}_%
+{+}\to\mathcal{U}" display="inline"><mrow><mi mathvariant="normal">∼</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">R</mi><mi mathvariant="normal">c</mi></msub><mo mathvariant="normal">→</mo><msub><mi mathvariant="normal">R</mi><mi mathvariant="normal">c</mi></msub><mo mathvariant="normal">→</mo><msub><mi mathvariant="normal">Q</mi><mo mathvariant="normal">+</mo></msub><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math> is generated by the following constructors.
+Here <math id="Thmpredefn1.p1.m5" class="ltx_Math" alttext="q" display="inline"><mi>q</mi></math> and <math id="Thmpredefn1.p1.m6" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> denote rational numbers; <math id="Thmpredefn1.p1.m7" class="ltx_Math" alttext="\delta" display="inline"><mi>δ</mi></math>, <math id="Thmpredefn1.p1.m8" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math>, and <math id="Thmpredefn1.p1.m9" class="ltx_Math" alttext="\eta" display="inline"><mi>η</mi></math> denote positive rationals; <math id="Thmpredefn1.p1.m10" class="ltx_Math" alttext="u" display="inline"><mi>u</mi></math> and <math id="Thmpredefn1.p1.m11" class="ltx_Math" alttext="v" display="inline"><mi>v</mi></math> denote Cauchy reals; and <math id="Thmpredefn1.p1.m12" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="Thmpredefn1.p1.m13" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> denote Cauchy approximations:</span></p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for any </span><math id="I2.i1.p1.m1" class="ltx_Math" alttext="q,r,\epsilon" display="inline"><mrow><mi>q</mi><mo>,</mo><mi>r</mi><mo>,</mo><mi>ϵ</mi></mrow></math><span class="ltx_text ltx_font_italic">, if </span><math id="I2.i1.p1.m2" class="ltx_Math" alttext="-\epsilon&lt;q-r&lt;\epsilon" display="inline"><mrow><mrow><mo>-</mo><mi>ϵ</mi></mrow><mo>&lt;</mo><mrow><mi>q</mi><mo>-</mo><mi>r</mi></mrow><mo>&lt;</mo><mi>ϵ</mi></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="I2.i1.p1.m3" class="ltx_Math" alttext="\mathsf{rat}(q)\sim_{\epsilon}\mathsf{rat}(r)" display="inline"><mrow><mrow><mi>𝗋𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow><msub><mo>∼</mo><mi>ϵ</mi></msub><mrow><mi>𝗋𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for any </span><math id="I2.i2.p1.m1" class="ltx_Math" alttext="q,y,\epsilon,\delta" display="inline"><mrow><mi>q</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>ϵ</mi><mo>,</mo><mi>δ</mi></mrow></math><span class="ltx_text ltx_font_italic">, if </span><math id="I2.i2.p1.m2" class="ltx_Math" alttext="\mathsf{rat}(q)\sim_{\epsilon-\delta}y_{\delta}" display="inline"><mrow><mrow><mi>𝗋𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow><msub><mo>∼</mo><mrow><mi>ϵ</mi><mo>-</mo><mi>δ</mi></mrow></msub><msub><mi>y</mi><mi>δ</mi></msub></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="I2.i2.p1.m3" class="ltx_Math" alttext="\mathsf{rat}(q)\sim_{\epsilon}\mathsf{lim}(y)" display="inline"><mrow><mrow><mi>𝗋𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></mrow><msub><mo>∼</mo><mi>ϵ</mi></msub><mrow><mi>𝗅𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I2.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I2.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for any </span><math id="I2.i3.p1.m1" class="ltx_Math" alttext="x,r,\epsilon,\delta" display="inline"><mrow><mi>x</mi><mo>,</mo><mi>r</mi><mo>,</mo><mi>ϵ</mi><mo>,</mo><mi>δ</mi></mrow></math><span class="ltx_text ltx_font_italic">, if </span><math id="I2.i3.p1.m2" class="ltx_Math" alttext="x_{\delta}\sim_{\epsilon-\delta}\mathsf{rat}(r)" display="inline"><mrow><msub><mi>x</mi><mi>δ</mi></msub><msub><mo>∼</mo><mrow><mi>ϵ</mi><mo>-</mo><mi>δ</mi></mrow></msub><mrow><mi>𝗋𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="I2.i3.p1.m3" class="ltx_Math" alttext="\mathsf{lim}(x)\sim_{\epsilon}\mathsf{rat}(r)" display="inline"><mrow><mrow><mi>𝗅𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><msub><mo>∼</mo><mi>ϵ</mi></msub><mrow><mi>𝗋𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I2.i4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for any </span><math id="I2.i4.p1.m1" class="ltx_Math" alttext="x,y,\epsilon,\delta,\eta" display="inline"><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>ϵ</mi><mo>,</mo><mi>δ</mi><mo>,</mo><mi>η</mi></mrow></math><span class="ltx_text ltx_font_italic">, if </span><math id="I2.i4.p1.m2" class="ltx_Math" alttext="x_{\delta}\sim_{\epsilon-\delta-\eta}y_{\eta}" display="inline"><mrow><msub><mi>x</mi><mi>δ</mi></msub><msub><mo>∼</mo><mrow><mi>ϵ</mi><mo>-</mo><mi>δ</mi><mo>-</mo><mi>η</mi></mrow></msub><msub><mi>y</mi><mi>η</mi></msub></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="I2.i4.p1.m3" class="ltx_Math" alttext="\mathsf{lim}(x)\sim_{\epsilon}\mathsf{lim}(y)" display="inline"><mrow><mrow><mi>𝗅𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><msub><mo>∼</mo><mi>ϵ</mi></msub><mrow><mi>𝗅𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I2.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize"><span class="ltx_text ltx_font_italic">•</span></span> 
+<div id="I2.i5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">for any </span><math id="I2.i5.p1.m1" class="ltx_Math" alttext="u,v,\epsilon" display="inline"><mrow><mi>u</mi><mo>,</mo><mi>v</mi><mo>,</mo><mi>ϵ</mi></mrow></math><span class="ltx_text ltx_font_italic">, if </span><math id="I2.i5.p1.m2" class="ltx_Math" alttext="\xi,\zeta:u\sim_{\epsilon}v" display="inline"><mrow><mrow><mi>ξ</mi><mo>,</mo><mi>ζ</mi></mrow><mo>:</mo><mrow><mi>u</mi><msub><mo>∼</mo><mi>ϵ</mi></msub><mi>v</mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">, then </span><math id="I2.i5.p1.m3" class="ltx_Math" alttext="\xi=\zeta" display="inline"><mrow><mi>ξ</mi><mo>=</mo><mi>ζ</mi></mrow></math><span class="ltx_text ltx_font_italic"> (propositional truncation).</span></p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">The first constructor of <math id="p6.m1" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi>ℝ</mi><mi>𝖼</mi></msub></math> says that any rational number can be regarded as a real number.
+The second says that from any Cauchy approximation to a real number, we can obtain a new real number called its “limit”.
+And the third expresses the idea that if two Cauchy approximations coincide, then their limits are equal.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The first four constructors of <math id="p7.m1" class="ltx_Math" alttext="\mathord{\sim}" display="inline"><mi mathvariant="normal">∼</mi></math> specify when two rational numbers are close, when a rational is close to a limit, and when two limits are close.
+In the case of two rational numbers, this is just the usual notion of <math id="p7.m2" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math>-closeness for rational numbers, whereas the other cases can be derived by noting that each approximant <math id="p7.m3" class="ltx_Math" alttext="x_{\delta}" display="inline"><msub><mi>x</mi><mi>δ</mi></msub></math> is supposed to be within <math id="p7.m4" class="ltx_Math" alttext="\delta" display="inline"><mi>δ</mi></math> of the limit <math id="p7.m5" class="ltx_Math" alttext="\mathsf{lim}(x)" display="inline"><mrow><mi>𝗅𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">We remind ourselves of proof-relevance: a real number obtained from <math id="p8.m1" class="ltx_Math" alttext="\mathsf{lim}" display="inline"><mi>𝗅𝗂𝗆</mi></math> is represented not
+just by a Cauchy approximation <math id="p8.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>, but also a proof <math id="p8.m3" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> of (<a href="#S0.E1" title="(11.3.2) ‣ Definition 11.3.2. ‣ 11.3.1 Construction of Cauchy reals" class="ltx_ref"><span class="ltx_text ltx_ref_tag">11.3.2</span></a>), so we
+should technically have written <math id="p8.m4" class="ltx_Math" alttext="\mathsf{lim}(x,p)" display="inline"><mrow><mi>𝗅𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></math> instead of just <math id="p8.m5" class="ltx_Math" alttext="\mathsf{lim}(x)" display="inline"><mrow><mi>𝗅𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+A similar observation also applies to <math id="p8.m6" class="ltx_Math" alttext="\mathsf{eq}_{\mathbb{R}_{\mathsf{c}}}" display="inline"><msub><mi>𝖾𝗊</mi><msub><mi>ℝ</mi><mi>𝖼</mi></msub></msub></math> and (<a href="#S0.E2" title="(11.3.3) ‣ Definition 11.3.2. ‣ 11.3.1 Construction of Cauchy reals" class="ltx_ref"><span class="ltx_text ltx_ref_tag">11.3.3</span></a>), but we shall write just
+<math id="p8.m7" class="ltx_Math" alttext="\mathsf{eq}_{\mathbb{R}_{\mathsf{c}}}:u=v" display="inline"><mrow><msub><mi>𝖾𝗊</mi><msub><mi>ℝ</mi><mi>𝖼</mi></msub></msub><mo>:</mo><mrow><mi>u</mi><mo>=</mo><mi>v</mi></mrow></mrow></math> instead of <math id="p8.m8" class="ltx_Math" alttext="\mathsf{eq}_{\mathbb{R}_{\mathsf{c}}}(u,v,p):u=v" display="inline"><mrow><mrow><msub><mi>𝖾𝗊</mi><msub><mi>ℝ</mi><mi>𝖼</mi></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>u</mi><mo>=</mo><mi>v</mi></mrow></mrow></math>. These abuses of notation are
+mitigated by the fact that we are omitting mere propositions and information that is
+readily guessed.
+Likewise, the last constructor of <math id="p8.m9" class="ltx_Math" alttext="\mathord{\sim_{\epsilon}}" display="inline"><msub><mo>∼</mo><mi>ϵ</mi></msub></math> justifies our leaving the other four nameless.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">We are immediately able to populate <math id="p9.m1" class="ltx_Math" alttext="\mathbb{R}_{\mathsf{c}}" display="inline"><msub><mi>ℝ</mi><mi>𝖼</mi></msub></math> with many real numbers. For suppose <math id="p9.m2" class="ltx_Math" alttext="x:\mathbb{N}\to\mathbb{Q}" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mi>ℚ</mi></mrow></mrow></math> is a traditional Cauchy sequence of rational numbers, and let <math id="p9.m3" class="ltx_Math" alttext="M:\mathbb{Q}_{+}\to\mathbb{N}" display="inline"><mrow><mi>M</mi><mo>:</mo><mrow><msub><mi>ℚ</mi><mo>+</mo></msub><mo>→</mo><mi>ℕ</mi></mrow></mrow></math> be its
+modulus of convergence. Then <math id="p9.m4" class="ltx_Math" alttext="\mathsf{rat}\circ x\circ M:\mathbb{Q}_{+}\to\mathbb{R}_{\mathsf{c}}" display="inline"><mrow><mrow><mi>𝗋𝖺𝗍</mi><mo>∘</mo><mi>x</mi><mo>∘</mo><mi>M</mi></mrow><mo>:</mo><mrow><msub><mi>ℚ</mi><mo>+</mo></msub><mo>→</mo><msub><mi>ℝ</mi><mi>𝖼</mi></msub></mrow></mrow></math> is a Cauchy
+approximation, using the first constructor of <math id="p9.m5" class="ltx_Math" alttext="\mathord{\sim}" display="inline"><mi mathvariant="normal">∼</mi></math> to produce the necessary witness.
+Thus, <math id="p9.m6" class="ltx_Math" alttext="\mathsf{lim}(\mathsf{rat}\circ x\circ m)" display="inline"><mrow><mi>𝗅𝗂𝗆</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗋𝖺𝗍</mi><mo>∘</mo><mi>x</mi><mo>∘</mo><mi>m</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></math> is a real number. Various famous
+real numbers <math id="p9.m7" class="ltx_Math" alttext="\sqrt{2}" display="inline"><msqrt><mn>2</mn></msqrt></math>, <math id="p9.m8" class="ltx_Math" alttext="\pi" display="inline"><mi>π</mi></math>, <math id="p9.m9" class="ltx_Math" alttext="e" display="inline"><mi>e</mi></math>, … are all limits of such Cauchy sequences of
+rationals.</p>
+</div>
+<div id="p10" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">11.3.1 Construction of Cauchy reals</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:30:56 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

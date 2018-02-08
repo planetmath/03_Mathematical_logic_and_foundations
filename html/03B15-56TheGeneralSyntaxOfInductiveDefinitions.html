@@ -1,0 +1,403 @@
+<!DOCTYPE html><html>
+<head>
+<title>5.6 The general syntax of inductive definitions</title>
+<!--Generated on Thu Feb  8 19:36:56 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="algebra, by pattern matching, computation rule, consistency, constructor, contravariant, contravariant functor, covariant, covariant functor, definition, domain, endofunctor, for an inductive type, for inductive types, functor, impredicativity, induction principle, inductive, initial, mathematics, of a constructor, paradox, pattern matching, polynomial, positivity, positivity, strict, power set, predicative, predicative mathematics, propositional, recursion principle, resizing, sequence, strict, type, variable">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">5.6 The general syntax of inductive definitions</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">So far, we have been discussing only particular inductive types: <math id="p2.m1" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>, <math id="p2.m2" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn>𝟏</mn></math>, <math id="p2.m3" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math>, <math id="p2.m4" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>, coproducts, products, <math id="p2.m5" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types, <math id="p2.m6" class="ltx_Math" alttext="\mathsf{W}" display="inline"><mi>𝖶</mi></math>-types, etc.
+However, an important aspect of type theory is the ability to define <em class="ltx_emph ltx_font_italic">new</em> inductive types, rather than being restricted only to some particular fixed list of them.
+In order to be able to do this, however, we need to know what sorts of “inductive definitions” are valid or reasonable.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">To see that not everything which “looks like an inductive definition” makes sense, consider the following “constructor” of a type <math id="p3.m1" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math>:</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="g:(C\to\mathbb{N})\to C" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>→</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>C</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">The recursion principle for such a type <math id="p3.m2" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math> ought to say that given a type <math id="p3.m3" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>, in order to construct a function <math id="p3.m4" class="ltx_Math" alttext="f:C\to P" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>C</mi><mo>→</mo><mi>P</mi></mrow></mrow></math>, it suffices to consider the case when the input <math id="p3.m5" class="ltx_Math" alttext="c:C" display="inline"><mrow><mi>c</mi><mo>:</mo><mi>C</mi></mrow></math> is of the form <math id="p3.m6" class="ltx_Math" alttext="g(\alpha)" display="inline"><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></mrow></math> for some <math id="p3.m7" class="ltx_Math" alttext="\alpha:C\to\mathbb{N}" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mi>C</mi><mo>→</mo><mi>ℕ</mi></mrow></mrow></math>.
+Moreover, we would expect to be able to use the “recursive data” of <math id="p3.m8" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> applied to <math id="p3.m9" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math> in some way.
+However, it is not at all clear how to “apply <math id="p3.m10" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to <math id="p3.m11" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math>”, since both are functions with domain <math id="p3.m12" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">We could write down a “recursion principle” for <math id="p4.m1" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math> by just supposing (unjustifiably) that there is some way to apply <math id="p4.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to <math id="p4.m3" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math> and obtain a function <math id="p4.m4" class="ltx_Math" alttext="P\to\mathbb{N}" display="inline"><mrow><mi>P</mi><mo>→</mo><mi>ℕ</mi></mrow></math>.
+Then the input to the recursion rule would ask for a type <math id="p4.m5" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math> together with a function</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="h:(C\to\mathbb{N})\to(P\to\mathbb{N})\to P" display="block"><mrow><mi>h</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>→</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>P</mi><mo>→</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>P</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(5.6.1)</span></td>
+</tr>
+</table>
+<p class="ltx_p">where the two arguments of <math id="p4.m6" class="ltx_Math" alttext="h" display="inline"><mi>h</mi></math> are <math id="p4.m7" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math> and “the result of applying <math id="p4.m8" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to <math id="p4.m9" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math>”.
+However, what would the computation rule for the resulting function <math id="p4.m10" class="ltx_Math" alttext="f:C\to P" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>C</mi><mo>→</mo><mi>P</mi></mrow></mrow></math> be?
+Looking at other computation rules, we would expect something like “<math id="p4.m11" class="ltx_Math" alttext="f(g(\alpha))\equiv h(\alpha,f(\alpha))" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>” for <math id="p4.m12" class="ltx_Math" alttext="\alpha:C\to\mathbb{N}" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mi>C</mi><mo>→</mo><mi>ℕ</mi></mrow></mrow></math>, but as we have seen, “<math id="p4.m13" class="ltx_Math" alttext="f(\alpha)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></mrow></math>” does not make sense.
+The induction principle of <math id="p4.m14" class="ltx_Math" alttext="C" display="inline"><mi>C</mi></math> is even more problematic; it’s not even clear how to write down the hypotheses.
+(See also <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87788</span>Exercise 5.7,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87866</span>Exercise 5.8.)</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">This example suggests one restriction on inductive definitions: the domains of all the constructors must be <em class="ltx_emph ltx_font_italic">covariant functors</em> of the type being defined, so that we can “apply <math id="p5.m1" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> to them” to get the result of the “recursive call”.
+In other words, if we replace all occurrences of the type being defined with a variable
+<math id="p5.m2" class="ltx_Math" alttext="X:\mathcal{U}" display="inline"><mrow><mi>X</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>, then each domain of a constructor
+must be an expression that can be made into a covariant functor of <math id="p5.m3" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math>.
+This is the case for all the examples we have considered so far.
+For instance, with the constructor <math id="p5.m4" class="ltx_Math" alttext="{\mathsf{inl}}:A\to A+B" display="inline"><mrow><mi>𝗂𝗇𝗅</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></mrow></mrow></math>, the relevant functor is constant at <math id="p5.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> (i.e. <math id="p5.m6" class="ltx_Math" alttext="X\mapsto A" display="inline"><mrow><mi>X</mi><mo>↦</mo><mi>A</mi></mrow></math>), while for the constructor <math id="p5.m7" class="ltx_Math" alttext="\mathsf{succ}:\mathbb{N}\to\mathbb{N}" display="inline"><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mi>ℕ</mi></mrow></mrow></math>, the functor is the identity functor (<math id="p5.m8" class="ltx_Math" alttext="X\mapsto X" display="inline"><mrow><mi>X</mi><mo>↦</mo><mi>X</mi></mrow></math>).</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">However, this necessary condition is also not sufficient.
+Covariance prevents the inductive type from occurring on the left of a single function type, as in the argument <math id="p6.m1" class="ltx_Math" alttext="C\to\mathbb{N}" display="inline"><mrow><mi>C</mi><mo>→</mo><mi>ℕ</mi></mrow></math> of the “constructor” <math id="p6.m2" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> considered above, since this yields a contravariant functor rather than a covariant one.
+However, since the composite of two contravariant functors is covariant, <em class="ltx_emph ltx_font_italic">double</em> function types such as <math id="p6.m3" class="ltx_Math" alttext="((X\to\mathbb{N})\to\mathbb{N})" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>→</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></math> are once again covariant.
+This enables us to reproduce Cantorian-style paradoxes.
+</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">For instance, consider an “inductive type” <math id="p7.m1" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math> with the following constructor:</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i1.p1.m1" class="ltx_Math" alttext="k:((D\to\mathsf{Prop})\to\mathsf{Prop})\to D" display="inline"><mrow><mi>k</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>D</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Assuming such a type exists, we define functions</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle r" display="inline"><mi>r</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle:D\to(D\to\mathsf{Prop})\to\mathsf{Prop}," display="inline"><mrow><mo>:</mo><mi>D</mi><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle f" display="inline"><mi>f</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle:(D\to\mathsf{Prop})\to D," display="inline"><mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>D</mi><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle p" display="inline"><mi>p</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle:(D\to\mathsf{Prop})\to(D\to\mathsf{Prop})\to\mathsf{Prop}," display="inline"><mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr class="ltx_eqn_row ltx_align_baseline"><td class="ltx_eqn_cell ltx_align_left" style="white-space:normal;" colspan="5">by</td></tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\displaystyle r(k(\theta))" display="inline"><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>k</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\theta," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>θ</mi><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\displaystyle f(\delta)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex6.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv k({\lambda}x.\,(x=\delta))," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>k</mi><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\displaystyle p(\delta)" display="inline"><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv{\lambda}x.\,\delta(f(x))." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>δ</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Here <math id="p7.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> is defined by the recursion principle of <math id="p7.m3" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math>, while <math id="p7.m4" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> and <math id="p7.m5" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> are defined explicitly.
+Then for any <math id="p7.m6" class="ltx_Math" alttext="\delta:D\to\mathsf{Prop}" display="inline"><mrow><mi>δ</mi><mo>:</mo><mrow><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></math>, we have <math id="p7.m7" class="ltx_Math" alttext="r(f(\delta))={\lambda}x.\,(x=\delta)" display="inline"><mrow><mi>r</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">In particular, therefore, if <math id="p8.m1" class="ltx_Math" alttext="f(\delta)=f(\delta^{\prime})" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>δ</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, then we have a path <math id="p8.m2" class="ltx_Math" alttext="s:({\lambda}x.\,(x=\delta))=({\lambda}x.\,(x=\delta^{\prime}))" display="inline"><mrow><mi>s</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><msup><mi>δ</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+Thus, <math id="p8.m3" class="ltx_Math" alttext="\mathsf{happly}(s,\delta):(\delta=\delta)=(\delta=\delta^{\prime})" display="inline"><mrow><mi>𝗁𝖺𝗉𝗉𝗅𝗒</mi><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo>=</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo>=</mo><msup><mi>δ</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math>, and so in particular <math id="p8.m4" class="ltx_Math" alttext="\delta=\delta^{\prime}" display="inline"><mrow><mi>δ</mi><mo>=</mo><msup><mi>δ</mi><mo>′</mo></msup></mrow></math> holds.
+Hence, <math id="p8.m5" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is “injective” (although <em class="ltx_emph ltx_font_italic">a priori</em> <math id="p8.m6" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math> may not be a set).
+This already sounds suspicious — we have an “injection” of the “power set” of <math id="p8.m7" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math> into <math id="p8.m8" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math> — and with a little more work we can massage it into a contradiction.</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Suppose given <math id="p9.m1" class="ltx_Math" alttext="\theta:(D\to\mathsf{Prop})\to\mathsf{Prop}" display="inline"><mrow><mi>θ</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></math>, and define <math id="p9.m2" class="ltx_Math" alttext="\delta:D\to\mathsf{Prop}" display="inline"><mrow><mi>δ</mi><mo>:</mo><mrow><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></math> by</p>
+<table id="S0.E2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E2.m1" class="ltx_Math" alttext="\delta(d):\!\!\equiv\exists(\gamma:D\to\mathsf{Prop}).\,(f(\gamma)=d)\times%
+\theta(\gamma)." display="block"><mrow><mi>δ</mi><mrow><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo>:</mo><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><mo>×</mo><mi>θ</mi><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(5.6.2)</span></td>
+</tr>
+</table>
+<p class="ltx_p">We claim that <math id="p9.m3" class="ltx_Math" alttext="p(\delta)=\theta" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>θ</mi></mrow></math>.
+By function extensionality, it suffices to show <math id="p9.m4" class="ltx_Math" alttext="p(\delta)(\gamma)=_{\mathsf{Prop}}\theta(\gamma)" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow></mrow><msub><mo>=</mo><mi>𝖯𝗋𝗈𝗉</mi></msub><mrow><mi>θ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for any <math id="p9.m5" class="ltx_Math" alttext="\gamma:D\to\mathsf{Prop}" display="inline"><mrow><mi>γ</mi><mo>:</mo><mrow><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></math>.
+And by univalence, for this it suffices to show that each implies the other.
+Now by definition of <math id="p9.m6" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math>, we have</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\displaystyle p(\delta)(\gamma)" display="inline"><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle\equiv\delta(f(\gamma))" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><mi>δ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex9" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex9.m2" class="ltx_Math" alttext="\displaystyle\equiv\exists(\gamma^{\prime}:D\to\mathsf{Prop}).\,(f(\gamma^{%
+\prime})=f(\gamma))\times\theta(\gamma^{\prime})." display="inline"><mrow><mo>≡</mo><mo>∃</mo><mrow><mo stretchy="false">(</mo><msup><mi>γ</mi><mo>′</mo></msup><mo>:</mo><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><msup><mi>γ</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>×</mo><mi>θ</mi><mrow><mo stretchy="false">(</mo><msup><mi>γ</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Clearly this holds if <math id="p9.m7" class="ltx_Math" alttext="\theta(\gamma)" display="inline"><mrow><mi>θ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow></mrow></math>, since we may take <math id="p9.m8" class="ltx_Math" alttext="\gamma^{\prime}:\!\!\equiv\gamma" display="inline"><mrow><msup><mi>γ</mi><mo>′</mo></msup><mo rspace="0pt">:</mo><mo>≡</mo><mi>γ</mi></mrow></math>.
+On the other hand, if we have <math id="p9.m9" class="ltx_Math" alttext="\gamma^{\prime}" display="inline"><msup><mi>γ</mi><mo>′</mo></msup></math> with <math id="p9.m10" class="ltx_Math" alttext="f(\gamma^{\prime})=f(\gamma)" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>γ</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p9.m11" class="ltx_Math" alttext="\theta(\gamma^{\prime})" display="inline"><mrow><mi>θ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>γ</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math>, then <math id="p9.m12" class="ltx_Math" alttext="\gamma^{\prime}=\gamma" display="inline"><mrow><msup><mi>γ</mi><mo>′</mo></msup><mo>=</mo><mi>γ</mi></mrow></math> since <math id="p9.m13" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is injective, hence also <math id="p9.m14" class="ltx_Math" alttext="\theta(\gamma)" display="inline"><mrow><mi>θ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">This completes the proof that <math id="p10.m1" class="ltx_Math" alttext="p(\delta)=\theta" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>θ</mi></mrow></math>.
+Thus, every element <math id="p10.m2" class="ltx_Math" alttext="\theta:(D\to\mathsf{Prop})\to\mathsf{Prop}" display="inline"><mrow><mi>θ</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></math> is the image under <math id="p10.m3" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> of some element <math id="p10.m4" class="ltx_Math" alttext="\delta:D\to\mathsf{Prop}" display="inline"><mrow><mi>δ</mi><mo>:</mo><mrow><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></math>.
+However, if we define <math id="p10.m5" class="ltx_Math" alttext="\theta" display="inline"><mi>θ</mi></math> by a classic diagonalization:</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\theta(\gamma):\!\!\equiv\neg p(\gamma)(\gamma)\quad\text{for all $\gamma:D\to%
+\mathsf{Prop}$}" display="block"><mrow><mi>θ</mi><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi mathvariant="normal">¬</mi><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">)</mo></mrow><mo mathvariant="italic" separator="true"> </mo><mrow><mtext>for all </mtext><mrow><mi>γ</mi><mo>:</mo><mrow><mi>D</mi><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">then from <math id="p10.m6" class="ltx_Math" alttext="\theta=p(\delta)" display="inline"><mrow><mi>θ</mi><mo>=</mo><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> we deduce <math id="p10.m7" class="ltx_Math" alttext="p(\delta)(\delta)=\neg p(\delta)(\delta)" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+This is a contradiction: no proposition can be equivalent to its negation.
+(Supposing <math id="p10.m8" class="ltx_Math" alttext="P\Leftrightarrow\neg P" display="inline"><mrow><mi>P</mi><mo>⇔</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>P</mi></mrow></mrow></math>, if <math id="p10.m9" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>, then <math id="p10.m10" class="ltx_Math" alttext="\neg P" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>P</mi></mrow></math>, and so <math id="p10.m11" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>; hence <math id="p10.m12" class="ltx_Math" alttext="\neg P" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>P</mi></mrow></math>, but then <math id="p10.m13" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>, and so <math id="p10.m14" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>.)</p>
+</div>
+<div id="Thmprermk1" class="ltx_theorem ltx_theorem_prermk">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Remark 5.6.3</span>.</h6>
+<div id="Thmprermk1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">There is a question of universe size to be addressed.
+In general, an inductive type must live in a universe that already contains all the types going into its definition.
+Thus if in the definition of <math id="Thmprermk1.p1.m1" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math>, the ambiguous notation <math id="Thmprermk1.p1.m2" class="ltx_Math" alttext="\mathsf{Prop}" display="inline"><mi mathvariant="normal">Prop</mi></math> means <math id="Thmprermk1.p1.m3" class="ltx_Math" alttext="\mathsf{Prop}_{\mathcal{U}}" display="inline"><msub><mi mathvariant="normal">Prop</mi><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></msub></math>, then we do not have <math id="Thmprermk1.p1.m4" class="ltx_Math" alttext="D:\mathcal{U}" display="inline"><mrow><mi>D</mi><mo mathvariant="normal">:</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></math> but only <math id="Thmprermk1.p1.m5" class="ltx_Math" alttext="D:\mathcal{U}^{\prime}" display="inline"><mrow><mi>D</mi><mo mathvariant="normal">:</mo><msup><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal">′</mo></msup></mrow></math> for some larger universe <math id="Thmprermk1.p1.m6" class="ltx_Math" alttext="\mathcal{U}^{\prime}" display="inline"><msup><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal">′</mo></msup></math> with <math id="Thmprermk1.p1.m7" class="ltx_Math" alttext="\mathcal{U}:\mathcal{U}^{\prime}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal">:</mo><msup><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal">′</mo></msup></mrow></math>.
+In a predicative theory, therefore, the right-hand side of (<a href="#S0.E2" title="(5.6.2) ‣ 5.6 The general syntax of inductive definitions" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5.6.2</span></a>) lives in <math id="Thmprermk1.p1.m8" class="ltx_Math" alttext="\mathsf{Prop}_{\mathcal{U}^{\prime}}" display="inline"><msub><mi mathvariant="normal">Prop</mi><msup><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi><mo mathvariant="normal">′</mo></msup></msub></math>, not <math id="Thmprermk1.p1.m9" class="ltx_Math" alttext="\mathsf{Prop}_{\mathcal{U}}" display="inline"><msub><mi mathvariant="normal">Prop</mi><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></msub></math>.
+So this contradiction does require the propositional resizing axiom
+mentioned in §3.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/35subsetsandpropositionalresizing</span>).
+</span></p>
+</div>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">This counterexample suggests that we should ban an inductive type from ever appearing on the left of an arrow in the domain of its constructors, even if that appearance is nested in other arrows so as to eventually become covariant.
+(Similarly, we also forbid it from appearing in the domain of a dependent function type.)
+This restriction is called <span class="ltx_text ltx_font_bold">strict positivity</span>
+(ordinary “positivity” being essentially covariance), and it turns out to suffice.
+</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">In conclusion, therefore, a valid inductive definition of a type <math id="p12.m1" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> consists of a list of <em class="ltx_emph ltx_font_italic">constructors</em>.
+Each constructor is assigned a type that is a function type taking some number (possibly zero) of inputs (possibly dependent on one another) and returning an element of <math id="p12.m2" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>.
+Finally, we allow <math id="p12.m3" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> itself to occur in the input types of its constructors, but only strictly positively.
+This essentially means that each argument of a constructor is either a type not involving <math id="p12.m4" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>, or some iterated function type with codomain <math id="p12.m5" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>.
+For instance, the following is a valid constructor type:</p>
+<table id="S0.E3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E3.m1" class="ltx_Math" alttext="c:(A\to W)\to(B\to C\to W)\to D\to W\to W." display="block"><mrow><mi>c</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo>→</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>D</mi><mo>→</mo><mi>W</mi><mo>→</mo><mi>W</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(5.6.4)</span></td>
+</tr>
+</table>
+<p class="ltx_p">All of these function types can also be dependent functions (<math id="p12.m6" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types).<span class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">1</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">1</sup>In the language of §5.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/54inductivetypesareinitialalgebras</span>), the condition of strict positivity ensures that the relevant endofunctor is polynomial. It is well-known in category theory that not <em class="ltx_emph ltx_font_italic">all</em> endofunctors can have initial algebras; restricting to polynomial functors ensures consistency.
+One can consider various relaxations of this condition, but in this book we will restrict ourselves to strict positivity as defined here.</span></span></span></p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">Note we require that an inductive definition is given by a <em class="ltx_emph ltx_font_italic">finite</em> list of constructors.
+This is simply because we have to write it down on the page.
+If we want an inductive type which behaves as if it has an infinite number of constructors, we can simply parametrize one constructor by some infinite type.
+For instance, a constructor such as <math id="p13.m1" class="ltx_Math" alttext="\mathbb{N}\to W\to W" display="inline"><mrow><mi>ℕ</mi><mo>→</mo><mi>W</mi><mo>→</mo><mi>W</mi></mrow></math> can be thought of as equivalent to countably many constructors of the form <math id="p13.m2" class="ltx_Math" alttext="W\to W" display="inline"><mrow><mi>W</mi><mo>→</mo><mi>W</mi></mrow></math>.
+(Of course, the infinity is now <em class="ltx_emph ltx_font_italic">internal</em> to the type theory, but this is as it should be for any foundational system.)
+Similarly, if we want a constructor that takes “infinitely many arguments”, we can allow it to take a family of arguments parametrized by some infinite type, such as <math id="p13.m3" class="ltx_Math" alttext="(\mathbb{N}\to W)\to W" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>ℕ</mi><mo>→</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>W</mi></mrow></math> which takes an infinite sequence of elements of <math id="p13.m4" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>.</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">Now, once we have such an inductive definition, what can we do with it?
+Firstly, there is a <span class="ltx_text ltx_font_bold">recursion principle</span> stating that in order to define a function <math id="p14.m1" class="ltx_Math" alttext="f:W\to P" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi>P</mi></mrow></mrow></math>, it suffices to consider the case when the input <math id="p14.m2" class="ltx_Math" alttext="w:W" display="inline"><mrow><mi>w</mi><mo>:</mo><mi>W</mi></mrow></math> arises from one of the constructors, allowing ourselves to recursively call <math id="p14.m3" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> on the inputs to that constructor.
+For the example constructor (<a href="#S0.E3" title="(5.6.4) ‣ 5.6 The general syntax of inductive definitions" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5.6.4</span></a>), we would require <math id="p14.m4" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math> to be equipped with a function of type</p>
+<table id="S0.E4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E4.m1" class="ltx_Math" alttext="d:(A\to W)\to(A\to P)\to(B\to C\to W)\to(B\to C\to P)\to D\to W\to P\to P." display="block"><mrow><mi>d</mi><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>P</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo>→</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo>→</mo><mi>P</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>D</mi><mo>→</mo><mi>W</mi><mo>→</mo><mi>P</mi><mo>→</mo><mi>P</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(5.6.5)</span></td>
+</tr>
+</table>
+<p class="ltx_p">Under these hypotheses, the recursion principle yields <math id="p14.m5" class="ltx_Math" alttext="f:W\to P" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi>P</mi></mrow></mrow></math>, which moreover “preserves the constructor data” in the evident way — this is the computation rule, where we use covariance of the inputs.
+For instance, in the example (<a href="#S0.E3" title="(5.6.4) ‣ 5.6 The general syntax of inductive definitions" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5.6.4</span></a>), the computation rule says that for any <math id="p14.m6" class="ltx_Math" alttext="\alpha:A\to W" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>W</mi></mrow></mrow></math>, <math id="p14.m7" class="ltx_Math" alttext="\beta:B\to C\to W" display="inline"><mrow><mi>β</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>C</mi><mo>→</mo><mi>W</mi></mrow></mrow></math>, <math id="p14.m8" class="ltx_Math" alttext="\delta:d" display="inline"><mrow><mi>δ</mi><mo>:</mo><mi>d</mi></mrow></math>, and <math id="p14.m9" class="ltx_Math" alttext="\omega:W" display="inline"><mrow><mi>ω</mi><mo>:</mo><mi>W</mi></mrow></math>, we have</p>
+<table id="S0.E5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E5.m1" class="ltx_Math" alttext="f(c(\alpha,\beta,\delta,\omega))\equiv d(\alpha,f\circ\alpha,\beta,f\circ\beta%
+,\delta,\omega,f(\omega))." display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><mi>β</mi><mo>,</mo><mi>δ</mi><mo>,</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><mrow><mi>f</mi><mo>∘</mo><mi>α</mi></mrow><mo>,</mo><mi>β</mi><mo>,</mo><mrow><mi>f</mi><mo>∘</mo><mi>β</mi></mrow><mo>,</mo><mi>δ</mi><mo>,</mo><mi>ω</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(5.6.5)</span></td>
+</tr>
+</table>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">The <span class="ltx_text ltx_font_bold">induction principle</span> for a general inductive type <math id="p15.m1" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math> is only a little more complicated.
+Of course, we start with a type family <math id="p15.m2" class="ltx_Math" alttext="P:W\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi>W</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, which we require to be equipped with constructor data “lying over” the constructor data of <math id="p15.m3" class="ltx_Math" alttext="W" display="inline"><mi>W</mi></math>.
+That means the “recursive call” arguments such as <math id="p15.m4" class="ltx_Math" alttext="A\to P" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>P</mi></mrow></math> above must be replaced by dependent functions with types such as <math id="p15.m5" class="ltx_Math" alttext="\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)%
+}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod%
+_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}%
+}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}P(\alpha(a))" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+In the full example of (<a href="#S0.E3" title="(5.6.4) ‣ 5.6 The general syntax of inductive definitions" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5.6.4</span></a>), the corresponding hypothesis for the induction principle would require</p>
+<table id="S0.E6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E6.m1" class="ltx_Math" alttext="\displaystyle d:\mathchoice{\prod_{\alpha:A\to W}\,}{\mathchoice{{\textstyle%
+\prod_{(\alpha:A\to W)}}}{\prod_{(\alpha:A\to W)}}{\prod_{(\alpha:A\to W)}}{%
+\prod_{(\alpha:A\to W)}}}{\mathchoice{{\textstyle\prod_{(\alpha:A\to W)}}}{%
+\prod_{(\alpha:A\to W)}}{\prod_{(\alpha:A\to W)}}{\prod_{(\alpha:A\to W)}}}{%
+\mathchoice{{\textstyle\prod_{(\alpha:A\to W)}}}{\prod_{(\alpha:A\to W)}}{%
+\prod_{(\alpha:A\to W)}}{\prod_{(\alpha:A\to W)}}}\Bigl{(}\mathchoice{\prod_{a%
+:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}{\prod_{(a:A)}}}P(\alpha(a))\Bigr{)}\to\mathchoice{\prod_{\beta:%
+B\to C\to W}\,}{\mathchoice{{\textstyle\prod_{(\beta:B\to C\to W)}}}{\prod_{(%
+\beta:B\to C\to W)}}{\prod_{(\beta:B\to C\to W)}}{\prod_{(\beta:B\to C\to W)}}%
+}{\mathchoice{{\textstyle\prod_{(\beta:B\to C\to W)}}}{\prod_{(\beta:B\to C\to
+W%
+)}}{\prod_{(\beta:B\to C\to W)}}{\prod_{(\beta:B\to C\to W)}}}{\mathchoice{{%
+\textstyle\prod_{(\beta:B\to C\to W)}}}{\prod_{(\beta:B\to C\to W)}}{\prod_{(%
+\beta:B\to C\to W)}}{\prod_{(\beta:B\to C\to W)}}}\Bigl{(}\mathchoice{\prod_{(%
+b:B)}\,}{\mathchoice{{\textstyle\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{%
+\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(%
+b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod_{(b:B)}}}{\prod_{(b:B)}}{%
+\prod_{(b:B)}}{\prod_{(b:B)}}}\mathchoice{\prod_{(c:C)}\,}{\mathchoice{{%
+\textstyle\prod_{(c:C)}}}{\prod_{(c:C)}}{\prod_{(c:C)}}{\prod_{(c:C)}}}{%
+\mathchoice{{\textstyle\prod_{(c:C)}}}{\prod_{(c:C)}}{\prod_{(c:C)}}{\prod_{(c%
+:C)}}}{\mathchoice{{\textstyle\prod_{(c:C)}}}{\prod_{(c:C)}}{\prod_{(c:C)}}{%
+\prod_{(c:C)}}}P(\beta(b,c))\Bigr{)}\to\\
+\displaystyle\mathchoice{\prod_{\delta:D}\,}{\mathchoice{{\textstyle\prod_{(%
+\delta:D)}}}{\prod_{(\delta:D)}}{\prod_{(\delta:D)}}{\prod_{(\delta:D)}}}{%
+\mathchoice{{\textstyle\prod_{(\delta:D)}}}{\prod_{(\delta:D)}}{\prod_{(\delta%
+:D)}}{\prod_{(\delta:D)}}}{\mathchoice{{\textstyle\prod_{(\delta:D)}}}{\prod_{%
+(\delta:D)}}{\prod_{(\delta:D)}}{\prod_{(\delta:D)}}}\mathchoice{\prod_{\omega%
+:W}\,}{\mathchoice{{\textstyle\prod_{(\omega:W)}}}{\prod_{(\omega:W)}}{\prod_{%
+(\omega:W)}}{\prod_{(\omega:W)}}}{\mathchoice{{\textstyle\prod_{(\omega:W)}}}{%
+\prod_{(\omega:W)}}{\prod_{(\omega:W)}}{\prod_{(\omega:W)}}}{\mathchoice{{%
+\textstyle\prod_{(\omega:W)}}}{\prod_{(\omega:W)}}{\prod_{(\omega:W)}}{\prod_{%
+(\omega:W)}}}P(\omega)\to P(c(\alpha,\beta,\delta,\omega))." display="block"><mtable displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="left"><mrow><mi>d</mi><mo>:</mo><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>α</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>W</mi></mrow></mrow></munder></mpadded><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder></mpadded><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow><mo>→</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>β</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>C</mi><mo>→</mo><mi>W</mi></mrow></mrow></munder></mpadded><mrow><mo maxsize="160%" minsize="160%">(</mo><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>:</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>β</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow></mrow><mo>→</mo><mi></mi></mrow></mrow></mtd></mtr><mtr><mtd columnalign="right"><mrow><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>δ</mi><mo>:</mo><mi>D</mi></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>ω</mi><mo>:</mo><mi>W</mi></mrow></munder></mpadded><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>→</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>c</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><mi>β</mi><mo>,</mo><mi>δ</mi><mo>,</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></mtd></mtr></mtable></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(5.6.6)</span></td>
+</tr>
+</table>
+<p class="ltx_p">The corresponding computation rule looks identical to (<a href="#S0.E5" title="(5.6.5) ‣ 5.6 The general syntax of inductive definitions" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5.6.5</span></a>).
+Of course, the recursion principle is the special case of the induction principle where <math id="p15.m6" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math> is a constant family.
+As we have mentioned before, the induction principle is also called the <span class="ltx_text ltx_font_bold">eliminator</span>, and the recursion principle the <span class="ltx_text ltx_font_bold">non-dependent eliminator</span>.</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">As discussed in §1.10 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/110patternmatchingandrecursion</span>), we also allow ourselves to invoke the induction and recursion principles implicitly, writing a definitional equation with <math id="p16.m1" class="ltx_Math" alttext=":\!\!\equiv" display="inline"><mrow><mi></mi><mo rspace="0pt">:</mo><mo>≡</mo></mrow></math> for each expression that would be the hypotheses of the induction principle.
+This is called giving a definition by (dependent) <span class="ltx_text ltx_font_bold">pattern matching</span>.
+In our running example, this means we could define <math id="p16.m2" class="ltx_Math" alttext="f:\mathchoice{\prod_{w:W}\,}{\mathchoice{{\textstyle\prod_{(w:W)}}}{\prod_{(w:%
+W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w:W)}}}{%
+\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}{\mathchoice{{\textstyle\prod_{(w%
+:W)}}}{\prod_{(w:W)}}{\prod_{(w:W)}}{\prod_{(w:W)}}}P(w)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo>:</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> by</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="f(c(\alpha,\beta,\delta,\omega)):\!\!\equiv\cdots" display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>c</mi><mrow><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><mi>β</mi><mo>,</mo><mi>δ</mi><mo>,</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi mathvariant="normal">⋯</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p16.m3" class="ltx_Math" alttext="\alpha:A\to W" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>W</mi></mrow></mrow></math> and <math id="p16.m4" class="ltx_Math" alttext="\beta:B\to C\to W" display="inline"><mrow><mi>β</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi>C</mi><mo>→</mo><mi>W</mi></mrow></mrow></math> and <math id="p16.m5" class="ltx_Math" alttext="\delta:D" display="inline"><mrow><mi>δ</mi><mo>:</mo><mi>D</mi></mrow></math> and <math id="p16.m6" class="ltx_Math" alttext="\omega:W" display="inline"><mrow><mi>ω</mi><mo>:</mo><mi>W</mi></mrow></math> are variables
+that are bound in the right-hand side.
+Moreover, the right-hand side may involve recursive calls to <math id="p16.m7" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> of the form <math id="p16.m8" class="ltx_Math" alttext="f(\alpha(a))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, <math id="p16.m9" class="ltx_Math" alttext="f(\beta(b,c))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>β</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, and <math id="p16.m10" class="ltx_Math" alttext="f(\omega)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+When this definition is repackaged in terms of the induction principle, we replace such recursive calls by <math id="p16.m11" class="ltx_Math" alttext="\bar{\alpha}(a)" display="inline"><mrow><mover accent="true"><mi>α</mi><mo stretchy="false">¯</mo></mover><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, <math id="p16.m12" class="ltx_Math" alttext="\bar{\beta}(b,c)" display="inline"><mrow><mover accent="true"><mi>β</mi><mo stretchy="false">¯</mo></mover><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and <math id="p16.m13" class="ltx_Math" alttext="\bar{\omega}" display="inline"><mover accent="true"><mi>ω</mi><mo stretchy="false">¯</mo></mover></math>, respectively, for new variables</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex12" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex12.m1" class="ltx_Math" alttext="\displaystyle\bar{\alpha}" display="inline"><mover accent="true"><mi>α</mi><mo stretchy="false">¯</mo></mover></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex12.m2" class="ltx_Math" alttext="\displaystyle:\mathchoice{\prod_{a:A}\,}{\mathchoice{{\textstyle\prod_{(a:A)}}%
+}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{%
+(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}{\mathchoice{{\textstyle%
+\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a:A)}}}P(\alpha(a))" display="inline"><mrow><mi></mi><mo>:</mo><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder></mstyle></mpadded><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex13" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex13.m1" class="ltx_Math" alttext="\displaystyle\bar{\beta}" display="inline"><mover accent="true"><mi>β</mi><mo stretchy="false">¯</mo></mover></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex13.m2" class="ltx_Math" alttext="\displaystyle:\mathchoice{\prod_{(b:B)}\,}{\mathchoice{{\textstyle\prod_{(b:B)%
+}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{\textstyle\prod%
+_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}{\mathchoice{{%
+\textstyle\prod_{(b:B)}}}{\prod_{(b:B)}}{\prod_{(b:B)}}{\prod_{(b:B)}}}%
+\mathchoice{\prod_{(c:C)}\,}{\mathchoice{{\textstyle\prod_{(c:C)}}}{\prod_{(c:%
+C)}}{\prod_{(c:C)}}{\prod_{(c:C)}}}{\mathchoice{{\textstyle\prod_{(c:C)}}}{%
+\prod_{(c:C)}}{\prod_{(c:C)}}{\prod_{(c:C)}}}{\mathchoice{{\textstyle\prod_{(c%
+:C)}}}{\prod_{(c:C)}}{\prod_{(c:C)}}{\prod_{(c:C)}}}P(\beta(b,c))" display="inline"><mrow><mi></mi><mo>:</mo><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>:</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>β</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex14" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\displaystyle\bar{\omega}" display="inline"><mover accent="true"><mi>ω</mi><mo stretchy="false">¯</mo></mover></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex14.m2" class="ltx_Math" alttext="\displaystyle:P(\omega)." display="inline"><mrow><mrow><mi></mi><mo>:</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Then we could write</p>
+<table id="S0.Ex15" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex15.m1" class="ltx_Math" alttext="f:\!\!\equiv\mathsf{ind}_{W}(P,\,{\lambda}\alpha.\,{\lambda}\bar{\alpha}.\,{%
+\lambda}\beta.\,{\lambda}\bar{\beta}.\,{\lambda}\delta.\,{\lambda}\omega.\,{%
+\lambda}\bar{\omega}.\,\cdots)" display="block"><mrow><mi>f</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗂𝗇𝖽</mi><mi>W</mi></msub><mrow><mo stretchy="false">(</mo><mi>P</mi><mo rspace="4.2pt">,</mo><mi>λ</mi><mi>α</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mover accent="true"><mi>α</mi><mo stretchy="false">¯</mo></mover><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>β</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mover accent="true"><mi>β</mi><mo stretchy="false">¯</mo></mover><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>δ</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>ω</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mover accent="true"><mi>ω</mi><mo stretchy="false">¯</mo></mover><mo rspace="4.2pt">.</mo><mi mathvariant="normal">⋯</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where the second argument to <math id="p16.m14" class="ltx_Math" alttext="\mathsf{ind}_{W}" display="inline"><msub><mi>𝗂𝗇𝖽</mi><mi>W</mi></msub></math> has the type of (<a href="#S0.E6" title="(5.6.6) ‣ 5.6 The general syntax of inductive definitions" class="ltx_ref"><span class="ltx_text ltx_ref_tag">5.6.6</span></a>).</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">We will not attempt to give a formal presentation of the grammar of a valid inductive definition and its resulting induction and recursion principles and pattern matching rules.
+This is possible to do (indeed, it is necessary to do if implementing a computer proof assistant), but provides no additional insight.
+With practice, one learns to automatically deduce the induction and recursion principles for any inductive definition, and to use them without having to think twice.</p>
+</div>
+<div id="p18" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">5.6 The general syntax of inductive definitions</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:36:56 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

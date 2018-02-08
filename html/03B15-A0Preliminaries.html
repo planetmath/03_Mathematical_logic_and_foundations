@@ -1,0 +1,198 @@
+<!DOCTYPE html><html>
+<head>
+<title>A.0 Preliminaries</title>
+<!--Generated on Thu Feb  8 19:43:19 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-conversion, abstraction, and substitution, bound, context, equality, in context, judgment, judgmental, judgmental equality, scope, scope of, substitution, variable, well-formed">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">A.0 Preliminaries</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">In <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87533</span>Chapter 1, we presented the two basic <span class="ltx_text ltx_font_bold">judgments</span>
+
+of type theory. The first, <math id="p1.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, asserts that a term <math id="p1.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> has type <math id="p1.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>. The second,
+<math id="p1.m4" class="ltx_Math" alttext="a\equiv b:A" display="inline"><mrow><mrow><mi>a</mi><mo>≡</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math>, states that the two terms <math id="p1.m5" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and <math id="p1.m6" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> are <span class="ltx_text ltx_font_bold">judgmentally
+equal</span>
+
+
+at type <math id="p1.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>. These judgments are inductively defined by a set of
+inference rules described in <span class="ltx_ERROR undefined">\autoref</span>sec:syntax-more-formally.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">To construct an element <math id="p2.m1" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> of a type <math id="p2.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is to derive <math id="p2.m3" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>; in the book, we
+give informal arguments which describe the construction of <math id="p2.m4" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>, but formally,
+one must specify a precise term <math id="p2.m5" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and a full derivation that <math id="p2.m6" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>.
+</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">However, the main difference between the presentation of type theory in the book
+and in this appendix is that here judgments are explicitly
+formulated in an ambient <span class="ltx_text ltx_font_bold">context</span>,
+
+or list of assumptions, of the form
+</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="x_{1}:A_{1},x_{2}:A_{2},\dots,x_{n}:A_{n}." display="block"><mrow><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>:</mo><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub></mrow><mo>:</mo><mrow><msub><mi>A</mi><mn>2</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo>:</mo><msub><mi>A</mi><mi>n</mi></msub></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">An element <math id="p3.m1" class="ltx_Math" alttext="x_{i}:A_{i}" display="inline"><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>:</mo><msub><mi>A</mi><mi>i</mi></msub></mrow></math> of the context expresses the assumption that the
+variable
+<math id="p3.m2" class="ltx_Math" alttext="x_{i}" display="inline"><msub><mi>x</mi><mi>i</mi></msub></math> has type <math id="p3.m3" class="ltx_Math" alttext="A_{i}" display="inline"><msub><mi>A</mi><mi>i</mi></msub></math>. The variables <math id="p3.m4" class="ltx_Math" alttext="x_{1},\ldots,x_{n}" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></math> appearing in
+the context must be distinct. We abbreviate contexts with the letters <math id="p3.m5" class="ltx_Math" alttext="\Gamma" display="inline"><mi mathvariant="normal">Γ</mi></math>
+and <math id="p3.m6" class="ltx_Math" alttext="\Delta" display="inline"><mi mathvariant="normal">Δ</mi></math>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">The judgment <math id="p4.m1" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> in context <math id="p4.m2" class="ltx_Math" alttext="\Gamma" display="inline"><mi mathvariant="normal">Γ</mi></math> is written</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\Gamma\vdash a:A" display="block"><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and means that <math id="p4.m3" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> under the assumptions listed in <math id="p4.m4" class="ltx_Math" alttext="\Gamma" display="inline"><mi mathvariant="normal">Γ</mi></math>. When the list of
+assumptions is empty, we write simply</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\vdash a:A" display="block"><mrow><mo>⊢</mo><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">or</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\cdot\vdash a:A" display="block"><mrow><mo>⋅</mo><mo>⊢</mo><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p4.m5" class="ltx_Math" alttext="\cdot" display="inline"><mo>⋅</mo></math> denotes the empty context. The same applies to the equality
+judgment
+</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\Gamma\vdash a\equiv b:A" display="block"><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mrow><mi>a</mi><mo>≡</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">However, such judgments are sensible only for <span class="ltx_text ltx_font_bold">well-formed</span> contexts,
+a notion captured by our third and final judgment
+</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="(x_{1}:A_{1},x_{2}:A_{2},\dots,x_{n}:A_{n})\ \mathsf{ctx}" display="block"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>:</mo><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>:</mo><msub><mi>A</mi><mn>2</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo>:</mo><msub><mi>A</mi><mi>n</mi></msub><mo rspace="7.5pt" stretchy="false">)</mo></mrow><mi>𝖼𝗍𝗑</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">expressing that each <math id="p5.m1" class="ltx_Math" alttext="A_{i}" display="inline"><msub><mi>A</mi><mi>i</mi></msub></math> is a type in the context <math id="p5.m2" class="ltx_Math" alttext="x_{1}:A_{1},x_{2}:A_{2},\dots,x_{i-1}:A_{i-1}" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>:</mo><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub></mrow><mo>:</mo><mrow><msub><mi>A</mi><mn>2</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow><mo>:</mo><msub><mi>A</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow></math>. In particular, therefore, if <math id="p5.m3" class="ltx_Math" alttext="\Gamma\vdash a:A" display="inline"><mrow><mi mathvariant="normal">Γ</mi><mo>⊢</mo><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and
+<math id="p5.m4" class="ltx_Math" alttext="\Gamma\ \mathsf{ctx}" display="inline"><mrow><mpadded width="+5pt"><mi mathvariant="normal">Γ</mi></mpadded><mo>⁢</mo><mi>𝖼𝗍𝗑</mi></mrow></math>, then we know that each <math id="p5.m5" class="ltx_Math" alttext="A_{i}" display="inline"><msub><mi>A</mi><mi>i</mi></msub></math> contains only the variables
+<math id="p5.m6" class="ltx_Math" alttext="x_{1},\dots,x_{i-1}" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow></math>, and that <math id="p5.m7" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and <math id="p5.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> contain only the variables
+<math id="p5.m9" class="ltx_Math" alttext="x_{1},\dots,x_{n}" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></math>.
+
+</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">In informal mathematical presentations, the context is
+implicit. At each point in a proof, the mathematician knows which
+variables are available and what types they have, either by historical
+convention (<math id="p6.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> is usually a number, <math id="p6.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math> is a function, etc.) or
+because variables are explicitly introduced with sentences such as
+“let <math id="p6.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> be a real number”. We discuss some benefits of using explicit
+contexts in <span class="ltx_ERROR undefined">\autoref</span>sec:more-formal-pi,<span class="ltx_ERROR undefined">\autoref</span>sec:more-formal-sigma.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">We write <math id="p7.m1" class="ltx_Math" alttext="B[a/x]" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><mi>a</mi><mo>/</mo><mi>x</mi></mrow><mo stretchy="false">]</mo></mrow></mrow></math> for the <span class="ltx_text ltx_font_bold">substitution</span>
+of a term <math id="p7.m2" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> for free occurrences of
+the variable <math id="p7.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in the term <math id="p7.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, with possible capture-avoiding
+renaming of bound variables,
+as discussed in
+§1.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/12functiontypes</span>). The general form of substitution</p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="B[a_{1},\dots,a_{n}/x_{1},\dots,x_{n}]" display="block"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>/</mo><msub><mi>x</mi><mn>1</mn></msub></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">substitutes expressions <math id="p7.m5" class="ltx_Math" alttext="a_{1},\dots,a_{n}" display="inline"><mrow><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>a</mi><mi>n</mi></msub></mrow></math> for the variables
+<math id="p7.m6" class="ltx_Math" alttext="x_{1},\dots,x_{n}" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></math> simultaneously.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">To <span class="ltx_text ltx_font_bold">bind a variable <math id="p8.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in an expression <math id="p8.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math></span>
+means to incorporate both of them into a larger expression, called an <span class="ltx_text ltx_font_bold">abstraction</span>,
+whose purpose is to express the fact that <math id="p8.m3" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is “local” to <math id="p8.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, i.e., it
+is not to be confused with other occurrences of <math id="p8.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> appearing
+elsewhere. Bound variables are familiar to programmers, but less so to mathematicians.
+Various notations are used for binding, such as <math id="p8.m6" class="ltx_Math" alttext="x\mapsto B" display="inline"><mrow><mi>x</mi><mo>↦</mo><mi>B</mi></mrow></math>,
+<math id="p8.m7" class="ltx_Math" alttext="{\lambda}x.\,B" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mi>B</mi></mrow></math>, and <math id="p8.m8" class="ltx_Math" alttext="x\,.\,B" display="inline"><mrow><mpadded width="+1.7pt"><mi>x</mi></mpadded><mo rspace="4.2pt">.</mo><mi>B</mi></mrow></math>, depending on the situation. We may write <math id="p8.m9" class="ltx_Math" alttext="C[a]" display="inline"><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo stretchy="false">]</mo></mrow></mrow></math> for the
+substitution of a term <math id="p8.m10" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> for the variable in the abstracted expression, i.e.,
+we may define <math id="p8.m11" class="ltx_Math" alttext="(x.B)[a]" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>.</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">[</mo><mi>a</mi><mo stretchy="false">]</mo></mrow></mrow></math> to be <math id="p8.m12" class="ltx_Math" alttext="B[a/x]" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">[</mo><mrow><mi>a</mi><mo>/</mo><mi>x</mi></mrow><mo stretchy="false">]</mo></mrow></mrow></math>. As discussed in
+§1.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/12functiontypes</span>), changing the name of a bound variable everywhere within an expression (“<math id="p8.m13" class="ltx_Math" alttext="\alpha" display="inline"><mi>α</mi></math>-conversion”)
+does not change the expression. Thus, to be very
+precise, an expression is an equivalence class of syntactic forms
+which differ in names of bound variables.
+</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">One may also regard each variable <math id="p9.m1" class="ltx_Math" alttext="x_{i}" display="inline"><msub><mi>x</mi><mi>i</mi></msub></math> of a judgment</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="x_{1}:A_{1},x_{2}:A_{2},\dots,x_{n}:A_{n}\vdash a:A" display="block"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>:</mo><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub></mrow><mo>:</mo><mrow><msub><mi>A</mi><mn>2</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow><mo>:</mo><msub><mi>A</mi><mi>n</mi></msub><mo>⊢</mo><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">to be bound in its <span class="ltx_text ltx_font_bold">scope</span>,
+consisting of the expressions <math id="p9.m2" class="ltx_Math" alttext="A_{i+1},\ldots,A_{n}" display="inline"><mrow><msub><mi>A</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub></mrow></math>, <math id="p9.m3" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>, and <math id="p9.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.</p>
+</div>
+<div id="p10" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">A.0 Preliminaries</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:43:19 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

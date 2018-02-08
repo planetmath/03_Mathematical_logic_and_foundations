@@ -1,0 +1,281 @@
+<!DOCTYPE html><html>
+<head>
+<title>1.8 The type of booleans</title>
+<!--Generated on Thu Feb  8 19:32:42 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="boolean, classical, coproduct, decidable, family of, for type of booleans, induction principle, mathematics, of booleans, power set, recursion principle, subset, truth, type, type of, unit, value">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">1.8 The type of booleans</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">The type of booleans <math id="p1.m1" class="ltx_Math" alttext="\mathbf{2}:\mathcal{U}" display="inline"><mrow><mn>𝟐</mn><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> is intended to have exactly two elements
+<math id="p1.m2" class="ltx_Math" alttext="{0_{\mathbf{2}}},{1_{\mathbf{2}}}:\mathbf{2}" display="inline"><mrow><mrow><msub><mn>0</mn><mn>𝟐</mn></msub><mo>,</mo><msub><mn>1</mn><mn>𝟐</mn></msub></mrow><mo>:</mo><mn>𝟐</mn></mrow></math>. It is clear that we could construct this
+type out of coproduct
+and unit types as <math id="p1.m3" class="ltx_Math" alttext="\mathbf{1}+\mathbf{1}" display="inline"><mrow><mn>𝟏</mn><mo>+</mo><mn>𝟏</mn></mrow></math>. However,
+since it is used frequently, we give the explicit rules here.
+Indeed, we are going to observe that we can also go the other way
+and derive binary coproducts from <math id="p1.m4" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types and <math id="p1.m5" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math>.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">To derive a function <math id="p2.m1" class="ltx_Math" alttext="f:\mathbf{2}\to C" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mn>𝟐</mn><mo>→</mo><mi>C</mi></mrow></mrow></math> we need <math id="p2.m2" class="ltx_Math" alttext="c_{0},c_{1}:C" display="inline"><mrow><mrow><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo><msub><mi>c</mi><mn>1</mn></msub></mrow><mo>:</mo><mi>C</mi></mrow></math> and
+add the defining equations</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle f({0_{\mathbf{2}}})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv c_{0}," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle f({1_{\mathbf{2}}})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv c_{1}." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>c</mi><mn>1</mn></msub><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The recursor corresponds to the if-then-else construct in
+functional programming:</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\mathsf{rec}_{\mathbf{2}}:\mathchoice{\prod_{C:\mathcal{U}}\,}{\mathchoice{{%
+\textstyle\prod_{(C:\mathcal{U})}}}{\prod_{(C:\mathcal{U})}}{\prod_{(C:%
+\mathcal{U})}}{\prod_{(C:\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(C:%
+\mathcal{U})}}}{\prod_{(C:\mathcal{U})}}{\prod_{(C:\mathcal{U})}}{\prod_{(C:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(C:\mathcal{U})}}}{\prod_{(C:%
+\mathcal{U})}}{\prod_{(C:\mathcal{U})}}{\prod_{(C:\mathcal{U})}}}C\to C\to%
+\mathbf{2}\to C" display="block"><mrow><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mo>:</mo><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>C</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></munder></mpadded><mi>C</mi></mrow><mo>→</mo><mi>C</mi><mo>→</mo><mn>𝟐</mn><mo>→</mo><mi>C</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with the defining equations</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\displaystyle\mathsf{rec}_{\mathbf{2}}(C,c_{0},c_{1},{0_{\mathbf{2}}})" display="inline"><mrow><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv c_{0}," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\displaystyle\mathsf{rec}_{\mathbf{2}}(C,c_{0},c_{1},{1_{\mathbf{2}}})" display="inline"><mrow><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv c_{1}." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>c</mi><mn>1</mn></msub><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Given <math id="p3.m1" class="ltx_Math" alttext="C:\mathbf{2}\to\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><mrow><mn>𝟐</mn><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, to derive a dependent function
+<math id="p3.m2" class="ltx_Math" alttext="f:\mathchoice{\prod_{x:\mathbf{2}}\,}{\mathchoice{{\textstyle\prod_{(x:\mathbf%
+{2})}}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}%
+}}{\mathchoice{{\textstyle\prod_{(x:\mathbf{2})}}}{\prod_{(x:\mathbf{2})}}{%
+\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}}{\mathchoice{{\textstyle\prod_%
+{(x:\mathbf{2})}}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:%
+\mathbf{2})}}}C(x)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> we need <math id="p3.m3" class="ltx_Math" alttext="c_{0}:C({0_{\mathbf{2}}})" display="inline"><mrow><msub><mi>c</mi><mn>0</mn></msub><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p3.m4" class="ltx_Math" alttext="c_{1}:C({1_{\mathbf{2}}})" display="inline"><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, in which case we can give the defining equations</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\displaystyle f({0_{\mathbf{2}}})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex6.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv c_{0}," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\displaystyle f({1_{\mathbf{2}}})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv c_{1}." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>c</mi><mn>1</mn></msub><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We package this up into the induction principle</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\mathsf{ind}_{\mathbf{2}}:\prod_{(C:\mathbf{2}\to\mathcal{U})}\,C({0_{\mathbf{%
+2}}})\to C({1_{\mathbf{2}}})\to\mathchoice{{\textstyle\prod_{(x:\mathbf{2})}}}%
+{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}C(x)" display="block"><mrow><msub><mi>𝗂𝗇𝖽</mi><mn>𝟐</mn></msub><mo>:</mo><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>:</mo><mn>𝟐</mn><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mn>𝟐</mn><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with the defining equations</p>
+<table id="S0.EGx4" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex9" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\displaystyle\mathsf{ind}_{\mathbf{2}}(C,c_{0},c_{1},{0_{\mathbf{2}}})" display="inline"><mrow><msub><mi>𝗂𝗇𝖽</mi><mn>𝟐</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex9.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv c_{0}," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex10" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\displaystyle\mathsf{ind}_{\mathbf{2}}(C,c_{0},c_{1},{1_{\mathbf{2}}})" display="inline"><mrow><msub><mi>𝗂𝗇𝖽</mi><mn>𝟐</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex10.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv c_{1}." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>c</mi><mn>1</mn></msub><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">As an example, using the induction principle we can prove that, as we expect, every element of <math id="p4.m1" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> is either <math id="p4.m2" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math> or <math id="p4.m3" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math>.
+As before, we use the equality types which we have not yet introduced, but we need only the fact that everything is equal to itself by <math id="p4.m4" class="ltx_Math" alttext="\mathsf{refl}_{x}:x=x" display="inline"><mrow><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>x</mi></msub><mo>:</mo><mrow><mi>x</mi><mo>=</mo><mi>x</mi></mrow></mrow></math>.</p>
+</div>
+<div id="S0.Thmthm1" class="ltx_theorem ltx_theorem_thm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 1.8.1</span>.</h6>
+<div id="S0.Thmthm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">We have</span></p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\mathchoice{\prod_{x:\mathbf{2}}\,}{\mathchoice{{\textstyle\prod_{(x:\mathbf{2%
+})}}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}}%
+{\mathchoice{{\textstyle\prod_{(x:\mathbf{2})}}}{\prod_{(x:\mathbf{2})}}{\prod%
+_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}}{\mathchoice{{\textstyle\prod_{(x:%
+\mathbf{2})}}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:%
+\mathbf{2})}}}(x={0_{\mathbf{2}}})+(x={1_{\mathbf{2}}})." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mn>𝟐</mn></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow><mo>+</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">We use the induction principle with <math id="p5.m1" class="ltx_Math" alttext="C(x):\!\!\equiv(x={0_{\mathbf{2}}})+(x={1_{\mathbf{2}}})" display="inline"><mrow><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow><mo>+</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math>.
+The two inputs are <math id="p5.m2" class="ltx_Math" alttext="{\mathsf{inl}}(\mathsf{refl}_{{0_{\mathbf{2}}}}):C({0_{\mathbf{2}}})" display="inline"><mrow><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mn>0</mn><mn>𝟐</mn></msub></msub><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math> and <math id="p5.m3" class="ltx_Math" alttext="{\mathsf{inr}}(\mathsf{refl}_{{1_{\mathbf{2}}}}):C({1_{\mathbf{2}}})" display="inline"><mrow><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><msub><mn>1</mn><mn>𝟐</mn></msub></msub><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">We have remarked that <math id="p6.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types can be regarded as analogous to indexed disjoint unions, while coproducts are binary disjoint unions.
+It is natural to expect that a binary disjoint union <math id="p6.m2" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math> could be constructed as an indexed one over the two-element type <math id="p6.m3" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math>.
+For this we need a type family <math id="p6.m4" class="ltx_Math" alttext="P:\mathbf{2}\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mn>𝟐</mn><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> such that <math id="p6.m5" class="ltx_Math" alttext="P({0_{\mathbf{2}}})\equiv A" display="inline"><mrow><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mi>A</mi></mrow></math> and <math id="p6.m6" class="ltx_Math" alttext="P({1_{\mathbf{2}}})\equiv B" display="inline"><mrow><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mi>B</mi></mrow></math>.
+Indeed, we can obtain such a family precisely by the recursion principle for <math id="p6.m7" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math>.
+(The ability to define <em class="ltx_emph ltx_font_italic">type families</em> by induction and recursion, using the fact that the universe <math id="p6.m8" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> is itself a type, is a subtle and important aspect of type theory.)
+Thus, we could have defined
+</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="A+B:\!\!\equiv\mathchoice{\sum_{x:\mathbf{2}}\,}{\mathchoice{{\textstyle\sum_{%
+(x:\mathbf{2})}}}{\sum_{(x:\mathbf{2})}}{\sum_{(x:\mathbf{2})}}{\sum_{(x:%
+\mathbf{2})}}}{\mathchoice{{\textstyle\sum_{(x:\mathbf{2})}}}{\sum_{(x:\mathbf%
+{2})}}{\sum_{(x:\mathbf{2})}}{\sum_{(x:\mathbf{2})}}}{\mathchoice{{\textstyle%
+\sum_{(x:\mathbf{2})}}}{\sum_{(x:\mathbf{2})}}{\sum_{(x:\mathbf{2})}}{\sum_{(x%
+:\mathbf{2})}}}\mathsf{rec}_{\mathbf{2}}(\mathcal{U},A,B,x)." display="block"><mrow><mi>A</mi><mo>+</mo><mi>B</mi><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>x</mi><mo>:</mo><mn>𝟐</mn></mrow></munder></mpadded><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with</p>
+<table id="S0.EGx5" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex13" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex13.m1" class="ltx_Math" alttext="\displaystyle{\mathsf{inl}}(a)" display="inline"><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex13.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv({0_{\mathbf{2}}},a)," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex14" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\displaystyle{\mathsf{inr}}(b)" display="inline"><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex14.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv({1_{\mathbf{2}}},b)." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We leave it as an exercise to derive the induction principle of a coproduct type from this definition.
+(See also PMlinkexternalExercise 1.5http://planetmath.org/node/87558,§5.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/52uniquenessofinductivetypes</span>).)</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">We can apply the same idea to products and <math id="p7.m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types: we could have defined</p>
+<table id="S0.Ex15" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex15.m1" class="ltx_Math" alttext="A\times B:\!\!\equiv\mathchoice{\prod_{x:\mathbf{2}}\,}{\mathchoice{{%
+\textstyle\prod_{(x:\mathbf{2})}}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2%
+})}}{\prod_{(x:\mathbf{2})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbf{2})}}}{%
+\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}}{%
+\mathchoice{{\textstyle\prod_{(x:\mathbf{2})}}}{\prod_{(x:\mathbf{2})}}{\prod_%
+{(x:\mathbf{2})}}{\prod_{(x:\mathbf{2})}}}\mathsf{rec}_{\mathbf{2}}(\mathcal{U%
+},A,B,x)" display="block"><mrow><mi>A</mi><mo>×</mo><mi>B</mi><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>x</mi><mo>:</mo><mn>𝟐</mn></mrow></munder></mpadded><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Pairs could then be constructed using induction for <math id="p7.m2" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math>:</p>
+<table id="S0.Ex16" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex16.m1" class="ltx_Math" alttext="(a,b):\!\!\equiv\mathsf{ind}_{\mathbf{2}}(\mathsf{rec}_{\mathbf{2}}(\mathcal{U%
+},A,B),a,b)" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗂𝗇𝖽</mi><mn>𝟐</mn></msub><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖼</mi><mn>𝟐</mn></msub><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>,</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">while the projections are straightforward applications</p>
+<table id="S0.EGx6" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex17" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex17.m1" class="ltx_Math" alttext="\displaystyle\mathsf{pr}_{1}(p)" display="inline"><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex17.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv p({0_{\mathbf{2}}})," display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>p</mi><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex18" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex18.m1" class="ltx_Math" alttext="\displaystyle\mathsf{pr}_{2}(p)" display="inline"><mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex18.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv p({1_{\mathbf{2}}})." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>p</mi><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The derivation of the induction principle for binary products defined in this way is a bit more involved, and requires function extensionality, which we will introduce in §2.9 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom</span>).
+Moreover, we do not get the same judgmental equalities; see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87559</span>Exercise 1.6.
+This is a recurrent issue when encoding one type as another; we will return to it in §5.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/55homotopyinductivetypes</span>).</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">We may occasionally refer to the elements <math id="p8.m1" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math> and <math id="p8.m2" class="ltx_Math" alttext="{1_{\mathbf{2}}}" display="inline"><msub><mn>1</mn><mn>𝟐</mn></msub></math> of <math id="p8.m3" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> as “false” and “true” respectively.
+However, note that unlike in classical mathematics, we do not use elements of <math id="p8.m4" class="ltx_Math" alttext="\mathbf{2}" display="inline"><mn>𝟐</mn></math> as truth values
+or as propositions.
+(Instead we identify propositions with types; see §1.11 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/111propositionsastypes</span>).)
+In particular, the type <math id="p8.m5" class="ltx_Math" alttext="A\to\mathbf{2}" display="inline"><mrow><mi>A</mi><mo>→</mo><mn>𝟐</mn></mrow></math> is not generally the power set of <math id="p8.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>; it represents only the “decidable” subsets of <math id="p8.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> (see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87576</span>Chapter 3).
+</p>
+</div>
+<div id="p9" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">1.8 The type of booleans</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:32:42 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html><html>
+<head>
+<title>8.1.4 The encode-decode proof</title>
+<!--Generated on Thu Feb  8 19:40:29 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="decode, encode, encode-decode method, number, winding">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">8.1.4 The encode-decode proof</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">We begin with the function (<span class="ltx_ref ltx_missing_label ltx_ref_self">LABEL:eq:pi1s1-encode</span>) that maps paths to codes:</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 8.1.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Define <math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="\mathsf{encode}:\mathchoice{\prod_{x:\mathbb{S}^{1}}\,}{\mathchoice{{%
+\textstyle\prod_{(x:\mathbb{S}^{1})}}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:%
+\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}}{\mathchoice{{\textstyle\prod_{(%
+x:\mathbb{S}^{1})}}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}{%
+\prod_{(x:\mathbb{S}^{1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^{1})}%
+}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S%
+}^{1})}}}(\mathsf{base}=x)\rightarrow\mathsf{code}(x)" display="inline"><mrow><mi mathvariant="normal">encode</mi><mo mathvariant="normal">:</mo><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><msup><mi mathvariant="normal">S</mi><mn mathvariant="normal">1</mn></msup><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi mathvariant="normal">base</mi><mo mathvariant="normal">=</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mi mathvariant="normal">code</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> by</span></p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\mathsf{encode}\&gt;p:\!\!\equiv\mathsf{transport}^{\mathsf{code}}(p,0)" display="block"><mrow><mpadded width="+2.2pt"><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi></mpadded><mi>p</mi><mo rspace="0pt">:</mo><mo>≡</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">(we leave the argument <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> implicit).</span></p>
+</div>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Encode is defined by lifting a path into the universal cover, which
+determines an equivalence, and then applying the resulting equivalence
+to <math id="p3.m1" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math>.
+The interesting thing about this function is that it computes a concrete
+number from a loop on the circle, when this loop is represented using
+the abstract groupoidal framework of homotopy type theory. To gain an
+intuition for how it does this, observe that by the above lemmas,
+<math id="p3.m2" class="ltx_Math" alttext="\mathsf{transport}^{\mathsf{code}}(\mathsf{loop},x)" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝗅𝗈𝗈𝗉</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the successor map and <math id="p3.m3" class="ltx_Math" alttext="\mathsf{transport}^{\mathsf{code}}(\mathord{{\mathsf{loop}}^{-1}},x)" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> is the predecessor map.
+Further, <math id="p3.m4" class="ltx_Math" alttext="\mathsf{transport}" display="inline"><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi></math> is functorial (<span class="ltx_ERROR undefined">\autoref</span>cha:basics), so
+<math id="p3.m5" class="ltx_Math" alttext="\mathsf{transport}^{\mathsf{code}}(\mathsf{loop}\mathchoice{\mathbin{\raisebox%
+{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}%
+}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{%
+\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{loop},\mathord{%
+\hskip 1.0pt\text{--}\hskip 1.0pt})" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗅𝗈𝗈𝗉</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>𝗅𝗈𝗈𝗉</mi></mrow><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow></mrow></math> is</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="(\mathsf{transport}^{\mathsf{code}}(\mathsf{loop},-))\circ(\mathsf{transport}^%
+{\mathsf{code}}(\mathsf{loop},-))" display="block"><mrow><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝗅𝗈𝗈𝗉</mi><mo>,</mo><mo>-</mo><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>∘</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝗅𝗈𝗈𝗉</mi><mo>,</mo><mo>-</mo><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">and so on.
+Thus, when <math id="p3.m6" class="ltx_Math" alttext="p" display="inline"><mi>p</mi></math> is a composition like</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\mathsf{loop}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}%
+}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$%
+\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle%
+\,\centerdot\,$}}}\mathord{{\mathsf{loop}}^{-1}}\mathchoice{\mathbin{\raisebox%
+{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}%
+}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{%
+\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{loop}%
+\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{%
+\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,%
+\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$%
+}}}\cdots" display="block"><mrow><mi>𝗅𝗈𝗈𝗉</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>𝗅𝗈𝗈𝗉</mi><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi mathvariant="normal">⋯</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><math id="p3.m7" class="ltx_Math" alttext="\mathsf{transport}^{\mathsf{code}}(p,\mathord{\hskip 1.0pt\text{--}\hskip 1.0%
+pt})" display="inline"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded><mo stretchy="false">)</mo></mrow></mrow></math> will compute a composition of functions like</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\mathsf{succ}\circ\mathsf{pred}\circ\mathsf{succ}\circ\cdots" display="block"><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>∘</mo><mi>𝗉𝗋𝖾𝖽</mi><mo>∘</mo><mi>𝗌𝗎𝖼𝖼</mi><mo>∘</mo><mi mathvariant="normal">⋯</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Applying this composition of functions to 0 will compute the
+<em class="ltx_emph ltx_font_italic">winding number</em> of the path—how many times it goes around the
+circle, with orientation marked by whether it is positive or negative,
+after inverses have been canceled. Thus, the computational behavior of
+<math id="p3.m8" class="ltx_Math" alttext="\mathsf{encode}" display="inline"><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi></math> follows from the reduction rules for higher-inductive types and
+univalence, and the action of <math id="p3.m9" class="ltx_Math" alttext="\mathsf{transport}" display="inline"><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi></math> on compositions and inverses.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Note that the instance <math id="p4.m1" class="ltx_Math" alttext="\mathsf{encode}^{\prime}:\!\!\equiv\mathsf{encode}_{\mathsf{base}}" display="inline"><mrow><msup><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>′</mo></msup><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mi>𝖻𝖺𝗌𝖾</mi></msub></mrow></math> has type
+<math id="p4.m2" class="ltx_Math" alttext="(\mathsf{base}=\mathsf{base})\rightarrow\mathbb{Z}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo>=</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>ℤ</mi></mrow></math>.
+This will be one half of our desired equivalence; indeed, it is exactly the function <math id="p4.m3" class="ltx_Math" alttext="g" display="inline"><mi>g</mi></math> defined in <span class="ltx_ERROR undefined">\autoref</span>sec:pi1s1-initial-thoughts.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Similarly, the function (<span class="ltx_ref ltx_missing_label ltx_ref_self">LABEL:eq:pi1s1-decode</span>) is a generalization of the function <math id="p5.m1" class="ltx_Math" alttext="\mathsf{loop}^{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}}" display="inline"><msup><mi>𝗅𝗈𝗈𝗉</mi><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></msup></math> from <span class="ltx_ERROR undefined">\autoref</span>sec:pi1s1-initial-thoughts.</p>
+</div>
+<div id="Thmpredefn2" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 8.1.2</span>.</h6>
+<div id="Thmpredefn2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Define <math id="Thmpredefn2.p1.m1" class="ltx_Math" alttext="\mathsf{decode}:\mathchoice{\prod_{x:\mathbb{S}^{1}}\,}{\mathchoice{{%
+\textstyle\prod_{(x:\mathbb{S}^{1})}}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:%
+\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}}{\mathchoice{{\textstyle\prod_{(%
+x:\mathbb{S}^{1})}}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}{%
+\prod_{(x:\mathbb{S}^{1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^{1})}%
+}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S%
+}^{1})}}}\mathsf{code}(x)\rightarrow(\mathsf{base}=x)" display="inline"><mrow><mi mathvariant="normal">decode</mi><mo mathvariant="normal">:</mo><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><msup><mi mathvariant="normal">S</mi><mn mathvariant="normal">1</mn></msup><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mi mathvariant="normal">code</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi mathvariant="normal">base</mi><mo mathvariant="normal">=</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> by
+circle induction on <math id="Thmpredefn2.p1.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>. It suffices to give a function
+<math id="Thmpredefn2.p1.m3" class="ltx_Math" alttext="{\mathsf{code}(\mathsf{base})\rightarrow(\mathsf{base}=\mathsf{base})}" display="inline"><mrow><mi mathvariant="normal">code</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi mathvariant="normal">base</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">→</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi mathvariant="normal">base</mi><mo mathvariant="normal">=</mo><mi mathvariant="normal">base</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>, for which we use <math id="Thmpredefn2.p1.m4" class="ltx_Math" alttext="\mathsf{loop}^{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}}" display="inline"><msup><mi mathvariant="normal">loop</mi><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded></msup></math>, and
+to show that <math id="Thmpredefn2.p1.m5" class="ltx_Math" alttext="\mathsf{loop}^{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}}" display="inline"><msup><mi mathvariant="normal">loop</mi><mpadded lspace="1pt" width="+2pt"><mtext mathvariant="italic">–</mtext></mpadded></msup></math> respects the loop.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">To show that <math id="p6.m1" class="ltx_Math" alttext="\mathsf{loop}^{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}}" display="inline"><msup><mi>𝗅𝗈𝗈𝗉</mi><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></msup></math> respects the loop, it suffices to give a path
+from <math id="p6.m2" class="ltx_Math" alttext="\mathsf{loop}^{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}}" display="inline"><msup><mi>𝗅𝗈𝗈𝗉</mi><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></msup></math> to itself that lies over <math id="p6.m3" class="ltx_Math" alttext="\mathsf{loop}" display="inline"><mi>𝗅𝗈𝗈𝗉</mi></math>.
+By the definition of dependent paths, this means a path from</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\mathsf{transport}^{(x^{\prime}\mapsto\mathsf{code}(x^{\prime})\rightarrow(%
+\mathsf{base}=x^{\prime}))}(\mathsf{loop},\mathsf{loop}^{\mathord{\hskip 1.0pt%
+\text{--}\hskip 1.0pt}})" display="block"><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mo stretchy="false">(</mo><msup><mi>x</mi><mo>′</mo></msup><mo>↦</mo><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo>=</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝗅𝗈𝗈𝗉</mi><mo>,</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></msup><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">to <math id="p6.m4" class="ltx_Math" alttext="\mathsf{loop}^{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}}" display="inline"><msup><mi>𝗅𝗈𝗈𝗉</mi><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></msup></math>. We define such a
+path as follows:</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\displaystyle\MoveEqLeft\mathsf{transport}^{(x^{\prime}\mapsto\mathsf{code}(x^%
+{\prime})\rightarrow(\mathsf{base}=x^{\prime}))}(\mathsf{loop},\mathsf{loop}^{%
+\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}})" display="inline"><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\MoveEqLeft</mtext></merror><mo>⁢</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><mo stretchy="false">(</mo><msup><mi>x</mi><mo>′</mo></msup><mo>↦</mo><mi>𝖼𝗈𝖽𝖾</mi><mrow><mo stretchy="false">(</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo>=</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝗅𝗈𝗈𝗉</mi><mo>,</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></msup><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{x^{\prime}\mapsto(\mathsf{base}=x^{\prime})}%
+(\mathsf{loop})\circ{\mathsf{loop}^{\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt%
+}}}\circ\mathsf{transport}^{\mathsf{code}}({\mathord{{\mathsf{loop}}^{-1}}})" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mrow><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mrow><msup><mi>x</mi><mo>′</mo></msup><mo>↦</mo><mrow><mo stretchy="false">(</mo><mi>𝖻𝖺𝗌𝖾</mi><mo>=</mo><msup><mi>x</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝗅𝗈𝗈𝗉</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∘</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></msup><mo>∘</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle=(-\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{loop})\circ(\mathsf{loop}^{%
+\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}})\circ\mathsf{transport}^{\mathsf{%
+code}}({\mathord{{\mathsf{loop}}^{-1}}})" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>𝗅𝗈𝗈𝗉</mi></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>∘</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></msup><mo stretchy="false">)</mo></mrow><mo>∘</mo><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex9" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex9.m2" class="ltx_Math" alttext="\displaystyle=(-\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{loop})\circ(\mathsf{loop}^{%
+\mathord{\hskip 1.0pt\text{--}\hskip 1.0pt}})\circ\mathsf{pred}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>𝗅𝗈𝗈𝗉</mi></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>∘</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mpadded lspace="1pt" width="+2pt"><mtext>–</mtext></mpadded></msup><mo stretchy="false">)</mo></mrow><mo>∘</mo><mi>𝗉𝗋𝖾𝖽</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex10" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex10.m2" class="ltx_Math" alttext="\displaystyle=(n\mapsto\mathsf{loop}^{n-1}\mathchoice{\mathbin{\raisebox{2.15%
+pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{%
+\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox%
+{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{loop})." display="inline"><mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>↦</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mi>𝗅𝗈𝗈𝗉</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">On the first line, we apply the characterization of <math id="p6.m5" class="ltx_Math" alttext="\mathsf{transport}" display="inline"><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi></math>
+when the outer connective of the fibration is <math id="p6.m6" class="ltx_Math" alttext="\rightarrow" display="inline"><mo>→</mo></math>, which
+reduces the <math id="p6.m7" class="ltx_Math" alttext="\mathsf{transport}" display="inline"><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi></math> to pre- and post-composition with
+<math id="p6.m8" class="ltx_Math" alttext="\mathsf{transport}" display="inline"><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi></math> at the domain and codomain types. On the second line,
+we apply the characterization of <math id="p6.m9" class="ltx_Math" alttext="\mathsf{transport}" display="inline"><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi></math> when the type family
+is <math id="p6.m10" class="ltx_Math" alttext="x\mapsto\mathsf{base}=x" display="inline"><mrow><mi>x</mi><mo>↦</mo><mi>𝖻𝖺𝗌𝖾</mi><mo>=</mo><mi>x</mi></mrow></math>, which is post-composition of paths. On the third line,
+we use the action of <math id="p6.m11" class="ltx_Math" alttext="\mathsf{code}" display="inline"><mi>𝖼𝗈𝖽𝖾</mi></math> on <math id="p6.m12" class="ltx_Math" alttext="\mathord{{\mathsf{loop}}^{-1}}" display="inline"><msup><mi>𝗅𝗈𝗈𝗉</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> from
+<span class="ltx_ERROR undefined">\autoref</span>lem:transport-s1-code. And on the fourth line, we simply
+reduce the function composition. Thus, it suffices to show that for all
+<math id="p6.m13" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, <math id="p6.m14" class="ltx_Math" alttext="\mathsf{loop}^{n-1}\mathchoice{\mathbin{\raisebox{2.15pt}{$\displaystyle%
+\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$\centerdot$}}}{\mathbin{\raisebox{1%
+.075pt}{$\scriptstyle\,\centerdot\,$}}}{\mathbin{\raisebox{0.43pt}{$%
+\scriptscriptstyle\,\centerdot\,$}}}\mathsf{loop}=\mathsf{loop}^{n}" display="inline"><mrow><mrow><msup><mi>𝗅𝗈𝗈𝗉</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>𝗅𝗈𝗈𝗉</mi></mrow><mo>=</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mi>n</mi></msup></mrow></math>, which is an easy
+induction, using the groupoid laws.
+∎</p>
+</div>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">We can now show that <math id="p7.m1" class="ltx_Math" alttext="\mathsf{encode}" display="inline"><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi></math> and <math id="p7.m2" class="ltx_Math" alttext="\mathsf{decode}" display="inline"><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi></math> are quasi-inverses.
+What used to be the difficult direction is now easy!</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 8.1.3</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For all
+for all <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="x:\mathbb{S}^{1}" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><msup><mi mathvariant="normal">S</mi><mn mathvariant="normal">1</mn></msup></mrow></math> and <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="p:\mathsf{base}=x" display="inline"><mrow><mi>p</mi><mo mathvariant="normal">:</mo><mrow><mi mathvariant="normal">base</mi><mo mathvariant="normal">=</mo><mi>x</mi></mrow></mrow></math>, <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="\mathsf{decode}_{x}({{\mathsf{encode}_{x}(p)}})=p" display="inline"><mrow><mrow><msub><mi mathvariant="normal">decode</mi><mi>x</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msub><mi mathvariant="normal">encode</mi><mi>x</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>p</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mi>p</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">By path induction, it suffices to show that
+<math id="p8.m1" class="ltx_Math" alttext="\mathsf{decode}_{\mathsf{base}}({{\mathsf{encode}_{\mathsf{base}}(\mathsf{refl%
+}_{\mathsf{base}})}})=\mathsf{refl}_{\mathsf{base}}." display="inline"><mrow><mrow><mrow><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mi>𝖻𝖺𝗌𝖾</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mi>𝖻𝖺𝗌𝖾</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>𝖻𝖺𝗌𝖾</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>𝖻𝖺𝗌𝖾</mi></msub></mrow><mo>.</mo></mrow></math>
+But
+<math id="p8.m2" class="ltx_Math" alttext="\mathsf{encode}_{\mathsf{base}}(\mathsf{refl}_{\mathsf{base}})\equiv\mathsf{%
+transport}^{\mathsf{code}}(\mathsf{refl}_{\mathsf{base}},0)\equiv 0," display="inline"><mrow><mrow><mrow><msub><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mi>𝖻𝖺𝗌𝖾</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>𝖻𝖺𝗌𝖾</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>𝖻𝖺𝗌𝖾</mi></msub><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><mn>0</mn></mrow><mo>,</mo></mrow></math>
+and <math id="p8.m3" class="ltx_Math" alttext="\mathsf{decode}_{\mathsf{base}}(0)\equiv\mathsf{loop}^{0}\equiv\mathsf{refl}_{%
+\mathsf{base}}" display="inline"><mrow><mrow><msub><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi><mi>𝖻𝖺𝗌𝖾</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>≡</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mn>0</mn></msup><mo>≡</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mi>𝖻𝖺𝗌𝖾</mi></msub></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">The other direction is not much harder.</p>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 8.1.4</span>.</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For all
+<math id="Thmprelem2.p1.m1" class="ltx_Math" alttext="x:\mathbb{S}^{1}" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><msup><mi mathvariant="normal">S</mi><mn mathvariant="normal">1</mn></msup></mrow></math> and <math id="Thmprelem2.p1.m2" class="ltx_Math" alttext="c:\mathsf{code}(x)" display="inline"><mrow><mi>c</mi><mo mathvariant="normal">:</mo><mrow><mi mathvariant="normal">code</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></math>, we have <math id="Thmprelem2.p1.m3" class="ltx_Math" alttext="\mathsf{encode}_{x}({{\mathsf{decode}_{x}(c)}})=c" display="inline"><mrow><mrow><msub><mi mathvariant="normal">encode</mi><mi>x</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><msub><mi mathvariant="normal">decode</mi><mi>x</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>c</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mi>c</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">The proof is by circle induction. It suffices to show the case for
+<math id="p10.m1" class="ltx_Math" alttext="\mathsf{base}" display="inline"><mi>𝖻𝖺𝗌𝖾</mi></math>, because the case for <math id="p10.m2" class="ltx_Math" alttext="\mathsf{loop}" display="inline"><mi>𝗅𝗈𝗈𝗉</mi></math> is a path between paths in
+<math id="p10.m3" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math>, which is immediate because <math id="p10.m4" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math> is a set.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">Thus, it suffices to show, for all <math id="p11.m1" class="ltx_Math" alttext="n:\mathbb{Z}" display="inline"><mrow><mi>n</mi><mo>:</mo><mi>ℤ</mi></mrow></math>, that</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\mathsf{encode}^{\prime}(\mathsf{loop}^{n})=n" display="block"><mrow><mrow><msup><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mi>n</mi></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>n</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The proof is by induction, using <span class="ltx_ERROR undefined">\cref</span>thm:looptothe.</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">In the case for <math id="I1.i1.p1.m1" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math>, the result is true by definition.</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">In the case for <math id="I1.i2.p1.m1" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math>,</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tbody id="S0.Ex12"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex12.m1" class="ltx_Math" alttext="\displaystyle{\mathsf{encode}^{\prime}(\mathsf{loop}^{n+1})}" display="inline"><mrow><msup><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex12.m2" class="ltx_Math" alttext="\displaystyle={\mathsf{encode}^{\prime}(\mathsf{loop}^{n}\mathchoice{\mathbin{%
+\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.15pt}{$%
+\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$}}}{%
+\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{loop})%
+}{}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msup><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi><mo>′</mo></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗅𝗈𝗈𝗉</mi><mi>n</mi></msup><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>𝗅𝗈𝗈𝗉</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by definition of $\mathsf{loop}^{\mathord{\hskip1.0pt\text{--}\hskip1.0pt}}$)</span></td>
+</tr></tbody>
+<tbody id="S0.Ex13"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex13.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{\mathsf{code}}((\mathsf{loop}^{n}\mathchoice%
+{\mathbin{\raisebox{2.15pt}{$\displaystyle\centerdot$}}}{\mathbin{\raisebox{2.%
+15pt}{$\centerdot$}}}{\mathbin{\raisebox{1.075pt}{$\scriptstyle\,\centerdot\,$%
+}}}{\mathbin{\raisebox{0.43pt}{$\scriptscriptstyle\,\centerdot\,$}}}\mathsf{%
+loop}),0){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗅𝗈𝗈𝗉</mi><mi>n</mi></msup><mo>⁢</mo><merror class="ltx_ERROR undefined undefined"><mtext>\centerdot</mtext></merror><mo>⁢</mo><mi>𝗅𝗈𝗈𝗉</mi></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by definition of $\mathsf{encode}$)</span></td>
+</tr></tbody>
+<tbody id="S0.Ex14"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex14.m2" class="ltx_Math" alttext="\displaystyle=\mathsf{transport}^{\mathsf{code}}(\mathsf{loop},(\mathsf{%
+transport}^{\mathsf{code}}(\mathsf{loop}^{n},0))){}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>𝗅𝗈𝗈𝗉</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mi>n</mi></msup><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by functoriality)</span></td>
+</tr></tbody>
+<tbody id="S0.Ex15"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex15.m2" class="ltx_Math" alttext="\displaystyle={(\mathsf{transport}^{\mathsf{code}}(\mathsf{loop}^{n},0))}+1{}" display="inline"><mrow><mi></mi><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><msup><mi>𝗍𝗋𝖺𝗇𝗌𝗉𝗈𝗋𝗍</mi><mi>𝖼𝗈𝖽𝖾</mi></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝗅𝗈𝗈𝗉</mi><mi>n</mi></msup><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>+</mo><mn>1</mn></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by \autoreflem:transport-s1-code)</span></td>
+</tr></tbody>
+<tbody id="S0.Ex16"><tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex16.m2" class="ltx_Math" alttext="\displaystyle=n+1.{}" display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(by the inductive hypothesis)</span></td>
+</tr></tbody>
+</table>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p">The case for negatives is analogous. ∎</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">Finally, we conclude the theorem.</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 8.1.5</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">There is a family of equivalences <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="\mathchoice{\prod_{x:\mathbb{S}^{1}}\,}{\mathchoice{{\textstyle\prod_{(x:%
+\mathbb{S}^{1})}}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}{%
+\prod_{(x:\mathbb{S}^{1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^{1})}%
+}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S%
+}^{1})}}}{\mathchoice{{\textstyle\prod_{(x:\mathbb{S}^{1})}}}{\prod_{(x:%
+\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}{\prod_{(x:\mathbb{S}^{1})}}}((%
+\mathsf{base}=x)\simeq\mathsf{code}(x))" display="inline"><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∏</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><msup><mi mathvariant="normal">S</mi><mn mathvariant="normal">1</mn></msup><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mo mathvariant="normal" stretchy="false">(</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi mathvariant="normal">base</mi><mo mathvariant="normal">=</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">≃</mo><mi mathvariant="normal">code</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">The maps <math id="p13.m1" class="ltx_Math" alttext="\mathsf{encode}" display="inline"><mi>𝖾𝗇𝖼𝗈𝖽𝖾</mi></math> and <math id="p13.m2" class="ltx_Math" alttext="\mathsf{decode}" display="inline"><mi>𝖽𝖾𝖼𝗈𝖽𝖾</mi></math> are quasi-inverses by
+<span class="ltx_ERROR undefined">\autoref</span>lem:s1-decode-encode,<span class="ltx_ERROR undefined">\autoref</span>lem:s1-decode-encode.
+∎</p>
+</div>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">Instantiating at <math id="p14.m1" class="ltx_Math" alttext="\mathsf{base}" display="inline"><mi>𝖻𝖺𝗌𝖾</mi></math> gives</p>
+</div>
+<div id="Thmprecor1" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 8.1.6</span>.</h6>
+<div id="Thmprecor1.p1" class="ltx_para">
+<p class="ltx_p"><math id="Thmprecor1.p1.m1" class="ltx_Math" alttext="\Omega(\mathbb{S}^{1},\mathsf{base})\simeq\mathbb{Z}" display="inline"><mrow><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>1</mn></msup><mo>,</mo><mi>𝖻𝖺𝗌𝖾</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≃</mo><mi>ℤ</mi></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">A simple induction shows that this equivalence takes addition to
+composition, so that <math id="p15.m1" class="ltx_Math" alttext="\Omega(\mathbb{S}^{1})=\mathbb{Z}" display="inline"><mrow><mrow><mi mathvariant="normal">Ω</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>1</mn></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>ℤ</mi></mrow></math> as groups.</p>
+</div>
+<div id="Thmprecor2" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 8.1.7</span>.</h6>
+<div id="Thmprecor2.p1" class="ltx_para">
+<p class="ltx_p"><math id="Thmprecor2.p1.m1" class="ltx_Math" alttext="\pi_{1}(\mathbb{S}^{1})=\mathbb{Z}" display="inline"><mrow><mrow><msub><mi>π</mi><mn>1</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>1</mn></msup><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>ℤ</mi></mrow></math><span class="ltx_text ltx_font_italic">, while <math id="Thmprecor2.p1.m2" class="ltx_Math" alttext="\pi_{n}(\mathbb{S}^{1})=0" display="inline"><mrow><mrow><msub><mi>π</mi><mi>n</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msup><mi mathvariant="normal">S</mi><mn mathvariant="normal">1</mn></msup><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow><mo mathvariant="normal">=</mo><mn mathvariant="normal">0</mn></mrow></math> for <math id="Thmprecor2.p1.m3" class="ltx_Math" alttext="n&gt;1" display="inline"><mrow><mi>n</mi><mo mathvariant="normal">&gt;</mo><mn mathvariant="normal">1</mn></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">For <math id="p16.m1" class="ltx_Math" alttext="n=1" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow></math>, we sketched the proof from <span class="ltx_ERROR undefined">\autoref</span>cor:omega-s1 above.
+For <math id="p16.m2" class="ltx_Math" alttext="n&gt;1" display="inline"><mrow><mi>n</mi><mo>&gt;</mo><mn>1</mn></mrow></math>, we have <math id="p16.m3" class="ltx_Math" alttext="\mathopen{}\left\|\Omega^{n}(\mathbb{S}^{1})\right\|_{0}\mathclose{}=\mathopen%
+{}\left\|\Omega^{n-1}(\Omega{\mathbb{S}^{1}})\right\|_{0}\mathclose{}=%
+\mathopen{}\left\|\Omega^{n-1}(\mathbb{Z})\right\|_{0}\mathclose{}" display="inline"><mrow><mrow><mi></mi><mo>∥</mo><msup><mi mathvariant="normal">Ω</mi><mi>n</mi></msup><mrow><mo stretchy="false">(</mo><msup><mi>𝕊</mi><mn>1</mn></msup><mo stretchy="false">)</mo></mrow><msub><mo>∥</mo><mn>0</mn></msub><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mo>∥</mo><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Ω</mi><msup><mi>𝕊</mi><mn>1</mn></msup><mo stretchy="false">)</mo></mrow><msub><mo>∥</mo><mn>0</mn></msub><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mo>∥</mo><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup><mrow><mo stretchy="false">(</mo><mi>ℤ</mi><mo stretchy="false">)</mo></mrow><msub><mo>∥</mo><mn>0</mn></msub><mi></mi></mrow></mrow></math>.
+And since <math id="p16.m4" class="ltx_Math" alttext="\mathbb{Z}" display="inline"><mi>ℤ</mi></math> is a set, <math id="p16.m5" class="ltx_Math" alttext="\Omega^{n-1}(\mathbb{Z})" display="inline"><mrow><msup><mi mathvariant="normal">Ω</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ℤ</mi><mo stretchy="false">)</mo></mrow></mrow></math> is contractible, so this is trivial.
+∎</p>
+</div>
+</div>
+<div id="p17" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">8.1.4 The encode-decode proof</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:40:29 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

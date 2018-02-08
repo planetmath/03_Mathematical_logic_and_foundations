@@ -1,0 +1,202 @@
+<!DOCTYPE html><html>
+<head>
+<title>apartness relation</title>
+<!--Generated on Thu Feb  8 20:25:36 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">apartness relation</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Given two arbitrary real numbers <math id="p1.m1" class="ltx_Math" alttext="r,s" display="inline"><mrow><mi>r</mi><mo>,</mo><mi>s</mi></mrow></math>, how does one (better yet, a computer) prove <math id="p1.m2" class="ltx_Math" alttext="r=s" display="inline"><mrow><mi>r</mi><mo>=</mo><mi>s</mi></mrow></math>? Given decimal representations of <math id="p1.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> and <math id="p1.m4" class="ltx_Math" alttext="s" display="inline"><mi>s</mi></math>:</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="r=r_{0}.r_{1}r_{2}r_{3}\ldots\qquad s=s_{0}.s_{1}s_{2}s_{3}\ldots" display="block"><mrow><mrow><mi>r</mi><mo>=</mo><msub><mi>r</mi><mn>0</mn></msub></mrow><mo>.</mo><mrow><mrow><mrow><msub><mi>r</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi>r</mi><mn>2</mn></msub><mo>⁢</mo><msub><mi>r</mi><mn>3</mn></msub><mo>⁢</mo><mi mathvariant="normal">…</mi></mrow><mo mathvariant="italic" separator="true">  </mo><mi>s</mi></mrow><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub></mrow><mo>.</mo><mrow><msub><mi>s</mi><mn>1</mn></msub><mo>⁢</mo><msub><mi>s</mi><mn>2</mn></msub><mo>⁢</mo><msub><mi>s</mi><mn>3</mn></msub><mo>⁢</mo><mi mathvariant="normal">…</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">one needs to show that <math id="p1.m5" class="ltx_Math" alttext="r_{0}=s_{0}" display="inline"><mrow><msub><mi>r</mi><mn>0</mn></msub><mo>=</mo><msub><mi>s</mi><mn>0</mn></msub></mrow></math>, <math id="p1.m6" class="ltx_Math" alttext="r_{1}=s_{1}" display="inline"><mrow><msub><mi>r</mi><mn>1</mn></msub><mo>=</mo><msub><mi>s</mi><mn>1</mn></msub></mrow></math>, <math id="p1.m7" class="ltx_Math" alttext="r_{2}=s_{2}" display="inline"><mrow><msub><mi>r</mi><mn>2</mn></msub><mo>=</mo><msub><mi>s</mi><mn>2</mn></msub></mrow></math>, etc… which involves demonstrating an infinite number of equalities. On the other hand, showing that <math id="p1.m8" class="ltx_Math" alttext="r\neq s" display="inline"><mrow><mi>r</mi><mo>≠</mo><mi>s</mi></mrow></math> is a finitary process, in that one proceeds as above, and then stops when he/she finds a decimal place <math id="p1.m9" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> where the two corresponding digits differ: <math id="p1.m10" class="ltx_Math" alttext="r_{n}\neq s_{n}" display="inline"><mrow><msub><mi>r</mi><mi>n</mi></msub><mo>≠</mo><msub><mi>s</mi><mi>n</mi></msub></mrow></math>. Therefore, in constructive mathematics, inequality is a more appropriate choice of study than equality. The formal notion of inequality in constructive mathematics is that of an apartness relation.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">An <em class="ltx_emph ltx_font_italic">apartness relation</em> on a set <math id="p2.m1" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a binary relation <math id="p2.m2" class="ltx_Math" alttext="\#" display="inline"><mi mathvariant="normal">#</mi></math> on <math id="p2.m3" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> satisfying the following conditions:</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="\forall x(\neg x\#x)" display="inline"><mrow><mo>∀</mo><mrow><mi>x</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i2.p1.m1" class="ltx_Math" alttext="\forall x\forall y(x\#y\to y\#x)" display="inline"><mrow><mo>∀</mo><mi>x</mi><mo>∀</mo><mi>y</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mi mathvariant="normal">#</mi><mi>y</mi><mo>→</mo><mi>y</mi><mi mathvariant="normal">#</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i3.p1.m1" class="ltx_Math" alttext="\forall x\forall y\forall z(x\#y\to(x\#z\lor y\#z))" display="inline"><mrow><mo>∀</mo><mi>x</mi><mo>∀</mo><mi>y</mi><mo>∀</mo><mi>z</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mi mathvariant="normal">#</mi><mi>y</mi><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mi mathvariant="normal">#</mi><mi>z</mi><mo>∨</mo><mi>y</mi><mi mathvariant="normal">#</mi><mi>z</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">And if in addition, we have the following</p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I2.i4.p1" class="ltx_para">
+<p class="ltx_p"><math id="I2.i4.p1.m1" class="ltx_Math" alttext="\forall x\forall y(\neg x\#y\leftrightarrow x=y)" display="inline"><mrow><mo>∀</mo><mi>x</mi><mo>∀</mo><mi>y</mi><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">¬</mi><mi>x</mi><mi mathvariant="normal">#</mi><mi>y</mi><mo>↔</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math></p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">Then <math id="p2.m4" class="ltx_Math" alttext="\#" display="inline"><mi mathvariant="normal">#</mi></math> is said to be <em class="ltx_emph ltx_font_italic">tight</em>.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">In classical mathematics where the law of the excluded middle is accepted, the following are true:</p>
+<ol id="I3" class="ltx_enumerate">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">the first condition is redundant if <math id="I3.i1.p1.m1" class="ltx_Math" alttext="\#" display="inline"><mi mathvariant="normal">#</mi></math> is assumed to be tight.</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p">the second condition above is redundant, for if <math id="I3.i2.p1.m1" class="ltx_Math" alttext="x\#y" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow></math>, then <math id="I3.i2.p1.m2" class="ltx_Math" alttext="x\#x" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>x</mi></mrow></math> or <math id="I3.i2.p1.m3" class="ltx_Math" alttext="y\#x" display="inline"><mrow><mi>y</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>x</mi></mrow></math> by condition 3, but then by condition 1, <math id="I3.i2.p1.m4" class="ltx_Math" alttext="x\#x" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>x</mi></mrow></math> is false, therefore <math id="I3.i2.p1.m5" class="ltx_Math" alttext="y\#x" display="inline"><mrow><mi>y</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>x</mi></mrow></math>.</p>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p">the converse of an apartness relation is an equivalence relation: define <math id="I3.i3.p1.m1" class="ltx_Math" alttext="xRy" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>y</mi></mrow></math> iff not <math id="I3.i3.p1.m2" class="ltx_Math" alttext="x\#y" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow></math>. Since <math id="I3.i3.p1.m3" class="ltx_Math" alttext="x\#x" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>x</mi></mrow></math> is false for all <math id="I3.i3.p1.m4" class="ltx_Math" alttext="x\in X" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow></math>, <math id="I3.i3.p1.m5" class="ltx_Math" alttext="xRx" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>x</mi></mrow></math> for all <math id="I3.i3.p1.m6" class="ltx_Math" alttext="x\in X" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow></math>. Also, the contrapositive of the second condition above shows that <math id="I3.i3.p1.m7" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> is symmetric. Now, suppose <math id="I3.i3.p1.m8" class="ltx_Math" alttext="xRy" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>y</mi></mrow></math> and <math id="I3.i3.p1.m9" class="ltx_Math" alttext="yRz" display="inline"><mrow><mi>y</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>z</mi></mrow></math>. Then not <math id="I3.i3.p1.m10" class="ltx_Math" alttext="x\#y" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow></math> and not <math id="I3.i3.p1.m11" class="ltx_Math" alttext="y\#z" display="inline"><mrow><mi>y</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>z</mi></mrow></math>, or not <math id="I3.i3.p1.m12" class="ltx_Math" alttext="(x\#y\lor z\#y)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow><mo>∨</mo><mrow><mi>z</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow></mrow><mo stretchy="false">)</mo></mrow></math>. Applying the contrapositive of the third condition, we have not <math id="I3.i3.p1.m13" class="ltx_Math" alttext="x\#z" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>z</mi></mrow></math>, or <math id="I3.i3.p1.m14" class="ltx_Math" alttext="xRz" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>z</mi></mrow></math>. So <math id="I3.i3.p1.m15" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> is transitive.</p>
+</div>
+</li>
+<li id="I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I3.i4.p1" class="ltx_para">
+<p class="ltx_p">Conversely, the converse of an equivalence relation is an apartness relation: suppose <math id="I3.i4.p1.m1" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> is an equivalence relation, and define <math id="I3.i4.p1.m2" class="ltx_Math" alttext="x\#y" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow></math> iff not <math id="I3.i4.p1.m3" class="ltx_Math" alttext="xRy" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>y</mi></mrow></math>. Then irreflexivity and symmetry of <math id="I3.i4.p1.m4" class="ltx_Math" alttext="\#" display="inline"><mi mathvariant="normal">#</mi></math> are clear from the reflexivity and symmetry of <math id="I3.i4.p1.m5" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>. Now, suppose <math id="I3.i4.p1.m6" class="ltx_Math" alttext="x\#y" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow></math>. Pick any <math id="I3.i4.p1.m7" class="ltx_Math" alttext="z\in X" display="inline"><mrow><mi>z</mi><mo>∈</mo><mi>X</mi></mrow></math>. If not <math id="I3.i4.p1.m8" class="ltx_Math" alttext="x\#z" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>z</mi></mrow></math> and not <math id="I3.i4.p1.m9" class="ltx_Math" alttext="y\#z" display="inline"><mrow><mi>y</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>z</mi></mrow></math>, then <math id="I3.i4.p1.m10" class="ltx_Math" alttext="xRz" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>z</mi></mrow></math> and <math id="I3.i4.p1.m11" class="ltx_Math" alttext="yRz" display="inline"><mrow><mi>y</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>z</mi></mrow></math>, or <math id="I3.i4.p1.m12" class="ltx_Math" alttext="zRy" display="inline"><mrow><mi>z</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>y</mi></mrow></math>, which means <math id="I3.i4.p1.m13" class="ltx_Math" alttext="xRy" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>y</mi></mrow></math> since <math id="I3.i4.p1.m14" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> is transitive. But this contradicts the assumption <math id="I3.i4.p1.m15" class="ltx_Math" alttext="x\#y" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow></math>, or not <math id="I3.i4.p1.m16" class="ltx_Math" alttext="xRy" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi>R</mi><mo>⁢</mo><mi>y</mi></mrow></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">Based on the last two observations, we see that the notion of apartness is not a very useful in mathematics based on classical logic, as the study of equivalence relation suffices.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">On the other hand, arguing constructively, the second and the last statements above no longer hold, because the law of the excluded middle (and proof by contradiction) is used to derive both results. In other words, the apartness relation is a distinct concept in constructive mathematics. Below are some examples (and non-examples) of tight apartness relations:</p>
+<ul id="I4" class="ltx_itemize">
+<li id="I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I4.i1.p1.m1" class="ltx_Math" alttext="\neq" display="inline"><mo>≠</mo></math> is a tight apartness relation on the set of rationals <math id="I4.i1.p1.m2" class="ltx_Math" alttext="\mathbb{Q}" display="inline"><mi>ℚ</mi></math>.</p>
+</div>
+</li>
+<li id="I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i2.p1" class="ltx_para">
+<p class="ltx_p">more generally, <math id="I4.i2.p1.m1" class="ltx_Math" alttext="\neq" display="inline"><mo>≠</mo></math> is a tight apartness relation on a set <math id="I4.i2.p1.m2" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> if “<math id="I4.i2.p1.m3" class="ltx_Math" alttext="=" display="inline"><mo>=</mo></math>” on <math id="I4.i2.p1.m4" class="ltx_Math" alttext="X" display="inline"><mi>X</mi></math> is a deciable predicate, that is, for any pair <math id="I4.i2.p1.m5" class="ltx_Math" alttext="x,y\in X" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>∈</mo><mi>X</mi></mrow></math>, either <math id="I4.i2.p1.m6" class="ltx_Math" alttext="x=y" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></math> or <math id="I4.i2.p1.m7" class="ltx_Math" alttext="x\neq y" display="inline"><mrow><mi>x</mi><mo>≠</mo><mi>y</mi></mrow></math>.</p>
+</div>
+</li>
+<li id="I4.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i3.p1" class="ltx_para">
+<p class="ltx_p">However, <math id="I4.i3.p1.m1" class="ltx_Math" alttext="\neq" display="inline"><mo>≠</mo></math> is not a tight apartness relation on the set of reals <math id="I4.i3.p1.m2" class="ltx_Math" alttext="\mathbb{R}" display="inline"><mi>ℝ</mi></math>, since if <math id="I4.i3.p1.m3" class="ltx_Math" alttext="x\neq y" display="inline"><mrow><mi>x</mi><mo>≠</mo><mi>y</mi></mrow></math>, it may not be possible to prove constructively that, for any given real number <math id="I4.i3.p1.m4" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>, <math id="I4.i3.p1.m5" class="ltx_Math" alttext="x\neq z" display="inline"><mrow><mi>x</mi><mo>≠</mo><mi>z</mi></mrow></math> or <math id="I4.i3.p1.m6" class="ltx_Math" alttext="y\neq z" display="inline"><mrow><mi>y</mi><mo>≠</mo><mi>z</mi></mrow></math> (because such a proof may be infinite in length).</p>
+</div>
+</li>
+<li id="I4.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i4.p1" class="ltx_para">
+<p class="ltx_p">However, if we define <math id="I4.i4.p1.m1" class="ltx_Math" alttext="x\#y" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow></math> iff there is a rational number <math id="I4.i4.p1.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> such that</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="(x&lt;r&lt;y)\lor(y&lt;r&lt;x)," display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>&lt;</mo><mi>r</mi><mo>&lt;</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>&lt;</mo><mi>r</mi><mo>&lt;</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">then <math id="I4.i4.p1.m3" class="ltx_Math" alttext="\#" display="inline"><mi mathvariant="normal">#</mi></math> is a tight apartness relation. To see this, first note that <math id="I4.i4.p1.m4" class="ltx_Math" alttext="\#" display="inline"><mi mathvariant="normal">#</mi></math> is irreflexive and symmetric. Also, it is not hard to see that the converse of <math id="I4.i4.p1.m5" class="ltx_Math" alttext="\#" display="inline"><mi mathvariant="normal">#</mi></math> is <math id="I4.i4.p1.m6" class="ltx_Math" alttext="=" display="inline"><mo>=</mo></math>. Now, suppose <math id="I4.i4.p1.m7" class="ltx_Math" alttext="x\#y" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>y</mi></mrow></math>. Pick any real number <math id="I4.i4.p1.m8" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>. If not <math id="I4.i4.p1.m9" class="ltx_Math" alttext="x\#z" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>z</mi></mrow></math>, then <math id="I4.i4.p1.m10" class="ltx_Math" alttext="x=z" display="inline"><mrow><mi>x</mi><mo>=</mo><mi>z</mi></mrow></math>, which means <math id="I4.i4.p1.m11" class="ltx_Math" alttext="y\#z" display="inline"><mrow><mi>y</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>z</mi></mrow></math>. Similarly, if not <math id="I4.i4.p1.m12" class="ltx_Math" alttext="y\#z" display="inline"><mrow><mi>y</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>z</mi></mrow></math>, then <math id="I4.i4.p1.m13" class="ltx_Math" alttext="x\#z" display="inline"><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">#</mi><mo>⁢</mo><mi>z</mi></mrow></math>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="p5" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">apartness relation</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">ApartnessRelation</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:35:45</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:35:45</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">13</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03F99</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03F65</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03F60</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Defines</th>
+<td class="ltx_td ltx_align_left ltx_border_r">tight</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\@unrecurse</span></th>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:25:36 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

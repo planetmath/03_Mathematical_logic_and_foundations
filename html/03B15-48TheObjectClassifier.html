@@ -1,0 +1,465 @@
+<!DOCTYPE html><html>
+<head>
+<title>4.8 The object classifier</title>
+<!--Generated on Thu Feb  8 19:36:03 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="-topos, classifier, object, pullback">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">4.8 The object classifier</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">In type theory we have a basic notion of <em class="ltx_emph ltx_font_italic">family of types</em>, namely a function <math id="p1.m1" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>.
+We have seen that such families behave somewhat like <em class="ltx_emph ltx_font_italic">fibrations</em> in homotopy theory, with the fibration being the projection <math id="p1.m2" class="ltx_Math" alttext="\mathsf{pr}_{1}:\mathchoice{\sum_{a:A}\,}{\mathchoice{{\textstyle\sum_{(a:A)}}%
+}{\sum_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{(a:A%
+)}}}{\sum_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{(%
+a:A)}}}{\sum_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}B(a)\to A" display="inline"><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi>A</mi></mrow></mrow></math>.
+A basic fact in homotopy theory is that every map is equivalent to a fibration.
+With univalence at our disposal, we can prove the same thing in type theory.</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 4.8.1</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any type family <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>, the fiber of <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="\mathsf{pr}_{1}:\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}%
+}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A%
+)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(%
+x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x)\to A" display="inline"><mrow><msub><mi mathvariant="normal">pr</mi><mn mathvariant="normal">1</mn></msub><mo mathvariant="normal">:</mo><mrow><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal">→</mo><mi>A</mi></mrow></mrow></math> over <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math> is equivalent to <math id="Thmprelem1.p1.m4" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>:</span></p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="{\mathsf{fib}}_{\mathsf{pr}_{1}}(a)\simeq B(a)" display="block"><mrow><mrow><msub><mi>𝖿𝗂𝖻</mi><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≃</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">We have</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle{\mathsf{fib}}_{\mathsf{pr}_{1}}(a)" display="inline"><mrow><msub><mi>𝖿𝗂𝖻</mi><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathchoice{\sum_{u:\mathchoice{\sum_{x:A}\,}{%
+\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}%
+}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:%
+A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{%
+(x:A)}}}B(x)}\,}{\mathchoice{{\textstyle\sum_{(u:\mathchoice{\sum_{x:A}\,}{%
+\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}%
+}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:%
+A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{%
+(x:A)}}}B(x))}}}{\sum_{(u:\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle%
+\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{%
+\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{%
+\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}%
+}}B(x))}}{\sum_{(u:\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A%
+)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(%
+x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum%
+_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x))}}{\sum_{(u:%
+\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x%
+:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x))}}}{\mathchoice{{\textstyle\sum_{(u:%
+\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x%
+:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x))}}}{\sum_{(u:\mathchoice{\sum_{x:A}\,}{%
+\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}%
+}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:%
+A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{%
+(x:A)}}}B(x))}}{\sum_{(u:\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum%
+_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle%
+\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{%
+\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x))}}{%
+\sum_{(u:\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_%
+{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x))}}}{\mathchoice{{\textstyle%
+\sum_{(u:\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_%
+{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x))}}}{\sum_{(u:\mathchoice{%
+\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}%
+}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:%
+A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{%
+(x:A)}}{\sum_{(x:A)}}}B(x))}}{\sum_{(u:\mathchoice{\sum_{x:A}\,}{\mathchoice{{%
+\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{%
+\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}%
+}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:%
+A)}}}B(x))}}{\sum_{(u:\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(%
+x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum%
+_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle%
+\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}B(x))}}}\mathsf{pr}_{%
+1}(u)=a" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>u</mi><mo>:</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></munder></mstyle></mpadded><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>a</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle\simeq\mathchoice{\sum_{(x:A)}\,}{\mathchoice{{\textstyle\sum_{(x%
+:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_%
+{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle%
+\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}\mathchoice{\sum_{(b:%
+B(x))}\,}{\mathchoice{{\textstyle\sum_{(b:B(x))}}}{\sum_{(b:B(x))}}{\sum_{(b:B%
+(x))}}{\sum_{(b:B(x))}}}{\mathchoice{{\textstyle\sum_{(b:B(x))}}}{\sum_{(b:B(x%
+))}}{\sum_{(b:B(x))}}{\sum_{(b:B(x))}}}{\mathchoice{{\textstyle\sum_{(b:B(x))}%
+}}{\sum_{(b:B(x))}}{\sum_{(b:B(x))}}{\sum_{(b:B(x))}}}(x=a)" display="inline"><mrow><mo>≃</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>=</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle\simeq\mathchoice{\sum_{(x:A)}\,}{\mathchoice{{\textstyle\sum_{(x%
+:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_%
+{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle%
+\sum_{(x:A)}}}{\sum_{(x:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}\mathchoice{\sum_{(p:%
+x=a)}\,}{\mathchoice{{\textstyle\sum_{(p:x=a)}}}{\sum_{(p:x=a)}}{\sum_{(p:x=a)%
+}}{\sum_{(p:x=a)}}}{\mathchoice{{\textstyle\sum_{(p:x=a)}}}{\sum_{(p:x=a)}}{%
+\sum_{(p:x=a)}}{\sum_{(p:x=a)}}}{\mathchoice{{\textstyle\sum_{(p:x=a)}}}{\sum_%
+{(p:x=a)}}{\sum_{(p:x=a)}}{\sum_{(p:x=a)}}}B(x)" display="inline"><mrow><mi></mi><mo>≃</mo><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><mi>x</mi><mo>=</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle\simeq B(a)" display="inline"><mrow><mi></mi><mo>≃</mo><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">using the left universal property of identity types.
+∎</p>
+</div>
+</div>
+<div id="Thmprelem2" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 4.8.2</span>.</h6>
+<div id="Thmprelem2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any function <math id="Thmprelem2.p1.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>B</mi></mrow></mrow></math>, we have <math id="Thmprelem2.p1.m2" class="ltx_Math" alttext="A\simeq\mathchoice{\sum_{b:B}\,}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(%
+b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum%
+_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{%
+\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathsf{fib}}_{f}(b)" display="inline"><mrow><mi>A</mi><mo mathvariant="normal">≃</mo><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>b</mi><mo mathvariant="normal">:</mo><mi>B</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><mrow><msub><mi mathvariant="normal">fib</mi><mi>f</mi></msub><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">We have</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\displaystyle\mathchoice{\sum_{b:B}\,}{\mathchoice{{\textstyle\sum_{(b:B)}}}{%
+\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:B)}%
+}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:%
+B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathsf{fib}}_{f}(b)" display="inline"><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></munder></mstyle></mpadded><mrow><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex6.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\mathchoice{\sum_{(b:B)}\,}{\mathchoice{{\textstyle%
+\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{%
+\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{%
+\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}%
+}}\mathchoice{\sum_{(a:A)}\,}{\mathchoice{{\textstyle\sum_{(a:A)}}}{\sum_{(a:A%
+)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{(a:A)}}}{\sum_{(%
+a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_{(a:A)}}}{\sum%
+_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}(f(a)=b)" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle\simeq\mathchoice{\sum_{(a:A)}\,}{\mathchoice{{\textstyle\sum_{(a%
+:A)}}}{\sum_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle\sum_%
+{(a:A)}}}{\sum_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}{\mathchoice{{\textstyle%
+\sum_{(a:A)}}}{\sum_{(a:A)}}{\sum_{(a:A)}}{\sum_{(a:A)}}}\mathchoice{\sum_{(b:%
+B)}\,}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_%
+{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{%
+\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)%
+}}{\sum_{(b:B)}}}(f(a)=b)" display="inline"><mrow><mo>≃</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle\simeq A" display="inline"><mrow><mi></mi><mo>≃</mo><mi>A</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">using the fact that <math id="p3.m1" class="ltx_Math" alttext="\mathchoice{\sum_{b:B}\,}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{%
+\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)%
+}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b%
+:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}(f(a)=b)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math> is contractible.
+∎</p>
+</div>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 4.8.3</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For any type <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> there is an equivalence</span></p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\chi:\Bigl{(}\mathchoice{\sum_{A:\mathcal{U}}\,}{\mathchoice{{\textstyle\sum_{%
+(A:\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:%
+\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}{\mathchoice{{%
+\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U%
+})}}{\sum_{(A:\mathcal{U})}}}(A\to B)\Bigr{)}\simeq(B\to\mathcal{U})." display="block"><mrow><mi>χ</mi><mo>:</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>≃</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">We have to construct quasi-inverses</p>
+<table id="S0.EGx3" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex10" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex10.m1" class="ltx_Math" alttext="\displaystyle\chi" display="inline"><mi>χ</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex10.m2" class="ltx_Math" alttext="\displaystyle:\Bigl{(}\mathchoice{\sum_{A:\mathcal{U}}\,}{\mathchoice{{%
+\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U%
+})}}{\sum_{(A:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}}{%
+\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}{%
+\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{%
+(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}(A\to B)\Bigr{)}\to B\to\mathcal{U}" display="inline"><mrow><mo>:</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></munder></mstyle></mpadded><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mi>B</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex11" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex11.m1" class="ltx_Math" alttext="\displaystyle\psi" display="inline"><mi>ψ</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex11.m2" class="ltx_Math" alttext="\displaystyle:(B\to\mathcal{U})\to\Bigl{(}\mathchoice{\sum_{A:\mathcal{U}}\,}{%
+\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{%
+(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(A:%
+\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:%
+\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:%
+\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}(A\to B)\Bigr{)}." display="inline"><mrow><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></munder></mstyle></mpadded><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We define <math id="p4.m1" class="ltx_Math" alttext="\chi" display="inline"><mi>χ</mi></math> by <math id="p4.m2" class="ltx_Math" alttext="\chi((A,f),b):\!\!\equiv{\mathsf{fib}}_{f}(b)" display="inline"><mrow><mi>χ</mi><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and <math id="p4.m3" class="ltx_Math" alttext="\psi" display="inline"><mi>ψ</mi></math> by <math id="p4.m4" class="ltx_Math" alttext="\psi(P):\!\!\equiv{\mathopen{}\left((\mathchoice{\sum_{b:B}\,}{\mathchoice{{%
+\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{%
+\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}%
+}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:%
+B)}}}P(b)),\mathsf{pr}_{1}\right)\mathclose{}}" display="inline"><mrow><mi>ψ</mi><mrow><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mi></mi><mrow><mo>(</mo><mrow><mo stretchy="false">(</mo><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>)</mo></mrow><mi></mi></mrow></mrow></math>.
+Now we have to verify that <math id="p4.m5" class="ltx_Math" alttext="\chi\circ\psi\sim\mathsf{id}{}" display="inline"><mrow><mrow><mi>χ</mi><mo>∘</mo><mi>ψ</mi></mrow><mo>∼</mo><mi>𝗂𝖽</mi></mrow></math> and that <math id="p4.m6" class="ltx_Math" alttext="\psi\circ\chi\sim\mathsf{id}{}" display="inline"><mrow><mrow><mi>ψ</mi><mo>∘</mo><mi>χ</mi></mrow><mo>∼</mo><mi>𝗂𝖽</mi></mrow></math>.</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">Let <math id="I1.i1.p1.m1" class="ltx_Math" alttext="P:B\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi>B</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>.
+By Lemma 4.8.1 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/48theobjectclassifier#Thmprelem1</span>),
+<math id="I1.i1.p1.m2" class="ltx_Math" alttext="{\mathsf{fib}}_{\mathsf{pr}_{1}}(b)\simeq P(b)" display="inline"><mrow><mrow><msub><mi>𝖿𝗂𝖻</mi><msub><mi>𝗉𝗋</mi><mn>1</mn></msub></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≃</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> for any <math id="I1.i1.p1.m3" class="ltx_Math" alttext="b:B" display="inline"><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></math>, so it follows immediately
+that <math id="I1.i1.p1.m4" class="ltx_Math" alttext="P\sim\chi(\psi(P))" display="inline"><mrow><mi>P</mi><mo>∼</mo><mrow><mi>χ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>ψ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">Let <math id="I1.i2.p1.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> be a function. We have to find a path</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="{\mathopen{}\left(\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b%
+:B)}}{\sum_{(b:B)}}{\mathsf{fib}}_{f}(b),\,\mathsf{pr}_{1}\right)\mathclose{}}%
+={\mathopen{}(A,f)\mathclose{}}." display="block"><mrow><mrow><mi></mi><mrow><mo>(</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">,</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">First note that by Lemma 4.8.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/48theobjectclassifier#Thmprelem2</span>), we have
+<math id="I1.i2.p1.m2" class="ltx_Math" alttext="e:\mathchoice{\sum_{b:B}\,}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:B)}%
+}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{(b:%
+B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(b:B)}}}{\sum_{%
+(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathsf{fib}}_{f}(b)\simeq A" display="inline"><mrow><mi>e</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>≃</mo><mi>A</mi></mrow></mrow></math> with <math id="I1.i2.p1.m3" class="ltx_Math" alttext="e(b,a,p):\!\!\equiv a" display="inline"><mrow><mi>e</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>a</mi></mrow></math> and <math id="I1.i2.p1.m4" class="ltx_Math" alttext="e^{-1}(a):\!\!\equiv(f(a),a,\mathsf{refl}_{f(a)})" display="inline"><mrow><msup><mi>e</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>a</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow></mrow></math>.
+By Theorem 2.7.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/27sigmatypes#Thmprethm1</span>), it remains to show <math id="I1.i2.p1.m5" class="ltx_Math" alttext="{(\mathsf{ua}(e))}_{*}\mathopen{}\left({\mathsf{pr}_{1}}\right)\mathclose{}=f" display="inline"><mrow><msub><mrow><mo stretchy="false">(</mo><mi>𝗎𝖺</mi><mrow><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><mi>f</mi></mrow></math>.
+But by the computation rule for univalence and (2.9.4) (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/29pitypesandthefunctionextensionalityaxiom#S0.E3</span>), we have <math id="I1.i2.p1.m6" class="ltx_Math" alttext="{(\mathsf{ua}(e))}_{*}\mathopen{}\left({\mathsf{pr}_{1}}\right)\mathclose{}=%
+\mathsf{pr}_{1}\circ e^{-1}" display="inline"><mrow><msub><mrow><mo stretchy="false">(</mo><mi>𝗎𝖺</mi><mrow><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>*</mo></msub><mrow><mi></mi><mrow><mo>(</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>)</mo></mrow><mi></mi></mrow><mo>=</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>∘</mo><msup><mi>e</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow></math>, and the definition of <math id="I1.i2.p1.m7" class="ltx_Math" alttext="e^{-1}" display="inline"><msup><mi>e</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></math> immediately yields <math id="I1.i2.p1.m8" class="ltx_Math" alttext="\mathsf{pr}_{1}\circ e^{-1}\equiv f" display="inline"><mrow><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>∘</mo><msup><mi>e</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow><mo>≡</mo><mi>f</mi></mrow></math>.∎</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="p5" class="ltx_para ltx_noindent">
+<p class="ltx_p">In particular, this implies that we have an <em class="ltx_emph ltx_font_italic">object classifier</em> in the sense of higher topos theory.
+Recall from Definition 2.1.7 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/21typesarehighergroupoids#Thmpredefn1</span>) that <math id="p5.m1" class="ltx_Math" alttext="\mathcal{U}_{\bullet}" display="inline"><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>∙</mo></msub></math> denotes the type <math id="p5.m2" class="ltx_Math" alttext="\mathchoice{\sum_{A:\mathcal{U}}\,}{\mathchoice{{\textstyle\sum_{(A:\mathcal{U%
+})}}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}%
+{\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_%
+{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(A:%
+\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:%
+\mathcal{U})}}}A" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></msub><mi>A</mi></mrow></math> of pointed types.</p>
+</div>
+<div id="Thmprethm2" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 4.8.4</span>.</h6>
+<div id="Thmprethm2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Let <math id="Thmprethm2.p1.m1" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi>B</mi></mrow></mrow></math> be a function. Then the diagram</span></p>
+</div>
+<figure id="Thmprethm2.fig1" class="ltx_figure"><span class="ltx_ERROR ltx_centering undefined">\includegraphics</span>
+<p class="ltx_p ltx_align_center"><span class="ltx_text ltx_font_italic">HoTT_fig_4.8.1.png
+</span></p>
+</figure>
+<div id="Thmprethm2.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">is a pullback square (see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87642</span>Exercise 2.11).
+Here the function <math id="Thmprethm2.p2.m1" class="ltx_Math" alttext="\vartheta_{f}" display="inline"><msub><mi>ϑ</mi><mi>f</mi></msub></math> is defined by</span></p>
+<table id="S0.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex13.m1" class="ltx_Math" alttext="{\lambda}a.\,{\mathopen{}({\mathsf{fib}}_{f}(f(a)),{\mathopen{}(a,\mathsf{refl%
+}_{f(a)})\mathclose{}})\mathclose{}}." display="block"><mrow><mi>λ</mi><mi>a</mi><mo rspace="4.2pt">.</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Note that we have the equivalences</p>
+<table id="S0.EGx4" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex14" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\displaystyle A" display="inline"><mi>A</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex14.m2" class="ltx_Math" alttext="\displaystyle\simeq\mathchoice{\sum_{b:B}\,}{\mathchoice{{\textstyle\sum_{(b:B%
+)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_{(%
+b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum%
+_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathsf{fib}}_{f}(b)" display="inline"><mrow><mi></mi><mo>≃</mo><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></munder></mstyle></mpadded><mrow><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex15" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex15.m2" class="ltx_Math" alttext="\displaystyle\simeq\mathchoice{\sum_{(b:B)}\,}{\mathchoice{{\textstyle\sum_{(b%
+:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_%
+{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle%
+\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}\mathchoice{\sum_{(X:%
+\mathcal{U})}\,}{\mathchoice{{\textstyle\sum_{(X:\mathcal{U})}}}{\sum_{(X:%
+\mathcal{U})}}{\sum_{(X:\mathcal{U})}}{\sum_{(X:\mathcal{U})}}}{\mathchoice{{%
+\textstyle\sum_{(X:\mathcal{U})}}}{\sum_{(X:\mathcal{U})}}{\sum_{(X:\mathcal{U%
+})}}{\sum_{(X:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(X:\mathcal{U})}}}{%
+\sum_{(X:\mathcal{U})}}{\sum_{(X:\mathcal{U})}}{\sum_{(X:\mathcal{U})}}}%
+\mathchoice{\sum_{(p:{\mathsf{fib}}_{f}(b)=X)}\,}{\mathchoice{{\textstyle\sum_%
+{(p:{\mathsf{fib}}_{f}(b)=X)}}}{\sum_{(p:{\mathsf{fib}}_{f}(b)=X)}}{\sum_{(p:{%
+\mathsf{fib}}_{f}(b)=X)}}{\sum_{(p:{\mathsf{fib}}_{f}(b)=X)}}}{\mathchoice{{%
+\textstyle\sum_{(p:{\mathsf{fib}}_{f}(b)=X)}}}{\sum_{(p:{\mathsf{fib}}_{f}(b)=%
+X)}}{\sum_{(p:{\mathsf{fib}}_{f}(b)=X)}}{\sum_{(p:{\mathsf{fib}}_{f}(b)=X)}}}{%
+\mathchoice{{\textstyle\sum_{(p:{\mathsf{fib}}_{f}(b)=X)}}}{\sum_{(p:{\mathsf{%
+fib}}_{f}(b)=X)}}{\sum_{(p:{\mathsf{fib}}_{f}(b)=X)}}{\sum_{(p:{\mathsf{fib}}_%
+{f}(b)=X)}}}X" display="inline"><mrow><mi></mi><mo>≃</mo><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>:</mo><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mi>X</mi></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex16" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex16.m2" class="ltx_Math" alttext="\displaystyle\simeq\mathchoice{\sum_{(b:B)}\,}{\mathchoice{{\textstyle\sum_{(b%
+:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_%
+{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle%
+\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}\mathchoice{\sum_{(X:%
+\mathcal{U})}\,}{\mathchoice{{\textstyle\sum_{(X:\mathcal{U})}}}{\sum_{(X:%
+\mathcal{U})}}{\sum_{(X:\mathcal{U})}}{\sum_{(X:\mathcal{U})}}}{\mathchoice{{%
+\textstyle\sum_{(X:\mathcal{U})}}}{\sum_{(X:\mathcal{U})}}{\sum_{(X:\mathcal{U%
+})}}{\sum_{(X:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(X:\mathcal{U})}}}{%
+\sum_{(X:\mathcal{U})}}{\sum_{(X:\mathcal{U})}}{\sum_{(X:\mathcal{U})}}}%
+\mathchoice{\sum_{(x:X)}\,}{\mathchoice{{\textstyle\sum_{(x:X)}}}{\sum_{(x:X)}%
+}{\sum_{(x:X)}}{\sum_{(x:X)}}}{\mathchoice{{\textstyle\sum_{(x:X)}}}{\sum_{(x:%
+X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}{\mathchoice{{\textstyle\sum_{(x:X)}}}{\sum_{%
+(x:X)}}{\sum_{(x:X)}}{\sum_{(x:X)}}}{\mathsf{fib}}_{f}(b)=X" display="inline"><mrow><mi></mi><mo>≃</mo><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow><mo>=</mo><mi>X</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex17" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex17.m2" class="ltx_Math" alttext="\displaystyle\simeq\mathchoice{\sum_{(b:B)}\,}{\mathchoice{{\textstyle\sum_{(b%
+:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle\sum_%
+{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}{\mathchoice{{\textstyle%
+\sum_{(b:B)}}}{\sum_{(b:B)}}{\sum_{(b:B)}}{\sum_{(b:B)}}}\mathchoice{\sum_{(Y:%
+\mathcal{U}_{\bullet})}\,}{\mathchoice{{\textstyle\sum_{(Y:\mathcal{U}_{%
+\bullet})}}}{\sum_{(Y:\mathcal{U}_{\bullet})}}{\sum_{(Y:\mathcal{U}_{\bullet})%
+}}{\sum_{(Y:\mathcal{U}_{\bullet})}}}{\mathchoice{{\textstyle\sum_{(Y:\mathcal%
+{U}_{\bullet})}}}{\sum_{(Y:\mathcal{U}_{\bullet})}}{\sum_{(Y:\mathcal{U}_{%
+\bullet})}}{\sum_{(Y:\mathcal{U}_{\bullet})}}}{\mathchoice{{\textstyle\sum_{(Y%
+:\mathcal{U}_{\bullet})}}}{\sum_{(Y:\mathcal{U}_{\bullet})}}{\sum_{(Y:\mathcal%
+{U}_{\bullet})}}{\sum_{(Y:\mathcal{U}_{\bullet})}}}{\mathsf{fib}}_{f}(b)=%
+\mathsf{pr}_{1}Y" display="inline"><mrow><mi></mi><mo>≃</mo><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><mpadded width="+1.7pt"><mstyle displaystyle="true"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>Y</mi><mo>:</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>∙</mo></msub><mo stretchy="false">)</mo></mrow></munder></mstyle></mpadded><mrow><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>=</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>⁢</mo><mi>Y</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex18" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex18.m2" class="ltx_Math" alttext="\displaystyle\equiv B\times_{\mathcal{U}}\mathcal{U}_{\bullet}." display="inline"><mrow><mrow><mi></mi><mo>≡</mo><mrow><mi>B</mi><msub><mo>×</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>∙</mo></msub></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">which gives us a composite equivalence <math id="p6.m1" class="ltx_Math" alttext="e:A\simeq B\times_{\mathcal{U}}\mathcal{U}_{\bullet}" display="inline"><mrow><mi>e</mi><mo>:</mo><mrow><mi>A</mi><mo>≃</mo><mrow><mi>B</mi><msub><mo>×</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></msub><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>∙</mo></msub></mrow></mrow></mrow></math>.
+We may display the action of this composite equivalence step by step by</p>
+<table id="S0.EGx5" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex19" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex19.m1" class="ltx_Math" alttext="\displaystyle a" display="inline"><mi>a</mi></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex19.m2" class="ltx_Math" alttext="\displaystyle\mapsto{\mathopen{}(f(a),\;{\mathopen{}(a,\mathsf{refl}_{f(a)})%
+\mathclose{}})\mathclose{}}" display="inline"><mrow><mo>↦</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex20" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex20.m2" class="ltx_Math" alttext="\displaystyle\mapsto{\mathopen{}(f(a),\;{\mathsf{fib}}_{f}(f(a)),\;\mathsf{%
+refl}_{{\mathsf{fib}}_{f}(f(a))},\;{\mathopen{}(a,\mathsf{refl}_{f(a)})%
+\mathclose{}})\mathclose{}}" display="inline"><mrow><mo>↦</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></msub><mo rspace="5.3pt">,</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex21" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex21.m2" class="ltx_Math" alttext="\displaystyle\mapsto{\mathopen{}(f(a),\;{\mathsf{fib}}_{f}(f(a)),\;{\mathopen{%
+}(a,\mathsf{refl}_{f(a)})\mathclose{}},\;\mathsf{refl}_{{\mathsf{fib}}_{f}(f(a%
+))})\mathclose{}}." display="inline"><mrow><mo>↦</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo rspace="5.3pt">,</mo><msub><mi>𝗋𝖾𝖿𝗅</mi><mrow><msub><mi>𝖿𝗂𝖻</mi><mi>f</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></msub><mo stretchy="false">)</mo></mrow><mi></mi></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Therefore, we get homotopies <math id="p6.m2" class="ltx_Math" alttext="f\sim\mathsf{pr}_{1}\circ e" display="inline"><mrow><mi>f</mi><mo>∼</mo><mrow><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mo>∘</mo><mi>e</mi></mrow></mrow></math> and <math id="p6.m3" class="ltx_Math" alttext="\vartheta_{f}\sim\mathsf{pr}_{2}\circ e" display="inline"><mrow><msub><mi>ϑ</mi><mi>f</mi></msub><mo>∼</mo><mrow><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mo>∘</mo><mi>e</mi></mrow></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p7" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">4.8 The object classifier</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:36:03 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

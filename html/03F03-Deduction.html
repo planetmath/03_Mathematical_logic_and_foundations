@@ -1,0 +1,432 @@
+<!DOCTYPE html><html>
+<head>
+<title>deduction</title>
+<!--Generated on Thu Feb  8 20:22:42 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">deduction</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Deductions are formalizations of proofs. Informally, they can be viewed as arriving at a conclusion from a set of assumptions, via applications of some prescribed rules in a finite number of steps.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">There are several ways to formally define what a deduction is, given a deductive system. We will explore some of them here.</p>
+</div>
+<section id="S0.SS0.SSSx1" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Deduction as a Sequence</h2>
+
+<div id="S0.SS0.SSSx1.p1" class="ltx_para">
+<p class="ltx_p">Given a deductive system, a deduction from a set <math id="S0.SS0.SSSx1.p1.m1" class="ltx_Math" alttext="\Delta" display="inline"><mi mathvariant="normal">Δ</mi></math> of (well-formed) formulas can be thought of as a finite sequence of wff’s</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="A_{1},A_{2},\cdots,A_{n}" display="block"><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><msub><mi>A</mi><mn>2</mn></msub><mo>,</mo><mi mathvariant="normal">⋯</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">such that <math id="S0.SS0.SSSx1.p1.m2" class="ltx_Math" alttext="A_{i}" display="inline"><msub><mi>A</mi><mi>i</mi></msub></math> is either an axiom, an element of <math id="S0.SS0.SSSx1.p1.m3" class="ltx_Math" alttext="\Delta" display="inline"><mi mathvariant="normal">Δ</mi></math>, or as the result of an application of an inference rule <math id="S0.SS0.SSSx1.p1.m4" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math> to earlier wff’s <math id="S0.SS0.SSSx1.p1.m5" class="ltx_Math" alttext="A_{i_{1}},\ldots,A_{i_{k}}" display="inline"><mrow><msub><mi>A</mi><msub><mi>i</mi><mn>1</mn></msub></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>A</mi><msub><mi>i</mi><mi>k</mi></msub></msub></mrow></math>, where <math id="S0.SS0.SSSx1.p1.m6" class="ltx_Math" alttext="i_{1},\ldots,i_{k}&lt;i" display="inline"><mrow><mrow><msub><mi>i</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>i</mi><mi>k</mi></msub></mrow><mo>&lt;</mo><mi>i</mi></mrow></math>. If <math id="S0.SS0.SSSx1.p1.m7" class="ltx_Math" alttext="A_{i}" display="inline"><msub><mi>A</mi><mi>i</mi></msub></math> is an element of <math id="S0.SS0.SSSx1.p1.m8" class="ltx_Math" alttext="\Delta" display="inline"><mi mathvariant="normal">Δ</mi></math>, we call <math id="S0.SS0.SSSx1.p1.m9" class="ltx_Math" alttext="A_{i}" display="inline"><msub><mi>A</mi><mi>i</mi></msub></math> an <em class="ltx_emph ltx_font_italic">assumption</em> or a <em class="ltx_emph ltx_font_italic">hypothesis</em>. This way of presenting a deduction is said to be <em class="ltx_emph ltx_font_italic">linear</em>.</p>
+</div>
+<div id="S0.SS0.SSSx1.p2" class="ltx_para">
+<p class="ltx_p">Deductions presented this way are also called <em class="ltx_emph ltx_font_italic">deduction sequences</em> or <em class="ltx_emph ltx_font_italic">proof sequences</em>. Deductions in Hilbert-style axiom systems are presented this way.</p>
+</div>
+</section>
+<section id="S0.SS0.SSSx2" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Deduction as a Tree</h2>
+
+<div id="S0.SS0.SSSx2.p1" class="ltx_para">
+<p class="ltx_p">Alternatively, a deduction can be thought of as a labeled rooted tree. The nodes are labeled by formulas, and for each node with label, say <math id="S0.SS0.SSSx2.p1.m1" class="ltx_Math" alttext="Y" display="inline"><mi>Y</mi></math>, its immediate predecessors (children) are nodes whose labels are, say <math id="S0.SS0.SSSx2.p1.m2" class="ltx_Math" alttext="X_{1},\ldots,X_{n}" display="inline"><mrow><msub><mi>X</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>X</mi><mi>n</mi></msub></mrow></math> which are premises of some inference rule <math id="S0.SS0.SSSx2.p1.m3" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>. Deductions presented this way are also called <em class="ltx_emph ltx_font_italic">deduction trees</em> or <em class="ltx_emph ltx_font_italic">proof trees</em>. In a deduction tree, the labels of the leaves are either the axioms, or assumptions (from some set <math id="S0.SS0.SSSx2.p1.m4" class="ltx_Math" alttext="\Delta" display="inline"><mi mathvariant="normal">Δ</mi></math>), and the label of the root of the tree is the conclusion of the deduction. Below is an example of a deduction tree:</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\ignorespaces.25.25\leavevmode\hbox{\vrule height 0.0pt depth 0.0pt width 0.0%
+pt\kern 84.598679pt\hbox{\vrule height 6.999893pt depth 1.999969pt width 0.0pt%
+\hbox{$\displaystyle{\hbox to 0.0pt{\kern-3.749943pt\hbox{\leavevmode\lower 2.%
+499962pt\hbox{\leavevmode\immediate\special{PST: \pst@dict
+\ifPst@saveNodeCoors\ifx\relax\pst@number{\ht\pst@hbox}\pst@number{\dp%
+\pst@hbox}\pst@number{\wd\pst@hbox}\pst@number\pst@dima\pst@number\pst@dimb%
+\relax 0 0 \else gsave \pst@dict STV CP T end \pst@number{\ht\pst@hbox}%
+\pst@number{\dp\pst@hbox}\pst@number{\wd\pst@hbox}\pst@number\pst@dima%
+\pst@number\pst@dimb \tx@UserCoor grestore \fi\if$\psk@NodeCoorPrefix$
+/N-\pssucc.y exch def
+/N-\pssucc.x exch def
+\else/\psk@NodeCoorPrefix\pssucc y exch def
+/\psk@NodeCoorPrefix\pssucc x exch def
+\fi\fi\pst@nodedict{\pst@number{\ht\pst@hbox}\pst@number{\dp\pst@hbox}%
+\pst@number{\wd\pst@hbox}\pst@number\pst@dima\pst@number\pst@dimb}
+\ifx\psk@name\relax false \else\psk@name true \fi\pst@thenode 16
+{\tx@InitRnode}
+\ifPst@showNode exch dup /NodeType ED
+exch
+NodeType 10 eq { 5 copy
+cvlit aload pop
+20 string cvs (; ) 6 2 roll 20 string cvs (; ) 7 2 roll 20 string cvs (; ) 8 2%
+ roll 20 string cvs (; ) 9 2 roll cvlit dup length 2 eq
+{ aload pop exch
+20 string cvs (; ) 11 2 roll
+20 string cvs (, ) 12 2 roll (\string\n) 13 array astore concatstringarray
+}
+{ 255 string cvs (; ) 10 2 roll
+(\string\n) 11 array astore concatstringarray
+} ifelse
+NodeFile exch writestring
+} if
+NodeType 14 eq { 5 copy
+/@@temp ED
+@@temp 4 -1 roll cvlit pop
+( OvalNodePos ) (; ) 5 2 roll
+20 string cvs (; ) 6 2 roll 20 string cvs (; ) 7 2 roll 20 string cvs (; ) 8 2%
+ roll Y 20 string cvs (; ) 10 2 roll
+X 20 string cvs (, ) 12 2 roll
+(\string\n) 13 array astore concatstringarray
+tx@NodeDict begin NodeFile exch writestring end
+} if
+\fi\tx@NewNode end
+ end}\hbox{$\displaystyle{Z}$}}}\hss}\ignorespaces}$}\lower 56.905512pt\hbox t%
+o 0.0pt{\hss\hbox{$\displaystyle{.75.75\vrule height 0.0pt depth 0.0pt width 0%
+.0pt\hbox{\vrule height 6.999893pt depth 1.999969pt width 0.0pt\hbox{$%
+\displaystyle{\hbox to 0.0pt{\kern-3.749943pt\hbox{\leavevmode\lower 2.499962%
+pt\hbox{\leavevmode\immediate\special{PST: \pst@dict
+\ifPst@saveNodeCoors\ifx\relax\pst@number{\ht\pst@hbox}\pst@number{\dp%
+\pst@hbox}\pst@number{\wd\pst@hbox}\pst@number\pst@dima\pst@number\pst@dimb%
+\relax 0 0 \else gsave \pst@dict STV CP T end \pst@number{\ht\pst@hbox}%
+\pst@number{\dp\pst@hbox}\pst@number{\wd\pst@hbox}\pst@number\pst@dima%
+\pst@number\pst@dimb \tx@UserCoor grestore \fi\if$\psk@NodeCoorPrefix$
+/N-\pssucc.y exch def
+/N-\pssucc.x exch def
+\else/\psk@NodeCoorPrefix\pssucc y exch def
+/\psk@NodeCoorPrefix\pssucc x exch def
+\fi\fi\pst@nodedict{\pst@number{\ht\pst@hbox}\pst@number{\dp\pst@hbox}%
+\pst@number{\wd\pst@hbox}\pst@number\pst@dima\pst@number\pst@dimb}
+\ifx\psk@name\relax false \else\psk@name true \fi\pst@thenode 16
+{\tx@InitRnode}
+\ifPst@showNode exch dup /NodeType ED
+exch
+NodeType 10 eq { 5 copy
+cvlit aload pop
+20 string cvs (; ) 6 2 roll 20 string cvs (; ) 7 2 roll 20 string cvs (; ) 8 2%
+ roll 20 string cvs (; ) 9 2 roll cvlit dup length 2 eq
+{ aload pop exch
+20 string cvs (; ) 11 2 roll
+20 string cvs (, ) 12 2 roll (\string\n) 13 array astore concatstringarray
+}
+{ 255 string cvs (; ) 10 2 roll
+(\string\n) 11 array astore concatstringarray
+} ifelse
+NodeFile exch writestring
+} if
+NodeType 14 eq { 5 copy
+/@@temp ED
+@@temp 4 -1 roll cvlit pop
+( OvalNodePos ) (; ) 5 2 roll
+20 string cvs (; ) 6 2 roll 20 string cvs (; ) 7 2 roll 20 string cvs (; ) 8 2%
+ roll Y 20 string cvs (; ) 10 2 roll
+X 20 string cvs (, ) 12 2 roll
+(\string\n) 13 array astore concatstringarray
+tx@NodeDict begin NodeFile exch writestring end
+} if
+\fi\tx@NewNode end
+ end}\hbox{$\displaystyle{Y}$}}}\hss}\leavevmode\immediate\special{PST: %
+\pst@dict gsave \tx@STV newpath \pst@code\space grestore end}\ignorespaces%
+\ignorespaces\ignorespaces}$}\lower 56.905512pt\hbox to 0.0pt{\hss\hbox{$%
+\displaystyle{\vrule height 6.999893pt depth 3.079953pt width 0.0pt\hbox to 0.%
+0pt{\kern-5.849911pt\hbox{\leavevmode\lower 1.95997pt\hbox{\leavevmode%
+\immediate\special{PST: \pst@dict
+\ifPst@saveNodeCoors\ifx\relax\pst@number{\ht\pst@hbox}\pst@number{\dp%
+\pst@hbox}\pst@number{\wd\pst@hbox}\pst@number\pst@dima\pst@number\pst@dimb%
+\relax 0 0 \else gsave \pst@dict STV CP T end \pst@number{\ht\pst@hbox}%
+\pst@number{\dp\pst@hbox}\pst@number{\wd\pst@hbox}\pst@number\pst@dima%
+\pst@number\pst@dimb \tx@UserCoor grestore \fi\if$\psk@NodeCoorPrefix$
+/N-\pssucc.y exch def
+/N-\pssucc.x exch def
+\else/\psk@NodeCoorPrefix\pssucc y exch def
+/\psk@NodeCoorPrefix\pssucc x exch def
+\fi\fi\pst@nodedict{\pst@number{\ht\pst@hbox}\pst@number{\dp\pst@hbox}%
+\pst@number{\wd\pst@hbox}\pst@number\pst@dima\pst@number\pst@dimb}
+\ifx\psk@name\relax false \else\psk@name true \fi\pst@thenode 16
+{\tx@InitRnode}
+\ifPst@showNode exch dup /NodeType ED
+exch
+NodeType 10 eq { 5 copy
+cvlit aload pop
+20 string cvs (; ) 6 2 roll 20 string cvs (; ) 7 2 roll 20 string cvs (; ) 8 2%
+ roll 20 string cvs (; ) 9 2 roll cvlit dup length 2 eq
+{ aload pop exch
+20 string cvs (; ) 11 2 roll
+20 string cvs (, ) 12 2 roll (\string\n) 13 array astore concatstringarray
+}
+{ 255 string cvs (; ) 10 2 roll
+(\string\n) 11 array astore concatstringarray
+} ifelse
+NodeFile exch writestring
+} if
+NodeType 14 eq { 5 copy
+/@@temp ED
+@@temp 4 -1 roll cvlit pop
+( OvalNodePos ) (; ) 5 2 roll
+20 string cvs (; ) 6 2 roll 20 string cvs (; ) 7 2 roll 20 string cvs (; ) 8 2%
+ roll Y 20 string cvs (; ) 10 2 roll
+X 20 string cvs (, ) 12 2 roll
+(\string\n) 13 array astore concatstringarray
+tx@NodeDict begin NodeFile exch writestring end
+} if
+\fi\tx@NewNode end
+ end}\hbox{$\displaystyle{X_{1}}$}}}\hss}\vrule height 6.999893pt depth 3.0799%
+53pt width 0.0pt.75.75.85826772\kern 33.039352pt\hbox to 0.0pt{\kern-5.849911%
+pt\hbox{\leavevmode\lower 1.95997pt\hbox{\leavevmode\immediate\special{PST: %
+\pst@dict
+\ifPst@saveNodeCoors\ifx\relax\pst@number{\ht\pst@hbox}\pst@number{\dp%
+\pst@hbox}\pst@number{\wd\pst@hbox}\pst@number\pst@dima\pst@number\pst@dimb%
+\relax 0 0 \else gsave \pst@dict STV CP T end \pst@number{\ht\pst@hbox}%
+\pst@number{\dp\pst@hbox}\pst@number{\wd\pst@hbox}\pst@number\pst@dima%
+\pst@number\pst@dimb \tx@UserCoor grestore \fi\if$\psk@NodeCoorPrefix$
+/N-\pssucc.y exch def
+/N-\pssucc.x exch def
+\else/\psk@NodeCoorPrefix\pssucc y exch def
+/\psk@NodeCoorPrefix\pssucc x exch def
+\fi\fi\pst@nodedict{\pst@number{\ht\pst@hbox}\pst@number{\dp\pst@hbox}%
+\pst@number{\wd\pst@hbox}\pst@number\pst@dima\pst@number\pst@dimb}
+\ifx\psk@name\relax false \else\psk@name true \fi\pst@thenode 16
+{\tx@InitRnode}
+\ifPst@showNode exch dup /NodeType ED
+exch
+NodeType 10 eq { 5 copy
+cvlit aload pop
+20 string cvs (; ) 6 2 roll 20 string cvs (; ) 7 2 roll 20 string cvs (; ) 8 2%
+ roll 20 string cvs (; ) 9 2 roll cvlit dup length 2 eq
+{ aload pop exch
+20 string cvs (; ) 11 2 roll
+20 string cvs (, ) 12 2 roll (\string\n) 13 array astore concatstringarray
+}
+{ 255 string cvs (; ) 10 2 roll
+(\string\n) 11 array astore concatstringarray
+} ifelse
+NodeFile exch writestring
+} if
+NodeType 14 eq { 5 copy
+/@@temp ED
+@@temp 4 -1 roll cvlit pop
+( OvalNodePos ) (; ) 5 2 roll
+20 string cvs (; ) 6 2 roll 20 string cvs (; ) 7 2 roll 20 string cvs (; ) 8 2%
+ roll Y 20 string cvs (; ) 10 2 roll
+X 20 string cvs (, ) 12 2 roll
+(\string\n) 13 array astore concatstringarray
+tx@NodeDict begin NodeFile exch writestring end
+} if
+\fi\tx@NewNode end
+ end}\hbox{$\displaystyle{X_{2}}$}}}\hss}\leavevmode\immediate\special{PST: %
+\pst@dict gsave \tx@STV newpath \pst@code\space grestore end}\ignorespaces%
+\ignorespaces\ignorespaces}$}\hss}}\ignorespaces}$}\hss}}\kern 84.598679pt}" display="block"><mrow><mn>.25.25</mn><mo>⁢</mo><mrow><mpadded depth="+2.5pt" height="-2.5pt" voffset="-2.5pt" width="0.0pt"><mi>Z</mi></mpadded><mpadded depth="+56.9pt" height="-56.9pt" voffset="-56.9pt" width="0.0pt"><mn>.75.75</mn><mo>⁢</mo><mrow><mpadded depth="+2.5pt" height="-2.5pt" voffset="-2.5pt" width="0.0pt"><mi>Y</mi></mpadded><mpadded depth="+56.9pt" height="-56.9pt" voffset="-56.9pt" width="0.0pt"><mpadded depth="+2.0pt" height="-2.0pt" voffset="-2.0pt" width="0.0pt"><msub><mi>X</mi><mn>1</mn></msub></mpadded><mo>⁢</mo><mn>.75.75.85826772</mn><mo>⁢</mo><mpadded depth="+2.0pt" height="-2.0pt" voffset="-2.0pt" width="0.0pt"><msub><mi>X</mi><mn>2</mn></msub></mpadded></mpadded></mrow></mpadded></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Here, <math id="S0.SS0.SSSx2.p1.m5" class="ltx_Math" alttext="X_{1}" display="inline"><msub><mi>X</mi><mn>1</mn></msub></math> and <math id="S0.SS0.SSSx2.p1.m6" class="ltx_Math" alttext="X_{2}" display="inline"><msub><mi>X</mi><mn>2</mn></msub></math> are assumptions and <math id="S0.SS0.SSSx2.p1.m7" class="ltx_Math" alttext="Y" display="inline"><mi>Y</mi></math> the corresponding conclusion of some (binary) rule <math id="S0.SS0.SSSx2.p1.m8" class="ltx_Math" alttext="R" display="inline"><mi>R</mi></math>, and <math id="S0.SS0.SSSx2.p1.m9" class="ltx_Math" alttext="Y" display="inline"><mi>Y</mi></math> is the assumption and <math id="S0.SS0.SSSx2.p1.m10" class="ltx_Math" alttext="Z" display="inline"><mi>Z</mi></math> is the conclusion of some (unary) rule <math id="S0.SS0.SSSx2.p1.m11" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math>. Inference rules may be specified as labels of the edges.</p>
+</div>
+<div id="S0.SS0.SSSx2.p2" class="ltx_para">
+<p class="ltx_p">Deductions in deduction systems such as natural deduction or sequent calculus are presented this way. In those systems, the edges of the trees are replaced by horizontal lines, dividing premises and conclusions, and rules are sometimes specified next to the lines, in the following fashion:</p>
+<p class="ltx_p ltx_align_center"><span class="ltx_text" style="position:relative; bottom:-0.5pt;">
+<span class="ltx_inline-block ltx_align_bottom">
+<span class="ltx_block ltx_align_bottom">
+<span class="ltx_p">  <math id="S0.SS0.SSSx2.p2.m1" class="ltx_Math" alttext="X_{1}" display="inline"><msub><mi>X</mi><mn>1</mn></msub></math>         <math id="S0.SS0.SSSx2.p2.m2" class="ltx_Math" alttext="X_{2}" display="inline"><msub><mi>X</mi><mn>2</mn></msub></math></span>
+<span class="ltx_p"><span class="ltx_text" style="position:relative; bottom:0.0pt;"></span><span class="ltx_text" style="width:120.9pt;"><span class="ltx_rule" style="width:100%;height:1px;background:black;display:inline-block;"> </span> </span><span class="ltx_text" style="position:relative; bottom:-2.5pt;"> <math id="S0.SS0.SSSx2.p2.m3" class="ltx_Math" alttext="R" display="inline"><mi mathsize="70%">R</mi></math></span></span>
+<span class="ltx_p">               <math id="S0.SS0.SSSx2.p2.m4" class="ltx_Math" alttext="Y" display="inline"><mi>Y</mi></math></span>
+</span>
+<span class="ltx_p">             <span class="ltx_text" style="position:relative; bottom:0.0pt;"></span><span class="ltx_text" style="width:37.5pt;"><span class="ltx_rule" style="width:100%;height:1px;background:black;display:inline-block;"> </span> </span><span class="ltx_text" style="position:relative; bottom:-2.5pt;"> <math id="S0.SS0.SSSx2.p2.m5" class="ltx_Math" alttext="S" display="inline"><mi mathsize="70%">S</mi></math></span></span>
+<span class="ltx_p">               <math id="S0.SS0.SSSx2.p2.m6" class="ltx_Math" alttext="Z" display="inline"><mi>Z</mi></math></span>
+</span></span></p>
+</div>
+</section>
+<section id="S0.SS0.SSSx3" class="ltx_subsubsection">
+<h2 class="ltx_title ltx_title_subsubsection">Deducibility Relation</h2>
+
+<div id="S0.SS0.SSSx3.p1" class="ltx_para">
+<p class="ltx_p">Given a deductive system <math id="S0.SS0.SSSx3.p1.m1" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math>, if <math id="S0.SS0.SSSx3.p1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is the conclusion of a deduction from a set <math id="S0.SS0.SSSx3.p1.m3" class="ltx_Math" alttext="\Delta" display="inline"><mi mathvariant="normal">Δ</mi></math>, we write</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\Delta\vdash_{D}B." display="block"><mrow><mi mathvariant="normal">Δ</mi><msub><mo>⊢</mo><mi>D</mi></msub><mi>B</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">If <math id="S0.SS0.SSSx3.p1.m4" class="ltx_Math" alttext="\Gamma" display="inline"><mi mathvariant="normal">Γ</mi></math> is another set of wff’s, we also write <math id="S0.SS0.SSSx3.p1.m5" class="ltx_Math" alttext="\Delta,\Gamma\vdash_{D}B" display="inline"><mrow><mi mathvariant="normal">Δ</mi><mo>,</mo><mi mathvariant="normal">Γ</mi><msub><mo>⊢</mo><mi>D</mi></msub><mi>B</mi></mrow></math> to mean <math id="S0.SS0.SSSx3.p1.m6" class="ltx_Math" alttext="\Delta\cup\Gamma\vdash_{D}B" display="inline"><mrow><mi mathvariant="normal">Δ</mi><mo>∪</mo><mi mathvariant="normal">Γ</mi><msub><mo>⊢</mo><mi>D</mi></msub><mi>B</mi></mrow></math>. In addition, if <math id="S0.SS0.SSSx3.p1.m7" class="ltx_Math" alttext="\Gamma=\{A_{1},\ldots,A_{n}\}" display="inline"><mrow><mi mathvariant="normal">Γ</mi><mo>=</mo><mrow><mo stretchy="false">{</mo><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></mrow></math>, we write</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="A_{1},\ldots,A_{n}\vdash_{D}B\qquad\mbox{and}\qquad\Delta,A_{1},\ldots,A_{n}%
+\vdash_{D}B" display="block"><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><msub><mo>⊢</mo><mi>D</mi></msub><mi>B</mi><mo mathvariant="italic" separator="true">  </mo><mtext>and</mtext><mo mathvariant="italic" separator="true">  </mo><mi mathvariant="normal">Δ</mi><mo>,</mo><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><msub><mo>⊢</mo><mi>D</mi></msub><mi>B</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">to mean <math id="S0.SS0.SSSx3.p1.m8" class="ltx_Math" alttext="\Gamma\vdash_{D}B" display="inline"><mrow><mi mathvariant="normal">Γ</mi><msub><mo>⊢</mo><mi>D</mi></msub><mi>B</mi></mrow></math> and <math id="S0.SS0.SSSx3.p1.m9" class="ltx_Math" alttext="\Delta\cup\Gamma\vdash_{D}B" display="inline"><mrow><mi mathvariant="normal">Δ</mi><mo>∪</mo><mi mathvariant="normal">Γ</mi><msub><mo>⊢</mo><mi>D</mi></msub><mi>B</mi></mrow></math> respectively. Furthermore, we may also remove the subscript <math id="S0.SS0.SSSx3.p1.m10" class="ltx_Math" alttext="D" display="inline"><mi>D</mi></math> and write</p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\Delta\vdash B" display="block"><mrow><mi mathvariant="normal">Δ</mi><mo>⊢</mo><mi>B</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">if no confusion arises. When <math id="S0.SS0.SSSx3.p1.m11" class="ltx_Math" alttext="\Delta\vdash B" display="inline"><mrow><mi mathvariant="normal">Δ</mi><mo>⊢</mo><mi>B</mi></mrow></math>, we also say that <math id="S0.SS0.SSSx3.p1.m12" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is <em class="ltx_emph ltx_font_italic">deducible</em> from <math id="S0.SS0.SSSx3.p1.m13" class="ltx_Math" alttext="\Delta" display="inline"><mi mathvariant="normal">Δ</mi></math>. The turnstile symbol <math id="S0.SS0.SSSx3.p1.m14" class="ltx_Math" alttext="\vdash" display="inline"><mo>⊢</mo></math> is also called the
+<em class="ltx_emph ltx_font_italic">deducibility relation</em>.</p>
+</div>
+<div id="S0.SS0.SSSx3.p2" class="ltx_para">
+<p class="ltx_p">If a formula <math id="S0.SS0.SSSx3.p2.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is deducible from <math id="S0.SS0.SSSx3.p2.m2" class="ltx_Math" alttext="\varnothing" display="inline"><mi mathvariant="normal">∅</mi></math>, we say that <math id="S0.SS0.SSSx3.p2.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a theorem (of the corresponding deductive system). In symbol, we write</p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\vdash_{D}A\qquad\mbox{or}\qquad\vdash A." display="block"><mrow><msub><mo>⊢</mo><mi>D</mi></msub><mi>A</mi><mo mathvariant="italic" separator="true">  </mo><mtext>or</mtext><mo mathvariant="italic" separator="true">  </mo><mo>⊢</mo><mi>A</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S0.SS0.SSSx3.p3" class="ltx_para">
+<p class="ltx_p">A property of <math id="S0.SS0.SSSx3.p3.m1" class="ltx_Math" alttext="\vdash" display="inline"><mo>⊢</mo></math> is the following:</p>
+<blockquote class="ltx_quote">
+<p class="ltx_p ltx_align_center">if <math id="S0.SS0.SSSx3.p3.m2" class="ltx_Math" alttext="\vdash A" display="inline"><mrow><mi></mi><mo>⊢</mo><mi>A</mi></mrow></math> and <math id="S0.SS0.SSSx3.p3.m3" class="ltx_Math" alttext="A\vdash B" display="inline"><mrow><mi>A</mi><mo>⊢</mo><mi>B</mi></mrow></math>, then <math id="S0.SS0.SSSx3.p3.m4" class="ltx_Math" alttext="\vdash B" display="inline"><mrow><mi></mi><mo>⊢</mo><mi>B</mi></mrow></math>.</p>
+</blockquote>
+<p class="ltx_p">In other words, if <math id="S0.SS0.SSSx3.p3.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a theorem, and <math id="S0.SS0.SSSx3.p3.m6" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> can be deduced from <math id="S0.SS0.SSSx3.p3.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, then <math id="S0.SS0.SSSx3.p3.m8" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> is also a theorem, which conforms with our intuition. More generally, we have</p>
+<blockquote class="ltx_quote">
+<p class="ltx_p ltx_align_center">if <math id="S0.SS0.SSSx3.p3.m9" class="ltx_Math" alttext="\Delta\vdash A" display="inline"><mrow><mi mathvariant="normal">Δ</mi><mo>⊢</mo><mi>A</mi></mrow></math> and <math id="S0.SS0.SSSx3.p3.m10" class="ltx_Math" alttext="\Gamma,A\vdash B" display="inline"><mrow><mrow><mi mathvariant="normal">Γ</mi><mo>,</mo><mi>A</mi></mrow><mo>⊢</mo><mi>B</mi></mrow></math>, then <math id="S0.SS0.SSSx3.p3.m11" class="ltx_Math" alttext="\Delta,\Gamma\vdash B" display="inline"><mrow><mrow><mi mathvariant="normal">Δ</mi><mo>,</mo><mi mathvariant="normal">Γ</mi></mrow><mo>⊢</mo><mi>B</mi></mrow></math>.</p>
+</blockquote>
+</div>
+<div id="S0.SS0.SSSx3.p4" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Remark</span>. We refrain from calling a deduction a proof. As we have seen earlier, deductions are mathematical abstractions of proofs. So they are mathematical constructed, viewed either as sequences or trees (of formulas). On the other hand, in the literature, “proof” is usually reserved to be used in the meta-language, as in the “proof” of Fermat’s Last Theorem, etc…</p>
+</div>
+</section>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography">References</h2>
+
+<ul class="ltx_biblist">
+      
+<li id="bib.bib1" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">1</span>
+        
+<span class="ltx_bibblock">
+A. S. Troelstra, H. Schwichtenberg,
+<span class="ltx_text ltx_font_italic">Basic Proof Theory</span>, 2nd Edition, Cambridge University Press, 2000
+
+</span>
+      </li>
+      
+<li id="bib.bib2" class="ltx_bibitem">
+        <span class="ltx_bibtag ltx_role_refnum">2</span>
+        
+<span class="ltx_bibblock">
+D. Dalen,
+<span class="ltx_text ltx_font_italic">Logic and Structure</span>, 4th Edition, Springer, 2008
+
+</span>
+      </li>
+    
+</ul>
+</section>
+<div id="p3" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">deduction</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Canonical name</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Deduction</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Date of creation</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:12:53</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified on</td>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:12:53</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Owner</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Last modified by</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Numerical id</td>
+<td class="ltx_td ltx_align_left ltx_border_r">12</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Author</td>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Entry type</td>
+<td class="ltx_td ltx_align_left ltx_border_r">Definition</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03F03</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03B99</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Classification</td>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03B22</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">proof tree</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">proof sequence</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Synonym</td>
+<td class="ltx_td ltx_align_left ltx_border_r">hypothesis</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">deduction tree</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">deduction sequence</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">deducible</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_r">deducibility relation</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_l">Defines</td>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">assumption</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p"></p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:22:42 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

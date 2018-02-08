@@ -1,0 +1,871 @@
+<!DOCTYPE html><html>
+<head>
+<title>11.5 Compactness of the interval</title>
+<!--Generated on Thu Feb  8 19:31:48 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", , , , , , , , , , , , , , -net, Bolzano–Weierstraß, Cauchy, Heine-Borel, Lebesgue number, acceptance, analysis, approximation, axiom, classical, compactness, constructive, containment, cover, depression, family, family of basic, formal, function, inclusion, inductive, intersection, least upper bound, limited principle of omniscience, locale, mathematics, metric, metric space, metrically compact, modulus, of basic intervals, of intervals, of lists, of uniform continuity, pointfree, pointfree topology, pointwise, pointwise cover, power set, predicative, propositional, resizing, sequence, space, topology, totally bounded, totally bounded metric space, type, uniformly continuous, uniformly continuous function">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">11.5 Compactness of the interval</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">We already pointed out that our constructions of reals are entirely compatible with
+classical logic. Thus, by assuming the law of excluded middle (<span class="ltx_ref ltx_missing_label ltx_ref_self">LABEL:eq:lem</span>) and the axiom
+of choice (<span class="ltx_ref ltx_missing_label ltx_ref_self">LABEL:eq:ac</span>) we could develop classical analysis, which would essentially
+amount to copying any standard book on analysis.
+</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Nevertheless, anyone interested in computation, for example a numerical analyst, ought to
+be curious about developing analysis in a computationally meaningful setting. That
+analysis in a constructive setting is even possible was demonstrated by <cite class="ltx_cite ltx_citemacro_cite">[<span class="ltx_ref ltx_missing_citation ltx_ref_self">Bishop1967</span>]</cite>.
+As a sample of the differences and similarities between classical and constructive
+analysis we shall briefly discuss just one topic—compactness of the closed interval
+<math id="p3.m1" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math> and a couple of theorems surrounding the concept.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Compactness is no exception to the common phenomenon in constructive mathematics that
+classically equivalent notions bifurcate. The three most frequently used notions of
+compactness are:
+</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">metrically compact:</span> “Cauchy complete and totally bounded”,
+</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Bolzano–Weierstraß compact:</span> “every sequence has a convergent subsequence”,
+</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Heine-Borel compact:</span> “every open cover has a finite subcover”.
+</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">These are all equivalent in classical mathematics.
+Let us see how they fare in homotopy type theory. We can use either the Dedekind or the
+Cauchy reals, so we shall denote the reals just as <math id="p4.m1" class="ltx_Math" alttext="\mathbb{R}" display="inline"><mi>ℝ</mi></math>. We first recall several basic
+definitions.</p>
+</div>
+<div id="Thmpredefn1" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 11.5.1</span>.</h6>
+<div id="Thmpredefn1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A <span class="ltx_text ltx_font_bold">metric space</span>
+<math id="Thmpredefn1.p1.m1" class="ltx_Math" alttext="(M,d)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>M</mi><mo mathvariant="normal">,</mo><mi>d</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is a set <math id="Thmpredefn1.p1.m2" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> with a map <math id="Thmpredefn1.p1.m3" class="ltx_Math" alttext="d:M\times M\to\mathbb{R}" display="inline"><mrow><mi>d</mi><mo mathvariant="normal">:</mo><mrow><mrow><mi>M</mi><mo mathvariant="normal">×</mo><mi>M</mi></mrow><mo mathvariant="normal">→</mo><mi mathvariant="normal">R</mi></mrow></mrow></math>
+satisfying, for all <math id="Thmpredefn1.p1.m4" class="ltx_Math" alttext="x,y,z:M" display="inline"><mrow><mrow><mi>x</mi><mo mathvariant="normal">,</mo><mi>y</mi><mo mathvariant="normal">,</mo><mi>z</mi></mrow><mo mathvariant="normal">:</mo><mi>M</mi></mrow></math>,</span></p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle d(x,y)" display="inline"><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle\geq 0," display="inline"><mrow><mrow><mi></mi><mo>≥</mo><mn>0</mn></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m3" class="ltx_Math" alttext="\displaystyle d(x,y)" display="inline"><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m4" class="ltx_Math" alttext="\displaystyle=d(y,x)," display="inline"><mrow><mrow><mi></mi><mo>=</mo><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle d(x,y)" display="inline"><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle=0\Leftrightarrow x=y," display="inline"><mrow><mrow><mrow><mi></mi><mo>=</mo><mn>0</mn></mrow><mo>⇔</mo><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m3" class="ltx_Math" alttext="\displaystyle d(x,z)" display="inline"><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m4" class="ltx_Math" alttext="\displaystyle\leq d(x,y)+d(y,z)." display="inline"><mrow><mrow><mi></mi><mo>≤</mo><mrow><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>+</mo><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Thmpredefn2" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 11.5.2</span>.</h6>
+<div id="Thmpredefn2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A <span class="ltx_text ltx_font_bold">Cauchy approximation</span>
+in <math id="Thmpredefn2.p1.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> is a sequence <math id="Thmpredefn2.p1.m2" class="ltx_Math" alttext="x:\mathbb{Q}_{+}\to M" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">Q</mi><mo mathvariant="normal">+</mo></msub><mo mathvariant="normal">→</mo><mi>M</mi></mrow></mrow></math> satisfying</span></p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\forall(\delta,\epsilon).\,d(x_{\delta},x_{\epsilon})&lt;\delta+\epsilon." display="block"><mrow><mrow><mrow><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo>,</mo><mi>ϵ</mi><mo stretchy="false">)</mo></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mrow><mi>d</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>δ</mi></msub><mo>,</mo><msub><mi>x</mi><mi>ϵ</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mrow><mi>δ</mi><mo>+</mo><mi>ϵ</mi></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The <span class="ltx_text ltx_font_bold">limit</span> of a Cauchy approximation <math id="Thmpredefn2.p1.m3" class="ltx_Math" alttext="x:\mathbb{Q}_{+}\to M" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mrow><msub><mi mathvariant="normal">Q</mi><mo mathvariant="normal">+</mo></msub><mo mathvariant="normal">→</mo><mi>M</mi></mrow></mrow></math> is a point <math id="Thmpredefn2.p1.m4" class="ltx_Math" alttext="\ell:M" display="inline"><mrow><mi mathvariant="normal">ℓ</mi><mo mathvariant="normal">:</mo><mi>M</mi></mrow></math>
+satisfying</span></p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\forall(\epsilon,\theta:\mathbb{Q}_{+}).\,d(x_{\epsilon},\ell)&lt;\epsilon+\theta." display="block"><mrow><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>ϵ</mi><mo>,</mo><mi>θ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>d</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>ϵ</mi></msub><mo>,</mo><mi mathvariant="normal">ℓ</mi><mo stretchy="false">)</mo></mrow><mo>&lt;</mo><mi>ϵ</mi><mo>+</mo><mi>θ</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A <span class="ltx_text ltx_font_bold">complete metric space</span> is one in which every Cauchy approximation has a limit.</span></p>
+</div>
+</div>
+<div id="Thmpredefn3" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 11.5.3</span>.</h6>
+<div id="Thmpredefn3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">For a positive rational <math id="Thmpredefn3.p1.m1" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math>, an <math id="Thmpredefn3.p1.m2" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math><span class="ltx_text ltx_font_bold">-net</span>
+in a metric space <math id="Thmpredefn3.p1.m4" class="ltx_Math" alttext="(M,d)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>M</mi><mo mathvariant="normal">,</mo><mi>d</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is an element of
+</span></p>
+<table id="S0.Ex5" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\mathchoice{\sum_{(n:\mathbb{N})}\,}{\mathchoice{{\textstyle\sum_{(n:\mathbb{N%
+})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}{%
+\mathchoice{{\textstyle\sum_{(n:\mathbb{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n%
+:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\sum_{(n:\mathbb%
+{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}%
+\mathchoice{\sum_{(x_{1},\ldots,x_{n}:M)}\,}{\mathchoice{{\textstyle\sum_{(x_{%
+1},\ldots,x_{n}:M)}}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum_{(x_{1},\ldots,x_{n}%
+:M)}}{\sum_{(x_{1},\ldots,x_{n}:M)}}}{\mathchoice{{\textstyle\sum_{(x_{1},%
+\ldots,x_{n}:M)}}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum_{(x_{1},\ldots,x_{n}:M)%
+}}{\sum_{(x_{1},\ldots,x_{n}:M)}}}{\mathchoice{{\textstyle\sum_{(x_{1},\ldots,%
+x_{n}:M)}}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum%
+_{(x_{1},\ldots,x_{n}:M)}}}\forall(y:M).\,\exists(k\leq n).\,d(x_{k},y)&lt;\epsilon." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo>:</mo><mi>M</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo>≤</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>d</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>k</mi></msub><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>&lt;</mo><mi>ϵ</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In words, this is a finite sequence of points <math id="Thmpredefn3.p1.m5" class="ltx_Math" alttext="x_{1},\ldots,x_{n}" display="inline"><mrow><msub><mi>x</mi><mn mathvariant="normal">1</mn></msub><mo mathvariant="normal">,</mo><mi mathvariant="normal">…</mi><mo mathvariant="normal">,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></math> such that every point
+in <math id="Thmpredefn3.p1.m6" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> merely is within <math id="Thmpredefn3.p1.m7" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math> of some <math id="Thmpredefn3.p1.m8" class="ltx_Math" alttext="x_{k}" display="inline"><msub><mi>x</mi><mi>k</mi></msub></math>.</span></p>
+</div>
+<div id="Thmpredefn3.p2" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A metric space <math id="Thmpredefn3.p2.m1" class="ltx_Math" alttext="(M,d)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>M</mi><mo mathvariant="normal">,</mo><mi>d</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> is <span class="ltx_text ltx_font_bold">totally bounded</span>
+when it has <math id="Thmpredefn3.p2.m2" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math>-nets of all
+sizes:</span></p>
+<table id="S0.Ex6" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(\epsilon:\mathbb{Q}_{+})}\,}{\mathchoice{{\textstyle\prod_%
+{(\epsilon:\mathbb{Q}_{+})}}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}{\prod_{(%
+\epsilon:\mathbb{Q}_{+})}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}}{\mathchoice{{%
+\textstyle\prod_{(\epsilon:\mathbb{Q}_{+})}}}{\prod_{(\epsilon:\mathbb{Q}_{+})%
+}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}}{%
+\mathchoice{{\textstyle\prod_{(\epsilon:\mathbb{Q}_{+})}}}{\prod_{(\epsilon:%
+\mathbb{Q}_{+})}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}{\prod_{(\epsilon:\mathbb{%
+Q}_{+})}}}\mathchoice{\sum_{(n:\mathbb{N})}\,}{\mathchoice{{\textstyle\sum_{(n%
+:\mathbb{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb%
+{N})}}}{\mathchoice{{\textstyle\sum_{(n:\mathbb{N})}}}{\sum_{(n:\mathbb{N})}}{%
+\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\sum_{(n%
+:\mathbb{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb%
+{N})}}}\mathchoice{\sum_{(x_{1},\ldots,x_{n}:M)}\,}{\mathchoice{{\textstyle%
+\sum_{(x_{1},\ldots,x_{n}:M)}}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum_{(x_{1},%
+\ldots,x_{n}:M)}}{\sum_{(x_{1},\ldots,x_{n}:M)}}}{\mathchoice{{\textstyle\sum_%
+{(x_{1},\ldots,x_{n}:M)}}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum_{(x_{1},\ldots,%
+x_{n}:M)}}{\sum_{(x_{1},\ldots,x_{n}:M)}}}{\mathchoice{{\textstyle\sum_{(x_{1}%
+,\ldots,x_{n}:M)}}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum_{(x_{1},\ldots,x_{n}:M%
+)}}{\sum_{(x_{1},\ldots,x_{n}:M)}}}\forall(y:M).\,\exists(k\leq n).\,d(x_{k},y%
+)&lt;\epsilon." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo>:</mo><mi>M</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo>≤</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>d</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>k</mi></msub><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>&lt;</mo><mi>ϵ</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Thmprermk1" class="ltx_theorem ltx_theorem_prermk">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Remark 11.5.4</span>.</h6>
+<div id="Thmprermk1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In the definition of total boundedness we used sloppy notation <math id="Thmprermk1.p1.m1" class="ltx_Math" alttext="\mathchoice{\sum_{(n:\mathbb{N})}\,}{\mathchoice{{\textstyle\sum_{(n:\mathbb{N%
+})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}{%
+\mathchoice{{\textstyle\sum_{(n:\mathbb{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n%
+:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\sum_{(n:\mathbb%
+{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}%
+\mathchoice{\sum_{(x_{1},\ldots,x_{n}:M)}\,}{\mathchoice{{\textstyle\sum_{(x_{%
+1},\ldots,x_{n}:M)}}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum_{(x_{1},\ldots,x_{n}%
+:M)}}{\sum_{(x_{1},\ldots,x_{n}:M)}}}{\mathchoice{{\textstyle\sum_{(x_{1},%
+\ldots,x_{n}:M)}}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum_{(x_{1},\ldots,x_{n}:M)%
+}}{\sum_{(x_{1},\ldots,x_{n}:M)}}}{\mathchoice{{\textstyle\sum_{(x_{1},\ldots,%
+x_{n}:M)}}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum_{(x_{1},\ldots,x_{n}:M)}}{\sum%
+_{(x_{1},\ldots,x_{n}:M)}}}" display="inline"><mrow><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>n</mi><mo mathvariant="normal">:</mo><mi mathvariant="normal">N</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><msub><mi>x</mi><mn mathvariant="normal">1</mn></msub><mo mathvariant="normal">,</mo><mi mathvariant="normal">…</mi><mo mathvariant="normal">,</mo><msub><mi>x</mi><mi>n</mi></msub><mo mathvariant="normal">:</mo><mi>M</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub></mrow></math>. Formally, we should have written <math id="Thmprermk1.p1.m2" class="ltx_Math" alttext="\mathchoice{\sum_{x:\mathsf{List}(M)}\,}{\mathchoice{{\textstyle\sum_{(x:%
+\mathsf{List}(M))}}}{\sum_{(x:\mathsf{List}(M))}}{\sum_{(x:\mathsf{List}(M))}}%
+{\sum_{(x:\mathsf{List}(M))}}}{\mathchoice{{\textstyle\sum_{(x:\mathsf{List}(M%
+))}}}{\sum_{(x:\mathsf{List}(M))}}{\sum_{(x:\mathsf{List}(M))}}{\sum_{(x:%
+\mathsf{List}(M))}}}{\mathchoice{{\textstyle\sum_{(x:\mathsf{List}(M))}}}{\sum%
+_{(x:\mathsf{List}(M))}}{\sum_{(x:\mathsf{List}(M))}}{\sum_{(x:\mathsf{List}(M%
+))}}}" display="inline"><msub><mo largeop="true" mathvariant="normal" symmetric="true">∑</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal">:</mo><mi mathvariant="normal">List</mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>M</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal" stretchy="false">)</mo></mrow></msub></math> instead,
+where <math id="Thmprermk1.p1.m3" class="ltx_Math" alttext="\mathsf{List}(M)" display="inline"><mrow><mi mathvariant="normal">List</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>M</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> is the inductive type of finite lists from <span class="ltx_ERROR undefined">\autoref</span>sec:bool-nat.
+However, that would make the rest of the statement a bit more cumbersome to express.</span></p>
+</div>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Note that in the definition of total boundedness we require pure existence of an
+<math id="p5.m1" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math>-net, not mere existence. This way we obtain a function which assigns to each
+<math id="p5.m2" class="ltx_Math" alttext="\epsilon:\mathbb{Q}_{+}" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub></mrow></math> a specific <math id="p5.m3" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math>-net. Such a function might be called a “modulus of
+total boundedness”. In general, when porting classical metric notions to homotopy type
+theory, we should use propositional truncation sparingly, typically so that we avoid
+asking for a non-constant map from <math id="p5.m4" class="ltx_Math" alttext="\mathbb{R}" display="inline"><mi>ℝ</mi></math> to <math id="p5.m5" class="ltx_Math" alttext="\mathbb{Q}" display="inline"><mi>ℚ</mi></math> or <math id="p5.m6" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>. For instance, here is the
+“correct” definition of uniform continuity.</p>
+</div>
+<div id="Thmpredefn4" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 11.5.5</span>.</h6>
+<div id="Thmpredefn4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A map <math id="Thmpredefn4.p1.m1" class="ltx_Math" alttext="f:M\to\mathbb{R}" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>M</mi><mo mathvariant="normal">→</mo><mi mathvariant="normal">R</mi></mrow></mrow></math> on a metric space is <span class="ltx_text ltx_font_bold">uniformly continuous</span>
+when
+</span></p>
+<table id="S0.Ex7" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(\epsilon:\mathbb{Q}_{+})}\,}{\mathchoice{{\textstyle\prod_%
+{(\epsilon:\mathbb{Q}_{+})}}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}{\prod_{(%
+\epsilon:\mathbb{Q}_{+})}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}}{\mathchoice{{%
+\textstyle\prod_{(\epsilon:\mathbb{Q}_{+})}}}{\prod_{(\epsilon:\mathbb{Q}_{+})%
+}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}}{%
+\mathchoice{{\textstyle\prod_{(\epsilon:\mathbb{Q}_{+})}}}{\prod_{(\epsilon:%
+\mathbb{Q}_{+})}}{\prod_{(\epsilon:\mathbb{Q}_{+})}}{\prod_{(\epsilon:\mathbb{%
+Q}_{+})}}}\mathchoice{\sum_{(\delta:\mathbb{Q}_{+})}\,}{\mathchoice{{%
+\textstyle\sum_{(\delta:\mathbb{Q}_{+})}}}{\sum_{(\delta:\mathbb{Q}_{+})}}{%
+\sum_{(\delta:\mathbb{Q}_{+})}}{\sum_{(\delta:\mathbb{Q}_{+})}}}{\mathchoice{{%
+\textstyle\sum_{(\delta:\mathbb{Q}_{+})}}}{\sum_{(\delta:\mathbb{Q}_{+})}}{%
+\sum_{(\delta:\mathbb{Q}_{+})}}{\sum_{(\delta:\mathbb{Q}_{+})}}}{\mathchoice{{%
+\textstyle\sum_{(\delta:\mathbb{Q}_{+})}}}{\sum_{(\delta:\mathbb{Q}_{+})}}{%
+\sum_{(\delta:\mathbb{Q}_{+})}}{\sum_{(\delta:\mathbb{Q}_{+})}}}\forall(x,y:M)%
+.\,d(x,y)&lt;\delta\Rightarrow|f(x)-f(y)|&lt;\epsilon." display="block"><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>δ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub><mo stretchy="false">)</mo></mrow></munder></mpadded><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>d</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>&lt;</mo><mi>δ</mi><mo>⇒</mo><mo stretchy="false">|</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>-</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">|</mo><mo>&lt;</mo><mi>ϵ</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">In particular, a uniformly continuous map has a modulus of uniform continuity,
+which is a function that assigns to each <math id="Thmpredefn4.p1.m2" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math> a corresponding <math id="Thmpredefn4.p1.m3" class="ltx_Math" alttext="\delta" display="inline"><mi>δ</mi></math>.</span></p>
+</div>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Let us show that <math id="p6.m1" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math> is compact in the first sense.</p>
+</div>
+<div id="Thmprethm1" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 11.5.6</span>.</h6>
+<div id="Thmprethm1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The closed interval <math id="Thmprethm1.p1.m1" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo mathvariant="normal" stretchy="false">[</mo><mn mathvariant="normal">0</mn><mo mathvariant="normal">,</mo><mn mathvariant="normal">1</mn><mo mathvariant="normal" stretchy="false">]</mo></mrow></math> is complete and totally bounded.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">Given <math id="p7.m1" class="ltx_Math" alttext="\epsilon:\mathbb{Q}_{+}" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub></mrow></math>, there is <math id="p7.m2" class="ltx_Math" alttext="n:\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></math> such that <math id="p7.m3" class="ltx_Math" alttext="2/k&lt;\epsilon" display="inline"><mrow><mrow><mn>2</mn><mo>/</mo><mi>k</mi></mrow><mo>&lt;</mo><mi>ϵ</mi></mrow></math>, so we may take the
+<math id="p7.m4" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math>-net <math id="p7.m5" class="ltx_Math" alttext="x_{i}=i/k" display="inline"><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>=</mo><mrow><mi>i</mi><mo>/</mo><mi>k</mi></mrow></mrow></math> for <math id="p7.m6" class="ltx_Math" alttext="i=0,\ldots,k-1" display="inline"><mrow><mi>i</mi><mo>=</mo><mrow><mn>0</mn><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></mrow></mrow></math>. This is an <math id="p7.m7" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math>-net because,
+for every <math id="p7.m8" class="ltx_Math" alttext="y:[0,1]" display="inline"><mrow><mi>y</mi><mo>:</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></math> there merely exists <math id="p7.m9" class="ltx_Math" alttext="i" display="inline"><mi>i</mi></math> such that <math id="p7.m10" class="ltx_Math" alttext="0\leq i&lt;k" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>i</mi><mo>&lt;</mo><mi>k</mi></mrow></math> and <math id="p7.m11" class="ltx_Math" alttext="(i-1)/k&lt;y&lt;(i+1)/k" display="inline"><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mi>k</mi></mrow><mo>&lt;</mo><mi>y</mi><mo>&lt;</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mo>/</mo><mi>k</mi></mrow></mrow></math>, and so <math id="p7.m12" class="ltx_Math" alttext="|y-x_{i}|&lt;2/k&lt;\epsilon" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>y</mi><mo>-</mo><msub><mi>x</mi><mi>i</mi></msub></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mrow><mn>2</mn><mo>/</mo><mi>k</mi></mrow><mo>&lt;</mo><mi>ϵ</mi></mrow></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">For completeness of <math id="p8.m1" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math>, consider a Cauchy approximation <math id="p8.m2" class="ltx_Math" alttext="x:\mathbb{Q}_{+}\to[0,1]" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><msub><mi>ℚ</mi><mo>+</mo></msub><mo>→</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></mrow></math> and let <math id="p8.m3" class="ltx_Math" alttext="\ell" display="inline"><mi mathvariant="normal">ℓ</mi></math> be its limit in <math id="p8.m4" class="ltx_Math" alttext="\mathbb{R}" display="inline"><mi>ℝ</mi></math>. Since <math id="p8.m5" class="ltx_Math" alttext="\max" display="inline"><mi>max</mi></math> and <math id="p8.m6" class="ltx_Math" alttext="\min" display="inline"><mi>min</mi></math> are Lipschitz maps,
+the retraction <math id="p8.m7" class="ltx_Math" alttext="r:\mathbb{R}\to[0,1]" display="inline"><mrow><mi>r</mi><mo>:</mo><mrow><mi>ℝ</mi><mo>→</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></mrow></math> defined by <math id="p8.m8" class="ltx_Math" alttext="r(x):\!\!\equiv\max(0,\min(1,x))" display="inline"><mrow><mi>r</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>max</mi><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>min</mi><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math> commutes
+with limits of Cauchy approximations, therefore</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="r(\ell)=r(\lim x)=\lim(r\circ x)=r(\lim x)=\ell," display="block"><mrow><mrow><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">ℓ</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo movablelimits="false">lim</mo><mo>⁡</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mo movablelimits="false">lim</mo><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>r</mi><mo>∘</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>r</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo movablelimits="false">lim</mo><mo>⁡</mo><mi>x</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi mathvariant="normal">ℓ</mi></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">which means that <math id="p8.m9" class="ltx_Math" alttext="0\leq\ell\leq 1" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi mathvariant="normal">ℓ</mi><mo>≤</mo><mn>1</mn></mrow></math>, as required.
+∎</p>
+</div>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">We thus have at least one good notion of compactness in homotopy type theory.
+Unfortunately, it is limited to metric spaces because total boundedness is a metric
+notion. We shall consider the other two notions shortly, but first we prove that a
+uniformly continuous map on a totally bounded space has a <span class="ltx_text ltx_font_bold">supremum</span>,
+i.e. an upper bound which is less than or equal to all other upper bounds.
+</p>
+</div>
+<div id="Thmprethm2" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 11.5.7</span>.</h6>
+<div id="Thmprethm2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A uniformly continuous map <math id="Thmprethm2.p1.m1" class="ltx_Math" alttext="f:M\to\mathbb{R}" display="inline"><mrow><mi>f</mi><mo mathvariant="normal">:</mo><mrow><mi>M</mi><mo mathvariant="normal">→</mo><mi mathvariant="normal">R</mi></mrow></mrow></math> on a totally bounded metric space
+<math id="Thmprethm2.p1.m2" class="ltx_Math" alttext="(M,d)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>M</mi><mo mathvariant="normal">,</mo><mi>d</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math> has a supremum <math id="Thmprethm2.p1.m3" class="ltx_Math" alttext="m:\mathbb{R}" display="inline"><mrow><mi>m</mi><mo mathvariant="normal">:</mo><mi mathvariant="normal">R</mi></mrow></math>. For every <math id="Thmprethm2.p1.m4" class="ltx_Math" alttext="\epsilon:\mathbb{Q}_{+}" display="inline"><mrow><mi>ϵ</mi><mo mathvariant="normal">:</mo><msub><mi mathvariant="normal">Q</mi><mo mathvariant="normal">+</mo></msub></mrow></math> there exists <math id="Thmprethm2.p1.m5" class="ltx_Math" alttext="u:M" display="inline"><mrow><mi>u</mi><mo mathvariant="normal">:</mo><mi>M</mi></mrow></math> such
+that <math id="Thmprethm2.p1.m6" class="ltx_Math" alttext="|m-f(u)|&lt;\epsilon" display="inline"><mrow><mrow><mo mathvariant="normal" stretchy="false">|</mo><mrow><mi>m</mi><mo mathvariant="normal">-</mo><mrow><mi>f</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>u</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></mrow><mo mathvariant="normal" stretchy="false">|</mo></mrow><mo mathvariant="normal">&lt;</mo><mi>ϵ</mi></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">Let <math id="p10.m1" class="ltx_Math" alttext="h:\mathbb{Q}_{+}\to\mathbb{Q}_{+}" display="inline"><mrow><mi>h</mi><mo>:</mo><mrow><msub><mi>ℚ</mi><mo>+</mo></msub><mo>→</mo><msub><mi>ℚ</mi><mo>+</mo></msub></mrow></mrow></math> be the modulus of uniform continuity of <math id="p10.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+We define an approximation <math id="p10.m3" class="ltx_Math" alttext="x:\mathbb{Q}_{+}\to\mathbb{R}" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><msub><mi>ℚ</mi><mo>+</mo></msub><mo>→</mo><mi>ℝ</mi></mrow></mrow></math> as follows: for any <math id="p10.m4" class="ltx_Math" alttext="\epsilon:\mathbb{Q}" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><mi>ℚ</mi></mrow></math> total
+boundedness of <math id="p10.m5" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> gives a <math id="p10.m6" class="ltx_Math" alttext="h(\epsilon)" display="inline"><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ϵ</mi><mo stretchy="false">)</mo></mrow></mrow></math>-net <math id="p10.m7" class="ltx_Math" alttext="y_{0},\ldots,y_{n}" display="inline"><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub></mrow></math>. Define</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="x_{\epsilon}:\!\!\equiv\max(f(y_{0}),\ldots,f(y_{n}))." display="block"><mrow><msub><mi>x</mi><mi>ϵ</mi></msub><mo rspace="0pt">:</mo><mo>≡</mo><mi>max</mi><mrow><mo stretchy="false">(</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We claim that <math id="p10.m8" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is a Cauchy approximation. Consider any <math id="p10.m9" class="ltx_Math" alttext="\epsilon,\eta:\mathbb{Q}" display="inline"><mrow><mrow><mi>ϵ</mi><mo>,</mo><mi>η</mi></mrow><mo>:</mo><mi>ℚ</mi></mrow></math>, so that</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="x_{\epsilon}\equiv\max(f(y_{0}),\ldots,f(y_{n}))\quad\text{and}\quad x_{\eta}%
+\equiv\max(f(z_{0}),\ldots,f(z_{m}))" display="block"><mrow><mrow><msub><mi>x</mi><mi>ϵ</mi></msub><mo>≡</mo><mrow><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo mathvariant="italic" separator="true"> </mo><mtext>and</mtext></mrow></mrow><mo mathvariant="italic" separator="true"> </mo><mrow><msub><mi>x</mi><mi>η</mi></msub><mo>≡</mo><mrow><mi>max</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>z</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>z</mi><mi>m</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">for some <math id="p10.m10" class="ltx_Math" alttext="h(\epsilon)" display="inline"><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ϵ</mi><mo stretchy="false">)</mo></mrow></mrow></math>-net <math id="p10.m11" class="ltx_Math" alttext="y_{0},\ldots,y_{n}" display="inline"><mrow><msub><mi>y</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub></mrow></math> and <math id="p10.m12" class="ltx_Math" alttext="h(\eta)" display="inline"><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>η</mi><mo stretchy="false">)</mo></mrow></mrow></math>-net <math id="p10.m13" class="ltx_Math" alttext="z_{0},\ldots,z_{m}" display="inline"><mrow><msub><mi>z</mi><mn>0</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>z</mi><mi>m</mi></msub></mrow></math>.
+Every <math id="p10.m14" class="ltx_Math" alttext="z_{i}" display="inline"><msub><mi>z</mi><mi>i</mi></msub></math> is merely <math id="p10.m15" class="ltx_Math" alttext="h(\epsilon)" display="inline"><mrow><mi>h</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>ϵ</mi><mo stretchy="false">)</mo></mrow></mrow></math>-close to some <math id="p10.m16" class="ltx_Math" alttext="y_{j}" display="inline"><msub><mi>y</mi><mi>j</mi></msub></math>, therefore <math id="p10.m17" class="ltx_Math" alttext="|f(z_{i})-f(y_{j})|&lt;\epsilon" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>z</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>-</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mi>ϵ</mi></mrow></math>, from which we may conclude that</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="f(z_{i})&lt;\epsilon+f(y_{j})\leq\epsilon+x_{\epsilon}," display="block"><mrow><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>z</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>&lt;</mo><mrow><mi>ϵ</mi><mo>+</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>≤</mo><mrow><mi>ϵ</mi><mo>+</mo><msub><mi>x</mi><mi>ϵ</mi></msub></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">therefore <math id="p10.m18" class="ltx_Math" alttext="x_{\eta}&lt;\epsilon+x_{\epsilon}" display="inline"><mrow><msub><mi>x</mi><mi>η</mi></msub><mo>&lt;</mo><mrow><mi>ϵ</mi><mo>+</mo><msub><mi>x</mi><mi>ϵ</mi></msub></mrow></mrow></math>. Symmetrically we obtain <math id="p10.m19" class="ltx_Math" alttext="x_{\eta}&lt;\eta+x_{\eta}" display="inline"><mrow><msub><mi>x</mi><mi>η</mi></msub><mo>&lt;</mo><mrow><mi>η</mi><mo>+</mo><msub><mi>x</mi><mi>η</mi></msub></mrow></mrow></math>, therefore <math id="p10.m20" class="ltx_Math" alttext="|x_{\eta}-x_{\epsilon}|&lt;\eta+\epsilon" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><msub><mi>x</mi><mi>η</mi></msub><mo>-</mo><msub><mi>x</mi><mi>ϵ</mi></msub></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mrow><mi>η</mi><mo>+</mo><mi>ϵ</mi></mrow></mrow></math>.
+</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">We claim that <math id="p11.m1" class="ltx_Math" alttext="m:\!\!\equiv\lim x" display="inline"><mrow><mi>m</mi><mo rspace="0pt">:</mo><mo>≡</mo><mo>lim</mo><mi>x</mi></mrow></math> is the supremum of <math id="p11.m2" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>. To prove that <math id="p11.m3" class="ltx_Math" alttext="f(x)\leq m" display="inline"><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mi>m</mi></mrow></math> for
+all <math id="p11.m4" class="ltx_Math" alttext="x:M" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>M</mi></mrow></math> it suffices to show <math id="p11.m5" class="ltx_Math" alttext="\lnot(m&lt;f(x))" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mrow><mi>m</mi><mo>&lt;</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>. So suppose to the contrary that <math id="p11.m6" class="ltx_Math" alttext="m&lt;f(x)" display="inline"><mrow><mi>m</mi><mo>&lt;</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. There is <math id="p11.m7" class="ltx_Math" alttext="\epsilon:\mathbb{Q}_{+}" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub></mrow></math> such that <math id="p11.m8" class="ltx_Math" alttext="m+\epsilon&lt;f(x)" display="inline"><mrow><mrow><mi>m</mi><mo>+</mo><mi>ϵ</mi></mrow><mo>&lt;</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. But now merely for
+some <math id="p11.m9" class="ltx_Math" alttext="y_{i}" display="inline"><msub><mi>y</mi><mi>i</mi></msub></math> participating in the definition of <math id="p11.m10" class="ltx_Math" alttext="x_{\epsilon}" display="inline"><msub><mi>x</mi><mi>ϵ</mi></msub></math> we get <math id="p11.m11" class="ltx_Math" alttext="|f(x)-f(y_{i})&lt;\epsilon" display="inline"><mrow><mo stretchy="false">|</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>-</mo><mi>f</mi><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mo>&lt;</mo><mi>ϵ</mi></mrow></math>, therefore <math id="p11.m12" class="ltx_Math" alttext="m&lt;f(x)-\epsilon&lt;f(y_{i})\leq m" display="inline"><mrow><mi>m</mi><mo>&lt;</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>-</mo><mi>ϵ</mi></mrow><mo>&lt;</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>≤</mo><mi>m</mi></mrow></math>, a contradiction.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">We finish the proof by showing that <math id="p12.m1" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math> satisfies the second part of the theorem, because
+it is then automatically a least upper bound. Given any <math id="p12.m2" class="ltx_Math" alttext="\epsilon:\mathbb{Q}_{+}" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub></mrow></math>, on one hand
+<math id="p12.m3" class="ltx_Math" alttext="|m-f(x_{\epsilon/2})|&lt;3\epsilon/4" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>m</mi><mo>-</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>ϵ</mi><mo>/</mo><mn>2</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mrow><mrow><mn>3</mn><mo>⁢</mo><mi>ϵ</mi></mrow><mo>/</mo><mn>4</mn></mrow></mrow></math>, and on the other <math id="p12.m4" class="ltx_Math" alttext="|f(x_{\epsilon/2})-f(y_{i})|&lt;\epsilon/4" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>ϵ</mi><mo>/</mo><mn>2</mn></mrow></msub><mo stretchy="false">)</mo></mrow></mrow><mo>-</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mrow><mi>ϵ</mi><mo>/</mo><mn>4</mn></mrow></mrow></math> merely for some <math id="p12.m5" class="ltx_Math" alttext="y_{i}" display="inline"><msub><mi>y</mi><mi>i</mi></msub></math> participating in the definition of <math id="p12.m6" class="ltx_Math" alttext="x_{\epsilon/2}" display="inline"><msub><mi>x</mi><mrow><mi>ϵ</mi><mo>/</mo><mn>2</mn></mrow></msub></math>,
+therefore by taking <math id="p12.m7" class="ltx_Math" alttext="u:\!\!\equiv y_{i}" display="inline"><mrow><mi>u</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>y</mi><mi>i</mi></msub></mrow></math> we obtain <math id="p12.m8" class="ltx_Math" alttext="|m-f(u)|&lt;\epsilon" display="inline"><mrow><mrow><mo stretchy="false">|</mo><mrow><mi>m</mi><mo>-</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">|</mo></mrow><mo>&lt;</mo><mi>ϵ</mi></mrow></math> by triangle
+inequality.
+∎</p>
+</div>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">Now, if in <span class="ltx_ERROR undefined">\autoref</span>ctb-uniformly-continuous-sup we also knew that <math id="p13.m1" class="ltx_Math" alttext="M" display="inline"><mi>M</mi></math> were complete, we
+could hope to weaken the assumption of uniform continuity to continuity, and strengthen
+the conclusion to existence of a point at which the supremum is attained. The usual proofs
+of these improvements rely on the facts that in a complete totally bounded space</p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">continuity implies uniform continuity, and</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">every sequence has a convergent subsequence.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">The first statement follows easily from Heine-Borel compactness, and the second is just
+Bolzano–Weierstraß compactness.
+Unfortunately, these are both somewhat problematic. Let
+us first show that Bolzano–Weierstraß compactness implies an instance of excluded middle
+known as the <span class="ltx_text ltx_font_bold">limited principle of omniscience</span>:
+for every <math id="p13.m2" class="ltx_Math" alttext="\alpha:\mathbb{N}\to\mathbf{2}" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mn>𝟐</mn></mrow></mrow></math>,</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E1.m1" class="ltx_Math" alttext="\Bigl{(}\mathchoice{\sum_{n:\mathbb{N}}\,}{\mathchoice{{\textstyle\sum_{(n:%
+\mathbb{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{%
+N})}}}{\mathchoice{{\textstyle\sum_{(n:\mathbb{N})}}}{\sum_{(n:\mathbb{N})}}{%
+\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\sum_{(n%
+:\mathbb{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb%
+{N})}}}\alpha(n)={1_{\mathbf{2}}}\Bigr{)}+\Bigl{(}\mathchoice{\prod_{n:\mathbb%
+{N}}\,}{\mathchoice{{\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}%
+}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle%
+\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod%
+_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:%
+\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}\alpha(n)={0_{%
+\mathbf{2}}}\Bigr{)}." display="block"><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></munder></mpadded><mi>α</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>+</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></munder></mpadded><mi>α</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(11.5.8)</span></td>
+</tr>
+</table>
+<p class="ltx_p">Computationally speaking, we would not expect this principle to hold, because it asks us to decide
+whether infinitely many values of a function are <math id="p13.m3" class="ltx_Math" alttext="{0_{\mathbf{2}}}" display="inline"><msub><mn>0</mn><mn>𝟐</mn></msub></math>.</p>
+</div>
+<div id="Thmprethm3" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 11.5.9</span>.</h6>
+<div id="Thmprethm3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Bolzano–Weierstraß compactness of <math id="Thmprethm3.p1.m1" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo mathvariant="normal" stretchy="false">[</mo><mn mathvariant="normal">0</mn><mo mathvariant="normal">,</mo><mn mathvariant="normal">1</mn><mo mathvariant="normal" stretchy="false">]</mo></mrow></math> implies the limited principle of omniscience.
+</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">Given any <math id="p14.m1" class="ltx_Math" alttext="\alpha:\mathbb{N}\to\mathbf{2}" display="inline"><mrow><mi>α</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mn>𝟐</mn></mrow></mrow></math>, define the sequence <math id="p14.m2" class="ltx_Math" alttext="x:\mathbb{N}\to[0,1]" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></mrow></math> by</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="x_{n}:\!\!\equiv\begin{cases}0&amp;\text{if $\alpha(k)={0_{\mathbf{2}}}$ for all $%
+k&lt;n$,}\\
+1&amp;\text{if $\alpha(k)={1_{\mathbf{2}}}$ for some $k&lt;n$}.\end{cases}" display="block"><mrow><msub><mi>x</mi><mi>n</mi></msub><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo>{</mo><mtable columnspacing="5pt" displaystyle="true" rowspacing="0pt"><mtr><mtd columnalign="left"><mn>0</mn></mtd><mtd columnalign="left"><mrow><mtext>if </mtext><mrow><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mn>0</mn><mn>𝟐</mn></msub></mrow><mtext> for all </mtext><mrow><mi>k</mi><mo>&lt;</mo><mi>n</mi></mrow><mtext>,</mtext></mrow></mtd></mtr><mtr><mtd columnalign="left"><mn>1</mn></mtd><mtd columnalign="left"><mrow><mrow><mtext>if </mtext><mrow><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><msub><mn>1</mn><mn>𝟐</mn></msub></mrow><mtext> for some </mtext><mrow><mi>k</mi><mo>&lt;</mo><mi>n</mi></mrow></mrow><mo>.</mo></mrow></mtd></mtr></mtable></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">If the Bolzano–Weierstraß property holds, there exists a strictly increasing <math id="p14.m3" class="ltx_Math" alttext="f:\mathbb{N}\to\mathbb{N}" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mi>ℕ</mi></mrow></mrow></math> such that <math id="p14.m4" class="ltx_Math" alttext="x\circ f" display="inline"><mrow><mi>x</mi><mo>∘</mo><mi>f</mi></mrow></math> is a Cauchy sequence. For a sufficiently large <math id="p14.m5" class="ltx_Math" alttext="n:\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></math> the <math id="p14.m6" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>-th term <math id="p14.m7" class="ltx_Math" alttext="x_{f(n)}" display="inline"><msub><mi>x</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></msub></math> is within <math id="p14.m8" class="ltx_Math" alttext="1/6" display="inline"><mrow><mn>1</mn><mo>/</mo><mn>6</mn></mrow></math> of its limit. Either <math id="p14.m9" class="ltx_Math" alttext="x_{f(n)}&lt;2/3" display="inline"><mrow><msub><mi>x</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>&lt;</mo><mrow><mn>2</mn><mo>/</mo><mn>3</mn></mrow></mrow></math> or
+<math id="p14.m10" class="ltx_Math" alttext="x_{f(n)}&gt;1/3" display="inline"><mrow><msub><mi>x</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>&gt;</mo><mrow><mn>1</mn><mo>/</mo><mn>3</mn></mrow></mrow></math>. If <math id="p14.m11" class="ltx_Math" alttext="x_{f(n)}&lt;2/3" display="inline"><mrow><msub><mi>x</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>&lt;</mo><mrow><mn>2</mn><mo>/</mo><mn>3</mn></mrow></mrow></math> then <math id="p14.m12" class="ltx_Math" alttext="x_{n}" display="inline"><msub><mi>x</mi><mi>n</mi></msub></math> converges to <math id="p14.m13" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math> and so <math id="p14.m14" class="ltx_Math" alttext="\mathchoice{\prod_{n:\mathbb{N}}\,}{\mathchoice{{\textstyle\prod_{(n:\mathbb{N%
+})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}%
+{\mathchoice{{\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod%
+_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\prod_{(n:%
+\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:%
+\mathbb{N})}}}\alpha(n)={0_{\mathbf{2}}}" display="inline"><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><msub><mn>0</mn><mn>𝟐</mn></msub></mrow></math>. If <math id="p14.m15" class="ltx_Math" alttext="x_{f(n)}&gt;1/3" display="inline"><mrow><msub><mi>x</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>&gt;</mo><mrow><mn>1</mn><mo>/</mo><mn>3</mn></mrow></mrow></math> then <math id="p14.m16" class="ltx_Math" alttext="x_{f(n)}=1" display="inline"><mrow><msub><mi>x</mi><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>=</mo><mn>1</mn></mrow></math>, therefore <math id="p14.m17" class="ltx_Math" alttext="\mathchoice{\sum_{n:\mathbb{N}}\,}{\mathchoice{{\textstyle\sum_{(n:\mathbb{N})%
+}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}{%
+\mathchoice{{\textstyle\sum_{(n:\mathbb{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n%
+:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\sum_{(n:\mathbb%
+{N})}}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}{\sum_{(n:\mathbb{N})}}}%
+\alpha(n)={1_{\mathbf{2}}}" display="inline"><mrow><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>α</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><msub><mn>1</mn><mn>𝟐</mn></msub></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">While we might not mourn Bolzano–Weierstraß compactness too much, it seems harder to live
+without Heine–Borel compactness, as attested by the fact that both classical mathematics
+and Brouwer’s Intuitionism accepted it. As we do not want to wade too deeply into general
+topology, we shall work with basic open sets. In the case of <math id="p15.m1" class="ltx_Math" alttext="\mathbb{R}" display="inline"><mi>ℝ</mi></math> these are the open
+intervals with rational endpoints. A family of such intervals, indexed by a type <math id="p15.m2" class="ltx_Math" alttext="I" display="inline"><mi>I</mi></math>,
+would be a map
+</p>
+<table id="S0.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex13.m1" class="ltx_Math" alttext="\mathcal{F}:I\to\setof{(q,r):\mathbb{Q}\times\mathbb{Q}|q&lt;r}," display="block"><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>:</mo><mi>I</mi><mo>→</mo><merror class="ltx_ERROR undefined undefined"><mtext>\setof</mtext></merror><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>ℚ</mi><mo>×</mo><mi>ℚ</mi><mo stretchy="false">|</mo><mi>q</mi><mo>&lt;</mo><mi>r</mi><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with the idea that a pair of rationals <math id="p15.m3" class="ltx_Math" alttext="(q,r)" display="inline"><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></math> with <math id="p15.m4" class="ltx_Math" alttext="q&lt;r" display="inline"><mrow><mi>q</mi><mo>&lt;</mo><mi>r</mi></mrow></math> determines the type <math id="p15.m5" class="ltx_Math" alttext="\setof{x:\mathbb{R}|q&lt;x&lt;r}" display="inline"><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\setof</mtext></merror><mi>x</mi><mo>:</mo><mi>ℝ</mi><mo stretchy="false">|</mo><mi>q</mi><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><mi>r</mi></mrow></math>. It is slightly more convenient to allow degenerate intervals as well, so we take a
+<span class="ltx_text ltx_font_bold">family of basic intervals</span>
+to be a map
+</p>
+<table id="S0.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex14.m1" class="ltx_Math" alttext="\mathcal{F}:I\to\mathbb{Q}\times\mathbb{Q}." display="block"><mrow><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>:</mo><mrow><mi>I</mi><mo>→</mo><mrow><mi>ℚ</mi><mo>×</mo><mi>ℚ</mi></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">To be quite precise, a family is a dependent pair <math id="p15.m6" class="ltx_Math" alttext="(I,\mathcal{F})" display="inline"><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow></math>, not just
+<math id="p15.m7" class="ltx_Math" alttext="\mathcal{F}" display="inline"><mi class="ltx_font_mathcaligraphic">ℱ</mi></math>. A <span class="ltx_text ltx_font_bold">finite family of basic intervals</span> is one indexed by <math id="p15.m8" class="ltx_Math" alttext="\setof{m:\mathbb{N}|m&lt;n}" display="inline"><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\setof</mtext></merror><mi>m</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">|</mo><mi>m</mi><mo>&lt;</mo><mi>n</mi></mrow></math> for some <math id="p15.m9" class="ltx_Math" alttext="n:\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></math>. We usually present it by a finite list <math id="p15.m10" class="ltx_Math" alttext="[(q_{0},r_{0}),\ldots,(q_{n-1},r_{n-1})]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>r</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow></math>. Finally, a <span class="ltx_text ltx_font_bold">finite subfamily</span> of <math id="p15.m11" class="ltx_Math" alttext="(I,\mathcal{F})" display="inline"><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow></math> is given
+by a list of indices <math id="p15.m12" class="ltx_Math" alttext="[i_{1},\ldots,i_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>i</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>i</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math> which then determine the finite family
+<math id="p15.m13" class="ltx_Math" alttext="[\mathcal{F}(i_{1}),\ldots,\mathcal{F}(i_{n})]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>i</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>i</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></math>.</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">As long as we are aware of the distinction between a pair <math id="p16.m1" class="ltx_Math" alttext="(q,r)" display="inline"><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></math> and the corresponding
+interval <math id="p16.m2" class="ltx_Math" alttext="\setof{x:\mathbb{R}|q&lt;x&lt;r}" display="inline"><mrow><merror class="ltx_ERROR undefined undefined"><mtext>\setof</mtext></merror><mi>x</mi><mo>:</mo><mi>ℝ</mi><mo stretchy="false">|</mo><mi>q</mi><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><mi>r</mi></mrow></math>, we may safely use the same notation <math id="p16.m3" class="ltx_Math" alttext="(q,r)" display="inline"><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></math> for
+both. Intersections and inclusions of intervals are expressible in terms of their
+endpoints:
+</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex15" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex15.m1" class="ltx_Math" alttext="\displaystyle(q,r)\cap(s,t)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>∩</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex15.m2" class="ltx_Math" alttext="\displaystyle\ :\!\!\equiv\ (\max(q,s),\min(r,t))," display="inline"><mrow><mi mathvariant="normal"> </mi><mo rspace="0pt">:</mo><mo rspace="7.5pt">≡</mo><mrow><mo stretchy="false">(</mo><mi>max</mi><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>min</mi><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex16" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex16.m1" class="ltx_Math" alttext="\displaystyle(q,r)\subseteq(s,t)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>⊆</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex16.m2" class="ltx_Math" alttext="\displaystyle\ :\!\!\equiv\ (q&lt;r\Rightarrow s\leq q&lt;r\leq t)." display="inline"><mrow><mi mathvariant="normal"> </mi><mo rspace="0pt">:</mo><mo rspace="7.5pt">≡</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>&lt;</mo><mi>r</mi><mo>⇒</mo><mi>s</mi><mo>≤</mo><mi>q</mi><mo>&lt;</mo><mi>r</mi><mo>≤</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We say that <math id="p16.m4" class="ltx_Math" alttext="(I,{\lambda}i.\,(q_{i},r_{i}))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>I</mi><mo>,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>i</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo>,</mo><msub><mi>r</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> <span class="ltx_text ltx_font_bold">(pointwise) covers <math id="p16.m5" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo mathvariant="normal" stretchy="false">[</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">]</mo></mrow></math></span>
+when
+</p>
+<table id="S0.E2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E2.m1" class="ltx_Math" alttext="\forall(x:[a,b]).\,\exists(i:I).\,q_{i}&lt;x&lt;r_{i}." display="block"><mrow><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mo>∃</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>:</mo><mi>I</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><msub><mi>q</mi><mi>i</mi></msub><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><msub><mi>r</mi><mi>i</mi></msub><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(11.5.10)</span></td>
+</tr>
+</table>
+<p class="ltx_p">The <span class="ltx_text ltx_font_bold">Heine-Borel compactness for <math id="p16.m6" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo mathvariant="normal" stretchy="false">[</mo><mn mathvariant="normal">0</mn><mo mathvariant="normal">,</mo><mn mathvariant="normal">1</mn><mo mathvariant="normal" stretchy="false">]</mo></mrow></math></span>
+states that every covering family of <math id="p16.m7" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math>
+merely has a finite subfamily which still covers <math id="p16.m8" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math>.</p>
+</div>
+<div id="Thmprethm4" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 11.5.11</span>.</h6>
+<div id="Thmprethm4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">If excluded middle holds then <math id="Thmprethm4.p1.m1" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo mathvariant="normal" stretchy="false">[</mo><mn mathvariant="normal">0</mn><mo mathvariant="normal">,</mo><mn mathvariant="normal">1</mn><mo mathvariant="normal" stretchy="false">]</mo></mrow></math> is Heine-Borel compact.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">Assume for the purpose of reaching a contradiction that a family <math id="p17.m1" class="ltx_Math" alttext="(I,{\lambda}i.\,(a_{i},b_{i}))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>I</mi><mo>,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>i</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><mo>,</mo><msub><mi>b</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> covers <math id="p17.m2" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math> but no finite subfamily does. We construct a sequence of closed
+intervals <math id="p17.m3" class="ltx_Math" alttext="[q_{n},r_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mi>n</mi></msub><mo>,</mo><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math> which are nested, their sizes shrink to <math id="p17.m4" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math>, and none of them is covered
+by a finite subfamily of <math id="p17.m5" class="ltx_Math" alttext="(I,{\lambda}i.\,(a_{i},b_{i}))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>I</mi><mo>,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>i</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><mo>,</mo><msub><mi>b</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math>.</p>
+</div>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">We set <math id="p18.m1" class="ltx_Math" alttext="[q_{0},r_{0}]:\!\!\equiv[0,1]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>0</mn></msub><mo stretchy="false">]</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></math>. Assuming <math id="p18.m2" class="ltx_Math" alttext="[q_{n},r_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mi>n</mi></msub><mo>,</mo><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math> has been constructed, let <math id="p18.m3" class="ltx_Math" alttext="s:\!\!\equiv(2q_{n}+r_{n})/3" display="inline"><mrow><mi>s</mi><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mn>2</mn><msub><mi>q</mi><mi>n</mi></msub><mo>+</mo><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>/</mo><mn>3</mn></mrow></math> and <math id="p18.m4" class="ltx_Math" alttext="t:\!\!\equiv(q_{n}+2r_{n})/3" display="inline"><mrow><mi>t</mi><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mi>n</mi></msub><mo>+</mo><mn>2</mn><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mo>/</mo><mn>3</mn></mrow></math>. Both <math id="p18.m5" class="ltx_Math" alttext="[q_{n},t]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mi>n</mi></msub><mo>,</mo><mi>t</mi><mo stretchy="false">]</mo></mrow></math> and <math id="p18.m6" class="ltx_Math" alttext="[s,r_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><mi>s</mi><mo>,</mo><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math>
+are covered by <math id="p18.m7" class="ltx_Math" alttext="(I,{\lambda}i.\,(a_{i},b_{i}))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>I</mi><mo>,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>i</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><mo>,</mo><msub><mi>b</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math>, but they cannot both have a finite subcover,
+or else so would <math id="p18.m8" class="ltx_Math" alttext="[q_{n},r_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mi>n</mi></msub><mo>,</mo><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math>. Either <math id="p18.m9" class="ltx_Math" alttext="[q_{n},t]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mi>n</mi></msub><mo>,</mo><mi>t</mi><mo stretchy="false">]</mo></mrow></math> has a finite subcover or it does not.
+If it does we set <math id="p18.m10" class="ltx_Math" alttext="[q_{n+1},r_{n+1}]:\!\!\equiv[s,r_{n}]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>r</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">[</mo><mi>s</mi><mo>,</mo><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></mrow></math>, otherwise we set <math id="p18.m11" class="ltx_Math" alttext="[q_{n+1},r_{n+1}]:\!\!\equiv[q_{n},t]" display="inline"><mrow><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>r</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mi>n</mi></msub><mo>,</mo><mi>t</mi><mo stretchy="false">]</mo></mrow></mrow></math>.</p>
+</div>
+<div id="p19" class="ltx_para">
+<p class="ltx_p">The sequences <math id="p19.m1" class="ltx_Math" alttext="q_{0},q_{1},\ldots" display="inline"><mrow><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><msub><mi>q</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi></mrow></math> and <math id="p19.m2" class="ltx_Math" alttext="r_{0},r_{1},\ldots" display="inline"><mrow><msub><mi>r</mi><mn>0</mn></msub><mo>,</mo><msub><mi>r</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi></mrow></math> are both Cauchy and they
+converge to a point <math id="p19.m3" class="ltx_Math" alttext="x:[0,1]" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></mrow></math> which is contained in every <math id="p19.m4" class="ltx_Math" alttext="[q_{n},r_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mi>n</mi></msub><mo>,</mo><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math>.
+There merely exists <math id="p19.m5" class="ltx_Math" alttext="i:I" display="inline"><mrow><mi>i</mi><mo>:</mo><mi>I</mi></mrow></math> such that <math id="p19.m6" class="ltx_Math" alttext="a_{i}&lt;x&lt;b_{i}" display="inline"><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><msub><mi>b</mi><mi>i</mi></msub></mrow></math>. Because the sizes of the
+intervals <math id="p19.m7" class="ltx_Math" alttext="[q_{n},r_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mi>n</mi></msub><mo>,</mo><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math> shrink to zero, there is <math id="p19.m8" class="ltx_Math" alttext="n:\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></math> such that <math id="p19.m9" class="ltx_Math" alttext="a_{i}&lt;q_{n}\leq x\leq r_{n}&lt;b_{i}" display="inline"><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>&lt;</mo><msub><mi>q</mi><mi>n</mi></msub><mo>≤</mo><mi>x</mi><mo>≤</mo><msub><mi>r</mi><mi>n</mi></msub><mo>&lt;</mo><msub><mi>b</mi><mi>i</mi></msub></mrow></math>, but this means that <math id="p19.m10" class="ltx_Math" alttext="[q_{n},r_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>q</mi><mi>n</mi></msub><mo>,</mo><msub><mi>r</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math> is covered by a single interval <math id="p19.m11" class="ltx_Math" alttext="(a_{i},b_{i})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><mo>,</mo><msub><mi>b</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></math>, while at the same time it has no finite subcover. A contradiction.
+∎</p>
+</div>
+</div>
+<div id="p20" class="ltx_para">
+<p class="ltx_p">Without excluded middle, or a pinch of Brouwerian Intuitionism, we seem to be stuck.
+Nevertheless, Heine-Borel compactness of <math id="p20.m1" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math> <em class="ltx_emph ltx_font_italic">can</em> be recovered in a constructive
+setting, in a fashion that is still compatible with classical mathematics! For this to be
+done, we need to revisit the notion of cover. The trouble with
+(<a href="#S0.E2" title="(11.5.10) ‣ 11.5 Compactness of the interval" class="ltx_ref"><span class="ltx_text ltx_ref_tag">11.5.10</span></a>) is that the truncated existential allows a space to
+be covered in any haphazard way, and so computationally speaking, we stand no chance of
+merely extracting a finite subcover. By removing the truncation we get</p>
+<table id="S0.E3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E3.m1" class="ltx_Math" alttext="\mathchoice{\prod_{(x:[0,1])}\,}{\mathchoice{{\textstyle\prod_{(x:[0,1])}}}{%
+\prod_{(x:[0,1])}}{\prod_{(x:[0,1])}}{\prod_{(x:[0,1])}}}{\mathchoice{{%
+\textstyle\prod_{(x:[0,1])}}}{\prod_{(x:[0,1])}}{\prod_{(x:[0,1])}}{\prod_{(x:%
+[0,1])}}}{\mathchoice{{\textstyle\prod_{(x:[0,1])}}}{\prod_{(x:[0,1])}}{\prod_%
+{(x:[0,1])}}{\prod_{(x:[0,1])}}}\mathchoice{\sum_{(i:I)}\,}{\mathchoice{{%
+\textstyle\sum_{(i:I)}}}{\sum_{(i:I)}}{\sum_{(i:I)}}{\sum_{(i:I)}}}{%
+\mathchoice{{\textstyle\sum_{(i:I)}}}{\sum_{(i:I)}}{\sum_{(i:I)}}{\sum_{(i:I)}%
+}}{\mathchoice{{\textstyle\sum_{(i:I)}}}{\sum_{(i:I)}}{\sum_{(i:I)}}{\sum_{(i:%
+I)}}}q_{i}&lt;x&lt;r_{i}," display="block"><mrow><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><mo stretchy="false">)</mo></mrow></munder></mpadded><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>:</mo><mi>I</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><msub><mi>q</mi><mi>i</mi></msub></mrow></mrow><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><msub><mi>r</mi><mi>i</mi></msub></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(11.5.12)</span></td>
+</tr>
+</table>
+<p class="ltx_p">which might help, were it not too demanding of covers. With this definition we
+could not even show that <math id="p20.m2" class="ltx_Math" alttext="(0,3)" display="inline"><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math> and <math id="p20.m3" class="ltx_Math" alttext="(2,5)" display="inline"><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mn>5</mn><mo stretchy="false">)</mo></mrow></math> cover <math id="p20.m4" class="ltx_Math" alttext="[1,4]" display="inline"><mrow><mo stretchy="false">[</mo><mn>1</mn><mo>,</mo><mn>4</mn><mo stretchy="false">]</mo></mrow></math> because that would amount
+to exhibiting a non-constant map <math id="p20.m5" class="ltx_Math" alttext="[1,4]\to\mathbf{2}" display="inline"><mrow><mrow><mo stretchy="false">[</mo><mn>1</mn><mo>,</mo><mn>4</mn><mo stretchy="false">]</mo></mrow><mo>→</mo><mn>𝟐</mn></mrow></math>, see
+<span class="ltx_ERROR undefined">\autoref</span>ex:reals-non-constant-into-Z. Here we can take a lesson from “pointfree topology”
+(i.e. locale theory):
+the notion of cover ought to be expressed in terms of open sets, without
+reference to points. Such a “holistic” view of space will then allow us to analyze the
+notion of cover, and we shall be able to recover Heine-Borel compactness. Locale
+theory uses power sets,
+which we could obtain by assuming propositional resizing;
+but instead we can steal ideas from the predicative cousin of locale theory,
+which is called “formal topology”.
+</p>
+</div>
+<div id="p21" class="ltx_para">
+<p class="ltx_p">Suppose that we have a family <math id="p21.m1" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math> and an interval <math id="p21.m2" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math>. How might
+we express the fact that <math id="p21.m3" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> is covered by the family, without referring to points?
+Here is one: if <math id="p21.m4" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> equals some <math id="p21.m5" class="ltx_Math" alttext="\mathcal{F}(i)" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mrow></math> then it is covered by the family.
+And another one: if <math id="p21.m6" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> is covered by some other family <math id="p21.m7" class="ltx_Math" alttext="(J,\mathcal{G})" display="inline"><mrow><mo stretchy="false">(</mo><mi>J</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">𝒢</mi><mo stretchy="false">)</mo></mrow></math>, and in
+turn each <math id="p21.m8" class="ltx_Math" alttext="\mathcal{G}(j)" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒢</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mrow></math> is covered by <math id="p21.m9" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math>, then <math id="p21.m10" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> is covered
+<math id="p21.m11" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math>. Notice that we are listing <em class="ltx_emph ltx_font_italic">rules</em> which can be used to
+<em class="ltx_emph ltx_font_italic">deduce</em> that <math id="p21.m12" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math> covers <math id="p21.m13" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math>. We should find sufficiently
+good rules and turn them into an inductive definition.</p>
+</div>
+<div id="Thmpredefn5" class="ltx_theorem ltx_theorem_predefn">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Definition 11.5.13</span>.</h6>
+<div id="Thmpredefn5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">The <span class="ltx_text ltx_font_bold">inductive cover <math id="Thmpredefn5.p1.m1" class="ltx_Math" alttext="\triangleleft" display="inline"><mo mathvariant="normal">◁</mo></math></span>
+is a mere relation
+</span></p>
+<table id="S0.Ex17" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex17.m1" class="ltx_Math" alttext="{\triangleleft}:(\mathbb{Q}\times\mathbb{Q})\to\Bigl{(}\mathchoice{\sum_{I:%
+\mathcal{U}}\,}{\mathchoice{{\textstyle\sum_{(I:\mathcal{U})}}}{\sum_{(I:%
+\mathcal{U})}}{\sum_{(I:\mathcal{U})}}{\sum_{(I:\mathcal{U})}}}{\mathchoice{{%
+\textstyle\sum_{(I:\mathcal{U})}}}{\sum_{(I:\mathcal{U})}}{\sum_{(I:\mathcal{U%
+})}}{\sum_{(I:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(I:\mathcal{U})}}}{%
+\sum_{(I:\mathcal{U})}}{\sum_{(I:\mathcal{U})}}{\sum_{(I:\mathcal{U})}}}(I\to%
+\mathbb{Q}\times\mathbb{Q})\Bigr{)}\to\mathsf{Prop}" display="block"><mrow><mo>◁</mo><mo>:</mo><mrow><mo stretchy="false">(</mo><mi>ℚ</mi><mo>×</mo><mi>ℚ</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>I</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>→</mo><mi>ℚ</mi><mo>×</mo><mi>ℚ</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>→</mo><mi>𝖯𝗋𝗈𝗉</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">defined inductively by the following rules, where <math id="Thmpredefn5.p1.m2" class="ltx_Math" alttext="q,r,s,t" display="inline"><mrow><mi>q</mi><mo mathvariant="normal">,</mo><mi>r</mi><mo mathvariant="normal">,</mo><mi>s</mi><mo mathvariant="normal">,</mo><mi>t</mi></mrow></math> are rational numbers and
+<math id="Thmpredefn5.p1.m3" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>I</mi><mo mathvariant="normal">,</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">F</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mi></mi></mrow></math>, <math id="Thmpredefn5.p1.m4" class="ltx_Math" alttext="{\mathopen{}(J,\mathcal{G})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>J</mi><mo mathvariant="normal">,</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">G</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mi></mi></mrow></math> are families of basic intervals:</span></p>
+<ol id="I3" class="ltx_enumerate">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">reflexivity:</em><span class="ltx_text ltx_font_italic">
+</span><math id="I3.i1.p1.m1" class="ltx_Math" alttext="\mathcal{F}(i)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math><span class="ltx_text ltx_font_italic"> for all </span><math id="I3.i1.p1.m2" class="ltx_Math" alttext="i:I" display="inline"><mrow><mi>i</mi><mo>:</mo><mi>I</mi></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">transitivity:</em><span class="ltx_text ltx_font_italic">
+if </span><math id="I3.i2.p1.m1" class="ltx_Math" alttext="(q,r)\triangleleft{\mathopen{}(J,\mathcal{G})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>J</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">𝒢</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i2.p1.m2" class="ltx_Math" alttext="\forall(j:J).\,\mathcal{G}(j)\triangleleft{\mathopen{}(I,\mathcal{F})%
+\mathclose{}}" display="inline"><mrow><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>j</mi><mo>:</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi class="ltx_font_mathcaligraphic">𝒢</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">
+then </span><math id="I3.i2.p1.m3" class="ltx_Math" alttext="(q,r)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">3.</span></span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">monotonicity:</em><span class="ltx_text ltx_font_italic">
+if </span><math id="I3.i3.p1.m1" class="ltx_Math" alttext="(q,r)\subseteq(s,t)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>⊆</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> and </span><math id="I3.i3.p1.m2" class="ltx_Math" alttext="(s,t)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math><span class="ltx_text ltx_font_italic"> then </span><math id="I3.i3.p1.m3" class="ltx_Math" alttext="(q,r)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">4.</span></span> 
+<div id="I3.i4.p1" class="ltx_para">
+<p class="ltx_p"><em class="ltx_emph">localization:</em><span class="ltx_text ltx_font_italic">
+</span><span class="ltx_text ltx_font_italic">if </span><math id="I3.i4.p1.m1" class="ltx_Math" alttext="(q,r)\triangleleft(I,\mathcal{F})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic"> then </span><math id="I3.i4.p1.m2" class="ltx_Math" alttext="(q,r)\cap(s,t)\triangleleft(I,{\lambda}i.\,(\mathcal{F}(i)\cap(s,t)))" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>∩</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi>λ</mi><mi>i</mi><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><mo>∩</mo><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+<li id="I3.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">5.</span></span> 
+<div id="I3.i5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">if </span><math id="I3.i5.p1.m1" class="ltx_Math" alttext="q&lt;s&lt;t&lt;r" display="inline"><mrow><mi>q</mi><mo>&lt;</mo><mi>s</mi><mo>&lt;</mo><mi>t</mi><mo>&lt;</mo><mi>r</mi></mrow></math><span class="ltx_text ltx_font_italic"> then </span><math id="I3.i5.p1.m2" class="ltx_Math" alttext="(q,r)\triangleleft[(q,t),(r,s)]" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mo stretchy="false">[</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>r</mi><mo>,</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">,</span></p>
+</div>
+</li>
+<li id="I3.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">6.</span></span> 
+<div id="I3.i6.p1" class="ltx_para">
+<p class="ltx_p"><math id="I3.i6.p1.m1" class="ltx_Math" alttext="(q,r)\triangleleft(\setof{(s,t):\mathbb{Q}\times\mathbb{Q}|q&lt;s&lt;t&lt;r},{\lambda}u%
+.\,u)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mo stretchy="false">(</mo><merror class="ltx_ERROR undefined undefined"><mtext>\setof</mtext></merror><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>ℚ</mi><mo>×</mo><mi>ℚ</mi><mo stretchy="false">|</mo><mi>q</mi><mo>&lt;</mo><mi>s</mi><mo>&lt;</mo><mi>t</mi><mo>&lt;</mo><mi>r</mi><mo>,</mo><mi>λ</mi><mi>u</mi><mo rspace="4.2pt">.</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mrow></math><span class="ltx_text ltx_font_italic">.</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="p22" class="ltx_para">
+<p class="ltx_p">The definition should be read as a higher-inductive type in which the listed rules are
+point constructors, and the type is <math id="p22.m1" class="ltx_Math" alttext="(-1)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></math>-truncated. The first four clauses are of a
+general nature and should be intuitively clear. The last two clauses are specific to the
+real line: one says that an interval may be covered by two intervals if they overlap,
+while the other one says that an interval may be covered from within. Incidentally, if <math id="p22.m2" class="ltx_Math" alttext="r\leq q" display="inline"><mrow><mi>r</mi><mo>≤</mo><mi>q</mi></mrow></math> then <math id="p22.m3" class="ltx_Math" alttext="(q,r)" display="inline"><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow></math> is covered by the empty family by the last clause.</p>
+</div>
+<div id="p23" class="ltx_para">
+<p class="ltx_p">Inductive covers enjoy the Heine-Borel property, the proof of which requires a lemma.</p>
+</div>
+<div id="Thmprelem1" class="ltx_theorem ltx_theorem_prelem">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Lemma 11.5.14</span>.</h6>
+<div id="Thmprelem1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Suppose <math id="Thmprelem1.p1.m1" class="ltx_Math" alttext="q&lt;s&lt;t&lt;r" display="inline"><mrow><mi>q</mi><mo mathvariant="normal">&lt;</mo><mi>s</mi><mo mathvariant="normal">&lt;</mo><mi>t</mi><mo mathvariant="normal">&lt;</mo><mi>r</mi></mrow></math> and <math id="Thmprelem1.p1.m2" class="ltx_Math" alttext="(q,r)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>q</mi><mo mathvariant="normal">,</mo><mi>r</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mo mathvariant="normal">◁</mo><mrow><mi></mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>I</mi><mo mathvariant="normal">,</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">F</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math>. Then there merely
+exists a finite subfamily of <math id="Thmprelem1.p1.m3" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>I</mi><mo mathvariant="normal">,</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">F</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow><mi></mi></mrow></math> which inductively covers <math id="Thmprelem1.p1.m4" class="ltx_Math" alttext="(s,t)" display="inline"><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>s</mi><mo mathvariant="normal">,</mo><mi>t</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></math>.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p24" class="ltx_para">
+<p class="ltx_p">We prove the statement by induction on <math id="p24.m1" class="ltx_Math" alttext="(q,r)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math>. There are
+six cases:</p>
+<ol id="I4" class="ltx_enumerate">
+<li id="I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I4.i1.p1" class="ltx_para">
+<p class="ltx_p">Reflexivity: if <math id="I4.i1.p1.m1" class="ltx_Math" alttext="(q,r)=\mathcal{F}(i)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> then by monotonicity <math id="I4.i1.p1.m2" class="ltx_Math" alttext="(s,t)" display="inline"><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math> is covered
+by the finite subfamily <math id="I4.i1.p1.m3" class="ltx_Math" alttext="[\mathcal{F}(i)]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></math>.</p>
+</div>
+</li>
+<li id="I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I4.i2.p1" class="ltx_para">
+<p class="ltx_p">Transitivity:
+suppose <math id="I4.i2.p1.m1" class="ltx_Math" alttext="(q,r)\triangleleft{\mathopen{}(J,\mathcal{G})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>J</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">𝒢</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math> and <math id="I4.i2.p1.m2" class="ltx_Math" alttext="\forall(j:J).\,\mathcal{G}(j)\triangleleft{\mathopen{}(I,\mathcal{F})%
+\mathclose{}}" display="inline"><mrow><mo>∀</mo><mrow><mo stretchy="false">(</mo><mi>j</mi><mo>:</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi class="ltx_font_mathcaligraphic">𝒢</mi><mrow><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math>. By the inductive hypothesis there merely exists
+<math id="I4.i2.p1.m3" class="ltx_Math" alttext="[\mathcal{G}(j_{1}),\ldots,\mathcal{G}(j_{n})]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒢</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>j</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒢</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>j</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></math> which covers <math id="I4.i2.p1.m4" class="ltx_Math" alttext="(s,t)" display="inline"><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math>.
+Again by the inductive hypothesis, each of <math id="I4.i2.p1.m5" class="ltx_Math" alttext="\mathcal{G}(j_{k})" display="inline"><mrow><mi class="ltx_font_mathcaligraphic">𝒢</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>j</mi><mi>k</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> is covered by a finite
+subfamily of <math id="I4.i2.p1.m6" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math>, and we can collect these into a finite
+subfamily which covers <math id="I4.i2.p1.m7" class="ltx_Math" alttext="(s,t)" display="inline"><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math>.</p>
+</div>
+</li>
+<li id="I4.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I4.i3.p1" class="ltx_para">
+<p class="ltx_p">Monotonicity:
+if <math id="I4.i3.p1.m1" class="ltx_Math" alttext="(q,r)\subseteq(u,v)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>⊆</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="I4.i3.p1.m2" class="ltx_Math" alttext="(u,v)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math> then we may
+apply the inductive hypothesis to <math id="I4.i3.p1.m3" class="ltx_Math" alttext="(u,v)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math> because <math id="I4.i3.p1.m4" class="ltx_Math" alttext="u&lt;s&lt;t&lt;v" display="inline"><mrow><mi>u</mi><mo>&lt;</mo><mi>s</mi><mo>&lt;</mo><mi>t</mi><mo>&lt;</mo><mi>v</mi></mrow></math>.</p>
+</div>
+</li>
+<li id="I4.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I4.i4.p1" class="ltx_para">
+<p class="ltx_p">Localization:
+suppose <math id="I4.i4.p1.m1" class="ltx_Math" alttext="(q^{\prime},r^{\prime})\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><msup><mi>q</mi><mo>′</mo></msup><mo>,</mo><msup><mi>r</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math> and <math id="I4.i4.p1.m2" class="ltx_Math" alttext="(q,r)=(q^{\prime},r^{\prime})\cap(a,b)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><msup><mi>q</mi><mo>′</mo></msup><mo>,</mo><msup><mi>r</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow><mo>∩</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+Because <math id="I4.i4.p1.m3" class="ltx_Math" alttext="q^{\prime}&lt;s&lt;t&lt;r^{\prime}" display="inline"><mrow><msup><mi>q</mi><mo>′</mo></msup><mo>&lt;</mo><mi>s</mi><mo>&lt;</mo><mi>t</mi><mo>&lt;</mo><msup><mi>r</mi><mo>′</mo></msup></mrow></math>, by the inductive hypothesis there is a finite subcover
+<math id="I4.i4.p1.m4" class="ltx_Math" alttext="[\mathcal{F}(i_{1}),\ldots,\mathcal{F}(i_{n})]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>i</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>i</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></math> of <math id="I4.i4.p1.m5" class="ltx_Math" alttext="(s,t)" display="inline"><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></math>. We also know that <math id="I4.i4.p1.m6" class="ltx_Math" alttext="a&lt;s&lt;t&lt;b" display="inline"><mrow><mi>a</mi><mo>&lt;</mo><mi>s</mi><mo>&lt;</mo><mi>t</mi><mo>&lt;</mo><mi>b</mi></mrow></math>, therefore <math id="I4.i4.p1.m7" class="ltx_Math" alttext="(s,t)=(s,t)\cap(a,b)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>∩</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> is covered by
+<math id="I4.i4.p1.m8" class="ltx_Math" alttext="[\mathcal{F}(i_{1})\cap(a,b),\ldots,\mathcal{F}(i_{n})\cap(a,b)]" display="inline"><mrow><mo stretchy="false">[</mo><mrow><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>i</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>∩</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mi>i</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo>∩</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">]</mo></mrow></math>, which is a
+finite subfamily of <math id="I4.i4.p1.m9" class="ltx_Math" alttext="(I,{\lambda}i.\,(\mathcal{F}(i)\cap(a,b)))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>I</mi><mo>,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>i</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><mrow><mrow><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mrow><mo>∩</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math>.</p>
+</div>
+</li>
+<li id="I4.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">5.</span> 
+<div id="I4.i5.p1" class="ltx_para">
+<p class="ltx_p">If <math id="I4.i5.p1.m1" class="ltx_Math" alttext="(q,r)\triangleleft[(q,v),(u,r)]" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mo stretchy="false">[</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow></mrow></math> for some <math id="I4.i5.p1.m2" class="ltx_Math" alttext="q&lt;u&lt;v&lt;r" display="inline"><mrow><mi>q</mi><mo>&lt;</mo><mi>u</mi><mo>&lt;</mo><mi>v</mi><mo>&lt;</mo><mi>r</mi></mrow></math> then by monotonicity
+<math id="I4.i5.p1.m3" class="ltx_Math" alttext="(s,t)\triangleleft[(q,v),(u,r)]" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mo stretchy="false">[</mo><mrow><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">]</mo></mrow></mrow></math>.</p>
+</div>
+</li>
+<li id="I4.i6" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">6.</span> 
+<div id="I4.i6.p1" class="ltx_para">
+<p class="ltx_p">Finally, <math id="I4.i6.p1.m1" class="ltx_Math" alttext="(s,t)\triangleleft(\setof{(u,v):\mathbb{Q}\times\mathbb{Q}|q&lt;u&lt;v&lt;r},{\lambda}z%
+.\,z)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mo stretchy="false">(</mo><merror class="ltx_ERROR undefined undefined"><mtext>\setof</mtext></merror><mrow><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><mo>:</mo><mi>ℚ</mi><mo>×</mo><mi>ℚ</mi><mo stretchy="false">|</mo><mi>q</mi><mo>&lt;</mo><mi>u</mi><mo>&lt;</mo><mi>v</mi><mo>&lt;</mo><mi>r</mi><mo>,</mo><mi>λ</mi><mi>z</mi><mo rspace="4.2pt">.</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></math> by
+reflexivity. ∎</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="p25" class="ltx_para">
+<p class="ltx_p">Say that <math id="p25.m1" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math><span class="ltx_text ltx_font_bold"> inductively covers
+<math id="p25.m2" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo mathvariant="normal" stretchy="false">[</mo><mi>a</mi><mo mathvariant="normal">,</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">]</mo></mrow></math></span> when there merely exists <math id="p25.m3" class="ltx_Math" alttext="\epsilon:\mathbb{Q}_{+}" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub></mrow></math> such that <math id="p25.m4" class="ltx_Math" alttext="(a-\epsilon,b+\epsilon)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>-</mo><mi>ϵ</mi><mo>,</mo><mi>b</mi><mo>+</mo><mi>ϵ</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math>.</p>
+</div>
+<div id="Thmprecor1" class="ltx_theorem ltx_theorem_precor">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Corollary 11.5.15</span>.</h6>
+<div id="Thmprecor1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">A closed interval is Heine-Borel compact for inductive covers.</span></p>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p26" class="ltx_para">
+<p class="ltx_p">Suppose <math id="p26.m1" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math> is inductively covered by <math id="p26.m2" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math>, so there merely is
+<math id="p26.m3" class="ltx_Math" alttext="\epsilon:\mathbb{Q}_{+}" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub></mrow></math> such that <math id="p26.m4" class="ltx_Math" alttext="(a-\epsilon,b+\epsilon)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>-</mo><mi>ϵ</mi><mo>,</mo><mi>b</mi><mo>+</mo><mi>ϵ</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math>.
+By <span class="ltx_ERROR undefined">\autoref</span>reals-formal-topology-locally-compact there is a finite subcover of
+<math id="p26.m5" class="ltx_Math" alttext="(a-\epsilon/2,b+\epsilon/2)" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mi>a</mi><mo>-</mo><mrow><mi>ϵ</mi><mo>/</mo><mn>2</mn></mrow></mrow><mo>,</mo><mrow><mi>b</mi><mo>+</mo><mrow><mi>ϵ</mi><mo>/</mo><mn>2</mn></mrow></mrow><mo stretchy="false">)</mo></mrow></math>, which is therefore a finite subcover of <math id="p26.m6" class="ltx_Math" alttext="[a,b]" display="inline"><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></math>.
+∎</p>
+</div>
+</div>
+<div id="p27" class="ltx_para">
+<p class="ltx_p">Experience from formal topology shows that the rules for inductive covers are sufficient
+for a constructive development of pointfree topology. But we can also provide our own
+evidence that they are a reasonable notion.
+</p>
+</div>
+<div id="Thmprethm5" class="ltx_theorem ltx_theorem_prethm">
+<h6 class="ltx_title ltx_runin ltx_font_bold ltx_title_theorem">
+<span class="ltx_tag ltx_tag_theorem">Theorem 11.5.16</span>.</h6>
+<div id="Thmprethm5.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic"></span></p>
+<ol id="I5" class="ltx_enumerate">
+<li id="I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">1.</span></span> 
+<div id="I5.i1.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">An inductive cover is also a pointwise cover.</span></p>
+</div>
+</li>
+<li id="I5.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate"><span class="ltx_text ltx_font_italic">2.</span></span> 
+<div id="I5.i2.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_italic">Assuming excluded middle, a pointwise cover is also an inductive cover.</span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="ltx_proof">
+<h6 class="ltx_title ltx_runin ltx_font_italic ltx_title_proof">Proof.</h6>
+<div id="p28" class="ltx_para">
+<p class="ltx_p"></p>
+<ol id="I6" class="ltx_enumerate">
+<li id="I6.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I6.i1.p1" class="ltx_para">
+<p class="ltx_p">Consider a family of basic intervals <math id="I6.i1.p1.m1" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math>, where we write <math id="I6.i1.p1.m2" class="ltx_Math" alttext="(q_{i},r_{i}):\!\!\equiv\mathcal{F}(i)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo>,</mo><msub><mi>r</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mrow></math>, an interval <math id="I6.i1.p1.m3" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math> inductively covered by <math id="I6.i1.p1.m4" class="ltx_Math" alttext="{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></math>, and <math id="I6.i1.p1.m5" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> such that <math id="I6.i1.p1.m6" class="ltx_Math" alttext="a&lt;x&lt;b" display="inline"><mrow><mi>a</mi><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><mi>b</mi></mrow></math>.
+We prove by induction on <math id="I6.i1.p1.m7" class="ltx_Math" alttext="(a,b)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math> that there merely
+exists <math id="I6.i1.p1.m8" class="ltx_Math" alttext="i:I" display="inline"><mrow><mi>i</mi><mo>:</mo><mi>I</mi></mrow></math> such that <math id="I6.i1.p1.m9" class="ltx_Math" alttext="q_{i}&lt;x&lt;r_{i}" display="inline"><mrow><msub><mi>q</mi><mi>i</mi></msub><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><msub><mi>r</mi><mi>i</mi></msub></mrow></math>. Most cases are pretty obvious, so we show
+just two. If <math id="I6.i1.p1.m10" class="ltx_Math" alttext="(a,b)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math> by reflexivity, then there merely
+is some <math id="I6.i1.p1.m11" class="ltx_Math" alttext="i:I" display="inline"><mrow><mi>i</mi><mo>:</mo><mi>I</mi></mrow></math> such that <math id="I6.i1.p1.m12" class="ltx_Math" alttext="(a,b)=(q_{i},r_{i})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo>,</mo><msub><mi>r</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow></math> and so <math id="I6.i1.p1.m13" class="ltx_Math" alttext="q_{i}&lt;x&lt;r_{i}" display="inline"><mrow><msub><mi>q</mi><mi>i</mi></msub><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><msub><mi>r</mi><mi>i</mi></msub></mrow></math>. If <math id="I6.i1.p1.m14" class="ltx_Math" alttext="(a,b)\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math> by transitivity via <math id="I6.i1.p1.m15" class="ltx_Math" alttext="(J,{\lambda}j.\,(s_{j},t_{j}))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>J</mi><mo>,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>j</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><msub><mi>s</mi><mi>j</mi></msub><mo>,</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> then by
+the inductive hypothesis there merely is <math id="I6.i1.p1.m16" class="ltx_Math" alttext="j:J" display="inline"><mrow><mi>j</mi><mo>:</mo><mi>J</mi></mrow></math> such that <math id="I6.i1.p1.m17" class="ltx_Math" alttext="s_{j}&lt;x&lt;t_{j}" display="inline"><mrow><msub><mi>s</mi><mi>j</mi></msub><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><msub><mi>t</mi><mi>j</mi></msub></mrow></math>, and then since
+<math id="I6.i1.p1.m18" class="ltx_Math" alttext="(s_{j},t_{j})\triangleleft{\mathopen{}(I,\mathcal{F})\mathclose{}}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>s</mi><mi>j</mi></msub><mo>,</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><mo>◁</mo><mrow><mi></mi><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi class="ltx_font_mathcaligraphic">ℱ</mi><mo stretchy="false">)</mo></mrow><mi></mi></mrow></mrow></math> again by the inductive hypothesis there merely
+exists <math id="I6.i1.p1.m19" class="ltx_Math" alttext="i:I" display="inline"><mrow><mi>i</mi><mo>:</mo><mi>I</mi></mrow></math> such that <math id="I6.i1.p1.m20" class="ltx_Math" alttext="q_{i}&lt;x&lt;r_{i}" display="inline"><mrow><msub><mi>q</mi><mi>i</mi></msub><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><msub><mi>r</mi><mi>i</mi></msub></mrow></math>. Other cases are just as exciting.</p>
+</div>
+</li>
+<li id="I6.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I6.i2.p1" class="ltx_para">
+<p class="ltx_p">Suppose <math id="I6.i2.p1.m1" class="ltx_Math" alttext="(I,{\lambda}i.\,(q_{i},r_{i}))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>I</mi><mo>,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>i</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo>,</mo><msub><mi>r</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> pointwise covers <math id="I6.i2.p1.m2" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math>. By
+<span class="ltx_ERROR undefined">\autoref</span>defn:inductive-cover-interval-2 of <span class="ltx_ERROR undefined">\autoref</span>defn:inductive-cover it
+suffices to show that <math id="I6.i2.p1.m3" class="ltx_Math" alttext="(I,{\lambda}i.\,(q_{i},r_{i}))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>I</mi><mo>,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>i</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo>,</mo><msub><mi>r</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> inductively covers <math id="I6.i2.p1.m4" class="ltx_Math" alttext="(c,d)" display="inline"><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></math> whenever
+<math id="I6.i2.p1.m5" class="ltx_Math" alttext="a&lt;c&lt;d&lt;b" display="inline"><mrow><mi>a</mi><mo>&lt;</mo><mi>c</mi><mo>&lt;</mo><mi>d</mi><mo>&lt;</mo><mi>b</mi></mrow></math>, so consider such <math id="I6.i2.p1.m6" class="ltx_Math" alttext="c" display="inline"><mi>c</mi></math> and <math id="I6.i2.p1.m7" class="ltx_Math" alttext="d" display="inline"><mi>d</mi></math>. By <span class="ltx_ERROR undefined">\autoref</span>classical-Heine-Borel
+there is a finite subfamily <math id="I6.i2.p1.m8" class="ltx_Math" alttext="[i_{1},\ldots,i_{n}]" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>i</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>i</mi><mi>n</mi></msub><mo stretchy="false">]</mo></mrow></math> which already pointwise covers <math id="I6.i2.p1.m9" class="ltx_Math" alttext="[c,d]" display="inline"><mrow><mo stretchy="false">[</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">]</mo></mrow></math>, and hence <math id="I6.i2.p1.m10" class="ltx_Math" alttext="(c,d)" display="inline"><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></math>. Let <math id="I6.i2.p1.m11" class="ltx_Math" alttext="\epsilon:\mathbb{Q}_{+}" display="inline"><mrow><mi>ϵ</mi><mo>:</mo><msub><mi>ℚ</mi><mo>+</mo></msub></mrow></math> be a Lebesgue number
+
+for <math id="I6.i2.p1.m12" class="ltx_Math" alttext="(q_{i_{1}},r_{i_{1}}),\ldots,(q_{i_{n}},r_{i_{n}})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><msub><mi>i</mi><mn>1</mn></msub></msub><mo>,</mo><msub><mi>r</mi><msub><mi>i</mi><mn>1</mn></msub></msub><mo stretchy="false">)</mo></mrow><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><msub><mi>i</mi><mi>n</mi></msub></msub><mo>,</mo><msub><mi>r</mi><msub><mi>i</mi><mi>n</mi></msub></msub><mo stretchy="false">)</mo></mrow></mrow></math> as in
+<span class="ltx_ERROR undefined">\autoref</span>ex:finite-cover-lebesgue-number. There is a positive <math id="I6.i2.p1.m13" class="ltx_Math" alttext="k:\mathbb{N}" display="inline"><mrow><mi>k</mi><mo>:</mo><mi>ℕ</mi></mrow></math> such that <math id="I6.i2.p1.m14" class="ltx_Math" alttext="2(d-c)/k&lt;\min(1,\epsilon)" display="inline"><mrow><mrow><mrow><mn>2</mn><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>d</mi><mo>-</mo><mi>c</mi></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>/</mo><mi>k</mi></mrow><mo>&lt;</mo><mrow><mi>min</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mi>ϵ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>. For <math id="I6.i2.p1.m15" class="ltx_Math" alttext="0\leq i\leq k" display="inline"><mrow><mn>0</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mi>k</mi></mrow></math> let</p>
+<table id="S0.Ex18" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex18.m1" class="ltx_Math" alttext="c_{k}:\!\!\equiv((k-i)c+id)/k." display="block"><mrow><msub><mi>c</mi><mi>k</mi></msub><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo>-</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><mi>c</mi><mo>+</mo><mi>i</mi><mi>d</mi><mo stretchy="false">)</mo></mrow><mo>/</mo><mi>k</mi><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The intervals <math id="I6.i2.p1.m16" class="ltx_Math" alttext="(c_{0},c_{2})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mn>0</mn></msub><mo>,</mo><msub><mi>c</mi><mn>2</mn></msub><mo stretchy="false">)</mo></mrow></math>, <math id="I6.i2.p1.m17" class="ltx_Math" alttext="(c_{1},c_{3})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mi>c</mi><mn>3</mn></msub><mo stretchy="false">)</mo></mrow></math>, …, <math id="I6.i2.p1.m18" class="ltx_Math" alttext="(c_{k-2},c_{k})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>c</mi><mrow><mi>k</mi><mo>-</mo><mn>2</mn></mrow></msub><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub><mo stretchy="false">)</mo></mrow></math> inductively cover
+<math id="I6.i2.p1.m19" class="ltx_Math" alttext="(c,d)" display="inline"><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></math> by repeated use of transitivity and <span class="ltx_ERROR undefined">\autoref</span>defn:inductive-cover-interval-1
+in <span class="ltx_ERROR undefined">\autoref</span>defn:inductive-cover. Because their widths are below <math id="I6.i2.p1.m20" class="ltx_Math" alttext="\epsilon" display="inline"><mi>ϵ</mi></math> each of
+them is contained in some <math id="I6.i2.p1.m21" class="ltx_Math" alttext="(q_{i},r_{i})" display="inline"><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo>,</mo><msub><mi>r</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></math>, and we may use transitivity and monotonicity to
+conclude that <math id="I6.i2.p1.m22" class="ltx_Math" alttext="(I,{\lambda}i.\,(q_{i},r_{i}))" display="inline"><mrow><mo stretchy="false">(</mo><mrow><mrow><mi>I</mi><mo>,</mo><mrow><mi>λ</mi><mo>⁢</mo><mi>i</mi></mrow></mrow><mo rspace="4.2pt">.</mo><mrow><mo stretchy="false">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo>,</mo><msub><mi>r</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></math> inductively cover <math id="I6.i2.p1.m23" class="ltx_Math" alttext="(c,d)" display="inline"><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></math>. ∎</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="p29" class="ltx_para">
+<p class="ltx_p">The upshot of the previous theorem is that, as far as classical mathematics is concerned,
+there is no difference between a pointwise and an inductive cover. In particular, since it
+is consistent to assume excluded middle in homotopy type theory, we cannot exhibit an
+inductive cover which fails to be a pointwise cover. Or to put it in a different way, the
+difference between pointwise and inductive covers is not what they cover but in the
+<em class="ltx_emph ltx_font_italic">proofs</em> that they cover.</p>
+</div>
+<div id="p30" class="ltx_para">
+<p class="ltx_p">We could write another book by going on like this, but let us stop here and hope that we
+have provided ample justification for the claim that analysis can be developed in homotopy
+type theory. The curious reader should consult <span class="ltx_ERROR undefined">\autoref</span>ex:mean-value-theorem for
+constructive versions of the mean value theorem.</p>
+</div>
+<div id="p31" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">11.5 Compactness of the interval</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:31:48 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

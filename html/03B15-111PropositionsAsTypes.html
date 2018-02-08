@@ -1,0 +1,558 @@
+<!DOCTYPE html><html>
+<head>
+<title>1.11 Propositions as types</title>
+<!--Generated on Thu Feb  8 19:30:13 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content=", -abstraction, algorithm, application, as types, axiomatic freedom, by contradiction, classical, classical vs constructive, conjunction, consistency, constructive vs classical, contradiction, de Morgan’s, de Morgan’s laws, decidable, disjunction, effective, equality, equivalence, evidence, of the truth of a proposition, excluded middle, existential, false, hypothesis, implication, inhabited, inhabited type, law, logic, logical, logical equivalence, magma, mathematics, negation, of hypothesis or theorem, predicate, procedure, proof, proof-relevant, proposition, propositional, propositions as types, quantifier, to the truth of a proposition, true, type, universal, variable, witness">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">1.11 Propositions as types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">As mentioned in the introduction, to show that a proposition is true in type theory corresponds to exhibiting an element of the type corresponding to that proposition.
+
+We regard the elements of this type as <em class="ltx_emph ltx_font_italic">evidence</em> or <em class="ltx_emph ltx_font_italic">witnesses</em> that the proposition is true. (They are sometimes even called <em class="ltx_emph ltx_font_italic">proofs</em>, but this terminology can be misleading, so we generally avoid it.)
+In general, however, we will not construct witnesses explicitly; instead we present the proofs in ordinary mathematical prose, in such a way that they could be translated into an element of a type.
+This is no different from reasoning in classical set theory, where we don’t expect to see an explicit derivation using the rules of predicate logic and the axioms of set theory.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">However, the type-theoretic perspective on proofs is nevertheless different in important ways.
+The basic principle of the logic of type theory is that a proposition is not merely true or false, but rather can be seen as the collection of all possible witnesses of its truth.
+Under this conception, proofs are not just the means by which mathematics is communicated, but rather are mathematical objects in their own right, on a par with more familiar objects such as numbers, mappings, groups, and so on.
+Thus, since types classify the available mathematical objects and govern how they interact, propositions are nothing but special types — namely, types whose elements are proofs.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">The basic observation which makes this identification feasible is that we have the following natural correspondence between <em class="ltx_emph ltx_font_italic">logical</em> operations on propositions, expressed in English, and <em class="ltx_emph ltx_font_italic">type-theoretic</em> operations on their corresponding types of witnesses.
+</p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_t">English</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">Type Theory</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">True</th>
+<td class="ltx_td ltx_align_left ltx_border_t"><math id="p3.m1" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn>𝟏</mn></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">False</th>
+<td class="ltx_td ltx_align_left"><math id="p3.m2" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">
+<math id="p3.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p3.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>
+</th>
+<td class="ltx_td ltx_align_left"><math id="p3.m5" class="ltx_Math" alttext="A\times B" display="inline"><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">
+<math id="p3.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or <math id="p3.m7" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>
+</th>
+<td class="ltx_td ltx_align_left"><math id="p3.m8" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">If <math id="p3.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> then <math id="p3.m10" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>
+</th>
+<td class="ltx_td ltx_align_left"><math id="p3.m11" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">
+<math id="p3.m12" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> if and only if <math id="p3.m13" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>
+</th>
+<td class="ltx_td ltx_align_left"><math id="p3.m14" class="ltx_Math" alttext="(A\to B)\times(B\to A)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b">Not <math id="p3.m15" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>
+</th>
+<td class="ltx_td ltx_align_left ltx_border_b"><math id="p3.m16" class="ltx_Math" alttext="A\to\mathbf{0}" display="inline"><mrow><mi>A</mi><mo>→</mo><mn>𝟎</mn></mrow></math></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">The point of the correspondence is that in each case, the rules for constructing and using elements of the type on the right correspond to the rules for reasoning about the proposition on the left.
+For instance, the basic way to prove a statement of the form “<math id="p4.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p4.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>” is to prove <math id="p4.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and also prove <math id="p4.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, while the basic way to construct an element of <math id="p4.m5" class="ltx_Math" alttext="A\times B" display="inline"><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow></math> is as a pair <math id="p4.m6" class="ltx_Math" alttext="(a,b)" display="inline"><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></math>, where <math id="p4.m7" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is an element (or witness) of <math id="p4.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p4.m9" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math> is an element (or witness) of <math id="p4.m10" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.
+And if we want to use “<math id="p4.m11" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p4.m12" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>” to prove something else, we are free to use both <math id="p4.m13" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p4.m14" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> in doing so, analogously to how the induction principle for <math id="p4.m15" class="ltx_Math" alttext="A\times B" display="inline"><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow></math> allows us to construct a function out of it by using elements of <math id="p4.m16" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and of <math id="p4.m17" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">Similarly, the basic way to prove an implication “if <math id="p5.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> then <math id="p5.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>” is to assume <math id="p5.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and prove <math id="p5.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, while the basic way to construct an element of <math id="p5.m5" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math> is to give an expression which denotes an element (witness) of <math id="p5.m6" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> which may involve an unspecified variable element (witness) of type <math id="p5.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+And the basic way to use an implication “if <math id="p5.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> then <math id="p5.m9" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>” is deduce <math id="p5.m10" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> if we know <math id="p5.m11" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, analogously to how we can apply a function <math id="p5.m12" class="ltx_Math" alttext="f:A\to B" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></mrow></math> to an element of <math id="p5.m13" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> to produce an element of <math id="p5.m14" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.
+We strongly encourage the reader to do the exercise of verifying that the rules governing the other type constructors translate sensibly into logic.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">Of special note is that the empty type <math id="p6.m1" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> corresponds to falsity.
+When speaking logically, we refer to an inhabitant of <math id="p6.m2" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> as a <span class="ltx_text ltx_font_bold">contradiction</span>:
+thus there is no way to prove a contradiction,<span class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">1</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">1</sup>More precisely, there is no <em class="ltx_emph ltx_font_italic">basic</em> way to prove a contradiction, i.e. <math id="p6.m3" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> has no constructors.
+If our type theory were inconsistent, then there would be some more complicated way to construct an element of <math id="p6.m4" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>.</span></span></span>
+while from a contradiction anything can be derived.
+We also define the <span class="ltx_text ltx_font_bold">negation</span>
+of a type <math id="p6.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> as</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\neg A\ :\!\!\equiv\ A\to\mathbf{0}." display="block"><mrow><mi mathvariant="normal">¬</mi><mpadded width="+5pt"><mi>A</mi></mpadded><mo rspace="0pt">:</mo><mo rspace="7.5pt">≡</mo><mi>A</mi><mo>→</mo><mn>𝟎</mn><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Thus, a witness of <math id="p6.m6" class="ltx_Math" alttext="\neg A" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></math> is a function <math id="p6.m7" class="ltx_Math" alttext="A\to\mathbf{0}" display="inline"><mrow><mi>A</mi><mo>→</mo><mn>𝟎</mn></mrow></math>, which we may construct by assuming <math id="p6.m8" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math> and deriving an element of <math id="p6.m9" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math>.
+
+Note that although the logic we obtain is “constructive”, as discussed in the introduction, this sort of “proof by contradiction” (assume <math id="p6.m10" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and derive a contradiction, concluding <math id="p6.m11" class="ltx_Math" alttext="\neg A" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></math>) is perfectly valid constructively: it is simply invoking the <em class="ltx_emph ltx_font_italic">meaning</em> of “negation”.
+The sort of “proof by contradiction” which is disallowed is to assume <math id="p6.m12" class="ltx_Math" alttext="\neg A" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></math> and derive a contradiction as a way of proving <math id="p6.m13" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+Constructively, such an argument would only allow us to conclude <math id="p6.m14" class="ltx_Math" alttext="\neg\neg A" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></math>, and the reader can verify that there is no obvious way to get from <math id="p6.m15" class="ltx_Math" alttext="\neg\neg A" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></math> (that is, from <math id="p6.m16" class="ltx_Math" alttext="(A\to\mathbf{0})\to\mathbf{0}" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>→</mo><mn>𝟎</mn></mrow></math>) to <math id="p6.m17" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">The above translation of logical connectives into type-forming operations is referred to as <span class="ltx_text ltx_font_bold">propositions as types</span>: it gives us a way to translate propositions and their proofs, written in English, into types and their elements.
+For example, suppose we want to prove the following tautology (one of “de Morgan’s laws”):
+</p>
+<table id="S0.E1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><span class="ltx_text ltx_markedasmath"><em class="ltx_emph ltx_font_italic">“If not <math id="S0.E1.m1.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and not <math id="S0.E1.m1.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, then not (<math id="S0.E1.m1.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or <math id="S0.E1.m1.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>)”</em>.</span></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="0" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(1.11.1)</span></td>
+</tr>
+</table>
+<p class="ltx_p">An ordinary English proof of this fact might go as follows.</p>
+<blockquote class="ltx_quote">
+<p class="ltx_p">Suppose not <math id="p7.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and not <math id="p7.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, and also suppose <math id="p7.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or <math id="p7.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>; we will derive a contradiction.
+There are two cases.
+If <math id="p7.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> holds, then since not <math id="p7.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, we have a contradiction.
+Similarly, if <math id="p7.m7" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> holds, then since not <math id="p7.m8" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, we also have a contradiction.
+Thus we have a contradiction in either case, so not (<math id="p7.m9" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or <math id="p7.m10" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>).</p>
+</blockquote>
+<p class="ltx_p">Now, the type corresponding to our tautology (<a href="#S0.E1" title="(1.11.1) ‣ 1.11 Propositions as types" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1.11.1</span></a>), according to the rules given above, is</p>
+<table id="S0.E2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.E2.m1" class="ltx_Math" alttext="(A\to\mathbf{0})\times(B\to\mathbf{0})\to(A+B\to\mathbf{0})" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+<td rowspan="1" class="ltx_eqn_cell ltx_eqn_eqno ltx_align_middle ltx_align_right"><span class="ltx_tag ltx_tag_equation ltx_align_right">(1.11.2)</span></td>
+</tr>
+</table>
+<p class="ltx_p">so we should be able to translate the above proof into an element of this type.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">As an example of how such a translation works, let us describe how a mathematician reading the above English proof might simultaneously construct, in his or her head, an element of (<a href="#S0.E2" title="(1.11.2) ‣ 1.11 Propositions as types" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1.11.2</span></a>).
+The introductory phrase “Suppose not <math id="p8.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and not <math id="p8.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>” translates into defining a function, with an implicit application of the recursion principle for the cartesian product in its domain <math id="p8.m3" class="ltx_Math" alttext="(A\to\mathbf{0})\times(B\to\mathbf{0})" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow></mrow></math>.
+This introduces unnamed variables
+(hypotheses)
+of types <math id="p8.m4" class="ltx_Math" alttext="A\to\mathbf{0}" display="inline"><mrow><mi>A</mi><mo>→</mo><mn>𝟎</mn></mrow></math> and <math id="p8.m5" class="ltx_Math" alttext="B\to\mathbf{0}" display="inline"><mrow><mi>B</mi><mo>→</mo><mn>𝟎</mn></mrow></math>.
+When translating into type theory, we have to give these variables names; let us call them <math id="p8.m6" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and <math id="p8.m7" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math>.
+At this point our partial definition of an element of (<a href="#S0.E2" title="(1.11.2) ‣ 1.11 Propositions as types" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1.11.2</span></a>) can be written as</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="f((x,y)):\!\!\equiv\;\Box\;:A+B\to\mathbf{0}" display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo rspace="5.3pt">≡</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo>→</mo><mn>𝟎</mn></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">with a “hole” <math id="p8.m8" class="ltx_Math" alttext="\Box" display="inline"><mi mathvariant="normal">□</mi></math> of type <math id="p8.m9" class="ltx_Math" alttext="A+B\to\mathbf{0}" display="inline"><mrow><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mo>→</mo><mn>𝟎</mn></mrow></math> indicating what remains to be done.
+(We could equivalently write <math id="p8.m10" class="ltx_Math" alttext="f:\!\!\equiv\mathsf{rec}_{(A\to\mathbf{0})\times(B\to\mathbf{0})}(A+B\to%
+\mathbf{0},{\lambda}x.\,{\lambda}y.\,\Box)" display="inline"><mrow><mi>f</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖼</mi><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow></mrow></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo>→</mo><mn>𝟎</mn><mo>,</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><mi>λ</mi><mi>y</mi><mo rspace="4.2pt">.</mo><mi mathvariant="normal">□</mi><mo stretchy="false">)</mo></mrow></mrow></math>, using the recursor instead of pattern matching.)
+The next phrase “also suppose <math id="p8.m11" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or <math id="p8.m12" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>; we will derive a contradiction” indicates filling this hole by a function definition, introducing another unnamed hypothesis <math id="p8.m13" class="ltx_Math" alttext="z:A+B" display="inline"><mrow><mi>z</mi><mo>:</mo><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></mrow></math>, leading to the proof state:</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="f((x,y))(z):\!\!\equiv\;\Box\;:\mathbf{0}" display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo rspace="5.3pt">≡</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mn>𝟎</mn></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Now saying “there are two cases” indicates a case split, i.e. an application of the recursion principle for the coproduct <math id="p8.m14" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math>.
+If we write this using the recursor, it would be</p>
+<table id="S0.Ex4" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex4.m1" class="ltx_Math" alttext="f((x,y))(z):\!\!\equiv\mathsf{rec}_{A+B}(\mathbf{0},{\lambda}a.\,\Box,{\lambda%
+}b.\,\Box,z)" display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><msub><mi>𝗋𝖾𝖼</mi><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></msub><mrow><mo stretchy="false">(</mo><mn>𝟎</mn><mo>,</mo><mi>λ</mi><mi>a</mi><mo rspace="4.2pt">.</mo><mi mathvariant="normal">□</mi><mo>,</mo><mi>λ</mi><mi>b</mi><mo rspace="4.2pt">.</mo><mi mathvariant="normal">□</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">while if we write it using pattern matching, it would be</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\displaystyle f((x,y))({\mathsf{inl}}(a))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\;\Box\;:\mathbf{0}" display="inline"><mrow><mo rspace="0pt">:</mo><mo rspace="5.3pt">≡</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mn>𝟎</mn></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex6.m1" class="ltx_Math" alttext="\displaystyle f((x,y))({\mathsf{inr}}(b))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex6.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv\;\Box\;:\mathbf{0}." display="inline"><mrow><mo rspace="0pt">:</mo><mo rspace="5.3pt">≡</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mn>𝟎</mn><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Note that in both cases we now have two “holes” of type <math id="p8.m15" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> to fill in, corresponding to the two cases where we have to derive a contradiction.
+Finally, the conclusion of a contradiction from <math id="p8.m16" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> and <math id="p8.m17" class="ltx_Math" alttext="x:A\to\mathbf{0}" display="inline"><mrow><mi>x</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mn>𝟎</mn></mrow></mrow></math> is simply application of the function <math id="p8.m18" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> to <math id="p8.m19" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>, and similarly in the other case.
+(Note the convenient coincidence of the phrase “applying a function” with that of “applying a hypothesis” or theorem.)
+Thus our eventual definition is
+</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex7.m1" class="ltx_Math" alttext="\displaystyle f((x,y))({\mathsf{inl}}(a))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗅</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv x(a)" display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex8" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex8.m1" class="ltx_Math" alttext="\displaystyle f((x,y))({\mathsf{inr}}(b))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗂𝗇𝗋</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex8.m2" class="ltx_Math" alttext="\displaystyle:\!\!\equiv y(b)." display="inline"><mrow><mo rspace="0pt">:</mo><mo>≡</mo><mi>y</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">As an exercise, you should verify
+the converse tautology <em class="ltx_emph ltx_font_italic">“If not (<math id="p9.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or <math id="p9.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>), then (not <math id="p9.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>) and (not <math id="p9.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>)</em>” by exhibiting an element of</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="((A+B)\to\mathbf{0})\to(A\to\mathbf{0})\times(B\to\mathbf{0})," display="block"><mrow><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">for any types <math id="p9.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p9.m6" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>, using the rules we have just introduced.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">However, not all classical tautologies hold under this interpretation.
+For example, the rule
+<em class="ltx_emph ltx_font_italic">“If not (<math id="p10.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p10.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>), then (not <math id="p10.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>) or (not <math id="p10.m4" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>)”</em> is not valid: we cannot, in general, construct an element of the corresponding type</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="((A\times B)\to\mathbf{0})\to(A\to\mathbf{0})+(B\to\mathbf{0})." display="block"><mrow><mrow><mo stretchy="false">(</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>×</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>+</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">This reflects the fact that the “natural” propositions-as-types logic of type theory is <em class="ltx_emph ltx_font_italic">constructive</em>.
+This means that it does not include certain classical principles, such as the law of excluded middle (<math id="p10.m5" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math>)
+or proof by contradiction,
+and others which depend on them, such as this instance of de Morgan’s law.
+</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">Philosophically, constructive logic is so-called because it confines itself to constructions that can be carried out <em class="ltx_emph ltx_font_italic">effectively</em>, which is to say those with a computational meaning.
+Without being too precise, this means there is some sort of algorithm specifying, step-by-step, how to build an object (and, as a special case, how to see that a theorem is true).
+This requires omission of <math id="p11.m1" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math>, since there is no <em class="ltx_emph ltx_font_italic">effective</em> procedure for deciding whether a proposition is true or false.</p>
+</div>
+<div id="p12" class="ltx_para">
+<p class="ltx_p">The constructivity of type-theoretic logic means it has an intrinsic computational meaning, which is of interest to computer scientists.
+It also means that type theory provides <em class="ltx_emph ltx_font_italic">axiomatic freedom</em>.
+For example, while by default there is no construction witnessing <math id="p12.m1" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math>, the logic is still compatible with the existence of one (see §3.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/34classicalvsintuitionisticlogic</span>)).
+Thus, because type theory does not <em class="ltx_emph ltx_font_italic">deny</em> <math id="p12.m2" class="ltx_Math" alttext="\mathsf{LEM}" display="inline"><mi>𝖫𝖤𝖬</mi></math>, we may consistently add it as an assumption, and work conventionally without restriction.
+In this respect, type theory enriches, rather than constrains, conventional mathematical practice.</p>
+</div>
+<div id="p13" class="ltx_para">
+<p class="ltx_p">We encourage the reader who is unfamiliar with constructive logic to work through some more examples as a means of getting familiar with it.
+See <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87565</span>Exercise 1.12,<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87566</span>Exercise 1.13 for some suggestions.
+
+</p>
+</div>
+<div id="p14" class="ltx_para">
+<p class="ltx_p">So far we have discussed only propositional logic.
+Now we consider <em class="ltx_emph ltx_font_italic">predicate</em> logic, where in addition to logical connectives like “and” and “or” we have quantifiers “there exists” and “for all”.
+In this case, types play a dual role: they serve as propositions and also as types in the conventional sense, i.e., domains we quantify over.
+A predicate over a type <math id="p14.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is represented as a family <math id="p14.m2" class="ltx_Math" alttext="P:A\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, assigning to every element <math id="p14.m3" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math> a type <math id="p14.m4" class="ltx_Math" alttext="P(a)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> corresponding to the proposition that <math id="p14.m5" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math> holds for <math id="p14.m6" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math>. We now extend the above translation with an explanation of the quantifiers:</p>
+<table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_th_row ltx_border_t">English</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_t">Type Theory</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">For all <math id="p14.m7" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math>, <math id="p14.m8" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> holds</th>
+<td class="ltx_td ltx_align_left ltx_border_t"><math id="p14.m9" class="ltx_Math" alttext="\mathchoice{\prod_{x:A}\,}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)%
+}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod%
+_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}{\mathchoice{{\textstyle\prod_{(x:A)}}%
+}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}}P(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b">There exists <math id="p14.m10" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math> such that <math id="p14.m11" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+</th>
+<td class="ltx_td ltx_align_left ltx_border_b">
+<math id="p14.m12" class="ltx_Math" alttext="\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x%
+:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}" display="inline"><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></math> <math id="p14.m13" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p">As before, we can show that tautologies of (constructive) predicate logic translate into inhabited types.
+For example, <em class="ltx_emph ltx_font_italic">If for all <math id="p14.m14" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>, <math id="p14.m15" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> and <math id="p14.m16" class="ltx_Math" alttext="Q(x)" display="inline"><mrow><mi>Q</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> then (for all <math id="p14.m17" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>, <math id="p14.m18" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>) and (for all <math id="p14.m19" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo mathvariant="normal">:</mo><mi>A</mi></mrow></math>, <math id="p14.m20" class="ltx_Math" alttext="Q(x)" display="inline"><mrow><mi>Q</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>x</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math>)</em> translates to</p>
+<table id="S0.Ex11" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex11.m1" class="ltx_Math" alttext="(\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(%
+x:A)}}P(x)\times Q(x))\to(\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}%
+}{\prod_{(x:A)}}{\prod_{(x:A)}}P(x))\times(\mathchoice{{\textstyle\prod_{(x:A)%
+}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}Q(x))." display="block"><mrow><mrow><mrow><mo stretchy="false">(</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mrow><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>×</mo><mi>Q</mi></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>→</mo><mrow><mrow><mo stretchy="false">(</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mrow><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">An informal proof of this tautology might go as follows:</p>
+<blockquote class="ltx_quote">
+<p class="ltx_p">Suppose for all <math id="p14.m21" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math>, <math id="p14.m22" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p14.m23" class="ltx_Math" alttext="Q(x)" display="inline"><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+First, we suppose given <math id="p14.m24" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and prove <math id="p14.m25" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+By assumption, we have <math id="p14.m26" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p14.m27" class="ltx_Math" alttext="Q(x)" display="inline"><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and hence we have <math id="p14.m28" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Second, we suppose given <math id="p14.m29" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and prove <math id="p14.m30" class="ltx_Math" alttext="Q(x)" display="inline"><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+Again by assumption, we have <math id="p14.m31" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p14.m32" class="ltx_Math" alttext="Q(x)" display="inline"><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>, and hence we have <math id="p14.m33" class="ltx_Math" alttext="Q(x)" display="inline"><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>.</p>
+</blockquote>
+<p class="ltx_p">The first sentence begins defining an implication as a function, by introducing a witness for its hypothesis:
+</p>
+<table id="S0.Ex12" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex12.m1" class="ltx_Math" alttext="f(p):\!\!\equiv\;\Box\;:(\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}%
+{\prod_{(x:A)}}{\prod_{(x:A)}}P(x))\times(\mathchoice{{\textstyle\prod_{(x:A)}%
+}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}Q(x))." display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo rspace="5.3pt">≡</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mrow><mo stretchy="false">(</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>Q</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">At this point there is an implicit use of the pairing constructor to produce an element of a product type, which is somewhat signposted in this example by the words “first” and “second”:</p>
+<table id="S0.Ex13" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex13.m1" class="ltx_Math" alttext="f(p):\!\!\equiv\Big{(}\;\Box\;:\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(%
+x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}P(x)\;,\;\Box\;:\mathchoice{{\textstyle%
+\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x:A)}}Q(x)\;\Big{)}." display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo maxsize="160%" minsize="160%" rspace="5.3pt">(</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>Q</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The phrase “we suppose given <math id="p14.m34" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> and prove <math id="p14.m35" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>” now indicates defining a <em class="ltx_emph ltx_font_italic">dependent</em> function in the usual way, introducing a variable
+for its input.
+Since this is inside a pairing constructor, it is natural to write it as a <math id="p14.m36" class="ltx_Math" alttext="\lambda" display="inline"><mi>λ</mi></math>-abstraction:
+</p>
+<table id="S0.Ex14" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex14.m1" class="ltx_Math" alttext="f(p):\!\!\equiv\Big{(}\;{\lambda}x.\,\;\big{(}\Box\;:P(x)\big{)}\;,\;\Box\;:%
+\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x%
+:A)}}Q(x)\;\Big{)}." display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo maxsize="160%" minsize="160%" rspace="5.3pt">(</mo><mi>λ</mi><mi>x</mi><mo rspace="6.9pt">.</mo><mrow><mo maxsize="120%" minsize="120%">(</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo maxsize="120%" minsize="120%" rspace="5.3pt">)</mo></mrow><mo rspace="5.3pt">,</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>Q</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Now “we have <math id="p14.m38" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p14.m39" class="ltx_Math" alttext="Q(x)" display="inline"><mrow><mi>Q</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>” invokes the hypothesis, obtaining <math id="p14.m40" class="ltx_Math" alttext="p(x):P(x)\times Q(x)" display="inline"><mrow><mrow><mi>p</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mrow><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow><mo>×</mo><mi>Q</mi></mrow><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and “hence we have <math id="p14.m41" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>” implicitly applies the appropriate projection:</p>
+<table id="S0.Ex15" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex15.m1" class="ltx_Math" alttext="f(p):\!\!\equiv\Big{(}\;{\lambda}x.\,\mathsf{pr}_{1}(p(x))\;,\;\Box\;:%
+\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x%
+:A)}}Q(x)\;\Big{)}." display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo maxsize="160%" minsize="160%" rspace="5.3pt">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><mpadded width="+2.8pt"><mi mathvariant="normal">□</mi></mpadded><mo>:</mo><mstyle displaystyle="false"><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mstyle><mi>Q</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The next two sentences fill the other hole in the obvious way:
+</p>
+<table id="S0.Ex16" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex16.m1" class="ltx_Math" alttext="f(p):\!\!\equiv\Big{(}\;{\lambda}x.\,\mathsf{pr}_{1}(p(x))\;,\;{\lambda}x.\,%
+\mathsf{pr}_{2}(p(x))\;\Big{)}." display="block"><mrow><mi>f</mi><mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo maxsize="160%" minsize="160%" rspace="5.3pt">(</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗉𝗋</mi><mn>1</mn></msub><mrow><mo stretchy="false">(</mo><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo rspace="5.3pt">,</mo><mi>λ</mi><mi>x</mi><mo rspace="4.2pt">.</mo><msub><mi>𝗉𝗋</mi><mn>2</mn></msub><mrow><mo stretchy="false">(</mo><mi>p</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo rspace="5.3pt" stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Of course, the English proofs we have been using as examples are much more verbose than those that mathematicians usually use in practice; they are more like the sort of language one uses in an “introduction to proofs” class.
+The practicing mathematician has learned to fill in the gaps, so in practice we can omit plenty of details, and we will generally do so.
+The criterion of validity for proofs, however, is always that they can be translated back into the construction of an element of the corresponding type.</p>
+</div>
+<div id="p15" class="ltx_para">
+<p class="ltx_p">As a more concrete example, consider how to define inequalities of natural numbers.
+One natural definition is that <math id="p15.m1" class="ltx_Math" alttext="n\leq m" display="inline"><mrow><mi>n</mi><mo>≤</mo><mi>m</mi></mrow></math> if there exists a <math id="p15.m2" class="ltx_Math" alttext="k:\mathbb{N}" display="inline"><mrow><mi>k</mi><mo>:</mo><mi>ℕ</mi></mrow></math> such that <math id="p15.m3" class="ltx_Math" alttext="n+k=m" display="inline"><mrow><mrow><mi>n</mi><mo>+</mo><mi>k</mi></mrow><mo>=</mo><mi>m</mi></mrow></math>.
+(This uses again the identity types that we will introduce in the next section, but we will not need very much about them.)
+Under the propositions-as-types translation, this would yield:</p>
+<table id="S0.Ex17" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex17.m1" class="ltx_Math" alttext="(n\leq m):\!\!\equiv\mathchoice{\sum_{k:\mathbb{N}}\,}{\mathchoice{{\textstyle%
+\sum_{(k:\mathbb{N})}}}{\sum_{(k:\mathbb{N})}}{\sum_{(k:\mathbb{N})}}{\sum_{(k%
+:\mathbb{N})}}}{\mathchoice{{\textstyle\sum_{(k:\mathbb{N})}}}{\sum_{(k:%
+\mathbb{N})}}{\sum_{(k:\mathbb{N})}}{\sum_{(k:\mathbb{N})}}}{\mathchoice{{%
+\textstyle\sum_{(k:\mathbb{N})}}}{\sum_{(k:\mathbb{N})}}{\sum_{(k:\mathbb{N})}%
+}{\sum_{(k:\mathbb{N})}}}(n+k=m)." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>≤</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>k</mi><mo>:</mo><mi>ℕ</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>k</mi><mo>=</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The reader is invited to prove the familiar properties of <math id="p15.m4" class="ltx_Math" alttext="\leq" display="inline"><mo>≤</mo></math> from this definition.
+For strict inequality, there are a couple of natural choices, such as</p>
+<table id="S0.Ex18" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex18.m1" class="ltx_Math" alttext="(n&lt;m):\!\!\equiv\mathchoice{\sum_{k:\mathbb{N}}\,}{\mathchoice{{\textstyle\sum%
+_{(k:\mathbb{N})}}}{\sum_{(k:\mathbb{N})}}{\sum_{(k:\mathbb{N})}}{\sum_{(k:%
+\mathbb{N})}}}{\mathchoice{{\textstyle\sum_{(k:\mathbb{N})}}}{\sum_{(k:\mathbb%
+{N})}}{\sum_{(k:\mathbb{N})}}{\sum_{(k:\mathbb{N})}}}{\mathchoice{{\textstyle%
+\sum_{(k:\mathbb{N})}}}{\sum_{(k:\mathbb{N})}}{\sum_{(k:\mathbb{N})}}{\sum_{(k%
+:\mathbb{N})}}}(n+\mathsf{succ}(k)=m)" display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>&lt;</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mi>k</mi><mo>:</mo><mi>ℕ</mi></mrow></munder></mpadded><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>𝗌𝗎𝖼𝖼</mi><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">or</p>
+<table id="S0.Ex19" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex19.m1" class="ltx_Math" alttext="(n&lt;m):\!\!\equiv(n\leq m)\times\neg(n=m)." display="block"><mrow><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>&lt;</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><mo rspace="0pt">:</mo><mo>≡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>≤</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><mo>×</mo><mi mathvariant="normal">¬</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>=</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">The former is more natural in constructive mathematics, but in this case it is actually equivalent to the latter, since <math id="p15.m5" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> has “decidable equality” (see §3.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/34classicalvsintuitionisticlogic</span>),Theorem 7.2.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/72uniquenessofidentityproofsandhedbergstheorem#Thmprethm4</span>)).
+</p>
+</div>
+<div id="p16" class="ltx_para">
+<p class="ltx_p">The representation of propositions as types also allows us to incorporate axioms into the definition of types as mathematical structures using <math id="p16.m1" class="ltx_Math" alttext="\Sigma" display="inline"><mi mathvariant="normal">Σ</mi></math>-types, as discussed in §1.6 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/16dependentpairtypes</span>).
+For example, suppose we want to define a <span class="ltx_text ltx_font_bold">semigroup</span> to be a type <math id="p16.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> equipped with a binary operation <math id="p16.m3" class="ltx_Math" alttext="m:A\to A\to A" display="inline"><mrow><mi>m</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow></mrow></math> (that is, a magma) and such that for all <math id="p16.m4" class="ltx_Math" alttext="x,y,z:A" display="inline"><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></mrow><mo>:</mo><mi>A</mi></mrow></math> we have <math id="p16.m5" class="ltx_Math" alttext="m(x,m(y,z))=m(m(x,y),z)" display="inline"><mrow><mrow><mi>m</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>m</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>m</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>m</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>.
+This latter proposition is represented by the type <math id="p16.m6" class="ltx_Math" alttext="\mathchoice{\prod_{x,y,z:A}\,}{\mathchoice{{\textstyle\prod_{(x,y,z:A)}}}{%
+\prod_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}}{\mathchoice{{%
+\textstyle\prod_{(x,y,z:A)}}}{\prod_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}{\prod_{(x,%
+y,z:A)}}}{\mathchoice{{\textstyle\prod_{(x,y,z:A)}}}{\prod_{(x,y,z:A)}}{\prod_%
+{(x,y,z:A)}}{\prod_{(x,y,z:A)}}}m(x,m(y,z))=m(m(x,y),z)" display="inline"><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>m</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>m</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>=</mo><mrow><mi>m</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>m</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, so the type of semigroups is</p>
+<table id="S0.Ex20" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex20.m1" class="ltx_Math" alttext="\mathsf{Semigroup}:\!\!\equiv\mathchoice{\sum_{(A:\mathcal{U})}\,}{\mathchoice%
+{{\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal%
+{U})}}{\sum_{(A:\mathcal{U})}}}{\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}%
+}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}{%
+\mathchoice{{\textstyle\sum_{(A:\mathcal{U})}}}{\sum_{(A:\mathcal{U})}}{\sum_{%
+(A:\mathcal{U})}}{\sum_{(A:\mathcal{U})}}}\mathchoice{\sum_{(m:A\to A\to A)}\,%
+}{\mathchoice{{\textstyle\sum_{(m:A\to A\to A)}}}{\sum_{(m:A\to A\to A)}}{\sum%
+_{(m:A\to A\to A)}}{\sum_{(m:A\to A\to A)}}}{\mathchoice{{\textstyle\sum_{(m:A%
+\to A\to A)}}}{\sum_{(m:A\to A\to A)}}{\sum_{(m:A\to A\to A)}}{\sum_{(m:A\to A%
+\to A)}}}{\mathchoice{{\textstyle\sum_{(m:A\to A\to A)}}}{\sum_{(m:A\to A\to A%
+)}}{\sum_{(m:A\to A\to A)}}{\sum_{(m:A\to A\to A)}}}\mathchoice{\prod_{(x,y,z:%
+A)}\,}{\mathchoice{{\textstyle\prod_{(x,y,z:A)}}}{\prod_{(x,y,z:A)}}{\prod_{(x%
+,y,z:A)}}{\prod_{(x,y,z:A)}}}{\mathchoice{{\textstyle\prod_{(x,y,z:A)}}}{\prod%
+_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}}{\mathchoice{{\textstyle%
+\prod_{(x,y,z:A)}}}{\prod_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}{\prod_{(x,y,z:A)}}}m%
+(x,m(y,z))=m(m(x,y),z)." display="block"><mrow><mi>𝖲𝖾𝗆𝗂𝗀𝗋𝗈𝗎𝗉</mi><mo rspace="0pt">:</mo><mo>≡</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>m</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder></mpadded><mi>m</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>m</mi><mrow><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>m</mi><mrow><mo stretchy="false">(</mo><mi>m</mi><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">From an inhabitant of this type we can extract the carrier <math id="p16.m7" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, the operation <math id="p16.m8" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>, and a witness of the axiom, by applying appropriate projections.
+We will return to this example in §2.14 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/214exampleequalityofstructures</span>).
+</p>
+</div>
+<div id="p17" class="ltx_para">
+<p class="ltx_p">Note also that we can use the universes in type theory to represent “higher order logic” — that is, we can quantify over all propositions or over all predicates.
+For example, we can represent the proposition <em class="ltx_emph ltx_font_italic">for all properties <math id="p17.m1" class="ltx_Math" alttext="P:A\to\mathcal{U}" display="inline"><mrow><mi>P</mi><mo mathvariant="normal">:</mo><mrow><mi>A</mi><mo mathvariant="normal">→</mo><mi class="ltx_font_mathcaligraphic" mathvariant="normal">U</mi></mrow></mrow></math>, if <math id="p17.m2" class="ltx_Math" alttext="P(a)" display="inline"><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>a</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math> then <math id="p17.m3" class="ltx_Math" alttext="P(b)" display="inline"><mrow><mi>P</mi><mo mathvariant="italic">⁢</mo><mrow><mo mathvariant="normal" stretchy="false">(</mo><mi>b</mi><mo mathvariant="normal" stretchy="false">)</mo></mrow></mrow></math></em> as</p>
+<table id="S0.Ex21" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex21.m1" class="ltx_Math" alttext="\mathchoice{\prod_{P:A\to\mathcal{U}}\,}{\mathchoice{{\textstyle\prod_{(P:A\to%
+\mathcal{U})}}}{\prod_{(P:A\to\mathcal{U})}}{\prod_{(P:A\to\mathcal{U})}}{%
+\prod_{(P:A\to\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(P:A\to\mathcal{U}%
+)}}}{\prod_{(P:A\to\mathcal{U})}}{\prod_{(P:A\to\mathcal{U})}}{\prod_{(P:A\to%
+\mathcal{U})}}}{\mathchoice{{\textstyle\prod_{(P:A\to\mathcal{U})}}}{\prod_{(P%
+:A\to\mathcal{U})}}{\prod_{(P:A\to\mathcal{U})}}{\prod_{(P:A\to\mathcal{U})}}}%
+P(a)\to P(b)" display="block"><mrow><mrow><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>P</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></munder></mpadded><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">where <math id="p17.m4" class="ltx_Math" alttext="A:\mathcal{U}" display="inline"><mrow><mi>A</mi><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math> and <math id="p17.m5" class="ltx_Math" alttext="a,b:A" display="inline"><mrow><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><mo>:</mo><mi>A</mi></mrow></math>.
+However, <em class="ltx_emph ltx_font_italic">a priori</em> this proposition lives in a different, higher, universe than the
+propositions we are quantifying over; that is</p>
+<table id="S0.Ex22" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex22.m1" class="ltx_Math" alttext="\Bigl{(}\mathchoice{\prod_{P:A\to\mathcal{U}_{i}}\,}{\mathchoice{{\textstyle%
+\prod_{(P:A\to\mathcal{U}_{i})}}}{\prod_{(P:A\to\mathcal{U}_{i})}}{\prod_{(P:A%
+\to\mathcal{U}_{i})}}{\prod_{(P:A\to\mathcal{U}_{i})}}}{\mathchoice{{%
+\textstyle\prod_{(P:A\to\mathcal{U}_{i})}}}{\prod_{(P:A\to\mathcal{U}_{i})}}{%
+\prod_{(P:A\to\mathcal{U}_{i})}}{\prod_{(P:A\to\mathcal{U}_{i})}}}{\mathchoice%
+{{\textstyle\prod_{(P:A\to\mathcal{U}_{i})}}}{\prod_{(P:A\to\mathcal{U}_{i})}}%
+{\prod_{(P:A\to\mathcal{U}_{i})}}{\prod_{(P:A\to\mathcal{U}_{i})}}}P(a)\to P(b%
+)\Bigr{)}:\mathcal{U}_{i+1}." display="block"><mrow><mrow><mo maxsize="160%" minsize="160%">(</mo><mpadded width="+1.7pt"><munder><mo largeop="true" movablelimits="false" symmetric="true">∏</mo><mrow><mi>P</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></mrow></mrow></munder></mpadded><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><mo>→</mo><mi>P</mi><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo maxsize="160%" minsize="160%">)</mo></mrow><mo>:</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We will return to this issue in §3.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/35subsetsandpropositionalresizing</span>).</p>
+</div>
+<div id="p18" class="ltx_para">
+<p class="ltx_p">We have described here a “proof-relevant”
+translation of propositions, where the proofs of disjunctions and existential statements carry some information.
+For instance, if we have an inhabitant of <math id="p18.m1" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math>, regarded as a witness of “<math id="p18.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or <math id="p18.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>”, then we know whether it came from <math id="p18.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> or from <math id="p18.m5" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.
+Similarly, if we have an inhabitant of <math id="p18.m6" class="ltx_Math" alttext="\mathchoice{\sum_{x:A}\,}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)}}{%
+\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x:A)%
+}}{\sum_{(x:A)}}{\sum_{(x:A)}}}{\mathchoice{{\textstyle\sum_{(x:A)}}}{\sum_{(x%
+:A)}}{\sum_{(x:A)}}{\sum_{(x:A)}}}P(x)" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∑</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, regarded as a witness of “there exists <math id="p18.m7" class="ltx_Math" alttext="x:A" display="inline"><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></math> such that <math id="p18.m8" class="ltx_Math" alttext="P(x)" display="inline"><mrow><mi>P</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>”, then we know what the element <math id="p18.m9" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> is (it is the first projection of the given inhabitant).</p>
+</div>
+<div id="p19" class="ltx_para">
+<p class="ltx_p">As a consequence of the proof-relevant nature of this logic, we may have “<math id="p19.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> if and only if <math id="p19.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>” (which, recall, means <math id="p19.m3" class="ltx_Math" alttext="(A\to B)\times(B\to A)" display="inline"><mrow><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><mo>×</mo><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math>), and yet the types <math id="p19.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p19.m5" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> exhibit different behavior.
+For instance, it is easy to verify that “<math id="p19.m6" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> if and only if <math id="p19.m7" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn>𝟏</mn></math>”, and yet clearly <math id="p19.m8" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> and <math id="p19.m9" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn>𝟏</mn></math> differ in important ways.
+The statement “<math id="p19.m10" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> if and only if <math id="p19.m11" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn>𝟏</mn></math>” tells us only that <em class="ltx_emph ltx_font_italic">when regarded as a mere proposition</em>, the type <math id="p19.m12" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> represents the same proposition as <math id="p19.m13" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn>𝟏</mn></math> (in this case, the true proposition).
+We sometimes express “<math id="p19.m14" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> if and only if <math id="p19.m15" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>” by saying that <math id="p19.m16" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p19.m17" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are <span class="ltx_text ltx_font_bold">logically equivalent</span>.
+This is to be distinguished from the stronger notion of <em class="ltx_emph ltx_font_italic">equivalence of types</em> to be introduced in §2.4 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/24homotopiesandequivalences</span>),<span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87577</span>Chapter 4:
+although <math id="p19.m18" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> and <math id="p19.m19" class="ltx_Math" alttext="\mathbf{1}" display="inline"><mn>𝟏</mn></math> are logically equivalent, they are not equivalent types.</p>
+</div>
+<div id="p20" class="ltx_para">
+<p class="ltx_p">In <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87576</span>Chapter 3 we will introduce a class of types called “mere propositions” for which equivalence and logical equivalence coincide.
+Using these types, we will introduce a modification to the above-described logic that is sometimes appropriate, in which the additional information contained in disjunctions and existentials is discarded.</p>
+</div>
+<div id="p21" class="ltx_para">
+<p class="ltx_p">Finally, we note that the propositions-as-types correspondence can be viewed in reverse, allowing us to regard any type <math id="p21.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> as a proposition, which we prove by exhibiting an element of <math id="p21.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>.
+Sometimes we will state this proposition as “<math id="p21.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is <span class="ltx_text ltx_font_bold">inhabited</span>.”
+That is, when we say that <math id="p21.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is inhabited, we mean that we have given a (particular) element of <math id="p21.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, but that we are choosing not to give a name to that element.
+Similarly, to say that <math id="p21.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is <em class="ltx_emph ltx_font_italic">not inhabited</em> is the same as to give an element of <math id="p21.m7" class="ltx_Math" alttext="\neg A" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>A</mi></mrow></math>.
+In particular, the empty type <math id="p21.m8" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> is obviously not inhabited, since <math id="p21.m9" class="ltx_Math" alttext="\neg\mathbf{0}\equiv(\mathbf{0}\to\mathbf{0})" display="inline"><mrow><mi mathvariant="normal">¬</mi><mn>𝟎</mn><mo>≡</mo><mrow><mo stretchy="false">(</mo><mn>𝟎</mn><mo>→</mo><mn>𝟎</mn><mo stretchy="false">)</mo></mrow></mrow></math> is inhabited by <math id="p21.m10" class="ltx_Math" alttext="\mathsf{id}_{\mathbf{0}}" display="inline"><msub><mi>𝗂𝖽</mi><mn>𝟎</mn></msub></math>.<span class="ltx_note ltx_role_footnote"><sup class="ltx_note_mark">2</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">2</sup>This should not be confused with the statement that type theory is consistent, which is the <em class="ltx_emph ltx_font_italic">meta-theoretic</em> claim that it is not possible to obtain an element of <math id="p21.m11" class="ltx_Math" alttext="\mathbf{0}" display="inline"><mn>𝟎</mn></math> by following the rules of type theory.</span></span></span></p>
+</div>
+<div id="p22" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">1.11 Propositions as types</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:30:13 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html><html>
+<head>
+<title>A.2.4 Dependent function types (Π-types)</title>
+<!--Generated on Thu Feb  8 19:44:00 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="computation, computation rule, dependent function, eliminator, formation, formation rule, function, induction principle, introduction, introduction rule, principle, rule, type, uniqueness">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">A.2.4 Dependent function types (<math id="m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types)</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">In §1.2 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/12functiontypes</span>), we introduced non-dependent functions <math id="p2.m1" class="ltx_Math" alttext="A\to B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow></math> in
+order to define a family of types as a function <math id="p2.m2" class="ltx_Math" alttext="{\lambda}(x\,{:}\,A).\,B:A\to\mathcal{U}_{i}" display="inline"><mrow><mi>λ</mi><mrow><mo stretchy="false">(</mo><mpadded width="+1.7pt"><mi>x</mi></mpadded><mo rspace="4.2pt">:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>B</mi><mo>:</mo><mi>A</mi><mo>→</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></mrow></math>, which
+then gives rise to a type of dependent functions <math id="p2.m3" class="ltx_Math" alttext="\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x%
+:A)}}B" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>B</mi></mrow></math>. But with explicit contexts
+we may replace <math id="p2.m4" class="ltx_Math" alttext="{\lambda}(x\,{:}\,A).\,B:A\to\mathcal{U}_{i}" display="inline"><mrow><mi>λ</mi><mrow><mo stretchy="false">(</mo><mpadded width="+1.7pt"><mi>x</mi></mpadded><mo rspace="4.2pt">:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>B</mi><mo>:</mo><mi>A</mi><mo>→</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></mrow></math> with the judgment</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="x\mathord{:}A\vdash B:\mathcal{U}_{i}." display="block"><mrow><mrow><mrow><mi>x</mi><mo>⁢</mo><mi mathvariant="normal">:</mi><mo>⁢</mo><mi>A</mi></mrow><mo>⊢</mo><mi>B</mi><mo>:</mo><msub><mi class="ltx_font_mathcaligraphic">𝒰</mi><mi>i</mi></msub></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Consequently, we may define dependent functions directly, without reference to non-dependent ones. This way we follow the general principle that each type former, with its constants and rules, should be introduced independently of all other type formers.
+In fact, henceforth each type former is introduced systematically by:</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">a <span class="ltx_text ltx_font_bold">formation rule</span>, stating when the type former can be applied;
+</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">some <span class="ltx_text ltx_font_bold">introduction rules</span>, stating how to inhabit the type;
+</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">elimination rules</span>, or an induction principle, stating how to use an
+element of the type;
+
+</p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">computation rules</span>, which are judgmental equalities explaining what happens when elimination rules are applied to results of introduction rules;
+
+
+</p>
+</div>
+</li>
+<li id="I1.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i5.p1" class="ltx_para">
+<p class="ltx_p">optional <span class="ltx_text ltx_font_bold">uniqueness principles</span>, which are judgmental equalities explaining how every element of the type is uniquely determined by the results of elimination rules applied to it.
+
+</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">(See also <span class="ltx_ERROR undefined">\autoref</span>rmk:introducing-new-concepts.)</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">For the dependent function type these rules are:
+<span class="ltx_ERROR undefined">{mathparpagebreakable}</span>
+
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-<span class="ltx_text ltx_font_smallcaps">form</span>]
+Γ ⊢A : <math id="p3.m2" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> _i Γ,x : A ⊢B : <math id="p3.m3" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> _iΓ ⊢∏_(x:A)B : <math id="p3.m4" class="ltx_Math" alttext="\mathcal{U}" display="inline"><mi class="ltx_font_mathcaligraphic">𝒰</mi></math> _i
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m5" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-<span class="ltx_text ltx_font_smallcaps">intro</span>]
+Γ,x : A ⊢b : B
+Γ ⊢λ(x : A). b : ∏_(x:A)B
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m6" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-<span class="ltx_text ltx_font_smallcaps">elim</span>]
+Γ ⊢f : ∏_(x:A)B 
+<br class="ltx_break">Γ ⊢a : A
+Γ ⊢f(a) : B[a/x]
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m7" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-<span class="ltx_text ltx_font_smallcaps">comp</span>]
+Γ,x : A ⊢b : B 
+<br class="ltx_break">Γ ⊢a : A
+Γ ⊢(λ(x : A). b)(a) ≡b[a/x] : B[a/x]
+<span class="ltx_ERROR undefined">\inferrule</span>*[right=<math id="p3.m8" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-<span class="ltx_text ltx_font_smallcaps">uniq</span>]
+Γ ⊢f : ∏_(x:A)B
+Γ ⊢f ≡(λx. f(x)) : ∏_(x:A)B</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">The expression <math id="p4.m1" class="ltx_Math" alttext="{\lambda}(x\,{:}\,A).\,b" display="inline"><mrow><mi>λ</mi><mrow><mo stretchy="false">(</mo><mpadded width="+1.7pt"><mi>x</mi></mpadded><mo rspace="4.2pt">:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>b</mi></mrow></math> binds free occurrences of <math id="p4.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in <math id="p4.m3" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math>, as does <math id="p4.m4" class="ltx_Math" alttext="\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{(x:A)}}{\prod_{(x%
+:A)}}B" display="inline"><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>B</mi></mrow></math> for
+<math id="p4.m5" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math>.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">When <math id="p5.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> does not occur freely in <math id="p5.m2" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> so that <math id="p5.m3" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> does not depend on <math id="p5.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, we obtain as a
+special case the ordinary function type <math id="p5.m5" class="ltx_Math" alttext="A\to B:\!\!\equiv\mathchoice{{\textstyle\prod_{(x:A)}}}{\prod_{(x:A)}}{\prod_{%
+(x:A)}}{\prod_{(x:A)}}B" display="inline"><mrow><mi>A</mi><mo>→</mo><mi>B</mi><mo rspace="0pt">:</mo><mo>≡</mo><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mi>B</mi></mrow></math>. We take this as the <em class="ltx_emph ltx_font_italic">definition</em> of <math id="p5.m6" class="ltx_Math" alttext="\to" display="inline"><mo>→</mo></math>.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">We may abbreviate an expression <math id="p6.m1" class="ltx_Math" alttext="{\lambda}(x\,{:}\,A).\,b" display="inline"><mrow><mi>λ</mi><mrow><mo stretchy="false">(</mo><mpadded width="+1.7pt"><mi>x</mi></mpadded><mo rspace="4.2pt">:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo rspace="4.2pt">.</mo><mi>b</mi></mrow></math> as <math id="p6.m2" class="ltx_Math" alttext="{\lambda}x.\,b" display="inline"><mrow><mrow><mi>λ</mi><mo>⁢</mo><mi>x</mi></mrow><mo rspace="4.2pt">.</mo><mi>b</mi></mrow></math>, with the understanding
+that the omitted type <math id="p6.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> should be filled in appropriately before type-checking.</p>
+</div>
+<div id="p7" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">A.2.4 Dependent function types (<math id="p7.m1" class="ltx_Math" alttext="\Pi" display="inline"><mi mathvariant="normal">Π</mi></math>-types)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></th>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:44:00 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html><html>
+<head>
+<title>11. Real numbers</title>
+<!--Generated on Thu Feb  8 19:32:08 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="Cauchy, Dedekind, analysis, axiom, classical, compactness, constructive, countable, cut, mathematics, metric, metrically compact, of choice, ordered field, real numbers, sequence">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">11. Real numbers</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Any foundation of mathematics worthy of its name must eventually address the construction of real numbers as understood by mathematical analysis, namely as a complete archimedean ordered field.
+There are two notions of completeness. The one by Cauchy requires that the reals be closed under limits of Cauchy sequences, while the stronger one by Dedekind requires closure under Dedekind cuts.
+These lead to two ways of constructing reals, which we study in <span class="ltx_ERROR undefined">\autoref</span>sec:dedekind-reals and <span class="ltx_ERROR undefined">\autoref</span>sec:cauchy-reals, respectively. In <span class="ltx_ERROR undefined">\autoref</span>RD-final-field,<span class="ltx_ERROR undefined">\autoref</span>RC-initial-Cauchy-complete we characterize the two constructions in terms of universal properties: the Dedekind reals are the final archimedean ordered field, and the Cauchy reals the initial Cauchy complete archimedean ordered field.</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">In traditional constructive mathematics,
+real numbers always seem to require certain compromises. For example, the Dedekind reals work better with power sets or some other form of impredicativity, while Cauchy reals work well in the presence of countable choice.
+However, we give a new construction of the Cauchy reals as a higher inductive-inductive type that seems to be a third possibility, which requires neither power sets nor countable choice.
+</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">In <span class="ltx_ERROR undefined">\autoref</span>sec:comp-cauchy-dedek we compare the two constructions of reals. The Cauchy reals are included in the Dedekind reals. They coincide if excluded middle or countable choice holds, but in general the inclusion might be proper.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">In <span class="ltx_ERROR undefined">\autoref</span>sec:compactness-interval we consider three notions of compactness of the closed interval <math id="p5.m1" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math>. We first show that <math id="p5.m2" class="ltx_Math" alttext="[0,1]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math> is metrically compact in the sense that it is complete and totally bounded, and that uniformly continuous maps on metrically compact spaces behave as expected. In contrast, the Bolzano–Weierstraß property that every sequence has a convergent subsequence implies the limited principle of omniscience, which is an instance of excluded middle. Finally, we discuss Heine-Borel compactness. A naive formulation of the finite subcover property does not work, but a proof relevant notion of inductive covers does.
+This section is basically standard constructive analysis.
+</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">The development of real numbers and analysis in homotopy type theory can be easily made compatible with classical mathematics. By assuming excluded middle and the axiom of choice we get standard classical analysis: the Dedekind and Cauchy reals coincide, foundational questions about the impredicative nature of the Dedekind reals disappear, and the interval is as compact as it could be.
+</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">We close the chapter by constructing Conway’s surreals as a higher inductive-inductive type in <span class="ltx_ERROR undefined">\autoref</span>sec:surreals;
+the construction is more natural in univalent type theory than in classical set theory.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">In addition to the basic theory of <span class="ltx_ERROR undefined">\autoref</span>cha:basics,<span class="ltx_ERROR undefined">\autoref</span>cha:logic, as noted above we use “higher inductive-inductive types” for the Cauchy reals and the surreals: these combine the ideas of <span class="ltx_ERROR undefined">\autoref</span>cha:hits with the notion of inductive-inductive type mentioned in <span class="ltx_ERROR undefined">\autoref</span>sec:generalizations.
+We will also frequently use the traditional logical notation described in <span class="ltx_ERROR undefined">\autoref</span>subsec:prop-trunc, and the fact (proven in <span class="ltx_ERROR undefined">\autoref</span>sec:piw-pretopos) that our “sets” behave the way we would expect.
+</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Note that the total space of the universal cover of the circle, which
+in <span class="ltx_ERROR undefined">\autoref</span>subsec:pi1s1-homotopy-theory played a role similar to “the real numbers” in
+classical algebraic topology, is <em class="ltx_emph ltx_font_italic">not</em> the type of reals we are looking for. That
+type is contractible, and thus equivalent to the singleton type, so it cannot be equipped
+with a non-trivial algebraic structure.</p>
+</div>
+<div id="p10" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_guessed_headers ltx_align_middle">
+<thead class="ltx_thead">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_l ltx_border_t">Title</th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_column ltx_border_r ltx_border_t">11. Real numbers</th>
+</tr>
+</thead>
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:32:08 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

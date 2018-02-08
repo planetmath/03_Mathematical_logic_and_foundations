@@ -1,0 +1,261 @@
+<!DOCTYPE html><html>
+<head>
+<title>computing the Ackermann function</title>
+<!--Generated on Thu Feb  8 20:06:10 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">computing the Ackermann function</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Recall that the Ackermann function (the modern version) <math id="p1.m1" class="ltx_Math" alttext="A(x,y)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> is given by the following double recursive relation:</p>
+<table id="S0.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex1.m1" class="ltx_Math" alttext="A(0,y)=y+1,\qquad A(x+1,0)=A(x,1),\qquad A(x+1,y+1)=A(x,A(x+1,y))." display="block"><mrow><mrow><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>y</mi><mo>+</mo><mn>1</mn></mrow></mrow><mo rspace="22.5pt">,</mo><mrow><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></mrow><mo rspace="22.5pt">,</mo><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mrow><mi>y</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">From the equations above, we see that computing the Ackermann function involves first deciding whether the pair <math id="p1.m2" class="ltx_Math" alttext="(x,y)" display="inline"><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></math> is such that</p>
+<table id="S0.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex2.m1" class="ltx_Math" alttext="x=0,\qquad\mbox{or}\qquad x&gt;0\mbox{ and }y=0,\qquad\mbox{or}\qquad x&gt;0\mbox{ %
+and }y&gt;0," display="block"><mrow><mrow><mrow><mrow><mi>x</mi><mo>=</mo><mrow><mn>0</mn><mo rspace="22.5pt">,</mo><mtext>or</mtext></mrow></mrow><mo mathvariant="italic" separator="true">  </mo><mrow><mi>x</mi><mo>&gt;</mo><mrow><mn>0</mn><mo>⁢</mo><mtext> and </mtext><mo>⁢</mo><mi>y</mi></mrow><mo>=</mo><mn>0</mn></mrow></mrow><mo rspace="22.5pt">,</mo><mrow><mrow><mtext>or</mtext><mo mathvariant="italic" separator="true">  </mo><mi>x</mi></mrow><mo>&gt;</mo><mrow><mn>0</mn><mo>⁢</mo><mtext> and </mtext><mo>⁢</mo><mi>y</mi></mrow><mo>&gt;</mo><mn>0</mn></mrow></mrow><mo>,</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">which dictates which one of the three equations above to use. Let us illustrate this by a simple example: <math id="p1.m3" class="ltx_Math" alttext="x=1" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow></math> and <math id="p1.m4" class="ltx_Math" alttext="y=1" display="inline"><mrow><mi>y</mi><mo>=</mo><mn>1</mn></mrow></math>:</p>
+<table id="S0.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex3.m1" class="ltx_Math" alttext="A(1,1)=A(0,A(1,0))=A(0,A(0,1))=A(0,2)=3." display="block"><mrow><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>3</mn></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">If <math id="p1.m5" class="ltx_Math" alttext="x=2" display="inline"><mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math>, then quite a few more steps are involved:</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_eqnarray ltx_eqn_table">
+
+<tr id="S0.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\displaystyle A(2,1)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle=" display="inline"><mo>=</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m3" class="ltx_Math" alttext="\displaystyle A(1,A(2,0))=A(1,A(1,1))=A(1,A(0,A(1,0)))=A(1,A(0,A(0,1)))" display="inline"><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr class="ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle=" display="inline"><mo>=</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m3" class="ltx_Math" alttext="\displaystyle A(1,A(0,2))=A(1,3)=A(0,A(1,2))=A(0,A(0,A(1,1)))" display="inline"><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr class="ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S0.Ex6.m2" class="ltx_Math" alttext="\displaystyle=" display="inline"><mo>=</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex6.m3" class="ltx_Math" alttext="\displaystyle A(0,A(0,A(0,A(1,0))))=A(0,A(0,A(0,A(0,1))))" display="inline"><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr class="ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S0.Ex7.m2" class="ltx_Math" alttext="\displaystyle=" display="inline"><mo>=</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex7.m3" class="ltx_Math" alttext="\displaystyle A(0,A(0,A(0,2)))=A(0,A(0,3))=A(0,4)=5." display="inline"><mrow><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>4</mn><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mn>5</mn></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">When <math id="p1.m6" class="ltx_Math" alttext="x&gt;2" display="inline"><mrow><mi>x</mi><mo>&gt;</mo><mn>2</mn></mrow></math>, computations of <math id="p1.m7" class="ltx_Math" alttext="A(x,y)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> becomes unwieldy, mainly due to the number of steps involved, and partially due to the number of <math id="p1.m8" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>’s and the parentheses that need to be written down.</p>
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">Nevertheless, based on the computations of <math id="p2.m1" class="ltx_Math" alttext="A(1,1)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p2.m2" class="ltx_Math" alttext="A(2,1)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math> above, we see an algorithm emerging for computing <math id="p2.m3" class="ltx_Math" alttext="A(x,y)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math> in general. First, notice that in each of the expression <math id="p2.m4" class="ltx_Math" alttext="A(\ldots,)\ldots)" display="inline"><mrow><mi>A</mi><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">…</mi><mo>,</mo><mo stretchy="false">)</mo></mrow><mi mathvariant="normal">…</mi><mo stretchy="false">)</mo></mrow></math>, the right parentheses all occur at the right end of the expression. Therefore, there is no ambiguity involved if the <math id="p2.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>’s and the parentheses were removed. Formalizing this notion, we have</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. Suppose <math id="p3.m1" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> is in the range of <math id="p3.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>. We say that a sequence <math id="p3.m3" class="ltx_Math" alttext="x_{1},\ldots,x_{n}" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></math> is an <em class="ltx_emph ltx_font_italic">Ackermann sequence</em> for <math id="p3.m4" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> if</p>
+<table id="S0.Ex8" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex8.m1" class="ltx_Math" alttext="A(x_{1},A(x_{2},\ldots,A(x_{n-1},x_{n})\ldots)=z." display="block"><mrow><mi>A</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi>A</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mi>A</mi><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><mi mathvariant="normal">…</mi><mo stretchy="false">)</mo></mrow><mo>=</mo><mi>z</mi><mo>.</mo></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">In particular, the sequence <math id="p3.m5" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> of length <math id="p3.m6" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math> is an Ackermann sequence for <math id="p3.m7" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">Therefore, computing <math id="p4.m1" class="ltx_Math" alttext="A(x,y)=z" display="inline"><mrow><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow><mo>=</mo><mi>z</mi></mrow></math> is just a process of transforming the Ackermann sequence <math id="p4.m2" class="ltx_Math" alttext="x,y" display="inline"><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow></math> to the Ackermann sequence <math id="p4.m3" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>, for <math id="p4.m4" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>. Transforming one sequence <math id="p4.m5" class="ltx_Math" alttext="\boldsymbol{x}" display="inline"><mi>𝒙</mi></math> to another sequence <math id="p4.m6" class="ltx_Math" alttext="\boldsymbol{x}^{\prime}" display="inline"><msup><mi>𝒙</mi><mo>′</mo></msup></math> can be formalized as follows:</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Definition</span>. Suppose <math id="p5.m1" class="ltx_Math" alttext="\boldsymbol{x}" display="inline"><mi>𝒙</mi></math> is a finite non-empty sequence of non-negative integers. A sequence <math id="p5.m2" class="ltx_Math" alttext="\boldsymbol{x}^{\prime}" display="inline"><msup><mi>𝒙</mi><mo>′</mo></msup></math> is said to be <em class="ltx_emph ltx_font_italic">immediately derivable</em> from <math id="p5.m3" class="ltx_Math" alttext="\boldsymbol{x}" display="inline"><mi>𝒙</mi></math>, written <math id="p5.m4" class="ltx_Math" alttext="\boldsymbol{x}\longrightarrow\boldsymbol{x}^{\prime}" display="inline"><mrow><mi>𝒙</mi><mo>⟶</mo><msup><mi>𝒙</mi><mo>′</mo></msup></mrow></math>, if exactly one of the following conditions holds:</p>
+<ol id="I1" class="ltx_enumerate">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i1.p1.m1" class="ltx_Math" alttext="\boldsymbol{x}" display="inline"><mi>𝒙</mi></math> consists of one number, and <math id="I1.i1.p1.m2" class="ltx_Math" alttext="\boldsymbol{x}^{\prime}=\boldsymbol{x}" display="inline"><mrow><msup><mi>𝒙</mi><mo>′</mo></msup><mo>=</mo><mi>𝒙</mi></mrow></math>;</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i2.p1.m1" class="ltx_Math" alttext="\boldsymbol{x}=\boldsymbol{y},0,z" display="inline"><mrow><mi>𝒙</mi><mo>=</mo><mrow><mi>𝒚</mi><mo>,</mo><mn>0</mn><mo>,</mo><mi>z</mi></mrow></mrow></math>, and <math id="I1.i2.p1.m2" class="ltx_Math" alttext="\boldsymbol{x}^{\prime}=\boldsymbol{y},z+1" display="inline"><mrow><msup><mi>𝒙</mi><mo>′</mo></msup><mo>=</mo><mrow><mi>𝒚</mi><mo>,</mo><mrow><mi>z</mi><mo>+</mo><mn>1</mn></mrow></mrow></mrow></math>;</p>
+</div>
+</li>
+<li id="I1.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">3.</span> 
+<div id="I1.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i3.p1.m1" class="ltx_Math" alttext="\boldsymbol{x}=\boldsymbol{y},y,0" display="inline"><mrow><mi>𝒙</mi><mo>=</mo><mrow><mi>𝒚</mi><mo>,</mo><mi>y</mi><mo>,</mo><mn>0</mn></mrow></mrow></math>, with <math id="I1.i3.p1.m2" class="ltx_Math" alttext="y&gt;0" display="inline"><mrow><mi>y</mi><mo>&gt;</mo><mn>0</mn></mrow></math>, and <math id="I1.i3.p1.m3" class="ltx_Math" alttext="\boldsymbol{x}^{\prime}=\boldsymbol{y},y-1,1" display="inline"><mrow><msup><mi>𝒙</mi><mo>′</mo></msup><mo>=</mo><mrow><mi>𝒚</mi><mo>,</mo><mrow><mi>y</mi><mo>-</mo><mn>1</mn></mrow><mo>,</mo><mn>1</mn></mrow></mrow></math>; or</p>
+</div>
+</li>
+<li id="I1.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">4.</span> 
+<div id="I1.i4.p1" class="ltx_para">
+<p class="ltx_p"><math id="I1.i4.p1.m1" class="ltx_Math" alttext="\boldsymbol{x}=\boldsymbol{y},y,z" display="inline"><mrow><mi>𝒙</mi><mo>=</mo><mrow><mi>𝒚</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></mrow></mrow></math>, with <math id="I1.i4.p1.m2" class="ltx_Math" alttext="y&gt;0" display="inline"><mrow><mi>y</mi><mo>&gt;</mo><mn>0</mn></mrow></math>, <math id="I1.i4.p1.m3" class="ltx_Math" alttext="z&gt;0" display="inline"><mrow><mi>z</mi><mo>&gt;</mo><mn>0</mn></mrow></math>, and <math id="I1.i4.p1.m4" class="ltx_Math" alttext="\boldsymbol{x}^{\prime}=\boldsymbol{y},y-1,y,z-1" display="inline"><mrow><msup><mi>𝒙</mi><mo>′</mo></msup><mo>=</mo><mrow><mi>𝒚</mi><mo>,</mo><mrow><mi>y</mi><mo>-</mo><mn>1</mn></mrow><mo>,</mo><mi>y</mi><mo>,</mo><mrow><mi>z</mi><mo>-</mo><mn>1</mn></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">where <math id="p5.m5" class="ltx_Math" alttext="\boldsymbol{y}" display="inline"><mi>𝒚</mi></math> may be the empty sequence.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">It is clear that conditions 2-4 correspond to the three equations defining the Ackermann function.</p>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">We also write <math id="p7.m1" class="ltx_Math" alttext="\boldsymbol{x}\Longrightarrow\boldsymbol{x}^{\prime}" display="inline"><mrow><mi>𝒙</mi><mo>⟹</mo><msup><mi>𝒙</mi><mo>′</mo></msup></mrow></math> to mean a finite chain of sequences</p>
+<table id="S0.Ex9" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex9.m1" class="ltx_Math" alttext="\boldsymbol{x}=\boldsymbol{x}_{1},\boldsymbol{x}_{2},\ldots,\boldsymbol{x}_{m}%
+=\boldsymbol{x}^{\prime}" display="block"><mrow><mrow><mi>𝒙</mi><mo>=</mo><mrow><msub><mi>𝒙</mi><mn>1</mn></msub><mo>,</mo><msub><mi>𝒙</mi><mn>2</mn></msub><mo>,</mo><mi mathvariant="normal">…</mi></mrow></mrow><mo>,</mo><mrow><msub><mi>𝒙</mi><mi>m</mi></msub><mo>=</mo><msup><mi>𝒙</mi><mo>′</mo></msup></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">such that either <math id="p7.m2" class="ltx_Math" alttext="m=1" display="inline"><mrow><mi>m</mi><mo>=</mo><mn>1</mn></mrow></math>, or <math id="p7.m3" class="ltx_Math" alttext="m&gt;1" display="inline"><mrow><mi>m</mi><mo>&gt;</mo><mn>1</mn></mrow></math>, and <math id="p7.m4" class="ltx_Math" alttext="\boldsymbol{x}_{i}\rightarrow\boldsymbol{x}_{i+1}" display="inline"><mrow><msub><mi>𝒙</mi><mi>i</mi></msub><mo>→</mo><msub><mi>𝒙</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></math> for <math id="p7.m5" class="ltx_Math" alttext="i=1,\ldots,m-1" display="inline"><mrow><mi>i</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mi mathvariant="normal">…</mi><mo>,</mo><mrow><mi>m</mi><mo>-</mo><mn>1</mn></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">From the definition above, we can also describe the entire computational process rigorously:</p>
+<ol id="I2" class="ltx_enumerate">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">1.</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">start with a sequence <math id="I2.i1.p1.m1" class="ltx_Math" alttext="x,y" display="inline"><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow></math>, call the sequence <em class="ltx_emph ltx_font_italic">derived at step</em> <math id="I2.i1.p1.m2" class="ltx_Math" alttext="k=0" display="inline"><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow></math>;</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_enumerate">2.</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">If <math id="I2.i2.p1.m1" class="ltx_Math" alttext="\boldsymbol{x}" display="inline"><mi>𝒙</mi></math> is derived at step <math id="I2.i2.p1.m2" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>, and <math id="I2.i2.p1.m3" class="ltx_Math" alttext="\boldsymbol{x}\longrightarrow\boldsymbol{x}^{\prime}" display="inline"><mrow><mi>𝒙</mi><mo>⟶</mo><msup><mi>𝒙</mi><mo>′</mo></msup></mrow></math>, then <math id="I2.i2.p1.m4" class="ltx_Math" alttext="\boldsymbol{x}^{\prime}" display="inline"><msup><mi>𝒙</mi><mo>′</mo></msup></math> is derived at step <math id="I2.i2.p1.m5" class="ltx_Math" alttext="k+1" display="inline"><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></math>.</p>
+</div>
+</li>
+</ol>
+<p class="ltx_p">For example, the computation of <math id="p8.m1" class="ltx_Math" alttext="A(1,1)" display="inline"><mrow><mi>A</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math> can be written simply as</p>
+<table id="S0.Ex10" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S0.Ex10.m1" class="ltx_Math" alttext="1,1\longrightarrow 0,1,0\longrightarrow 0,0,1\longrightarrow 0,2%
+\longrightarrow 3\longrightarrow 3\longrightarrow\cdots" display="block"><mrow><mrow><mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow><mo>⟶</mo><mn>0</mn></mrow><mo>,</mo><mrow><mrow><mn>1</mn><mo>,</mo><mn>0</mn></mrow><mo>⟶</mo><mn>0</mn></mrow><mo>,</mo><mrow><mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow><mo>⟶</mo><mn>0</mn></mrow><mo>,</mo><mrow><mn>2</mn><mo>⟶</mo><mn>3</mn><mo>⟶</mo><mn>3</mn><mo>⟶</mo><mi mathvariant="normal">⋯</mi></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">A number of easy consequences of <math id="p9.m1" class="ltx_Math" alttext="\longrightarrow" display="inline"><mo>⟶</mo></math> can now be listed:</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I3.i1.p1.m1" class="ltx_Math" alttext="\boldsymbol{x}\longrightarrow\boldsymbol{x}^{\prime}" display="inline"><mrow><mi>𝒙</mi><mo>⟶</mo><msup><mi>𝒙</mi><mo>′</mo></msup></mrow></math>, then <math id="I3.i1.p1.m2" class="ltx_Math" alttext="\boldsymbol{x}\neq\boldsymbol{x}^{\prime}" display="inline"><mrow><mi>𝒙</mi><mo>≠</mo><msup><mi>𝒙</mi><mo>′</mo></msup></mrow></math> unless <math id="I3.i1.p1.m3" class="ltx_Math" alttext="\boldsymbol{x}" display="inline"><mi>𝒙</mi></math> consists of only one number.</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I3.i2.p1.m1" class="ltx_Math" alttext="\boldsymbol{x}\longrightarrow\boldsymbol{x}^{\prime}" display="inline"><mrow><mi>𝒙</mi><mo>⟶</mo><msup><mi>𝒙</mi><mo>′</mo></msup></mrow></math>, then <math id="I3.i2.p1.m2" class="ltx_Math" alttext="\boldsymbol{x}" display="inline"><mi>𝒙</mi></math> is an Ackermann sequence for <math id="I3.i2.p1.m3" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math> iff <math id="I3.i2.p1.m4" class="ltx_Math" alttext="\boldsymbol{x}^{\prime}" display="inline"><msup><mi>𝒙</mi><mo>′</mo></msup></math> is.</p>
+</div>
+</li>
+<li id="I3.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i3.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I3.i3.p1.m1" class="ltx_Math" alttext="\boldsymbol{x}\longrightarrow z" display="inline"><mrow><mi>𝒙</mi><mo>⟶</mo><mi>z</mi></mrow></math>, where <math id="I3.i3.p1.m2" class="ltx_Math" alttext="z\in\mathbb{N}" display="inline"><mrow><mi>z</mi><mo>∈</mo><mi>ℕ</mi></mrow></math>, then <math id="I3.i3.p1.m3" class="ltx_Math" alttext="\boldsymbol{x}" display="inline"><mi>𝒙</mi></math> is an Ackermann sequence for <math id="I3.i3.p1.m4" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>.</p>
+</div>
+</li>
+<li id="I3.i4" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i4.p1" class="ltx_para">
+<p class="ltx_p">if <math id="I3.i4.p1.m1" class="ltx_Math" alttext="x&gt;0" display="inline"><mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow></math>, then there is <math id="I3.i4.p1.m2" class="ltx_Math" alttext="t" display="inline"><mi>t</mi></math> such that <math id="I3.i4.p1.m3" class="ltx_Math" alttext="x,y\Longrightarrow x-1,t" display="inline"><mrow><mrow><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow><mo>⟹</mo><mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow></mrow><mo>,</mo><mi>t</mi></mrow></math>.</p>
+</div>
+</li>
+<li id="I3.i5" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i5.p1" class="ltx_para">
+<p class="ltx_p">any pair <math id="I3.i5.p1.m1" class="ltx_Math" alttext="x,y" display="inline"><mrow><mi>x</mi><mo>,</mo><mi>y</mi></mrow></math> is an Ackermann sequence for some <math id="I3.i5.p1.m2" class="ltx_Math" alttext="z" display="inline"><mi>z</mi></math>.</p>
+</div>
+</li>
+</ul>
+<table class="ltx_tabular ltx_align_right ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">computing the Ackermann function</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">ComputingTheAckermannFunction</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:07:46</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 19:07:46</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">7</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">CWoo (3771)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Algorithm</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">msc 03D75</td>
+</tr>
+</tbody>
+</table>
+<p class="ltx_p ltx_align_right"></p>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 20:06:10 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

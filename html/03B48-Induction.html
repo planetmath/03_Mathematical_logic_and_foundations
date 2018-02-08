@@ -1,0 +1,375 @@
+<!DOCTYPE html><html>
+<head>
+<title>induction</title>
+<!--Generated on Thu Feb  8 19:52:12 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">induction</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+<p class="ltx_p">Induction is the name given to a certain kind of proof, and also to
+a (related) way of defining a function.
+For a proof, the statement to
+be proved has a suitably <em class="ltx_emph ltx_font_italic">ordered</em> set of cases.
+Some cases (usually one, but possibly zero or more than one), are proved
+separately, and the other cases are deduced from those.
+The deduction goes by contradiction, as we shall see.
+For a function, its <em class="ltx_emph ltx_font_italic">domain</em> is suitably ordered.
+The function is first defined on some (usually nonempty)
+subset of its domain, and is then defined at other points
+<math id="p1.m1" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> in terms of its values at points <math id="p1.m2" class="ltx_Math" alttext="y" display="inline"><mi>y</mi></math> such that <math id="p1.m3" class="ltx_Math" alttext="y&lt;x" display="inline"><mrow><mi>y</mi><mo>&lt;</mo><mi>x</mi></mrow></math>.</p>
+</div>
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Elementary proof by induction</h2>
+
+<div id="S1.p1" class="ltx_para">
+<p class="ltx_p">Proof by induction is a variety of proof by contradiction, relying,
+in the elementary cases, on the fact that every non-empty set of
+natural numbers has a least element.
+Suppose we want to prove a statement <math id="S1.p1.m1" class="ltx_Math" alttext="F(n)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math> which involves a natural
+number <math id="S1.p1.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+It is enough to prove:</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p class="ltx_p">1) If <math id="S1.p2.m1" class="ltx_Math" alttext="n\in\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow></math>, and <math id="S1.p2.m2" class="ltx_Math" alttext="F(m)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></mrow></math> is true for <em class="ltx_emph ltx_font_italic">all</em>
+<math id="S1.p2.m3" class="ltx_Math" alttext="m\in\mathbb{N}" display="inline"><mrow><mi>m</mi><mo>∈</mo><mi>ℕ</mi></mrow></math> such that <math id="S1.p2.m4" class="ltx_Math" alttext="m&lt;n" display="inline"><mrow><mi>m</mi><mo>&lt;</mo><mi>n</mi></mrow></math>, then <math id="S1.p2.m5" class="ltx_Math" alttext="F(n)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math> is true.</p>
+</div>
+<div id="S1.p3" class="ltx_para">
+<p class="ltx_p">or, what is the same thing,</p>
+</div>
+<div id="S1.p4" class="ltx_para">
+<p class="ltx_p">2) If <math id="S1.p4.m1" class="ltx_Math" alttext="F(n)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math> is false, then <math id="S1.p4.m2" class="ltx_Math" alttext="F(m)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></mrow></math> is false for <em class="ltx_emph ltx_font_italic">some</em> <math id="S1.p4.m3" class="ltx_Math" alttext="m&lt;n" display="inline"><mrow><mi>m</mi><mo>&lt;</mo><mi>n</mi></mrow></math>.</p>
+</div>
+<div id="S1.p5" class="ltx_para">
+<p class="ltx_p">To see why, assume that <math id="S1.p5.m1" class="ltx_Math" alttext="F(n)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math> is false for some <math id="S1.p5.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+Then there is a <em class="ltx_emph ltx_font_italic">smallest</em> <math id="S1.p5.m3" class="ltx_Math" alttext="k\in{\mathbb{N}}" display="inline"><mrow><mi>k</mi><mo>∈</mo><mi>ℕ</mi></mrow></math>
+such that <math id="S1.p5.m4" class="ltx_Math" alttext="F(k)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> is false.
+Then, by hypothesis, <math id="S1.p5.m5" class="ltx_Math" alttext="F(n)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math> is true for all <math id="S1.p5.m6" class="ltx_Math" alttext="n&lt;k" display="inline"><mrow><mi>n</mi><mo>&lt;</mo><mi>k</mi></mrow></math>.
+By (1), <math id="S1.p5.m7" class="ltx_Math" alttext="F(k)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></mrow></math> is true, which is a contradiction.</p>
+</div>
+<div id="S1.p6" class="ltx_para">
+<p class="ltx_p">(If we don’t regard induction as a kind of proof by contradiction, then we
+have to think of it as supplying some kind of sequence of proofs, of
+unlimited length.
+That’s not very satisfactory, particularly for transfinite
+inductions, which we will get to below.)</p>
+</div>
+<div id="S1.p7" class="ltx_para">
+<p class="ltx_p">Usually the initial case of <math id="S1.p7.m1" class="ltx_Math" alttext="n=0" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow></math>, and sometimes a few cases, need
+to be proved separately, as in the following example.
+Write <math id="S1.p7.m2" class="ltx_Math" alttext="B_{n}=\sum_{k=0}^{n}k^{2}" display="inline"><mrow><msub><mi>B</mi><mi>n</mi></msub><mo>=</mo><mrow><msubsup><mo largeop="true" symmetric="true">∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><msup><mi>k</mi><mn>2</mn></msup></mrow></mrow></math>.
+We claim</p>
+<table id="S1.Ex1" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex1.m1" class="ltx_Math" alttext="B_{n}=\frac{n^{3}}{3}+\frac{n^{2}}{2}+\frac{n}{6}\textrm{ for all }n\in\mathbb%
+{N}" display="block"><mrow><msub><mi>B</mi><mi>n</mi></msub><mo>=</mo><mrow><mfrac><msup><mi>n</mi><mn>3</mn></msup><mn>3</mn></mfrac><mo>+</mo><mfrac><msup><mi>n</mi><mn>2</mn></msup><mn>2</mn></mfrac><mo>+</mo><mrow><mfrac><mi>n</mi><mn>6</mn></mfrac><mo>⁢</mo><mtext> for all </mtext><mo>⁢</mo><mi>n</mi></mrow></mrow><mo>∈</mo><mi>ℕ</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Let us try to apply (1). We have the inductive hypothesis (as it is called)</p>
+<table id="S1.Ex2" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex2.m1" class="ltx_Math" alttext="B_{m}=\frac{m^{3}}{3}+\frac{m^{2}}{2}+\frac{m}{6}\textrm{ for all }m&lt;n" display="block"><mrow><msub><mi>B</mi><mi>m</mi></msub><mo>=</mo><mrow><mfrac><msup><mi>m</mi><mn>3</mn></msup><mn>3</mn></mfrac><mo>+</mo><mfrac><msup><mi>m</mi><mn>2</mn></msup><mn>2</mn></mfrac><mo>+</mo><mrow><mfrac><mi>m</mi><mn>6</mn></mfrac><mo>⁢</mo><mtext> for all </mtext><mo>⁢</mo><mi>m</mi></mrow></mrow><mo>&lt;</mo><mi>n</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">which tells us something <em class="ltx_emph ltx_font_italic">if</em> <math id="S1.p7.m3" class="ltx_Math" alttext="n&gt;0" display="inline"><mrow><mi>n</mi><mo>&gt;</mo><mn>0</mn></mrow></math>. In particular, setting <math id="S1.p7.m4" class="ltx_Math" alttext="m=n-1" display="inline"><mrow><mi>m</mi><mo>=</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></mrow></math>,</p>
+<table id="S1.Ex3" class="ltx_equation ltx_eqn_table">
+
+<tr class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_eqn_cell ltx_align_center"><math id="S1.Ex3.m1" class="ltx_Math" alttext="B_{n-1}=\frac{(n-1)^{3}}{3}+\frac{(n-1)^{2}}{2}+\frac{n-1}{6}" display="block"><mrow><msub><mi>B</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>=</mo><mrow><mfrac><msup><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mn>3</mn></msup><mn>3</mn></mfrac><mo>+</mo><mfrac><msup><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mn>2</mn></mfrac><mo>+</mo><mfrac><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mn>6</mn></mfrac></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="S1.p8" class="ltx_para">
+<p class="ltx_p">Now we just add <math id="S1.p8.m1" class="ltx_Math" alttext="n^{2}" display="inline"><msup><mi>n</mi><mn>2</mn></msup></math> to each side, and verify that the right side becomes
+<math id="S1.p8.m2" class="ltx_Math" alttext="\frac{n^{3}}{3}+\frac{n^{2}}{2}+\frac{n}{6}" display="inline"><mrow><mfrac><msup><mi>n</mi><mn>3</mn></msup><mn>3</mn></mfrac><mo>+</mo><mfrac><msup><mi>n</mi><mn>2</mn></msup><mn>2</mn></mfrac><mo>+</mo><mfrac><mi>n</mi><mn>6</mn></mfrac></mrow></math>.
+This proves (1) for nonzero <math id="S1.p8.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+But if <math id="S1.p8.m4" class="ltx_Math" alttext="n=0" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow></math>, the inductive hypothesis is vacuously true, but of no use.
+So we need to prove <math id="S1.p8.m5" class="ltx_Math" alttext="F(0)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></math> separately, which in this case is trivial.</p>
+</div>
+<div id="S1.p9" class="ltx_para">
+<p class="ltx_p">Textbooks sometimes distinguish between <em class="ltx_emph ltx_font_italic">weak</em> and
+<em class="ltx_emph ltx_font_italic">strong</em> (or <em class="ltx_emph ltx_font_italic">complete</em>) inductive proofs.
+A proof that relies on the inductive hypothesis (1) is said to go
+by strong induction. But in the sum-of-squares formula above,
+we needed only the hypothesis <math id="S1.p9.m1" class="ltx_Math" alttext="F(n-1)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></math>, not <math id="S1.p9.m2" class="ltx_Math" alttext="F(m)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></mrow></math> for all <math id="S1.p9.m3" class="ltx_Math" alttext="m&lt;n" display="inline"><mrow><mi>m</mi><mo>&lt;</mo><mi>n</mi></mrow></math>.
+For another example, a proof about the Fibonacci sequence might
+use just <math id="S1.p9.m4" class="ltx_Math" alttext="F(n-2)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="S1.p9.m5" class="ltx_Math" alttext="F(n-1)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+An argument using only <math id="S1.p9.m6" class="ltx_Math" alttext="F(n-1)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></math> is referred to as weak induction.</p>
+</div>
+</section>
+<section id="S2" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">2 </span>Definition of a function by induction</h2>
+
+<div id="S2.p1" class="ltx_para">
+<p class="ltx_p">Let’s begin with an example, the function <math id="S2.p1.m1" class="ltx_Math" alttext="\mathbb{N}\to\mathbb{N}" display="inline"><mrow><mi>ℕ</mi><mo>→</mo><mi>ℕ</mi></mrow></math>,
+<math id="S2.p1.m2" class="ltx_Math" alttext="n\mapsto a^{n}" display="inline"><mrow><mi>n</mi><mo>↦</mo><msup><mi>a</mi><mi>n</mi></msup></mrow></math>, where <math id="S2.p1.m3" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> is some integer <math id="S2.p1.m4" class="ltx_Math" alttext="&gt;0" display="inline"><mrow><mi></mi><mo>&gt;</mo><mn>0</mn></mrow></math>.
+The inductive definition reads</p>
+<table id="S6.EGx1" class="ltx_equationgroup ltx_eqn_eqnarray ltx_eqn_table">
+
+<tr id="S2.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S2.Ex4.m1" class="ltx_Math" alttext="\displaystyle a^{0}" display="inline"><msup><mi>a</mi><mn>0</mn></msup></math></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S2.Ex4.m2" class="ltx_Math" alttext="\displaystyle=" display="inline"><mo>=</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S2.Ex4.m3" class="ltx_Math" alttext="\displaystyle 1" display="inline"><mn>1</mn></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S2.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S2.Ex5.m1" class="ltx_Math" alttext="\displaystyle a^{n}" display="inline"><msup><mi>a</mi><mi>n</mi></msup></math></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S2.Ex5.m2" class="ltx_Math" alttext="\displaystyle=" display="inline"><mo>=</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S2.Ex5.m3" class="ltx_Math" alttext="\displaystyle a(a^{n-1})\textrm{ for all }n&gt;0" display="inline"><mrow><mrow><mi>a</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mtext> for all </mtext><mo>⁢</mo><mi>n</mi></mrow><mo>&gt;</mo><mn>0</mn></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">Formally, such a definition requires some justification, which runs roughly
+as follows.
+Let <math id="S2.p1.m5" class="ltx_Math" alttext="T" display="inline"><mi>T</mi></math> be the set of <math id="S2.p1.m6" class="ltx_Math" alttext="m\in\mathbb{N}" display="inline"><mrow><mi>m</mi><mo>∈</mo><mi>ℕ</mi></mrow></math> for which the following
+definition “has no problem”.</p>
+<table id="S6.EGx2" class="ltx_equationgroup ltx_eqn_eqnarray ltx_eqn_table">
+
+<tr id="S2.Ex6" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S2.Ex6.m1" class="ltx_Math" alttext="\displaystyle a^{0}" display="inline"><msup><mi>a</mi><mn>0</mn></msup></math></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S2.Ex6.m2" class="ltx_Math" alttext="\displaystyle=" display="inline"><mo>=</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S2.Ex6.m3" class="ltx_Math" alttext="\displaystyle 1" display="inline"><mn>1</mn></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S2.Ex7" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S2.Ex7.m1" class="ltx_Math" alttext="\displaystyle a^{n}" display="inline"><msup><mi>a</mi><mi>n</mi></msup></math></td>
+<td class="ltx_td ltx_align_center ltx_eqn_cell"><math id="S2.Ex7.m2" class="ltx_Math" alttext="\displaystyle=" display="inline"><mo>=</mo></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S2.Ex7.m3" class="ltx_Math" alttext="\displaystyle a(a^{n-1})\textrm{ for }0&lt;n\leq m" display="inline"><mrow><mrow><mi>a</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow><mo>⁢</mo><mtext> for </mtext><mo>⁢</mo><mn>0</mn></mrow><mo>&lt;</mo><mi>n</mi><mo>≤</mo><mi>m</mi></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">We now have a finite sequence <math id="S2.p1.m7" class="ltx_Math" alttext="f_{m}" display="inline"><msub><mi>f</mi><mi>m</mi></msub></math> on the interval <math id="S2.p1.m8" class="ltx_Math" alttext="[0,m]" display="inline"><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mi>m</mi><mo stretchy="false">]</mo></mrow></math>, for
+each <math id="S2.p1.m9" class="ltx_Math" alttext="m\in T" display="inline"><mrow><mi>m</mi><mo>∈</mo><mi>T</mi></mrow></math>.
+We verify that any <math id="S2.p1.m10" class="ltx_Math" alttext="f_{l}" display="inline"><msub><mi>f</mi><mi>l</mi></msub></math> and <math id="S2.p1.m11" class="ltx_Math" alttext="f_{m}" display="inline"><msub><mi>f</mi><mi>m</mi></msub></math> have the same values
+throughout the intersection of their two domains.
+Thus we can define a single function on the <em class="ltx_emph ltx_font_italic">union</em> of the
+various domains.
+Now suppose <math id="S2.p1.m12" class="ltx_Math" alttext="T\neq\mathbb{N}" display="inline"><mrow><mi>T</mi><mo>≠</mo><mi>ℕ</mi></mrow></math>, and let <math id="S2.p1.m13" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> be the least element of
+<math id="S2.p1.m14" class="ltx_Math" alttext="\mathbb{N}-T" display="inline"><mrow><mi>ℕ</mi><mo>-</mo><mi>T</mi></mrow></math>.
+That means that the definition has a problem when <math id="S2.p1.m15" class="ltx_Math" alttext="m=k" display="inline"><mrow><mi>m</mi><mo>=</mo><mi>k</mi></mrow></math>
+but not when <math id="S2.p1.m16" class="ltx_Math" alttext="m&lt;k" display="inline"><mrow><mi>m</mi><mo>&lt;</mo><mi>k</mi></mrow></math>.
+We soon get a contradiction, so we deduce <math id="S2.p1.m17" class="ltx_Math" alttext="T=\mathbb{N}" display="inline"><mrow><mi>T</mi><mo>=</mo><mi>ℕ</mi></mrow></math>.
+That means that the union of those domains is all of <math id="S2.p1.m18" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>, i.e.
+the function <math id="S2.p1.m19" class="ltx_Math" alttext="a^{n}" display="inline"><msup><mi>a</mi><mi>n</mi></msup></math> is defined, unambiguously, throughout <math id="S2.p1.m20" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>.</p>
+</div>
+<div id="S2.p2" class="ltx_para">
+<p class="ltx_p">Another inductively defined function is the Fibonacci sequence, q.v.</p>
+</div>
+<div id="S2.p3" class="ltx_para">
+<p class="ltx_p">We have been speaking of the inductive definition of a <em class="ltx_emph ltx_font_italic">function</em>,
+rather than just a sequence (a function on <math id="S2.p3.m1" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>), because the
+notions extend with little change to transfinite inductions.
+An illustration <em class="ltx_emph ltx_font_italic">par excellence</em> of inductive proofs and
+definitions is Conway’s theory of surreal numbers.
+The numbers and their algebraic laws of composition are defined
+entirely by inductions which have no special starting cases.</p>
+</div>
+</section>
+<section id="S3" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">3 </span>Minor variations of the method</h2>
+
+<div id="S3.p1" class="ltx_para">
+<p class="ltx_p">The reader can figure out what is meant by “induction starting at <math id="S3.p1.m1" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math>”,
+where <math id="S3.p1.m2" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> is not necessarily zero.
+Likewise, the term “downward induction” is self-explanatory.</p>
+</div>
+<div id="S3.p2" class="ltx_para">
+<p class="ltx_p">A common variation of the method is proof by induction on a
+<em class="ltx_emph ltx_font_italic">function</em> of the index <math id="S3.p2.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+Rather than spell it out formally, let me just give an example.
+Let <math id="S3.p2.m2" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> be a positive integer having no prime factors of the form <math id="S3.p2.m3" class="ltx_Math" alttext="4m+3" display="inline"><mrow><mrow><mn>4</mn><mo>⁢</mo><mi>m</mi></mrow><mo>+</mo><mn>3</mn></mrow></math>.
+Then <math id="S3.p2.m4" class="ltx_Math" alttext="n=a^{2}+b^{2}" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup></mrow></mrow></math> for some integers <math id="S3.p2.m5" class="ltx_Math" alttext="a" display="inline"><mi>a</mi></math> and <math id="S3.p2.m6" class="ltx_Math" alttext="b" display="inline"><mi>b</mi></math>.
+The usual textbook proof uses induction on a function of
+<math id="S3.p2.m7" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>, namely the number of prime factors of <math id="S3.p2.m8" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math>.
+The induction starts at <math id="S3.p2.m9" class="ltx_Math" alttext="1" display="inline"><mn>1</mn></math> (i.e. either <math id="S3.p2.m10" class="ltx_Math" alttext="n=2" display="inline"><mrow><mi>n</mi><mo>=</mo><mn>2</mn></mrow></math>
+or prime <math id="S3.p2.m11" class="ltx_Math" alttext="n=4m+1" display="inline"><mrow><mi>n</mi><mo>=</mo><mrow><mrow><mn>4</mn><mo>⁢</mo><mi>m</mi></mrow><mo>+</mo><mn>1</mn></mrow></mrow></math>), which in this
+instance is the only part of the proof that is not quite easy.</p>
+</div>
+</section>
+<section id="S4" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">4 </span>Well-ordered sets</h2>
+
+<div id="S4.p1" class="ltx_para">
+<p class="ltx_p">An ordered set <math id="S4.p1.m1" class="ltx_Math" alttext="(S,\leq)" display="inline"><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mo>≤</mo><mo stretchy="false">)</mo></mrow></math> is said to be well-ordered if any nonempty subset
+of <math id="S4.p1.m2" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> has a least element.
+The criterion (1), and its proof, hold without change for any well-ordered
+set <math id="S4.p1.m3" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> in place of <math id="S4.p1.m4" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math> (which is a well-ordered set).
+But notice that it won’t be enough to prove that <math id="S4.p1.m5" class="ltx_Math" alttext="F(n)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></math> implies <math id="S4.p1.m6" class="ltx_Math" alttext="F(n+1)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo stretchy="false">)</mo></mrow></mrow></math>
+(where <math id="S4.p1.m7" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> denotes the least element <math id="S4.p1.m8" class="ltx_Math" alttext="&gt;n" display="inline"><mrow><mi></mi><mo>&gt;</mo><mi>n</mi></mrow></math>, if it exists).
+The reason is, given an element <math id="S4.p1.m9" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>, there may exist
+elements <math id="S4.p1.m10" class="ltx_Math" alttext="&lt;m" display="inline"><mrow><mi></mi><mo>&lt;</mo><mi>m</mi></mrow></math> but no element <math id="S4.p1.m11" class="ltx_Math" alttext="k" display="inline"><mi>k</mi></math> such that <math id="S4.p1.m12" class="ltx_Math" alttext="m=k+1" display="inline"><mrow><mi>m</mi><mo>=</mo><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></mrow></math>.
+Then the induction from <math id="S4.p1.m13" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> to <math id="S4.p1.m14" class="ltx_Math" alttext="n+1" display="inline"><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></math> will fail to “reach” <math id="S4.p1.m15" class="ltx_Math" alttext="m" display="inline"><mi>m</mi></math>.
+For more on this topic, look for “limit ordinals”.</p>
+</div>
+<div id="S4.p2" class="ltx_para">
+<p class="ltx_p">Informally, any variety of induction which
+works for ordered sets <math id="S4.p2.m1" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> in which a segment
+<math id="S4.p2.m2" class="ltx_Math" alttext="S_{x}=\{y\in S|y&lt;x\}" display="inline"><mrow><msub><mi>S</mi><mi>x</mi></msub><mo>=</mo><mrow><mo stretchy="false">{</mo><mrow><mi>y</mi><mo>∈</mo><mi>S</mi></mrow><mo stretchy="false">|</mo><mrow><mi>y</mi><mo>&lt;</mo><mi>x</mi></mrow><mo stretchy="false">}</mo></mrow></mrow></math> may be infinite, is called “transfinite induction”.</p>
+</div>
+</section>
+<section id="S5" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">5 </span>Noetherian induction</h2>
+
+<div id="S5.p1" class="ltx_para">
+<p class="ltx_p">An ordered set <math id="S5.p1.m1" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math>, or its order, is called Noetherian if any non-empty
+subset of <math id="S5.p1.m2" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> has a maximal element.
+Several equivalent definitions are
+possible, such as the “ascending chain condition”:
+any strictly increasing sequence of elements of <math id="S5.p1.m3" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> is finite.
+The following result is easily proved by contradiction.</p>
+</div>
+<div id="S5.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Principle of Noetherian induction:</span> Let <math id="S5.p2.m1" class="ltx_Math" alttext="(S,\leq)" display="inline"><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mo>≤</mo><mo stretchy="false">)</mo></mrow></math> be
+a set with a Noetherian order, and let <math id="S5.p2.m2" class="ltx_Math" alttext="T" display="inline"><mi>T</mi></math> be a subset of <math id="S5.p2.m3" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> having
+this property: if <math id="S5.p2.m4" class="ltx_Math" alttext="x\in S" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>S</mi></mrow></math> is such that the condition <math id="S5.p2.m5" class="ltx_Math" alttext="y&gt;x" display="inline"><mrow><mi>y</mi><mo>&gt;</mo><mi>x</mi></mrow></math> implies
+<math id="S5.p2.m6" class="ltx_Math" alttext="y\in T" display="inline"><mrow><mi>y</mi><mo>∈</mo><mi>T</mi></mrow></math>, then <math id="S5.p2.m7" class="ltx_Math" alttext="x\in T" display="inline"><mrow><mi>x</mi><mo>∈</mo><mi>T</mi></mrow></math>. Then <math id="S5.p2.m8" class="ltx_Math" alttext="T=S" display="inline"><mrow><mi>T</mi><mo>=</mo><mi>S</mi></mrow></math>.</p>
+</div>
+<div id="S5.p3" class="ltx_para">
+<p class="ltx_p">So, to prove something “<math id="S5.p3.m1" class="ltx_Math" alttext="F(x)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math>” about every element <math id="S5.p3.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> of a Noetherian set,
+it is enough to prove that “<math id="S5.p3.m3" class="ltx_Math" alttext="F(z)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mrow></math> for all <math id="S5.p3.m4" class="ltx_Math" alttext="z&gt;y" display="inline"><mrow><mi>z</mi><mo>&gt;</mo><mi>y</mi></mrow></math>” implies “<math id="S5.p3.m5" class="ltx_Math" alttext="F(y)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mrow></math>”.
+This time the induction is going downward, but of course that is only a
+matter of notation.
+The opposite of a Noetherian order, i.e. an order in which any strictly
+decreasing sequence is finite, is also in use; it is called a partial
+well-order, or an ordered set having no infinite antichain.</p>
+</div>
+<div id="S5.p4" class="ltx_para">
+<p class="ltx_p">The standard example of a Noetherian ordered set is the set of ideals
+in a Noetherian ring.
+But the notion has various other uses, in topology
+as well as algebra.
+For a nontrivial example of a proof by Noetherian
+induction, look up the Hilbert basis theorem.
+</p>
+</div>
+</section>
+<section id="S6" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">6 </span>Inductive ordered sets</h2>
+
+<div id="S6.p1" class="ltx_para">
+<p class="ltx_p">An ordered set <math id="S6.p1.m1" class="ltx_Math" alttext="(S,\leq)" display="inline"><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mo>≤</mo><mo stretchy="false">)</mo></mrow></math> is said to be inductive if any totally ordered subset
+of <math id="S6.p1.m2" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math> has an upper bound in <math id="S6.p1.m3" class="ltx_Math" alttext="S" display="inline"><mi>S</mi></math>.
+Since the empty set is totally ordered,
+any inductive ordered set is non-empty.
+We have this important result:</p>
+</div>
+<div id="S6.p2" class="ltx_para ltx_noindent">
+<p class="ltx_p"><span class="ltx_text ltx_font_bold">Zorn’s lemma:</span> Any inductive ordered set has a maximal element.</p>
+</div>
+<div id="S6.p3" class="ltx_para">
+<p class="ltx_p">Zorn’s lemma is widely used in existence proofs, rather than in proofs
+of a property <math id="S6.p3.m1" class="ltx_Math" alttext="F(x)" display="inline"><mrow><mi>F</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math> of an arbitrary element <math id="S6.p3.m2" class="ltx_Math" alttext="x" display="inline"><mi>x</mi></math> of an ordered set.
+Let me sketch one typical application.
+We claim that every vector space has a basis.
+First, we prove that if a free subset <math id="S6.p3.m3" class="ltx_Math" alttext="F" display="inline"><mi>F</mi></math>, of a vector space <math id="S6.p3.m4" class="ltx_Math" alttext="V" display="inline"><mi>V</mi></math>,
+is a maximal free subset (with respect to the order relation
+<math id="S6.p3.m5" class="ltx_Math" alttext="\subset" display="inline"><mo>⊂</mo></math>), then it is a basis.
+Next, to see that the set of free subsets is inductive, it is enough
+to verify that the union of any totally ordered set of free subsets
+is free, because that union is an upper bound on the totally ordered set.
+Last, we apply Zorn’s lemma to conclude that <math id="S6.p3.m6" class="ltx_Math" alttext="V" display="inline"><mi>V</mi></math> has a maximal free
+subset.
+</p>
+<table class="ltx_tabular ltx_align_right ltx_guessed_headers ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l ltx_border_t">Title</th>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">induction</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Canonical name</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Induction</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Date of creation</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 12:24:27</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified on</th>
+<td class="ltx_td ltx_align_left ltx_border_r">2013-03-22 12:24:27</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Owner</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Daume (40)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Last modified by</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Daume (40)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Numerical id</th>
+<td class="ltx_td ltx_align_left ltx_border_r">14</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Author</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Daume (40)</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Entry type</th>
+<td class="ltx_td ltx_align_left ltx_border_r">Topic</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03B48</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Classification</th>
+<td class="ltx_td ltx_align_left ltx_border_r">msc 03F07</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Related topic</th>
+<td class="ltx_td ltx_align_left ltx_border_r">TransfiniteInduction</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Related topic</th>
+<td class="ltx_td ltx_align_left ltx_border_r">PrincipleOfFiniteInduction</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_l">Defines</th>
+<td class="ltx_td ltx_align_left ltx_border_r">inductive order</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_b ltx_border_l">Defines</th>
+<td class="ltx_td ltx_align_left ltx_border_b ltx_border_r">partial well-order</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:52:12 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>

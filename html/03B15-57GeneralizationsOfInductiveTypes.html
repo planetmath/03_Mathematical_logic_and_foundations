@@ -1,0 +1,327 @@
+<!DOCTYPE html><html>
+<head>
+<title>5.7 Generalizations of inductive types</title>
+<!--Generated on Thu Feb  8 19:37:01 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="ltx-article.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/3f71ceeb3b055e1ddc3b6c11fb1f074c/raw/2bb23e3b173ff96840797fc0c3bcb8c54085df8e/LaTeXML.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/holtzermann17/4bda0365b30858ac2fb83623185fe3ec/raw/cedd84ed3e3ad597c5d293f443ecfe4803741c6b/ltx-article.css" type="text/css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML" type="text/javascript"></script>
+<meta name="keywords" lang="en" content="family of, for type of vectors, formalized, generalizations, index of an inductive definition, induction principle, induction principle for, inductive, inductive-inductive, inductive-inductive type, inductive-recursive, inductive-recursive type, mathematics, mutual inductive, mutual inductive type, of an inductive definition, of lists, of vectors, parameter, predicate, type, type family, variable, vector">
+</head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">5.7 Generalizations of inductive types</h1>
+
+<div id="p1" class="ltx_para">
+<br class="ltx_break">
+</div>
+<div id="p2" class="ltx_para">
+<p class="ltx_p">The notion of inductive type has been studied in type theory for many years, and admits of many, many generalizations: inductive type families, mutual inductive types, inductive-inductive types, inductive-recursive types, etc.
+In this section we give an overview of some of these, a few of which will be used later in the book.
+(In <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87579</span>Chapter 6 we will study in more depth a very different generalization of inductive types, which is particular to <em class="ltx_emph ltx_font_italic">homotopy</em> type theory.)</p>
+</div>
+<div id="p3" class="ltx_para">
+<p class="ltx_p">Most of these generalizations involve allowing ourselves to define more than one type by induction at the same time.
+One very simple example of this, which we have already seen, is the coproduct <math id="p3.m1" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math>.
+It would be tedious indeed if we had to write down separate inductive definitions for <math id="p3.m2" class="ltx_Math" alttext="\mathbb{N}+\mathbb{N}" display="inline"><mrow><mi>ℕ</mi><mo>+</mo><mi>ℕ</mi></mrow></math>, for <math id="p3.m3" class="ltx_Math" alttext="\mathbb{N}+\mathbf{2}" display="inline"><mrow><mi>ℕ</mi><mo>+</mo><mn>𝟐</mn></mrow></math>, for <math id="p3.m4" class="ltx_Math" alttext="\mathbf{2}+\mathbf{2}" display="inline"><mrow><mn>𝟐</mn><mo>+</mo><mn>𝟐</mn></mrow></math>, and so on every time we wanted to consider the coproduct of two types.
+Instead, we make one definition in which <math id="p3.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and <math id="p3.m6" class="ltx_Math" alttext="B" display="inline"><mi>B</mi></math> are variables standing for types;
+in type theory they are called <span class="ltx_text ltx_font_bold">parameters</span>.
+Thus technically speaking, what results from the definition is not a single type, but a family of types <math id="p3.m7" class="ltx_Math" alttext="+:\mathcal{U}\to\mathcal{U}\to\mathcal{U}" display="inline"><mrow><mo>+</mo><mo>:</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></math>, taking two types as input and producing their coproduct.
+Similarly, the type <math id="p3.m8" class="ltx_Math" alttext="\mathsf{List}(A)" display="inline"><mrow><mi>𝖫𝗂𝗌𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> of lists is a family <math id="p3.m9" class="ltx_Math" alttext="\mathsf{List}(\mathord{\hskip 1.0pt\underline{\hskip 4.3pt}\hskip 1.0pt}):%
+\mathcal{U}\to\mathcal{U}" display="inline"><mrow><mrow><mi>𝖫𝗂𝗌𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mpadded lspace="1pt" width="+2pt"><munder accentunder="true"><mi></mi><mo>¯</mo></munder></mpadded><mo stretchy="false">)</mo></mrow></mrow><mo>:</mo><mrow><mi class="ltx_font_mathcaligraphic">𝒰</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> in which the type <math id="p3.m10" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a parameter.</p>
+</div>
+<div id="p4" class="ltx_para">
+<p class="ltx_p">In mathematics, this sort of thing is so obvious as to not be worth mentioning, but we bring it up in order to contrast it with the next example.
+Note that each type <math id="p4.m1" class="ltx_Math" alttext="A+B" display="inline"><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow></math> is <em class="ltx_emph ltx_font_italic">independently</em> defined inductively, as is each type <math id="p4.m2" class="ltx_Math" alttext="\mathsf{List}(A)" display="inline"><mrow><mi>𝖫𝗂𝗌𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math>.
+By contrast, we might also consider defining a whole type family <math id="p4.m3" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> by induction <em class="ltx_emph ltx_font_italic">together</em>.
+The difference is that now the constructors may change the index <math id="p4.m4" class="ltx_Math" alttext="a:A" display="inline"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>, and as a consequence we cannot say that the individual types <math id="p4.m5" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math> are inductively defined, only that the entire family is inductively defined.</p>
+</div>
+<div id="p5" class="ltx_para">
+<p class="ltx_p">The standard example is the type of <em class="ltx_emph ltx_font_italic">lists of specified length</em>, traditionally called <span class="ltx_text ltx_font_bold">vectors</span>.
+We fix a parameter type <math id="p5.m1" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>, and define a type family <math id="p5.m2" class="ltx_Math" alttext="\mathsf{Vec}_{n}(A)" display="inline"><mrow><msub><mi>𝖵𝖾𝖼</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math>, for <math id="p5.m3" class="ltx_Math" alttext="n:\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></math>, generated by the following constructors:</p>
+<ul id="I1" class="ltx_itemize">
+<li id="I1.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i1.p1" class="ltx_para">
+<p class="ltx_p">a vector <math id="I1.i1.p1.m1" class="ltx_Math" alttext="\mathsf{nil}:\mathsf{Vec}_{0}(A)" display="inline"><mrow><mi>𝗇𝗂𝗅</mi><mo>:</mo><mrow><msub><mi>𝖵𝖾𝖼</mi><mn>0</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math> of length zero,</p>
+</div>
+</li>
+<li id="I1.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I1.i2.p1" class="ltx_para">
+<p class="ltx_p">a function <math id="I1.i2.p1.m1" class="ltx_Math" alttext="\mathsf{cons}:\mathchoice{\prod_{n:\mathbb{N}}\,}{\mathchoice{{\textstyle\prod%
+_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:%
+\mathbb{N})}}}{\mathchoice{{\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:%
+\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}{\mathchoice{{%
+\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N%
+})}}{\prod_{(n:\mathbb{N})}}}A\to\mathsf{Vec}_{n}(A)\to\mathsf{Vec}_{\mathsf{%
+succ}(n)}(A)" display="inline"><mrow><mi>𝖼𝗈𝗇𝗌</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></msub><mi>A</mi></mrow><mo>→</mo><mrow><msub><mi>𝖵𝖾𝖼</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msub><mi>𝖵𝖾𝖼</mi><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">In contrast to lists, vectors (with elements from a fixed type <math id="p5.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math>) form a family of types indexed by their length.
+While <math id="p5.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> is a parameter, we say that <math id="p5.m6" class="ltx_Math" alttext="n:\mathbb{N}" display="inline"><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></math> is an <span class="ltx_text ltx_font_bold">index</span>
+of the inductive family.
+An individual type such as <math id="p5.m7" class="ltx_Math" alttext="\mathsf{Vec}_{3}(A)" display="inline"><mrow><msub><mi>𝖵𝖾𝖼</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> is not inductively defined: the constructors which build elements of <math id="p5.m8" class="ltx_Math" alttext="\mathsf{Vec}_{3}(A)" display="inline"><mrow><msub><mi>𝖵𝖾𝖼</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></math> take input from a different type in the family, such as <math id="p5.m9" class="ltx_Math" alttext="\mathsf{cons}:A\to\mathsf{Vec}_{2}(A)\to\mathsf{Vec}_{3}(A)" display="inline"><mrow><mi>𝖼𝗈𝗇𝗌</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mrow><msub><mi>𝖵𝖾𝖼</mi><mn>2</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><msub><mi>𝖵𝖾𝖼</mi><mn>3</mn></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+<div id="p6" class="ltx_para">
+<p class="ltx_p">In particular, the induction principle must refer to the entire type family as well; thus the hypotheses and the conclusion must quantify over the indices appropriately.
+In the case of vectors, the induction principle states that given a type family <math id="p6.m1" class="ltx_Math" alttext="C:\mathchoice{\prod_{n:\mathbb{N}}\,}{\mathchoice{{\textstyle\prod_{(n:\mathbb%
+{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}%
+}}{\mathchoice{{\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{%
+\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\prod_%
+{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:%
+\mathbb{N})}}}\mathsf{Vec}_{n}(A)\to\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mi>𝖵𝖾𝖼</mi><mi>n</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, together with</p>
+<ul id="I2" class="ltx_itemize">
+<li id="I2.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i1.p1" class="ltx_para">
+<p class="ltx_p">an element <math id="I2.i1.p1.m1" class="ltx_Math" alttext="c_{\mathsf{nil}}:C(0,\mathsf{nil})" display="inline"><mrow><msub><mi>c</mi><mi>𝗇𝗂𝗅</mi></msub><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>𝗇𝗂𝗅</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></math>, and</p>
+</div>
+</li>
+<li id="I2.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I2.i2.p1" class="ltx_para">
+<p class="ltx_p">a function <math id="I2.i2.p1.m1" class="ltx_Math" alttext="c_{\mathsf{cons}}:\mathchoice{\prod_{(n:\mathbb{N})}\,}{\mathchoice{{%
+\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N%
+})}}{\prod_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\prod_{(n:\mathbb{N})}}}{%
+\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}{%
+\mathchoice{{\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_%
+{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}\mathchoice{\prod_{(a:A)}\,}{%
+\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{\prod_{(a%
+:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(a:A)}}{%
+\prod_{(a:A)}}}{\mathchoice{{\textstyle\prod_{(a:A)}}}{\prod_{(a:A)}}{\prod_{(%
+a:A)}}{\prod_{(a:A)}}}\mathchoice{\prod_{(\ell:\mathsf{Vec}_{n}(A))}\,}{%
+\mathchoice{{\textstyle\prod_{(\ell:\mathsf{Vec}_{n}(A))}}}{\prod_{(\ell:%
+\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:%
+\mathsf{Vec}_{n}(A))}}}{\mathchoice{{\textstyle\prod_{(\ell:\mathsf{Vec}_{n}(A%
+))}}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}{%
+\prod_{(\ell:\mathsf{Vec}_{n}(A))}}}{\mathchoice{{\textstyle\prod_{(\ell:%
+\mathsf{Vec}_{n}(A))}}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:%
+\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}}C(n,\ell)\to C(%
+\mathsf{succ}(n),\mathsf{cons}(a,\ell))" display="inline"><mrow><msub><mi>c</mi><mi>𝖼𝗈𝗇𝗌</mi></msub><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">ℓ</mi><mo>:</mo><msub><mi>𝖵𝖾𝖼</mi><mi>n</mi></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><mi mathvariant="normal">ℓ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow><mo>→</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>𝖼𝗈𝗇𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi mathvariant="normal">ℓ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math></p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">there exists a function <math id="p6.m2" class="ltx_Math" alttext="f:\mathchoice{\prod_{(n:\mathbb{N})}\,}{\mathchoice{{\textstyle\prod_{(n:%
+\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:%
+\mathbb{N})}}}{\mathchoice{{\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:%
+\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}{\mathchoice{{%
+\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N%
+})}}{\prod_{(n:\mathbb{N})}}}\mathchoice{\prod_{(\ell:\mathsf{Vec}_{n}(A))}\,}%
+{\mathchoice{{\textstyle\prod_{(\ell:\mathsf{Vec}_{n}(A))}}}{\prod_{(\ell:%
+\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:%
+\mathsf{Vec}_{n}(A))}}}{\mathchoice{{\textstyle\prod_{(\ell:\mathsf{Vec}_{n}(A%
+))}}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}{%
+\prod_{(\ell:\mathsf{Vec}_{n}(A))}}}{\mathchoice{{\textstyle\prod_{(\ell:%
+\mathsf{Vec}_{n}(A))}}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:%
+\mathsf{Vec}_{n}(A))}}{\prod_{(\ell:\mathsf{Vec}_{n}(A))}}}C(n,\ell)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></msub><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">ℓ</mi><mo>:</mo><msub><mi>𝖵𝖾𝖼</mi><mi>n</mi></msub><mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><mi mathvariant="normal">ℓ</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></mrow></math> such that</p>
+<table id="S0.EGx1" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex1" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex1.m1" class="ltx_Math" alttext="\displaystyle f(0,\mathsf{nil})" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>𝗇𝗂𝗅</mi><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex1.m2" class="ltx_Math" alttext="\displaystyle\equiv c_{\mathsf{nil}}" display="inline"><mrow><mi></mi><mo>≡</mo><msub><mi>c</mi><mi>𝗇𝗂𝗅</mi></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex2" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex2.m1" class="ltx_Math" alttext="\displaystyle f(\mathsf{succ}(n),\mathsf{cons}(a,\ell))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo>,</mo><mrow><mi>𝖼𝗈𝗇𝗌</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi mathvariant="normal">ℓ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex2.m2" class="ltx_Math" alttext="\displaystyle\equiv c_{\mathsf{cons}}(n,a,\ell,f(\ell))." display="inline"><mrow><mrow><mi></mi><mo>≡</mo><mrow><msub><mi>c</mi><mi>𝖼𝗈𝗇𝗌</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi mathvariant="normal">ℓ</mi><mo>,</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">ℓ</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+</div>
+<div id="p7" class="ltx_para">
+<p class="ltx_p">One use of inductive families is to define <em class="ltx_emph ltx_font_italic">predicates</em> inductively.
+For instance, we might define the predicate <math id="p7.m1" class="ltx_Math" alttext="\mathsf{iseven}:\mathbb{N}\to\mathcal{U}" display="inline"><mrow><mi>𝗂𝗌𝖾𝗏𝖾𝗇</mi><mo>:</mo><mrow><mi>ℕ</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> as an inductive family indexed by <math id="p7.m2" class="ltx_Math" alttext="\mathbb{N}" display="inline"><mi>ℕ</mi></math>, with the following constructors:</p>
+<ul id="I3" class="ltx_itemize">
+<li id="I3.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i1.p1" class="ltx_para">
+<p class="ltx_p">an element <math id="I3.i1.p1.m1" class="ltx_Math" alttext="\mathsf{even}_{0}:\mathsf{iseven}(0)" display="inline"><mrow><msub><mi>𝖾𝗏𝖾𝗇</mi><mn>0</mn></msub><mo>:</mo><mrow><mi>𝗂𝗌𝖾𝗏𝖾𝗇</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I3.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I3.i2.p1" class="ltx_para">
+<p class="ltx_p">a function <math id="I3.i2.p1.m1" class="ltx_Math" alttext="\mathsf{even}_{ss}:\mathchoice{\prod_{n:\mathbb{N}}\,}{\mathchoice{{\textstyle%
+\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod%
+_{(n:\mathbb{N})}}}{\mathchoice{{\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:%
+\mathbb{N})}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N})}}}{\mathchoice{{%
+\textstyle\prod_{(n:\mathbb{N})}}}{\prod_{(n:\mathbb{N})}}{\prod_{(n:\mathbb{N%
+})}}{\prod_{(n:\mathbb{N})}}}\mathsf{iseven}(n)\to\mathsf{iseven}(\mathsf{succ%
+}(\mathsf{succ}(n)))" display="inline"><mrow><msub><mi>𝖾𝗏𝖾𝗇</mi><mrow><mi>s</mi><mo>⁢</mo><mi>s</mi></mrow></msub><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>𝗂𝗌𝖾𝗏𝖾𝗇</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mrow><mi>𝗂𝗌𝖾𝗏𝖾𝗇</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">In other words, we stipulate that <math id="p7.m3" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math> is even, and that if <math id="p7.m4" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> is even then so is <math id="p7.m5" class="ltx_Math" alttext="\mathsf{succ}(\mathsf{succ}(n))" display="inline"><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math>.
+These constructors “obviously” give no way to construct an element of, say, <math id="p7.m6" class="ltx_Math" alttext="\mathsf{iseven}(1)" display="inline"><mrow><mi>𝗂𝗌𝖾𝗏𝖾𝗇</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math>, and since <math id="p7.m7" class="ltx_Math" alttext="\mathsf{iseven}" display="inline"><mi>𝗂𝗌𝖾𝗏𝖾𝗇</mi></math> is supposed to be freely generated by these constructors, there must be no such element.
+(Actually proving that <math id="p7.m8" class="ltx_Math" alttext="\neg\mathsf{iseven}(1)" display="inline"><mrow><mi mathvariant="normal">¬</mi><mo>⁢</mo><mi>𝗂𝗌𝖾𝗏𝖾𝗇</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mrow></math> is not entirely trivial, however).
+The induction principle for <math id="p7.m9" class="ltx_Math" alttext="\mathsf{iseven}" display="inline"><mi>𝗂𝗌𝖾𝗏𝖾𝗇</mi></math> says that to prove something about all even natural numbers, it suffices to prove it for <math id="p7.m10" class="ltx_Math" alttext="0" display="inline"><mn>0</mn></math> and verify that it is preserved by adding two.</p>
+</div>
+<div id="p8" class="ltx_para">
+<p class="ltx_p">Inductively defined predicates are much used in computer formalization of mathematics and software verification.
+But we will not have much use for them, with a couple of exceptions in §10.3 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/103ordinalnumbers</span>),§11.5 (<span class="ltx_text ltx_font_typewriter">http://planetmath.org/115compactnessoftheinterval</span>).
+</p>
+</div>
+<div id="p9" class="ltx_para">
+<p class="ltx_p">Another important special case is when the indexing type of an inductive family is finite.
+In this case, we can equivalently express the inductive definition as a finite collection of types defined by <em class="ltx_emph ltx_font_italic">mutual induction</em>.
+For instance, we might define the types <math id="p9.m1" class="ltx_Math" alttext="\mathsf{even}" display="inline"><mi>𝖾𝗏𝖾𝗇</mi></math> and <math id="p9.m2" class="ltx_Math" alttext="\mathsf{odd}" display="inline"><mi>𝗈𝖽𝖽</mi></math> of even and odd natural numbers by mutual induction, where <math id="p9.m3" class="ltx_Math" alttext="\mathsf{even}" display="inline"><mi>𝖾𝗏𝖾𝗇</mi></math> is generated by constructors</p>
+<ul id="I4" class="ltx_itemize">
+<li id="I4.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I4.i1.p1.m1" class="ltx_Math" alttext="0:\mathsf{even}" display="inline"><mrow><mn>0</mn><mo>:</mo><mi>𝖾𝗏𝖾𝗇</mi></mrow></math> and</p>
+</div>
+</li>
+<li id="I4.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I4.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I4.i2.p1.m1" class="ltx_Math" alttext="\mathsf{esucc}:\mathsf{odd}\to\mathsf{even}" display="inline"><mrow><mi>𝖾𝗌𝗎𝖼𝖼</mi><mo>:</mo><mrow><mi>𝗈𝖽𝖽</mi><mo>→</mo><mi>𝖾𝗏𝖾𝗇</mi></mrow></mrow></math>,</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">while <math id="p9.m4" class="ltx_Math" alttext="\mathsf{odd}" display="inline"><mi>𝗈𝖽𝖽</mi></math> is generated by the one constructor</p>
+<ul id="I5" class="ltx_itemize">
+<li id="I5.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I5.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I5.i1.p1.m1" class="ltx_Math" alttext="\mathsf{osucc}:\mathsf{even}\to\mathsf{odd}" display="inline"><mrow><mi>𝗈𝗌𝗎𝖼𝖼</mi><mo>:</mo><mrow><mi>𝖾𝗏𝖾𝗇</mi><mo>→</mo><mi>𝗈𝖽𝖽</mi></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">Note that <math id="p9.m5" class="ltx_Math" alttext="\mathsf{even}" display="inline"><mi>𝖾𝗏𝖾𝗇</mi></math> and <math id="p9.m6" class="ltx_Math" alttext="\mathsf{odd}" display="inline"><mi>𝗈𝖽𝖽</mi></math> are simple types (not type families), but their constructors can refer to each other.
+If we expressed this definition as an inductive type family <math id="p9.m7" class="ltx_Math" alttext="\mathsf{paritynat}:\mathbf{2}\to\mathcal{U}" display="inline"><mrow><mi>𝗉𝖺𝗋𝗂𝗍𝗒𝗇𝖺𝗍</mi><mo>:</mo><mrow><mn>𝟐</mn><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, with <math id="p9.m8" class="ltx_Math" alttext="\mathsf{paritynat}({0_{\mathbf{2}}})" display="inline"><mrow><mi>𝗉𝖺𝗋𝗂𝗍𝗒𝗇𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math> and <math id="p9.m9" class="ltx_Math" alttext="\mathsf{paritynat}({1_{\mathbf{2}}})" display="inline"><mrow><mi>𝗉𝖺𝗋𝗂𝗍𝗒𝗇𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></math> representing <math id="p9.m10" class="ltx_Math" alttext="\mathsf{even}" display="inline"><mi>𝖾𝗏𝖾𝗇</mi></math> and <math id="p9.m11" class="ltx_Math" alttext="\mathsf{odd}" display="inline"><mi>𝗈𝖽𝖽</mi></math> respectively, it would instead have constructors:</p>
+<ul id="I6" class="ltx_itemize">
+<li id="I6.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I6.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I6.i1.p1.m1" class="ltx_Math" alttext="0:\mathsf{paritynat}({0_{\mathbf{2}}})" display="inline"><mrow><mn>0</mn><mo>:</mo><mrow><mi>𝗉𝖺𝗋𝗂𝗍𝗒𝗇𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I6.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I6.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I6.i2.p1.m1" class="ltx_Math" alttext="\mathsf{esucc}:\mathsf{paritynat}({0_{\mathbf{2}}})\to\mathsf{paritynat}({1_{%
+\mathbf{2}}})" display="inline"><mrow><mi>𝖾𝗌𝗎𝖼𝖼</mi><mo>:</mo><mrow><mrow><mi>𝗉𝖺𝗋𝗂𝗍𝗒𝗇𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>𝗉𝖺𝗋𝗂𝗍𝗒𝗇𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I6.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I6.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I6.i3.p1.m1" class="ltx_Math" alttext="\mathsf{oesucc}:\mathsf{paritynat}({1_{\mathbf{2}}})\to\mathsf{paritynat}({0_{%
+\mathbf{2}}})" display="inline"><mrow><mi>𝗈𝖾𝗌𝗎𝖼𝖼</mi><mo>:</mo><mrow><mrow><mi>𝗉𝖺𝗋𝗂𝗍𝗒𝗇𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>1</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow><mo>→</mo><mrow><mi>𝗉𝖺𝗋𝗂𝗍𝗒𝗇𝖺𝗍</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msub><mn>0</mn><mn>𝟐</mn></msub><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>.</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">When expressed explicitly as a mutual inductive definition, the induction principle for <math id="p9.m12" class="ltx_Math" alttext="\mathsf{even}" display="inline"><mi>𝖾𝗏𝖾𝗇</mi></math> and <math id="p9.m13" class="ltx_Math" alttext="\mathsf{odd}" display="inline"><mi>𝗈𝖽𝖽</mi></math> says that given <math id="p9.m14" class="ltx_Math" alttext="C:\mathsf{even}\to\mathcal{U}" display="inline"><mrow><mi>C</mi><mo>:</mo><mrow><mi>𝖾𝗏𝖾𝗇</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> and <math id="p9.m15" class="ltx_Math" alttext="D:\mathsf{odd}\to\mathcal{U}" display="inline"><mrow><mi>D</mi><mo>:</mo><mrow><mi>𝗈𝖽𝖽</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math>, along with</p>
+<ul id="I7" class="ltx_itemize">
+<li id="I7.i1" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I7.i1.p1" class="ltx_para">
+<p class="ltx_p"><math id="I7.i1.p1.m1" class="ltx_Math" alttext="c_{0}:C(0)" display="inline"><mrow><msub><mi>c</mi><mn>0</mn></msub><mo>:</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+<li id="I7.i2" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I7.i2.p1" class="ltx_para">
+<p class="ltx_p"><math id="I7.i2.p1.m1" class="ltx_Math" alttext="c_{s}:\mathchoice{\prod_{n:\mathsf{odd}}\,}{\mathchoice{{\textstyle\prod_{(n:%
+\mathsf{odd})}}}{\prod_{(n:\mathsf{odd})}}{\prod_{(n:\mathsf{odd})}}{\prod_{(n%
+:\mathsf{odd})}}}{\mathchoice{{\textstyle\prod_{(n:\mathsf{odd})}}}{\prod_{(n:%
+\mathsf{odd})}}{\prod_{(n:\mathsf{odd})}}{\prod_{(n:\mathsf{odd})}}}{%
+\mathchoice{{\textstyle\prod_{(n:\mathsf{odd})}}}{\prod_{(n:\mathsf{odd})}}{%
+\prod_{(n:\mathsf{odd})}}{\prod_{(n:\mathsf{odd})}}}D(n)\to C(\mathsf{esucc}(n))" display="inline"><mrow><msub><mi>c</mi><mi>s</mi></msub><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>𝗈𝖽𝖽</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝖾𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>,
+</p>
+</div>
+</li>
+<li id="I7.i3" class="ltx_item" style="list-style-type:none;">
+<span class="ltx_tag ltx_tag_itemize">•</span> 
+<div id="I7.i3.p1" class="ltx_para">
+<p class="ltx_p"><math id="I7.i3.p1.m1" class="ltx_Math" alttext="d_{s}:\mathchoice{\prod_{n:\mathsf{even}}\,}{\mathchoice{{\textstyle\prod_{(n:%
+\mathsf{even})}}}{\prod_{(n:\mathsf{even})}}{\prod_{(n:\mathsf{even})}}{\prod_%
+{(n:\mathsf{even})}}}{\mathchoice{{\textstyle\prod_{(n:\mathsf{even})}}}{\prod%
+_{(n:\mathsf{even})}}{\prod_{(n:\mathsf{even})}}{\prod_{(n:\mathsf{even})}}}{%
+\mathchoice{{\textstyle\prod_{(n:\mathsf{even})}}}{\prod_{(n:\mathsf{even})}}{%
+\prod_{(n:\mathsf{even})}}{\prod_{(n:\mathsf{even})}}}C(n)\to D(\mathsf{osucc}%
+(n))" display="inline"><mrow><msub><mi>d</mi><mi>s</mi></msub><mo>:</mo><mrow><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>𝖾𝗏𝖾𝗇</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>→</mo><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗈𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math>,</p>
+</div>
+</li>
+</ul>
+<p class="ltx_p">there exist <math id="p9.m16" class="ltx_Math" alttext="f:\mathchoice{\prod_{n:\mathsf{even}}\,}{\mathchoice{{\textstyle\prod_{(n:%
+\mathsf{even})}}}{\prod_{(n:\mathsf{even})}}{\prod_{(n:\mathsf{even})}}{\prod_%
+{(n:\mathsf{even})}}}{\mathchoice{{\textstyle\prod_{(n:\mathsf{even})}}}{\prod%
+_{(n:\mathsf{even})}}{\prod_{(n:\mathsf{even})}}{\prod_{(n:\mathsf{even})}}}{%
+\mathchoice{{\textstyle\prod_{(n:\mathsf{even})}}}{\prod_{(n:\mathsf{even})}}{%
+\prod_{(n:\mathsf{even})}}{\prod_{(n:\mathsf{even})}}}C(n)" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>𝖾𝗏𝖾𝗇</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>C</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> and <math id="p9.m17" class="ltx_Math" alttext="g:\mathchoice{\prod_{n:\mathsf{odd}}\,}{\mathchoice{{\textstyle\prod_{(n:%
+\mathsf{odd})}}}{\prod_{(n:\mathsf{odd})}}{\prod_{(n:\mathsf{odd})}}{\prod_{(n%
+:\mathsf{odd})}}}{\mathchoice{{\textstyle\prod_{(n:\mathsf{odd})}}}{\prod_{(n:%
+\mathsf{odd})}}{\prod_{(n:\mathsf{odd})}}{\prod_{(n:\mathsf{odd})}}}{%
+\mathchoice{{\textstyle\prod_{(n:\mathsf{odd})}}}{\prod_{(n:\mathsf{odd})}}{%
+\prod_{(n:\mathsf{odd})}}{\prod_{(n:\mathsf{odd})}}}D(n)" display="inline"><mrow><mi>g</mi><mo>:</mo><mrow><msub><mo largeop="true" symmetric="true">∏</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>:</mo><mi>𝗈𝖽𝖽</mi><mo stretchy="false">)</mo></mrow></msub><mrow><mi>D</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow></mrow></mrow></math> such that</p>
+<table id="S0.EGx2" class="ltx_equationgroup ltx_eqn_align ltx_eqn_table">
+
+<tr id="S0.Ex3" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex3.m1" class="ltx_Math" alttext="\displaystyle f(0)" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex3.m2" class="ltx_Math" alttext="\displaystyle\equiv c_{0}" display="inline"><mrow><mi></mi><mo>≡</mo><msub><mi>c</mi><mn>0</mn></msub></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex4" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex4.m1" class="ltx_Math" alttext="\displaystyle f(\mathsf{esucc}(n))" display="inline"><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝖾𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex4.m2" class="ltx_Math" alttext="\displaystyle\equiv c_{s}(g(n))" display="inline"><mrow><mi></mi><mo>≡</mo><mrow><msub><mi>c</mi><mi>s</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+<tr id="S0.Ex5" class="ltx_equation ltx_eqn_row ltx_align_baseline">
+<td class="ltx_eqn_cell ltx_eqn_center_padleft"></td>
+<td class="ltx_td ltx_align_right ltx_eqn_cell"><math id="S0.Ex5.m1" class="ltx_Math" alttext="\displaystyle g(\mathsf{osucc}(n))" display="inline"><mrow><mi>g</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>𝗈𝗌𝗎𝖼𝖼</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></math></td>
+<td class="ltx_td ltx_align_left ltx_eqn_cell"><math id="S0.Ex5.m2" class="ltx_Math" alttext="\displaystyle\equiv d_{s}(f(n))." display="inline"><mrow><mrow><mi></mi><mo>≡</mo><mrow><msub><mi>d</mi><mi>s</mi></msub><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mrow><mi>f</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><mo stretchy="false">)</mo></mrow></mrow></mrow><mo>.</mo></mrow></math></td>
+<td class="ltx_eqn_cell ltx_eqn_center_padright"></td>
+</tr>
+</table>
+<p class="ltx_p">In particular, just as we can only induct over an inductive family “all at once”, we have to induct on <math id="p9.m18" class="ltx_Math" alttext="\mathsf{even}" display="inline"><mi>𝖾𝗏𝖾𝗇</mi></math> and <math id="p9.m19" class="ltx_Math" alttext="\mathsf{odd}" display="inline"><mi>𝗈𝖽𝖽</mi></math> simultaneously.
+We will not have much use for mutual inductive definitions in this book either.</p>
+</div>
+<div id="p10" class="ltx_para">
+<p class="ltx_p">A further, more radical, generalization is to allow definition of a type family <math id="p10.m1" class="ltx_Math" alttext="B:A\to\mathcal{U}" display="inline"><mrow><mi>B</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi class="ltx_font_mathcaligraphic">𝒰</mi></mrow></mrow></math> in which not only the types <math id="p10.m2" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>, but the type <math id="p10.m3" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> itself, is defined as part of one big induction.
+In other words, not only do we specify constructors for the <math id="p10.m4" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>s which can take inputs from other <math id="p10.m5" class="ltx_Math" alttext="B(a^{\prime})" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><msup><mi>a</mi><mo>′</mo></msup><mo stretchy="false">)</mo></mrow></mrow></math>s, as with inductive families, we also at the same time specify constructors for <math id="p10.m6" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> itself, which can take inputs from the <math id="p10.m7" class="ltx_Math" alttext="B(a)" display="inline"><mrow><mi>B</mi><mo>⁢</mo><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></mrow></math>s.
+This can be regarded as an inductive family in which the indices are inductively defined simultaneously with the indexed types, or as a mutual inductive definition in which one of the types can depend on the other.
+More complicated dependency structures are also possible.
+In general, these are called <span class="ltx_text ltx_font_bold">inductive-inductive definitions</span>.
+For the most part, we will not use them in this book, but their higher variant (see <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87579</span>Chapter 6) will appear in a couple of experimental examples in <span class="ltx_text ltx_font_typewriter">http://planetmath.org/node/87585</span>Chapter 11.</p>
+</div>
+<div id="p11" class="ltx_para">
+<p class="ltx_p">The last generalization we wish to mention is <span class="ltx_text ltx_font_bold">inductive-recursive definitions</span>, in which a type is defined inductively at the same time as a <em class="ltx_emph ltx_font_italic">recursive</em> function on it.
+That is, we fix a known type <math id="p11.m1" class="ltx_Math" alttext="P" display="inline"><mi>P</mi></math>, and give constructors for an inductive type <math id="p11.m2" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> and at the same time define a function <math id="p11.m3" class="ltx_Math" alttext="f:A\to P" display="inline"><mrow><mi>f</mi><mo>:</mo><mrow><mi>A</mi><mo>→</mo><mi>P</mi></mrow></mrow></math> using the recursion principle for <math id="p11.m4" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> resulting from its constructors — with the twist that the constructors of <math id="p11.m5" class="ltx_Math" alttext="A" display="inline"><mi>A</mi></math> are allowed to refer also to the values of <math id="p11.m6" class="ltx_Math" alttext="f" display="inline"><mi>f</mi></math>.
+We do not yet know how to justify such definitions from a homotopical perspective, and we will not use any of them in this book.
+</p>
+</div>
+<div id="p12" class="ltx_para ltx_align_right">
+<table class="ltx_tabular ltx_align_middle">
+<tbody class="ltx_tbody">
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t">Title</td>
+<td class="ltx_td ltx_align_left ltx_border_r ltx_border_t">5.7 Generalizations of inductive types</td>
+</tr>
+<tr class="ltx_tr">
+<td class="ltx_td ltx_align_left ltx_border_l ltx_border_t"><span class="ltx_ERROR undefined">\metatable</span></td>
+<td class="ltx_td ltx_border_t"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Thu Feb  8 19:37:01 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+</body>
+</html>
